@@ -64,16 +64,16 @@ PRODUCERS = Path(__file__).resolve().parent / "producers"
 
 MPMATH_PIN = "1.3.0"
 
-# (certificate, producer, expected outcome prefix) — replayed
+# (certificate, producer, EXACT expected outcome — not a prefix) — replayed
 REPLAY = [
     ("open_chart_theorem", "open_chart_theorem.py",
-     "uniform_open_chart_theorem"),
+     "uniform_open_chart_theorem_certified"),
     ("quantitative_atlas", "quantitative_atlas.py",
-     "t2_fixed_k3_closed"),
+     "t2_fixed_k3_closed_quantitative_existence_level"),
     ("glue_obligations", "glue_obligations.py",
-     "atlas_paper_glue_obligations_typed"),
+     "atlas_paper_glue_obligations_typed_and_transition_generators_derived_word_length_le_4"),
     ("smoothness_and_transitions", "smoothness_and_transitions.py",
-     "atlas_paper_three_nonzero_lemma"),
+     "atlas_paper_three_nonzero_lemma_carries_smoothness_and_coverage_pivot_degree3_invariant_transitions_explicit"),
     # The sigma-floor correction. The paper states that writing it up
     # uncovered two defects in the results it was reporting, one of them the
     # sigma floor of the two charts (uniform radius 9.6e-10 -> 2.1e-12).
@@ -81,7 +81,7 @@ REPLAY = [
     # ASSERTED rather than CHECKABLE — which is precisely what a
     # one-command verifier exists to close.
     ("sigma_floor_correction", "sigma_floor_correction.py",
-     "u1_sigma_floor_defect_confirmed"),
+     "u1_sigma_floor_defect_confirmed_with_witness_radius_corrected_9p6e10_to_2p1e12_theorem_survives"),
     # The four design certificates are deliberately NOT replayed. They do
     # have gates, self-tests and producers, and they pass; but shipping their
     # producers pulls twenty-three further artefacts into this repository,
@@ -150,7 +150,7 @@ def check_shipped(blob, prefix):
     field = "outcome" if "outcome" in d else "issue"
     return (gp is not None and gp == gt and gt > 0
             and all(bool(v) for v in st.values())
-            and bool(prefix) and str(d.get(field, "")).startswith(prefix))
+            and bool(prefix) and str(d.get(field, "")) == prefix)
 
 
 def check_json(path, prefix):
@@ -163,7 +163,11 @@ def check_json(path, prefix):
     # `outcome`, the design ones serialise `issue`. Accept both EXPLICITLY,
     # rather than letting the second pass for an empty outcome.
     field = "outcome" if "outcome" in d else "issue"
-    ok_out = bool(prefix) and str(d.get(field, "")).startswith(prefix)
+    # The EXACT outcome, not a prefix. While only the beginning was compared,
+    # everything after it was free-form comment: `..._word_length_le_3`
+    # survived a gate that already required 4, and the shipped certificate
+    # told the reader the opposite of what its producer computed.
+    ok_out = bool(prefix) and str(d.get(field, "")) == prefix
     detail = f"gates {gp}/{gt}"
     if st:
         detail += (f" · negative controls "

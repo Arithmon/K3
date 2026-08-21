@@ -9,7 +9,11 @@ roots enclosed by integer square roots), and every gate is an exact
 comparison.
 
 U1-A  Typed domains (serialised separately, each with an explicit role):
-        U_S        = {Z ∈ K : |det M_S(Z)| > m}          pivot open set (m < 4.8, pre-registered)
+        U_S        = {Z ∈ K : q_S(Z) = |det M_S(Z)|/‖Z‖³ > m}   pivot open set (m < 4.8, pre-registered)
+                     — the threshold is stated on the PROJECTIVE INVARIANT: det is homogeneous of
+                     degree 3. LINK to the product floor: in the gauge representative z_g = 1 one has
+                     ‖Z‖ ≥ 1, so q_S(Z) > m implies |det M_S^alg(Z)| = q_S(Z)·‖Z‖³ > m, and it is THAT
+                     inequality the factorisation 8|V_S|∏|z_s| > m consumes.
         C_{S,g}    = {Z ∈ U_S : |z_g| = max_{t∈T}|z_t|}  CLOSED sector, selector only (centres)
         A_g        = {z_g ≠ 0}                            genuine projective affine open set
         B_{Z0,S,g} = {b : |b − b₀|₂ < ρ}                   LOCAL chart open set, with one local
@@ -61,9 +65,13 @@ Holomorphy: the iterates T^n(w₀) are polynomial in b and converge uniformly on
   the open set {|b−b₀|₂ < ρ(σ)} (where h < 1/2 is strict), so the limit w(b) is holomorphic;
   M̃(w(b)) is invertible (contraction), so s(b) = (b, w(b), 1) is a local inverse of π_{S,g}.
 Radius: ρ(σ) := −1 + √(1 + σ²/(2La)) solves L a ρ(2+ρ)/σ² = 1/2.
-Uniform corollary: on U_S one has min_s|z_s| ≥ m/(8|V_S|) on the sphere (the other |z| ≤ 1),
-  σ_min(M̃) ≥ 2 σ_min(Ṽ_S) min_s|w_s|, and the gauge z_g = 1 (|z_g| ≤ 1) can only increase σ, so
-  σ ≥ σ_floor(S) := 2 σ_min(Ṽ_S) m/(8|V_S|) > 0 and therefore ρ ≥ ρ_uniform(S,g) := ρ(σ_floor(S)) > 0.
+Uniform corollary (REV. 2 STATEMENT — the paragraph that stood here repeated the
+  PRODUCT → MINIMUM implication refuted above, while the computation below already used the
+  repaired form; stale proof text, corrected 2026-08-21):
+  s_min(M̃) ≥ 2 σ_min(Ṽ_S) · MIN_s|z_s|, and the MINIMUM is bounded PER TYPE by
+  min_s|z_s| ≥ max( m/(8|V_S|·∏_{j≠i}B_j) , √(|a|−|b|−|c|) when positive ) with B_s² = |a|+|b|+|c|
+  (the pivot threshold bounds ONLY the product). The gauge z_g = 1 can only increase σ, so
+  σ ≥ σ_floor(S,g) > 0 and therefore ρ ≥ ρ_uniform(S,g) := ρ(σ_floor(S,g)) > 0.
 """
 from __future__ import annotations
 
@@ -207,7 +215,7 @@ def build(m=M_PREREG, mutate=None):
     if "n_types" in mutate:
         types = types[:mutate["n_types"]]
     domains = {
-        "U_S": {"def": "{Z ∈ K : |det M_S(Z)| > m}", "role": "pivot_open", "open": True, "m": str(m), "m_lt_4p8": m < Fraction(48, 10)},
+        "U_S": {"def": "{Z ∈ K : q_S(Z) = |det M_S(Z)|/‖Z‖³ > m}  (invariant projectif : |det| est homogène de degré 3, donc le seuil se pose sur le représentant normalisé)", "role": "pivot_open", "open": True, "m": str(m), "m_lt_4p8": m < Fraction(48, 10)},
         "C_S_g": {"def": "{Z ∈ U_S : |z_g| = max_{t∈T} |z_t|}", "role": "selector_only", "open": False if "sector_open" not in mutate else True,
                   "note": "CLOSED sector used to select the centres — never an open set of the atlas; it guarantees |u|,|v| ≤ 1 at the centre"},
         "A_g": {"def": "{z_g ≠ 0}", "role": "affine_open", "open": True},

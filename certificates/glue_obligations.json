@@ -1,6 +1,6 @@
 {
  "artifact": "k3_cap_atlas_paper_glue_obligations_and_generators",
- "lot": "ATLAS PAPER §4.3 + §5.3 — cocycle exact des carrés (8000 triples ordonnés), C = 112 re-dérivé, graphe des 60 types connexe de diamètre 3 ⇒ génération par {swap élémentaire, jauge} + flip de feuille (mots de longueur ≤ 3), deck d'ordre 32 à vertical d'indice 4, sept obligations de collage typées",
+ "lot": "ATLAS PAPER §4.3 + §5.3 — cocycle exact des carrés (8000 triples ordonnés), C = 112 re-dérivé, graphe des 60 types connexe de diamètre 4 ⇒ génération par {swap élémentaire, jauge} + flip de feuille (mots de longueur ≤ 4), deck d'ordre 32 à vertical d'indice 4, six obligations de collage typées 3/2/1",
  "kind": "exact_algebra_and_finite_graphs",
  "front": "papier atlas T2 (ne touche ni P4′ ni T1)",
  "no_measurement_performed": "exact rational algebra + finite graph theory",
@@ -11,7 +11,7 @@
   "t2": "b411124787ac2700a2467b97da7a19c844e83739b3a684c2a4b272cff63247c0",
   "t2_outcome": "t2_fixed_k3_closed_quantitative_existence_level",
   "bridge_panel": "8d01e64efb1bf52923f87de6b10d47b49e177e7285df294c0a678fbef0355150",
-  "paper": "dc15c0238dd3db648b6febfd6187afb8b807cc55fc1e032683175080c1b7e3ca"
+  "paper": "9e67d18c234425cb4270cf11a19e8dadedd74e06db7f580dd9d1e3d3281cddae"
  },
  "A_square_cocycle": {
   "mu": [
@@ -153,7 +153,7 @@
  },
  "gates_passed": 8,
  "gates_total": 8,
- "outcome": "atlas_paper_glue_obligations_typed_and_transition_generators_derived_word_length_le_3",
+ "outcome": "atlas_paper_glue_obligations_typed_and_transition_generators_derived_word_length_le_4",
  "seconds": 0.5,
  "self_tests": {
   "N1_mu_repeat_kills_transitions": true,
@@ -162,6 +162,6 @@
  },
  "self_tests_passed": 3,
  "self_tests_total": 3,
- "built_from_head": "b10fdfdbacd3f8c89795113f7152d8a34d3a697a",
- "self_sha256": "20a2d5b99cd1d1988e79795bb090af0aa18ff86f2ce6c668e3394c303fb8441f"
+ "built_from_head": "50ac10d6113dc31d06120b9b5b17a23eab738c1e",
+ "self_sha256": "736bde3f86536be8b1fbd2faf9ba0f93344d4887949e9613da0850abc66c588c"
 }
