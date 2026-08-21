@@ -1,0 +1,98 @@
+{
+ "phase": "K3 CAP D3-atlas \u2014 coverage certificate (pivot floor)",
+ "date": "2026-07-10",
+ "statement": "inf over gauge-fixed CI(2,2,2) sphere variety of max_{i<j<k} |Z_i Z_j Z_k| * |V_ijk|  >=  TAU ; equivalently max 3x3 complex Jacobian minor >= 8*TAU",
+ "tau": 0.6,
+ "minor_floor_8tau": 4.8,
+ "verdict": "CERTIFIED",
+ "w_min": 0.001,
+ "arithmetic": "float64 intervals, 1-ulp outward rounding (np.nextafter) per op",
+ "domain": "per gauge g: slice Z_g = t in [1/sqrt6, 1] real, Y_g = 0, |Z_j| <= t ; sign-group reduction x16 (Z_2^3 x {+-1} x conj), 4 half-space cuts, over-cover",
+ "mu": [
+  1,
+  2,
+  3,
+  5,
+  7,
+  11
+ ],
+ "design_min_ref": "k3_cap_d3_atlas_pivot_min_design.json",
+ "per_gauge": {
+  "0": {
+   "n_proc": 3804560,
+   "n_excl": 895664,
+   "n_cert": 1006632,
+   "n_unresolved": 0,
+   "counts": {
+    "sphere": 226808,
+    "modulus": 63880,
+    "quad_re": 418884,
+    "quad_im": 186092
+   }
+  },
+  "1": {
+   "n_proc": 55087856,
+   "n_excl": 19933596,
+   "n_cert": 7610348,
+   "n_unresolved": 0,
+   "counts": {
+    "sphere": 3810028,
+    "modulus": 187808,
+    "quad_re": 10602796,
+    "quad_im": 5332964
+   }
+  },
+  "2": {
+   "n_proc": 11285360,
+   "n_excl": 3110636,
+   "n_cert": 2532060,
+   "n_unresolved": 0,
+   "counts": {
+    "sphere": 808640,
+    "modulus": 256008,
+    "quad_re": 1288464,
+    "quad_im": 757524
+   }
+  },
+  "3": {
+   "n_proc": 1476296,
+   "n_excl": 348920,
+   "n_cert": 389244,
+   "n_unresolved": 0,
+   "counts": {
+    "sphere": 116964,
+    "modulus": 40636,
+    "quad_re": 124236,
+    "quad_im": 67084
+   }
+  },
+  "4": {
+   "n_proc": 128824,
+   "n_excl": 24936,
+   "n_cert": 39492,
+   "n_unresolved": 0,
+   "counts": {
+    "sphere": 11196,
+    "modulus": 2440,
+    "quad_re": 7076,
+    "quad_im": 4224
+   }
+  },
+  "5": {
+   "n_proc": 24896,
+   "n_excl": 3820,
+   "n_cert": 8644,
+   "n_unresolved": 0,
+   "counts": {
+    "sphere": 64,
+    "modulus": 904,
+    "quad_re": 2456,
+    "quad_im": 396
+   }
+  }
+ },
+ "total_boxes": 71807792,
+ "seconds": 71.09626865386963,
+ "n_cores": 4,
+ "unresolved_sample": []
+}

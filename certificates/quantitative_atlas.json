@@ -1,0 +1,115 @@
+{
+ "artifact": "k3_cap_t2_fixed_k3_quantitative_atlas_closeout",
+ "lot": "T2_FIXED_K3_QUANTITATIVE_ATLAS_CLOSEOUT (NEXT-1, 3ᵉ revue) — read-only",
+ "kind": "theorem_closeout_read_only",
+ "no_measurement_performed": true,
+ "nothing_is_rewritten": true,
+ "upstream": {
+  "d3_coverage_legacy": "6970ae709c969ad9496679c4d33b460823bd51d5588a04f63267b026b77c6134",
+  "amendment_b": "7331ccd075015a66926fb3d75e191a88808f947afb5729c305770ade29410c47",
+  "u1_certificate": "2199ee6db9f5038d41f92ac7e6620ce97e7b3873417bffc68f011eaf6c2db4bf",
+  "f9_p0": "5e7594490688a18c8e151bd637c56d9c801b195e9a6516d81687fab0f60620e2",
+  "closeout_k_regional": "e52d3c3b48083471a9a61ab7bceeb8e1dc24892315e99d49b7c5e0542a67b282"
+ },
+ "T2_statement": "Pour le CI(2,2,2) K fixé (μ = 1,2,3,5,7,11) : il existe un atlas holomorphe FINI de K par des charts locaux (S,g ; centre Z0) dont chaque rayon est minoré par une constante rationnelle explicite ρ_uniform(S,g) > 0 (U1), dont les changements de cartes sont les changements de coordonnées projectifs exacts (F9-P0), et dont le quotient est canoniquement K",
+ "level": "existence quantitative d'un atlas holomorphe fini avec rayon explicite garanti",
+ "seven_items_derived": {
+  "1_D3_covers_K_by_pivot_opens": {
+   "tau": 0.6,
+   "minor_floor": 4.8,
+   "verdict": "CERTIFIED",
+   "n_unresolved": 0,
+   "cover_definition": "pour m < 4,8 préinscrit : U_S = {Z ∈ K : |det M_S(Z)| > m}, S parmi les 20 triples ; {U_S} couvre K par D3",
+   "ok": true
+  },
+  "2_each_point_chooses_template": {
+   "T_never_all_zero_20_20": true,
+   "n_types": 60,
+   "ok": true
+  },
+  "3_U1_local_open_chart_certified_radius": {
+   "outcome": "uniform_open_chart_theorem_certified",
+   "n_chart_types": 60,
+   "sections_local": true,
+   "rho_uniform_lo_min": "10545812600182365523096160081/5000000000000000000000000000000000000000",
+   "no_float_load_bearing": true,
+   "ok": true
+  },
+  "4_compactness_finite_subcover": {
+   "argument": "K est fermé dans P⁵ (zéros de trois quadriques), donc compact ; les ouverts locaux B_{Z0,S,g}(ρ) indexés par tous les centres Z0 ∈ K couvrent K (chaque point est son propre centre) ⇒ sous-famille finie",
+   "not_enumerated": true,
+   "ok": true
+  },
+  "5_transitions_exact_projective": {
+   "cocycle": {
+    "n_tests": 400,
+    "identity_ok": 400,
+    "inverse_ok": 400,
+    "cocycle_ok": 400
+   },
+   "transfer": {
+    "n_pairs": 3540,
+    "n_ok": 3540
+   },
+   "ok": true
+  },
+  "6_quotient_is_K": {
+   "reduction": "découle de 1 (couverture, F1) + 2 (F1′) + 3–7 identités : Φ est bijective, holomorphe locale, donc iso",
+   "biconditional": "(i,p) ~ (j,q) ⇔ s_i(p) = s_j(q) ⇔ q = π_j(t_ij(s_i(p))) — identité, pas une mesure",
+   "ok": true
+  },
+  "7_no_regional_dependency": {
+   "upstreams": [
+    "amendment_b",
+    "closeout_k_regional",
+    "d3_coverage_legacy",
+    "f9_p0",
+    "u1_certificate"
+   ],
+   "X_reg_or_b1_or_RFace_in_upstreams": false,
+   "regional_ledger_untouched": "6_CLOSED_0_OPEN",
+   "ok": true
+  }
+ },
+ "ledger": {
+  "T1_NK_fixed_K": "OPEN (D2 / D1b / D1e / production)",
+  "T2_GLOBAL_ATLAS_FIXED_K3": "CLOSED — existence quantitative d'un atlas holomorphe fini avec rayon explicite garanti",
+  "T3_K3_FAMILY_TO_L4": "OPEN — NEXT T3-P0 FAMILY_PARAMETER_DEPENDENCE_CONTRACT",
+  "regional_contract_C1_C6": "6_CLOSED_0_OPEN (inchangé ; X_reg n'est plus sur le chemin critique)"
+ },
+ "what_T2_is_not": [
+  "pas une énumération explicite de cellules (T1/production)",
+  "pas une borne sharp (bornes Frobenius/det)",
+  "pas un énoncé sur une famille (T3)",
+  "pas la métrique (T1)"
+ ],
+ "what_the_regional_arc_becomes": "validation d'instrument : ses transitions certifiées sont des instances des rescalings exacts ; RFace/C5/C6/C7 = négatifs et contrôles",
+ "forbidden_hits": [],
+ "gates": {
+  "C1_D3_covers_K_by_pivot_opens": true,
+  "C2_each_point_chooses_template": true,
+  "C3_U1_local_open_chart_certified_radius": true,
+  "C4_compactness_finite_subcover": true,
+  "C5_transitions_exact_projective": true,
+  "C6_quotient_is_K": true,
+  "C7_no_regional_dependency": true,
+  "C8_no_forbidden_phrase": true
+ },
+ "gates_passed": 8,
+ "gates_total": 8,
+ "outcome": "t2_fixed_k3_closed_quantitative_existence_level",
+ "n_atteste_pas": [
+  "rien sur T1 ni T3",
+  "aucune cellule produite",
+  "les bornes U1 sont des design-grade certifiés non sharp"
+ ],
+ "self_tests": {
+  "N1_refused_U1_blocks_closeout": true,
+  "N2_forbidden_phrase_reddens": true
+ },
+ "self_tests_passed": 2,
+ "self_tests_total": 2,
+ "seconds": 0.01,
+ "built_from_head": "a089033defd2d58cf49f1fd16fd1963f7722e218",
+ "self_sha256": "418f7b2466accc0c5f83773436893bd860a106c239a1bebf11fef7929fdf6adf"
+}

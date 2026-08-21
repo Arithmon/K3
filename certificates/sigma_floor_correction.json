@@ -1,0 +1,711 @@
+{
+ "artifact": "k3_cap_atlas_paper_sigma_floor_correction",
+ "lot": "DÉFAUT trouvé dans U1 en écrivant le papier : sigma_floor place la borne du PRODUIT ∏|z_s| dans le slot du MINIMUM min|z_s| requis par s_min(M̃) ≥ 2σ_min(Ṽ)·min|z| ; témoin explicite sur la variété ; constante corrigée",
+ "kind": "defect_report_and_correction",
+ "front": "papier atlas T2 (amont U1)",
+ "nothing_is_rewritten": true,
+ "u1_is_not_modified_by_this_lot": true,
+ "upstream": {
+  "u1_live": "2199ee6db9f5038d41f92ac7e6620ce97e7b3873417bffc68f011eaf6c2db4bf",
+  "u1_outcome_live": "uniform_open_chart_theorem_certified",
+  "u1_sha_at_defect": "d30959de5e0e2d9233cf09fc03e450f695ef68a1dfde82a8dcd32797dd776e07",
+  "u1_rho_published_at_defect": "9.59780680865981e-10",
+  "u1_rho_live": "2.109162520036473e-12",
+  "upstream_repaired": true,
+  "note": "Q1 se compare à la trace GELÉE ; ce lot reste valide après réparation amont et en garde le témoignage"
+ },
+ "A_correct_chain": {
+  "identity": "s_min(A·diag(d)) ≥ s_min(A)·min_i|d_i|  (‖ADx‖ ≥ s_min(A)‖Dx‖ ≥ s_min(A)min|d_i|‖x‖)",
+  "numeric_control_300_random": true,
+  "what_the_pivot_gives": "|det M_S^alg| = 8|V_S|∏|z_s| > m ⇒ le PRODUIT, pas le minimum"
+ },
+ "B_defect": {
+  "u1_formula": "sigma_floor_lo = 2·σ_min(Ṽ_S)·m/(8|V_S|)",
+  "substitution": "m/(8|V_S|) est une borne du PRODUIT, employée là où le MINIMUM est requis",
+  "why_invalid": "∏ ≥ c ⇒ min ≥ c est faux dès qu'un facteur dépasse 1 ; les coordonnées résolues atteignent B_s ≈ 3,4 sur les domaines certifiés",
+  "witness_on_the_variety": {
+   "S": [
+    0,
+    1,
+    2
+   ],
+   "g": 3,
+   "u": [
+    -0.7083333333333334,
+    0.0
+   ],
+   "v": [
+    0.0,
+    -0.5
+   ],
+   "abs_z": [
+    0.991281,
+    0.204124,
+    1.508656
+   ],
+   "product": 0.305268,
+   "prod_lo_used_by_U1": 0.25,
+   "min_abs_z": 0.204124,
+   "reading": "point du secteur SUR le domaine de pivot (produit > plancher) dont le MINIMUM est sous le plancher"
+  }
+ },
+ "C_repair": {
+  "replacement": "min_i|z_{s_i}| ≥ max( m/(8|V_S| ∏_{j≠i}B_{s_j}) , sqrt(|a|−|b|−|c|) si > 0 )",
+  "rho_unif_published_by_U1": "9.597806993610902e-10",
+  "rho_unif_corrected": "2.1092017021828724e-12",
+  "loss_factor": 455.0,
+  "per_type_corrected": [
+   {
+    "S": [
+     0,
+     1,
+     2
+    ],
+    "g": 3,
+    "rho_corrected": 2.1092017021828724e-12,
+    "rho_u1": 1.5590929214326366e-08
+   },
+   {
+    "S": [
+     0,
+     1,
+     2
+    ],
+    "g": 4,
+    "rho_corrected": 2.225775119768514e-12,
+    "rho_u1": 1.645252556414789e-08
+   },
+   {
+    "S": [
+     0,
+     1,
+     2
+    ],
+    "g": 5,
+    "rho_corrected": 8.99029146617103e-06,
+    "rho_u1": 2.443024937903715e-08
+   },
+   {
+    "S": [
+     0,
+     1,
+     3
+    ],
+    "g": 2,
+    "rho_corrected": 2.4287238886699924e-11,
+    "rho_u1": 1.0152076290737e-08
+   },
+   {
+    "S": [
+     0,
+     1,
+     3
+    ],
+    "g": 4,
+    "rho_corrected": 2.6388002893895646e-11,
+    "rho_u1": 1.1030209634554922e-08
+   },
+   {
+    "S": [
+     0,
+     1,
+     3
+    ],
+    "g": 5,
+    "rho_corrected": 4.734282446872129e-05,
+    "rho_u1": 1.700572727081351e-08
+   },
+   {
+    "S": [
+     0,
+     1,
+     4
+    ],
+    "g": 2,
+    "rho_corrected": 6.279421427279885e-11,
+    "rho_u1": 5.3919322340334475e-09
+   },
+   {
+    "S": [
+     0,
+     1,
+     4
+    ],
+    "g": 3,
+    "rho_corrected": 6.465294966062629e-11,
+    "rho_u1": 5.551530790626202e-09
+   },
+   {
+    "S": [
+     0,
+     1,
+     4
+    ],
+    "g": 5,
+    "rho_corrected": 9.238650235965373e-05,
+    "rho_u1": 1.0130566829857912e-08
+   },
+   {
+    "S": [
+     0,
+     1,
+     5
+    ],
+    "g": 2,
+    "rho_corrected": 3.588551678035401e-11,
+    "rho_u1": 1.1738601202182508e-09
+   },
+   {
+    "S": [
+     0,
+     1,
+     5
+    ],
+    "g": 3,
+    "rho_corrected": 3.8362424348292734e-11,
+    "rho_u1": 1.2548759809050125e-09
+   },
+   {
+    "S": [
+     0,
+     1,
+     5
+    ],
+    "g": 4,
+    "rho_corrected": 4.2723091731033946e-10,
+    "rho_u1": 1.485287004499014e-09
+   },
+   {
+    "S": [
+     0,
+     2,
+     3
+    ],
+    "g": 1,
+    "rho_corrected": 3.734768050378534e-11,
+    "rho_u1": 9.191041705491898e-09
+   },
+   {
+    "S": [
+     0,
+     2,
+     3
+    ],
+    "g": 4,
+    "rho_corrected": 4.089550920127749e-11,
+    "rho_u1": 1.0064149069677342e-08
+   },
+   {
+    "S": [
+     0,
+     2,
+     3
+    ],
+    "g": 5,
+    "rho_corrected": 7.42900965444715e-05,
+    "rho_u1": 1.5686836052353215e-08
+   },
+   {
+    "S": [
+     0,
+     2,
+     4
+    ],
+    "g": 1,
+    "rho_corrected": 2.0342572071285758e-10,
+    "rho_u1": 4.997703140219301e-09
+   },
+   {
+    "S": [
+     0,
+     2,
+     4
+    ],
+    "g": 3,
+    "rho_corrected": 2.110849273151416e-10,
+    "rho_u1": 5.185876839064463e-09
+   },
+   {
+    "S": [
+     0,
+     2,
+     4
+    ],
+    "g": 5,
+    "rho_corrected": 0.0001702900751241465,
+    "rho_u1": 9.64133684000501e-09
+   },
+   {
+    "S": [
+     0,
+     2,
+     5
+    ],
+    "g": 1,
+    "rho_corrected": 1.7189649703652776e-10,
+    "rho_u1": 1.1329048810182485e-09
+   },
+   {
+    "S": [
+     0,
+     2,
+     5
+    ],
+    "g": 3,
+    "rho_corrected": 1.8723267380948982e-10,
+    "rho_u1": 1.2339802513139375e-09
+   },
+   {
+    "S": [
+     0,
+     2,
+     5
+    ],
+    "g": 4,
+    "rho_corrected": 1.0015810403274372e-09,
+    "rho_u1": 1.4718548602132842e-09
+   },
+   {
+    "S": [
+     0,
+     3,
+     4
+    ],
+    "g": 1,
+    "rho_corrected": 1.0567435815289627e-10,
+    "rho_u1": 3.908849244282919e-09
+   },
+   {
+    "S": [
+     0,
+     3,
+     4
+    ],
+    "g": 2,
+    "rho_corrected": 1.0650080817242724e-10,
+    "rho_u1": 3.9394205675336025e-09
+   },
+   {
+    "S": [
+     0,
+     3,
+     4
+    ],
+    "g": 5,
+    "rho_corrected": 3.1660219408369272e-06,
+    "rho_u1": 8.24486190431628e-09
+   },
+   {
+    "S": [
+     0,
+     3,
+     5
+    ],
+    "g": 1,
+    "rho_corrected": 4.0714676075026546e-10,
+    "rho_u1": 1.0598539823547526e-09
+   },
+   {
+    "S": [
+     0,
+     3,
+     5
+    ],
+    "g": 2,
+    "rho_corrected": 4.148406063109178e-10,
+    "rho_u1": 1.0798821836743855e-09
+   },
+   {
+    "S": [
+     0,
+     3,
+     5
+    ],
+    "g": 4,
+    "rho_corrected": 2.242755314796341e-09,
+    "rho_u1": 1.4500036726872167e-09
+   },
+   {
+    "S": [
+     0,
+     4,
+     5
+    ],
+    "g": 1,
+    "rho_corrected": 3.233522338774719e-10,
+    "rho_u1": 9.792633370864223e-10
+   },
+   {
+    "S": [
+     0,
+     4,
+     5
+    ],
+    "g": 2,
+    "rho_corrected": 3.320117514249432e-10,
+    "rho_u1": 1.005488359240303e-09
+   },
+   {
+    "S": [
+     0,
+     4,
+     5
+    ],
+    "g": 3,
+    "rho_corrected": 3.737570253292688e-10,
+    "rho_u1": 1.1319127857234434e-09
+   },
+   {
+    "S": [
+     1,
+     2,
+     3
+    ],
+    "g": 0,
+    "rho_corrected": 1.2015499706308219e-11,
+    "rho_u1": 8.715260513270096e-09
+   },
+   {
+    "S": [
+     1,
+     2,
+     3
+    ],
+    "g": 4,
+    "rho_corrected": 1.3214096483693538e-11,
+    "rho_u1": 9.584728344336213e-09
+   },
+   {
+    "S": [
+     1,
+     2,
+     3
+    ],
+    "g": 5,
+    "rho_corrected": 1.8040221753112817e-05,
+    "rho_u1": 1.5033653655294188e-08
+   },
+   {
+    "S": [
+     1,
+     2,
+     4
+    ],
+    "g": 0,
+    "rho_corrected": 4.164535383210932e-11,
+    "rho_u1": 4.797557018321186e-09
+   },
+   {
+    "S": [
+     1,
+     2,
+     4
+    ],
+    "g": 3,
+    "rho_corrected": 4.340172665706632e-11,
+    "rho_u1": 4.999873182143233e-09
+   },
+   {
+    "S": [
+     1,
+     2,
+     4
+    ],
+    "g": 5,
+    "rho_corrected": 4.8110515443067214e-05,
+    "rho_u1": 9.39681110700974e-09
+   },
+   {
+    "S": [
+     1,
+     2,
+     5
+    ],
+    "g": 0,
+    "rho_corrected": 3.4724667585805946e-11,
+    "rho_u1": 1.1111889186565804e-09
+   },
+   {
+    "S": [
+     1,
+     2,
+     5
+    ],
+    "g": 3,
+    "rho_corrected": 3.8226533050078615e-11,
+    "rho_u1": 1.2232526103161945e-09
+   },
+   {
+    "S": [
+     1,
+     2,
+     5
+    ],
+    "g": 4,
+    "rho_corrected": 6.281684061804071e-10,
+    "rho_u1": 1.4657264291173533e-09
+   },
+   {
+    "S": [
+     1,
+     3,
+     4
+    ],
+    "g": 0,
+    "rho_corrected": 8.191736178275733e-11,
+    "rho_u1": 3.768196199516183e-09
+   },
+   {
+    "S": [
+     1,
+     3,
+     4
+    ],
+    "g": 2,
+    "rho_corrected": 8.291745068333967e-11,
+    "rho_u1": 3.814205173924279e-09
+   },
+   {
+    "S": [
+     1,
+     3,
+     4
+    ],
+    "g": 5,
+    "rho_corrected": 1.7615708891582926e-10,
+    "rho_u1": 8.103231863287874e-09
+   },
+   {
+    "S": [
+     1,
+     3,
+     5
+    ],
+    "g": 0,
+    "rho_corrected": 2.0794477251229182e-10,
+    "rho_u1": 1.040580288602655e-09
+   },
+   {
+    "S": [
+     1,
+     3,
+     5
+    ],
+    "g": 2,
+    "rho_corrected": 2.141371524544411e-10,
+    "rho_u1": 1.0715672793537578e-09
+   },
+   {
+    "S": [
+     1,
+     3,
+     5
+    ],
+    "g": 4,
+    "rho_corrected": 2.320339920203196e-09,
+    "rho_u1": 1.4514061064119232e-09
+   },
+   {
+    "S": [
+     1,
+     4,
+     5
+    ],
+    "g": 0,
+    "rho_corrected": 2.3151813799415777e-10,
+    "rho_u1": 9.631153652378543e-10
+   },
+   {
+    "S": [
+     1,
+     4,
+     5
+    ],
+    "g": 2,
+    "rho_corrected": 2.4135471399233666e-10,
+    "rho_u1": 1.0040359654794884e-09
+   },
+   {
+    "S": [
+     1,
+     4,
+     5
+    ],
+    "g": 3,
+    "rho_corrected": 2.7282776038362044e-10,
+    "rho_u1": 1.1349639006397183e-09
+   },
+   {
+    "S": [
+     2,
+     3,
+     4
+    ],
+    "g": 0,
+    "rho_corrected": 3.6883163190282175e-11,
+    "rho_u1": 3.558083605526008e-09
+   },
+   {
+    "S": [
+     2,
+     3,
+     4
+    ],
+    "g": 1,
+    "rho_corrected": 3.70439234842479e-11,
+    "rho_u1": 3.5735778780576766e-09
+   },
+   {
+    "S": [
+     2,
+     3,
+     4
+    ],
+    "g": 5,
+    "rho_corrected": 8.721001698575037e-11,
+    "rho_u1": 7.878893759638572e-09
+   },
+   {
+    "S": [
+     2,
+     3,
+     5
+    ],
+    "g": 0,
+    "rho_corrected": 5.835998351244598e-11,
+    "rho_u1": 1.0258613958313845e-09
+   },
+   {
+    "S": [
+     2,
+     3,
+     5
+    ],
+    "g": 1,
+    "rho_corrected": 5.898326271847054e-11,
+    "rho_u1": 1.0368172986829904e-09
+   },
+   {
+    "S": [
+     2,
+     3,
+     5
+    ],
+    "g": 4,
+    "rho_corrected": 8.290990116677222e-11,
+    "rho_u1": 1.4574026430125286e-09
+   },
+   {
+    "S": [
+     2,
+     4,
+     5
+    ],
+    "g": 0,
+    "rho_corrected": 4.000062503450863e-10,
+    "rho_u1": 9.597806993610902e-10
+   },
+   {
+    "S": [
+     2,
+     4,
+     5
+    ],
+    "g": 1,
+    "rho_corrected": 1.0400769134832899e-10,
+    "rho_u1": 9.74463398861758e-10
+   },
+   {
+    "S": [
+     2,
+     4,
+     5
+    ],
+    "g": 3,
+    "rho_corrected": 1.2201306631709485e-10,
+    "rho_u1": 1.143157346561452e-09
+   },
+   {
+    "S": [
+     3,
+     4,
+     5
+    ],
+    "g": 0,
+    "rho_corrected": 4.3167247554265487e-11,
+    "rho_u1": 9.651190957526978e-10
+   },
+   {
+    "S": [
+     3,
+     4,
+     5
+    ],
+    "g": 1,
+    "rho_corrected": 8.306910714850346e-12,
+    "rho_u1": 9.839458137150814e-10
+   },
+   {
+    "S": [
+     3,
+     4,
+     5
+    ],
+    "g": 2,
+    "rho_corrected": 8.62088178621434e-12,
+    "rho_u1": 1.0211251844083336e-09
+   }
+  ],
+  "rho_corrected_max": "0.0001702900751241465",
+  "argmin_published": {
+   "S": [
+    2,
+    4,
+    5
+   ],
+   "g": 0
+  },
+  "argmin_corrected": {
+   "S": [
+    0,
+    1,
+    2
+   ],
+   "g": 3
+  },
+  "verdict": "le THÉORÈME survit (rayon uniforme strictement positif) ; c'est la CONSTANTE qui était optimiste"
+ },
+ "D_scope": {
+  "upstream_repaired_since": true,
+  "u1_other_gates": "non touchés",
+  "t2_closeout": "PAS invalidé — « existence quantitative avec rayon explicite garanti » tient ; seule la valeur change",
+  "action_left_to_the_ledger": "ce lot ne rejoue pas U1 ; le papier cite la constante corrigée"
+ },
+ "n_atteste_pas": [
+  "que les autres gates de U1 soient touchés",
+  "que le témoin soit le pire cas (grille déterministe, pas une optimisation)",
+  "la netteté de la constante corrigée (bornes Frobenius/det volontairement lâches)",
+  "rien sur T1/P4′/L4"
+ ],
+ "gates": {
+  "Q1_reproduces_U1_published_radius": true,
+  "Q2_matrix_inequality_smin_AD_control": true,
+  "Q3_explicit_witness_on_the_variety": true,
+  "Q4_corrected_radius_strictly_positive": true,
+  "Q5_correction_is_a_loss_not_a_gain": true,
+  "Q6_upstream_read": true
+ },
+ "gates_passed": 6,
+ "gates_total": 6,
+ "outcome": "u1_sigma_floor_defect_confirmed_with_witness_radius_corrected_9p6e10_to_2p1e12_theorem_survives",
+ "seconds": 0.1,
+ "self_tests": {
+  "N1_capping_z_at_one_validates_U1_substitution": true,
+  "N2_inverting_the_chain_min_to_product_silences_the_witness": true,
+  "N3_m_zero_collapses_both_floors": true
+ },
+ "self_tests_passed": 3,
+ "self_tests_total": 3,
+ "built_from_head": "fffa88bec6f294cecf687323f5cba5937b5a501f",
+ "self_sha256": "63f62acec5d8ed2c457282a5ff3bb5eb5150f56d34fe99433d1ebb15fa85b9c6"
+}

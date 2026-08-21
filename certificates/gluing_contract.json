@@ -1,0 +1,248 @@
+{
+ "artifact": "k3_cap_global_gluing_contract_closeout_k",
+ "lot": "CONTRAT GLOBAL — CLOSEOUT K (régional) : 6 CLOSED / 0 OPEN sur la région courante",
+ "kind": "contract_closeout_read_only",
+ "amends": "k3_cap_global_gluing_contract_amendment_j.json",
+ "amends_sha256": "198c0d606947168c0fe2cd022a67211427dc0f08e175f20309e642843e6e704b",
+ "review": {
+  "file": "gpt_c4am_postcalc_review_regional_closeout_next_2026_08_18.md",
+  "sha256": "0e75e09b0d8723f87919b75c17694fe40ef2ff57b5520af2b46bcb5c05ca4e87"
+ },
+ "no_measurement_performed": true,
+ "nothing_is_rewritten": true,
+ "K1_lineage": {
+  "k3_cap_global_gluing_contract_prereg.json": "be0cc1389862c9a3ef394d3657241321f1f17a7aeb15f3910cb3853a5c6ab044",
+  "k3_cap_global_gluing_contract_amendment_h.json": "e24e008b13b033da25871aa3aabd6bc82f3f41e355ed27dc142432e43042c66c",
+  "k3_cap_global_gluing_contract_amendment_i.json": "3e665ab7f51bcdc683a3971529ed965a8f1e09df690dd8999a98e36259c8d779",
+  "k3_cap_global_gluing_contract_amendment_j.json": "198c0d606947168c0fe2cd022a67211427dc0f08e175f20309e642843e6e704b",
+  "k3_cap_c4_scope_reconciliation.json": "36705686a396f28bcde23d575a84557e562c4adadffd644b950d0ead01b70cd4",
+  "k3_cap_c4b0_rface_contract_reconciliation.json": "86bd624f1301d3313cdaff6c48ec42a48247a9aa004a6b1c9f26a0b962574eb9",
+  "k3_cap_c4b05_rface_mixed_high_closeout.json": "605e88c12e559b20cfa6910fbecefa3dac6c80d36079e7cdaf9e258b21db8a73",
+  "k3_cap_c4b1_p0_mixed_cell_universe_panel.json": "3b537f3bfeef7d162e94ad0c1aa355008363e0e2b30471b0f4abfebf962f8646",
+  "k3_cap_c4b1_m0_transition_producer_contract_v2.json": "79d76e948b861d25bd0ded02d7c894318f6eb144ce8ab70396e2607a32c62530",
+  "k3_cap_c4b1_m0_tiny_pilot_v2.json": "246c11a8c138aff5eba5ed37ab8fd7dd24fab66db4e617a6331fcf4ba597a919",
+  "k3_cap_c4b1_m_ladder_upto1.json": "80c32adcb78efe3e9b60d4548e362326939a56abc52de498803d11b043f69e20",
+  "k3_cap_c4b1_m_ladder_upto26.json": "f852cdf77325ad537c72c715b3bc5394e17bfb4469c9e55bf4a03aea790c848b",
+  "k3_cap_c4a0_pullback_selector_sharpening_contract.json": "0e10c3afcb786f8a47b1c7c7f8d531898666534a006d601213f322cfc98b5c6e",
+  "k3_cap_c4a0_pullback_selector_sharpening_pilot.json": "b84d03f33b41acfb634fbe2c41321cae5d473fa6ebfd15111409709daee4ac65",
+  "k3_cap_c4am_anisotropic_predicate_prereg.json": "a6f1c1a27e98b82817ff5bf615acf6cc9f2ab9c70ff7af8e1118c453a7305303",
+  "k3_cap_c4am_anisotropic_predicate_measure.json": "87e5437a4a3e2bbe3ac433d2f69460a317645ac0160228b28331593b3fd5496a"
+ },
+ "K1_notes_read": {
+  "k3_cap_c4b1_closeout_2026_08_18.md": "73e2f899bd84df1dc1ea3a88e4ed009aa5ee0c02f12e7126126d61f07c8e131f",
+  "gpt_c4b1_m0_m_postcalc_review_2026_08_18.md": "971318e64ba07327f99ddd80f714d74245b72eb0a309b462a42d71fc32a5d927",
+  "gpt_c4am_postcalc_review_regional_closeout_next_2026_08_18.md": "0e75e09b0d8723f87919b75c17694fe40ef2ff57b5520af2b46bcb5c05ca4e87"
+ },
+ "K2_A_derived": {
+  "n_rows": 24,
+  "n_population_C4": 24,
+  "ids_equal_C4": true,
+  "census": {
+   "certified": 24
+  },
+  "P3_census": {
+   "certified": 24
+  },
+  "P4_census": {
+   "certified": 24
+  },
+  "n_false_fields": 0,
+  "n_missing_fields": 0,
+  "non_regression_all": true,
+  "measure_gates": "6/6",
+  "prereg_gates": "4/4",
+  "measure_prereg_sha_bound": true,
+  "A0_pilot_gates": "6/6",
+  "A0_pilot_census": {
+   "anisotropic_box_itself|SHARP_SELECTOR_DECIDES_S4": 2,
+   "iso_1/1024|SHARP_SELECTOR_DECIDES_S4": 2,
+   "iso_1/4096_control|SHARP_SELECTOR_DECIDES_S4": 2,
+   "iso_1/512|SHARP_SELECTOR_DECIDES_S4": 2
+  },
+  "issue_rederived": "anisotropic_predicate_certified_on_all_24_bridges",
+  "issue_published": "anisotropic_predicate_certified_on_all_24_bridges",
+  "CLOSED_derived": true
+ },
+ "K2_B_derived": {
+  "n_population_C4": 28,
+  "n_bijection_B0": 28,
+  "high_directions_certified_B0": 14,
+  "high_directions_not_attempted_B0": 2,
+  "high_directions_paid_B05": 2,
+  "B05_transitions_certified": "4/4",
+  "low_directions": 16,
+  "cover_gap": 0,
+  "contradiction": 0,
+  "missing_provenance": 0,
+  "b1_potential_clean": 27,
+  "b1_kill_old_actual_ladder": 27,
+  "b1_transitions_certified": "100/100",
+  "b1_cells_attached": 215,
+  "b1_paid_complex": 36,
+  "M0_pilot_gates": "5/5",
+  "requires_X_reopen": 1452,
+  "still_relative_low_tiles": 15,
+  "fully_ambient_total": 49,
+  "high_directions_total_paid": 16,
+  "high_directions_needed": 16,
+  "potential_saturated_by_measure": true,
+  "SCOPE_CLOSED_derived": true,
+  "NOT_global_closed_because": [
+   "15 tuiles restent relatives à une face BASSE = frontière d'ÉNUMÉRATION (hors région)",
+   "1452 candidats requires_X_reopen (rouvrir X/D3) hors B1"
+  ]
+ },
+ "K2_C4_derived": {
+  "A": "CLOSED",
+  "B": "SCOPE_CLOSED",
+  "regional": "SCOPE_CLOSED_CURRENT_REGION"
+ },
+ "K3_governance_record": [
+  {
+   "id": "protocol_deviation_staged_review_stop_skipped",
+   "what": "B1-M : les pas 2–26 exécutés avant la revue prescrite après le palier 1 ; séquence gelée, aucune adaptation ; résultat conservé, run non « strictement conforme »",
+   "normalised": false
+  },
+  {
+   "id": "immutable_artifact_replay_incident",
+   "what": "B0 / B0.5 / P0 rejoués en place après un correctif stdout ; diff limité à I/O-provenance-timing-SHA ; HARD HOLD sur la pratique ; ne plus réécrire ces chemins",
+   "normalised": false
+  },
+  {
+   "id": "preregistered_negative_N3_invalid_by_construction",
+   "what": "C4-A-M : « required_set amputé → refused » est logiquement inversé (retirer une exigence détend l'obligation) ; N3 ne compte pas parmi les négatifs validant l'instrument",
+   "normalised": false
+  },
+  {
+   "id": "N3_posthoc_success_criterion_changed_and_not_gated",
+   "what": "C4-A-M : le critère de N3 a été assoupli en « verdict dans le vocabulaire » et n'entre dans aucun gate M1–M6 ; enregistré, pas normalisé",
+   "normalised": false
+  },
+  {
+   "id": "M6_gate_name_stronger_than_predicate",
+   "what": "C4-A-M : `M6_issue_matches_census` ne vérifie que `issue ∈ ISSUES` ; l'issue est re-dérivée ici depuis n = 24 et census.certified = 24",
+   "normalised": false
+  }
+ ],
+ "K4_ledger": {
+  "before_is_the_state_after_J": true,
+  "before": [
+   {
+    "obligation": "POINT triangle sur la strate des cartes-ponts",
+    "state": "CLOSED"
+   },
+   {
+    "obligation": "POINT → voisinage ouvert sur ces 64",
+    "state": "CLOSED"
+   },
+   {
+    "obligation": "les 24 ponts anisotropes du pilote, à l'échelle",
+    "state": "OPEN"
+   },
+   {
+    "obligation": "la jambe cocycle B→C",
+    "state": "CLOSED"
+   },
+   {
+    "obligation": "transport vertical ↔ base-moving",
+    "state": "CLOSED"
+   },
+   {
+    "obligation": "relations globales sur les générateurs",
+    "state": "CLOSED"
+   }
+  ],
+  "open_before": [
+   "les 24 ponts anisotropes du pilote, à l'échelle"
+  ],
+  "after": [
+   {
+    "obligation": "POINT triangle sur la strate des cartes-ponts",
+    "state": "CLOSED"
+   },
+   {
+    "obligation": "POINT → voisinage ouvert sur ces 64",
+    "state": "CLOSED"
+   },
+   {
+    "obligation": "les 24 ponts anisotropes du pilote, à l'échelle",
+    "state": "CLOSED",
+    "scope": "RÉGION COURANTE — A CLOSED (24/24 anisotropes, prédicat gelé) ; B SCOPE-CLOSED (16/16 hauts, 15 basses = frontière, 27/27 saturé)",
+    "evidence": {
+     "A": "k3_cap_c4am_anisotropic_predicate_measure.json",
+     "B": [
+      "k3_cap_c4b0_rface_contract_reconciliation.json",
+      "k3_cap_c4b05_rface_mixed_high_closeout.json",
+      "k3_cap_c4b1_p0_mixed_cell_universe_panel.json",
+      "k3_cap_c4b1_m_ladder_upto26.json"
+     ]
+    }
+   },
+   {
+    "obligation": "la jambe cocycle B→C",
+    "state": "CLOSED"
+   },
+   {
+    "obligation": "transport vertical ↔ base-moving",
+    "state": "CLOSED"
+   },
+   {
+    "obligation": "relations globales sur les générateurs",
+    "state": "CLOSED"
+   }
+  ],
+  "n_closed": 6,
+  "n_open": 0,
+  "regional_contract_C1_C6": "6_CLOSED_0_OPEN",
+  "C4": "SCOPE_CLOSED_CURRENT_REGION",
+  "global_K3": "NOT_CLOSED",
+  "unit_of_account": "les six lignes du grand livre du contrat (F1_ledger, amendement H), état après J"
+ },
+ "K5_scope_firewall": {
+  "forbidden_phrases": [
+   "K3 globale fermée",
+   "b₁(K3) = 36",
+   "b1(K3)=36",
+   "les 36 survivantes sont globales",
+   "les frontières basses n'existent pas",
+   "X-interne est déjà payé",
+   "X_INTERNAL déjà payé"
+  ],
+  "statements": [
+   "b₁ = 36 est celui du complexe RÉGIONAL payé (X_Re⁺ + 215 2-cellules mixtes certifiées)",
+   "les 36 dimensions survivantes sont des classes de la région, pas de K3",
+   "15 tuiles restent relatives à une face basse : frontière d'énumération, hors région",
+   "les 1452 candidats requires_X_reopen ne sont pas payés : lot séparé",
+   "K3 globale : NOT_CLOSED"
+  ]
+ },
+ "K6_next_frozen": {
+  "order": [
+   "LOW_BOUNDARY_EXTENSION-P0 — scout read-only : quelles cellules voisines manquent aux 16 directions basses, croissance de cover nécessaire, impact topologique potentiel AVANT tout calcul analytique",
+   "X_INTERNAL_EDGE_RECONCILIATION-P0 — parallèle, conceptuellement distinct : rouvre la présentation finie X/D3 dans la géométrie disponible ; ne sert pas à résoudre la frontière du cover",
+   "SNF seulement si la torsion devient décisionnelle"
+  ],
+  "do_not_mix": "les deux extensions ne se mélangent pas ; aucune ne promeut la région en K3"
+ },
+ "n_atteste_pas": [
+  "rien sur K3 : le grand livre est RÉGIONAL",
+  "les frontières basses restent une frontière de portée",
+  "les X-internes ne sont pas payés",
+  "aucune torsion calculée",
+  "aucun artefact réécrit"
+ ],
+ "issue": "regional_contract_closed_6_of_6_c4_scope_closed_current_region_k3_not_closed",
+ "gates": {
+  "K1_lineage_all_present_by_sha": true,
+  "K2_A_closed_derived_from_c4am_not_from_notes": true,
+  "K2_B_scope_closed_derived_16_16_high_low_boundary_saturated_27": true,
+  "K3_five_governance_records_not_normalised": true,
+  "K4_ledger_before_is_J_after_is_6_0_and_C4_scope_closed_k3_not_closed": true,
+  "K5_scope_firewall_no_forbidden_phrase": true,
+  "K6_next_frozen_two_extensions_not_mixed": true
+ },
+ "gates_passed": 7,
+ "gates_total": 7,
+ "built_from_head": "1c9162a65a4b2593fe9056f5194041ef1dceb1be",
+ "self_sha256": "f3cfebbec5267bf15dcf2c59e180dd32de97e1ce4eaa80a6dfe319b334fe1d63"
+}
