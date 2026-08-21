@@ -5,9 +5,9 @@
  "no_measurement_performed": true,
  "nothing_is_rewritten": true,
  "upstream": {
-  "d3_coverage_legacy": "6970ae709c969ad9496679c4d33b460823bd51d5588a04f63267b026b77c6134",
+  "d3_coverage_legacy": "bbfd61db610fd6822b699b6b2d28264a1ddf6541633b55a1a43084ec37cd74fa",
   "amendment_b": "7331ccd075015a66926fb3d75e191a88808f947afb5729c305770ade29410c47",
-  "u1_certificate": "2199ee6db9f5038d41f92ac7e6620ce97e7b3873417bffc68f011eaf6c2db4bf",
+  "u1_certificate": "ad3aa09b41b6900c809f5ba223c50084c3fd8deec74b2e10dd2c0b64e0d9d4e7",
   "f9_p0": "5e7594490688a18c8e151bd637c56d9c801b195e9a6516d81687fab0f60620e2",
   "closeout_k_regional": "e52d3c3b48083471a9a61ab7bceeb8e1dc24892315e99d49b7c5e0542a67b282"
  },
@@ -110,6 +110,6 @@
  "self_tests_passed": 2,
  "self_tests_total": 2,
  "seconds": 0.01,
- "built_from_head": "a089033defd2d58cf49f1fd16fd1963f7722e218",
- "self_sha256": "418f7b2466accc0c5f83773436893bd860a106c239a1bebf11fef7929fdf6adf"
+ "built_from_head": "b10fdfdbacd3f8c89795113f7152d8a34d3a697a",
+ "self_sha256": "8eca1f2e9378e2bc0dcd1e4f15af2d8970eb01c031fe4b319b1055c150f596e2"
 }

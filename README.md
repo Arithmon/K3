@@ -1,7 +1,7 @@
 # Certified K3 atlas
 
 Machine-checkable certificates for the results of the accompanying paper,
-`paper/certified_k3_atlas.pdf`.
+`paper/latex/certified_k3_atlas.pdf`.
 
 The surface is the complete intersection of three diagonal quadrics in
 `P^5`, with the six parameters `(1, 2, 3, 5, 7, 11)`. The paper builds an
@@ -107,5 +107,5 @@ between these producers and the ones that were run.
 
 ## Citing
 
-See `paper/certified_k3_atlas.pdf` for the full statement of results and the
+See `paper/latex/certified_k3_atlas.pdf` for the full statement of results and the
 bibliography.

@@ -121,8 +121,19 @@ open(p, 'w', encoding='utf-8').write(txt)
 print(f'  post-processed: {len(figs)} figures, citations converted')
 PY
 
-pdflatex -interaction=nonstopmode certified_k3_atlas.tex > _build.log 2>&1 || true
-pdflatex -interaction=nonstopmode certified_k3_atlas.tex > _build.log 2>&1 || true
+# The old PDF goes first, and errors are no longer swallowed. With `|| true`
+# and a bare existence test, a FAILED build left yesterday's PDF in place and
+# still reported "OK" with its page count: the script described a file the
+# compilation had just failed to produce.
+rm -f certified_k3_atlas.pdf
+for pass in 1 2; do
+  if ! pdflatex -halt-on-error -interaction=nonstopmode \
+       certified_k3_atlas.tex > _build.log 2>&1; then
+    echo "  FAILED — pdflatex (passe $pass) :"
+    grep -a -m 5 '^!' _build.log || tail -20 _build.log
+    exit 1
+  fi
+done
 if [ -f certified_k3_atlas.pdf ]; then
   pp="$(pdfinfo certified_k3_atlas.pdf 2>/dev/null | awk '/Pages/{print $2}')"
   err="$(grep -ac '^!' _build.log || true)"

@@ -5,8 +5,8 @@
  "no_measurement_performed": true,
  "nothing_is_rewritten": true,
  "upstream": {
-  "d3_coverage_legacy": "6970ae709c969ad9496679c4d33b460823bd51d5588a04f63267b026b77c6134",
-  "f1prime_u0": "d2b7fd83f8ab5383910273e0cec1e0e89228059feea78537f8c59d01b643a812",
+  "d3_coverage_legacy": "bbfd61db610fd6822b699b6b2d28264a1ddf6541633b55a1a43084ec37cd74fa",
+  "f1prime_u0": "d10ef04da335f07da136b5e000a5cbb7a7142df61550d93ec0dbb59e6013aeb3",
   "review": "55c166a871c9a02c0390c19878d0be74de1b7f59a511a32ea2ed7d1889d42218",
   "interval_kernel_mu": "b6da94fd4bae532249ce6c0886c285c70727e7ebdb6e3cfdb74f5792fd4fe4d8"
  },
@@ -30,7 +30,7 @@
  ],
  "U1A_domains_typed": {
   "U_S": {
-   "def": "{Z ∈ K : |det M_S(Z)| > m}",
+   "def": "{Z ∈ K : q_S(Z) = |det M_S(Z)|/‖Z‖³ > m}  (invariant projectif : |det| est homogène de degré 3, donc le seuil se pose sur le représentant normalisé)",
    "role": "pivot_open",
    "open": true,
    "m": "4",
@@ -2749,6 +2749,6 @@
  "self_tests_passed": 6,
  "self_tests_total": 6,
  "seconds": 0.14,
- "built_from_head": "a089033defd2d58cf49f1fd16fd1963f7722e218",
- "self_sha256": "f62a8c12472254a552b0feb87dd1c042f450f059f0a678faa0ef62ce1624c855"
+ "built_from_head": "b10fdfdbacd3f8c89795113f7152d8a34d3a697a",
+ "self_sha256": "3399ec020ecd0ccaf606983742391c28205b8d18fa6e945c365f8e8ae1990e01"
 }

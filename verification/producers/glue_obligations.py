@@ -20,8 +20,10 @@ matrix of exponents, the variety imposes V_full·w = 0.
       · ELEMENTARY SWAP: S → S′ with |S ∩ S′| = 2 (one solved coordinate is exchanged for one base coordinate);
       · GAUGE CHANGE: (S,g) → (S,g′) with g′ ∈ T∖{g} (projective rescaling by z_{g′}/z_g).
     Derived: the Johnson graph J(6,3) on the triples has **20 vertices, 90 edges, is connected, and has diameter 3**;
-    the graph on the **60 types** under {swap, gauge} is **connected with diameter 3**. Together with the cocycle of (A),
-    connectedness yields GENERATION: **every transition is a word of length ≤ 3 in {elementary swap, gauge change},
+    the graph on the **60 types** under {swap at CONSTANT gauge, gauge change at CONSTANT S} is **connected with
+    diameter 4** (the earlier 3 came from a COMPOSITE swap; witness: (012,3) -> (024,3) -> (024,1) -> (234,1) ->
+    (345,1)). Together with the cocycle of (A),
+    connectedness yields GENERATION: **every transition is a word of length ≤ 4 in {elementary swap, gauge change},
     composed with a sheet flip** (the diameter BOUNDS the word length — that is the quantitative content of the
     proposition). Discriminating check: WITHOUT the gauge changes, the graph on types **breaks into 6 components of 10**
     (one per frozen gauge: S then ranges over J(5,3) on the 5 coordinates ≠ g), so the gauge moves are NECESSARY rather
@@ -267,8 +269,8 @@ def build(mutate=None):
                    and bool(br) and PAPER.exists())
     out = {"artifact": "k3_cap_atlas_paper_glue_obligations_and_generators",
            "subject": "ATLAS PAPER §4.3 + §5.3 — exact cocycle of the squares (8000 ordered triples), C = 112 re-derived, "
-                  "graph on the 60 types connected with diameter 3, hence generation by {elementary swap, gauge} plus a "
-                  "sheet flip (words of length ≤ 3), deck group of order 32 with vertical subgroup of index 4, seven "
+                  "graph on the 60 types connected with diameter 4, hence generation by {elementary swap, gauge} plus a "
+                  "sheet flip (words of length ≤ 4), deck group of order 32 with vertical subgroup of index 4, six "
                   "gluing obligations classified",
            "kind": "exact_algebra_and_finite_graphs", "front": "atlas paper (no other part of the tree is affected)",
            "no_measurement_performed": "exact rational algebra + finite graph theory", "nothing_is_rewritten": True,
@@ -309,7 +311,7 @@ def build(mutate=None):
          "Q8_upstream_and_paper_read": bool(upstream_ok)}
     out["gates"] = {k: bool(v) for k, v in g.items()}
     out["gates_passed"] = sum(bool(v) for v in g.values()); out["gates_total"] = len(g)
-    out["outcome"] = "atlas_paper_glue_obligations_typed_and_transition_generators_derived_word_length_le_3" if all(g.values()) else "atlas_paper_gates_red"
+    out["outcome"] = "atlas_paper_glue_obligations_typed_and_transition_generators_derived_word_length_le_4" if all(g.values()) else "atlas_paper_gates_red"
     out["seconds"] = round(time.time() - t0, 1)
     return out
 

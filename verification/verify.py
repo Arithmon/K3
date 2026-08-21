@@ -140,6 +140,19 @@ def sha(p):
     return hashlib.sha256(p.read_bytes()).hexdigest()
 
 
+def check_shipped(blob, prefix):
+    """Is the SHIPPED certificate green? Replay writes and then RESTORES the
+    original bytes, so a repository shipping a RED artefact still passed:
+    only the regenerated file was examined, never the one a reader opens."""
+    d = json.loads(blob.decode("utf-8"))
+    gp, gt = d.get("gates_passed"), d.get("gates_total")
+    st = d.get("self_tests", {})
+    field = "outcome" if "outcome" in d else "issue"
+    return (gp is not None and gp == gt and gt > 0
+            and all(bool(v) for v in st.values())
+            and bool(prefix) and str(d.get(field, "")).startswith(prefix))
+
+
 def check_json(path, prefix):
     d = json.loads(path.read_text(encoding="utf-8"))
     gp, gt = d.get("gates_passed"), d.get("gates_total")
@@ -197,9 +210,15 @@ def main():
                                  f"(replay: exit {r.returncode})")
                     continue
                 ok, detail = check_json(CERTS / f"{cert}.json", prefix)
-                lines.append(f"  {'PASS' if ok else 'FAIL'}     {cert}  "
-                             f"[replay] {detail}")
-                if not ok:
+                shipped_ok = check_shipped(snapshot[CERTS / f"{cert}.json"],
+                                           prefix)
+                lines.append(f"  {'PASS' if ok and shipped_ok else 'FAIL'}"
+                             f"     {cert}  [replay] {detail}")
+                if not shipped_ok:
+                    lines.append("           but the SHIPPED certificate is "
+                                 "red — replay regenerates it and restores "
+                                 "the original")
+                if not ok or not shipped_ok:
                     failures.append(cert)
             for cert, producer, argv, fields in RECOMPUTE:
                 sp = PRODUCERS / producer

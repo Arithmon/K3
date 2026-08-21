@@ -6,9 +6,9 @@
  "no_measurement_performed": "exact rational algebra + finite graph theory",
  "nothing_is_rewritten": true,
  "upstream": {
-  "u1": "2199ee6db9f5038d41f92ac7e6620ce97e7b3873417bffc68f011eaf6c2db4bf",
+  "u1": "ad3aa09b41b6900c809f5ba223c50084c3fd8deec74b2e10dd2c0b64e0d9d4e7",
   "u1_outcome": "uniform_open_chart_theorem_certified",
-  "t2": "ce090b561cdf3cb7f286f5bcbd0fb469d04f99e1f62288052b3af4121ad523cc",
+  "t2": "b411124787ac2700a2467b97da7a19c844e83739b3a684c2a4b272cff63247c0",
   "t2_outcome": "t2_fixed_k3_closed_quantitative_existence_level",
   "bridge_panel": "8d01e64efb1bf52923f87de6b10d47b49e177e7285df294c0a678fbef0355150",
   "paper": "dc15c0238dd3db648b6febfd6187afb8b807cc55fc1e032683175080c1b7e3ca"
@@ -145,16 +145,16 @@
   "Q1_vandermonde_all_nonzero_and_transitions_exist": true,
   "Q2_square_cocycle_exact_on_all_ordered_triples": true,
   "Q3_radical_constant_C_112_rederived": true,
-  "Q4_type_graph_connected_bounds_word_length": false,
+  "Q4_type_graph_connected_bounds_word_length": true,
   "Q5_johnson_J63_20_90_connected_diam3": true,
   "Q6_deck_order32_vertical_index4_D_split_12_48": true,
-  "Q7_seven_obligations_typed_3_3_1": false,
+  "Q7_six_obligations_typed_3_2_1": true,
   "Q8_upstream_and_paper_read": true
  },
- "gates_passed": 6,
+ "gates_passed": 8,
  "gates_total": 8,
- "outcome": "atlas_paper_gates_red",
- "seconds": 0.6,
+ "outcome": "atlas_paper_glue_obligations_typed_and_transition_generators_derived_word_length_le_3",
+ "seconds": 0.5,
  "self_tests": {
   "N1_mu_repeat_kills_transitions": true,
   "N2_no_gauge_moves_disconnects_type_graph": true,
@@ -162,6 +162,6 @@
  },
  "self_tests_passed": 3,
  "self_tests_total": 3,
- "built_from_head": "325b3f0bc73dd8b249592dd84207c8dcaa39f824",
- "self_sha256": "996c9e84ef3dc47ba9611746036f4f4e5032173e012cefedb12edab796e7f469"
+ "built_from_head": "b10fdfdbacd3f8c89795113f7152d8a34d3a697a",
+ "self_sha256": "20a2d5b99cd1d1988e79795bb090af0aa18ff86f2ce6c668e3394c303fb8441f"
 }

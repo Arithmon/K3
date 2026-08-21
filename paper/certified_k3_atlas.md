@@ -303,8 +303,14 @@ actually used.
 > $s$-th coordinate: the eight sheets are uniformly separated on certified
 > domains.
 
-*Proof.* The pivot threshold bounds a **product**, not its factors: by the
-factorization of Section 3.5,
+*Proof.* First the threshold has to be turned into a statement about the
+representative actually used. In the gauge $z_g = 1$ we have
+$\lVert Z \rVert \ge 1$, so
+$q_S(Z) > m_{\mathrm{alg}}$ gives
+$|\det M_S^{\mathrm{alg}}(Z)| = q_S(Z)\,\lVert Z \rVert^3 > m_{\mathrm{alg}}$:
+the projective gate implies the plain inequality on the gauge representative,
+which is the form the factorization consumes. From there, the pivot threshold
+bounds a **product**, not its factors: by the factorization of Section 3.5,
 $|\det M_S^{\mathrm{alg}}| = 8|V_S| \prod_i |z_{s_i}| > m_{\mathrm{alg}}$ gives
 $\prod_i |z_{s_i}| > m_{\mathrm{alg}} / (8|V_S|)$. The sector selector supplies the
 missing upper bounds: $|u|, |v| \le 1$, so
@@ -431,8 +437,11 @@ factorization of Section 3.5, $\det M_S^{\mathrm{alg}} \neq 0$ if and only if th
 solved coordinates are all nonzero; Lemma 2.1 provides such a triple at every
 point; hence
 
-> **Lemma 4.1 (coverage).** The pivot opens $U_S = \{|\det M_S^{\mathrm{alg}}| > 0\}$,
-> $S$ ranging over the $20$ triples, cover $X$.
+> **Lemma 4.1 (coverage).** The nonvanishing pivot opens
+> $W_S := \{\det M_S^{\mathrm{alg}} \neq 0\}$, $S$ ranging over the $20$
+> triples, cover $X$. (Vanishing is a projective condition, so $W_S$ needs no
+> normalization; the symbol $U_S$ is reserved throughout for the *quantitative*
+> open $\{q_S > m_{\mathrm{alg}}\} \subset W_S$.)
 
 What the large enumeration audit adds is not the covering -- it is the
 *quantitative floor*: a positive threshold $m_{\mathrm{alg}}$ (preregistered at
@@ -977,10 +986,12 @@ institutional or funding relationship, bearing on this work.
 
 **Data and code availability.** Every quantitative claim in this paper is backed
 by a machine-checkable certificate. The certificate scripts, their JSON outputs,
-the figure sources and the verification entry point of Appendix F are prepared
-for public deposit with a timestamp; the deposit identifier will be supplied at
-submission. Verification is a single command, and it distinguishes the
-certificates it re-executes from those it verifies by hash (Appendix F).
+the figure sources and the verification entry point of Appendix F are publicly
+available in the repository accompanying this paper; a timestamped archival
+deposit identifier will be supplied at submission. Verification is a single
+command, and it distinguishes three regimes: the certificates it re-executes,
+the coverage enumeration it recomputes and compares counter by counter, and
+those it verifies by hash (Appendix F).
 
 **Ethics approval.** Not applicable. The work involves no human participants, no
 animal subjects and no personal data.
