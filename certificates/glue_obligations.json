@@ -11,7 +11,7 @@
   "t2": "ce090b561cdf3cb7f286f5bcbd0fb469d04f99e1f62288052b3af4121ad523cc",
   "t2_outcome": "t2_fixed_k3_closed_quantitative_existence_level",
   "bridge_panel": "8d01e64efb1bf52923f87de6b10d47b49e177e7285df294c0a678fbef0355150",
-  "paper": "2b4a8c8091902154ddc61148d941ba1c3baced91db1baabf5cf0cb1571fc07c0"
+  "paper": "dc15c0238dd3db648b6febfd6187afb8b807cc55fc1e032683175080c1b7e3ca"
  },
  "A_square_cocycle": {
   "mu": [
@@ -56,7 +56,7 @@
   "type_graph": {
    "nodes": 60,
    "connected": true,
-   "diameter": 3,
+   "diameter": 4,
    "components": 1,
    "component_sizes": [
     60
@@ -67,7 +67,7 @@
    "changement de jauge (S,g) → (S,g′)",
    "flip de feuille (deck diagonal)"
   ],
-  "word_length_bound": 3,
+  "word_length_bound": 4,
   "statement": "cocycle (A) + connexité ⇒ toute transition est un mot de longueur ≤ diam en {swap, jauge}, composé avec un flip de feuille",
   "gauge_moves_necessary": "sans jauge : 6 composantes de 10 (négatif N2)"
  },
@@ -124,21 +124,15 @@
    },
    {
     "id": "O6",
-    "claim": "X_atlas est séparé",
-    "mode": "CERTIFICATE",
-    "support": "séparation uniforme des feuilles sur les overlaps (marge certifiée ≥ 1,043)"
-   },
-   {
-    "id": "O7",
-    "claim": "X_atlas est à base dénombrable",
+    "claim": "X_atlas est à base dénombrable et séparé",
     "mode": "TOPOLOGY_FINITENESS",
-    "support": "atlas fini par compacité de X"
+    "support": "atlas fini par compacité de X ; une bijection continue localement homéomorphe est ouverte, donc un homéomorphisme : X_atlas hérite la topologie de X"
    }
   ],
   "n_exact_algebra": 3,
-  "n_certificate": 3,
+  "n_certificate": 2,
   "n_topology": 1,
-  "reading": "les deux obligations proprement topologiques du collage abstrait (O5 injectivité, O6 séparation) consomment la donnée certifiée (ledger exhaustif, marge de séparation)"
+  "reading": "l'obligation proprement topologique du collage abstrait (O5 injectivité) consomme la donnée certifiée (ledger exhaustif) ; la séparation, elle, ne s'achète PAS par une estimation — elle suit de l'ouverture d'une bijection localement homéomorphe"
  },
  "n_atteste_pas": [
   "le panel certifié lui-même (3540/3540, marges, ρ_unif — lots amont)",
@@ -151,16 +145,16 @@
   "Q1_vandermonde_all_nonzero_and_transitions_exist": true,
   "Q2_square_cocycle_exact_on_all_ordered_triples": true,
   "Q3_radical_constant_C_112_rederived": true,
-  "Q4_type_graph_connected_bounds_word_length": true,
+  "Q4_type_graph_connected_bounds_word_length": false,
   "Q5_johnson_J63_20_90_connected_diam3": true,
   "Q6_deck_order32_vertical_index4_D_split_12_48": true,
-  "Q7_seven_obligations_typed_3_3_1": true,
+  "Q7_seven_obligations_typed_3_3_1": false,
   "Q8_upstream_and_paper_read": true
  },
- "gates_passed": 8,
+ "gates_passed": 6,
  "gates_total": 8,
- "outcome": "atlas_paper_glue_obligations_typed_and_transition_generators_derived_word_length_le_3",
- "seconds": 0.5,
+ "outcome": "atlas_paper_gates_red",
+ "seconds": 0.6,
  "self_tests": {
   "N1_mu_repeat_kills_transitions": true,
   "N2_no_gauge_moves_disconnects_type_graph": true,
@@ -168,6 +162,6 @@
  },
  "self_tests_passed": 3,
  "self_tests_total": 3,
- "built_from_head": "a089033defd2d58cf49f1fd16fd1963f7722e218",
- "self_sha256": "3ec18888de51ddc313f2ee3fe87b094cf3f3fd3c9649a05de64c4eea18fd49a1"
+ "built_from_head": "325b3f0bc73dd8b249592dd84207c8dcaa39f824",
+ "self_sha256": "996c9e84ef3dc47ba9611746036f4f4e5032173e012cefedb12edab796e7f469"
 }

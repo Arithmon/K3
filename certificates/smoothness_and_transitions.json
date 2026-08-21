@@ -8,7 +8,7 @@
  "upstream": {
   "u1": "2199ee6db9f5038d41f92ac7e6620ce97e7b3873417bffc68f011eaf6c2db4bf",
   "u1_outcome": "uniform_open_chart_theorem_certified",
-  "generators": "80458d6f3ab5f6aaed5474959401b62e1327d65f997698354b4efba01ca3b7f5",
+  "generators": "3992df0f920a1b2bb5ee460e8c6237f9ff20f44b1b191fe70058d21ae49995ff",
   "d3_read_from_u1": {
    "tau": 0.6,
    "minor_floor": 4.8,
@@ -254,13 +254,13 @@
   "Q4_diagonal_involutions_preserve_the_three_quadrics": true,
   "Q5_branch_discriminant_degree_6": true,
   "Q6_elementary_swap_changes_exactly_one_row": true,
-  "Q7_upstream_read": true,
+  "Q7_upstream_read": false,
   "Q8_product_to_factors_positive_uniform_bound": true,
   "Q9_pivots_are_plucker_coordinates_of_dF": true
  },
- "gates_passed": 9,
+ "gates_passed": 8,
  "gates_total": 9,
- "outcome": "atlas_paper_three_nonzero_lemma_carries_smoothness_and_coverage_pivot_degree3_invariant_transitions_explicit",
+ "outcome": "atlas_paper_math_gates_red",
  "seconds": 0.4,
  "self_tests": {
   "N1_mu_repeat_breaks_three_nonzero_lemma": true,
@@ -269,7 +269,7 @@
  },
  "self_tests_passed": 3,
  "self_tests_total": 3,
- "built_from_head": "a089033defd2d58cf49f1fd16fd1963f7722e218",
+ "built_from_head": "325b3f0bc73dd8b249592dd84207c8dcaa39f824",
  "self_sha256": "88a732504bb1c15958a2d456d80f8c0b065aa76590b9c8e93b49106c076aaf1f",
  "provenance": {
   "sympy_version": "1.14.0"

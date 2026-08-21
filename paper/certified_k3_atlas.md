@@ -437,7 +437,7 @@ point; hence
 What the large enumeration audit adds is not the covering -- it is the
 *quantitative floor*: a positive threshold $m_{\mathrm{alg}}$ (preregistered at
 $m_{\mathrm{alg}} = 4$, against an observed minor floor $4.8$) and a coverage margin $\tau = 0.6$, so
-that the opens $\{|\det M_S^{\mathrm{alg}}| > m_{\mathrm{alg}}\}$ still cover, with room to spare. That
+that the opens $\{q_S > m_{\mathrm{alg}}\}$ still cover, with room to spare. That
 audit is an independent certificate, referenced by hash from the chart
 certificate, and its box enumeration belongs in the supplement.
 
@@ -584,10 +584,15 @@ an explicit bound on word length:
 > **Proposition 5.1 (finite generation with length bound).** The $20$ solved
 > triples with adjacency $|S \cap S'| = 2$ form the Johnson graph $J(6,3)$:
 > $20$ nodes, $90$ edges, connected, of diameter $3$. The $60$ chart types
-> under $\{$elementary swap, gauge change$\}$ form a connected graph of
-> diameter $3$. Consequently, by the cocycle of Section 5.2, **every chart
-> transition is a word of length at most $3$ in elementary swaps and gauge
-> changes, composed with a single sheet-group element.**
+> under $\{$elementary swap, gauge change$\}$ -- the swap keeping $g$ fixed,
+> the gauge change keeping $S$ fixed -- form a connected graph of
+> diameter $4$; the extra step over $J(6,3)$ is real, a witness being
+> $(\{0,1,2\}, 3) \to (\{0,2,4\}, 3) \to (\{0,2,4\}, 1) \to
+> (\{2,3,4\}, 1) \to (\{3,4,5\}, 1)$, where the gauge $3$ must be moved
+> before the triple can reach $\{3,4,5\}$. Consequently, by the cocycle of
+> Section 5.2, **every chart transition is a word of length at most $4$ in
+> elementary swaps and gauge changes, composed with a single sheet-group
+> element.**
 
 *Remark.* Both moves are necessary. Removing gauge changes breaks the type
 graph into **six connected components of ten types each** -- freezing the
@@ -825,14 +830,17 @@ hashes. Verification is a single command,
 python3 verification/verify.py
 ```
 
-which distinguishes two levels, and the distinction is the point. The cheap
+which distinguishes three levels, and the distinction is the point. The cheap
 certificates (each under a second) are **re-executed** and checked for all
 gates green, all negative controls green, and an unchanged outcome; a
 regenerated artifact is deliberately *not* hash-compared, since its provenance
 field changes with every commit and comparing it would test the repository
-rather than the mathematics. The expensive certificates -- the bridge panel,
-the metric path, the face crossing -- are **hash-verified** against recorded
-SHA-256 values; reproducing them needs the compute machine, not this script.
+rather than the mathematics. The coverage enumeration is **recomputed** and
+its counters compared one by one with the shipped file, gauge by gauge: it is
+the one certificate whose verdict would otherwise merely be read back. The
+expensive certificates -- the bridge panel, the metric path, the face
+crossing -- are **hash-verified** against recorded SHA-256 values; reproducing
+them needs the compute machine, not this script.
 The verifier fails, with a nonzero exit code, on any altered hash or any red
 gate, and it is read-only on the working tree: replaying rewrites provenance
 fields, so the original bytes are snapshotted and restored. Large box-enumeration artifacts never enter the PDF: dataset/supplement
@@ -1189,8 +1197,11 @@ $z_g/z_{g'}$; it changes no ledger and no solved triple.
 **C.4 Generation.** The twenty triples with adjacency $|S \cap S'| = 2$ form
 $J(6,3)$: $20$ nodes, $90$ edges, connected, diameter $3$. The $60$ chart
 types under $\{$swap, gauge change$\}$ form a connected graph of diameter
-$3$. With C.1, every transition is a word of length at most $3$ in these two
-moves composed with a single sheet-group element (Proposition 5.1). Removing
+$4$ -- the swap holds $g$ fixed and the gauge change holds $S$ fixed, so a
+transition whose target triple contains the source gauge needs a gauge move
+of its own. With C.1, every transition is a word of length at most $4$ in
+these two moves composed with a single sheet-group element
+(Proposition 5.1). Removing
 gauge changes disconnects the type graph into six components of ten.
 
 **C.5 Scope.** C.1--C.4 are algebraic identities over $\mathbf{Q}$. That a

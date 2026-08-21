@@ -31,7 +31,7 @@ backend into their own provenance; a different mpmath would move the last
 digits of every interval endpoint, so a "verification" against another
 version would be comparing two different computations.
 
-## The two levels, and why they differ
+## The three levels, and why they differ
 
 **Replayed** (five certificates, under a second each). The producer in
 `verification/producers/` is re-executed and the resulting certificate is
@@ -43,6 +43,15 @@ records the source revision it was built from, so its bytes change with
 every commit to the repository that produced it; hashing a regenerated file
 would test version-control history rather than mathematics. What is checked
 is the content: the gates and the outcome.
+
+**Recomputed** (one certificate: the coverage enumeration). Its
+branch-and-bound is re-run — 71,807,792 boxes, about seventy seconds on four
+cores — and ten fields are compared one by one with the shipped file, gauge by
+gauge. This is the computation carrying the uniform pivot floor, so reading
+its verdict back would check nothing; the recomputation reddens if a single
+counter moves. The verifier also checks that the recomputation actually
+rewrote the file it compares, so that a producer writing elsewhere cannot make
+the comparison vacuous.
 
 **Hashed** (three certificates: the bridge panel, the metric path, the face
 traversal). These take hours on a compute machine and are not re-run here;

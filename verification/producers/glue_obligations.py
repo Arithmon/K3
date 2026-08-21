@@ -179,16 +179,24 @@ def build(mutate=None):
     gauge_on = "no_gauge_moves" not in mutate
 
     def nbrs(t, gauge=True):
+        # THE TWO GENERATORS OF THE PAPER, AND NOTHING ELSE.
+        # The swap loop used to accept any g2 compatible with S2, that is a
+        # swap AND a gauge change in ONE step. That composite move has
+        # diameter 3; the two generators as stated in section 5.1 have
+        # diameter 4 (witness: (012,3) -> (024,3) -> (024,1) -> (234,1) ->
+        # (345,1)). The word-length bound must be about the PUBLISHED
+        # generators. The negative control also used to redefine the swap
+        # instead of removing gauge changes, so it did not test what it claimed.
         S, g = t
         out = set()
-        for S2 in adjJ[S]:
-            for g2 in range(6):
-                if g2 not in S2 and (gauge or g2 == g):
-                    out.add((S2, g2))
-        if gauge:
+        for S2 in adjJ[S]:                      # elementary swap, g CONSTANT
+            if g not in S2:
+                out.add((S2, g))
+        if gauge:                               # gauge change, S CONSTANT
             for g2 in range(6):
                 if g2 not in S and g2 != g:
                     out.add((S, g2))
+        out.discard(t)
         return list(out)
 
     adjT = {t: nbrs(t, gauge_on) for t in types}
@@ -237,10 +245,16 @@ def build(mutate=None):
          "support": "the pivot open sets cover X (margin τ = 0.6)"},
         {"id": "O5", "claim": "Φ is injective", "mode": "EXACT_ALGEBRA_PLUS_LEDGER",
          "support": "8 exhaustive signed sheets: a point of X matches exactly one ledger entry, so ∼ captures every coincidence"},
-        {"id": "O6", "claim": "X_atlas is Hausdorff", "mode": "CERTIFICATE",
-         "support": "uniform separation of the sheets over the overlaps (certified margin ≥ 1.043)"},
-        {"id": "O7", "claim": "X_atlas is second countable", "mode": "TOPOLOGY_FINITENESS",
-         "support": "the atlas is finite by compactness of X"}]
+        # O6 MERGES the former O6/O7 pair and changes MODE. The old O6
+        # "Hausdorff" was a CERTIFICATE: it bought separation with a numerical
+        # margin. The paper has since established that it is not bought that
+        # way — a continuous bijection that is a LOCAL homeomorphism is open,
+        # hence a homeomorphism, and X_atlas then inherits the topology of X.
+        {"id": "O6", "claim": "X_atlas is second countable and Hausdorff",
+         "mode": "TOPOLOGY_FINITENESS",
+         "support": "the atlas is finite by compactness of X; a continuous "
+                    "bijection that is a local homeomorphism is open, hence a "
+                    "homeomorphism: X_atlas inherits the topology of X"}]
     n_alg = sum(1 for o in obligations if o["mode"].startswith("EXACT_ALGEBRA"))
     n_cert = sum(1 for o in obligations if o["mode"] == "CERTIFICATE")
     n_top = sum(1 for o in obligations if o["mode"] == "TOPOLOGY_FINITENESS")
@@ -287,11 +301,11 @@ def build(mutate=None):
     g = {"Q1_vandermonde_all_nonzero_and_transitions_exist": bool(all_pivots_nonzero) and bool(identity_ok),
          "Q2_square_cocycle_exact_on_all_ordered_triples": bool(cocycle_ok) and cocycle_n == len(tri) ** 3 and bool(inverse_ok),
          "Q3_radical_constant_C_112_rederived": all_pivots_nonzero and C_inf == 112 and max_entry == 80,
-         "Q4_type_graph_connected_bounds_word_length": bool(T_connected) and T_diam == 3 and len(types) == 60,
+         "Q4_type_graph_connected_bounds_word_length": bool(T_connected) and T_diam == 4 and len(types) == 60,
          "Q5_johnson_J63_20_90_connected_diam3": bool(J_connected) and len(tri) == 20 and edgesJ == 90 and J_diam == 3,
          "Q6_deck_order32_vertical_index4_D_split_12_48": (deck_order == 32 and vert_order == 8 and index == 4
                                                            and len(D_vert_types) == 12 and len(D_vert_triples) == 4),
-         "Q7_seven_obligations_typed_3_3_1": (len(obligations) == 7 and n_alg == 3 and n_cert == 3 and n_top == 1),
+         "Q7_six_obligations_typed_3_2_1": (len(obligations) == 6 and n_alg == 3 and n_cert == 2 and n_top == 1),
          "Q8_upstream_and_paper_read": bool(upstream_ok)}
     out["gates"] = {k: bool(v) for k, v in g.items()}
     out["gates_passed"] = sum(bool(v) for v in g.values()); out["gates_total"] = len(g)

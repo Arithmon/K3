@@ -4,7 +4,7 @@
     python3 verification/verify.py            # full verification
     python3 verification/verify.py --quick    # hashes only, no replay
 
-TWO LEVELS, and the distinction is the point.
+THREE LEVELS, and the distinction is the point.
 
   REPLAY — the inexpensive certificates (under a second each) are RE-EXECUTED
     from the producers in `verification/producers/`, and we then check that
@@ -216,8 +216,18 @@ def main():
                     lines.append(f"  FAIL     {cert}  (recompute: exit {r.returncode})")
                     continue
                 got = json.loads(path.read_text(encoding="utf-8"))
+                # Without this check, a producer writing somewhere OTHER than
+                # the file being compared makes the diff trivially empty: the
+                # shipped certificate is compared with itself, and a mutated
+                # counter passes. `seconds` changes on every run, so if it is
+                # unchanged the recomputation did not land in this file.
+                rewritten = got.get("seconds") != shipped.get("seconds")
                 diff = [f for f in fields if got.get(f) != shipped.get(f)]
-                ok = not diff and got.get("verdict") == "CERTIFIED"
+                ok = (rewritten and not diff
+                      and got.get("verdict") == "CERTIFIED")
+                if not rewritten:
+                    lines.append(f"           recomputation did not rewrite "
+                                 f"{path.name} — nothing was compared")
                 detail = (f"{len(fields)} fields identical, "
                           f"{shipped.get('total_boxes', 0)} boxes recomputed"
                           if ok else f"fields differing: {diff}")

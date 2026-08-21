@@ -38,6 +38,7 @@ Verdict CERTIFIED iff no box is left unresolved on any of the six gauges.
 """
 from __future__ import annotations
 import io, json, sys, time
+from fractions import Fraction
 from itertools import combinations
 from multiprocessing import Pool
 from pathlib import Path
@@ -46,7 +47,8 @@ import numpy as np
 if sys.platform == "win32":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
-RES = Path(__file__).resolve().parent.parent / "results"
+ROOT = Path(__file__).resolve().parents[2]
+RES = ROOT / "certificates"
 
 TAU = float(sys.argv[1]) if len(sys.argv) > 1 else 0.5
 N_CORES = int(sys.argv[2]) if len(sys.argv) > 2 else 4
@@ -260,7 +262,16 @@ def bnb_task(args):
 #  Roots per gauge, plus the presplit
 # ---------------------------------------------------------------------------
 def gauge_roots(g):
-    t_lo = np.nextafter(1.0 / np.sqrt(6.0), NEG)     # t^2 >= 1/6 (outward)
+    # A PROVEN bound, not an assumed one. One `nextafter` is NOT enough: sqrt
+    # and division compose two roundings, and the result stays ABOVE 1/sqrt(6)
+    # by about 8.6e-19 (checked in exact rationals: t^2 - 1/6 = +7.05e-19).
+    # The slice 1/sqrt(6) <= t < t_lo was therefore formally outside the
+    # enumerated domain, which is enough to cost the certificate the word
+    # "exhaustive". Step down until t_lo^2 <= 1/6 holds EXACTLY in rational
+    # arithmetic — two steps here, but the loop relies on no platform property.
+    t_lo = 1.0 / np.sqrt(6.0)
+    while Fraction(float(t_lo)) ** 2 > Fraction(1, 6):
+        t_lo = np.nextafter(t_lo, NEG)               # t_lo^2 <= 1/6, proven
     L = -np.ones(12)
     H = np.ones(12)
     L[2 * g], H[2 * g] = t_lo, 1.0                   # X_g = t
@@ -344,8 +355,8 @@ def main():
         'n_cores': N_CORES,
         'unresolved_sample': [u for r in results for u in r['unresolved']][:16],
     }
-    RES.mkdir(exist_ok=True)
-    path = RES / 'k3_cap_d3_atlas_coverage.json'
+    RES.mkdir(parents=True, exist_ok=True)   # without `parents`, the producer dies AFTER the computation
+    path = RES / "atlas_coverage.json"
     path.write_text(json.dumps(out, indent=1))
     print("-" * 72)
     print(f"VERDICT: {verdict}  (unresolved {n_unres})")
