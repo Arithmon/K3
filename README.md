@@ -3,6 +3,8 @@
 Machine-checkable certificates for the results of the accompanying paper,
 `paper/latex/certified_k3_atlas.pdf`.
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22047469.svg)](https://doi.org/10.5281/zenodo.22047469)
+
 The surface is the complete intersection of three diagonal quadrics in
 `P^5`, with the six parameters `(1, 2, 3, 5, 7, 11)`. The paper builds an
 explicit atlas on it, with certified chart radii, certified transition maps,
@@ -109,3 +111,14 @@ between these producers and the ones that were run.
 
 See `paper/latex/certified_k3_atlas.pdf` for the full statement of results and the
 bibliography.
+
+## Citing
+
+The archival deposit is the concept DOI, which always resolves to the latest
+version:
+
+> de La Fournière, B. *Certified Analytic Geometry on an Explicit K3 Surface.*
+> Zenodo. https://doi.org/10.5281/zenodo.22047469
+
+Cite the concept DOI rather than a version DOI unless you need to refer to one
+specific deposited version.
