@@ -240,9 +240,18 @@ $$M_S^{\mathrm{alg}} := \partial_w F, \qquad
 
 The **admissibility gate is the algebraic pivot condition**
 
-$$|\det M_S^{\mathrm{alg}}| > m_{\mathrm{alg}}, \qquad m_{\mathrm{alg}} = 4$$
+$$q_S(Z) \;:=\; \frac{|\det M_S^{\mathrm{alg}}(Z)|}{\lVert Z \rVert^3}
+\;>\; m_{\mathrm{alg}}, \qquad m_{\mathrm{alg}} = 4$$
 
-($m_{\mathrm{alg}}$ preregistered, below the observed floor $4.8$); it is the
+($m_{\mathrm{alg}}$ preregistered, below the observed floor $4.8$), stated
+once and for all on the **projective invariant** $q_S$ -- equivalently, on the
+unit-norm representative $\lVert Z \rVert = 1$, which is the slice the
+coverage certificate enumerates. Since $\det M_S^{\mathrm{alg}}$ is homogeneous
+of degree $3$ (Section 3.5), the bare inequality
+$|\det M_S^{\mathrm{alg}}| > 4$ would depend on the choice of representative,
+whereas the vanishing condition $\det M_S^{\mathrm{alg}} \neq 0$ of Lemma 4.1
+does not, and is used as such. Throughout, $U_S$ denotes the open
+$\{q_S > m_{\mathrm{alg}}\}$. It is the
 algebraic pivot that enters the coverage argument of Section 4.1 and the
 coordinate floor of Lemma 3.1, both of which use the integer factorization
 $\det M_S^{\mathrm{alg}} = 8 V_S z_{s_1} z_{s_2} z_{s_3}$ with
@@ -286,8 +295,9 @@ actually used.
 > \big(|a_{s_i}| - |b_{s_i}| - |c_{s_i}|\big)^{1/2} \;\right\} \;>\; 0,$$
 > the second entry being used only when the quantity under the root is
 > positive. Over the $60$ chart types the worst such bound is
-> $9.5712 \times 10^{-4}$, attained at $S = \{3,4,5\}$ for the gauges $z_1$ and
-> $z_2$ alike.
+> $9.5711 \times 10^{-4}$ (the certified value $9.571170\ldots \times 10^{-4}$
+> rounded outward), attained at $S = \{3,4,5\}$, gauge $z_0$, solved
+> coordinate $z_5$.
 > Consequently two ledgers
 > differing in slot $s$ give points at distance at least twice that in the
 > $s$-th coordinate: the eight sheets are uniformly separated on certified
@@ -304,10 +314,15 @@ The second is independent of the gate: the same triangle inequality read from
 below gives $|R_{s_i}| \ge |a_{s_i}| - |b_{s_i}| - |c_{s_i}|$, which is the
 sharper bound on the lines where the constant term dominates. All constants
 are exact rationals with outward-rounded roots, and the worst case is computed
-over all $60$ types. $\square$
+over all $60$ types. The bound does not depend on the gauge: changing $g$
+permutes the columns of $w_T$, which leaves each row sum
+$|a_s| + |b_s| + |c_s|$ unchanged, so the worst case is attained at the three
+gauges of $T = \{0,1,2\}$ alike and the certificate records the first of
+them. $\square$
 
 So the pivot threshold is precisely the guard that keeps every chart away from
 its own branch locus.
+
 
 ### 3.4 A quantitative inverse-function lemma
 
@@ -334,6 +349,29 @@ its own branch locus.
 The proof is self-contained (no external quotable constant is load-bearing)
 and is given in Appendix B.
 
+The floor of Lemma 3.1 and the displacement bound of Proposition 3.2 close,
+together, the step that obligation **O5** of Section 4.3 consumes:
+
+> **Corollary 3.3 (charts avoid their own branch locus).** On a chart domain
+> the solved coordinates stay bounded away from zero *throughout the certified
+> ball*, not merely at its centre. Indeed the branch locus of $\pi_S$ is
+> $\{R_{s_1} R_{s_2} R_{s_3} = 0\}$, that is, the vanishing of a solved
+> coordinate; Lemma 3.1 bounds each one below by $\underline{z}_{S,g}$ at the
+> centre, and Proposition 3.2 confines the solution to
+> $\lVert w - w_0 \rVert \le r^* \le 2\eta$, so every point of the chart
+> satisfies $|z_{s_i}| \ge \underline{z}_{S,g} - 2\eta$. Over the $60$ types
+> the ratio $2\eta / \underline{z}_{S,g}$ is at most
+> $1.72 \times 10^{-2}$, attained at $S = \{0,3,5\}$, $g = 1$
+> ($2\eta = 2.22 \times 10^{-5}$ against a floor of
+> $1.29 \times 10^{-3}$): the displacement is two orders of magnitude below the
+> floor it would have to cross. Hence every certified chart domain lies in
+> $X^\circ$ for its own projection, the eight signed sheets are distinct on it,
+> and the ledger is unambiguous.
+
+The constants $\eta$ and $\underline{z}_{S,g}$ are both serialized per type in
+the chart certificate, so the ratio above is read off the artifact rather than
+recomputed by hand.
+
 ### 3.5 Projective normalization
 
 The radius must not depend on a naive choice of projective representative.
@@ -354,8 +392,9 @@ and $\det \tilde M_S = \det M_S^{\mathrm{alg}} / (c_0 c_1 c_2)$ after row
 normalization. Both were verified symbolically on all $20$ triples. It is homogeneous of degree $3$ in
 $Z$, so
 
-$$q_S(Z) \;:=\; \frac{|\det M_S^{\mathrm{alg}}(Z)|}{\lVert Z \rVert^3}$$
+$$q_S(Z) \;=\; \frac{|\det M_S^{\mathrm{alg}}(Z)|}{\lVert Z \rVert^3}$$
 
+-- the quantity on which Section 3.1 states the admissibility gate --
 is invariant under $Z \mapsto \lambda Z$: the certified radius is read off a
 genuine projective invariant, not off a choice of representative. (Replacing
 the exponent $3$ by $2$ destroys the invariance -- this is one of the negative
@@ -371,7 +410,7 @@ never used as an open set of a cover.
 | $\sigma_{\min}(\tilde V_S)$ | $\ge |\det \tilde V_S| / \lVert \tilde V_S \rVert_F^2$ (exact rational) |
 | Lipschitz constant $L$ | $\le 2\,\sigma_{\max}(\tilde V_S) \le 2 \lVert \tilde V_S \rVert_F$ |
 | contraction certificate | $h < 1/2$ on all $60$ types |
-| per-type radius $\rho_{S,g}$ | $\in [2.11 \times 10^{-12},\ 1.70 \times 10^{-4}]$ |
+| per-type radius $\rho_{S,g}$ | $\in [2.10 \times 10^{-12},\ 1.71 \times 10^{-4}]$ (outward-rounded) |
 | guaranteed uniform radius $\rho_{\mathrm{unif}} := \min_{S,g} \rho_{S,g}$ | $\ge 2.10 \times 10^{-12}$ |
 
 The uniform radius is a Frobenius/determinant bound: strictly positive and
@@ -386,7 +425,7 @@ their minimum. The per-type values are in the certificate artifact.
 ### 4.1 Global admissibility
 
 Every point of $X$ admits at least one admissible triple: the pivot opens
-$U_S = \{|\det M_S^{\mathrm{alg}}| > m_{\mathrm{alg}}\}$ cover $X$ (coverage margin $\tau = 0.6$; the zero
+$U_S = \{q_S > m_{\mathrm{alg}}\}$ cover $X$ (coverage margin $\tau = 0.6$; the zero
 set of all pivots is empty). Coverage is *qualitatively* a two-line consequence of Lemma 2.1. By the
 factorization of Section 3.5, $\det M_S^{\mathrm{alg}} \neq 0$ if and only if the three
 solved coordinates are all nonzero; Lemma 2.1 provides such a triple at every
@@ -574,8 +613,8 @@ signed radical descriptions are exhaustive. They are *distinct* exactly off
 the branch locus: over $X^\circ$ a point determines one ledger, whereas along
 a branch stratum the ledgers are identified precisely in the slots whose
 solved coordinate vanishes (there $+\sqrt{0} = -\sqrt{0}$). Every certified
-chart domain lies in $X^\circ$ for its own projection, by the pivot threshold
-of Section 3.1 and Lemma 3.1, so on chart data the ledger is unambiguous. The sheet ledger
+chart domain lies in $X^\circ$ for its own projection, by Corollary 3.3, so on
+chart data the ledger is unambiguous. The sheet ledger
 $\varepsilon$ is part of the chart data.
 
 A discipline that the certification imposed and the paper keeps: **ledgers
@@ -741,7 +780,7 @@ predicted mismatch pattern $\theta = \varepsilon_{\mathrm{derived}} \odot
 difference between the register convention and the sign-certified regime
 convention. The identification is therefore *relative* and exact.
 
-*Proposed split (editorial).* The body exhibits three worked instances --
+The body exhibits three worked instances --
 one bridge with its certified margins, one face crossing with its control
 experiment, and the deck identity of Proposition 7.1 -- each with the exact
 numbers quoted above. The full $64$-bridge panel, the $380$-node nerve with
@@ -802,8 +841,6 @@ only.
 ---
 
 ## 9. Validated Metric Compatibility on Selected Continuation Domains
-
-*(optional section; title deliberately avoids "Ricci-flat metric")*
 
 As a downstream demonstration that the certified analytic atlas can support
 validated tensorial computations, we report certified relative residuals of
@@ -1108,7 +1145,7 @@ factor, $r^* \le 2\eta$ and $r^* < \sigma/L$ on all $60$ types, and a
 negative control multiplying $\rho$ by $100$ drives $h$ above $1/2$. The
 resulting uniform radius is
 $\rho_{\mathrm{unif}} = \min_{S,g} \rho_{S,g} \ge 2.10 \times 10^{-12}$, the
-per-type values spanning $[2.11 \times 10^{-12},\, 1.70 \times 10^{-4}]$
+per-type values spanning $[2.10 \times 10^{-12},\, 1.71 \times 10^{-4}]$
 (Figure 2); these are Frobenius/determinant bounds, deliberately not sharp.
 
 The lower bound on $\sigma$ deserves its own line, because it is where an
@@ -1264,19 +1301,49 @@ audit supplies.
 python3 verification/verify.py
 ```
 
-It prints one line per certificate and exits nonzero on any failure; a
-`--quick` flag checks hashes only. It is read-only on the working tree.
+It prints one line per *checked* certificate and exits nonzero on any
+failure; a `--quick` flag checks hashes only, skipping both replay and
+recomputation. It is read-only on the working tree, and takes about two
+minutes, almost all of it in the recomputed coverage certificate.
 
-**F.2 Environment.** Python 3.14, SymPy 1.14.0, mpmath pinned at 1.3.0. The
-pin is enforced by the launcher used for every certificate script, which
-refuses to run against a different mpmath, because that version is serialized
-in the provenance of the whole chain.
+The repository ships fourteen certificate files and the command checks nine
+of them: five replayed, one recomputed, three hash-verified (F.3). The other
+five are records rather than claims -- four design documents (the uniform
+chart lemma, the exact transitions, the regional gluing contract, the closure
+skeleton) and the figure manifest. They do have gates of their own, and an
+earlier revision of this verifier replayed them; that was reverted on
+purpose. Shipping their producers would pull twenty-three further artifacts
+into the repository through what those producers read -- contract amendments,
+preregistrations, an internal chain none of the theorems above rest on -- and
+a repository that carries what it does not need is harder to audit, not
+easier.
 
-**F.3 Two tiers.** The cheap certificates (each under a second) are
+**F.2 Environment.** Python $\ge 3.10$, NumPy, SymPy 1.14.0, mpmath pinned at
+1.3.0 -- the requirements listed in the repository README; the certificates
+were produced under Python 3.14 and have also been run under 3.12. The pin is
+enforced by `verify.py` itself, which checks the installed mpmath before
+anything else runs and refuses to continue against a different version,
+because that version is serialized in the provenance of the whole chain.
+
+**F.3 Three tiers.** Five cheap certificates (each under a second) are
 **re-executed** and checked for all gates green, all negative controls green
 and an unchanged outcome: the chart theorem, the atlas closeout, the
-generator/obligation certificate and the smoothness/coverage/transition certificate. The
-expensive ones are **hash-verified**:
+generator/obligation certificate, the smoothness/coverage/transition
+certificate, and the sigma-floor correction whose repair is reported in
+Appendix B.7 -- that last one is replayed precisely so that the correction is
+checked by the reader rather than asserted by the author.
+
+The coverage certificate of Section 4.1 is **recomputed**: its branch-and-bound
+enumeration is re-run and its counters are compared one by one with the shipped
+file, gauge by gauge. This is the exhaustive enumeration behind the observed
+minor floor $4.8$ -- $71{,}807{,}792$ boxes in float64 interval arithmetic with
+one-ulp outward rounding, about seventy seconds on four cores -- and it is the
+computation on which the preregistered threshold $m_{\mathrm{alg}} = 4$ has its
+margin. Reading its verdict would test nothing; re-running it reddens if a single
+counter moves. The published run is reproduced exactly, box for box, on all six
+gauges.
+
+The three expensive ones are **hash-verified**:
 
 | artifact | SHA-256 (first 16) |
 | --- | --- |
@@ -1307,9 +1374,10 @@ manifest with source hashes and every plotted number in
    $\mu$, the regime pattern on either side, and a bridge box straddling one
    curve. *(data)*
 2. `fig_certified_chart_radii.png` -- certified radius across the 60 chart
-   types on a log scale, spanning $[2.11 \times 10^{-12},\, 1.70 \times 10^{-4}]$.
+   types on a log scale, spanning $[2.10 \times 10^{-12},\, 1.71 \times 10^{-4}]$
+   (endpoints rounded outward).
    The dashed line is the observed minimum over the types,
-   $2.11 \times 10^{-12}$; the guaranteed floor quoted in the text,
+   $2.109 \times 10^{-12}$; the guaranteed floor quoted in the text,
    $\rho_{\mathrm{unif}} \ge 2.10 \times 10^{-12}$, is that value rounded
    outward. Regenerated from the repaired chart certificate. *(data)*
 3. `fig_deck_action_by_chart_type.png` -- the 20 triples $\times$ 3 gauges,

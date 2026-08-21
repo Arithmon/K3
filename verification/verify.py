@@ -14,6 +14,13 @@ TWO LEVELS, and the distinction is the point.
     from, which changes with every commit, so hashing a regenerated file
     would test the version-control history rather than the mathematics.
 
+  RECOMPUTE — the coverage certificate (71.8 M boxes, about 70 s on four
+  cores) is RECOMPUTED and its counters compared one by one with the shipped
+  file. It predates the gates/self_tests convention, so reading it would only
+  re-read a verdict; recomputing it would redden if a single counter moved.
+  This is the computation carrying the pivot floor 4.8, so it is the one that
+  most deserves to be reproduced rather than trusted.
+
   HASH — the expensive certificates (the bridge panel, the metric path, the
     face traversal) are not replayed here; their SHA-256 is checked against
     the recorded value. Reproducing them takes hours on a compute machine,
@@ -33,8 +40,10 @@ The mpmath pin is enforced below: a different version would silently change
 the last digits of every interval endpoint, and the certificates record the
 version they were produced with.
 
-Output is one line per certificate, a global verdict, and a nonzero exit code
-if anything fails.
+Output is one line per checked certificate, a global verdict, and a nonzero
+exit code if anything fails. The full run takes about two minutes, almost all
+of it in the recomputed coverage certificate; `--quick` skips both replay and
+recomputation and checks hashes only.
 """
 from __future__ import annotations
 
@@ -73,6 +82,28 @@ REPLAY = [
     # one-command verifier exists to close.
     ("sigma_floor_correction", "sigma_floor_correction.py",
      "u1_sigma_floor_defect_confirmed"),
+    # The four design certificates are deliberately NOT replayed. They do
+    # have gates, self-tests and producers, and they pass; but shipping their
+    # producers pulls twenty-three further artefacts into this repository,
+    # through everything those producers read — contract amendments,
+    # preregistrations, the internal chain those design documents rest on.
+    # The repository would go from 14 certificates to 37, most of them
+    # carrying no claim the paper makes. What the command covers is therefore
+    # 9 of the 14 files shipped, and Appendix F says so without rounding.
+]
+
+# (certificate, producer, argv, compared fields) — RECOMPUTED, then compared
+# field by field with the shipped certificate. The arguments are those of the
+# published run; the box budget in particular is NOT optional: at the default
+# (200 M) gauge 1 stops on `budget_abort` and the verdict falls to FAILED on 16
+# unresolved boxes, while the other five gauges reproduce identically either
+# way. `seconds` and `n_cores` are excluded from the comparison, being machine
+# dependent; everything else is deterministic and must agree counter for counter.
+RECOMPUTE = [
+    ("atlas_coverage", "atlas_coverage.py",
+     ["0.6", "4", "1e-3", "1000"],
+     ("verdict", "tau", "w_min", "minor_floor_8tau", "total_boxes",
+      "per_gauge", "statement", "domain", "arithmetic", "mu")),
 ]
 
 # (certificate, recorded SHA-256) — checked by hash, not replayed
@@ -115,7 +146,11 @@ def check_json(path, prefix):
     st = d.get("self_tests", {})
     ok_gates = gp is not None and gp == gt and gt > 0
     ok_neg = all(bool(v) for v in st.values()) if st else True
-    ok_out = str(d.get("outcome", "")).startswith(prefix)
+    # Two naming conventions coexist: recent certificates serialise
+    # `outcome`, the design ones serialise `issue`. Accept both EXPLICITLY,
+    # rather than letting the second pass for an empty outcome.
+    field = "outcome" if "outcome" in d else "issue"
+    ok_out = bool(prefix) and str(d.get(field, "")).startswith(prefix)
     detail = f"gates {gp}/{gt}"
     if st:
         detail += (f" · negative controls "
@@ -142,7 +177,8 @@ def main():
         # Replaying rewrites the artefacts (provenance: timing, source
         # commit). Save the original bytes and restore them whatever happens.
         snapshot = {}
-        for cert, _, _ in REPLAY:
+        for cert in ([c for c, _, _ in REPLAY]
+                     + [c for c, _, _, _ in RECOMPUTE]):
             path = CERTS / f"{cert}.json"
             if path.exists():
                 snapshot[path] = path.read_bytes()
@@ -163,6 +199,30 @@ def main():
                 ok, detail = check_json(CERTS / f"{cert}.json", prefix)
                 lines.append(f"  {'PASS' if ok else 'FAIL'}     {cert}  "
                              f"[replay] {detail}")
+                if not ok:
+                    failures.append(cert)
+            for cert, producer, argv, fields in RECOMPUTE:
+                sp = PRODUCERS / producer
+                path = CERTS / f"{cert}.json"
+                if not sp.exists() or not path.exists():
+                    failures.append(cert)
+                    lines.append(f"  MISSING  {cert}  (producer or certificate absent)")
+                    continue
+                shipped = json.loads(snapshot[path].decode("utf-8"))
+                r = subprocess.run([sys.executable, str(sp), *argv],
+                                   cwd=str(ROOT), capture_output=True, text=True)
+                if r.returncode != 0:
+                    failures.append(cert)
+                    lines.append(f"  FAIL     {cert}  (recompute: exit {r.returncode})")
+                    continue
+                got = json.loads(path.read_text(encoding="utf-8"))
+                diff = [f for f in fields if got.get(f) != shipped.get(f)]
+                ok = not diff and got.get("verdict") == "CERTIFIED"
+                detail = (f"{len(fields)} fields identical, "
+                          f"{shipped.get('total_boxes', 0)} boxes recomputed"
+                          if ok else f"fields differing: {diff}")
+                lines.append(f"  {'PASS' if ok else 'FAIL'}     {cert}  "
+                             f"[recompute] {detail}")
                 if not ok:
                     failures.append(cert)
         finally:
@@ -192,7 +252,9 @@ def main():
               f"{', '.join(failures)}")
         return 1
     n = 0 if args.quick else len(REPLAY)
-    print(f"\nVERDICT: PASS — {n} replayed, {len(HASHED)} hashed")
+    m = 0 if args.quick else len(RECOMPUTE)
+    print(f"\nVERDICT: PASS — {n} replayed, {m} recomputed, "
+          f"{len(HASHED)} hashed")
     return 0
 
 

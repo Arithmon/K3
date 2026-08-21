@@ -68,6 +68,15 @@ def _set_title(ax, *a, **k):
         _set_title(ax, *a, **k)
 
 
+def _sci_outward(x, downward):
+    """Three-digit mantissa rounded OUTWARD. A minimum's label must never
+    print ABOVE the value it marks, nor a maximum's below it: at `.2e` the
+    observed-minimum label read 2.11e-12 for a line drawn at 2.1092e-12."""
+    e = math.floor(math.log10(abs(x)))
+    m = x / 10 ** e
+    m = math.floor(m * 1000) / 1000 if downward else math.ceil(m * 1000) / 1000
+    return f"{m:.3f}e{e:+03d}"
+
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
 def load(p): return json.loads(p.read_text(encoding="utf-8"))
 
@@ -143,9 +152,9 @@ def fig2_radii(path, vals, rho_min, rho_max):
     ax.set_ylabel(r"certified radius  $\rho$")
     ax.grid(axis="y", zorder=0)
     ax.set_xlim(0, len(vals) + 1)
-    ax.annotate(f"observed min  {rho_min:.2e}", xy=(31, rho_min), xytext=(31, rho_min * 1.04),
+    ax.annotate(f"observed min  {_sci_outward(rho_min, True)}", xy=(31, rho_min), xytext=(31, rho_min * 1.04),
                 color=ORANGE, fontsize=8.5, va="bottom", ha="left")
-    ax.annotate(f"max  {rho_max:.2e}", xy=(len(vals), vals[-1]), xytext=(len(vals) - 2, vals[-1] * 0.62),
+    ax.annotate(f"max  {_sci_outward(rho_max, False)}", xy=(len(vals), vals[-1]), xytext=(len(vals) - 2, vals[-1] * 0.62),
                 color=INK2, fontsize=8.5, ha="right", va="top")
     _set_title(ax, "Figure 2. Certified chart radius across the 60 chart types", loc="left", pad=8)
     fig.savefig(path, dpi=DPI); plt.close(fig)

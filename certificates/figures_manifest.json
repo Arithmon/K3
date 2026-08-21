@@ -5,7 +5,7 @@
   "u1": "2199ee6db9f5038d41f92ac7e6620ce97e7b3873417bffc68f011eaf6c2db4bf",
   "generators": "80458d6f3ab5f6aaed5474959401b62e1327d65f997698354b4efba01ca3b7f5",
   "bridge_panel": "8d01e64efb1bf52923f87de6b10d47b49e177e7285df294c0a678fbef0355150",
-  "sigma_correction": "afa7e5bdb97e77b2b2d17fa272d722cf91e9e26b9e8fe4e332d40544450223af"
+  "sigma_correction": "e5e8b5006a93c78e726c744e152954574fcb910f5c69dcebfda6a1f1a49fa02b"
  },
  "numbers_plotted": {
   "branch_coeffs_S345": {
@@ -62,7 +62,7 @@
  },
  "sizes_bytes": {
   "fig1": 98584,
-  "fig2": 50731,
+  "fig2": 52077,
   "fig3": 86234,
   "fig4": 66370,
   "fig5": 30710
@@ -72,6 +72,6 @@
   "les schémas (1, 4, 5) sont déclarés schématiques",
   "les flottants sont d'AFFICHAGE (les sources restent Fraction)"
  ],
- "built_from_head": "1415134c4bf208d4c39883127d9bc62126dc5f9f",
- "self_sha256": "a105e5e628a81f08c6148149623b770aa2d25cef44be43c99a36c3bfc9ad1cec"
+ "built_from_head": "55a597c4b1d8e9c955d5fe8efbcf7c2532413923",
+ "self_sha256": "75ceda98503d506ca63dacdd66190bb0711b7883b65434d997a371fb919c27ef"
 }
