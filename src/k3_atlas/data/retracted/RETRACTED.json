@@ -1,0 +1,263 @@
+{
+ "schema_version": "k3_cap_retraction_registry_v1",
+ "date": "2026-07-13",
+ "status": "ACTIVE_REGISTRY",
+ "retraction_commit": "46e9087fe6c2fc17ce6c077c2cf2fccd3dc69d82",
+ "merge_commit": "e4db079479b908924429bca9d7c84e3ab2f54802",
+ "reason": "The historical U-dagger contraction does not implement the holomorphic pullback used by the K3 Kahler datum. The frozen witness and every metric-dependent result derived from it are retained for audit only.",
+ "required_future_metric_convention": "holomorphic_pullback_VT",
+ "artifacts": [
+  {
+   "artifact_type": "k3_metric_witness",
+   "original_path": "canonical/notebooks/k3_closedform_witness_kahler_v1.npz",
+   "archived_path": "canonical/results/retracted/k3_closedform_witness_kahler_v1.npz",
+   "sha256": "3f8c7a891c8b2668778613d080998f8b878111ff594414cfe0cde116629b63f8",
+   "status": "RETRACTED",
+   "historical_metric_convention": "antiholomorphic_frame_Udagger",
+   "allow_use": "explicit_audit_only"
+  },
+  {
+   "artifact_type": "k3_metric_parameters",
+   "original_path": "canonical/results/k3_cap_d2_kahler_refit_params.npz",
+   "archived_path": "canonical/results/retracted/k3_cap_d2_kahler_refit_params_v1.npz",
+   "sha256": "fd4a3dd2918f52270157c8d45d862ee2fdd5fe6fc6cef6258145bbc6f220dd46",
+   "status": "RETRACTED",
+   "historical_metric_convention": "antiholomorphic_frame_Udagger",
+   "allow_use": "explicit_audit_only"
+  }
+ ],
+ "invalidated_or_requalified_artifacts": [
+  {
+   "path": "canonical/results/k3_cap_d2_kahler_refit_prototype.json",
+   "sha256": "6b81b950aeccb837a43fef6c5ca444b2c1364490d1516becbce9ac58667471b5",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_d2_kahler_refit_polish.json",
+   "sha256": "3ffe7469417948a755412cd8b10f6a684ff7e7fd9c204189be942258c482e94c",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_kahler_freeze_manifest.json",
+   "sha256": "3ae587ff48035dc3f11af9e8924adbbd258cc5dd5189d1d33d195a69bbd679d6",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_interval_metric_kahler_box_local_r1e-8_N20.json",
+   "sha256": "6473a90d14561bfd4656ba6ec55294d57da454a9fe6056bd673905b4bab6333c",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_interval_metric_kahler_box_local_r1e-8_N4000.json",
+   "sha256": "587ef98d3c6d49045203b52252c4f5f164b76cbb16116f27372bf9f715509e12",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_mini_cover_manifest.json",
+   "sha256": "307d38efc7b8f486c4e90cc7f41d8ec51e53f7b950a6b703468e79f2251e947f",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_positivity_ambient_walls.json",
+   "sha256": "85a05fcaae513ac10348a70c4fa1ef6f5f0abedd78a4f6a63e5a19acee6385d9",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_positivity_dual_probe.json",
+   "sha256": "85cf76f66bd3ccebeb7d0167e2ef23ea9b0d4d8e451cf2ddc931bade54c5e21c",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_positivity_fd_design.json",
+   "sha256": "c166f89ba97c0128effe08fb7e95f870c409e480a24f4e6b8ad08a1d92869c3b",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_positivity_probe.json",
+   "sha256": "984e8f2ceba5d6d8c06054ba22120756c9ac3669c3cf530abc0296fdb861cae1",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_positivity_route_c_benchmark.json",
+   "sha256": "423e6a911244cd121842f9f27bf4bc52a8ee480972724150b716ebc1de28ab7b",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_positivity_schur_design.json",
+   "sha256": "e2f433bee27e764722c7811592746b84cb5febd821b4aa21444c8229ab377d75",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_positivity_schur_probe.json",
+   "sha256": "6de664c13d3400553a9450cce7dd5d242d55edc44d1c0192d3809672aa96cd9a",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_spectral_dry_run_selftest.json",
+   "sha256": "a51cea5072f6b87d3bfa8e9bc9289de2a9b5e2918739c49c4eb01e5da8b3443f",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_spectral_weak_tests.json",
+   "sha256": "35214bd038b67010612de16961c3b9199de56b58e4bf97f47928553aab85022e",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_spectral_sampler_sweep.json",
+   "sha256": "60056235065a1e2c687cb50f2ae99c89b4d33d105a4a0cfe5111605c3f5779ac",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_spectral_gram_cutoff_sweep.json",
+   "sha256": "78d6b8c0dc450662258c674590134cb199af961b5f16ceaf036f1b362dd1faaa",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_spectral_freeze_test.json",
+   "sha256": "1365f9d12aee7fd799d80ff88a5a0685fd332b78f9b182c5001a35c78548120a",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_quotient_assemble.json",
+   "sha256": "ff244d5c2065945bc92c3e5b9c617c22fdd25149a464c8479e0a9adebcb46332",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_quotient_symmetry_break.json",
+   "sha256": "b3a37521ce2c2cff132a296631566f710151dc53f6e63af4cb62402622f218be",
+   "status": "RETRACTED_FULL"
+  },
+  {
+   "path": "canonical/results/k3_cap_radical_atlas_prototype.json",
+   "sha256": "b0a4295c63ef571b61058f4108fc5d650f88818088b0b8e701daddd9a2f9a7e9",
+   "status": "REQUALIFIED_PARTIAL",
+   "survives": "radical atlas algebra only; metric probes are retracted"
+  },
+  {
+   "path": "canonical/results/k3_cap_codex_baseline.json",
+   "sha256": "f15aa3c42b480d524224beca9352b57e78cd327dbf64e31db25061c8ea309583",
+   "status": "REQUALIFIED_PARTIAL",
+   "survives": "historical replay only; metric-dependent values are retracted"
+  },
+  {
+   "path": "canonical/results/k3_cap_spectral_stable_basis_v2.json",
+   "sha256": "323c5627634f194c406bfb07278312edd86a2e8f31b1885e076c06687e09dad5",
+   "status": "REQUALIFIED_PARTIAL",
+   "survives": "sampled feature-rank diagnosis only; witness-weighted numerical condition values are historical"
+  },
+  {
+   "path": "canonical/results/k3_cap_spectral_stable_basis_v5.json",
+   "sha256": "faa1df50b19759c923f662ae36980276ea5ea7a66bea44ed082dbf76ed6f6632",
+   "status": "REQUALIFIED_PARTIAL",
+   "survives": "exact quotient/inclusions and the structural cond(M) approximately cond(A)^2 diagnosis; metric-weighted condition numbers, stiffness and Ritz fields are retracted"
+  }
+ ],
+ "surviving_metric_independent_claims": [
+  "radical_atlas_algebra",
+  "exact_quotient_basis",
+  "exact_inclusions_V3_V4_V5",
+  "feature_level_ranks_217_609_1401"
+ ],
+ "lineage_families": [
+  {
+   "family": "k3_closedform_witness_udagger",
+   "name_stem": "closedform_witness",
+   "declared": "2026-08-22",
+   "reason": "Tout témoin de la lignée « closed-form » fitté OU évalué avec la contraction V†HV appartient à cette famille : ce n'est pas le pullback holomorphe (VᵀHV̄). La portée de la rétractation du 2026-07-13 l'énonçait déjà — « every metric-dependent result derived from it » — mais la liste arrêtée ce jour-là ne nommait que la sous-lignée kahler_v1.",
+   "why_declared_now": "L'audit de parcours du 2026-08-22 a montré que le témoin de MAI n'était adjugé nulle part alors qu'une trentaine de fichiers hors notes le citent, et que le module Lean PUBLIC a porté cinq semaines un claim que la mesure du 2026-07-19 avait réfuté.",
+   "members": [
+    {
+     "path": "canonical/results/retracted/k3_closedform_witness_kahler_v1.npz",
+     "status": "RETRACTED",
+     "adjudicated": "2026-07-13"
+    },
+    {
+     "path": "canonical/notebooks/k3_closedform_witness_v1.npz",
+     "status": "SEMANTICS_RETRACTED_BYTES_RETAINED",
+     "adjudicated": "2026-08-22",
+     "sha256": "12d457d741c6ed9b",
+     "evidence": "canonical/results/kimi_k3_667_convention_test.json (2026-07-19)",
+     "measured": {
+      "var_logR_code_all_4000": 0.0001308933458506934,
+      "var_logR_code_on_3478_common": 0.00014453620465692068,
+      "var_logR_true_on_3478_common": 0.5315197325099187,
+      "var_ratio_true_over_code": 3677.415868028111,
+      "positive_definite_census": {
+       "code": 4000,
+       "true": 3478
+      }
+     },
+     "what_is_retracted": "l'IDENTIFICATION géométrique seule : la variance enclose est une quantité AUXILIAIRE, pas le résidu Calabi–Yau d'une métrique kählérienne sur X.",
+     "what_survives": "les octets, l'inégalité rationnelle machine-vérifiée, et la certification Krawczyk–Rump que chaque boîte contient un zéro commun EXACT des équations de définition — énoncé sur la SURFACE, indépendant de toute convention métrique.",
+     "corrected_surfaces": [
+      "canonical/papers/g2_k3_certified_metric/paper_k3.md (bannière 2026-08-22)",
+      "K7-Lean/GIFT/Foundations/K3ClosedFormWitness.lean (836296d)",
+      "K7-Lean/GIFT/Foundations/K3ClosedFormBoxEnclosures.lean (836296d)"
+     ]
+    },
+    {
+     "path": "canonical/results/k3_closedform_witness_kahler_v2.npz",
+     "status": "NOT_IN_FAMILY",
+     "adjudicated": "2026-08-22",
+     "why": "DATUM ACTIF. Porte le radical de nom, mais PAS la convention fautive : gel du 2026-07-16 sous `holomorphic_pullback_VT`, jauge det M = 1. C'est une adjudication POSITIVE — dire explicitement qu'il est sain vaut mieux que son silence."
+    },
+    {
+     "path": "canonical/results/k3_closedform_witness_manifest.json",
+     "status": "NOT_IN_FAMILY",
+     "adjudicated": "2026-08-22",
+     "why": "manifeste du datum actif ; même raison. À relire si le datum change."
+    }
+   ],
+   "retracted_claims": [
+    {
+     "id": "CY_RESIDUAL_BOUND_667",
+     "declared": "2026-08-22",
+     "what": "« la variance certifiée du résidu borne le résidu Calabi–Yau d'une métrique kählérienne sur X ». FAUX : le témoin à 667 paramètres est évalué avec la contraction V†HV, pas le pullback holomorphe VᵀHV̄.",
+     "evidence": "canonical/results/kimi_k3_667_convention_test.json (2026-07-19)",
+     "measured": {
+      "var_code_all_4000": 0.0001308933458506934,
+      "var_true_on_common": 0.5315197325099187,
+      "ratio": 3677.415868028111,
+      "pd_census": {
+       "code": 4000,
+       "true": 3478
+      }
+     },
+     "patterns": [
+      "Var(log R)",
+      "1309/10"
+     ],
+     "also_as": [
+      [
+       "Var(log R)",
+       "1321/10"
+      ]
+     ],
+     "why_a_claim_and_not_a_file": "cette phrase ne nomme AUCUN fichier : elle cite un NOMBRE. La première version de R2 cherchait des chemins et des SHA, et elle était donc aveugle au papier flagship v3.5 — DÉPOSÉ et CITÉ — qui la porte en trois endroits. Un claim se propage par une phrase, pas par un chemin.",
+     "what_survives": "les théorèmes Lean (native_decide sur des entiers et sur l'agrégat des bornes rationnelles), la certification Krawczyk–Rump qui porte sur la SURFACE, et la méthode.",
+     "corrected_surfaces": [
+      "canonical/papers/g2_k3_certified_metric/paper_k3.md (833fc060)",
+      "canonical/papers/g2_k3_certified_metric/supplementary_dataset/README.md",
+      "K7-Lean/GIFT/Foundations/K3ClosedForm*.lean (836296d)",
+      "K7 public : publications/ERRATUM_v3.5.md + CHANGELOG (af9224c)"
+     ]
+    },
+    {
+     "id": "CY_RESIDUAL_BOUND_667_ENVELOPE",
+     "declared": "2026-08-22",
+     "what": "même claim, sous la borne d'enveloppe Lean 1321/10⁷.",
+     "evidence": "idem",
+     "patterns": [
+      "Var",
+      "1321/10"
+     ],
+     "why_a_claim_and_not_a_file": "idem — un nombre, pas un chemin.",
+     "corrected_surfaces": [
+      "idem CY_RESIDUAL_BOUND_667"
+     ]
+    }
+   ]
+  }
+ ],
+ "lineage_families_note": "Déclaré le 2026-08-22. Une FAMILLE dit : voici un radical de nom, voici la raison, voici les membres ADJUGÉS. `k3_lineage_lint.py` signale tout fichier portant le radical et adjugé nulle part — il pose une question, il ne condamne pas : l'appartenance ne se dérive pas d'un nom."
+}
