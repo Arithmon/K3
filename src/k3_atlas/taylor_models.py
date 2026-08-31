@@ -950,7 +950,7 @@ def _selftest():
     import time
     fails = []
     RES = Path(os.environ.get(
-        "K3_RES_DIR", Path(__file__).resolve().parents[1] / "results"))
+        "K3_RES_DIR", Path(__file__).resolve().parent / "data"))
     print(f"      TM_ORDER = {TM_ORDER} ({NM} monômes)")
 
     # --- M1 : exactitude polynomiale + négatif ---------------------------------------

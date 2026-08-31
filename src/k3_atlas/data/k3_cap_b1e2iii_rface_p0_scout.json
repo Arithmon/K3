@@ -1,0 +1,1234 @@
+{
+  "artifact": "k3_cap_b1e2iii_rface_p0_scout",
+  "mode": "full",
+  "contract": "phase A du contrat RFace-P0, 13ᵉ revue GPT §7.3 — adresse et géométrie SEULEMENT ; aucune quantité analytique n'est lue ici",
+  "claim": "Pour la paire cellule/classe de l'atlas C127/C129, la cellule voisine de codimension 1 à travers chacune des DEUX faces Re HAUTES est CANONIQUEMENT ADRESSÉE : même couple, boîte identique entre C118 et C92, coïncidence de face TOTALE — et DEUX classes candidates (0 et 1, ε registrés (1,1,1) et (1,1,−1)) COHABITENT sur cette boîte. LA CLASSE ATTEINTE PAR LA CONTINUATION EST UNE QUESTION DE PHASE B, PAS UNE HYPOTHÈSE : ce scout n'identifie AUCUNE feuille (amendement B1, 14ᵉ revue). La cellule DIAGONALE du témoin 315 est ADRESSÉE elle aussi et le carré est géométriquement fermé (A8) — la composition/commutation reste à PROUVER en B3. À travers les DEUX faces BASSES, AUCUNE cellule d'aucun registre : l'étendue énumérée du couple s'arrête EXACTEMENT là (égalité rationnelle) — FRONTIÈRE D'ÉNUMÉRATION (de la base de données, PAS du domaine mathématique), pré-enregistrée comme distincte d'un trou de cover, et PAS remplacée par une boîte dérivée. Les statuts de registre (voisines == la nôtre avant son atlas) sont un DIAGNOSTIC sérialisé, pas un invariant d'adresse. Les phases B–F ne sont PAS payées ici.",
+  "cell": {
+    "S": [
+      0,
+      1,
+      5
+    ],
+    "g": 2,
+    "class_id": 0,
+    "eps": [
+      1,
+      1,
+      1
+    ],
+    "box": [
+      [
+        [
+          -23,
+          32
+        ],
+        [
+          -183,
+          256
+        ]
+      ],
+      [
+        [
+          -1,
+          256
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      [
+        [
+          -23,
+          32
+        ],
+        [
+          -183,
+          256
+        ]
+      ],
+      [
+        [
+          -1,
+          256
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    ]
+  },
+  "couple_extent": {
+    "lo": [
+      [
+        -23,
+        32
+      ],
+      [
+        -1,
+        8
+      ],
+      [
+        -23,
+        32
+      ],
+      [
+        -3,
+        32
+      ]
+    ],
+    "hi": [
+      [
+        -19,
+        32
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        -19,
+        32
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "n_same_couple_cells": 14422
+  },
+  "registry": {
+    "total": 78061,
+    "c118": 2354,
+    "c92": 75707
+  },
+  "faces": {
+    "u_lo": {
+      "coordinate_index": 0,
+      "side": -1,
+      "face_value": [
+        -23,
+        32
+      ],
+      "face_value_float": -0.71875,
+      "n_matches": 0,
+      "n_matches_same_couple": 0,
+      "n_on_hyperplane_without_overlap": 216,
+      "extent_stops_exactly_here": true,
+      "verdict": "enumeration_boundary",
+      "matches": []
+    },
+    "u_hi": {
+      "coordinate_index": 0,
+      "side": 1,
+      "face_value": [
+        -183,
+        256
+      ],
+      "face_value_float": -0.71484375,
+      "n_matches": 4,
+      "n_matches_same_couple": 4,
+      "n_on_hyperplane_without_overlap": 240,
+      "extent_stops_exactly_here": false,
+      "verdict": "canonical_neighbors",
+      "matches": [
+        {
+          "src": "c118",
+          "class_id": 0,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 2,
+          "eps_registered": [
+            1,
+            1,
+            1
+          ],
+          "status": {
+            "certified": false,
+            "pd_failure": false
+          },
+          "box": [
+            [
+              [
+                -183,
+                256
+              ],
+              [
+                -91,
+                128
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              [
+                -23,
+                32
+              ],
+              [
+                -183,
+                256
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "full_face_coincidence": true
+        },
+        {
+          "src": "c118",
+          "class_id": 1,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 2,
+          "eps_registered": [
+            1,
+            1,
+            -1
+          ],
+          "status": {
+            "certified": false,
+            "pd_failure": false
+          },
+          "box": [
+            [
+              [
+                -183,
+                256
+              ],
+              [
+                -91,
+                128
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              [
+                -23,
+                32
+              ],
+              [
+                -183,
+                256
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "full_face_coincidence": true
+        },
+        {
+          "src": "c92",
+          "class_id": 0,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 2,
+          "eps_registered": null,
+          "status": {
+            "list": "unresolved_cells",
+            "reason": "depth_floor",
+            "last_status": "BRANCH"
+          },
+          "box": [
+            [
+              [
+                -183,
+                256
+              ],
+              [
+                -91,
+                128
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              [
+                -23,
+                32
+              ],
+              [
+                -183,
+                256
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "full_face_coincidence": true
+        },
+        {
+          "src": "c92",
+          "class_id": 1,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 2,
+          "eps_registered": null,
+          "status": {
+            "list": "unresolved_cells",
+            "reason": "depth_floor",
+            "last_status": "BRANCH"
+          },
+          "box": [
+            [
+              [
+                -183,
+                256
+              ],
+              [
+                -91,
+                128
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              [
+                -23,
+                32
+              ],
+              [
+                -183,
+                256
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "full_face_coincidence": true
+        }
+      ]
+    },
+    "v_lo": {
+      "coordinate_index": 2,
+      "side": -1,
+      "face_value": [
+        -23,
+        32
+      ],
+      "face_value_float": -0.71875,
+      "n_matches": 0,
+      "n_matches_same_couple": 0,
+      "n_on_hyperplane_without_overlap": 0,
+      "extent_stops_exactly_here": true,
+      "verdict": "enumeration_boundary",
+      "matches": []
+    },
+    "v_hi": {
+      "coordinate_index": 2,
+      "side": 1,
+      "face_value": [
+        -183,
+        256
+      ],
+      "face_value_float": -0.71484375,
+      "n_matches": 4,
+      "n_matches_same_couple": 4,
+      "n_on_hyperplane_without_overlap": 216,
+      "extent_stops_exactly_here": false,
+      "verdict": "canonical_neighbors",
+      "matches": [
+        {
+          "src": "c118",
+          "class_id": 0,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 2,
+          "eps_registered": [
+            1,
+            1,
+            1
+          ],
+          "status": {
+            "certified": false,
+            "pd_failure": false
+          },
+          "box": [
+            [
+              [
+                -23,
+                32
+              ],
+              [
+                -183,
+                256
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              [
+                -183,
+                256
+              ],
+              [
+                -91,
+                128
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "full_face_coincidence": true
+        },
+        {
+          "src": "c118",
+          "class_id": 1,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 2,
+          "eps_registered": [
+            1,
+            1,
+            -1
+          ],
+          "status": {
+            "certified": false,
+            "pd_failure": false
+          },
+          "box": [
+            [
+              [
+                -23,
+                32
+              ],
+              [
+                -183,
+                256
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              [
+                -183,
+                256
+              ],
+              [
+                -91,
+                128
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "full_face_coincidence": true
+        },
+        {
+          "src": "c92",
+          "class_id": 0,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 2,
+          "eps_registered": null,
+          "status": {
+            "list": "unresolved_cells",
+            "reason": "depth_floor",
+            "last_status": "BRANCH"
+          },
+          "box": [
+            [
+              [
+                -23,
+                32
+              ],
+              [
+                -183,
+                256
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              [
+                -183,
+                256
+              ],
+              [
+                -91,
+                128
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "full_face_coincidence": true
+        },
+        {
+          "src": "c92",
+          "class_id": 1,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 2,
+          "eps_registered": null,
+          "status": {
+            "list": "unresolved_cells",
+            "reason": "depth_floor",
+            "last_status": "BRANCH"
+          },
+          "box": [
+            [
+              [
+                -23,
+                32
+              ],
+              [
+                -183,
+                256
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              [
+                -183,
+                256
+              ],
+              [
+                -91,
+                128
+              ]
+            ],
+            [
+              [
+                -1,
+                256
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "full_face_coincidence": true
+        }
+      ]
+    }
+  },
+  "candidate_classes": [
+    0,
+    1
+  ],
+  "pair_address_rows": [
+    {
+      "face": "u_hi",
+      "class_id": 0,
+      "ok": true,
+      "eps_registered_c118": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "face": "u_hi",
+      "class_id": 1,
+      "ok": true,
+      "eps_registered_c118": [
+        1,
+        1,
+        -1
+      ]
+    },
+    {
+      "face": "v_hi",
+      "class_id": 0,
+      "ok": true,
+      "eps_registered_c118": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "face": "v_hi",
+      "class_id": 1,
+      "ok": true,
+      "eps_registered_c118": [
+        1,
+        1,
+        -1
+      ]
+    }
+  ],
+  "status_diagnostics_not_load_bearing": [
+    {
+      "face": "u_hi",
+      "src": "c118",
+      "class_id": 0,
+      "neighbor_status": {
+        "certified": false,
+        "pd_failure": false
+      },
+      "our_same_class_status": {
+        "certified": false,
+        "pd_failure": false
+      },
+      "identical_profile": true
+    },
+    {
+      "face": "u_hi",
+      "src": "c118",
+      "class_id": 1,
+      "neighbor_status": {
+        "certified": false,
+        "pd_failure": false
+      },
+      "our_same_class_status": {
+        "certified": false,
+        "pd_failure": false
+      },
+      "identical_profile": true
+    },
+    {
+      "face": "u_hi",
+      "src": "c92",
+      "class_id": 0,
+      "neighbor_status": {
+        "list": "unresolved_cells",
+        "reason": "depth_floor",
+        "last_status": "BRANCH"
+      },
+      "our_same_class_status": {
+        "list": "unresolved_cells",
+        "reason": "depth_floor",
+        "last_status": "BRANCH"
+      },
+      "identical_profile": true
+    },
+    {
+      "face": "u_hi",
+      "src": "c92",
+      "class_id": 1,
+      "neighbor_status": {
+        "list": "unresolved_cells",
+        "reason": "depth_floor",
+        "last_status": "BRANCH"
+      },
+      "our_same_class_status": {
+        "list": "unresolved_cells",
+        "reason": "depth_floor",
+        "last_status": "BRANCH"
+      },
+      "identical_profile": true
+    },
+    {
+      "face": "v_hi",
+      "src": "c118",
+      "class_id": 0,
+      "neighbor_status": {
+        "certified": false,
+        "pd_failure": false
+      },
+      "our_same_class_status": {
+        "certified": false,
+        "pd_failure": false
+      },
+      "identical_profile": true
+    },
+    {
+      "face": "v_hi",
+      "src": "c118",
+      "class_id": 1,
+      "neighbor_status": {
+        "certified": false,
+        "pd_failure": false
+      },
+      "our_same_class_status": {
+        "certified": false,
+        "pd_failure": false
+      },
+      "identical_profile": true
+    },
+    {
+      "face": "v_hi",
+      "src": "c92",
+      "class_id": 0,
+      "neighbor_status": {
+        "list": "unresolved_cells",
+        "reason": "depth_floor",
+        "last_status": "BRANCH"
+      },
+      "our_same_class_status": {
+        "list": "unresolved_cells",
+        "reason": "depth_floor",
+        "last_status": "BRANCH"
+      },
+      "identical_profile": true
+    },
+    {
+      "face": "v_hi",
+      "src": "c92",
+      "class_id": 1,
+      "neighbor_status": {
+        "list": "unresolved_cells",
+        "reason": "depth_floor",
+        "last_status": "BRANCH"
+      },
+      "our_same_class_status": {
+        "list": "unresolved_cells",
+        "reason": "depth_floor",
+        "last_status": "BRANCH"
+      },
+      "identical_profile": true
+    }
+  ],
+  "address_square": {
+    "source": {
+      "box": [
+        [
+          [
+            -23,
+            32
+          ],
+          [
+            -183,
+            256
+          ]
+        ],
+        [
+          [
+            -1,
+            256
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            -23,
+            32
+          ],
+          [
+            -183,
+            256
+          ]
+        ],
+        [
+          [
+            -1,
+            256
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "classes": {
+        "0": {
+          "unique_in_both_registries": true,
+          "eps_registered_c118": [
+            1,
+            1,
+            1
+          ],
+          "status_c118": {
+            "certified": false,
+            "pd_failure": false
+          },
+          "status_c92": {
+            "list": "unresolved_cells",
+            "reason": "depth_floor",
+            "last_status": "BRANCH"
+          }
+        },
+        "1": {
+          "unique_in_both_registries": true,
+          "eps_registered_c118": [
+            1,
+            1,
+            -1
+          ],
+          "status_c118": {
+            "certified": false,
+            "pd_failure": false
+          },
+          "status_c92": {
+            "list": "unresolved_cells",
+            "reason": "depth_floor",
+            "last_status": "BRANCH"
+          }
+        }
+      }
+    },
+    "u_neighbor": {
+      "box": [
+        [
+          [
+            -183,
+            256
+          ],
+          [
+            -91,
+            128
+          ]
+        ],
+        [
+          [
+            -1,
+            256
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            -23,
+            32
+          ],
+          [
+            -183,
+            256
+          ]
+        ],
+        [
+          [
+            -1,
+            256
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "classes": {
+        "0": {
+          "unique_in_both_registries": true,
+          "eps_registered_c118": [
+            1,
+            1,
+            1
+          ],
+          "status_c118": {
+            "certified": false,
+            "pd_failure": false
+          },
+          "status_c92": {
+            "list": "unresolved_cells",
+            "reason": "depth_floor",
+            "last_status": "BRANCH"
+          }
+        },
+        "1": {
+          "unique_in_both_registries": true,
+          "eps_registered_c118": [
+            1,
+            1,
+            -1
+          ],
+          "status_c118": {
+            "certified": false,
+            "pd_failure": false
+          },
+          "status_c92": {
+            "list": "unresolved_cells",
+            "reason": "depth_floor",
+            "last_status": "BRANCH"
+          }
+        }
+      }
+    },
+    "v_neighbor": {
+      "box": [
+        [
+          [
+            -23,
+            32
+          ],
+          [
+            -183,
+            256
+          ]
+        ],
+        [
+          [
+            -1,
+            256
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            -183,
+            256
+          ],
+          [
+            -91,
+            128
+          ]
+        ],
+        [
+          [
+            -1,
+            256
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "classes": {
+        "0": {
+          "unique_in_both_registries": true,
+          "eps_registered_c118": [
+            1,
+            1,
+            1
+          ],
+          "status_c118": {
+            "certified": false,
+            "pd_failure": false
+          },
+          "status_c92": {
+            "list": "unresolved_cells",
+            "reason": "depth_floor",
+            "last_status": "BRANCH"
+          }
+        },
+        "1": {
+          "unique_in_both_registries": true,
+          "eps_registered_c118": [
+            1,
+            1,
+            -1
+          ],
+          "status_c118": {
+            "certified": false,
+            "pd_failure": false
+          },
+          "status_c92": {
+            "list": "unresolved_cells",
+            "reason": "depth_floor",
+            "last_status": "BRANCH"
+          }
+        }
+      }
+    },
+    "diagonal": {
+      "box": [
+        [
+          [
+            -183,
+            256
+          ],
+          [
+            -91,
+            128
+          ]
+        ],
+        [
+          [
+            -1,
+            256
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            -183,
+            256
+          ],
+          [
+            -91,
+            128
+          ]
+        ],
+        [
+          [
+            -1,
+            256
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "classes": {
+        "0": {
+          "unique_in_both_registries": true,
+          "eps_registered_c118": [
+            1,
+            1,
+            1
+          ],
+          "status_c118": {
+            "certified": false,
+            "pd_failure": false
+          },
+          "status_c92": {
+            "list": "unresolved_cells",
+            "reason": "depth_floor",
+            "last_status": "BRANCH"
+          }
+        },
+        "1": {
+          "unique_in_both_registries": true,
+          "eps_registered_c118": [
+            1,
+            1,
+            -1
+          ],
+          "status_c118": {
+            "certified": false,
+            "pd_failure": false
+          },
+          "status_c92": {
+            "list": "unresolved_cells",
+            "reason": "depth_floor",
+            "last_status": "BRANCH"
+          }
+        }
+      }
+    }
+  },
+  "witnesses": {
+    "w_one_neighbor": {
+      "rule_signature": [
+        1,
+        0
+      ],
+      "candidates": 6,
+      "tile": 295
+    },
+    "w_one_boundary": {
+      "rule_signature": [
+        -1,
+        0
+      ],
+      "candidates": 6,
+      "tile": 253
+    },
+    "w_two_high_faces": {
+      "rule_signature": [
+        1,
+        1
+      ],
+      "candidates": 1,
+      "tile": 315
+    },
+    "w_two_boundary": {
+      "rule_signature": [
+        -1,
+        -1
+      ],
+      "candidates": 1,
+      "tile": 252
+    },
+    "w_control": {
+      "rule_signature": [
+        0,
+        0
+      ],
+      "candidates": 36,
+      "tile": 255
+    }
+  },
+  "flush_signature_census": {
+    "(-1, -1)": 1,
+    "(-1, 0)": 6,
+    "(-1, 1)": 1,
+    "(0, -1)": 6,
+    "(0, 0)": 36,
+    "(0, 1)": 6,
+    "(1, -1)": 1,
+    "(1, 0)": 6,
+    "(1, 1)": 1
+  },
+  "next_phases_not_paid_here": [
+    "B — régime analytique et ledger de la voisine (dérivé puis comparé à son ε registré ; discordance = résultat)",
+    "C — transitions exactes pont↔voisine (lemme C129-D)",
+    "D — nerf étendu (graphe de domaines ≠ nerf certifié)",
+    "E — métrique (transport_hardened section=, δ = 1e-5)",
+    "F — négatifs analytiques",
+    "l'ouverture du cover au-delà des faces basses (frontière d'énumération : chantier d'ÉNUMÉRATION, pas de raccord)",
+    "les 895 autres paires"
+  ],
+  "gates": {
+    "A1_geometry_and_strata_match_frozen_atlas_and_f2f3": true,
+    "A2_registry_universe_equals_f1a_counts_and_shas": true,
+    "A3_face_verdicts_preregistered_no_cover_gap": true,
+    "A4a_pair_address_unique_both_registries_both_classes": true,
+    "A5_witnesses_deterministic_and_unique": true,
+    "A6_negatives_shifted_perturbed_hyperplane": true,
+    "A7_no_silent_filtering": true,
+    "A8_address_square_closed_including_diagonal": true
+  },
+  "gates_passed": 8,
+  "gates_total": 8,
+  "verdict": "SCOUT VERT (v2, amendé 14ᵉ revue) — la cellule voisine est ADRESSÉE sur les deux faces hautes avec DEUX classes candidates (la feuille atteinte se décide en B1), le carré du témoin 315 est fermé diagonale comprise (B3 déverrouillé à l'adresse), et les faces basses sont une FRONTIÈRE D'ÉNUMÉRATION déclarée, pas un trou.",
+  "provenance": {
+    "git_head": "8284db412253ffe09f2672b931020df332d7fdc1",
+    "python": "3.14.4",
+    "platform": "Linux-7.0.0-28-generic-x86_64-inconnu-with-glibc2.43",
+    "wall_s": 2.8,
+    "inputs": {
+      "k3_cap_b1e2iii_d5_6_dyadic_cover.json": "576fc7c20f11163206e0e55ad7fdde94844ed8601fa37cb8a2494fc74611ea0a",
+      "k3_cap_b1e2iii_c127d_atlas.json": "9dc56bf7c6db61596ee7b9f6249d220a19e3e821fcca9f4bb5f4cf923fcbab07",
+      "k3_cap_b1e2iii_c118_shell_exhaustive.json": "6beaada5b87e979adfba73ec8e57a562900ab09be097134810925b850d732ee4",
+      "k3_cap_b1e2iii_c92_cover_pilot_f64.json": "ffed9289aa57d2377bf1fe53967bb31c8904fc062595deed4531fd842676c50c",
+      "k3_cap_b1e2iii_c129f_f1_mirror_ledger.json": "a2204eb531803e40bcb952b486acc559397c849fc8565b66db3112a8ce46a2ea",
+      "k3_cap_b1e2iii_c129f_f2f3_bridge_atlas.json": "8d01e64efb1bf52923f87de6b10d47b49e177e7285df294c0a678fbef0355150"
+    },
+    "self_sha256": "ad1f6b6826611a82c877230b03d96fce882111344a1415d4168c389595ff4dcb"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "artifact": "k3_closedform_witness_kahler_v2.npz",
+  "phase": "K3 CAP R3 — gel witness v2 (degré-3)",
+  "decision": "D2 close (R2) : witness K3 v2 = degré-3. v2.1 candidate (degré-4) = escalade prête, non défaut.",
+  "convention": {
+    "potential": "K̃(Z) = log(Z† M Z) + Σ_e coeffs218[e] · q̃_e(Z), q̃_e ∈ B₃ (base quotient degré-3, d≡3 homogène)",
+    "gauge": "det M = 1 (Σ u_i = 0)",
+    "metric_engine": "chart_metric_kahler(Z, W, M, coeffs218, B3, B3_MULTIS, B3_IDX)",
+    "residual": "r = log det G + 2 log|det M_S| (Ricci-flat ⟺ r const)"
+  },
+  "protocol": {
+    "seed_fit": 21,
+    "n_base_fit": 2000,
+    "maxit": 60,
+    "start": "FS pur (p9=0, c=0)",
+    "seed_monitor": 41,
+    "rationale_seed": "seed 21 = référence R0-R2, mid-pack à n_base=2000 (non cherry-piqué) ; n_base=2000 = dispersion inter-seed minimale (±3e-5)."
+  },
+  "fit": {
+    "var_start_FS": 0.42386934962670886,
+    "var_fit": 0.00391728221292185,
+    "n_iter": 7,
+    "reduction": 108.20495603520745,
+    "c_norm": 0.13493882144477745,
+    "coeffs218_norm": 36029.63128663288,
+    "det_M": 1.0
+  },
+  "acceptance_bank": {
+    "seeds": [
+      103,
+      107,
+      109,
+      113,
+      127
+    ],
+    "n_base": 1000,
+    "var_mean": 0.004225106707458559,
+    "var_max": 0.006250637578348626,
+    "var_std": 0.001039009110172516,
+    "pd_min": 1.0,
+    "lam001_min": 0.48016006522778903,
+    "lam001_mean": 0.48644130985204137,
+    "qmax_max": 13.368983104670832,
+    "per_seed_var": [
+      0.004063988588667579,
+      0.0038608120521822172,
+      0.0034006247126343063,
+      0.0035494706054600687,
+      0.006250637578348626
+    ]
+  },
+  "fixture": {
+    "seed": 909,
+    "n_base": 400,
+    "K": 13104,
+    "pd_frac": 1.0,
+    "r_sha256": "3bb1afab847f9101e5e7c8ec0aed2d088d3e31abba177037eecad58b9bececc8",
+    "r_mean": 9.51037577309018,
+    "r_std": 0.058334159064351084,
+    "r_first5": [
+      9.475968679382529,
+      9.487102739003214,
+      9.475968679382529,
+      9.487102739003214,
+      9.475968679382529
+    ]
+  },
+  "provenance": {
+    "hash_C": "0260878edc3aa737c3521cb832fe9a73967bf14ffd696bc16b58ef93e9c3b958",
+    "hash_basis_B3": "1101861194703435a8f43357d318ce003e716341ff314bc2d39d3596b07f0525",
+    "hash_fit_vector": "ea8712e084066c362800d94a3c9a16fec9cad0d206319affc4403eb8be7b6011",
+    "n_params": {
+      "p9": 9,
+      "c208": 208,
+      "coeffs218": 218
+    },
+    "engine_sha256": {
+      "k3_cap_kahler_engine.py": "4eac96e5a708ac1acc29c0a580f693dde163b9e22e2d0ea81612824158a7960a",
+      "k3_cap_spectral_engine.py": "99654f919a5302952176fb0243a1f9bea7d6a24d6de0682b98bdded270324dee",
+      "k3_cap_quotient_engine.py": "9249a81d32dda77f3720a8ac9dcedbb9bbfb3551d6700db2e5f560b88345ee80",
+      "k3_cap_nested_inclusion.py": "3fca46d9eb128a1f7634aad2f9f82404aec70888a3121a5bd8df8defe0d4797f",
+      "k3_cap_refit_param.py": "a5a8b4538ea134d34923c9f28dd629a9de5432b17c4d8f563e5d64590234fd94",
+      "k3_cap_refit_functional.py": "8e83e4620c6d6550df520fc62c4f828d8e7a917b5c2b63ddfe23d12db76bf50e",
+      "k3_cap_refit_optimize.py": "64f93aa5396bfbd5f2cacf5c5884924dab8edd3a7d087bf0a2664a7f2be8c263",
+      "k3_cap_r3_freeze.py": "b786c28b2a5e5be4ca0d46076ddb92efebec82a321d005bf2998fad323e5b910"
+    },
+    "git_commit": "de83f3316e83423550d83fff066d6554f20a54a8",
+    "git_dirty": true,
+    "param_artifact": "k3_cap_refit_param_C.npz"
+  },
+  "dims": {
+    "NB3": 218
+  },
+  "artifact_sha256": "738006ef56238f0496b228c06ce33596011a5e316e4fa174a37b58500ac29b4c"
+}

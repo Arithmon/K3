@@ -104,7 +104,7 @@ from .interval_arithmetic import (                            # noqa: E402
 sys.argv = _argv
 
 RES = Path(os.environ.get(
-    "K3_RES_DIR", Path(__file__).resolve().parents[1] / "results"))
+    "K3_RES_DIR", Path(__file__).resolve().parent / "data"))
 PROBE_JSON = RES / "k3_cap_b1e2iii_p0a_probe.json"
 DIRECT_JSON = RES / "k3_cap_b1e2iii_p0a2_direct.json"
 TILING_JSON = RES / "k3_cap_b1e2iii_owner_tiling.json"
