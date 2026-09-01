@@ -83,9 +83,9 @@ the appearance of verification):
           SUPÉRIEURE — un quotient majorant exige un dénominateur
           inférieur) ; l'ancien ratio publié en `_legacy` ;
   C128-D  le scaling fige le LEDGER (ε', σ', déterminations refusées si
-          elles changent), fenêtre de ratio PRÉ-ENREGISTRÉE [16, 64]
-          (ordre 5 ± 1), un niveau de plus, un chart de plus ;
-  C128-E  SHA-256 complets, adresses dyadiques explicitement
+          they change), PREREGISTERED ratio window [16, 64]
+          (order 5 plus or minus 1), one level deeper, one chart more;
+  E  full SHA-256, dyadic addresses explicitly
           sérialisées.
 
 Sorties : results/k3_cap_b1e2iii_c127_transport_pilot.json  (mode pilot)
@@ -236,8 +236,8 @@ def tree_gates(addresses):
             "tree_closed": bool(closure),
             "kraft_sum": [kraft.numerator, kraft.denominator],
             "kraft_is_one": bool(kraft == 1),
-            "note": ("prefix-free sur des boîtes dyadiques fermées ⟹ "
-                     "intérieurs deux à deux disjoints ; les frontières "
+            "note": ("prefix-free on closed dyadic boxes gives "
+                     "pairwise disjoint interiors; the boundaries "
                      "se touchent, et c'est attendu")}
 
 
@@ -305,9 +305,9 @@ def derive_eps_target_margined(S2, g2, up, vp, sigma2, Zp):
     """`ε'` dérivé à l'ancre par SÉPARATION STRICTE, marge sérialisée.
 
     The anchor of each row is the COMPLETE enclosure of the
-    valeur au centre — `p[0] ± rem` par partie — et plus le seul
+    value at the centre, `p[0] +- rem` per part, and no longer the sole
     constant coefficient. The sign is kept only if `sup(chosen squared distance) <
-    inf(d²_autre)` STRICTEMENT (comparaison en mpf) ; ambigu ⟹ REFUS."""
+    inf(other squared distance)` STRICTLY (compared in mpf); ambiguous means REFUSAL."""
     Zt1, _d, _k = native_target_section(S2, g2, up, vp, (1, 1, 1),
                                         sigma2)
     if Zt1 is None:
@@ -329,10 +329,10 @@ def lam_min_lo(Q):
     λ_min = det/λ_max ≥ det_lo/trace_hi.
 
     C128-B : intégralement en arithmétique d'intervalle mpmath
-    (arrondi extérieur à la précision de travail) — la division iv
-    donne det_lo/trace_hi comme borne basse sans conversion
-    intermédiaire au float le plus proche. Retourne (mpf, dict
-    sérialisable avec float dirigé et chaîne exacte), ou (None, None)."""
+    (rounded outwards at working precision), and the interval division
+    gives det_lo/trace_hi as a lower bound without an intermediate
+    conversion to the nearest float. Returns (mpf, a serialisable
+    dict with directed floats and an exact string), or (None, None)."""
     q00 = Q[0][0].re_tm().to_iv()
     q11 = Q[1][1].re_tm().to_iv()
     det = (Q[0][0] * Q[1][1]
@@ -515,10 +515,10 @@ def transport_hardened(S, g, eps, center, hw, S2, g2, M, c218, rw,
             "C_is_PD": bool(lam_mpf is not None),
             "weyl_transport_ok": bool(lam_mpf is not None and herm_ok
                                       and fro_mpf < lam_mpf),
-            "note": ("λ_min(Q_src) ≥ λmin_lo(C) − ‖D‖_F^up : la PD de "
-                     "Q_source est PROUVÉE PAR TRANSPORT, la directe "
-                     "n'est qu'un cross-check ; bornes en iv 200 bits, "
-                     "floats DIRIGÉS à la sérialisation (C128-B)")},
+            "note": ("lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of "
+                     "Q_source is PROVED BY TRANSPORT, the direct one "
+                     "being only a cross-check; bounds in 200-bit interval arithmetic, "
+                     "floats DIRECTED at serialisation")},
         "wall_s": round(time.time() - t_start, 1)}
 
 
@@ -793,25 +793,25 @@ def build():
     n_pass = sum(1 for v in gates.values() if v)
     wall_tiles = [r["wall_s"] for r in ok]
     verdict = (
-        "C127 (%s) — transport %s sur le cover D5.6, contrat durci de la "
-        "6ᵉ revue. C127-A : les %d feuilles (tuiles + résidu) portent une "
-        "adresse dyadique reconstruite en égalité float EXACTE ; l'arbre "
-        "est prefix-free, CLOS, d'égalité de Kraft 1 — « ni trou ni "
-        "recouvrement » est désormais AUTONOME depuis le ledger. "
-        "Frontière non résolue par niveau : %s, strictement décroissante. "
-        "TRANSPORT : %d/%d tuiles, AUCUN échec filtré ; `ε'` dérivé à "
-        "marge strictement positive et sérialisé PARTOUT (marge min "
-        "%.3e) ; résidu relatif max %.3e ≤ δ pré-enregistré %.0e ; et le "
-        "transport de PD est désormais PROUVÉ PAR WEYL sur chaque tuile "
-        "(‖D‖_F^up < λmin_lo(C), pire marge ‖D‖/λ = %.3e), la "
-        "certification directe n'étant qu'un cross-check. Probes "
-        "(portée déclarée : %d tuiles stratifiées) : mutation du "
-        "Jacobien casse %d/%d, recheck d'autonomie à entrées figées "
-        "bit-identique %d/%d, scaling à chart fixé strictement "
-        "décroissant %d/%d. NON PAYÉ ICI : halos/overlaps/cocycle "
-        "(C127-D), résidu 1/64 (C127-E), contrat exact de l'identité, "
-        "globalisation, R12-C." % (
-            MODE, "UNIVERSEL" if MODE == "full" else "pilote stratifié",
+        "Transport (%s) over the dyadic cover, under the hardened "
+        "contract. First, the %d leaves (tiles plus residual) carry a "
+        "dyadic address reconstructed in EXACT float equality; the tree "
+        "is prefix-free, CLOSED, with Kraft equality 1, so neither hole "
+        "nor overlap is now AUTONOMOUS from the record. "
+        "Unresolved boundary by level: %s, strictly decreasing. "
+        "TRANSPORT: %d of %d tiles, NO failure filtered out; the sheet derived with "
+        "a strictly positive margin and serialised EVERYWHERE (minimum margin "
+        "%.3e); maximum relative residual %.3e at most the preregistered delta %.0e; and "
+        "positivity transport is now PROVED BY WEYL on each tile "
+        "(the Frobenius bound below lambda_min, worst ratio %.3e), the "
+        "direct certification being only a cross-check. Probes "
+        "(declared scope: %d stratified tiles): the Jacobian "
+        "mutation breaks %d of %d, the autonomy recheck at frozen inputs is "
+        "bit-identical %d of %d, and scaling at fixed chart is strictly "
+        "decreasing %d of %d. NOT PAID HERE: halos, overlaps and the cocycle; "
+        "the residual 1/64; the exact contract of the identity; "
+        "globalisation." % (
+            MODE, "UNIVERSEL" if MODE == "full" else "stratified pilot",
             len(addresses),
             [x["fraction_float"] for x in fr],
             len(ok), expected_n,
@@ -826,9 +826,9 @@ def build():
             sum(auto_ok), len(auto_ok), sum(scale_ok), len(scale_ok)))
 
     art = {"artifact": ART.stem, "mode": MODE,
-           "claim": ("C127 — ledger dyadique autonome + transport "
-                     "durci (universel en mode full) sur le cover "
-                     "D5.6, avec transport de PD par Weyl."),
+           "claim": ("Autonomous dyadic record plus hardened "
+                     "transport (universal in full mode) over the "
+                     "cover, with positivity transport by Weyl."),
            "cell": cell,
            "tree_gates": tg, "n_address_failures": addr_fail,
            "leaf_addresses": leaf_addr,
@@ -842,11 +842,11 @@ def build():
                       "scaling_detail": scale_detail,
                       "probe_indices": probe_idx,
                       "scope_note": (
-                          "mutation/autonomie/scaling sur le "
-                          "sous-ensemble STRATIFIÉ, pas les 252 — "
-                          "chaque probe coûte un transport complet et "
-                          "teste la discriminance du TEST, pas chaque "
-                          "tuile ; portée déclarée, indices publiés")},
+                          "mutation, autonomy and scaling on the "
+                          "STRATIFIED subset, not on all 252: "
+                          "each probe costs a complete transport and "
+                          "tests the discriminating power of the TEST, not each "
+                          "tile; declared scope, published indices")},
            "max_residual_relative": max_rel,
            "delta_rel_preregistered": DELTA_REL,
            "wall_per_tile_s": {"min": min(wall_tiles, default=None),
@@ -935,7 +935,7 @@ def _selftest():
 
     # T7: det_lo/tr_hi really is a LOWER BOUND (exact algebra:
     #      diag(2, 3) → det/tr = 6/5 = 1.2 ≤ λ_min = 2)
-    chk("T7 λmin_lo : det_lo/tr_hi ≤ λ_min sur un cas exact",
+    chk("T7 lambda_min_lo: det_lo/tr_hi is at most lambda_min on an exact case",
         _f_down(mp.mpf(6) / 5) <= 2.0)
 
     # T8 : fro_up majore la vraie norme de Frobenius (matrice de TMC)
