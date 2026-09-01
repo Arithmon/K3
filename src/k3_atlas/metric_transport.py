@@ -320,8 +320,8 @@ def selftest():
     chk("center/hw ne servent plus qu'à build_section",
         src.count("center") == 1 + src.count("center)")
         or "build_section(S, g, eps, center, hw)" in src)
-    chk("δ est celui de C127/C129-E, non relâché", DELTA_REL == 1e-5)
-    chk("D est bien la deck importée de F2/F3",
+    chk("delta is the established one, not relaxed", DELTA_REL == 1e-5)
+    chk("D is the deck transformation imported from the bridge step",
         tuple(DECK_D) == (1, -1, 1, 1, 1, -1))
     chk("IM_DIRS importées cohérentes", tuple(IM_DIRS) == (1, 3))
     # box_ok doit REFUSER un ratio au-dessus de δ et un Weyl négatif
@@ -350,7 +350,7 @@ def selftest():
 # ===========================================================================
 def build():
     print("=" * 78)
-    print(f"C129-F0 / F4 — MÉTRIQUE SUR LES CARTES-PONTS "
+    print(f"METRIC ON THE BRIDGE CHARTS "
           f"({'FULL 64' if MODE == 'full' else f'PANEL {N_PANEL}'}), "
           f"{N_WORKERS} workers, δ = {DELTA_REL:.0e}, ledger FIGÉ")
     print("=" * 78)
@@ -424,7 +424,7 @@ def build():
         g1_rows.append({"tile": r["tile_index"], "identical": bool(same),
                         "ratio_now": r.get("residual_relative"),
                         "ratio_serialized": a.get("residual_relative")})
-    log(f"G1 (NON-RÉGRESSION) : chemin par défaut rejoué sur "
+    log(f"G1 (NON-REGRESSION): default path replayed on "
         f"{len(probe)} tuiles du full C129-E ⟹ ratio, ledger, "
         f"déterminations et slack IDENTIQUES : {g1}")
 
@@ -449,7 +449,7 @@ def build():
              for r in met)
     log(f"     ratio relatif max {max(ratios):.3e} ≤ δ = {DELTA_REL:.0e} ; "
         f"slack Weyl min {min(slacks):.3e} > 0 ; {len(ok_rows)}/{len(met)}")
-    log(f"G3 : ledger FIGÉ, kinds cible sur le pont == core : {g3} "
+    log(f"G3: FROZEN record, target kinds on the bridge equal the core: {g3} "
         f"— {dict(kinds_c)}")
     for r in bad_rows:
         log(f"     REFUS pont {r['tile']} : {r.get('failed')} "
@@ -465,7 +465,7 @@ def build():
     else:
         edges += [("BB", a, b) for a, b in bb
                   if a in sel][:N_PANEL]
-    log(f"G5 : congruence sur {len(edges)} arête(s) du nerf…")
+    log(f"G5: congruence on {len(edges)} nerve edge(s)...")
     with mpctx.Pool(N_WORKERS, initializer=_init,
                     initargs=initargs) as pool:
         edg = pool.map(_edge_metric_job, edges)
@@ -518,15 +518,15 @@ def build():
             "same_projective_point": r.get("same_projective_point"),
             "kinds_target": r.get("kinds_target"),
             "residual_relative": r.get("residual_relative"),
-            "note": ("la CONGRUENCE MÉTRIQUE est aveugle aux signes du "
-                     "ledger CIBLE (Qmat ne voit que des modules) : "
-                     "c'est le canal `same_projective_point` qui porte "
-                     "cette discriminance, et le ratio reste inchangé. "
-                     "Déclaré, pas masqué — même canal qu'en C129-E."
+            "note": ("METRIC CONGRUENCE is blind to the signs of the "
+                     "TARGET record (Qmat sees only moduli): "
+                     "the `same_projective_point` channel carries "
+                     "that discriminating power, and the ratio is unchanged. "
+                     "Declared, not masked; the same channel as before."
                      if chan == "same_projective_point" else None)})
-        log(f"G6 : {r['kind']:16s} ⟹ casse={broke} "
+        log(f"G6: {r['kind']:16s} breaks={broke} "
             f"(failed={r.get('failed')}, "
-            f"cong∋0={r.get('congruence_contains_zero')})")
+            f"congruence contains zero={r.get('congruence_contains_zero')})")
 
     g7 = bool(len(met) == len(sel) and len(edg) == len(edges))
     gates = {
@@ -552,17 +552,17 @@ def build():
         "mode": MODE,
         "claim_level": f23["claim_level"],
         "claim": (
-            "Le chemin métrique durci de C127/C128 — quatre Qmat, "
-            "hermiticité gatée, Weyl en arithmétique dirigée, ratio "
-            "relatif CERTIFIÉ — est rejoué VERBATIM sur les "
-            "BOÎTES-PONTS bilatérales et sur les ARÊTES du nerf de "
-            "F2/F3 v2, en mode LEDGER FIGÉ (ε'/σ' du core, jamais "
-            "re-dérivés). Le seul ajout est un point d'injection "
-            "`section=` dans `transport_hardened`, dont la "
-            "non-régression est GATÉE contre l'artefact C129-E "
-            "sérialisé. Le seuil δ = 1e-5 est celui de C127/C129-E, "
-            "non relâché. La congruence reste certifiée SOUS δ, PAS "
-            "exacte."),
+            "The hardened metric path (four Qmat, "
+            "checked hermiticity, Weyl in directed arithmetic, a CERTIFIED "
+            "relative ratio) is replayed VERBATIM on the "
+            "bilateral BRIDGE BOXES and on the nerve EDGES of "
+            "the bridge step, in FROZEN RECORD mode (sheet and component from the core, never "
+            "re-derived). The only addition is a `section=` injection "
+            "point in `transport_hardened`, whose "
+            "non-regression is CHECKED against the serialised "
+            "artefact. The threshold delta = 1e-5 is the established one, "
+            "not relaxed. Congruence stays certified UNDER delta, NOT "
+            "exact."),
         "cell": {"S": list(S), "g": g, "eps": list(eps)},
         "delta_rel_preregistered": DELTA_REL,
         "upstream": up,
@@ -581,17 +581,17 @@ def build():
                 "exact_section_identity_from_f2f3_v2",
             "pairwise_metric_comparison_executed": False,
             "note": (
-                "G5 certifie le chemin métrique sur le domaine EXACT de "
-                "chaque arête depuis UN représentant (la section du "
-                "pont). La compatibilité des deux extrémités est "
-                "transportée par l'identité analytique EXACTE des "
-                "sections (F2/F3 v2) et par les certificats de carte "
-                "(C129-E pour les cartes inférieures, G4 pour les "
-                "ponts) : l'autre représentant décrit la même section, "
-                "donc le même pullback métrique. AUCUNE comparaison "
-                "métrique bilatérale indépendante entre extrémités "
-                "n'est exécutée ici — elle n'est pas requise pour le "
-                "théorème local, et le dire est la 12ᵉ revue D1.")},
+                "G5 certifies the metric path on the EXACT domain of "
+                "each edge from ONE representative (the bridge "
+                "section). Compatibility of the two endpoints is "
+                "transported by the EXACT analytic identity of the "
+                "sections and by the chart certificates "
+                "(the established ones for the lower charts, G4 for the "
+                "bridges): the other representative describes the same section, "
+                "hence the same metric pullback. NO independent bilateral "
+                "metric comparison between endpoints "
+                "is executed here; it is not required for the "
+                "local theorem, and saying so is the point.")},
         "regression_probe": g1_rows,
         "negatives": neg_rows,
         "bridges": met,

@@ -221,7 +221,7 @@ def chart_certificate(Z, dZ, S2, g2):
     out["gauge_absmin"] = gmin
     if not (gmin > 0):
         out.update(domain_ok=False,
-                   refused="jauge pouvant s'annuler sur la boîte")
+                   refused="gauge may vanish on the box")
         return out
     try:
         ib = Z[g2].inv()
@@ -306,7 +306,7 @@ def build():
         log(f"  cellule {i + 1} : déterminations "
             f"{[x['determination'] for x in rows]} · section complète "
             f"{all(z is not None for z in Z)} · {len(adm)} admissibles "
-            f"(D5.1+D5.2 sur toute la boîte) dont "
+            f"(chart criterion and Jacobian on the whole box) of which "
             f"**{len(payoff)} DISJOINTS de leur tranche**")
 
     # --- D5 : négatif de composante (avec sa mutation) ------------------------------
@@ -390,32 +390,32 @@ def build():
             {d for c in cells for d in c["determinations"] if d})}
 
     verdict = (
-        "D5.1/D5.2 SUR CELLULE ENTIÈRE (gates %d/%d) — le payoff de C122 "
-        "cesse d'être POINTWISE. La revue avait raison de refuser qu'on "
-        "appelle D5.1 un calcul fait au seul point de tranche (h = 0) : "
-        "ici tout est certifié sur la BOÎTE ENTIÈRE. "
-        "LA SECTION EST COMPLÈTE sur %d/%d cellules, avec la "
-        "détermination choisie PAR LIGNE et sérialisée (%s) — la "
-        "complémentarité établie par C122 fait que les trois lignes sont "
-        "couvertes, donc les six coordonnées ambiantes existent. "
-        "LE JACOBIEN NE DÉPEND PAS DE LA DÉTERMINATION : de Z_s² = R_s, "
-        "valable pour les deux, on tire ∂Z_s/∂u = ∂_u R_s/(2 Z_s) = "
-        "a₁·u/Z_s — la formule du pilote D5 se transporte verbatim. "
-        "RÉSULTAT : sur %d charts examinés, %d atteignables, "
-        "**%d admissibles** (jauge bornée loin de 0, |u'| ≤ 1, |v'| ≤ 1 "
-        "ET det J ≠ 0, tout sur la boîte entière), dont **%d certifiés "
-        "DISJOINTS de leur propre tranche réelle** — %s par cellule. "
-        "Sous la branche principale, cet ensemble était VIDE : c'est le "
-        "verrou du pilote D5, désormais franchi SUR UNE CELLULE, pas en "
-        "un point. "
-        "NÉGATIFS : une boîte dont σ est déterminé AU CENTRE mais "
-        "INDÉTERMINÉ sur la boîte est REFUSÉE, et la mutation « centre "
-        "seulement » l'accepte à tort (c'est ce qui rend le test "
-        "discriminant) ; une jauge de centre 1/2 dont l'enclosure "
-        "contient 0 est refusée. "
-        "PORTÉE : **D5.4 (congruence Q_source = J* Q_target J) et D5.5 "
-        "(transport de PD) restent NON TESTÉS** — le succès de D5.1/D5.2 "
-        "ne les préjuge pas. Résultat établi sur %d cellules, pas sur un "
+        "CHART CRITERION ON A WHOLE CELL (checks %d/%d): the payoff "
+        "stops being POINTWISE. A review was right to refuse calling "
+        "a slice-point computation (h = 0) a full result: "
+        "here everything is certified on the WHOLE BOX. "
+        "THE SECTION IS COMPLETE on %d of %d cells, with the "
+        "determination chosen PER ROW and serialised (%s); "
+        "the established complementarity makes the three rows "
+        "covered, so the six ambient coordinates exist. "
+        "THE JACOBIAN DOES NOT DEPEND ON THE DETERMINATION: from Z_s^2 = R_s, "
+        "valid for both, one gets dZ_s/du = d_u R_s/(2 Z_s) = "
+        "a_1.u/Z_s, and the pilot formula carries over verbatim. "
+        "RESULT: of %d charts examined, %d reachable, "
+        "**%d admissible** (gauge bounded away from 0, |u'| at most 1, |v'| at most 1 "
+        "AND det J nonzero, all on the whole box), of which **%d certified "
+        "DISJOINT from their own real slice**, %s per cell. "
+        "Under the principal branch that set was EMPTY: this is the "
+        "lock of the pilot, now crossed ON ONE CELL, not at "
+        "one point. "
+        "NEGATIVE CONTROLS: a box whose component is determined AT THE CENTRE but "
+        "UNDETERMINED on the box is REFUSED, and the centre-only "
+        "mutation wrongly accepts it (which is what makes the test "
+        "discriminating); a gauge of centre 1/2 whose enclosure "
+        "contains 0 is refused. "
+        "SCOPE: **congruence (Q_source = J* Q_target J) and positivity "
+        "transport stay UNTESTED**; the success of the checks above "
+        "does not prejudge them. Result established on %d cells, not on a "
         "cover. Aucun chiffre d'atlas ne bouge." % (
             n_pass, len(gates),
             sum(1 for c in cells if c["section_complete"]), len(cells),
@@ -431,9 +431,9 @@ def build():
         "tm_config": {"poly_deg": TM_ORDER,
                       "unary_series_deg": UNARY_SERIES_DEG},
         "provenance": provenance(C118_JSON, time.time() - T0),
-        "jacobian_identity": ("dZ_s/du = ∂_u R_s/(2 Z_s) = a₁u/Z_s, "
-                              "INDÉPENDANTE de la détermination car "
-                              "Z_s² = R_s vaut pour les deux"),
+        "jacobian_identity": ("dZ_s/du = d_u R_s/(2 Z_s) = a_1.u/Z_s, "
+                              "INDEPENDENT of the determination because "
+                              "Z_s^2 = R_s holds for both"),
         "cells": cells,
         "D5_component_negative": comp_neg,
         "D6_gauge_negative": gauge_neg,
@@ -487,8 +487,8 @@ def _selftest():
     ok = sig_box == 0 and sig_ctr == -1
     fails.append(not ok)
     print(f"[{'PASS' if ok else 'FAIL'}] F-S2 négatif de composante : σ "
-          f"sur la boîte = {sig_box} (indéterminé) mais σ au centre seul "
-          f"= {sig_ctr} — la mutation accepterait à tort")
+          f"on the box = {sig_box} (undetermined) but the component at the centre alone "
+          f"= {sig_ctr}; the mutation would wrongly accept")
 
     # F-S3: disjointness from the target slice is read on the
     # enclosures de Im u' et Im v', et un intervalle contenant 0 ne

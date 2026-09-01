@@ -272,7 +272,7 @@ def target_component(S2, g2, up, vp):
         # it is NOT constrained to contain 0 (unlike the face-aligned
         # source), so it is often sharper than the coefficient rule,
         # which is conservative. The two are
-        # certifiées ; on prend la plus informative.
+        # certified; we take the more informative one.
         R = TMC.const(CIV(A[r][0])) + u2.mul_real(A[r][1]) \
             + v2.mul_real(A[r][2])
         im = R.im_tm().to_iv()
@@ -317,7 +317,7 @@ def derive_eps_target(S2, g2, up, vp, sigma2, Zp):
 def transport(S, g, eps, center, hw, S2, g2, M, c218, rw,
               flip_row=None, perturb_J=None):
     """Q_source, Q_mid (jauge cible / dérivées source) et Q_target
-    NATIVE, plus le Jacobien."""
+    NATIVE section, plus the Jacobian."""
     Z, dZ, rows = build_section(S, g, eps, center, hw)
     if flip_row is not None:
         s = S[flip_row]
@@ -365,7 +365,7 @@ def transport(S, g, eps, center, hw, S2, g2, M, c218, rw,
     # of each section coordinate: this is the record of the sheets)
     # C125-B : compatibilité PROJECTIVE — MÊME signe, coordonnée par
     # coordinate, on the whole box. The two descriptions are already
-    # normalisées par la MÊME jauge (Z_{g'} = 1) : elles ne peuvent plus
+    # normalised by the SAME gauge (Z_{g'} = 1): they can no longer
     # differ by a global sign, and an INDEPENDENT sign per coordinate
     # would be a SHEET change, not a gauge one.
     compat = []
@@ -421,7 +421,7 @@ def build():
             continue
         eps2_used = tuple(tr["eps_target"])
         if not tr["same_projective_point"]:
-            log(f"  cellule REFUSÉE : les deux descriptions ne sont PAS "
+            log(f"  cell REFUSED: the two descriptions are NOT "
                 f"le même point projectif (chart S={list(S2)} g={g2})")
             continue
         gauge_ok, gauge_d = contains_zero(
@@ -440,7 +440,7 @@ def build():
         residual = {"sup_abs": sup_abs, "Q_source_norm": qs_norm,
                     "relative": sup_abs / max(qs_norm, 1e-300),
                     "note": ("`0 ∈ enclosure` borne le défaut, il ne "
-                             "prouve PAS l'identité — le contrat retenu "
+                             "does NOT prove the identity; the retained contract "
                              "est « congruence APPROCHÉE certifiée » "
                              "avec cette borne")}
         (p_s, d_s) = pd_bounds(tr["Q_src"])
@@ -495,8 +495,8 @@ def build():
     if tr_j and not tr_j.get("native_failed"):
         j_ok, _ = contains_zero(mat_sub(tr_j["Q_src"], tr_j["cong"]))
     log(f"E5 mutation de phase : congruence tient encore ? {ph_ok} — "
-        f"ATTENDU True : la congruence est agnostique à la branche "
-        f"(elle relie deux descriptions de la même configuration). Le "
+        f"EXPECTED True: congruence is branch agnostic "
+        f"(it relates two descriptions of the same configuration). The "
         f"négatif discriminant est E6.")
     log(f"E6 mutation du Jacobien : congruence tient encore ? {j_ok} "
         f"(doit être False)")
@@ -544,30 +544,30 @@ def build():
     log(f"gates : {n_pass}/{len(gates)} " + str(gates))
 
     verdict = (
-        "D5.4 / D5.5 — CONGRUENCE ET TRANSPORT DE POSITIVITÉ (gates "
-        "%d/%d). La structure : `Q` se calcule depuis `(Z, W)` avec "
-        "`W[a][A] = ∂Z_a/∂(u,v)_A`, et deux propriétés suffisent — "
-        "(a) `Q` est QUADRATIQUE en W, `Q(Z, W·A) = Aᵀ Q conj(A)` ; "
-        "(b) `Q` est INVARIANTE DE JAUGE, de degré 0 en `Z`. En posant "
-        "`Z' = Z/Z_{g'}` et `W_{Z'} = W'·J`, elles se composent en "
+        "CONGRUENCE AND POSITIVITY TRANSPORT (checks "
+        "%d/%d). The structure: `Q` is computed from `(Z, W)` with "
+        "`W[a][A] = dZ_a/d(u,v)_A`, and two properties suffice: "
+        "(a) `Q` is QUADRATIC in W, `Q(Z, W.A) = A^T Q conj(A)`; "
+        "(b) `Q` is GAUGE INVARIANT, of degree 0 in `Z`. Setting "
+        "`Z' = Z/Z_{g'}` and `W_{Z'} = W'.J`, they compose into "
         "`Q_source = Jᵀ Q_target conj(J)`. "
-        "**LA CONVENTION EST VÉRIFIÉE, PAS SUPPOSÉE** : le gate E2 mesure "
-        "les DEUX formes et montre que `Aᵀ Q conj(A)` convient (%s) là où "
-        "`A* Q A` ne convient PAS (%s) — c'est la mutation qui rend E2 "
-        "discriminant, et c'est le même énoncé que le contrat de la revue "
-        "à la convention près. "
-        "RÉSULTAT sur %d cellule(s), chacune avec un chart ADMISSIBLE "
-        "nommé (D5.1+D5.2 déjà certifiés sur la boîte entière) : "
-        "invariance de jauge **%s**, congruence **%s** — la différence "
-        "`Q_source − Jᵀ Q_target conj(J)` contient 0 sur les 4 "
-        "composantes. **D5.5** : `Q_target` est certifiée PD sur la boîte "
-        "(pivot > 0 et det > 0) et `Q_source` l'est aussi, les deux "
-        "concordant par congruence — `det(Jᵀ Q_t conj(J)) = |det J|²·det "
-        "Q_t`, et `det J` est borné loin de 0 par D5.2. "
-        "MUTATION : perturber `J` CASSE la congruence (%s). "
-        "PORTÉE : établi sur %d cellule(s) et UN chart chacune — pas un "
-        "cover multi-chart (D5.6), pas une globalisation. Aucun chiffre "
-        "d'atlas ne bouge." % (
+        "**THE CONVENTION IS VERIFIED, NOT ASSUMED**: check E2 measures "
+        "BOTH forms and shows that `A^T Q conj(A)` works (%s) where "
+        "`A* Q A` does NOT (%s); the mutation is what makes E2 "
+        "discriminating, and it is the same statement as the review contract "
+        "up to convention. "
+        "RESULT on %d cell(s), each with a named ADMISSIBLE "
+        "chart (criterion and Jacobian already certified on the whole box): "
+        "gauge invariance **%s**, congruence **%s**; the difference "
+        "`Q_source - J^T Q_target conj(J)` contains 0 on all four "
+        "components. POSITIVITY: `Q_target` is certified positive definite on the box "
+        "(pivot > 0 and det > 0) and so is `Q_source`, the two "
+        "agreeing by congruence: `det(J^T Q_t conj(J)) = |det J|^2.det "
+        "Q_t`, and `det J` is bounded away from 0. "
+        "MUTATION: perturbing `J` BREAKS the congruence (%s). "
+        "SCOPE: established on %d cell(s) and ONE chart each, not a "
+        "multi-chart cover, not a globalisation. No atlas "
+        "figure moves." % (
             n_pass, len(gates), good_ok, bad_ok, len(cells),
             all(x["E1_gauge_invariance"]["ok"] for x in cells),
             all(x["E3_congruence"]["ok"] for x in cells),
@@ -582,27 +582,27 @@ def build():
         "provenance": provenance(FULLCELL_JSON, time.time() - T0),
         "convention": {
             "established": "Q(Z, W·A) = A^T · Q · conj(A)",
-            "rejected_mutation": "A* Q A (ne convient pas)",
-            "note": ("même énoncé que `Q_source = J* Q_target J` du "
-                     "contrat de la revue, à la convention près "
-                     "(argument conjugué-linéaire, et J vs J*)")},
+            "rejected_mutation": "A* Q A (does not work)",
+            "note": ("the same statement as `Q_source = J* Q_target J` of the "
+                     "review contract, up to convention "
+                     "(which argument is conjugate-linear, and J against J*)")},
         "cells": cells,
         "E2_quadratic": {"A^T Q conj(A)": good_ok, "A* Q A": bad_ok},
         "E5_phase_mutation_congruence_still_holds": ph_ok,
         "note_E5": (
-            "ATTENDU vrai : la congruence est AGNOSTIQUE À LA BRANCHE — "
-            "elle relie deux descriptions de la même configuration, quel "
-            "que soit le choix de branche, pourvu qu'il soit COHÉRENT, "
-            "et il l'est puisque (u',v') est dérivé du Z source. E5 "
-            "n'est donc PAS un négatif discriminant pour D5.4 ; c'est E6 "
-            "(perturbation du Jacobien) qui l'est, et il casse."),
+            "EXPECTED true: congruence is BRANCH AGNOSTIC; "
+            "it relates two descriptions of the same configuration, whatever "
+            "the branch choice, provided it is COHERENT, "
+            "and it is, since (u',v') derives from the source Z. E5 "
+            "is therefore NOT a discriminating negative control for congruence; E6 "
+            "(perturbing the Jacobian) is, and it breaks."),
         "note_E3_non_tautological": (
-            "Q_target est construite depuis la section NATIVE du chart "
-            "cible (ses propres coefficients rationnels, ses propres ε'), "
-            "PAS poussée depuis la source. La première version la "
-            "calculait en poussant W par J⁻¹ puis la retirait par J : la "
-            "perturbation s'annulait et le gate ne pouvait pas échouer — "
-            "c'est E6 qui l'a révélé."),
+            "Q_target is built from the NATIVE section of the target "
+            "chart (its own rational coefficients, its own sheet), "
+            "NOT pushed from the source. The first version "
+            "computed it by pushing W through the inverse Jacobian then pulling back: the "
+            "perturbation cancelled and the check could not fail; "
+            "E6 revealed it."),
         "E6_jacobian_mutation_congruence_still_holds": j_ok,
         "not_established": ["D5.6 cover multi-chart", "globalisation"],
         "gates_prereg": gates,
@@ -655,7 +655,7 @@ def _selftest():
         mat_sub(QA, congruence(Atm, Q0, conj_left=True)))
     fails.append(ok2)
     print(f"[{'PASS' if not ok2 else 'FAIL'}] S2 négatif de convention : "
-          f"A* Q A ne convient PAS ({not ok2}) — sans quoi S1 serait "
+          f"A* Q A does NOT work ({not ok2}), without which S1 would be "
           f"satisfait par n'importe quelle forme")
 
     # S3 : invariance de jauge — Q(λZ, λW) = Q(Z, W)
@@ -672,7 +672,7 @@ def _selftest():
     ok4, _ = contains_zero(mat_sub(Qmat(Zl, W, M, c218, rw), Q0))
     fails.append(ok4)
     print(f"[{'PASS' if not ok4 else 'FAIL'}] S4 négatif de jauge : "
-          f"λ sur Z seul CASSE l'identité ({not ok4})")
+          f"scaling Z alone BREAKS the identity ({not ok4})")
 
     print("-" * 78)
     print("SELF-TEST:", "FAIL" if any(fails) else "ALL PASS")
