@@ -26,7 +26,7 @@ box-agnostic). When it is `None` the behaviour is unchanged,
 and check **G1** PROVES it by replaying the default path on a
 REGULARLY SPACED panel of the full run (a constant step over the tile
 indices, NOT a stratified panel) and requiring the SAME numbers as
-12ᵉ revue D3) et en exigeant les MÊMES nombres que
+indices, NOT a stratified panel) and requiring the SAME numbers as
 the serialised artefact. An injection that moved a digit of the full
 run would be a silent disaster; it is therefore checked, not
 supposée.

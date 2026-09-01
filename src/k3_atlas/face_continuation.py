@@ -1,103 +1,103 @@
 #!/usr/bin/env python3
 """
 k3_cap_b1e2iii_rface_p0_b1_leaf.py — RFace-P0 / B1 : LA CONTINUATION
-TRAVERSE LA FACE Re, ET LA FEUILLE ATTEINTE EST DÉRIVÉE, PAS SUPPOSÉE.
+CROSSES THE Re FACE, AND THE SHEET REACHED IS DERIVED, NOT ASSUMED.
 
-CE QUE CE SCRIPT PAIE — la phase B1 du contrat RFace-P0 (13ᵉ revue §7.3-B,
-amendée par la 14ᵉ revue §1/§4/§5) sur le témoin déterministe
+WHAT THIS SCRIPT PAYS: phase B1 of the face contract
+on the deterministic witness.
 `w_one_neighbor` (tuile 295, flush face Re u HAUTE, où le scout v2 a
 adressé une cellule voisine canonique portant DEUX classes candidates).
 
-L'ARCHITECTURE EST CELLE DU §5 DE LA 14ᵉ REVUE, DANS L'ORDRE :
-  1. le PONT-Re est construit sur la géométrie 2H — la face Re u est
-     traversée avec demi-largeur `w₀ = 2H` de chaque côté, les autres
+THE ARCHITECTURE IS THE CONTRACTED ONE, IN ORDER:
+  1. the Re bridge is built on the 2H geometry: the Re u face is
+     crossed with half-width `w_0 = 2H` on each side, the others
      coordonnées héritées du pont F0 (déjà bilatéral en Im) ;
-  2. le chart n'est PAS hérité : la jauge du chart cible est re-minorée
-     sur TOUTE la boîte élargie, les radicandes sur toute la boîte ;
-  3. la section du pont-Re est construite DIRECTEMENT (constructeur
+  2. the chart is NOT inherited: the gauge of the target chart is lower-bounded again
+     on the WHOLE enlarged box, and the radicands on the whole box;
+  3. the section of the Re bridge is built DIRECTLY (constructor
      bilatéral : régime par signe CERTIFIÉ de `Re R`, refus si
-     straddle), avec le ledger F0 CERTIFIÉ `(1,−1,−1)` du témoin ;
-  4. sa RESTRICTION au pont F0 est comparée à la section F0 certifiée —
+     straddle), with the CERTIFIED record `(1,-1,-1)` of the witness;
+  4. its RESTRICTION to the base bridge is compared with the certified section:
      recentrage anisotrope exact, soustraction coefficient par
-     coefficient, `θ = +1` exigé sur les SIX coordonnées ;
-  5. sur l'overlap voisin `W_cell = pont-Re ∩ cellule voisine` (qui est
-     un CUBE de demi-largeur H — l'anisotropie disparaît, mesuré et
-     gaté), le ledger côté voisin est DÉRIVÉ ligne par ligne contre la
+     coefficient, with `theta = +1` required on all SIX coordinates;
+  5. on the neighbouring overlap `W_cell` (which is
+     a CUBE of half-width H: the anisotropy disappears, measured and
+     checked), the record on the neighbour side is DERIVED row by row against the
      section continuée, puis RECONSTRUIT et re-vérifié (le motif
      F2d-bis) ;
   6. les DEUX candidates enregistrées (classe 0, ε=(1,1,1) ; classe 1,
-     ε=(1,1,−1)) sont construites sur `W_cell` et comparées CHACUNE à la
-     continuation, sous le gate à TROIS BRANCHES PRÉ-ENREGISTRÉES de la
-     14ᵉ revue §1-B1 — ET LE RÉSULTAT MESURÉ EST LA TROISIÈME BRANCHE :
+     are built on `W_cell` and each compared with the
+     continuation, under the THREE PREREGISTERED BRANCHES of the
+     contract, AND THE MEASURED RESULT IS THE THIRD BRANCH:
      **AUCUNE étiquette enregistrée ne ferme naïvement** (`none_closes`,
      sérialisé tel quel, PAS corrigé en douce) ;
-  7. ce résultat est ÉLUCIDÉ PAR UN CONTRÔLE, pas par un argument : la
-     MÊME expérience sur NOTRE PROPRE CÔTÉ (l'étiquette registre de
-     NOTRE cellule, (1,1,1), construite sur le cube symétrique
-     `W_ours = miroir-Re(W_cell)`) ne ferme PAS non plus, avec le MÊME
-     motif de θ. La fermeture naïve d'étiquette n'identifie donc AUCUNE
-     paire — pas même la nôtre : l'étiquette de registre vit dans la
-     convention du registre, le ledger du pont dans la convention des
+  7. this result is ELUCIDATED BY A CONTROL, not by an argument: the
+     SAME experiment on OUR OWN SIDE (the registry label of
+     OUR cell, (1,1,1), built on the symmetric cube
+     `W_ours`) does NOT close either, with the SAME
+     theta pattern. Naive label closure therefore identifies NO
+     pair, not even our own: the registry label lives in the
+     registry convention, the bridge record in the convention of the
      régimes signe-certifiés (rotated→canonique absorbe σ), et la
-     conversion `c` par ligne est MESURÉE par le contrôle ;
-  8. l'IDENTIFICATION est donc RELATIVE AU CONTRÔLE (gate B1f) : la
-     feuille atteinte est la classe dont le motif de θ côté voisin est
+     conversion `c` per row is MEASURED by the control;
+  8. IDENTIFICATION is therefore RELATIVE TO THE CONTROL (check B1f): the
+     sheet reached is the class whose theta pattern on the neighbour side is
      IDENTIQUE au motif du contrôle côté source — même étiquette, même
-     comportement à travers la face. La perdante doit différer du
-     contrôle EXACTEMENT sur la coordonnée 5 prédite, marge O(1).
+     behaviour across the face. The loser must differ from the
+     control EXACTLY on the predicted coordinate 5, with margin of order 1.
 
 PRÉDICTIONS PRÉ-ENREGISTRÉES (falsifiables) : (i) les deux candidates
-ne diffèrent que par le signe de la ligne 2 (`s = 5`) ⟹ si les régimes
+differ only by the sign of row 2 (`s = 5`), so if the regimes
 sur `W_cell` restent `(principal, canonical, canonical)`, leurs motifs
-de θ ne peuvent différer QUE sur la coordonnée 5 ; (ii) le motif du
+theta patterns can differ ONLY on coordinate 5; (ii) the pattern of the
 contrôle doit relier étiquette et ledger dérivé par
 `motif[s] = ε_dérivé[s]·étiquette[s]` ligne à ligne.
 
-CONVENTIONS, DÉCLARÉES ET PAS ÉCRASÉES : le gate naïf et son
+CONVENTIONS, DECLARED AND NOT OVERWRITTEN: the naive check and its
 `none_closes` restent sérialisés (`naive_closure_outcome`) À CÔTÉ de
-l'identification relative et du ledger dérivé. Si l'identification
-relative et la dérivation désignaient des étiquettes incompatibles, ce
+relative identification and the derived record. Should the relative
+identification and the derivation designate incompatible labels, that
 serait une DISCORDANCE PUBLIÉE (13ᵉ revue §B : « toute discordance
-devient un résultat, pas une correction automatique »).
+becomes a result, not an automatic correction").
 
-CE QUE CE SCRIPT NE PAIE PAS : le raccord du témoin 315 (B3 : deux
-ordres, commutation — la diagonale n'est adressée qu'À L'ADRESSE) ; les
-transitions d'atlas et le nerf étendu (C) ; la métrique (E) ; l'atlas de
-la cellule voisine (le pilote certifie un raccord LOCAL à une cellule
-adressée, pas son atlas) ; les faces basses (frontière d'énumération) ;
+WHAT THIS SCRIPT DOES NOT PAY: gluing the second witness (two
+orders, commutation: the diagonal is addressed ONLY AT THE ADDRESS); the
+atlas transitions and the extended nerve; the metric; the atlas of
+the neighbouring cell (the pilot certifies a LOCAL gluing to one
+addressed cell, not its atlas); the low faces (enumeration boundary);
 les 895 autres paires.
 
 GATES
   B1a  amont vert et modes full là où le champ existe (scout v2 8/8,
        F0 scout 7/7, F2/F3 v2 17/17 full, atlas C127-D 14/14 full) —
        et témoin/face/boîtes IMPORTÉS des artefacts, jamais recodés ;
-  B1b  géométrie : `w₀ = 2H` exact (la face F0 est affleurante), le
+  B1b  geometry: `w_0 = 2H` exactly (the base face is flush), the
        pont-Re contient le pont F0 ET son miroir-Re, bornes ATTEINTES ;
        tous les coins dyadiques (float(x) exact, gaté) ;
-       NÉGATIF : la boîte de demi-largeur `w₀/2` échoue DES DEUX CÔTÉS ;
-  B1c  section sur la boîte ÉLARGIE : 3 régimes assignés, IDENTIQUES aux
+       NEGATIVE CONTROL: the box of half-width `w_0/2` fails ON BOTH SIDES;
+  B1c  section on the ENLARGED box: 3 regimes assigned, IDENTICAL to the
        régimes F0 sérialisés, radicandes minorés > 0, jauge du chart
-       cible minorée > 0 sur TOUTE la boîte (chart re-validé) ;
-  B1d  restriction : `θ = +1` sur 6/6 coordonnées contre la section F0
+       target gauge bounded below > 0 on the WHOLE box (chart revalidated);
+  B1d  restriction: `theta = +1` on 6 of 6 coordinates against the certified section
        (elle-même re-construite et confrontée aux régimes sérialisés),
        marges de séparation publiées ;
   B1e  ledger voisin DÉRIVÉ puis RECONSTRUIT : `θ = +1` sur 6/6 après
-       reconstruction — et W_cell est le CUBE attendu (4 largeurs
+       reconstruction, and W_cell is the expected CUBE (4 widths
        égales, ancre centrale STRICTEMENT intérieure, Re u > face) ;
   B1f′ identification PAR CONVERSION EXPLICITE (v2, 15ᵉ revue §3) :
        B1f1 κ = ε_canonique_source ⊙ ε_registre_source, dérivé et
-            confirmé par le motif MESURÉ du contrôle (6 coordonnées) ;
-       B1f2 κ concorde avec les lois de détermination : conversion
+            confirmed by the MEASURED pattern of the control (6 coordinates);
+       B1f2 kappa agrees with the determination laws: conversion
             CONFINÉE aux lignes rotated (core C127-E) → canonique
-            (pont), κ = +1 sur la ligne principale ;
+            (bridge), kappa = +1 on the principal row;
        B1f3 les DEUX étiquettes converties `κ ⊙ ε_reg` sérialisées ;
        B1f4 les deux sections converties RECONSTRUITES : EXACTEMENT
-            UNE ferme (et elle == le ledger dérivé de B1e) ;
-       B1f5 la perdante convertie casse UNIQUEMENT sur la coordonnée 5
+            ONE closes (and it equals the record derived in B1e);
+       B1f5 the converted loser breaks ONLY on coordinate 5
             prédite, marge O(1) ;
        B1f6 le gate naïf `none_closes` reste publié en diagnostic ;
-  B1g  NÉGATIF : muter UNE ligne du ledger dérivé ⟹ le raccord tombe
-       sur cette ligne (θ = −1), marge O(1) ;
+  B1g  NEGATIVE CONTROL: mutating ONE row of the derived record makes the gluing fall
+       on that row (theta = -1), with margin of order 1;
   B1h  aucun filtrage silencieux : 6 coordonnées partout, tout refus
        publié.
 
@@ -144,7 +144,7 @@ ART = RES / "k3_cap_b1e2iii_rface_p0_b1_leaf.json"
 
 # --- PRÉ-ENREGISTRÉ -------------------------------------------------------
 RE_DIR = 0                     # la direction traversée : Re u
-PREDICTED_DIFF_COORD = 5       # les candidates ne diffèrent que sur s=5
+PREDICTED_DIFF_COORD = 5       # the candidates differ only on s=5
 THETA_REQUIRED = 1
 T0 = time.time()
 
@@ -173,25 +173,25 @@ def _frombox(qb):
 
 
 def mirror_re(bx, face, k=RE_DIR):
-    """Le miroir à travers l'hyperplan `x_k = face` — Fractions exactes."""
+    """The mirror across the hyperplane `x_k = face`, in exact rationals."""
     return [((2 * face - bx[j][1], 2 * face - bx[j][0]) if j == k
              else bx[j]) for j in range(4)]
 
 
 def widen_across(bx, face, w, k=RE_DIR):
-    """La boîte élargie à `[face − w, face + w]` dans la direction k."""
+    """The box enlarged to `[face - w, face + w]` in direction k."""
     return [((face - w, face + w) if j == k else bx[j])
             for j in range(4)]
 
 
 def all_dyadic_floats(bx):
-    """Chaque borne doit convertir en float SANS PERTE (dyadique) : les
-    constructeurs TM reçoivent des floats, l'exactitude est un gate."""
+    """Every bound must convert to float WITHOUT LOSS (dyadic): the
+    model constructors take floats, and exactness is a check."""
     return all(Fraction(float(x)) == x for ab in bx for x in ab)
 
 
 def classify_candidates(closed_flags):
-    """Le gate à trois branches pré-enregistré de la 14ᵉ revue §1-B1."""
+    """The preregistered three-branch check of the contract."""
     n = sum(1 for v in closed_flags.values() if v)
     if n == 1:
         return "exactly_one_closes"
@@ -199,7 +199,7 @@ def classify_candidates(closed_flags):
 
 
 def section_or_none(S, g, eps, box):
-    """Construit la section bilatérale sur `box` ; None si incomplète."""
+    """Build the bilateral section on `box`; None if incomplete."""
     c, h = center_hw(box)
     Z, dZ, rows = build_section_bilateral(
         S, g, eps, [float(x) for x in c], [float(x) for x in h])
@@ -320,8 +320,8 @@ def build():
     # --- B1b : géométrie 2H ------------------------------------------
     w0 = face - f0_box[RE_DIR][0]
     flush = f0_box[RE_DIR][1] == face
-    # 15ᵉ revue §5 : si le texte appelle la largeur « 2H », le symbole
-    # doit être GATÉ contre le H sérialisé de l'atlas, pas affirmé.
+    # If the text calls the width "2H", the symbol
+    # must be CHECKED against the serialised H of the atlas, not asserted.
     H_halo = Fraction(float.fromhex(
         {h["index"]: h["record"] for h in atl["halos"]
          if h["ok"]}[tile]["H_hex"]))
@@ -342,7 +342,7 @@ def build():
         f"pont-Re ⊇ F0 ∪ miroir (bornes atteintes {attained}), négatif "
         f"étroit {neg_narrow}, dyadique {dyadic} ⟹ {b1b}")
 
-    # --- B1c : section sur la boîte élargie --------------------------
+    # --- B1c: section on the enlarged box -----------------------------
     keys = list(range(6))
     Zw, rows_w = section_or_none(S, g, eps_f0, bridge)
     regimes_w = [r.get("regime") for r in rows_w]
@@ -425,10 +425,10 @@ def build():
             closed[str(cls)] = s["closed"]
     outcome = classify_candidates(closed) if closed else "not_run"
 
-    # --- B1f : le CONTRÔLE, puis l'identification RELATIVE -----------
-    # Le contrôle : NOTRE étiquette de registre, sur NOTRE côté du pont
-    # (le cube symétrique W_ours = miroir-Re de W_cell). Si elle non
-    # plus ne ferme pas naïvement — et avec quel motif — c'est mesuré,
+    # --- B1f: the CONTROL, then the RELATIVE identification -----------
+    # The control: OUR registry label, on OUR side of the bridge
+    # (the symmetric cube W_ours, the Re mirror of W_cell). Whether it too
+    # fails to close naively, and with what pattern, is measured,
     # pas argumenté.
     control = None
     ctrl_pattern = None
@@ -441,9 +441,9 @@ def build():
             control["eps_registered_ours"] = list(cell["eps"])
             control["regimes"] = [r.get("regime") for r in rows_o]
             ctrl_pattern = control.get("pattern")
-    # B1f1 — κ DÉRIVÉ du contrôle source (15ᵉ revue §3) : le ledger
-    # canonique source est le ledger F0 certifié ; κ = ε_can ⊙ ε_reg,
-    # et le motif MESURÉ du contrôle doit le confirmer ligne à ligne.
+    # B1f1: kappa DERIVED from the source control. The canonical
+    # source record is the certified base record; kappa = eps_can times eps_reg,
+    # and the MEASURED pattern of the control must confirm it row by row.
     kappa = tuple(int(eps_f0[r]) * int(cell["eps"][r])
                   for r in range(3))
     b1f1 = bool(
@@ -452,11 +452,11 @@ def build():
                 for r, s in enumerate(S))
         and all(ctrl_pattern.get(str(k)) == 1
                 for k in keys if k not in [int(s) for s in S]))
-    # B1f2 — κ CONCORDE avec les lois de détermination, et le gate
+    # B1f2: kappa AGREES with the determination laws, and the check
     # PORTE la loi qu'il nomme (durci, 16ᵉ revue B3-D1) :
     #     principal → principal : κ = +1
     #     rotated   → canonique : κ = −1
-    # Les déterminations du CORE (C127-E) sont importées, pas récitées.
+    # The core determinations are imported, not recited.
     core_dets = [t for t in c127e["transports"]
                  if t.get("box_index") == tile - 252]
     core_src = (core_dets[0].get("source_determinations")
@@ -471,7 +471,7 @@ def build():
     # B1f3 — les DEUX étiquettes CONVERTIES explicitement -------------
     eps_conv = {c: tuple(kappa[r] * int(e[r]) for r in range(3))
                 for c, e in cands.items()}
-    # B1f4/B1f5 — les candidates converties sont RECONSTRUITES --------
+    # B1f4/B1f5: the converted candidates are RECONSTRUCTED ------------
     conv_out = {}
     conv_closed = {}
     if W is not None and Zw is not None:
@@ -498,7 +498,7 @@ def build():
         bad = [k for k, v in pat.items() if v != 1]
         loser_pred = bad == [str(PREDICTED_DIFF_COORD)]
     b1f5 = bool(loser_pred)
-    # cohérence : la gagnante convertie doit être le ledger DÉRIVÉ
+    # coherence: the converted winner must be the DERIVED record
     winner_is_derived = bool(
         winner is not None and eps_der is not None
         and eps_conv[int(winner)] == eps_der)
@@ -511,7 +511,7 @@ def build():
         f"{PREDICTED_DIFF_COORD} : {b1f5} ; gate naïf = {outcome} "
         f"(diagnostic conservé) ⟹ {b1f}")
 
-    # --- B1g : NÉGATIF — muter UNE ligne du ledger dérivé ------------
+    # --- B1g: NEGATIVE CONTROL, mutate ONE row of the derived record --
     b1g = False
     neg_mut = None
     if eps_der is not None and W is not None and Zw is not None:
