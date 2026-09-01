@@ -793,7 +793,7 @@ def build():
     n_pass = sum(1 for v in checks.values() if v)
     wall_tiles = [r["wall_s"] for r in ok]
     verdict = (
-        "Transport (%s) over the dyadic cover, under the hardened "
+        "Transport (%s), %s, over the dyadic cover, under the hardened "
         "contract. First, the %d leaves (tiles plus residual) carry a "
         "dyadic address reconstructed in EXACT float equality; the tree "
         "is prefix-free, CLOSED, with Kraft equality 1, so neither hole "
@@ -811,7 +811,7 @@ def build():
         "decreasing %d of %d. NOT PAID HERE: halos, overlaps and the cocycle; "
         "the residual 1/64; the exact contract of the identity; "
         "globalisation." % (
-            MODE, "UNIVERSEL" if MODE == "full" else "stratified pilot",
+            MODE, "universal" if MODE == "full" else "stratified pilot",
             len(addresses),
             [x["fraction_float"] for x in fr],
             len(ok), expected_n,
