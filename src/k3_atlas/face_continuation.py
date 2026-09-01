@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-k3_cap_b1e2iii_rface_p0_b1_leaf.py — RFace-P0 / B1 : LA CONTINUATION
+face_continuation.py — RFace-P0 / B1 : LA CONTINUATION
 CROSSES THE Re FACE, AND THE SHEET REACHED IS DERIVED, NOT ASSUMED.
 
 WHAT THIS SCRIPT PAYS: phase B1 of the face contract
@@ -101,8 +101,8 @@ GATES
   B1h  aucun filtrage silencieux : 6 coordonnées partout, tout refus
        publié.
 
-Sortie : results/k3_cap_b1e2iii_rface_p0_b1_leaf.json
-Usage  : k3_cap_b1e2iii_rface_p0_b1_leaf.py [--selftest]
+Sortie : results/face_continuation.json
+Usage  : face_continuation.py [--selftest]
 """
 from __future__ import annotations
 
@@ -134,13 +134,13 @@ sys.argv = _argv
 
 RES = Path(os.environ.get(
     "K3_RES_DIR", Path(__file__).resolve().parent / "data"))
-COVER_JSON = RES / "k3_cap_b1e2iii_d5_6_dyadic_cover.json"
-ATLAS_JSON = RES / "k3_cap_b1e2iii_c127d_atlas.json"
-C127E_JSON = RES / "k3_cap_b1e2iii_c127e_residual.json"
-SCOUT0_JSON = RES / "k3_cap_b1e2iii_c129f_bridge_scout.json"
-F2F3_JSON = RES / "k3_cap_b1e2iii_c129f_f2f3_bridge_atlas.json"
-RSCOUT_JSON = RES / "k3_cap_b1e2iii_rface_p0_scout.json"
-ART = RES / "k3_cap_b1e2iii_rface_p0_b1_leaf.json"
+COVER_JSON = RES / "dyadic_cover.json"
+ATLAS_JSON = RES / "atlas_assembly.json"
+C127E_JSON = RES / "residual_closure.json"
+SCOUT0_JSON = RES / "bridge_preliminary.json"
+F2F3_JSON = RES / "bridge_continuation.json"
+RSCOUT_JSON = RES / "face_preliminary.json"
+ART = RES / "face_continuation.json"
 
 # --- PRÉ-ENREGISTRÉ -------------------------------------------------------
 RE_DIR = 0                     # la direction traversée : Re u
@@ -553,7 +553,7 @@ def build():
         head = None
 
     out = {
-        "artifact": "k3_cap_b1e2iii_rface_p0_b1_leaf",
+        "artifact": "face_continuation",
         "mode": "full",
         "contract": ("phase B1 du contrat RFace-P0 — a review §7.3-B, "
                      "amendée a review §1/§4/§5 ; témoin unique "

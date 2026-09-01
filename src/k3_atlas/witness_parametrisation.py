@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-k3_cap_refit_param.py — R0 du chantier refit witness v2 : paramétrisation
+witness_parametrisation.py — R0 du chantier refit witness v2 : paramétrisation
 identifiable gelée. MODULE importable (R1/R2 consomment design_on_sample,
 m_from_params9, params9_from_witness) + script de génération des artefacts.
 
-Cadrage : k3_cap_refit_cadrage_2026_07_15.md §3 (+ §6b résultats).
+Cadrage : the fit scoping note.md §3 (+ §6b résultats).
 The earlier fit worked in the raw basis `basis_upto(3)[10:]` = 657 parameters
 for an identifiable function space of dimension 208 (440 flat directions
 measured). This module builds and FREEZES the v2 parametrisation:
@@ -27,8 +27,8 @@ légère — tail study), CGS2 + passe de raffinement, représentations en
 coefficients exactes conservées.
 
 Artefacts (FROZEN: witness data, not recomputables):
-  canonical/results/k3_cap_refit_param_C.npz   (C, C1, E13, mean, spec)
-  canonical/results/k3_cap_refit_param.json    (selftests + diagnostics)
+  canonical/results/witness_parameters_C.npz   (C, C1, E13, mean, spec)
+  canonical/results/witness_parametrisation.json    (selftests + diagnostics)
 
 Selftests bloquants (résultats du run gelé : note cadrage §6b, 8/8) :
   S1 rangs hiérarchiques exacts (9 / 48 / 160) ;
@@ -39,7 +39,7 @@ Selftests bloquants (résultats du run gelé : note cadrage §6b, 8/8) :
     S6 generalisation: cond(Gram) on a FRESH sample (measured: 5.9);
   S7 contraste : design raw 657 cond 1.88e19, rang(1e-8) = 217 = 208 + 9.
 
-Usage : k3_cap_refit_param.py [N_DRAW=1000] [SEED_FROZEN=11]
+Usage : witness_parametrisation.py [N_DRAW=1000] [SEED_FROZEN=11]
 """
 from __future__ import annotations
 
@@ -177,7 +177,7 @@ def orth_block(A, cols, prev_C_list, tol=RANK_TOL):
 
 def load_param_artifact():
     """Load the frozen artefact (C, C1, mean, p9_v1, spec)."""
-    d = np.load(RES / "k3_cap_refit_param_C.npz")
+    d = np.load(RES / "witness_parameters_C.npz")
     return {k: d[k] for k in d.files}
 
 
@@ -354,7 +354,7 @@ def main():
 
     all_pass = all(checks.values())
     np.savez_compressed(
-        RES / "k3_cap_refit_param_C.npz",
+        RES / "witness_parameters_C.npz",
         C=C, C1=C1, E13=E13, V1cols=V1cols, V2cols=V2cols,
         mean_frozen=mean_frozen,
         p9_witness_v1=p9w,
@@ -362,9 +362,9 @@ def main():
         block_dims=np.array([k1, k2, k3]))
     results["checks"] = checks
     results["all_pass"] = bool(all_pass)
-    results["artifact"] = "k3_cap_refit_param_C.npz"
+    results["artifact"] = "witness_parameters_C.npz"
     results["elapsed_seconds"] = time.time() - T0
-    (RES / "k3_cap_refit_param.json").write_text(
+    (RES / "witness_parametrisation.json").write_text(
         json.dumps(results, indent=2, default=float))
     print("\n" + "=" * 74)
     print(f"BILAN R0 : {sum(checks.values())}/{len(checks)} PASS — "

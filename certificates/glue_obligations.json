@@ -1,17 +1,17 @@
 {
- "artifact": "k3_cap_atlas_paper_glue_obligations_and_generators",
+ "artifact": "glue_obligations",
  "subject": "ATLAS PAPER §4.3 + §5.3 — exact cocycle of the squares (8000 ordered triples), C = 112 re-derived, graph on the 60 types connected with diameter 4, hence generation by {elementary swap, gauge} plus a sheet flip (words of length ≤ 4), deck group of order 32 with vertical subgroup of index 4, six gluing obligations classified",
  "kind": "exact_algebra_and_finite_graphs",
- "front": "atlas paper (no other part of the tree is affected)",
+ "stage": "atlas paper (no other part of the tree is affected)",
  "no_measurement_performed": "exact rational algebra + finite graph theory",
  "nothing_is_rewritten": true,
  "upstream": {
-  "u1": "5e155bc7660d6985946a02d1406cafb9bc51366b951859e90f4407259477b952",
+  "u1": "05c442a2894dbb0025bf0387a457e0489b5e46357fd0fa8350e21411417624bc",
   "u1_outcome": "uniform_open_chart_theorem_certified",
-  "t2": "b411124787ac2700a2467b97da7a19c844e83739b3a684c2a4b272cff63247c0",
+  "t2": "1703ded0ddc9a53b5ee039b21ffb6204103a67e808b1e310d376cf15bd09d012",
   "t2_outcome": "t2_fixed_k3_closed_quantitative_existence_level",
-  "bridge_panel": "8d01e64efb1bf52923f87de6b10d47b49e177e7285df294c0a678fbef0355150",
-  "paper": "398efdf8975ceb986a3575ffeffec6a6359a82f5edb2116da0e73c6cc1ec2e27"
+  "bridge_panel": "3dee33ed55bfc3028b643eda0217bd8b72d47e8b9968d0f8b89e6fb839eb6450",
+  "paper": "3fd02d2261b57e5c953534792beaeb48cd779e1391b39c3154012502064a74c0"
  },
  "A_square_cocycle": {
   "mu": [
@@ -137,7 +137,7 @@
  "does_not_attest": [
   "the certified panel itself (3540/3540, margins, ρ_unif — produced upstream)",
   "the covering D3",
-  "the geometry of the bridges (C129-F0)",
+  "the geometry of the bridges (the bridge step)",
   "O6/O7 as complete topological proofs (inputs named, argument written out in the paper)",
   "anything outside the atlas paper"
  ],
@@ -162,6 +162,6 @@
  },
  "perturbation_tests_passed": 3,
  "perturbation_tests_total": 3,
- "built_from_head": "632474d3b3fe9c0e05903cb65c2034750bcc17ba",
- "self_sha256": "981e909a210384c14a4e50b47002d66ca1eb96a4bbdc63039ed918ccb5fba8c5"
+ "built_from_head": "17170d9596ae6b1e9578db99200a6da175100287",
+ "self_sha256": "55e6868802a0b3bb725fe5056a53aa9760f20f6314025074e905ff8c9dd87a78"
 }

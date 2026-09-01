@@ -197,7 +197,7 @@ $$
 + \tfrac{16}{9}v^6 + \tfrac{118}{9}v^4 + \tfrac{95}{3}v^2 + 25 .
 $$
 
-This explains *before any computation* why sign ledgers exist and why every
+This explains *before any computation* why sign patterns exist and why every
 chart carries branch bookkeeping.
 
 ### 2.4 Chart notation
@@ -206,7 +206,7 @@ A chart type is a pair $(S, g)$: a triple $S \subset \{0, \dots, 5\}$ of
 solved coordinates ($20$ triples) and a gauge coordinate $g \notin S$
 normalized to $z_g = 1$ ($3$ choices per triple after the selector; $60$
 types in total). Solved variables $w = z_S \in \mathbf{C}^3$; base variables
-$b = (u, v) \in \mathbf{C}^2$; sheet ledger $\varepsilon \in \{\pm 1\}^3$.
+$b = (u, v) \in \mathbf{C}^2$; sheet sign pattern $\varepsilon \in \{\pm 1\}^3$.
 Two layers must be kept apart, and the paper keeps them apart throughout.
 The **algebraic layer** uses the equations as written: $V_S \in M_3(\mathbf{Z})$
 and every identity of Sections 2, 4 and 5 lives over $\mathbf{Q}$. The
@@ -219,7 +219,7 @@ numbers by outward-rounded rational bracketing.
 $w = (z_3, z_4, z_5)$, the gauge is $z_0 = 1$, the base is
 $(u, v) = (z_1, z_2)$, and a point of the chart is
 $z_s = \varepsilon_s \sqrt{R_s(u,v)}$ for the radicands of Section 2.3 and a
-ledger $\varepsilon \in \{\pm 1\}^3$. The normalization constants have exact integer
+sign pattern $\varepsilon \in \{\pm 1\}^3$. The normalization constants have exact integer
 squares, $c_0^2 = 6$, $c_1^2 = 209$, $c_2^2 = 17765$ (the $c_k$ themselves
 are irrational -- see the two layers above), and the Vandermonde
 pivot of this triple is $|V_S| = 48$. Every constant appearing later in the
@@ -240,7 +240,7 @@ $$M_S^{\mathrm{alg}} := \partial_w F, \qquad
 \qquad
 \det M_S^{\mathrm{alg}} = c_0 c_1 c_2 \cdot \det \tilde M_S .$$
 
-The **admissibility gate is the algebraic pivot condition**
+**Admissibility is the algebraic pivot condition**
 
 $$q_S(Z) \;:=\; \frac{|\det M_S^{\mathrm{alg}}(Z)|}{\lVert Z \rVert^3}
 \;>\; m_{\mathrm{alg}}, \qquad m_{\mathrm{alg}} = 4$$
@@ -281,9 +281,9 @@ they are bracketed, never approximated.
 
 ### 3.3 The pivot-to-coordinate floor
 
-The gate bounds a determinant; the Newton estimates need a bound on the
+The condition bounds a determinant; the Newton estimates need a bound on the
 *coordinates*. Bridging the two is a short argument that will be used twice --
-here for $\sigma$, and in Section 4.3 for the distinctness of sheet ledgers.
+here for $\sigma$, and in Section 4.3 for the distinctness of sheet sign patterns.
 Sheets of $\pi_S$ do merge, exactly where a solved coordinate vanishes, so a
 uniform bound cannot hold on all of $X$ and has to be earned on the domains
 actually used.
@@ -300,7 +300,7 @@ actually used.
 > $9.5711 \times 10^{-4}$ (the certified value $9.571170\ldots \times 10^{-4}$
 > rounded outward), attained at $S = \{3,4,5\}$, gauge $z_0$, solved
 > coordinate $z_5$.
-> Consequently two ledgers
+> Consequently two sign patterns
 > differing in slot $s$ give points at distance at least twice that in the
 > $s$-th coordinate: the eight sheets are uniformly separated on certified
 > domains.
@@ -310,7 +310,7 @@ representative actually used. In the gauge $z_g = 1$ we have
 $\lVert Z \rVert \ge 1$, so
 $q_S(Z) > m_{\mathrm{alg}}$ gives
 $|\det M_S^{\mathrm{alg}}(Z)| = q_S(Z)\,\lVert Z \rVert^3 > m_{\mathrm{alg}}$:
-the projective gate implies the plain inequality on the gauge representative,
+the projective condition implies the plain inequality on the gauge representative,
 which is the form the factorization consumes. From there, the pivot threshold
 bounds a **product**, not its factors: by the factorization of Section 3.5,
 $|\det M_S^{\mathrm{alg}}| = 8|V_S| \prod_i |z_{s_i}| > m_{\mathrm{alg}}$ gives
@@ -318,7 +318,7 @@ $\prod_i |z_{s_i}| > m_{\mathrm{alg}} / (8|V_S|)$. The sector selector supplies 
 missing upper bounds: $|u|, |v| \le 1$, so
 $|z_s|^2 = |R_s(u,v)| \le |a_s| + |b_s| + |c_s| = B_s^2$. Dividing the product
 bound by the two upper bounds $B_{s_j}$, $j \neq i$, gives the first entry.
-The second is independent of the gate: the same triangle inequality read from
+The second is independent of the condition: the same triangle inequality read from
 below gives $|R_{s_i}| \ge |a_{s_i}| - |b_{s_i}| - |c_{s_i}|$, which is the
 sharper bound on the lines where the constant term dominates. All constants
 are exact rationals with outward-rounded roots, and the worst case is computed
@@ -351,7 +351,7 @@ its own branch locus.
 > $0 = \tilde M\big((w + w')/2\big)(w - w')$, which is exact for quadrics.
 > The local solution is holomorphic in $b$: with the centre held fixed and
 > $G$ quadratic, every simplified-Newton iterate is a polynomial in the base
-> variables $b$, and the limit is uniform. All hypotheses are verified by exact rational gates on all 60
+> variables $b$, and the limit is uniform. All hypotheses are verified by exact rational checks on all 60
 > types.
 
 The proof is self-contained (no external quotable constant is load-bearing)
@@ -374,7 +374,7 @@ together, the step that obligation **O5** of Section 4.3 consumes:
 > $1.29 \times 10^{-3}$): the displacement is two orders of magnitude below the
 > floor it would have to cross. Hence every certified chart domain lies in
 > $X^\circ$ for its own projection, the eight signed sheets are distinct on it,
-> and the ledger is unambiguous.
+> and the sign pattern is unambiguous.
 
 The constants $\eta$ and $\underline{z}_{S,g}$ are both serialized per type in
 the chart certificate, so the ratio above is read off the artifact rather than
@@ -402,7 +402,7 @@ $Z$, so
 
 $$q_S(Z) \;=\; \frac{|\det M_S^{\mathrm{alg}}(Z)|}{\lVert Z \rVert^3}$$
 
--- the quantity on which Section 3.1 states the admissibility gate --
+-- the quantity on which Section 3.1 states the admissibility condition --
 is invariant under $Z \mapsto \lambda Z$: the certified radius is read off a
 genuine projective invariant, not off a choice of representative. (Replacing
 the exponent $3$ by $2$ destroys the invariance -- this is one of the negative
@@ -458,7 +458,7 @@ The chart types form a finite family (60) with uniformly controlled
 constants; compactness of $X$ extracts a finite subcover of the local chart
 balls. The theorem is *quantitative existence with guaranteed radius*: no
 enumerated atlas is claimed, and the certification architecture explicitly
-forbids the stronger wording (a firewall gate turns red if "explicit
+forbids the stronger wording (a firewall check turns red if "explicit
 enumerated atlas" is asserted).
 
 ### 4.3 The atlas theorem, and the glued space as a corollary
@@ -496,7 +496,7 @@ recording which are algebra and which consume certified data.
 | **O2** | $\Phi$ is well defined | exact algebra | every chart section solves $F_0 = F_1 = F_2 = 0$ by construction (elimination), hence lands in $X$ |
 | **O3** | $\Phi$ is a local biholomorphism | certificate | Proposition 3.2: certified radius, contraction $h < 1/2$ |
 | **O4** | $\Phi$ is surjective | certificate | the pivot opens cover $X$ (Lemma 4.1) |
-| **O5** | $\Phi$ is injective | exact algebra + ledger | on a chart domain the three solved coordinates are bounded away from zero, so the eight signed sheets are *distinct there* and the ledger separates them; $\sim$ therefore captures all coincidences of chart points |
+| **O5** | $\Phi$ is injective | exact algebra + sign pattern | on a chart domain the three solved coordinates are bounded away from zero, so the eight signed sheets are *distinct there* and the sign pattern separates them; $\sim$ therefore captures all coincidences of chart points |
 | **O6** | $\mathcal{X}_{\mathrm{atlas}}$ is second countable and Hausdorff | topology | the atlas is finite by compactness (Section 4.2); a continuous bijection that is a local homeomorphism is open, hence a homeomorphism, so $\mathcal{X}_{\mathrm{atlas}}$ inherits Hausdorffness from $X$ |
 
 Obligation **O5** uses the pivot-to-coordinate floor of Lemma 3.1: on a chart
@@ -509,7 +509,7 @@ Three obligations are exact algebra, two are certificates, one is
 topological. Note that Hausdorffness is *not* bought with a separation
 estimate: once $\Phi$ is a bijective local homeomorphism it is open, and the
 quotient inherits the topology of $X$. Lemma 3.1 is therefore not needed
-for O6 -- it is a quantitative lemma in its own right, used for the ledger
+for O6 -- it is a quantitative lemma in its own right, used for the sign pattern
 distinctness of **O5** and for the lower bound on $\sigma$ in Section 3.
 
 ### 4.4 Topology as an audit, not the proof
@@ -535,11 +535,11 @@ $$w_2 = -6 w_3 - 15 w_4 - 45 w_5, \qquad w_4 = w_4, \qquad w_5 = w_5,$$
 that is, by a matrix whose last two rows are those of the identity: exactly
 one row changes, the one carrying the newly solved coordinate. On the
 coordinates themselves the transition is
-$z_{s'} = \varepsilon_{s'} \sqrt{(P_{S'S} w_S)_{s'}}$, so the sheet ledger
+$z_{s'} = \varepsilon_{s'} \sqrt{(P_{S'S} w_S)_{s'}}$, so the sheet sign pattern
 $\varepsilon$ is part of the data of the map -- this is the branch-crossing
-content, and it is why transitions are recorded together with their ledgers.
+content, and it is why transitions are recorded together with their sign patterns.
 A **gauge change** $(S, g) \to (S, g')$ is the projective rescaling by
-$z_g / z_{g'}$ and touches no ledger.
+$z_g / z_{g'}$ and touches no sign pattern.
 
 ### 5.2 Exact cocycle law
 
@@ -626,17 +626,17 @@ $C = \max_S \lVert V_S^{-1} V_T \rVert_\infty = 112$, exactly). Each patch
 therefore carries the eight signed sheets
 $z_s = \varepsilon_s \sqrt{R_s}$, $\varepsilon \in \{\pm 1\}^3$, and the
 signed radical descriptions are exhaustive. They are *distinct* exactly off
-the branch locus: over $X^\circ$ a point determines one ledger, whereas along
-a branch stratum the ledgers are identified precisely in the slots whose
+the branch locus: over $X^\circ$ a point determines one sign pattern, whereas along
+a branch stratum the sign patterns are identified precisely in the slots whose
 solved coordinate vanishes (there $+\sqrt{0} = -\sqrt{0}$). Every certified
 chart domain lies in $X^\circ$ for its own projection, by Corollary 3.3, so on
-chart data the ledger is unambiguous. The sheet ledger
+chart data the sign pattern is unambiguous. The sheet sign pattern
 $\varepsilon$ is part of the chart data.
 
-A discipline that the certification imposed and the paper keeps: **ledgers
+A discipline that the certification imposed and the paper keeps: **sign patterns
 are derived, never defaulted.** In the bridge construction of Section 7 the
-ledger left at the default $(1,1,1)$ was *refused* by the exact regluing
-test, and the derived ledger $(1,-1,-1)$ closed it; the refusal was correct
+sign pattern left at the default $(1,1,1)$ was *refused* by the exact regluing
+test, and the derived sign pattern $(1,-1,-1)$ closed it; the refusal was correct
 behaviour, not an error.
 
 ### 6.2 Deck transformations
@@ -666,7 +666,7 @@ the exact discrepancy between conjugation and continuation.
 
 The same abstract deck element acts differently depending on the chart type.
 In a chart where a flipped coordinate is a *solved* variable, the element is
-a sheet permutation over a fixed base point (a vertical arrow in the ledger);
+a sheet permutation over a fixed base point (a vertical arrow in the sign pattern);
 in a chart where that coordinate is a *base* or *gauge* variable, the same
 element moves the base point. The certification history contains a sharp
 instance of the distinction: an audit revealed that $316$ atlas nodes had
@@ -689,7 +689,7 @@ explicit: $D$ is vertical for exactly $4$ of the $20$ triples, i.e. $12$ of
 the $60$ chart types, and moves the base point on the remaining $48$
 (Figure 3, where the pattern is visible: vertical exactly on the triples
 containing both coordinates that $D$ flips). Deck statements about *sheets* are made relative to
-a chart's ledger convention (source and target sheets qualified), never as
+a chart's sign pattern convention (source and target sheets qualified), never as
 absolute class labels.
 
 ### 6.4 Away from the branch locus
@@ -734,7 +734,7 @@ one-sided constructor with a fixed $\sigma$ cannot exist, and the negative
 control that forces one is refused $64/64$; the target chart gauge is
 bounded away from zero; recentring is anisotropic ($2H$ in the imaginary
 direction, $H$ in the real one) by an exact affine substitution in rational
-arithmetic, adding no remainder; and the bridge ledger is derived
+arithmetic, adding no remainder; and the bridge sign pattern is derived
 ($(1,-1,-1)$ on all $64$), as in Section 6.1.
 
 Two senses of "exact" occur in this section and are kept apart. An
@@ -828,7 +828,7 @@ close.
 ### 8.2 Negative controls
 
 Each principal certificate is accompanied by at least one perturbation known
-to invalidate the relevant hypothesis (wrong pivot, mutated ledger, wrong
+to invalidate the relevant hypothesis (wrong pivot, mutated sign pattern, wrong
 branch, wrong transition, box crossing a branch locus), verifying that the
 test is discriminating rather than vacuous.
 
@@ -843,7 +843,7 @@ python3 verification/verify.py
 
 which distinguishes three levels, and the distinction is the point. The cheap
 certificates (each under a second) are **re-executed** and checked for all
-gates green, all negative controls green, and an unchanged outcome; a
+checks green, all negative controls green, and an unchanged outcome; a
 regenerated artifact is deliberately *not* hash-compared, since its provenance
 field changes with every commit and comparing it would test the repository
 rather than the mathematics. The coverage enumeration is **recomputed** and
@@ -853,7 +853,7 @@ expensive certificates -- the bridge panel, the metric path, the face
 crossing -- are **hash-verified** against recorded SHA-256 values; reproducing
 them needs the compute machine, not this script.
 The verifier fails, with a nonzero exit code, on any altered hash or any red
-gate, and it is read-only on the working tree: replaying rewrites provenance
+condition, and it is read-only on the working tree: replaying rewrites provenance
 fields, so the original bytes are snapshotted and restored. Large box-enumeration artifacts never enter the PDF: dataset/supplement
 only.
 
@@ -865,7 +865,7 @@ As a downstream demonstration that the certified analytic atlas can support
 validated tensorial computations, we report certified relative residuals of
 order $10^{-9}$ on bridge/edge domains and a positive Weyl margin, under a
 preregistered threshold $\delta = 10^{-5}$.
-The panel runs on one certified cell ($S = \{0,1,5\}$, gauge $z_2$, ledger
+The panel runs on one certified cell ($S = \{0,1,5\}$, gauge $z_2$, sign pattern
 $\varepsilon = (1,1,1)$) against a threshold **fixed before the run**,
 $\delta = 10^{-5}$. On the $64$ bridge charts the relative residual of the
 metric path is at most $5.93 \times 10^{-9}$; on the $274$ certified nerve
@@ -945,7 +945,7 @@ closure}.$$
 
 No certified global Ricci-flat metric; no exact hyperkähler identity; no K3
 family with controlled constants; no seven-dimensional gluing result. (The
-internal ledger separates the closed fixed-K3 atlas theorem from the open
+internal sign pattern separates the closed fixed-K3 atlas theorem from the open
 metric and family programmes.)
 
 ### 11.3 Why this infrastructure matters
@@ -969,7 +969,7 @@ the argument out in continuous prose for an outside reader, and both are
 recorded in the paper: an invariance gated under one group generator instead of
 the whole group, and a bound on a product used where a bound on a minimum was
 required. Neither model is an author: authorship carries accountability, and
-every gate, every run and every sentence of this paper was reviewed, verified
+every condition, every run and every sentence of this paper was reviewed, verified
 and decided by the author, who takes sole responsibility for its accuracy,
 integrity and originality.
 
@@ -1161,7 +1161,7 @@ $b \mapsto (w(b), b)$ is a holomorphic section.
 rationals: $\sigma_{\max}(\tilde V_S) \le \lVert \tilde V_S \rVert_F$
 (upper), $\sigma_{\min}(\tilde V_S) \ge |\det \tilde V_S| /
 \lVert \tilde V_S \rVert_F^2$ (lower), square roots bracketed by integer
-square roots to $10^{-40}$. The gates check $h < 1/2$, the contraction
+square roots to $10^{-40}$. The checks check $h < 1/2$, the contraction
 factor, $r^* \le 2\eta$ and $r^* < \sigma/L$ on all $60$ types, and a
 negative control multiplying $\rho$ by $100$ drives $h$ above $1/2$. The
 resulting uniform radius is
@@ -1201,11 +1201,11 @@ $$P_{S'S} = \begin{pmatrix} -6 & -15 & -45 \\ 0 & 1 & 0 \\ 0 & 0 & 1
 
 Exactly one row differs from the identity -- the row of the newly solved
 coordinate. On coordinates the map is
-$z_{s'} = \varepsilon_{s'}\sqrt{(P_{S'S} w_S)_{s'}}$, so the ledger travels
+$z_{s'} = \varepsilon_{s'}\sqrt{(P_{S'S} w_S)_{s'}}$, so the sign pattern travels
 with the transition.
 
 **C.3 Gauge change.** $(S, g) \to (S, g')$ is the projective rescaling by
-$z_g/z_{g'}$; it changes no ledger and no solved triple.
+$z_g/z_{g'}$; it changes no sign pattern and no solved triple.
 
 **C.4 Generation.** The twenty triples with adjacency $|S \cap S'| = 2$ form
 $J(6,3)$: $20$ nodes, $90$ edges, connected, diameter $3$. The $60$ chart
@@ -1227,7 +1227,7 @@ regime constant, overlap open -- is a separate, certified statement
 ## Appendix D -- Branch conventions
 
 **D.1 Chart data.** A chart carries: a solved triple $S$; a gauge $g \notin S$
-with $z_g = 1$; base variables $b = (u,v)$; and a ledger
+with $z_g = 1$; base variables $b = (u,v)$; and a sign pattern
 $\varepsilon \in \{\pm 1\}^3$ with $z_s = \varepsilon_s \sqrt{R_s(b)}$. The
 sector $C_{S,g} = \{|z_g| = \max_{t \in T} |z_t|\}$ is a **selector** of
 representatives (it gives $|u|, |v| \le 1$ and feeds Lemma 3.1); it is never
@@ -1276,7 +1276,7 @@ which regime; this is the geometric content of Proposition 7.1.
 **D.5 Discipline.** Ledgers are **derived, never defaulted**: in the bridge
 construction the default $(1,1,1)$ was refused by the exact regluing test and
 the derived $(1,-1,-1)$ closed it. Sheet statements are made relative to a
-chart's ledger convention, never as absolute class labels; identifications
+chart's sign pattern convention, never as absolute class labels; identifications
 across conventions are measured, as in the face-crossing control experiment
 $\theta = \varepsilon_{\mathrm{derived}} \odot \text{label}$ (Section 7.4).
 
@@ -1287,27 +1287,27 @@ $\theta = \varepsilon_{\mathrm{derived}} \odot \text{label}$ (Section 7.4).
 **E.1 Anatomy.** Every certificate is one JSON document with a fixed
 skeleton: an `artifact` name; a `subject` line stating the claim; a `kind`
 (exact algebra, interval, closed form); `upstream`, holding the SHA-256 of
-every certificate consumed; the payload blocks; `gates`, a dictionary of
-**named booleans**; `gates_passed` / `gates_total`; `self_tests`, the
+every certificate consumed; the payload blocks; `checks`, a dictionary of
+**named booleans**; `checks_passed` / `checks_total`; `perturbation_tests`, the
 negative controls; an `outcome` string; `n_atteste_pas`, the explicit list of
 what the certificate does *not* establish; and the provenance triple `seconds`,
 `built_from_head`, `self_sha256`.
 
-**E.2 Green and red.** A certificate is green iff every gate and every
+**E.2 Green and red.** A certificate is green iff every condition and every
 negative control is true. The `outcome` string encodes the claim when green
 and collapses to a `*_gates_red` marker otherwise, so a red certificate
 cannot be quoted as if it were green.
 
-**E.3 Negative controls.** Each principal gate ships with at least one
+**E.3 Negative controls.** Each principal condition ships with at least one
 deliberate mutation known to invalidate its hypothesis -- a repeated $\mu$, a
-wrong pivot threshold, a mutated ledger, a wrong branch, a falsified
-transition entry, a box crossing a branch locus. A gate that no mutation can
+wrong pivot threshold, a mutated sign pattern, a wrong branch, a falsified
+transition entry, a box crossing a branch locus. A condition that no mutation can
 redden is vacuous and is rejected rather than reported.
 
 **E.4 Derivation discipline.** A separate lint enforces three rules on the
 certificates: constants that can be derived must be derived rather than
 named (D1); a certificate must not silently consume another block's output
-(D2, blocking); and no gate may be constant-true by construction (D3).
+(D2, blocking); and no condition may be constant-true by construction (D3).
 
 **E.5 Claim boundary.** `n_atteste_pas` is not a disclaimer but part of the
 specification: it is where the metric probe of Section 9 records that no
@@ -1334,7 +1334,7 @@ The repository ships fourteen certificate files and the command checks nine
 of them: five replayed, one recomputed, three hash-verified (F.3). The other
 five are records rather than claims -- four design documents (the uniform
 chart lemma, the exact transitions, the regional gluing contract, the closure
-skeleton) and the figure manifest. They do have gates of their own, and an
+skeleton) and the figure manifest. They do have checks of their own, and an
 earlier revision of this verifier replayed them; that was reverted on
 purpose. Shipping their producers would pull twenty-three further artifacts
 into the repository through what those producers read -- contract amendments,
@@ -1350,7 +1350,7 @@ anything else runs and refuses to continue against a different version,
 because that version is serialized in the provenance of the whole chain.
 
 **F.3 Three tiers.** Five cheap certificates (each under a second) are
-**re-executed** and checked for all gates green, all negative controls green
+**re-executed** and checked for all checks green, all negative controls green
 and an unchanged outcome: the chart theorem, the atlas closeout, the
 generator/obligation certificate, the smoothness/coverage/transition
 certificate, and the sigma-floor correction whose repair is reported in

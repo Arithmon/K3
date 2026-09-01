@@ -3,7 +3,7 @@
 Interval arithmetic kernel for the certified witness, on the radical charts.
 witness v2 (datum R3, coeffs218 natifs, moteur Kähler convention holomorphe).
 
-Transcription intervalle FIDÈLE de `k3_cap_kahler_engine.chart_metric_kahler`
+Transcription intervalle FIDÈLE de `kahler_metric.chart_metric_kahler`
 (bloc CONVENTION LOCK — chain rule holomorphe Wᵀ, potentiel
 The potential is log(Z-dagger M Z) plus a combination of the 218 basis functions,
 explicites : Z_S = ε·√(A₀ + A₁u² + A₂v²), A = −V_S⁻¹V_T EXACTE en rationnels
@@ -25,8 +25,8 @@ The self-test contains the checks that a wrong answer fails:
   Monte-Carlo containment: G_float(point) is inside G_interval(box) for
         points drawn INSIDE the box (any invalid enclosure breaks the inclusion).
 
-Consommé par : k3_cap_r4a_cell_probe.py (cellules témoins, h*, scaling h→h/2).
-Witness chargé UNIQUEMENT via k3_cap_witness_registry.load_active_witness().
+Consommé par : cell_probe.py (cellules témoins, h*, scaling h→h/2).
+Witness chargé UNIQUEMENT via witness_registry.load_active_witness().
 """
 from __future__ import annotations
 
@@ -419,7 +419,7 @@ def iv_width(x) -> float:
 # ===========================================================================
 #  Couche duale (AD forward, 4 directions réelles u_re, u_im, v_re, v_im)
 #  — transposition du certificateur valeur-moyenne DualCIV du mini-cover
-#  (k3_cap_dualciv, C+) au moteur Kähler v2. Forme valeur-moyenne :
+#  (dual_containment, C+) au moteur Kähler v2. Forme valeur-moyenne :
 #     F(t) ∈ F(t₀) + Σ_a ∂F/∂t_a(boîte)·[−h, h]   (F réel, boîte convexe)
 #  ⟹ le terme linéaire coûte |∇F|·h (vrai gradient O(1)) au lieu de
 #  ‖coeffs218‖·h ≈ 3.6e4·h en évaluation naïve.
@@ -1496,4 +1496,4 @@ def _float_section(S, g_col, eps, u: complex, v: complex):
 if __name__ == "__main__":
     if len(sys.argv) == 2 and sys.argv[1] == "--selftest":
         raise SystemExit(_selftest())
-    raise SystemExit("usage: k3_cap_r4_interval_kernel.py --selftest")
+    raise SystemExit("usage: interval_arithmetic.py --selftest")

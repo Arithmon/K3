@@ -11,7 +11,7 @@ Figures produced in `figures/`:
   5. fig_proof_architecture.png          — DIAGRAM: exact algebra → quantitative lemma → certified applicability → X_atlas ≅ X → continuation
 
 DERIVATION (rule "derive, do not merely assert"): ρ per type comes from `U1C_constants_certified.types_60` (Fraction → float
-FOR DISPLAY only); the bridge margins come from the C129-F0 panel; the vertical/base partition of D is RECOMPUTED
+FOR DISPLAY only); the bridge margins come from the the bridge step panel; the vertical/base partition of D is RECOMPUTED
 here from D and compared with the counts of the generators certificate (internal check). A JSON manifest serialises the plotted
 numbers and the SHA of the sources: a figure of the paper must be reproducible and traceable like a check.
 Style: validated categorical palette (blue #2a78d6 / orange #eb6834 — CVD ΔE 24.7 protan, 33.6 normal, all checks PASS)
@@ -284,7 +284,7 @@ def main():
     paths["fig3"] = FIG / "fig_deck_action_by_chart_type.png"; fig3_deck(paths["fig3"], D, vertical, triples)
     paths["fig4"] = FIG / "fig_bridge_continuation.png"; fig4_bridge(paths["fig4"], width, sep, diff, n_bridges)
     paths["fig5"] = FIG / "fig_proof_architecture.png"; fig5_architecture(paths["fig5"])
-    man = {"artifact": "k3_cap_atlas_paper_figures_manifest",
+    man = {"artifact": "figures_manifest",
            "subject": "figures of the atlas paper — 2 data-driven (certified radii, deck action), 2 annotated diagrams, 1 architecture",
            "sources": {"u1": sha(U1), "generators": sha(GEN), "bridge_panel": sha(BRIDGE), "sigma_correction": sha(SIGMA)},
            "numbers_plotted": {"branch_coeffs_S345": {str(k): [str(x) for x in v] for k, v in branch_coeffs(MU)[0].items()},

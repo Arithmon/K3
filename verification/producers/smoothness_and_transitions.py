@@ -176,10 +176,10 @@ def build(mutate=None):
     gen = load(GEN) if GEN.exists() else {}
     upstream_ok = str(u1.get("outcome", "")).startswith("uniform_open_chart_theorem") and str(gen.get("outcome", "")).startswith("atlas_paper_glue")
     d3 = u1.get("d3", {})
-    out = {"artifact": "k3_cap_atlas_paper_smoothness_coverage_and_transitions",
+    out = {"artifact": "smoothness_and_transitions",
            "subject": "atlas paper — lemma 'at least 3 nonzero coordinates' (smoothness AND coverage), exact factorisation of the pivot, "
                   "projective invariant q_S of degree 3, diagonal involutions + discriminant of the distinguished patch, explicit transitions",
-           "kind": "exact_algebra_sympy", "front": "atlas paper", "no_measurement_performed": "exact algebra only",
+           "kind": "exact_algebra_sympy", "stage": "atlas paper", "no_measurement_performed": "exact algebra only",
            "nothing_is_rewritten": True,
            "upstream": {"u1": sha(U1) if U1.exists() else None, "u1_outcome": u1.get("outcome"),
                         "generators": sha(GEN) if GEN.exists() else None, "d3_read_from_u1": d3},

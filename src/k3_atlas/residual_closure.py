@@ -62,8 +62,8 @@ Checks pré-enregistrés :
      leur produit, σ canonique ne cache aucun degré de liberté.
   R9 PAS DE PLAFOND SILENCIEUX — comptes publiés et cohérents.
 
-Sorties : results/k3_cap_b1e2iii_c127e_residual{_pilot}.json
-Usage   : k3_cap_b1e2iii_c127e_residual.py [--selftest]
+Sorties : results/residual_closure{_pilot}.json
+Usage   : residual_closure.py [--selftest]
 Env     : K3_C127E_MODE    pilot (8 boîtes, défaut) | full (64)
           K3_C127E_WORKERS processus (défaut 4)
 """
@@ -108,12 +108,12 @@ sys.argv = _argv
 
 RES = Path(os.environ.get(
     "K3_RES_DIR", Path(__file__).resolve().parent / "data"))
-COVER_JSON = RES / "k3_cap_b1e2iii_d5_6_dyadic_cover.json"
-C127_JSON = RES / "k3_cap_b1e2iii_c127_transport_all.json"
+COVER_JSON = RES / "dyadic_cover.json"
+C127_JSON = RES / "chart_transport.json"
 MODE = os.environ.get("K3_C127E_MODE", "pilot")
 N_WORKERS = int(os.environ.get("K3_C127E_WORKERS", "4"))
-ART = RES / ("k3_cap_b1e2iii_c127e_residual.json" if MODE == "full"
-             else "k3_cap_b1e2iii_c127e_residual_pilot.json")
+ART = RES / ("residual_closure.json" if MODE == "full"
+             else "residual_closure_pilot.json")
 
 # --- PRÉ-ENREGISTRÉ ---------------------------------------------------------
 DELTA_REL = 1e-5        # même plafond que the transport step, inchangé

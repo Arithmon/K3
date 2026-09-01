@@ -50,8 +50,8 @@ What this script does NOT do: congruence (`Q_source = J* Q_target J`)
 and positivity transport. They stay UNTESTED, and the success of the
 checks above does not prejudge them.
 
-Sorties : results/k3_cap_b1e2iii_d5_fullcell.json
-Usage   : k3_cap_b1e2iii_d5_fullcell.py [--selftest]
+Sorties : results/full_cell_charts.json
+Usage   : full_cell_charts.py [--selftest]
 Env     : K3_D5FC_CELLS (cellules, défaut 4)
 """
 from __future__ import annotations
@@ -88,8 +88,8 @@ sys.argv = _argv
 
 RES = Path(os.environ.get(
     "K3_RES_DIR", Path(__file__).resolve().parent / "data"))
-C118_JSON = RES / "k3_cap_b1e2iii_c118_shell_exhaustive.json"
-ART = RES / "k3_cap_b1e2iii_d5_fullcell.json"
+C118_JSON = RES / "shell_enumeration.json"
+ART = RES / "full_cell_charts.json"
 
 N_CELLS = int(os.environ.get("K3_D5FC_CELLS", "4"))
 T0 = time.time()
@@ -117,7 +117,7 @@ def provenance(src, t_wall):
         head = ""
     return {"git_head": head, "sha256_source": _sha(src),
             "sha256_script": _sha(Path(__file__).resolve()),
-            "sha256_kernel": _sha(here / "k3_cap_tm_kernel.py"),
+            "sha256_kernel": _sha(here / "taylor_models.py"),
             "python": sys.version.split()[0],
             "platform": platform.platform(), "wall_s": t_wall}
 
@@ -416,7 +416,7 @@ def build():
         "SCOPE: **congruence (Q_source = J* Q_target J) and positivity "
         "transport stay UNTESTED**; the success of the checks above "
         "does not prejudge them. Result established on %d cells, not on a "
-        "cover. Aucun chiffre d'atlas ne bouge." % (
+        "cover. No atlas figure moves." % (
             n_pass, len(checks),
             sum(1 for c in cells if c["section_complete"]), len(cells),
             "/".join(aggregate["determinations_used"]),

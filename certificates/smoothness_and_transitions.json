@@ -1,14 +1,14 @@
 {
- "artifact": "k3_cap_atlas_paper_smoothness_coverage_and_transitions",
+ "artifact": "smoothness_and_transitions",
  "subject": "atlas paper — lemma 'at least 3 nonzero coordinates' (smoothness AND coverage), exact factorisation of the pivot, projective invariant q_S of degree 3, diagonal involutions + discriminant of the distinguished patch, explicit transitions",
  "kind": "exact_algebra_sympy",
- "front": "atlas paper",
+ "stage": "atlas paper",
  "no_measurement_performed": "exact algebra only",
  "nothing_is_rewritten": true,
  "upstream": {
-  "u1": "5e155bc7660d6985946a02d1406cafb9bc51366b951859e90f4407259477b952",
+  "u1": "05c442a2894dbb0025bf0387a457e0489b5e46357fd0fa8350e21411417624bc",
   "u1_outcome": "uniform_open_chart_theorem_certified",
-  "generators": "0cf754405c79e5c0cabf7ce6b66cbeb92b2afcf4844350e6754654c7de18965e",
+  "generators": "0508ee721a6dd3a41abef0c379e5766f3cfa6fe661956904044c66570ccf6c0c",
   "d3_read_from_u1": {
    "tau": 0.6,
    "minor_floor": 4.8,
@@ -269,8 +269,8 @@
  },
  "perturbation_tests_passed": 3,
  "perturbation_tests_total": 3,
- "built_from_head": "632474d3b3fe9c0e05903cb65c2034750bcc17ba",
- "self_sha256": "33ac389383188f9ccd02ced57e31a6e9562ad03c1b99e01dd4abfb3b67e38d53",
+ "built_from_head": "17170d9596ae6b1e9578db99200a6da175100287",
+ "self_sha256": "a893771c20ca2cc99147ee61cd03dbb0ae82b8f18f6cf34cd83ec7d50a9d3949",
  "provenance": {
   "sympy_version": "1.14.0"
  }

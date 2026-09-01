@@ -55,8 +55,8 @@ Checks pré-enregistrés :
 What this script does NOT establish: the multi-chart cover, nor
 globalisation. It establishes transport on ONE cell and ONE chart.
 
-Sorties : results/k3_cap_b1e2iii_d5_congruence.json
-Usage   : k3_cap_b1e2iii_d5_congruence.py [--selftest]
+Sorties : results/gram_congruence.json
+Usage   : gram_congruence.py [--selftest]
 Env     : K3_D5CG_CELLS (cellules, défaut 3)
 """
 from __future__ import annotations
@@ -93,8 +93,8 @@ sys.argv = _argv
 
 RES = Path(os.environ.get(
     "K3_RES_DIR", Path(__file__).resolve().parent / "data"))
-FULLCELL_JSON = RES / "k3_cap_b1e2iii_d5_fullcell.json"
-ART = RES / "k3_cap_b1e2iii_d5_congruence.json"
+FULLCELL_JSON = RES / "full_cell_charts.json"
+ART = RES / "gram_congruence.json"
 
 N_CELLS = int(os.environ.get("K3_D5CG_CELLS", "3"))
 T0 = time.time()
@@ -122,7 +122,7 @@ def provenance(src, t):
         head = ""
     return {"git_head": head, "sha256_source": _sha(src),
             "sha256_script": _sha(Path(__file__).resolve()),
-            "sha256_kernel": _sha(here / "k3_cap_tm_kernel.py"),
+            "sha256_kernel": _sha(here / "taylor_models.py"),
             "python": sys.version.split()[0],
             "platform": platform.platform(), "wall_s": t}
 
@@ -621,7 +621,7 @@ def _selftest():
     c218 = reg["coeffs218"]
     rw = 1.0 - GAMMA
     from .taylor_models import tm_chart_cell_section
-    d = json.loads((RES / "k3_cap_b1e2iii_p0a2_direct.json").read_text(
+    d = json.loads((RES / "width_direct.json").read_text(
         encoding="utf-8"))
     r = d["s1_three_boxes"][0]
     S, g = tuple(r["S"]), r["g"]

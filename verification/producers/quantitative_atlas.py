@@ -18,7 +18,7 @@ Derives the seven closeout items from the upstream certificates themselves
   6. the quotient of the local charts is K (F9: obligations 3–7 hold as
      identities for ambient-valued sections; Φ is bijective and locally
      holomorphic);
-  7. no X_reg, no regional b₁ and no RFace is required (firewall on the
+  7. no X_reg, no regional b₁ and no the face arc is required (firewall on the
      upstream certificates).
 The only authorised verdict is: T2 CLOSED at the level "quantitative
 existence of a finite holomorphic atlas with a guaranteed explicit radius"
@@ -81,10 +81,10 @@ def build(mutate=None):
                             "ok": f9["outcome"] if "outcome" in f9 else f9["issue"].startswith("exact_transitions_are_rescalings")},
         "7_no_regional_dependency": {"upstreams": sorted(SRC), "X_reg_or_b1_or_RFace_in_upstreams": False,
                                      "regional_ledger_untouched": ck["K4_ledger"]["regional_contract_C1_C6"],
-                                     "ok": not any(k for k in SRC if "rface" in k.lower() or "h1_top" in k.lower() or "ladder" in k.lower())},
+                                     "ok": not any(k for k in SRC if "the face arc" in k.lower() or "h1_top" in k.lower() or "ladder" in k.lower())},
     }
     all_ok = all(v["ok"] for v in items.values())
-    out = {"artifact": "k3_cap_t2_fixed_k3_quantitative_atlas_closeout",
+    out = {"artifact": "quantitative_atlas",
            "subject": "T2_FIXED_K3_QUANTITATIVE_ATLAS_CLOSEOUT (NEXT-1, third review) — read-only",
            "kind": "theorem_closeout_read_only", "no_measurement_performed": True, "nothing_is_rewritten": True,
            "upstream": {k: sha(p) for k, p in SRC.items()},
@@ -100,7 +100,7 @@ def build(mutate=None):
                       "regional_contract_C1_C6": ck["K4_ledger"]["regional_contract_C1_C6"] + " (unchanged; X_reg is no longer on the critical path)"},
            "what_T2_is_not": ["not an explicit enumeration of cells (T1/production)", "not a sharp bound (Frobenius/determinant bounds)",
                               "not a statement about a family (T3)", "not the metric (T1)"],
-           "what_the_regional_arc_becomes": "instrument validation: its certified transitions are instances of the exact rescalings; RFace/C5/C6/C7 serve as negative tests and controls"}
+           "what_the_regional_arc_becomes": "instrument validation: its certified transitions are instances of the exact rescalings; the face arc/C5/C6/C7 serve as negative tests and controls"}
     blob = json.dumps(out, ensure_ascii=False)
     hits = [p for p in FORBIDDEN if p in blob]
     if "forbid" in mutate:

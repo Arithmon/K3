@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-k3_cap_b1e2iii_owner_tiling.py — B1.e.2.iii-owner : le noyau O0
+owner_tiling.py — B1.e.2.iii-owner : le noyau O0
 (OWNER classification of a BOX by interval arithmetic) and the
 pilote O1 (tuilage par branch-and-bound depuis les 60 couples candidats).
 Runs the O0 and O1 checks of the contract.
@@ -49,8 +49,8 @@ Self-test (checks DISCRIMINANTS, dont les tests négatifs obligatoires O0) :
   S5 validation MC : la fraction possédée mesurée par sample_chart tombe
      dans [V_owner, V_owner + V_ambigu]/16 (couple témoin, profondeur 2)
 
-Sorties : results/k3_cap_b1e2iii_owner_tiling.json
-Usage   : k3_cap_b1e2iii_owner_tiling.py [--selftest]
+Sorties : results/owner_tiling.json
+Usage   : owner_tiling.py [--selftest]
 """
 from __future__ import annotations
 
@@ -412,7 +412,7 @@ def build():
         "verdict": verdict}
 
     print("\nVERDICT :\n" + verdict)
-    art = RES / "k3_cap_b1e2iii_owner_tiling.json"
+    art = RES / "owner_tiling.json"
     art.write_text(json.dumps(out, indent=2, ensure_ascii=False,
                               default=float), encoding="utf-8")
     print(f"\n→ {art}")

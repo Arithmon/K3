@@ -66,8 +66,8 @@ Checks pré-enregistrés :
 This script certifies NEITHER congruence NOR positivity transport: it selects the
 (cell, chart) pairs on which those questions make sense.
 
-Sorties : results/k3_cap_b1e2iii_c126_chart_criterion.json
-Usage   : k3_cap_b1e2iii_c126_chart_criterion.py [--selftest]
+Sorties : results/chart_selection_criterion.json
+Usage   : chart_selection_criterion.py [--selftest]
 Env     : K3_C126_CELLS (cellules, défaut 4)
           K3_C126_SUBDEPTH (profondeur de la sonde F9, défaut 3)
 """
@@ -107,8 +107,8 @@ sys.argv = _argv
 
 RES = Path(os.environ.get(
     "K3_RES_DIR", Path(__file__).resolve().parent / "data"))
-C118_JSON = RES / "k3_cap_b1e2iii_c118_shell_exhaustive.json"
-ART = RES / "k3_cap_b1e2iii_c126_chart_criterion.json"
+C118_JSON = RES / "shell_enumeration.json"
+ART = RES / "chart_selection_criterion.json"
 
 N_CELLS = int(os.environ.get("K3_C126_CELLS", "4"))
 SUB_DEPTH = int(os.environ.get("K3_C126_SUBDEPTH", "3"))
@@ -394,7 +394,7 @@ def build():
     # the other, which is what a review calls a cross-check that
     # n'existait dans aucun script.
     cross = {"checked": False}
-    fc = RES / "k3_cap_b1e2iii_d5_fullcell.json"
+    fc = RES / "full_cell_charts.json"
     try:
         d = json.loads(fc.read_text(encoding="utf-8"))
         ref = list(d["aggregate"]["payoff_per_cell"])[:len(cells)]
@@ -453,7 +453,7 @@ def build():
                         / tot["blocking_total"]))
            if tot["blocking_total"] else "n/a"))
 
-    art = {"artifact": "k3_cap_b1e2iii_c126_chart_criterion",
+    art = {"artifact": "chart_selection_criterion",
            "claim": "The chart selection criterion, STRENGTHENED by the "
                     "constructibility of the NATIVE section of the target "
                     "chart, and swept again over the 59 charts.",

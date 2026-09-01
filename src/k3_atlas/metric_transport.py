@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-k3_cap_b1e2iii_c129f_f4_bridge_metric.py — the bridge step / F4 : LA MÉTRIQUE
+metric_transport.py — the bridge step / F4 : LA MÉTRIQUE
 REJOINT LES CARTES-PONTS.
 
 WHAT THIS SCRIPT PAYS: the contract that put the metric step on
@@ -78,8 +78,8 @@ metric congruence, which stays certified UNDER delta rather than exact (the
 exactness promotion concerns the SECTION identity, not
 the triple); the full scaling; the 895 other pairs.
 
-Sortie : results/k3_cap_b1e2iii_c129f_f4_bridge_metric.json
-Usage  : k3_cap_b1e2iii_c129f_f4_bridge_metric.py [--selftest]
+Sortie : results/metric_transport.json
+Usage  : metric_transport.py [--selftest]
 Env    : K3_F4_MODE     panel (défaut) | full
          K3_F4_WORKERS  (défaut 4)
 """
@@ -118,17 +118,17 @@ sys.argv = _argv
 
 RES = Path(os.environ.get(
     "K3_RES_DIR", Path(__file__).resolve().parent / "data"))
-COVER_JSON = RES / "k3_cap_b1e2iii_d5_6_dyadic_cover.json"
-ATLAS_JSON = RES / "k3_cap_b1e2iii_c127d_atlas.json"
-C127_JSON = RES / "k3_cap_b1e2iii_c127_transport_all.json"
-C127E_JSON = RES / "k3_cap_b1e2iii_c127e_residual.json"
-C129D_JSON = RES / "k3_cap_b1e2iii_c129d_exact_gluing.json"
-C129E_JSON = RES / "k3_cap_b1e2iii_c129e_halo_metric.json"
-F2F3_JSON = RES / "k3_cap_b1e2iii_c129f_f2f3_bridge_atlas.json"
+COVER_JSON = RES / "dyadic_cover.json"
+ATLAS_JSON = RES / "atlas_assembly.json"
+C127_JSON = RES / "chart_transport.json"
+C127E_JSON = RES / "residual_closure.json"
+C129D_JSON = RES / "exact_gluing.json"
+C129E_JSON = RES / "halo_metric.json"
+F2F3_JSON = RES / "bridge_continuation.json"
 MODE = os.environ.get("K3_F4_MODE", "panel")
 N_WORKERS = int(os.environ.get("K3_F4_WORKERS", "4"))
-ART = RES / ("k3_cap_b1e2iii_c129f_f4_bridge_metric.json" if MODE == "full"
-             else "k3_cap_b1e2iii_c129f_f4_bridge_metric_panel.json")
+ART = RES / ("metric_transport.json" if MODE == "full"
+             else "metric_transport_panel.json")
 
 # --- PREREGISTERED: the SAME delta as the earlier steps. Not adjustable ---
 DELTA_REL = 1e-5
@@ -383,7 +383,7 @@ def build():
     bridges = {t["tile"]: [(Fraction(*b[0]), Fraction(*b[1]))
                            for b in t["bridge_corrected_bounds"]]
                for t in json.loads(
-                   (RES / "k3_cap_b1e2iii_c129f_bridge_scout.json")
+                   (RES / "bridge_preliminary.json")
                    .read_text(encoding="utf-8"))["per_tile"]}
     sheet_records = {r["tile"]: tuple(r["F2d_ledger_derived"])
                for r in f23["per_bridge"]}
@@ -548,7 +548,7 @@ def build():
         head = None
 
     out = {
-        "artifact": "k3_cap_b1e2iii_c129f_f4_bridge_metric",
+        "artifact": "metric_transport",
         "mode": MODE,
         "claim_level": f23["claim_level"],
         "claim": (

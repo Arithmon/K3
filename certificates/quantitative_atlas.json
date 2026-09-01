@@ -1,5 +1,5 @@
 {
- "artifact": "k3_cap_t2_fixed_k3_quantitative_atlas_closeout",
+ "artifact": "quantitative_atlas",
  "subject": "T2_FIXED_K3_QUANTITATIVE_ATLAS_CLOSEOUT (NEXT-1, third review) — read-only",
  "kind": "theorem_closeout_read_only",
  "no_measurement_performed": true,
@@ -7,7 +7,7 @@
  "upstream": {
   "d3_coverage_legacy": "bbfd61db610fd6822b699b6b2d28264a1ddf6541633b55a1a43084ec37cd74fa",
   "amendment_b": "9ec2411cf8f78ba1fad085c3d4207eedbbad32dd47274b2a90e128ea7fa41724",
-  "u1_certificate": "5e155bc7660d6985946a02d1406cafb9bc51366b951859e90f4407259477b952",
+  "u1_certificate": "05c442a2894dbb0025bf0387a457e0489b5e46357fd0fa8350e21411417624bc",
   "f9_p0": "e29616f99427c3c637e93790c29c818d99b774c2a213618a2370f47ed23ee15b",
   "closeout_k_regional": "9665ec36c1ddc03eff670865f1f0560cb8786946b32093c1bc2c5cd66b7d0419"
  },
@@ -83,7 +83,7 @@
   "not a statement about a family (T3)",
   "not the metric (T1)"
  ],
- "what_the_regional_arc_becomes": "instrument validation: its certified transitions are instances of the exact rescalings; RFace/C5/C6/C7 serve as negative tests and controls",
+ "what_the_regional_arc_becomes": "instrument validation: its certified transitions are instances of the exact rescalings; the face arc/C5/C6/C7 serve as negative tests and controls",
  "forbidden_hits": [],
  "checks": {
   "C1_D3_covers_K_by_pivot_opens": true,
@@ -110,6 +110,6 @@
  "perturbation_tests_passed": 2,
  "perturbation_tests_total": 2,
  "seconds": 0.0,
- "built_from_head": "632474d3b3fe9c0e05903cb65c2034750bcc17ba",
- "self_sha256": "de210c6d5e99f7e58bd6bd203d40bec69a1dc6c00ac13dd063fe5fa66c9b7505"
+ "built_from_head": "17170d9596ae6b1e9578db99200a6da175100287",
+ "self_sha256": "420b9505773f24940a57e152cddf60bb88a355fb2687bfdaf1ae41c8ce1af067"
 }

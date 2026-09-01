@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-k3_cap_quotient_engine.py — base standard C[Z]/⟨Q_0,Q_1,Q_2⟩ Hermitiens
+invariant_quotient_ring.py — base standard C[Z]/⟨Q_0,Q_1,Q_2⟩ Hermitiens
                              invariants Z_2^3.
 
 Design (GPT 5.6 + Brieuc 07-12) : la route quotient devient obligatoire
@@ -763,7 +763,7 @@ def validate_exact_inclusions(degrees: Iterable[int] = (3, 4),
 #  Vérifs auto-consistantes (invocable en script)
 # ================================================================
 if __name__ == "__main__":
-    # counts prédits par k3_cap_quotient_basis (Σ m² avec m = # std monoms
+    # counts prédits par quotient_basis (Σ m² avec m = # std monoms
     # of char χ à degré d, PIVOT = (0,1,2)) :
     expected_H = {1: 10, 2: 58, 3: 218, 4: 610, 5: 1402}
     expected_cumul = {1: 10, 2: 68, 3: 286, 4: 896, 5: 2298}

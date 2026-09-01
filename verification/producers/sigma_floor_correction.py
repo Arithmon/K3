@@ -169,10 +169,10 @@ def build(mutate=None):
     # Q1 compares against the FROZEN TRACE, not the live U1: otherwise the upstream repair would erase the evidence of the defect.
     reproduces = abs(rho_old[0] - U1_RHO_PUBLISHED_AT_DEFECT) / U1_RHO_PUBLISHED_AT_DEFECT < 1e-6
     upstream_repaired = bool(live) and abs(live - U1_RHO_PUBLISHED_AT_DEFECT) / U1_RHO_PUBLISHED_AT_DEFECT > 1e-6
-    out = {"artifact": "k3_cap_atlas_paper_sigma_floor_correction",
+    out = {"artifact": "sigma_floor_correction",
            "subject": "DEFECT found in U1 while writing the paper: sigma_floor places the PRODUCT bound ∏|z_s| in the slot of the "
                   "MINIMUM min|z_s| required by s_min(M̃) ≥ 2σ_min(Ṽ)·min|z|; explicit witness on the variety; constant corrected",
-           "kind": "defect_report_and_correction", "front": "atlas paper T2 (upstream U1)",
+           "kind": "defect_report_and_correction", "stage": "atlas paper T2 (upstream U1)",
            "nothing_is_rewritten": True, "u1_is_not_modified_by_this_lot": True,
            "upstream": {"u1_live": sha(U1) if U1.exists() else None, "u1_outcome_live": u1.get("outcome"),
                         "u1_sha_at_defect": U1_SHA_AT_DEFECT, "u1_rho_published_at_defect": repr(U1_RHO_PUBLISHED_AT_DEFECT),

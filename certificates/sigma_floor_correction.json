@@ -1,12 +1,12 @@
 {
- "artifact": "k3_cap_atlas_paper_sigma_floor_correction",
+ "artifact": "sigma_floor_correction",
  "subject": "DEFECT found in U1 while writing the paper: sigma_floor places the PRODUCT bound ∏|z_s| in the slot of the MINIMUM min|z_s| required by s_min(M̃) ≥ 2σ_min(Ṽ)·min|z|; explicit witness on the variety; constant corrected",
  "kind": "defect_report_and_correction",
- "front": "atlas paper T2 (upstream U1)",
+ "stage": "atlas paper T2 (upstream U1)",
  "nothing_is_rewritten": true,
  "u1_is_not_modified_by_this_lot": true,
  "upstream": {
-  "u1_live": "5e155bc7660d6985946a02d1406cafb9bc51366b951859e90f4407259477b952",
+  "u1_live": "05c442a2894dbb0025bf0387a457e0489b5e46357fd0fa8350e21411417624bc",
   "u1_outcome_live": "uniform_open_chart_theorem_certified",
   "u1_sha_at_defect": "d30959de5e0e2d9233cf09fc03e450f695ef68a1dfde82a8dcd32797dd776e07",
   "u1_rho_published_at_defect": "9.59780680865981e-10",
@@ -706,6 +706,6 @@
  },
  "perturbation_tests_passed": 3,
  "perturbation_tests_total": 3,
- "built_from_head": "632474d3b3fe9c0e05903cb65c2034750bcc17ba",
- "self_sha256": "73302cbededda72ac3453e084ff3f0532dffae9252090b7c75c20380264abb81"
+ "built_from_head": "17170d9596ae6b1e9578db99200a6da175100287",
+ "self_sha256": "9a218677417490ceb4e39704856e4ac3a2a413b60738b13b34ffb5e6f7c6fa96"
 }

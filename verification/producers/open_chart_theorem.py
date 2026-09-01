@@ -239,7 +239,7 @@ def build(m=M_PREREG, mutate=None):
     for t in types:
         t.pop("_frac", None)
     rho_vals = [Fraction(t["rho_uniform_lo"]) for t in types]
-    out = {"artifact": "k3_cap_f1prime_u1_open_chart_theorem_certificate",
+    out = {"artifact": "open_chart_theorem",
            "subject": "OPEN CHART THEOREM CERTIFICATE (U1) — theorem-grade, no atlas enumerated, no load-bearing floating-point value",
            "kind": "theorem_certificate_read_only", "no_measurement_performed": True, "nothing_is_rewritten": True,
            "upstream": {"d3_coverage_legacy": sha(D3), "f1prime_u0": sha(U0), "interval_kernel_mu": sha(KERNEL)},

@@ -1,12 +1,12 @@
 {
- "artifact": "k3_cap_f1prime_u1_open_chart_theorem_certificate",
+ "artifact": "open_chart_theorem",
  "subject": "OPEN CHART THEOREM CERTIFICATE (U1) — theorem-grade, no atlas enumerated, no load-bearing floating-point value",
  "kind": "theorem_certificate_read_only",
  "no_measurement_performed": true,
  "nothing_is_rewritten": true,
  "upstream": {
   "d3_coverage_legacy": "bbfd61db610fd6822b699b6b2d28264a1ddf6541633b55a1a43084ec37cd74fa",
-  "f1prime_u0": "d10ef04da335f07da136b5e000a5cbb7a7142df61550d93ec0dbb59e6013aeb3",
+  "f1prime_u0": "b3dedbb637143611e0d4a61f3759ef55a631d68695b829731e58381ee08c7990",
   "interval_kernel_mu": "df2845c64e8b1ab379880e01986d842a3daef5a6e89b91a2d9fe8dd413a419a0"
  },
  "mu": [
@@ -2747,7 +2747,7 @@
  },
  "perturbation_tests_passed": 6,
  "perturbation_tests_total": 6,
- "seconds": 0.07,
- "built_from_head": "632474d3b3fe9c0e05903cb65c2034750bcc17ba",
- "self_sha256": "dca8fc278338966b9915ddb146917a7fb6db95098eeec12b94a85601cdc05d98"
+ "seconds": 0.08,
+ "built_from_head": "17170d9596ae6b1e9578db99200a6da175100287",
+ "self_sha256": "691e466600af9a4b4864856bebcf5775a7683a933f72fa15908850b2b16526d9"
 }

@@ -8,22 +8,22 @@ ACTIVE DATUM (reconciled 2026-07-16)
 ------------------------------------
 The active witness is the R3 freeze `results/k3_closedform_witness_kahler_v2.npz`
 (schema `k3_kahler_witness_v2`: native coeffs218 + M, gauge det M = 1), produced
-by `k3_cap_r3_freeze.py` and certified by the witness check `k3_cap_r3_gate.py`
+by `witness_manifest.py` and certified by the witness check `witness_check.py`
 (11/11 PASS). Its bytes are pinned by `artifact_sha256` in the sidecar manifest
-`results/k3_cap_r3_freeze.json`; the frozen npz is NEVER rewritten — this
+`results/witness_manifest.json`; the frozen npz is NEVER rewritten — this
 module validates it against the sidecar instead of stamping metadata into it.
 
-Convention: the R3 datum is built on `k3_cap_kahler_engine.py`, whose chart
+Convention: the R3 datum is built on `kahler_metric.py`, whose chart
 metric is G = del delbar K~ with the HOLOMORPHIC chain-rule contraction (V^T),
 i.e. exactly the `holomorphic_pullback_VT` convention required by
 `results/retracted/RETRACTED.json` after the 2026-07-13 retraction of the
-U-dagger contraction. See notes k3_cap_metric_convention_retraction_2026_07_13
-and k3_cap_r3_freeze_gate_2026_07_16.
+U-dagger contraction. See notes the metric convention retraction
+and the witness freeze check.
 
 LEGACY VT-667 LINE
 ------------------
 The codex VT refit line (schema `k3_cy_witness_v2`, params_full(667)) ended in
-NO-GO on 2026-07-13 (k3_cap_d2_vt_refit_v2_no_go): no active witness ever
+NO-GO on 2026-07-13 (legacy_fit_refusal): no active witness ever
 existed under that schema. Its loader path is kept for explicit-path audit
 replays used by the historical d2_vt scripts.
 """
@@ -44,14 +44,14 @@ if sys.platform == "win32":
 ROOT = Path(__file__).resolve().parent
 
 ACTIVE_WITNESS_V2 = ROOT / "data" / "k3_closedform_witness_kahler_v2.npz"
-ACTIVE_MANIFEST_V2 = ROOT / "data" / "k3_cap_r3_freeze.json"
+ACTIVE_MANIFEST_V2 = ROOT / "data" / "witness_manifest.json"
 RETRACTION_REGISTRY = ROOT / "data" / "retracted" / "RETRACTED.json"
 REQUIRED_METRIC_CONVENTION = "holomorphic_pullback_VT"
 REQUIRED_WITNESS_SCHEMA = "k3_kahler_witness_v2"
 
 # Legacy VT-667 line (no-go 2026-07-13, audit replays only).
 LEGACY_VT_SCHEMA = "k3_cy_witness_v2"
-LEGACY_VT_PARAMS_V2 = ROOT / "data" / "k3_cap_d2_vt_refit_params_v2.npz"
+LEGACY_VT_PARAMS_V2 = ROOT / "data" / "legacy_fit_parameters.npz"
 
 
 class WitnessArtifactError(RuntimeError):
@@ -141,7 +141,7 @@ def _validate_kahler_v2_payload(
             f"(sidecar {pinned}, artifact {digest})")
     if sidecar != manifest:
         raise WitnessArtifactError(
-            "embedded manifest disagrees with sidecar k3_cap_r3_freeze.json")
+            "embedded manifest disagrees with sidecar witness_manifest.json")
     return manifest
 
 
@@ -378,4 +378,4 @@ if __name__ == "__main__":
               f"n_base {manifest['protocol']['n_base_fit']})")
     else:
         raise SystemExit(
-            "usage: k3_cap_witness_registry.py [--selftest | --audit-retracted PATH]")
+            "usage: witness_registry.py [--selftest | --audit-retracted PATH]")

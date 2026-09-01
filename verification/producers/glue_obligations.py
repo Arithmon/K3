@@ -45,7 +45,7 @@ matrix of exponents, the variety imposes V_full·w = 0.
     O4 Φ is surjective                  ← the pivot open sets cover X (τ = 0.6) [COVERING CERTIFICATE]
     O5 Φ is injective                   ← ∼ captures ALL coincidences: two chart points with the same projective image
                                            are related by a transition — this is the role of the sheet sheet record (exactly
-                                           one sheet per point: 8 exhaustive sheets) [ALGEBRA + LEDGER]
+                                           one sheet per point: 8 exhaustive sheets) [ALGEBRA + SIGN_PATTERN]
     O6 X_atlas is Hausdorff             ← UNIFORM separation of the sheets over the overlaps (certified margin ≥ 1.043):
                                            two points that are not identified stay at distance ≥ the margin
                                            [SEPARATION CERTIFICATE]
@@ -56,7 +56,7 @@ Negative controls: N1 repeated μ = (1,1,3,5,7,11) ⇒ V_S = 0 for S ⊇ {0,1} �
 fails); N2 gauge moves removed ⇒ 6 components ⇒ generation fails (check Q4); N3 one entry of P mutated ⇒ the cocycle
 fails (check Q2).
 Does not attest: the certified panel itself (3540/3540, margins, ρ_unif — produced upstream and re-read here through
-their artifacts); the covering (D3); the geometry of the bridges (C129-F0); O6/O7 as complete topological proofs (the
+their artifacts); the covering (D3); the geometry of the bridges (the bridge step); O6/O7 as complete topological proofs (the
 certified inputs are named, the argument is written out in the paper); anything outside the atlas paper.
 """
 from __future__ import annotations
@@ -267,12 +267,12 @@ def build(mutate=None):
     upstream_ok = (str(u1.get("outcome", "")).startswith("uniform_open_chart_theorem")
                    and str(t2.get("outcome", "")).startswith("t2_fixed_k3_closed")
                    and bool(br) and PAPER.exists())
-    out = {"artifact": "k3_cap_atlas_paper_glue_obligations_and_generators",
+    out = {"artifact": "glue_obligations",
            "subject": "ATLAS PAPER §4.3 + §5.3 — exact cocycle of the squares (8000 ordered triples), C = 112 re-derived, "
                   "graph on the 60 types connected with diameter 4, hence generation by {elementary swap, gauge} plus a "
                   "sheet flip (words of length ≤ 4), deck group of order 32 with vertical subgroup of index 4, six "
                   "gluing obligations classified",
-           "kind": "exact_algebra_and_finite_graphs", "front": "atlas paper (no other part of the tree is affected)",
+           "kind": "exact_algebra_and_finite_graphs", "stage": "atlas paper (no other part of the tree is affected)",
            "no_measurement_performed": "exact rational algebra + finite graph theory", "nothing_is_rewritten": True,
            "upstream": {"u1": sha(U1) if U1.exists() else None, "u1_outcome": u1.get("outcome"),
                         "t2": sha(T2) if T2.exists() else None, "t2_outcome": t2.get("outcome"),
@@ -298,7 +298,7 @@ def build(mutate=None):
            "D_glue_obligations": {"obligations": obligations, "n_exact_algebra": n_alg, "n_certificate": n_cert, "n_topology": n_top,
                                   "reading": "the two genuinely topological obligations of the abstract gluing (O5 injectivity, O6 separation) consume the certified data (exhaustive sheet record, separation margin)"},
            "does_not_attest": ["the certified panel itself (3540/3540, margins, ρ_unif — produced upstream)", "the covering D3",
-                             "the geometry of the bridges (C129-F0)", "O6/O7 as complete topological proofs (inputs named, argument written out in the paper)",
+                             "the geometry of the bridges (the bridge step)", "O6/O7 as complete topological proofs (inputs named, argument written out in the paper)",
                              "anything outside the atlas paper"]}
     g = {"Q1_vandermonde_all_nonzero_and_transitions_exist": bool(all_pivots_nonzero) and bool(identity_ok),
          "Q2_square_cocycle_exact_on_all_ordered_triples": bool(cocycle_ok) and cocycle_n == len(tri) ** 3 and bool(inverse_ok),

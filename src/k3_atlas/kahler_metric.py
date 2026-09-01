@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-k3_cap_kahler_engine.py — primitives Kähler COHÉRENTES (convention holomorphe).
+kahler_metric.py — primitives Kähler COHÉRENTES (convention holomorphe).
 
 Rebuilt after the Ritz wall, and recorded in the design note
-k3_cap_ritz_wall_reviews_confrontation_2026_07_15.md §7 : le moteur
-historique `k3_cap_spectral_engine` assemble ses blocs avec W†
+the wall review.md §7 : le moteur
+historique `spectral_basis` assemble ses blocs avec W†
 (polish convention), so G_code is NOT the complex Hessian of K (E1 median 0.39-0.57),
 dω̃ ≠ 0 (E2 med 0.187), congruence K violée ×31.7 (B), volume 71.76 vs
 4 pi^2 (E3). This module rewrites EVERY primitive in the single

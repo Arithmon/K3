@@ -348,7 +348,7 @@ def main():
                    'Y_g = 0, |Z_j| <= t ; sign-group reduction x16 '
                    '(Z_2^3 x {+-1} x conj), 4 half-space cuts, over-cover'),
         'mu': MU,
-        'design_min_ref': 'k3_cap_d3_atlas_pivot_min_design.json',
+        'design_min_ref': 'atlas_pivot_min_design.json',
         'per_gauge': per_gauge,
         'total_boxes': sum(v['n_proc'] for v in per_gauge.values()),
         'seconds': elapsed,

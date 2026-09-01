@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-k3_cap_refit_functional.py — R1 du chantier refit witness v2 : fonctionnelle
+ricci_functional.py — R1 du chantier refit witness v2 : fonctionnelle
 Ricci + gradients analytiques + baselines. MODULE importable (R2 = optimiseur).
 
-Cadrage : k3_cap_refit_cadrage_2026_07_15.md §4-5 ; paramétrisation R0
-(`k3_cap_refit_param_C.npz`, 9 + 208 params).
+Cadrage : the fit scoping note.md §4-5 ; paramétrisation R0
+(`witness_parameters_C.npz`, 9 + 208 params).
 
   Fonctionnelle :  F(p9, c) = Var_w[ r ],   r = log det G + 2 log|det M_S|
   Mesure de fit  :  w = det G_FS · 16/n_c  (dV_FS, queue légère — tail study)
@@ -29,8 +29,8 @@ Baselines (script __main__) :
       raw 657 of v1 onto the 208 psi (starting point for the continuation) and decomposition
       (part V₁ absorbée par M, part const, résidu).
 
-Sortie : canonical/results/k3_cap_refit_functional.json
-Usage : k3_cap_refit_functional.py [N_BASE=500] [SEED_FIT=21]
+Sortie : canonical/results/ricci_functional.json
+Usage : ricci_functional.py [N_BASE=500] [SEED_FIT=21]
 """
 from __future__ import annotations
 
@@ -382,7 +382,7 @@ def main():
     results["checks"] = checks
     results["all_pass"] = bool(all(checks.values()))
     results["elapsed_seconds"] = time.time() - T0
-    (RES / "k3_cap_refit_functional.json").write_text(
+    (RES / "ricci_functional.json").write_text(
         json.dumps(results, indent=2, default=float))
     print("\n" + "=" * 74)
     print(f"BILAN R1 : {sum(checks.values())}/{len(checks)} PASS — "
@@ -391,7 +391,7 @@ def main():
     print("=" * 74)
     for kx, v in checks.items():
         print(f"  {'PASS' if v else 'FAIL'}  {kx}")
-    print(f"\nJSON → k3_cap_refit_functional.json   "
+    print(f"\nJSON → ricci_functional.json   "
           f"({time.time() - T0:.0f}s)")
 
 

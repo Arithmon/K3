@@ -1,0 +1,6749 @@
+{
+  "phase": "B1.e.2.iii the chart criterion/the Jacobian criterion sur cellule entière, détermination par ligne (contrat the holonomy step §8)",
+  "witness_sha256": "738006ef56238f0496b228c06ce33596011a5e316e4fa174a37b58500ac29b4c",
+  "tm_config": {
+    "poly_deg": 4,
+    "unary_series_deg": 4
+  },
+  "provenance": {
+    "git_head": "17170d9596ae6b1e9578db99200a6da175100287",
+    "sha256_source": "6beaada5b87e979adfba73ec8e57a562900ab09be097134810925b850d732ee4",
+    "sha256_script": "6cc85f6bd4f3f899861301305ec96fcd7f0f09eac7f9b1ef4da7e22d6bb02391",
+    "sha256_kernel": "9dbff485e807c567f3530a9b494bfba19b8e9a670e932bb7f0885f0bb39004af",
+    "python": "3.14.4",
+    "platform": "Linux-7.0.0-30-generic-x86_64-inconnu-with-glibc2.43",
+    "wall_s": 26.253392457962036
+  },
+  "jacobian_identity": "dZ_s/du = d_u R_s/(2 Z_s) = a_1.u/Z_s, INDEPENDENT of the determination because Z_s^2 = R_s holds for both",
+  "cells": [
+    {
+      "center_hex": [
+        "-0x1.6f00000000000p-1",
+        "-0x1.0000000000000p-9",
+        "-0x1.6f00000000000p-1",
+        "-0x1.0000000000000p-9"
+      ],
+      "hw_hex": "0x1.0000000000000p-9",
+      "S": [
+        0,
+        1,
+        5
+      ],
+      "g": 2,
+      "class_id": 0,
+      "eps": [
+        1,
+        1,
+        1
+      ],
+      "section_rows": [
+        {
+          "row": 0,
+          "s_coord": 0,
+          "sigma": 1,
+          "coeffs_exact": [
+            "4/5",
+            "9/5",
+            "2"
+          ],
+          "determination": "principal"
+        },
+        {
+          "row": 1,
+          "s_coord": 1,
+          "sigma": -1,
+          "coeffs_exact": [
+            "-16/9",
+            "-8/3",
+            "-8/3"
+          ],
+          "determination": "rotated"
+        },
+        {
+          "row": 2,
+          "s_coord": 5,
+          "sigma": -1,
+          "coeffs_exact": [
+            "-1/45",
+            "-2/15",
+            "-1/3"
+          ],
+          "determination": "rotated"
+        }
+      ],
+      "section_complete": true,
+      "determinations": [
+        "principal",
+        "rotated",
+        "rotated"
+      ],
+      "n_charts": 59,
+      "n_reachable": 59,
+      "n_admissible": 18,
+      "n_admissible_AND_disjoint": 15,
+      "charts": [
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 1.005502009976978,
+          "v_absmax": 0.7168208512818964,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "Im_v_prime": [
+            0.7113539755410143,
+            0.7168149829104655
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.11659003553177277,
+          "detJ_absmax": 0.11918754468235095,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            2
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 1.005502009976978,
+          "v_absmax": 0.7152798527937873,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "Im_v_prime": [
+            0.7128904025128876,
+            0.7152785559900504
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.11659101319292178,
+          "detJ_absmax": 0.119186568885694,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            2
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 1.4057401823522993,
+          "v_absmax": 1.4027317663430103,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.4057287707694752,
+            -1.3950601431059348
+          ],
+          "Im_v_prime": [
+            -1.4027292400245734,
+            -1.3980596738864168
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.32042618221671715,
+          "detJ_absmax": 0.3270897002304962,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            2
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.7187606147314017,
+          "v_absmax": 0.5131390197302512,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "Im_v_prime": [
+            -0.5131326538201879,
+            -0.5105750373306129
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.1860080190807913,
+          "detJ_absmax": 0.18743202431363992,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 1.3989385169768227,
+          "v_absmax": 0.7152798527937873,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "Im_v_prime": [
+            0.7128904025128876,
+            0.7152785559900504
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.5007864107017759,
+          "detJ_absmax": 0.5132558500352017,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 1.9586101104243527,
+          "v_absmax": 1.4027317663430103,
+          "domain_ok": false,
+          "Im_u_prime": [
+            1.9487554569609824,
+            1.9585856336362657
+          ],
+          "Im_v_prime": [
+            -1.4027292400245734,
+            -1.3980596738864168
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.3820402818429576,
+          "detJ_absmax": 1.402727011288542,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.7187606147314017,
+          "v_absmax": 0.5131390197302512,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "Im_v_prime": [
+            -0.5131326538201879,
+            -0.5105750373306129
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.4660198912954723,
+          "detJ_absmax": 0.4675772554476701,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 1.3989385169768227,
+          "v_absmax": 0.7168208512818964,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "Im_v_prime": [
+            0.7113539755410143,
+            0.7168149829104655
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.2547474714353466,
+          "detJ_absmax": 1.2803058872364377,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 1.9586101104243527,
+          "v_absmax": 1.4057401823522993,
+          "domain_ok": false,
+          "Im_u_prime": [
+            1.9487554569609824,
+            1.9585856336362657
+          ],
+          "Im_v_prime": [
+            -1.4057287707694752,
+            -1.3950601431059348
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 3.4551015471963167,
+          "detJ_absmax": 3.506815539179424,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 1.3989385169768227,
+          "v_absmax": 1.005502009976978,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "Im_v_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 2.6925783802744494,
+          "detJ_absmax": 2.738070843601149,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 1.3989385169768227,
+          "v_absmax": 1.005502009976978,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "Im_v_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 2.6925783802744494,
+          "detJ_absmax": 2.738070843601149,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.33815127646631415,
+          "v_absmax": 0.24106832748825763,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "Im_v_prime": [
+            -5.677519999090426e-05,
+            0.00046183746303887253
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.012117158257550345,
+          "detJ_absmax": 0.012275961461492695,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.9735268515419504,
+          "v_absmax": 0.7152798527937873,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "Im_v_prime": [
+            0.7128904025128876,
+            0.7152785559900504
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.3141264340846287,
+          "detJ_absmax": 0.32196737960406213,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 4.15715397634309,
+          "v_absmax": 1.4027317663430103,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.007975862352476914,
+            0.0009906934777005783
+          ],
+          "Im_v_prime": [
+            -1.4027292400245734,
+            -1.3980596738864168
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.865432370657855,
+          "detJ_absmax": 0.8814302139252936,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.33815127646631415,
+          "v_absmax": 0.24106832748825763,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "Im_v_prime": [
+            -5.677519999090426e-05,
+            0.00046183746303887253
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.036351606082088504,
+          "detJ_absmax": 0.036827747137427834,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.9735268515419504,
+          "v_absmax": 0.7168208512818964,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "Im_v_prime": [
+            0.7113539755410143,
+            0.7168149829104655
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.9444673801097007,
+          "detJ_absmax": 0.9637713595954294,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 4.15715397634309,
+          "v_absmax": 1.4057401823522993,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.007975862352476914,
+            0.0009906934777005783
+          ],
+          "Im_v_prime": [
+            -1.4057287707694752,
+            -1.3950601431059348
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.596297527308549,
+          "detJ_absmax": 2.644289173520768,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.33815127646631415,
+          "v_absmax": 0.33815127646631415,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "Im_v_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.08650663105274155,
+          "detJ_absmax": 0.08768110329055186,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            2,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.9735268515419504,
+          "v_absmax": 1.005502009976978,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "Im_v_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.248099831710153,
+          "detJ_absmax": 2.2940453895049537,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.9735268515419504,
+          "v_absmax": 1.005502009976978,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "Im_v_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.248099831710153,
+          "detJ_absmax": 2.2940453895049537,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.4712458300596777,
+          "v_absmax": 0.24106832748825763,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.4696806896300022,
+            0.4712432516842995
+          ],
+          "Im_v_prime": [
+            -5.677519999090426e-05,
+            0.00046183746303887253
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.026129906468341742,
+          "detJ_absmax": 0.02632429131508223,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            3,
+            4
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 2.1290989648729925,
+          "v_absmax": 0.5131390197302512,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -2.1290873293077843,
+            -2.122041693609185
+          ],
+          "Im_v_prime": [
+            -0.5131326538201879,
+            -0.5105750373306129
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.25153335938307864,
+          "detJ_absmax": 0.2522018815062014,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            4
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 4.15715397634309,
+          "v_absmax": 1.9586101104243527,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.007975862352476914,
+            0.0009906934777005783
+          ],
+          "Im_v_prime": [
+            1.9487554569609824,
+            1.9585856336362657
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.8663244224732793,
+          "detJ_absmax": 1.890046621545621,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.4712458300596777,
+          "v_absmax": 0.33815127646631415,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.4696806896300022,
+            0.4712432516842995
+          ],
+          "Im_v_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.09327266702302935,
+          "detJ_absmax": 0.09401114843640727,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            3,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 2.1290989648729925,
+          "v_absmax": 0.7187606147314017,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -2.1290873293077843,
+            -2.122041693609185
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.8968147714098232,
+          "detJ_absmax": 0.9017367372435044,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.9735268515419504,
+          "v_absmax": 1.3989385169768227,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "Im_v_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.4145845318744694,
+          "detJ_absmax": 2.4691631429121443,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.4712458300596777,
+          "v_absmax": 0.33815127646631415,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.4696806896300022,
+            0.4712432516842995
+          ],
+          "Im_v_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.09327266702302935,
+          "detJ_absmax": 0.09401114843640727,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            4,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 2.1290989648729925,
+          "v_absmax": 0.7187606147314017,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -2.1290873293077843,
+            -2.122041693609185
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.8968147714098232,
+          "detJ_absmax": 0.9017367372435044,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            4,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.9735268515419504,
+          "v_absmax": 1.3989385169768227,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "Im_v_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.4145845318744694,
+          "detJ_absmax": 2.4691631429121443,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            4,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 0.4331943200528324,
+          "v_absmax": 0.308824150372097,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0014802786463191761,
+            0.0007959380043933426
+          ],
+          "Im_v_prime": [
+            -0.3088237875252044,
+            -0.3082235895445492
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.012228910172926745,
+          "detJ_absmax": 0.012418238351607878,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            2,
+            3
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.32065730537206,
+          "v_absmax": 0.7152798527937873,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004305479997755301,
+            0.007971496170237369
+          ],
+          "Im_v_prime": [
+            0.7128904025128876,
+            0.7152785559900504
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.15090516165951456,
+          "detJ_absmax": 0.15470601553090735,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            3
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 3.244399572768399,
+          "v_absmax": 1.4027317663430103,
+          "domain_ok": false,
+          "Im_u_prime": [
+            3.238086612190292,
+            3.244395755342507
+          ],
+          "Im_v_prime": [
+            -1.4027292400245734,
+            -1.3980596738864168
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.4156730715947622,
+          "detJ_absmax": 0.4236077535346415,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            3
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 0.4332823397292304,
+          "v_absmax": 0.308824150372097,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0015680059443870969,
+            0.000883665302469537
+          ],
+          "Im_v_prime": [
+            -0.3088237875252044,
+            -0.3082235895445492
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.040763243803020835,
+          "detJ_absmax": 0.04139390694487371,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            2,
+            4
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.3211327404884097,
+          "v_absmax": 0.7168208512818964,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004779878773471728,
+            0.008445894945832541
+          ],
+          "Im_v_prime": [
+            0.7113539755410143,
+            0.7168149829104655
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.5041588420327383,
+          "detJ_absmax": 0.5145213241602324,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            4
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 3.244399572768399,
+          "v_absmax": 1.4057401823522993,
+          "domain_ok": false,
+          "Im_u_prime": [
+            3.238086612190292,
+            3.244395755342507
+          ],
+          "Im_v_prime": [
+            -1.4057287707694752,
+            -1.3950601431059348
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.3855763853279903,
+          "detJ_absmax": 1.4120257982485698,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 0.4332823397292304,
+          "v_absmax": 0.4331943200528324,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0015680059443870969,
+            0.000883665302469537
+          ],
+          "Im_v_prime": [
+            -0.0014802786463191761,
+            0.0007959380043933426
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.10476496208943327,
+          "detJ_absmax": 0.10643715621763196,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            2,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.3211327404884097,
+          "v_absmax": 1.005502009976978,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004779878773471728,
+            0.008445894945832541
+          ],
+          "Im_v_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 1.295730224160552,
+          "detJ_absmax": 1.323001072046929,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.32065730537206,
+          "v_absmax": 1.005502009976978,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004305479997755301,
+            0.007971496170237369
+          ],
+          "Im_v_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 1.2957313049076884,
+          "detJ_absmax": 1.3229999911426402,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 0.6039311234246558,
+          "v_absmax": 0.308824150372097,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0023372418127593996,
+            7.1966819560481354e-06
+          ],
+          "Im_v_prime": [
+            -0.3088237875252044,
+            -0.3082235895445492
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.04395239537806405,
+          "detJ_absmax": 0.0443814091512914,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            3,
+            4
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.6622716306700378,
+          "v_absmax": 0.5131390197302512,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.1285823660814505e-05,
+            0.006424589551856689
+          ],
+          "Im_v_prime": [
+            -0.5131326538201879,
+            -0.5105750373306129
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.20144183281111644,
+          "detJ_absmax": 0.201923362502383,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            4
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 3.244399572768399,
+          "v_absmax": 1.9586101104243527,
+          "domain_ok": false,
+          "Im_u_prime": [
+            3.238086612190292,
+            3.244395755342507
+          ],
+          "Im_v_prime": [
+            1.9487554569609824,
+            1.9585856336362657
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.4940202267855656,
+          "detJ_absmax": 1.5138939535039484,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 0.6039311234246558,
+          "v_absmax": 0.4331943200528324,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0023372418127593996,
+            7.1966819560481354e-06
+          ],
+          "Im_v_prime": [
+            -0.0014802786463191761,
+            0.0007959380043933426
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.1694428553318274,
+          "detJ_absmax": 0.17117766820817895,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            3,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.6622716306700378,
+          "v_absmax": 0.7187606147314017,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.1285823660814505e-05,
+            0.006424589551856689
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.7754942016420456,
+          "detJ_absmax": 0.7799082115126147,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.32065730537206,
+          "v_absmax": 1.3989385169768227,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004305479997755301,
+            0.007971496170237369
+          ],
+          "Im_v_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 2.0879254823449847,
+          "detJ_absmax": 2.1355870486986848,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 0.6039311234246558,
+          "v_absmax": 0.4332823397292304,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0023372418127593996,
+            7.1966819560481354e-06
+          ],
+          "Im_v_prime": [
+            -0.0015680059443870969,
+            0.000883665302469537
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.18826990124103304,
+          "detJ_absmax": 0.1901973418023811,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            4,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.6622716306700378,
+          "v_absmax": 0.7187606147314017,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.1285823660814505e-05,
+            0.006424589551856689
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.8618356472318606,
+          "detJ_absmax": 0.8663886401056649,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            4,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.3211327404884097,
+          "v_absmax": 1.3989385169768227,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004779878773471728,
+            0.008445894945832541
+          ],
+          "Im_v_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 2.320406060228327,
+          "detJ_absmax": 2.3723767274691925,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            4,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 1.281560047376696,
+          "v_absmax": 0.308824150372097,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2815598443439749,
+            -1.2808354289148771
+          ],
+          "Im_v_prime": [
+            -0.3088237875252044,
+            -0.3082235895445492
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.011009463449513273,
+          "detJ_absmax": 0.011154880037972903,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            4
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.7807402155355486,
+          "v_absmax": 0.24106832748825763,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7802991932899511,
+            0.7807400919843629
+          ],
+          "Im_v_prime": [
+            -5.677519999090426e-05,
+            0.00046183746303887253
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.005239590838571006,
+          "detJ_absmax": 0.005299525183063597,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            2,
+            3,
+            4
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 3.244399572768399,
+          "v_absmax": 4.15715397634309,
+          "domain_ok": false,
+          "Im_u_prime": [
+            3.238086612190292,
+            3.244395755342507
+          ],
+          "Im_v_prime": [
+            -0.007975862352476914,
+            0.0009906934777005783
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.3742249927991319,
+          "detJ_absmax": 0.38051028936715037,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 1.281560047376696,
+          "v_absmax": 0.4331943200528324,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2815598443439749,
+            -1.2808354289148771
+          ],
+          "Im_v_prime": [
+            -0.0014802786463191761,
+            0.0007959380043933426
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.047158816323034175,
+          "detJ_absmax": 0.04780461974766308,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.7807402155355486,
+          "v_absmax": 0.33815127646631415,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7802991932899511,
+            0.7807400919843629
+          ],
+          "Im_v_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.02244371157490236,
+          "detJ_absmax": 0.02271126708914935,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            2,
+            3,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.32065730537206,
+          "v_absmax": 2.9735268515419504,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004305479997755301,
+            0.007971496170237369
+          ],
+          "Im_v_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.582083783724457,
+          "detJ_absmax": 0.5954034936152354,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 1.281560047376696,
+          "v_absmax": 0.4332823397292304,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2815598443439749,
+            -1.2808354289148771
+          ],
+          "Im_v_prime": [
+            -0.0015680059443870969,
+            0.000883665302469537
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.0628784835772463,
+          "detJ_absmax": 0.06373942770885772,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            4,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.7807402155355486,
+          "v_absmax": 0.33815127646631415,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7802991932899511,
+            0.7807400919843629
+          ],
+          "Im_v_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.02992495378737301,
+          "detJ_absmax": 0.030281684126723198,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            2,
+            4,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.3211327404884097,
+          "v_absmax": 2.9735268515419504,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004779878773471728,
+            0.008445894945832541
+          ],
+          "Im_v_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.7762756667724767,
+          "detJ_absmax": 0.7937041107593624,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            4,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 1.281560047376696,
+          "v_absmax": 0.6039311234246558,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2815598443439749,
+            -1.2808354289148771
+          ],
+          "Im_v_prime": [
+            -0.0023372418127593996,
+            7.1966819560481354e-06
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.01694922349435965,
+          "detJ_absmax": 0.017085148590222345,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            3,
+            4,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.7807402155355486,
+          "v_absmax": 0.4712458300596777,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7802991932899511,
+            0.7807400919843629
+          ],
+          "Im_v_prime": [
+            0.4696806896300022,
+            0.4712432516842995
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.008066311765730565,
+          "detJ_absmax": 0.008117022372855076,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            3,
+            4,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.6622716306700378,
+          "v_absmax": 2.1290989648729925,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.1285823660814505e-05,
+            0.006424589551856689
+          ],
+          "Im_v_prime": [
+            -2.1290873293077843,
+            -2.122041693609185
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.0775601599376545,
+          "detJ_absmax": 0.07785426000663212,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            3,
+            4,
+            5
+          ],
+          "g": 2
+        }
+      ],
+      "payoff_examples": [
+        {
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 2,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.7187606147314017,
+          "v_absmax": 0.5131390197302512,
+          "detJ_absmin": 0.1860080190807913
+        },
+        {
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 2,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.7187606147314017,
+          "v_absmax": 0.5131390197302512,
+          "detJ_absmin": 0.4660198912954723
+        },
+        {
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 1,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.33815127646631415,
+          "v_absmax": 0.24106832748825763,
+          "detJ_absmin": 0.012117158257550345
+        },
+        {
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 1,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.33815127646631415,
+          "v_absmax": 0.24106832748825763,
+          "detJ_absmin": 0.036351606082088504
+        },
+        {
+          "S": [
+            0,
+            2,
+            5
+          ],
+          "g": 1,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.33815127646631415,
+          "v_absmax": 0.33815127646631415,
+          "detJ_absmin": 0.08650663105274155
+        }
+      ]
+    },
+    {
+      "center_hex": [
+        "-0x1.5f00000000000p-1",
+        "-0x1.0000000000000p-9",
+        "-0x1.4700000000000p-1",
+        "-0x1.0000000000000p-9"
+      ],
+      "hw_hex": "0x1.0000000000000p-9",
+      "S": [
+        0,
+        1,
+        5
+      ],
+      "g": 2,
+      "class_id": 0,
+      "eps": [
+        1,
+        1,
+        1
+      ],
+      "section_rows": [
+        {
+          "row": 0,
+          "s_coord": 0,
+          "sigma": 1,
+          "coeffs_exact": [
+            "4/5",
+            "9/5",
+            "2"
+          ],
+          "determination": "principal"
+        },
+        {
+          "row": 1,
+          "s_coord": 1,
+          "sigma": -1,
+          "coeffs_exact": [
+            "-16/9",
+            "-8/3",
+            "-8/3"
+          ],
+          "determination": "rotated"
+        },
+        {
+          "row": 2,
+          "s_coord": 5,
+          "sigma": -1,
+          "coeffs_exact": [
+            "-1/45",
+            "-2/15",
+            "-1/3"
+          ],
+          "determination": "rotated"
+        }
+      ],
+      "section_complete": true,
+      "determinations": [
+        "principal",
+        "rotated",
+        "rotated"
+      ],
+      "n_charts": 59,
+      "n_reachable": 59,
+      "n_admissible": 19,
+      "n_admissible_AND_disjoint": 16,
+      "charts": [
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 0.9371845292553677,
+          "v_absmax": 0.6882279708632477,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.00535515382998964,
+            0.005744757897605126
+          ],
+          "Im_v_prime": [
+            0.6827980770262385,
+            0.6882221704762695
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.14506676270766247,
+          "detJ_absmax": 0.14847930265664658,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            1,
+            2
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 1.0798040207044457,
+          "v_absmax": 0.7372998832515655,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.006624313315558031,
+            0.006175421521857026
+          ],
+          "Im_v_prime": [
+            0.7343467898178649,
+            0.7372978073290273
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.17929067519493988,
+          "detJ_absmax": 0.1837513172728536,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            2
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 1.4645271042276988,
+          "v_absmax": 1.36174246888039,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.4645148758367619,
+            -1.4530203736222422
+          ],
+          "Im_v_prime": [
+            -1.3617386651791268,
+            -1.3563085240516841
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.45054707298372326,
+          "detJ_absmax": 0.46069178744339256,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            2
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.6406369091880849,
+          "v_absmax": 0.47122375248237935,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "Im_v_prime": [
+            -0.4712169446301155,
+            -0.46868212461555575
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.19373604981629897,
+          "detJ_absmax": 0.19527028056369317,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 1.5705966146240935,
+          "v_absmax": 0.7372998832515655,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -5.8796546377195966e-05,
+            0.009635154903287892
+          ],
+          "Im_v_prime": [
+            0.7343467898178649,
+            0.7372978073290273
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.7365788673092303,
+          "detJ_absmax": 0.7567374734746843,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 2.133684333771728,
+          "v_absmax": 1.36174246888039,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.122092009879206,
+            2.133653275661327
+          ],
+          "Im_v_prime": [
+            -1.3617386651791268,
+            -1.3563085240516841
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.8588148866961236,
+          "detJ_absmax": 1.8892792294274552,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.6875110972115741,
+          "v_absmax": 0.47122375248237935,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "Im_v_prime": [
+            -0.4712169446301155,
+            -0.46868212461555575
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.45210284135056134,
+          "detJ_absmax": 0.4539141562934633,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 1.4628930683498627,
+          "v_absmax": 0.6882279708632477,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -4.752909583767274e-05,
+            0.0083590824742357
+          ],
+          "Im_v_prime": [
+            0.6827980770262385,
+            0.6882221704762695
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.3908847511444713,
+          "detJ_absmax": 1.4212952082922874,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 2.133684333771728,
+          "v_absmax": 1.4645271042276988,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.122092009879206,
+            2.133653275661327
+          ],
+          "Im_v_prime": [
+            -1.4645148758367619,
+            -1.4530203736222422
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 4.330247885296291,
+          "detJ_absmax": 4.399276456326192,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 1.4628930683498627,
+          "v_absmax": 0.9371845292553677,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -4.752909583767274e-05,
+            0.0083590824742357
+          ],
+          "Im_v_prime": [
+            -0.00535515382998964,
+            0.005744757897605126
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 3.076625300584816,
+          "detJ_absmax": 3.1310580128603465,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 1.5705966146240935,
+          "v_absmax": 1.0798040207044457,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -5.8796546377195966e-05,
+            0.009635154903287892
+          ],
+          "Im_v_prime": [
+            -0.006624313315558031,
+            0.006175421521857026
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 3.802459597074648,
+          "detJ_absmax": 3.8748553985175906,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.3156862845653109,
+          "v_absmax": 0.23182751255834486,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.31568308763224173,
+            -0.3137142429116791
+          ],
+          "Im_v_prime": [
+            -2.932561862022135e-05,
+            0.0005001126307244608
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.015185381639859804,
+          "detJ_absmax": 0.015389518301406653,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 3.187669133581606,
+          "v_absmax": 0.7372998832515655,
+          "domain_ok": false,
+          "Im_u_prime": [
+            3.167637262204088,
+            3.1876365023367375
+          ],
+          "Im_v_prime": [
+            0.7343467898178649,
+            0.7372978073290273
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.48393515374386403,
+          "detJ_absmax": 0.4971507903029118,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 4.32344264163888,
+          "v_absmax": 1.36174246888039,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.009344678073702494,
+            0.0005648119863357312
+          ],
+          "Im_v_prime": [
+            -1.3617386651791268,
+            -1.3563085240516841
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.2190638236616604,
+          "detJ_absmax": 1.2434081336033154,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.3387438799704989,
+          "v_absmax": 0.23182751255834486,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.3387412168809614,
+            -0.33685017659989047
+          ],
+          "Im_v_prime": [
+            -2.932561862022135e-05,
+            0.0005001126307244608
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.04245051201670135,
+          "detJ_absmax": 0.04300234457464141,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 2.9687209009800504,
+          "v_absmax": 0.6882279708632477,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9520330442322344,
+            2.9686973270922072
+          ],
+          "Im_v_prime": [
+            0.6827980770262385,
+            0.6882221704762695
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.096448189099144,
+          "detJ_absmax": 1.1206223442105394,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 4.32344264163888,
+          "v_absmax": 1.4645271042276988,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.009344678073702494,
+            0.0005648119863357312
+          ],
+          "Im_v_prime": [
+            -1.4645148758367619,
+            -1.4530203736222422
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 3.4078861874204267,
+          "detJ_absmax": 3.4743956990510156,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.3387438799704989,
+          "v_absmax": 0.3156862845653109,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.3387412168809614,
+            -0.33685017659989047
+          ],
+          "Im_v_prime": [
+            -0.31568308763224173,
+            -0.3137142429116791
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.10408117623383609,
+          "detJ_absmax": 0.10551305866894148,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            2,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 2.9687209009800504,
+          "v_absmax": 0.9371845292553677,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9520330442322344,
+            2.9686973270922072
+          ],
+          "Im_v_prime": [
+            -0.00535515382998964,
+            0.005744757897605126
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.6903004443694014,
+          "detJ_absmax": 2.7475790629471395,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 3.187669133581606,
+          "v_absmax": 1.0798040207044457,
+          "domain_ok": false,
+          "Im_u_prime": [
+            3.167637262204088,
+            3.1876365023367375
+          ],
+          "Im_v_prime": [
+            -0.006624313315558031,
+            0.006175421521857026
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 3.3249725563126424,
+          "detJ_absmax": 3.4002997261975008,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.4935685268039971,
+          "v_absmax": 0.23182751255834486,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.4919075884108278,
+            0.4935657542361326
+          ],
+          "Im_v_prime": [
+            -2.932561862022135e-05,
+            0.0005001126307244608
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.029187229402223566,
+          "detJ_absmax": 0.02939411439065265,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            3,
+            4
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 2.0328965116562876,
+          "v_absmax": 0.47122375248237935,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -2.032885101236398,
+            -2.0260666845405413
+          ],
+          "Im_v_prime": [
+            -0.4712169446301155,
+            -0.46868212461555575
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.24445447480351756,
+          "detJ_absmax": 0.24522364642126238,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            4
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 4.32344264163888,
+          "v_absmax": 2.133684333771728,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.009344678073702494,
+            0.0005648119863357312
+          ],
+          "Im_v_prime": [
+            2.122092009879206,
+            2.133653275661327
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.3432482345633714,
+          "detJ_absmax": 2.3747880221666646,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.4935685268039971,
+          "v_absmax": 0.3156862845653109,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.4919075884108278,
+            0.4935657542361326
+          ],
+          "Im_v_prime": [
+            -0.31568308763224173,
+            -0.3137142429116791
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.1073429104772405,
+          "detJ_absmax": 0.10818469252587433,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            3,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 2.0328965116562876,
+          "v_absmax": 0.6406369091880849,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -2.032885101236398,
+            -2.0260666845405413
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.898267137599708,
+          "detJ_absmax": 0.9033170132546637,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 3.187669133581606,
+          "v_absmax": 1.5705966146240935,
+          "domain_ok": false,
+          "Im_u_prime": [
+            3.167637262204088,
+            3.1876365023367375
+          ],
+          "Im_v_prime": [
+            -5.8796546377195966e-05,
+            0.009635154903287892
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 3.415370544521389,
+          "detJ_absmax": 3.50045178750036,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.4935685268039971,
+          "v_absmax": 0.3387438799704989,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.4919075884108278,
+            0.4935657542361326
+          ],
+          "Im_v_prime": [
+            -0.3387412168809614,
+            -0.33685017659989047
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.10002391602588524,
+          "detJ_absmax": 0.10076672827420052,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            4,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 2.0328965116562876,
+          "v_absmax": 0.6875110972115741,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -2.032885101236398,
+            -2.0260666845405413
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.8365713144311443,
+          "detJ_absmax": 0.8418300921741624,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            4,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 2.9687209009800504,
+          "v_absmax": 1.4628930683498627,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9520330442322344,
+            2.9686973270922072
+          ],
+          "Im_v_prime": [
+            -4.752909583767274e-05,
+            0.0083590824742357
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.573619248118502,
+          "detJ_absmax": 2.6359918683739845,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            4,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 0.40829630561283736,
+          "v_absmax": 0.29983671238972315,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0016697702965240168,
+            0.0008022152445394446
+          ],
+          "Im_v_prime": [
+            -0.2998362559612744,
+            -0.2992089427504137
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.015919323314246774,
+          "detJ_absmax": 0.01617631695482079,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            2,
+            3
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 2.464169301465194,
+          "v_absmax": 0.7372998832515655,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004902022543762643,
+            0.010137829023459763
+          ],
+          "Im_v_prime": [
+            0.7343467898178649,
+            0.7372978073290273
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.2347119126027285,
+          "detJ_absmax": 0.24117132662445986,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            3
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 3.342149675066669,
+          "v_absmax": 1.36174246888039,
+          "domain_ok": false,
+          "Im_u_prime": [
+            3.335144643520015,
+            3.342144576683269
+          ],
+          "Im_v_prime": [
+            -1.3617386651791268,
+            -1.3563085240516841
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.5911158550482698,
+          "detJ_absmax": 0.6033269923429172,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            3
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 0.4382004500137617,
+          "v_absmax": 0.29983671238972315,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0016390112901422756,
+            0.000890508144710898
+          ],
+          "Im_v_prime": [
+            -0.2998362559612744,
+            -0.2992089427504137
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.049447080384894766,
+          "detJ_absmax": 0.050223028470524636,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            2,
+            4
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 2.2953486457777292,
+          "v_absmax": 0.6882279708632477,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004714176434554821,
+            0.008634861711161955
+          ],
+          "Im_v_prime": [
+            0.6827980770262385,
+            0.6882221704762695
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.5909817223977681,
+          "detJ_absmax": 0.6039121945451241,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            4
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 3.342149675066669,
+          "v_absmax": 1.4645271042276988,
+          "domain_ok": false,
+          "Im_u_prime": [
+            3.335144643520015,
+            3.342144576683269
+          ],
+          "Im_v_prime": [
+            -1.4645148758367619,
+            -1.4530203736222422
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.83606737101635,
+          "detJ_absmax": 1.8731646210052613,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 0.4382004500137617,
+          "v_absmax": 0.40829630561283736,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0016390112901422756,
+            0.000890508144710898
+          ],
+          "Im_v_prime": [
+            -0.0016697702965240168,
+            0.0008022152445394446
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.13093347010692283,
+          "detJ_absmax": 0.13308947563424967,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            2,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 2.2953486457777292,
+          "v_absmax": 0.9371845292553677,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004714176434554821,
+            0.008634861711161955
+          ],
+          "Im_v_prime": [
+            -0.00535515382998964,
+            0.005744757897605126
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 1.5654075047121971,
+          "detJ_absmax": 1.5998204870042176,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 2.464169301465194,
+          "v_absmax": 1.0798040207044457,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004902022543762643,
+            0.010137829023459763
+          ],
+          "Im_v_prime": [
+            -0.006624313315558031,
+            0.006175421521857026
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 1.9347035475268681,
+          "detJ_absmax": 1.9798783707117407,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 0.6386298214909036,
+          "v_absmax": 0.29983671238972315,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0025475138699704806,
+            7.739863888900718e-06
+          ],
+          "Im_v_prime": [
+            -0.2998362559612744,
+            -0.2992089427504137
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.050997838835783106,
+          "detJ_absmax": 0.051493532530156635,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            3,
+            4
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.5721452949777404,
+          "v_absmax": 0.47122375248237935,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2275243285024784e-05,
+            0.0062645961824748814
+          ],
+          "Im_v_prime": [
+            -0.4712169446301155,
+            -0.46868212461555575
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.19768684824436317,
+          "detJ_absmax": 0.19818255290758055,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            4
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 3.342149675066669,
+          "v_absmax": 2.133684333771728,
+          "domain_ok": false,
+          "Im_u_prime": [
+            3.335144643520015,
+            3.342144576683269
+          ],
+          "Im_v_prime": [
+            2.122092009879206,
+            2.133653275661327
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.8937191680323004,
+          "detJ_absmax": 1.9204825413727051,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 0.6386298214909036,
+          "v_absmax": 0.40829630561283736,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0025475138699704806,
+            7.739863888900718e-06
+          ],
+          "Im_v_prime": [
+            -0.0016697702965240168,
+            0.0008022152445394446
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.2025611954576544,
+          "detJ_absmax": 0.2046829418490514,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            3,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.5721452949777404,
+          "v_absmax": 0.6406369091880849,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2275243285024784e-05,
+            0.0062645961824748814
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.7842064687693365,
+          "detJ_absmax": 0.788760810024771,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 2.464169301465194,
+          "v_absmax": 1.5705966146240935,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004902022543762643,
+            0.010137829023459763
+          ],
+          "Im_v_prime": [
+            -5.8796546377195966e-05,
+            0.009635154903287892
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 2.981664518504762,
+          "detJ_absmax": 3.056566399255369,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 0.6386298214909036,
+          "v_absmax": 0.4382004500137617,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0025475138699704806,
+            7.739863888900718e-06
+          ],
+          "Im_v_prime": [
+            -0.0016390112901422756,
+            0.000890508144710898
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.2097235526400085,
+          "detJ_absmax": 0.21183002391946631,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            4,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.5721452949777404,
+          "v_absmax": 0.6875110972115741,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2275243285024784e-05,
+            0.0062645961824748814
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.8116469185635897,
+          "detJ_absmax": 0.8165926112256747,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            4,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 2.2953486457777292,
+          "v_absmax": 1.4628930683498627,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004714176434554821,
+            0.008634861711161955
+          ],
+          "Im_v_prime": [
+            -4.752909583767274e-05,
+            0.0083590824742357
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 2.496934632685819,
+          "detJ_absmax": 2.556980016406914,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            4,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 1.2939001702058386,
+          "v_absmax": 0.29983671238972315,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2938999063340186,
+            -1.2930700501747905
+          ],
+          "Im_v_prime": [
+            -0.2998362559612744,
+            -0.2992089427504137
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.013378828201517293,
+          "detJ_absmax": 0.01355546853976372,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            4
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.773353035799917,
+          "v_absmax": 0.23182751255834486,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7728574229223908,
+            0.7733528782863991
+          ],
+          "Im_v_prime": [
+            -2.932561862022135e-05,
+            0.0005001126307244608
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.0061881736645803655,
+          "detJ_absmax": 0.006257514184592819,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            2,
+            3,
+            4
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 3.342149675066669,
+          "v_absmax": 4.32344264163888,
+          "domain_ok": false,
+          "Im_u_prime": [
+            3.335144643520015,
+            3.342144576683269
+          ],
+          "Im_v_prime": [
+            -0.009344678073702494,
+            0.0005648119863357312
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.49678802093683455,
+          "detJ_absmax": 0.505571722881997,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 1.2939001702058386,
+          "v_absmax": 0.40829630561283736,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2938999063340186,
+            -1.2930700501747905
+          ],
+          "Im_v_prime": [
+            -0.0016697702965240168,
+            0.0008022152445394446
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.05904406005118352,
+          "detJ_absmax": 0.05986938828826963,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.773353035799917,
+          "v_absmax": 0.3156862845653109,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7728574229223908,
+            0.7733528782863991
+          ],
+          "Im_v_prime": [
+            -0.31568308763224173,
+            -0.3137142429116791
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.027310112568621824,
+          "detJ_absmax": 0.027636895701334444,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            2,
+            3,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 2.464169301465194,
+          "v_absmax": 3.187669133581606,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004902022543762643,
+            0.010137829023459763
+          ],
+          "Im_v_prime": [
+            3.167637262204088,
+            3.1876365023367375
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.8706533182722407,
+          "detJ_absmax": 0.8924684822296461,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 1.2939001702058386,
+          "v_absmax": 0.4382004500137617,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2938999063340186,
+            -1.2930700501747905
+          ],
+          "Im_v_prime": [
+            -0.0016390112901422756,
+            0.000890508144710898
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.07335837637614434,
+          "detJ_absmax": 0.07435165860931009,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            4,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.773353035799917,
+          "v_absmax": 0.3387438799704989,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7728574229223908,
+            0.7733528782863991
+          ],
+          "Im_v_prime": [
+            -0.3387412168809614,
+            -0.33685017659989047
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.033930936329885815,
+          "detJ_absmax": 0.03432228844729114,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            2,
+            4,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 2.2953486457777292,
+          "v_absmax": 2.9687209009800504,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004714176434554821,
+            0.008634861711161955
+          ],
+          "Im_v_prime": [
+            2.9520330442322344,
+            2.9686973270922072
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.8748259561139007,
+          "detJ_absmax": 0.8960267213123769,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            4,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 1.2939001702058386,
+          "v_absmax": 0.6386298214909036,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2938999063340186,
+            -1.2930700501747905
+          ],
+          "Im_v_prime": [
+            -0.0025475138699704806,
+            7.739863888900718e-06
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.018914425511492236,
+          "detJ_absmax": 0.019058466564601476,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            3,
+            4,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.773353035799917,
+          "v_absmax": 0.4935685268039971,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7728574229223908,
+            0.7733528782863991
+          ],
+          "Im_v_prime": [
+            0.4919075884108278,
+            0.4935657542361326
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.008748391730644609,
+          "detJ_absmax": 0.00879801038400257,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            3,
+            4,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.5721452949777404,
+          "v_absmax": 2.0328965116562876,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2275243285024784e-05,
+            0.0062645961824748814
+          ],
+          "Im_v_prime": [
+            -2.032885101236398,
+            -2.0260666845405413
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.07316819862911733,
+          "detJ_absmax": 0.07350169792769573,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            3,
+            4,
+            5
+          ],
+          "g": 2
+        }
+      ],
+      "payoff_examples": [
+        {
+          "S": [
+            0,
+            1,
+            2
+          ],
+          "g": 3,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 0.9371845292553677,
+          "v_absmax": 0.6882279708632477,
+          "detJ_absmin": 0.14506676270766247
+        },
+        {
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 2,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.6406369091880849,
+          "v_absmax": 0.47122375248237935,
+          "detJ_absmin": 0.19373604981629897
+        },
+        {
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 2,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.6875110972115741,
+          "v_absmax": 0.47122375248237935,
+          "detJ_absmin": 0.45210284135056134
+        },
+        {
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 1,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.3156862845653109,
+          "v_absmax": 0.23182751255834486,
+          "detJ_absmin": 0.015185381639859804
+        },
+        {
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 1,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.3387438799704989,
+          "v_absmax": 0.23182751255834486,
+          "detJ_absmin": 0.04245051201670135
+        }
+      ]
+    },
+    {
+      "center_hex": [
+        "-0x1.6f00000000000p-1",
+        "-0x1.0000000000000p-9",
+        "-0x1.6f00000000000p-1",
+        "-0x1.0000000000000p-9"
+      ],
+      "hw_hex": "0x1.0000000000000p-9",
+      "S": [
+        0,
+        1,
+        5
+      ],
+      "g": 2,
+      "class_id": 1,
+      "eps": [
+        1,
+        1,
+        -1
+      ],
+      "section_rows": [
+        {
+          "row": 0,
+          "s_coord": 0,
+          "sigma": 1,
+          "coeffs_exact": [
+            "4/5",
+            "9/5",
+            "2"
+          ],
+          "determination": "principal"
+        },
+        {
+          "row": 1,
+          "s_coord": 1,
+          "sigma": -1,
+          "coeffs_exact": [
+            "-16/9",
+            "-8/3",
+            "-8/3"
+          ],
+          "determination": "rotated"
+        },
+        {
+          "row": 2,
+          "s_coord": 5,
+          "sigma": -1,
+          "coeffs_exact": [
+            "-1/45",
+            "-2/15",
+            "-1/3"
+          ],
+          "determination": "rotated"
+        }
+      ],
+      "section_complete": true,
+      "determinations": [
+        "principal",
+        "rotated",
+        "rotated"
+      ],
+      "n_charts": 59,
+      "n_reachable": 59,
+      "n_admissible": 18,
+      "n_admissible_AND_disjoint": 15,
+      "charts": [
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 1.005502009976978,
+          "v_absmax": 0.7168208512818964,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "Im_v_prime": [
+            -0.7168149829104655,
+            -0.7113539755410143
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.11659003553177277,
+          "detJ_absmax": 0.11918754468235095,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            2
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 1.005502009976978,
+          "v_absmax": 0.7152798527937873,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "Im_v_prime": [
+            -0.7152785559900504,
+            -0.7128904025128876
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.11659101319292178,
+          "detJ_absmax": 0.119186568885694,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            2
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 1.4057401823522993,
+          "v_absmax": 1.4027317663430103,
+          "domain_ok": false,
+          "Im_u_prime": [
+            1.3950601431059348,
+            1.4057287707694752
+          ],
+          "Im_v_prime": [
+            1.3980596738864168,
+            1.4027292400245734
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.32042618221671715,
+          "detJ_absmax": 0.3270897002304962,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            2
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.7187606147314017,
+          "v_absmax": 0.5131390197302512,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "Im_v_prime": [
+            0.5105750373306129,
+            0.5131326538201879
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.1860080190807913,
+          "detJ_absmax": 0.18743202431363992,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 1.3989385169768227,
+          "v_absmax": 0.7152798527937873,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "Im_v_prime": [
+            -0.7152785559900504,
+            -0.7128904025128876
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.5007864107017759,
+          "detJ_absmax": 0.5132558500352017,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 1.9586101104243527,
+          "v_absmax": 1.4027317663430103,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.9585856336362657,
+            -1.9487554569609824
+          ],
+          "Im_v_prime": [
+            1.3980596738864168,
+            1.4027292400245734
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.3820402818429576,
+          "detJ_absmax": 1.402727011288542,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.7187606147314017,
+          "v_absmax": 0.5131390197302512,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "Im_v_prime": [
+            0.5105750373306129,
+            0.5131326538201879
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.4660198912954723,
+          "detJ_absmax": 0.4675772554476701,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 1.3989385169768227,
+          "v_absmax": 0.7168208512818964,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "Im_v_prime": [
+            -0.7168149829104655,
+            -0.7113539755410143
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.2547474714353466,
+          "detJ_absmax": 1.2803058872364377,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 1.9586101104243527,
+          "v_absmax": 1.4057401823522993,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.9585856336362657,
+            -1.9487554569609824
+          ],
+          "Im_v_prime": [
+            1.3950601431059348,
+            1.4057287707694752
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 3.4551015471963167,
+          "detJ_absmax": 3.506815539179424,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 1.3989385169768227,
+          "v_absmax": 1.005502009976978,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "Im_v_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 2.6925783802744494,
+          "detJ_absmax": 2.738070843601149,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 1.3989385169768227,
+          "v_absmax": 1.005502009976978,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "Im_v_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 2.6925783802744494,
+          "detJ_absmax": 2.738070843601149,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.33815127646631415,
+          "v_absmax": 0.24106832748825763,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "Im_v_prime": [
+            -0.00046183746303887253,
+            5.677519999090426e-05
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.012117158257550345,
+          "detJ_absmax": 0.012275961461492695,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.9735268515419504,
+          "v_absmax": 0.7152798527937873,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "Im_v_prime": [
+            -0.7152785559900504,
+            -0.7128904025128876
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.3141264340846287,
+          "detJ_absmax": 0.32196737960406213,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 4.15715397634309,
+          "v_absmax": 1.4027317663430103,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.0009906934777005783,
+            0.007975862352476914
+          ],
+          "Im_v_prime": [
+            1.3980596738864168,
+            1.4027292400245734
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.865432370657855,
+          "detJ_absmax": 0.8814302139252936,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.33815127646631415,
+          "v_absmax": 0.24106832748825763,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "Im_v_prime": [
+            -0.00046183746303887253,
+            5.677519999090426e-05
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.036351606082088504,
+          "detJ_absmax": 0.036827747137427834,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.9735268515419504,
+          "v_absmax": 0.7168208512818964,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "Im_v_prime": [
+            -0.7168149829104655,
+            -0.7113539755410143
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.9444673801097007,
+          "detJ_absmax": 0.9637713595954294,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 4.15715397634309,
+          "v_absmax": 1.4057401823522993,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.0009906934777005783,
+            0.007975862352476914
+          ],
+          "Im_v_prime": [
+            1.3950601431059348,
+            1.4057287707694752
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.596297527308549,
+          "detJ_absmax": 2.644289173520768,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.33815127646631415,
+          "v_absmax": 0.33815127646631415,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "Im_v_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.08650663105274155,
+          "detJ_absmax": 0.08768110329055186,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            2,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.9735268515419504,
+          "v_absmax": 1.005502009976978,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "Im_v_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.248099831710153,
+          "detJ_absmax": 2.2940453895049537,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.9735268515419504,
+          "v_absmax": 1.005502009976978,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "Im_v_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.248099831710153,
+          "detJ_absmax": 2.2940453895049537,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.4712458300596777,
+          "v_absmax": 0.24106832748825763,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.4696806896300022,
+            0.4712432516842995
+          ],
+          "Im_v_prime": [
+            -0.00046183746303887253,
+            5.677519999090426e-05
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.026129906468341742,
+          "detJ_absmax": 0.02632429131508223,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            3,
+            4
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 2.1290989648729925,
+          "v_absmax": 0.5131390197302512,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -2.1290873293077843,
+            -2.122041693609185
+          ],
+          "Im_v_prime": [
+            0.5105750373306129,
+            0.5131326538201879
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.25153335938307864,
+          "detJ_absmax": 0.2522018815062014,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            4
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 4.15715397634309,
+          "v_absmax": 1.9586101104243527,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.0009906934777005783,
+            0.007975862352476914
+          ],
+          "Im_v_prime": [
+            -1.9585856336362657,
+            -1.9487554569609824
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.8663244224732793,
+          "detJ_absmax": 1.890046621545621,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.4712458300596777,
+          "v_absmax": 0.33815127646631415,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.4696806896300022,
+            0.4712432516842995
+          ],
+          "Im_v_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.09327266702302935,
+          "detJ_absmax": 0.09401114843640727,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            3,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 2.1290989648729925,
+          "v_absmax": 0.7187606147314017,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -2.1290873293077843,
+            -2.122041693609185
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.8968147714098232,
+          "detJ_absmax": 0.9017367372435044,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.9735268515419504,
+          "v_absmax": 1.3989385169768227,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "Im_v_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.4145845318744694,
+          "detJ_absmax": 2.4691631429121443,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.4712458300596777,
+          "v_absmax": 0.33815127646631415,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.4696806896300022,
+            0.4712432516842995
+          ],
+          "Im_v_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.09327266702302935,
+          "detJ_absmax": 0.09401114843640727,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            4,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 2.1290989648729925,
+          "v_absmax": 0.7187606147314017,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -2.1290873293077843,
+            -2.122041693609185
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.8968147714098232,
+          "detJ_absmax": 0.9017367372435044,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            4,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.9735268515419504,
+          "v_absmax": 1.3989385169768227,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "Im_v_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.4145845318744694,
+          "detJ_absmax": 2.4691631429121443,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            4,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 0.4331943200528324,
+          "v_absmax": 0.308824150372097,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0014802786463191761,
+            0.0007959380043933426
+          ],
+          "Im_v_prime": [
+            0.3082235895445492,
+            0.3088237875252044
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.012228910172926745,
+          "detJ_absmax": 0.012418238351607878,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            2,
+            3
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.32065730537206,
+          "v_absmax": 0.7152798527937873,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004305479997755301,
+            0.007971496170237369
+          ],
+          "Im_v_prime": [
+            -0.7152785559900504,
+            -0.7128904025128876
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.15090516165951456,
+          "detJ_absmax": 0.15470601553090735,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            3
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 3.244399572768399,
+          "v_absmax": 1.4027317663430103,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -3.244395755342507,
+            -3.238086612190292
+          ],
+          "Im_v_prime": [
+            1.3980596738864168,
+            1.4027292400245734
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.4156730715947622,
+          "detJ_absmax": 0.4236077535346415,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            3
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 0.4332823397292304,
+          "v_absmax": 0.308824150372097,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0015680059443870969,
+            0.000883665302469537
+          ],
+          "Im_v_prime": [
+            0.3082235895445492,
+            0.3088237875252044
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.040763243803020835,
+          "detJ_absmax": 0.04139390694487371,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            2,
+            4
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.3211327404884097,
+          "v_absmax": 0.7168208512818964,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004779878773471728,
+            0.008445894945832541
+          ],
+          "Im_v_prime": [
+            -0.7168149829104655,
+            -0.7113539755410143
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.5041588420327383,
+          "detJ_absmax": 0.5145213241602324,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            4
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 3.244399572768399,
+          "v_absmax": 1.4057401823522993,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -3.244395755342507,
+            -3.238086612190292
+          ],
+          "Im_v_prime": [
+            1.3950601431059348,
+            1.4057287707694752
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.3855763853279903,
+          "detJ_absmax": 1.4120257982485698,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 0.4332823397292304,
+          "v_absmax": 0.4331943200528324,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0015680059443870969,
+            0.000883665302469537
+          ],
+          "Im_v_prime": [
+            -0.0014802786463191761,
+            0.0007959380043933426
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.10476496208943327,
+          "detJ_absmax": 0.10643715621763196,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            2,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.3211327404884097,
+          "v_absmax": 1.005502009976978,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004779878773471728,
+            0.008445894945832541
+          ],
+          "Im_v_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 1.295730224160552,
+          "detJ_absmax": 1.323001072046929,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.32065730537206,
+          "v_absmax": 1.005502009976978,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004305479997755301,
+            0.007971496170237369
+          ],
+          "Im_v_prime": [
+            -0.005494382551734841,
+            0.00549438255413795
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 1.2957313049076884,
+          "detJ_absmax": 1.3229999911426402,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 0.6039311234246558,
+          "v_absmax": 0.308824150372097,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0023372418127593996,
+            7.1966819560481354e-06
+          ],
+          "Im_v_prime": [
+            0.3082235895445492,
+            0.3088237875252044
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.04395239537806405,
+          "detJ_absmax": 0.0443814091512914,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            3,
+            4
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.6622716306700378,
+          "v_absmax": 0.5131390197302512,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.1285823660814505e-05,
+            0.006424589551856689
+          ],
+          "Im_v_prime": [
+            0.5105750373306129,
+            0.5131326538201879
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.20144183281111644,
+          "detJ_absmax": 0.201923362502383,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            4
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 3.244399572768399,
+          "v_absmax": 1.9586101104243527,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -3.244395755342507,
+            -3.238086612190292
+          ],
+          "Im_v_prime": [
+            -1.9585856336362657,
+            -1.9487554569609824
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.4940202267855656,
+          "detJ_absmax": 1.5138939535039484,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 0.6039311234246558,
+          "v_absmax": 0.4331943200528324,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0023372418127593996,
+            7.1966819560481354e-06
+          ],
+          "Im_v_prime": [
+            -0.0014802786463191761,
+            0.0007959380043933426
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.1694428553318274,
+          "detJ_absmax": 0.17117766820817895,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            3,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.6622716306700378,
+          "v_absmax": 0.7187606147314017,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.1285823660814505e-05,
+            0.006424589551856689
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.7754942016420456,
+          "detJ_absmax": 0.7799082115126147,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.32065730537206,
+          "v_absmax": 1.3989385169768227,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004305479997755301,
+            0.007971496170237369
+          ],
+          "Im_v_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 2.0879254823449847,
+          "detJ_absmax": 2.1355870486986848,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 0.6039311234246558,
+          "v_absmax": 0.4332823397292304,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0023372418127593996,
+            7.1966819560481354e-06
+          ],
+          "Im_v_prime": [
+            -0.0015680059443870969,
+            0.000883665302469537
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.18826990124103304,
+          "detJ_absmax": 0.1901973418023811,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            4,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.6622716306700378,
+          "v_absmax": 0.7187606147314017,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.1285823660814505e-05,
+            0.006424589551856689
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.8618356472318606,
+          "detJ_absmax": 0.8663886401056649,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            4,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.3211327404884097,
+          "v_absmax": 1.3989385169768227,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004779878773471728,
+            0.008445894945832541
+          ],
+          "Im_v_prime": [
+            -4.157333952554985e-05,
+            0.00764421644172736
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 2.320406060228327,
+          "detJ_absmax": 2.3723767274691925,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            4,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 1.281560047376696,
+          "v_absmax": 0.308824150372097,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2815598443439749,
+            -1.2808354289148771
+          ],
+          "Im_v_prime": [
+            0.3082235895445492,
+            0.3088237875252044
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.011009463449513273,
+          "detJ_absmax": 0.011154880037972903,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            4
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.7807402155355486,
+          "v_absmax": 0.24106832748825763,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7802991932899511,
+            0.7807400919843629
+          ],
+          "Im_v_prime": [
+            -0.00046183746303887253,
+            5.677519999090426e-05
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.005239590838571006,
+          "detJ_absmax": 0.005299525183063597,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            2,
+            3,
+            4
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.5105750373306129,
+          "u_absmax": 3.244399572768399,
+          "v_absmax": 4.15715397634309,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -3.244395755342507,
+            -3.238086612190292
+          ],
+          "Im_v_prime": [
+            -0.0009906934777005783,
+            0.007975862352476914
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.3742249927991319,
+          "detJ_absmax": 0.38051028936715037,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 1.281560047376696,
+          "v_absmax": 0.4331943200528324,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2815598443439749,
+            -1.2808354289148771
+          ],
+          "Im_v_prime": [
+            -0.0014802786463191761,
+            0.0007959380043933426
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.047158816323034175,
+          "detJ_absmax": 0.04780461974766308,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.7807402155355486,
+          "v_absmax": 0.33815127646631415,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7802991932899511,
+            0.7807400919843629
+          ],
+          "Im_v_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.02244371157490236,
+          "detJ_absmax": 0.02271126708914935,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            2,
+            3,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.32065730537206,
+          "v_absmax": 2.9735268515419504,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004305479997755301,
+            0.007971496170237369
+          ],
+          "Im_v_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.582083783724457,
+          "detJ_absmax": 0.5954034936152354,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 1.281560047376696,
+          "v_absmax": 0.4332823397292304,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2815598443439749,
+            -1.2808354289148771
+          ],
+          "Im_v_prime": [
+            -0.0015680059443870969,
+            0.000883665302469537
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.0628784835772463,
+          "detJ_absmax": 0.06373942770885772,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            4,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.7807402155355486,
+          "v_absmax": 0.33815127646631415,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7802991932899511,
+            0.7807400919843629
+          ],
+          "Im_v_prime": [
+            -0.33814883857529576,
+            -0.33630553927868373
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.02992495378737301,
+          "detJ_absmax": 0.030281684126723198,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            2,
+            4,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.71484375,
+          "u_absmax": 2.3211327404884097,
+          "v_absmax": 2.9735268515419504,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004779878773471728,
+            0.008445894945832541
+          ],
+          "Im_v_prime": [
+            2.9572078832550743,
+            2.9735051981344425
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.7762756667724767,
+          "detJ_absmax": 0.7937041107593624,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            4,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.655828954010229,
+          "u_absmax": 1.281560047376696,
+          "v_absmax": 0.6039311234246558,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2815598443439749,
+            -1.2808354289148771
+          ],
+          "Im_v_prime": [
+            -0.0023372418127593996,
+            7.1966819560481354e-06
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.01694922349435965,
+          "detJ_absmax": 0.017085148590222345,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            3,
+            4,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.7807402155355486,
+          "v_absmax": 0.4712458300596777,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7802991932899511,
+            0.7807400919843629
+          ],
+          "Im_v_prime": [
+            0.4696806896300022,
+            0.4712432516842995
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.008066311765730565,
+          "detJ_absmax": 0.008117022372855076,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            3,
+            4,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.6622716306700378,
+          "v_absmax": 2.1290989648729925,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.1285823660814505e-05,
+            0.006424589551856689
+          ],
+          "Im_v_prime": [
+            -2.1290873293077843,
+            -2.122041693609185
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.0775601599376545,
+          "detJ_absmax": 0.07785426000663212,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            3,
+            4,
+            5
+          ],
+          "g": 2
+        }
+      ],
+      "payoff_examples": [
+        {
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 2,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.7187606147314017,
+          "v_absmax": 0.5131390197302512,
+          "detJ_absmin": 0.1860080190807913
+        },
+        {
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 2,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.7187606147314017,
+          "v_absmax": 0.5131390197302512,
+          "detJ_absmin": 0.4660198912954723
+        },
+        {
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 1,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.33815127646631415,
+          "v_absmax": 0.24106832748825763,
+          "detJ_absmin": 0.012117158257550345
+        },
+        {
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 1,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.33815127646631415,
+          "v_absmax": 0.24106832748825763,
+          "detJ_absmin": 0.036351606082088504
+        },
+        {
+          "S": [
+            0,
+            2,
+            5
+          ],
+          "g": 1,
+          "gauge_absmin": 2.122041693609185,
+          "u_absmax": 0.33815127646631415,
+          "v_absmax": 0.33815127646631415,
+          "detJ_absmin": 0.08650663105274155
+        }
+      ]
+    },
+    {
+      "center_hex": [
+        "-0x1.5f00000000000p-1",
+        "-0x1.0000000000000p-9",
+        "-0x1.4700000000000p-1",
+        "-0x1.0000000000000p-9"
+      ],
+      "hw_hex": "0x1.0000000000000p-9",
+      "S": [
+        0,
+        1,
+        5
+      ],
+      "g": 2,
+      "class_id": 1,
+      "eps": [
+        1,
+        1,
+        -1
+      ],
+      "section_rows": [
+        {
+          "row": 0,
+          "s_coord": 0,
+          "sigma": 1,
+          "coeffs_exact": [
+            "4/5",
+            "9/5",
+            "2"
+          ],
+          "determination": "principal"
+        },
+        {
+          "row": 1,
+          "s_coord": 1,
+          "sigma": -1,
+          "coeffs_exact": [
+            "-16/9",
+            "-8/3",
+            "-8/3"
+          ],
+          "determination": "rotated"
+        },
+        {
+          "row": 2,
+          "s_coord": 5,
+          "sigma": -1,
+          "coeffs_exact": [
+            "-1/45",
+            "-2/15",
+            "-1/3"
+          ],
+          "determination": "rotated"
+        }
+      ],
+      "section_complete": true,
+      "determinations": [
+        "principal",
+        "rotated",
+        "rotated"
+      ],
+      "n_charts": 59,
+      "n_reachable": 59,
+      "n_admissible": 19,
+      "n_admissible_AND_disjoint": 16,
+      "charts": [
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 0.9371845292553677,
+          "v_absmax": 0.6882279708632477,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.00535515382998964,
+            0.005744757897605126
+          ],
+          "Im_v_prime": [
+            -0.6882221704762695,
+            -0.6827980770262385
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.14506676270766247,
+          "detJ_absmax": 0.14847930265664658,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            1,
+            2
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 1.0798040207044457,
+          "v_absmax": 0.7372998832515655,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.006624313315558031,
+            0.006175421521857026
+          ],
+          "Im_v_prime": [
+            -0.7372978073290273,
+            -0.7343467898178649
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.17929067519493988,
+          "detJ_absmax": 0.1837513172728536,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            2
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 1.4645271042276988,
+          "v_absmax": 1.36174246888039,
+          "domain_ok": false,
+          "Im_u_prime": [
+            1.4530203736222422,
+            1.4645148758367619
+          ],
+          "Im_v_prime": [
+            1.3563085240516841,
+            1.3617386651791268
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.45054707298372326,
+          "detJ_absmax": 0.46069178744339256,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            2
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.6406369091880849,
+          "v_absmax": 0.47122375248237935,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "Im_v_prime": [
+            0.46868212461555575,
+            0.4712169446301155
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.19373604981629897,
+          "detJ_absmax": 0.19527028056369317,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 1.5705966146240935,
+          "v_absmax": 0.7372998832515655,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -5.8796546377195966e-05,
+            0.009635154903287892
+          ],
+          "Im_v_prime": [
+            -0.7372978073290273,
+            -0.7343467898178649
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.7365788673092303,
+          "detJ_absmax": 0.7567374734746843,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 2.133684333771728,
+          "v_absmax": 1.36174246888039,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -2.133653275661327,
+            -2.122092009879206
+          ],
+          "Im_v_prime": [
+            1.3563085240516841,
+            1.3617386651791268
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.8588148866961236,
+          "detJ_absmax": 1.8892792294274552,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.6875110972115741,
+          "v_absmax": 0.47122375248237935,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "Im_v_prime": [
+            0.46868212461555575,
+            0.4712169446301155
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.45210284135056134,
+          "detJ_absmax": 0.4539141562934633,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 1.4628930683498627,
+          "v_absmax": 0.6882279708632477,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -4.752909583767274e-05,
+            0.0083590824742357
+          ],
+          "Im_v_prime": [
+            -0.6882221704762695,
+            -0.6827980770262385
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.3908847511444713,
+          "detJ_absmax": 1.4212952082922874,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 2.133684333771728,
+          "v_absmax": 1.4645271042276988,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -2.133653275661327,
+            -2.122092009879206
+          ],
+          "Im_v_prime": [
+            1.4530203736222422,
+            1.4645148758367619
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 4.330247885296291,
+          "detJ_absmax": 4.399276456326192,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 1.4628930683498627,
+          "v_absmax": 0.9371845292553677,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -4.752909583767274e-05,
+            0.0083590824742357
+          ],
+          "Im_v_prime": [
+            -0.00535515382998964,
+            0.005744757897605126
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 3.076625300584816,
+          "detJ_absmax": 3.1310580128603465,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 1.5705966146240935,
+          "v_absmax": 1.0798040207044457,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -5.8796546377195966e-05,
+            0.009635154903287892
+          ],
+          "Im_v_prime": [
+            -0.006624313315558031,
+            0.006175421521857026
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 3.802459597074648,
+          "detJ_absmax": 3.8748553985175906,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            1,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.3156862845653109,
+          "v_absmax": 0.23182751255834486,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.31568308763224173,
+            -0.3137142429116791
+          ],
+          "Im_v_prime": [
+            -0.0005001126307244608,
+            2.932561862022135e-05
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.015185381639859804,
+          "detJ_absmax": 0.015389518301406653,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 3.187669133581606,
+          "v_absmax": 0.7372998832515655,
+          "domain_ok": false,
+          "Im_u_prime": [
+            3.167637262204088,
+            3.1876365023367375
+          ],
+          "Im_v_prime": [
+            -0.7372978073290273,
+            -0.7343467898178649
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.48393515374386403,
+          "detJ_absmax": 0.4971507903029118,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 4.32344264163888,
+          "v_absmax": 1.36174246888039,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.0005648119863357312,
+            0.009344678073702494
+          ],
+          "Im_v_prime": [
+            1.3563085240516841,
+            1.3617386651791268
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.2190638236616604,
+          "detJ_absmax": 1.2434081336033154,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.3387438799704989,
+          "v_absmax": 0.23182751255834486,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.3387412168809614,
+            -0.33685017659989047
+          ],
+          "Im_v_prime": [
+            -0.0005001126307244608,
+            2.932561862022135e-05
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.04245051201670135,
+          "detJ_absmax": 0.04300234457464141,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 2.9687209009800504,
+          "v_absmax": 0.6882279708632477,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9520330442322344,
+            2.9686973270922072
+          ],
+          "Im_v_prime": [
+            -0.6882221704762695,
+            -0.6827980770262385
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.096448189099144,
+          "detJ_absmax": 1.1206223442105394,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 4.32344264163888,
+          "v_absmax": 1.4645271042276988,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.0005648119863357312,
+            0.009344678073702494
+          ],
+          "Im_v_prime": [
+            1.4530203736222422,
+            1.4645148758367619
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 3.4078861874204267,
+          "detJ_absmax": 3.4743956990510156,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.3387438799704989,
+          "v_absmax": 0.3156862845653109,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.3387412168809614,
+            -0.33685017659989047
+          ],
+          "Im_v_prime": [
+            -0.31568308763224173,
+            -0.3137142429116791
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.10408117623383609,
+          "detJ_absmax": 0.10551305866894148,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            2,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 2.9687209009800504,
+          "v_absmax": 0.9371845292553677,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9520330442322344,
+            2.9686973270922072
+          ],
+          "Im_v_prime": [
+            -0.00535515382998964,
+            0.005744757897605126
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.6903004443694014,
+          "detJ_absmax": 2.7475790629471395,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 3.187669133581606,
+          "v_absmax": 1.0798040207044457,
+          "domain_ok": false,
+          "Im_u_prime": [
+            3.167637262204088,
+            3.1876365023367375
+          ],
+          "Im_v_prime": [
+            -0.006624313315558031,
+            0.006175421521857026
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 3.3249725563126424,
+          "detJ_absmax": 3.4002997261975008,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            2,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.4935685268039971,
+          "v_absmax": 0.23182751255834486,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.4919075884108278,
+            0.4935657542361326
+          ],
+          "Im_v_prime": [
+            -0.0005001126307244608,
+            2.932561862022135e-05
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.029187229402223566,
+          "detJ_absmax": 0.02939411439065265,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            3,
+            4
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 2.0328965116562876,
+          "v_absmax": 0.47122375248237935,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -2.032885101236398,
+            -2.0260666845405413
+          ],
+          "Im_v_prime": [
+            0.46868212461555575,
+            0.4712169446301155
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.24445447480351756,
+          "detJ_absmax": 0.24522364642126238,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            4
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 4.32344264163888,
+          "v_absmax": 2.133684333771728,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.0005648119863357312,
+            0.009344678073702494
+          ],
+          "Im_v_prime": [
+            -2.133653275661327,
+            -2.122092009879206
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.3432482345633714,
+          "detJ_absmax": 2.3747880221666646,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.4935685268039971,
+          "v_absmax": 0.3156862845653109,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.4919075884108278,
+            0.4935657542361326
+          ],
+          "Im_v_prime": [
+            -0.31568308763224173,
+            -0.3137142429116791
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.1073429104772405,
+          "detJ_absmax": 0.10818469252587433,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            3,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 2.0328965116562876,
+          "v_absmax": 0.6406369091880849,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -2.032885101236398,
+            -2.0260666845405413
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.898267137599708,
+          "detJ_absmax": 0.9033170132546637,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 3.187669133581606,
+          "v_absmax": 1.5705966146240935,
+          "domain_ok": false,
+          "Im_u_prime": [
+            3.167637262204088,
+            3.1876365023367375
+          ],
+          "Im_v_prime": [
+            -5.8796546377195966e-05,
+            0.009635154903287892
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 3.415370544521389,
+          "detJ_absmax": 3.50045178750036,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            3,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.4935685268039971,
+          "v_absmax": 0.3387438799704989,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.4919075884108278,
+            0.4935657542361326
+          ],
+          "Im_v_prime": [
+            -0.3387412168809614,
+            -0.33685017659989047
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.10002391602588524,
+          "detJ_absmax": 0.10076672827420052,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            0,
+            4,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 2.0328965116562876,
+          "v_absmax": 0.6875110972115741,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -2.032885101236398,
+            -2.0260666845405413
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.8365713144311443,
+          "detJ_absmax": 0.8418300921741624,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            4,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 2.9687209009800504,
+          "v_absmax": 1.4628930683498627,
+          "domain_ok": false,
+          "Im_u_prime": [
+            2.9520330442322344,
+            2.9686973270922072
+          ],
+          "Im_v_prime": [
+            -4.752909583767274e-05,
+            0.0083590824742357
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 2.573619248118502,
+          "detJ_absmax": 2.6359918683739845,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            0,
+            4,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 0.40829630561283736,
+          "v_absmax": 0.29983671238972315,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0016697702965240168,
+            0.0008022152445394446
+          ],
+          "Im_v_prime": [
+            0.2992089427504137,
+            0.2998362559612744
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.015919323314246774,
+          "detJ_absmax": 0.01617631695482079,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            2,
+            3
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 2.464169301465194,
+          "v_absmax": 0.7372998832515655,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004902022543762643,
+            0.010137829023459763
+          ],
+          "Im_v_prime": [
+            -0.7372978073290273,
+            -0.7343467898178649
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.2347119126027285,
+          "detJ_absmax": 0.24117132662445986,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            3
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 3.342149675066669,
+          "v_absmax": 1.36174246888039,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -3.342144576683269,
+            -3.335144643520015
+          ],
+          "Im_v_prime": [
+            1.3563085240516841,
+            1.3617386651791268
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.5911158550482698,
+          "detJ_absmax": 0.6033269923429172,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            3
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 0.4382004500137617,
+          "v_absmax": 0.29983671238972315,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0016390112901422756,
+            0.000890508144710898
+          ],
+          "Im_v_prime": [
+            0.2992089427504137,
+            0.2998362559612744
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.049447080384894766,
+          "detJ_absmax": 0.050223028470524636,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            2,
+            4
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 2.2953486457777292,
+          "v_absmax": 0.6882279708632477,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004714176434554821,
+            0.008634861711161955
+          ],
+          "Im_v_prime": [
+            -0.6882221704762695,
+            -0.6827980770262385
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.5909817223977681,
+          "detJ_absmax": 0.6039121945451241,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            4
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 3.342149675066669,
+          "v_absmax": 1.4645271042276988,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -3.342144576683269,
+            -3.335144643520015
+          ],
+          "Im_v_prime": [
+            1.4530203736222422,
+            1.4645148758367619
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.83606737101635,
+          "detJ_absmax": 1.8731646210052613,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 0.4382004500137617,
+          "v_absmax": 0.40829630561283736,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0016390112901422756,
+            0.000890508144710898
+          ],
+          "Im_v_prime": [
+            -0.0016697702965240168,
+            0.0008022152445394446
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.13093347010692283,
+          "detJ_absmax": 0.13308947563424967,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            2,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 2.2953486457777292,
+          "v_absmax": 0.9371845292553677,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004714176434554821,
+            0.008634861711161955
+          ],
+          "Im_v_prime": [
+            -0.00535515382998964,
+            0.005744757897605126
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 1.5654075047121971,
+          "detJ_absmax": 1.5998204870042176,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 2.464169301465194,
+          "v_absmax": 1.0798040207044457,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004902022543762643,
+            0.010137829023459763
+          ],
+          "Im_v_prime": [
+            -0.006624313315558031,
+            0.006175421521857026
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 1.9347035475268681,
+          "detJ_absmax": 1.9798783707117407,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            2,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 0.6386298214909036,
+          "v_absmax": 0.29983671238972315,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0025475138699704806,
+            7.739863888900718e-06
+          ],
+          "Im_v_prime": [
+            0.2992089427504137,
+            0.2998362559612744
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.050997838835783106,
+          "detJ_absmax": 0.051493532530156635,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            3,
+            4
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.5721452949777404,
+          "v_absmax": 0.47122375248237935,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2275243285024784e-05,
+            0.0062645961824748814
+          ],
+          "Im_v_prime": [
+            0.46868212461555575,
+            0.4712169446301155
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.19768684824436317,
+          "detJ_absmax": 0.19818255290758055,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            4
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 3.342149675066669,
+          "v_absmax": 2.133684333771728,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -3.342144576683269,
+            -3.335144643520015
+          ],
+          "Im_v_prime": [
+            -2.133653275661327,
+            -2.122092009879206
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 1.8937191680323004,
+          "detJ_absmax": 1.9204825413727051,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 0.6386298214909036,
+          "v_absmax": 0.40829630561283736,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0025475138699704806,
+            7.739863888900718e-06
+          ],
+          "Im_v_prime": [
+            -0.0016697702965240168,
+            0.0008022152445394446
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.2025611954576544,
+          "detJ_absmax": 0.2046829418490514,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            3,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.5721452949777404,
+          "v_absmax": 0.6406369091880849,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2275243285024784e-05,
+            0.0062645961824748814
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.7842064687693365,
+          "detJ_absmax": 0.788760810024771,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 2.464169301465194,
+          "v_absmax": 1.5705966146240935,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004902022543762643,
+            0.010137829023459763
+          ],
+          "Im_v_prime": [
+            -5.8796546377195966e-05,
+            0.009635154903287892
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 2.981664518504762,
+          "detJ_absmax": 3.056566399255369,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            3,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 0.6386298214909036,
+          "v_absmax": 0.4382004500137617,
+          "domain_ok": true,
+          "Im_u_prime": [
+            -0.0025475138699704806,
+            7.739863888900718e-06
+          ],
+          "Im_v_prime": [
+            -0.0016390112901422756,
+            0.000890508144710898
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.2097235526400085,
+          "detJ_absmax": 0.21183002391946631,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            1,
+            4,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.5721452949777404,
+          "v_absmax": 0.6875110972115741,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2275243285024784e-05,
+            0.0062645961824748814
+          ],
+          "Im_v_prime": [
+            -0.00390625,
+            0.0
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 0.8116469185635897,
+          "detJ_absmax": 0.8165926112256747,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            4,
+            5
+          ],
+          "g": 2
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 2.2953486457777292,
+          "v_absmax": 1.4628930683498627,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004714176434554821,
+            0.008634861711161955
+          ],
+          "Im_v_prime": [
+            -4.752909583767274e-05,
+            0.0083590824742357
+          ],
+          "disjoint_from_target_slice": false,
+          "detJ_absmin": 2.496934632685819,
+          "detJ_absmax": 2.556980016406914,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            1,
+            4,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 1.2939001702058386,
+          "v_absmax": 0.29983671238972315,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2938999063340186,
+            -1.2930700501747905
+          ],
+          "Im_v_prime": [
+            0.2992089427504137,
+            0.2998362559612744
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.013378828201517293,
+          "detJ_absmax": 0.01355546853976372,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            4
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.773353035799917,
+          "v_absmax": 0.23182751255834486,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7728574229223908,
+            0.7733528782863991
+          ],
+          "Im_v_prime": [
+            -0.0005001126307244608,
+            2.932561862022135e-05
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.0061881736645803655,
+          "detJ_absmax": 0.006257514184592819,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            2,
+            3,
+            4
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.46868212461555575,
+          "u_absmax": 3.342149675066669,
+          "v_absmax": 4.32344264163888,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -3.342144576683269,
+            -3.335144643520015
+          ],
+          "Im_v_prime": [
+            -0.0005648119863357312,
+            0.009344678073702494
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.49678802093683455,
+          "detJ_absmax": 0.505571722881997,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            4
+          ],
+          "g": 5
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 1.2939001702058386,
+          "v_absmax": 0.40829630561283736,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2938999063340186,
+            -1.2930700501747905
+          ],
+          "Im_v_prime": [
+            -0.0016697702965240168,
+            0.0008022152445394446
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.05904406005118352,
+          "detJ_absmax": 0.05986938828826963,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.773353035799917,
+          "v_absmax": 0.3156862845653109,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7728574229223908,
+            0.7733528782863991
+          ],
+          "Im_v_prime": [
+            -0.31568308763224173,
+            -0.3137142429116791
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.027310112568621824,
+          "detJ_absmax": 0.027636895701334444,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            2,
+            3,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.63671875,
+          "u_absmax": 2.464169301465194,
+          "v_absmax": 3.187669133581606,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004902022543762643,
+            0.010137829023459763
+          ],
+          "Im_v_prime": [
+            3.167637262204088,
+            3.1876365023367375
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.8706533182722407,
+          "detJ_absmax": 0.8924684822296461,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            3,
+            5
+          ],
+          "g": 4
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 1.2939001702058386,
+          "v_absmax": 0.4382004500137617,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2938999063340186,
+            -1.2930700501747905
+          ],
+          "Im_v_prime": [
+            -0.0016390112901422756,
+            0.000890508144710898
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.07335837637614434,
+          "detJ_absmax": 0.07435165860931009,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            4,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.773353035799917,
+          "v_absmax": 0.3387438799704989,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7728574229223908,
+            0.7733528782863991
+          ],
+          "Im_v_prime": [
+            -0.3387412168809614,
+            -0.33685017659989047
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.033930936329885815,
+          "detJ_absmax": 0.03432228844729114,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            2,
+            4,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 2.2953486457777292,
+          "v_absmax": 2.9687209009800504,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -0.004714176434554821,
+            0.008634861711161955
+          ],
+          "Im_v_prime": [
+            2.9520330442322344,
+            2.9686973270922072
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.8748259561139007,
+          "detJ_absmax": 0.8960267213123769,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            2,
+            4,
+            5
+          ],
+          "g": 3
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.5658620474876344,
+          "u_absmax": 1.2939001702058386,
+          "v_absmax": 0.6386298214909036,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2938999063340186,
+            -1.2930700501747905
+          ],
+          "Im_v_prime": [
+            -0.0025475138699704806,
+            7.739863888900718e-06
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.018914425511492236,
+          "detJ_absmax": 0.019058466564601476,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            3,
+            4,
+            5
+          ],
+          "g": 0
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.773353035799917,
+          "v_absmax": 0.4935685268039971,
+          "domain_ok": true,
+          "Im_u_prime": [
+            0.7728574229223908,
+            0.7733528782863991
+          ],
+          "Im_v_prime": [
+            0.4919075884108278,
+            0.4935657542361326
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.008748391730644609,
+          "detJ_absmax": 0.00879801038400257,
+          "detJ_nonzero": true,
+          "admissible": true,
+          "S": [
+            3,
+            4,
+            5
+          ],
+          "g": 1
+        },
+        {
+          "reachable": true,
+          "gauge_absmin": 1.0,
+          "u_absmax": 1.5721452949777404,
+          "v_absmax": 2.0328965116562876,
+          "domain_ok": false,
+          "Im_u_prime": [
+            -1.2275243285024784e-05,
+            0.0062645961824748814
+          ],
+          "Im_v_prime": [
+            -2.032885101236398,
+            -2.0260666845405413
+          ],
+          "disjoint_from_target_slice": true,
+          "detJ_absmin": 0.07316819862911733,
+          "detJ_absmax": 0.07350169792769573,
+          "detJ_nonzero": true,
+          "admissible": false,
+          "S": [
+            3,
+            4,
+            5
+          ],
+          "g": 2
+        }
+      ],
+      "payoff_examples": [
+        {
+          "S": [
+            0,
+            1,
+            2
+          ],
+          "g": 3,
+          "gauge_absmin": 0.68359375,
+          "u_absmax": 0.9371845292553677,
+          "v_absmax": 0.6882279708632477,
+          "detJ_absmin": 0.14506676270766247
+        },
+        {
+          "S": [
+            0,
+            1,
+            3
+          ],
+          "g": 2,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.6406369091880849,
+          "v_absmax": 0.47122375248237935,
+          "detJ_absmin": 0.19373604981629897
+        },
+        {
+          "S": [
+            0,
+            1,
+            4
+          ],
+          "g": 2,
+          "gauge_absmin": 1.0,
+          "u_absmax": 0.6875110972115741,
+          "v_absmax": 0.47122375248237935,
+          "detJ_absmin": 0.45210284135056134
+        },
+        {
+          "S": [
+            0,
+            2,
+            3
+          ],
+          "g": 1,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.3156862845653109,
+          "v_absmax": 0.23182751255834486,
+          "detJ_absmin": 0.015185381639859804
+        },
+        {
+          "S": [
+            0,
+            2,
+            4
+          ],
+          "g": 1,
+          "gauge_absmin": 2.0260666845405413,
+          "u_absmax": 0.3387438799704989,
+          "v_absmax": 0.23182751255834486,
+          "detJ_absmin": 0.04245051201670135
+        }
+      ]
+    }
+  ],
+  "D5_component_negative": {
+    "centre": [
+      -0.716796875,
+      -0.0009765625,
+      -0.716796875,
+      -0.0009765625
+    ],
+    "hw": 0.001953125,
+    "sigma_on_box": [
+      0,
+      0,
+      0
+    ],
+    "sigma_centre_only": [
+      1,
+      -1,
+      -1
+    ],
+    "determinations_on_box": [
+      "principal",
+      null,
+      null
+    ],
+    "determinations_centre_only": [
+      "principal",
+      "rotated",
+      "rotated"
+    ],
+    "box_refuses": true,
+    "centre_only_mutation_accepts_all": true,
+    "discriminating": true
+  },
+  "D6_gauge_negative": {
+    "centre_value": 0.5,
+    "box_absmin": 0.0,
+    "refused": "gauge may vanish on the box",
+    "domain_ok": false,
+    "discriminating": true
+  },
+  "not_tested": [
+    "congruence congruence",
+    "positivity transport transport de PD",
+    "cover multi-chart"
+  ],
+  "aggregate": {
+    "n_cells": 4,
+    "totals": {
+      "charts": 236,
+      "reachable": 236,
+      "admissible": 74,
+      "payoff": 62
+    },
+    "payoff_per_cell": [
+      15,
+      16,
+      15,
+      16
+    ],
+    "determinations_used": [
+      "principal",
+      "rotated"
+    ]
+  },
+  "checks_prereg": {
+    "D1_section_complete_on_full_box": true,
+    "D2_domain_certified_on_full_box": true,
+    "D3_detJ_nonzero_on_admissible": true,
+    "D4_admissible_AND_disjoint_nonempty": true,
+    "D5_component_negative_discriminating": true,
+    "D6_gauge_negative_discriminating": true,
+    "D7_all_admissible_are_sound": true
+  },
+  "verdict": "CHART CRITERION ON A WHOLE CELL (checks 7/7): the payoff stops being POINTWISE. A review was right to refuse calling a slice-point computation (h = 0) a full result: here everything is certified on the WHOLE BOX. THE SECTION IS COMPLETE on 4 of 4 cells, with the determination chosen PER ROW and serialised (principal/rotated); the established complementarity makes the three rows covered, so the six ambient coordinates exist. THE JACOBIAN DOES NOT DEPEND ON THE DETERMINATION: from Z_s^2 = R_s, valid for both, one gets dZ_s/du = d_u R_s/(2 Z_s) = a_1.u/Z_s, and the pilot formula carries over verbatim. RESULT: of 236 charts examined, 236 reachable, **74 admissible** (gauge bounded away from 0, |u'| at most 1, |v'| at most 1 AND det J nonzero, all on the whole box), of which **62 certified DISJOINT from their own real slice**, [15, 16, 15, 16] per cell. Under the principal branch that set was EMPTY: this is the lock of the pilot, now crossed ON ONE CELL, not at one point. NEGATIVE CONTROLS: a box whose component is determined AT THE CENTRE but UNDETERMINED on the box is REFUSED, and the centre-only mutation wrongly accepts it (which is what makes the test discriminating); a gauge of centre 1/2 whose enclosure contains 0 is refused. SCOPE: **congruence (Q_source = J* Q_target J) and positivity transport stay UNTESTED**; the success of the checks above does not prejudge them. Result established on 4 cells, not on a cover. No atlas figure moves."
+}

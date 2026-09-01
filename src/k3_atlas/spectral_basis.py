@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-k3_cap_spectral_engine.py — moteur float du dry run spectral (étape C).
+spectral_basis.py — moteur float du dry run spectral (étape C).
 
-Design : note k3_cap_spectral_dry_run_design_2026_07_11.md
-Post-mortem convention : note k3_cap_spectral_engine_convention_fix_2026_07_11.md
+Design : note the spectral dry-run design.md
+Post-mortem convention : note the convention fix note.md
 
 Charts radicaux (jauge Z_g = 1, coords holomorphes w = (u,v), feuille
 holomorphe). Pont chart ↔ witness ambiant (option 5 GPT) :
@@ -245,7 +245,7 @@ def multi_values_and_projected_grads(Z, W, multis):
                    = (W†·∂z^I)[k, α]
     This convention is NOT the standard pullback (W^T.dz^I through the pure
     holomorphic chain rule), but the one against which the witness was
-    fitté (`k3_cap_d2_kahler_refit_polish.py` : A = einsum('nab,nb->na',
+    fitté (`kahler_polish.py` : A = einsum('nab,nb->na',
     Vh, gI) with Vh = conj(V.T)), and the one that certifies positivity
     (mini-cover / interval_metric_kahler)."""
     K = Z.shape[0]

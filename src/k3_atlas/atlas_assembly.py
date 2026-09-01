@@ -96,9 +96,9 @@ payées SANS changer aucun contrat :
      of the residual}, published with both sorted sets and their
      SHA-256: "64 = 64" does not exclude a permutation 63+1.
 
-Sorties : results/k3_cap_b1e2iii_c127d_atlas_pilot.json   (mode pilot)
-          results/k3_cap_b1e2iii_c127d_atlas.json         (mode full)
-Usage   : k3_cap_b1e2iii_c127d_atlas.py [--selftest]
+Sorties : results/atlas_assembly_pilot.json   (mode pilot)
+          results/atlas_assembly.json         (mode full)
+Usage   : atlas_assembly.py [--selftest]
 Env     : K3_C127D_MODE     pilot (défaut) | full
           K3_C127D_WORKERS  processus parallèles (défaut 6)
 """
@@ -145,13 +145,13 @@ sys.argv = _argv
 
 RES = Path(os.environ.get(
     "K3_RES_DIR", Path(__file__).resolve().parent / "data"))
-COVER_JSON = RES / "k3_cap_b1e2iii_d5_6_dyadic_cover.json"
-C127_JSON = RES / "k3_cap_b1e2iii_c127_transport_all.json"
-C127E_JSON = RES / "k3_cap_b1e2iii_c127e_residual.json"
+COVER_JSON = RES / "dyadic_cover.json"
+C127_JSON = RES / "chart_transport.json"
+C127E_JSON = RES / "residual_closure.json"
 MODE = os.environ.get("K3_C127D_MODE", "pilot")
 N_WORKERS = int(os.environ.get("K3_C127D_WORKERS", "6"))
-ART = RES / ("k3_cap_b1e2iii_c127d_atlas.json" if MODE == "full"
-             else "k3_cap_b1e2iii_c127d_atlas_pilot.json")
+ART = RES / ("atlas_assembly.json" if MODE == "full"
+             else "atlas_assembly_pilot.json")
 
 # --- PREREGISTERED, fixed before the run, not adjustable --------------------
 # The rho scale: the FIRST that passes is kept, per tile, and

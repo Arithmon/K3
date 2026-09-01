@@ -54,7 +54,7 @@ Self-test (négatifs inclus) :
   M7 order monotonicity: the enclosure at N=3 is tighter than at N=2
      on the hard cell (the mechanism does what it announces)
 
-Usage : k3_cap_tm_kernel.py --selftest
+Usage : taylor_models.py --selftest
 """
 from __future__ import annotations
 
@@ -496,7 +496,7 @@ class TMC:
         im_ok = (mp.mpf(c.im.a) > rh) or (mp.mpf(c.im.b) < -rh)
         disc_ok = re_ok or im_ok
         # the cut guard — branche RANGE-AWARE. Le lemme de convexité (note
-        # `k3_cap_r12b_c103_range_guard_proof_2026_07_28.md` §2) autorise
+        # `the range guard proof.md` §2) autorise
         # any CONVEX K containing the anchor, avoiding the cut and inside
         # the closed disc of radius rho|c| with rho < 1. The isotropic disc is only ONE choice of
         # K; here K = R intersected with that disc, where R is the rectangular enclosure
@@ -999,7 +999,7 @@ def _selftest():
     c218 = reg["coeffs218"]
     M_civ = build_M_civ(M_H)
     direct = json.loads(
-        (RES / "k3_cap_b1e2iii_p0a2_direct.json").read_text(
+        (RES / "width_direct.json").read_text(
             encoding="utf-8"))
     boxes = load_boxes_from_direct(direct)
     bB, bC = boxes[0], boxes[2]
@@ -1060,7 +1060,7 @@ def _selftest():
     rep_neg = tm_qfield_certificate(S, g_col, eps, u0, v0, 1e-3,
                                     M_civ, c218, -1.0)
     probe = json.loads(
-        (RES / "k3_cap_b1e2iii_p0a_probe.json").read_text(
+        (RES / "width_probe.json").read_text(
             encoding="utf-8"))
     from .interval_arithmetic import leaf_of_float_point
     b = probe["b_r_sampled"]["argmin"]
@@ -1081,7 +1081,7 @@ def _selftest():
 
     # --- M6 : garde de branche --------------------------------------------------------------
     t4o = json.loads(
-        (RES / "k3_cap_b1e2iii_t4o_run.json").read_text(
+        (RES / "model_order_run.json").read_text(
             encoding="utf-8"))
     c63 = t4o["r4"]["c63"]
     u_star = complex(c63["u_star"][0], c63["u_star"][1])
@@ -1118,4 +1118,4 @@ def _selftest():
 if __name__ == "__main__":
     if len(sys.argv) == 2 and sys.argv[1] == "--selftest":
         raise SystemExit(_selftest())
-    raise SystemExit("usage: k3_cap_tm_kernel.py --selftest")
+    raise SystemExit("usage: taylor_models.py --selftest")

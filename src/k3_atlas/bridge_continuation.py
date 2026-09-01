@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-k3_cap_b1e2iii_c129f_f2f3_bridge_atlas.py — the bridge step : F2 + F3, LES
+bridge_continuation.py — the bridge step : F2 + F3, LES
 CARTES-PONTS ET LEURS DEUX TRANSITIONS.
 
 WHAT THIS SCRIPT PAYS (v2): the contract of a review
@@ -155,8 +155,8 @@ GATES
   R1e  a single sign changed in `D` breaks the deck identity;
   R4   chaîne amont vérifiée (preliminary computation, F1, the atlas step, the residual closure).
 
-Sortie : results/k3_cap_b1e2iii_c129f_f2f3_bridge_atlas.json
-Usage  : k3_cap_b1e2iii_c129f_f2f3_bridge_atlas.py [--selftest]
+Sortie : results/bridge_continuation.json
+Usage  : bridge_continuation.py [--selftest]
 Env    : K3_F2F3_WORKERS (défaut 6)
 """
 from __future__ import annotations
@@ -196,12 +196,12 @@ sys.argv = _argv
 
 RES = Path(os.environ.get(
     "K3_RES_DIR", Path(__file__).resolve().parent / "data"))
-COVER_JSON = RES / "k3_cap_b1e2iii_d5_6_dyadic_cover.json"
-ATLAS_JSON = RES / "k3_cap_b1e2iii_c127d_atlas.json"
-C127E_JSON = RES / "k3_cap_b1e2iii_c127e_residual.json"
-SCOUT_JSON = RES / "k3_cap_b1e2iii_c129f_bridge_scout.json"
-F1_JSON = RES / "k3_cap_b1e2iii_c129f_f1_mirror_ledger.json"
-ART = RES / "k3_cap_b1e2iii_c129f_f2f3_bridge_atlas.json"
+COVER_JSON = RES / "dyadic_cover.json"
+ATLAS_JSON = RES / "atlas_assembly.json"
+C127E_JSON = RES / "residual_closure.json"
+SCOUT_JSON = RES / "bridge_preliminary.json"
+F1_JSON = RES / "mirror_record.json"
+ART = RES / "bridge_continuation.json"
 N_WORKERS = int(os.environ.get("K3_F2F3_WORKERS", "6"))
 
 # --- PRÉ-ENREGISTRÉ, figé avant le run ------------------------------------
@@ -1020,9 +1020,9 @@ def build():
         if need_full:
             up[name]["full"] = bool(blob.get("mode") == "full")
     for name, path in (("c129d_exact_gluing",
-                        RES / "k3_cap_b1e2iii_c129d_exact_gluing.json"),
+                        RES / "exact_gluing.json"),
                        ("c129e_halo_metric",
-                        RES / "k3_cap_b1e2iii_c129e_halo_metric.json")):
+                        RES / "halo_metric.json")):
         try:
             b = json.loads(path.read_text(encoding="utf-8"))
         except OSError:
@@ -1302,7 +1302,7 @@ def build():
         head = None
 
     out = {
-        "artifact": "k3_cap_b1e2iii_c129f_f2f3_bridge_atlas",
+        "artifact": "bridge_continuation",
         # This script has only one mode: the 64 bridges, always all of them.
         # Serialised EXPLICITLY: the upstream check of the metric step
         # requires mode == "full" of every upstream, and null is not a mode.

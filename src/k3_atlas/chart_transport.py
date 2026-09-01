@@ -88,9 +88,9 @@ the appearance of verification):
   E  full SHA-256, dyadic addresses explicitly
           sérialisées.
 
-Sorties : results/k3_cap_b1e2iii_c127_transport_pilot.json  (mode pilot)
-          results/k3_cap_b1e2iii_c127_transport_all.json    (mode full)
-Usage   : k3_cap_b1e2iii_c127_transport_all.py [--selftest]
+Sorties : results/chart_transport_pilot.json  (mode pilot)
+          results/chart_transport.json    (mode full)
+Usage   : chart_transport.py [--selftest]
 Env     : K3_C127_MODE    pilot (défaut) | full
           K3_C127_WORKERS processus parallèles (défaut 3)
 """
@@ -130,11 +130,11 @@ sys.argv = _argv
 
 RES = Path(os.environ.get(
     "K3_RES_DIR", Path(__file__).resolve().parent / "data"))
-COVER_JSON = RES / "k3_cap_b1e2iii_d5_6_dyadic_cover.json"
+COVER_JSON = RES / "dyadic_cover.json"
 MODE = os.environ.get("K3_C127_MODE", "pilot")
 N_WORKERS = int(os.environ.get("K3_C127_WORKERS", "3"))
-ART = RES / ("k3_cap_b1e2iii_c127_transport_all.json" if MODE == "full"
-             else "k3_cap_b1e2iii_c127_transport_pilot.json")
+ART = RES / ("chart_transport.json" if MODE == "full"
+             else "chart_transport_pilot.json")
 
 # --- PREREGISTERED, fixed before the run, not adjustable --------------------
 # The checked ratio is now CERTIFIED: sup_entry(D) rounded

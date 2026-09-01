@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-k3_cap_b1e2iii_p0a2_attrib.py — P0a2-A : ATTRIBUTION de largeur +
+width_attribution.py — P0a2-A : ATTRIBUTION de largeur +
 congruence fixe préconditionnée (contrat GPT `gpt_b1e2iii_p0a2_direct_review`
 §2-§6 : the width contract, A0-A4 ; demandes a reviewer `kimi_p0a2_direct_review` V3/V7).
 
@@ -71,8 +71,8 @@ Self-test (checks DISCRIMINANTS, négatifs inclus) :
      (sous-additivité garantie ; l'écart = gain de cancellation combiné,
      LA mesure a reviewer V7) + NÉGATIF : w_quad(top5) < w_quad(φ) strictement
 
-Sorties : results/k3_cap_b1e2iii_p0a2_attrib.json
-Usage   : k3_cap_b1e2iii_p0a2_attrib.py [--selftest]
+Sorties : results/width_attribution.json
+Usage   : width_attribution.py [--selftest]
 """
 from __future__ import annotations
 
@@ -105,9 +105,9 @@ sys.argv = _argv
 
 RES = Path(os.environ.get(
     "K3_RES_DIR", Path(__file__).resolve().parent / "data"))
-PROBE_JSON = RES / "k3_cap_b1e2iii_p0a_probe.json"
-DIRECT_JSON = RES / "k3_cap_b1e2iii_p0a2_direct.json"
-TILING_JSON = RES / "k3_cap_b1e2iii_owner_tiling.json"
+PROBE_JSON = RES / "width_probe.json"
+DIRECT_JSON = RES / "width_direct.json"
+TILING_JSON = RES / "owner_tiling.json"
 
 GAMMA = 0.25                    # inchangé, pré-fixé (P0a2-direct)
 H_GRID = [4e-3, 2e-3, 1e-3, 5e-4, 2.5e-4]   # ≥ 4 valeurs (GPT C44)
@@ -742,7 +742,7 @@ def build():
         "checks_executed": checks,
         "verdict": verdict}
 
-    art = RES / "k3_cap_b1e2iii_p0a2_attrib.json"
+    art = RES / "width_attribution.json"
     art.write_text(json.dumps(out, indent=2, ensure_ascii=False,
                               default=float), encoding="utf-8")
     print("\nVERDICT :\n" + verdict)
