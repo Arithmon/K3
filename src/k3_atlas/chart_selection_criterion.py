@@ -25,7 +25,7 @@ happened. The strengthened criterion adds:
          (principale si `R'` évite (−∞,0], sinon tournée avec `σ'`
          déterminé — jamais au seul centre)
 
-Gates pré-enregistrés :
+Checks pré-enregistrés :
   F1 REFINEMENT: the strengthened criterion is a SUBSET of the earlier
      one, chart by chart. A UNIVERSAL check: a criterion that
      accepted a chart refused before would not be a
@@ -57,7 +57,7 @@ Gates pré-enregistrés :
      at increasing depth. The check requires instead that the number
      of refusals GROW like `4^d`, the signature of a branch locus
      of CODIMENSION 2, hence of a REAL GEOMETRIC obstruction. The
-     gate échoue si les refus disparaissent OU s'ils croissent en
+     check échoue si les refus disparaissent OU s'ils croissent en
      `16^d` (codimension 0).
   F7 PUBLISHED VERDICT: the final count `n_strong` is published for
      EVERY cell, including when it is 0. A sweep that did not
@@ -404,11 +404,11 @@ def build():
     except Exception as exc:
         cross = {"checked": False, "error": str(exc)[:120]}
 
-    # ------------------------------------------------------------------ gates
+    # ------------------------------------------------------------------ checks
     all_rows = [row for c in cells for x in c["charts"]
                 for row in (x.get("native_rows") or [])]
     built = [row for row in all_rows if row["determination"] is not None]
-    gates = {
+    checks = {
         "F1_strong_refines_previous": bool(cells) and all(
             (not x.get("strong_criterion")) or x.get("prev_criterion")
             for c in cells for x in c["charts"] if not x.get("is_source")),
@@ -460,20 +460,20 @@ def build():
            "totals": tot, "verdict": verdict,
            "cross_check_d5_fullcell": cross,
            "subdivision_probe": sub,
-           "cells": cells, "gates": gates,
-           "gates_passed": sum(1 for v in gates.values() if v),
-           "gates_total": len(gates),
+           "cells": cells, "checks": checks,
+           "checks_passed": sum(1 for v in checks.values() if v),
+           "checks_total": len(checks),
            "provenance": provenance([C118_JSON], time.time() - T0)}
     ART.parent.mkdir(parents=True, exist_ok=True)
     ART.write_text(json.dumps(art, indent=2, ensure_ascii=False),
                    encoding="utf-8")
     print("-" * 78)
-    for k, v in gates.items():
+    for k, v in checks.items():
         print(f"  {'PASS' if v else 'FAIL'}  {k}")
     print("-" * 78)
     print(verdict)
     print(f"→ {ART}")
-    return 0 if all(gates.values()) else 1
+    return 0 if all(checks.values()) else 1
 
 
 # ===========================================================================

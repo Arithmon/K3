@@ -1,168 +1,168 @@
 {
- "artifact": "k3_cap_f9_p0_exact_transitions",
- "lot": "F9-P0 — exact algebraic transition theorem entre les 60 types (design, NEXT-2 seconde revue)",
- "kind": "transition_theorem_design_read_only",
- "no_measurement_performed": true,
- "nothing_is_rewritten": true,
- "upstream": {
-  "amendment_b": "7331ccd075015a66926fb3d75e191a88808f947afb5729c305770ade29410c47",
-  "f1prime_u0": "d2b7fd83f8ab5383910273e0cec1e0e89228059feea78537f8c59d01b643a812",
-  "interval_kernel_mu": "b6da94fd4bae532249ce6c0886c285c70727e7ebdb6e3cfdb74f5792fd4fe4d8"
- },
- "mu": [
-  1,
-  2,
-  3,
-  5,
-  7,
-  11
- ],
- "n_types": 60,
- "seed": 20260818,
- "classification_3540_ordered_pairs": {
-  "classes": [
-   {
-    "S_cap_S2": 0,
-    "g2_in_S": true,
-    "g_in_S2": true,
-    "same_g": false,
-    "count": 180,
-    "reading": "la nouvelle jauge z_{g′} est une RACINE source : lue dans w — une détermination source devient un paramètre de la cible (base-moving de C7)"
-   },
-   {
-    "S_cap_S2": 1,
-    "g2_in_S": false,
-    "g_in_S2": false,
-    "same_g": true,
-    "count": 180,
-    "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
-   },
-   {
-    "S_cap_S2": 1,
-    "g2_in_S": false,
-    "g_in_S2": true,
-    "same_g": false,
-    "count": 360,
-    "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
-   },
-   {
-    "S_cap_S2": 1,
-    "g2_in_S": true,
-    "g_in_S2": false,
-    "same_g": false,
-    "count": 360,
-    "reading": "la nouvelle jauge z_{g′} est une RACINE source : lue dans w — une détermination source devient un paramètre de la cible (base-moving de C7)"
-   },
-   {
-    "S_cap_S2": 1,
-    "g2_in_S": true,
-    "g_in_S2": true,
-    "same_g": false,
-    "count": 720,
-    "reading": "la nouvelle jauge z_{g′} est une RACINE source : lue dans w — une détermination source devient un paramètre de la cible (base-moving de C7)"
-   },
-   {
-    "S_cap_S2": 2,
-    "g2_in_S": false,
-    "g_in_S2": false,
-    "same_g": false,
-    "count": 360,
-    "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
-   },
-   {
-    "S_cap_S2": 2,
-    "g2_in_S": false,
-    "g_in_S2": false,
-    "same_g": true,
-    "count": 360,
-    "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
-   },
-   {
-    "S_cap_S2": 2,
-    "g2_in_S": false,
-    "g_in_S2": true,
-    "same_g": false,
-    "count": 360,
-    "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
-   },
-   {
-    "S_cap_S2": 2,
-    "g2_in_S": true,
-    "g_in_S2": false,
-    "same_g": false,
-    "count": 360,
-    "reading": "la nouvelle jauge z_{g′} est une RACINE source : lue dans w — une détermination source devient un paramètre de la cible (base-moving de C7)"
-   },
-   {
-    "S_cap_S2": 2,
-    "g2_in_S": true,
-    "g_in_S2": true,
-    "same_g": false,
-    "count": 180,
-    "reading": "la nouvelle jauge z_{g′} est une RACINE source : lue dans w — une détermination source devient un paramètre de la cible (base-moving de C7)"
-   },
-   {
-    "S_cap_S2": 3,
-    "g2_in_S": false,
-    "g_in_S2": false,
-    "same_g": false,
-    "count": 120,
-    "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
-   }
+  "artifact": "k3_cap_f9_p0_exact_transitions",
+  "lot": "F9-P0 — exact algebraic transition theorem entre les 60 types (design, NEXT-2 seconde revue)",
+  "kind": "transition_theorem_design_read_only",
+  "no_measurement_performed": true,
+  "nothing_is_rewritten": true,
+  "upstream": {
+    "amendment_b": "7331ccd075015a66926fb3d75e191a88808f947afb5729c305770ade29410c47",
+    "f1prime_u0": "d2b7fd83f8ab5383910273e0cec1e0e89228059feea78537f8c59d01b643a812",
+    "interval_kernel_mu": "b6da94fd4bae532249ce6c0886c285c70727e7ebdb6e3cfdb74f5792fd4fe4d8"
+  },
+  "mu": [
+    1,
+    2,
+    3,
+    5,
+    7,
+    11
   ],
-  "n_pairs": 3540,
-  "n_classes": 11,
-  "sum_counts": 3540
- },
- "cocycle_exact_rational_points": {
-  "n_tests": 400,
-  "identity_ok": 400,
-  "inverse_ok": 400,
-  "cocycle_ok": 400
- },
- "root_relation_transfer_exact_all_ordered_pairs": {
-  "n_pairs": 3540,
-  "n_ok": 3540
- },
- "F9_reduction": {
-  "obligation_3_t_ij_algebraic_independent_of_K": "t_ij = rescaling par z_{g′} + permutation ; défini sur {z_{g′} ≠ 0} ⊇ U_{S′,g′} (B5)",
-  "obligation_4_s_j_t_ij_equals_s_i": "identité si s_i est ambient-valued (Krawczyk enclôt w ⇒ Z)",
-  "obligation_5_domain_is_real_overlap": "t_ij(U_i ∩ U_j) ; à certifier seulement pour un atlas EXPLICITE (inclusion dans le domaine certifié cible)",
-  "obligation_6_cocycle": "identité de rescalings (testée exactement ci-dessus)",
-  "obligation_7_biconditional": "(i,p) ~ (j,q) ⇔ s_i(p) = s_j(q) ⇔ q = π_j(t_ij(s_i(p))) — identité, pas une mesure",
-  "obligation_8_quotient_is_K": "découle de 1 (couverture, F1) + 2 (F1′) + 3–7 identités : Φ est bijective, holomorphe locale, donc iso",
-  "reading": "T2 (GLOBAL_ATLAS_FIXED_K3) est un théorème de STRUCTURE : son contenu non classique est QUANTITATIF (ρ(σ), planchers, constantes) et vit entièrement dans F1 + F1′. Le « cocycle de feuilles », le « groupoïde de transitions » et le « typage A/B/C » du contrat régional n'y apparaissent plus ; ils redeviennent des instruments de VALIDATION",
-  "what_still_needs_interval": [
-   "F1′ par chart : existence/unicité/holomorphie de s_i sur un OUVERT, rayon ρ(σ) (Kantorovich/Krawczyk)",
-   "atlas explicite (T1) : t_ij(U_i ∩ U_j) ⊆ domaine certifié cible ; sinon rien"
+  "n_types": 60,
+  "seed": 20260818,
+  "classification_3540_ordered_pairs": {
+    "classes": [
+      {
+        "S_cap_S2": 0,
+        "g2_in_S": true,
+        "g_in_S2": true,
+        "same_g": false,
+        "count": 180,
+        "reading": "la nouvelle jauge z_{g′} est une RACINE source : lue dans w — une détermination source devient un paramètre de la cible (base-moving de C7)"
+      },
+      {
+        "S_cap_S2": 1,
+        "g2_in_S": false,
+        "g_in_S2": false,
+        "same_g": true,
+        "count": 180,
+        "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
+      },
+      {
+        "S_cap_S2": 1,
+        "g2_in_S": false,
+        "g_in_S2": true,
+        "same_g": false,
+        "count": 360,
+        "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
+      },
+      {
+        "S_cap_S2": 1,
+        "g2_in_S": true,
+        "g_in_S2": false,
+        "same_g": false,
+        "count": 360,
+        "reading": "la nouvelle jauge z_{g′} est une RACINE source : lue dans w — une détermination source devient un paramètre de la cible (base-moving de C7)"
+      },
+      {
+        "S_cap_S2": 1,
+        "g2_in_S": true,
+        "g_in_S2": true,
+        "same_g": false,
+        "count": 720,
+        "reading": "la nouvelle jauge z_{g′} est une RACINE source : lue dans w — une détermination source devient un paramètre de la cible (base-moving de C7)"
+      },
+      {
+        "S_cap_S2": 2,
+        "g2_in_S": false,
+        "g_in_S2": false,
+        "same_g": false,
+        "count": 360,
+        "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
+      },
+      {
+        "S_cap_S2": 2,
+        "g2_in_S": false,
+        "g_in_S2": false,
+        "same_g": true,
+        "count": 360,
+        "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
+      },
+      {
+        "S_cap_S2": 2,
+        "g2_in_S": false,
+        "g_in_S2": true,
+        "same_g": false,
+        "count": 360,
+        "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
+      },
+      {
+        "S_cap_S2": 2,
+        "g2_in_S": true,
+        "g_in_S2": false,
+        "same_g": false,
+        "count": 360,
+        "reading": "la nouvelle jauge z_{g′} est une RACINE source : lue dans w — une détermination source devient un paramètre de la cible (base-moving de C7)"
+      },
+      {
+        "S_cap_S2": 2,
+        "g2_in_S": true,
+        "g_in_S2": true,
+        "same_g": false,
+        "count": 180,
+        "reading": "la nouvelle jauge z_{g′} est une RACINE source : lue dans w — une détermination source devient un paramètre de la cible (base-moving de C7)"
+      },
+      {
+        "S_cap_S2": 3,
+        "g2_in_S": false,
+        "g_in_S2": false,
+        "same_g": false,
+        "count": 120,
+        "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
+      }
+    ],
+    "n_pairs": 3540,
+    "n_classes": 11,
+    "sum_counts": 3540
+  },
+  "cocycle_exact_rational_points": {
+    "n_tests": 400,
+    "identity_ok": 400,
+    "inverse_ok": 400,
+    "cocycle_ok": 400
+  },
+  "root_relation_transfer_exact_all_ordered_pairs": {
+    "n_pairs": 3540,
+    "n_ok": 3540
+  },
+  "F9_reduction": {
+    "obligation_3_t_ij_algebraic_independent_of_K": "t_ij = rescaling par z_{g′} + permutation ; défini sur {z_{g′} ≠ 0} ⊇ U_{S′,g′} (B5)",
+    "obligation_4_s_j_t_ij_equals_s_i": "identité si s_i est ambient-valued (Krawczyk enclôt w ⇒ Z)",
+    "obligation_5_domain_is_real_overlap": "t_ij(U_i ∩ U_j) ; à certifier seulement pour un atlas EXPLICITE (inclusion dans le domaine certifié cible)",
+    "obligation_6_cocycle": "identité de rescalings (testée exactement ci-dessus)",
+    "obligation_7_biconditional": "(i,p) ~ (j,q) ⇔ s_i(p) = s_j(q) ⇔ q = π_j(t_ij(s_i(p))) — identité, pas une mesure",
+    "obligation_8_quotient_is_K": "découle de 1 (couverture, F1) + 2 (F1′) + 3–7 identités : Φ est bijective, holomorphe locale, donc iso",
+    "reading": "T2 (GLOBAL_ATLAS_FIXED_K3) est un théorème de STRUCTURE : son contenu non classique est QUANTITATIF (ρ(σ), planchers, constantes) et vit entièrement dans F1 + F1′. Le « cocycle de feuilles », le « groupoïde de transitions » et le « typage A/B/C » du contrat régional n'y apparaissent plus ; ils redeviennent des instruments de VALIDATION",
+    "what_still_needs_interval": [
+      "F1′ par chart : existence/unicité/holomorphie de s_i sur un OUVERT, rayon ρ(σ) (Kantorovich/Krawczyk)",
+      "atlas explicite (T1) : t_ij(U_i ∩ U_j) ⊆ domaine certifié cible ; sinon rien"
+    ],
+    "what_the_regional_arc_becomes": [
+      "C7 (loi de transport) = la classe « g′ ∈ S » de la table : la détermination source est un paramètre cible",
+      "T = flip(5), D = flip(1,5) : éléments du deck (Z/2)³_S, réalisation lue dans la classe",
+      "RFace / C5 / C6 : négatifs et validations du lemme F1′ et des inclusions"
+    ]
+  },
+  "checks": {
+    "T1_60_types_3540_ordered_pairs_all_classified": true,
+    "T2_identity_inverse_cocycle_exact_on_all_tests": true,
+    "T3_root_relation_transfer_exact_3540_of_3540": true,
+    "T4_domain_of_t_ij_contains_U_target_from_B5": true
+  },
+  "checks_passed": 4,
+  "checks_total": 4,
+  "n_atteste_pas": [
+    "rien n'est prouvé sur les sections : F1′ reste le seul contenu certifié de T2",
+    "la classification est combinatoire (μ distincts) ; aucune orbite sous permutation n'est revendiquée",
+    "l'inclusion t_ij(U_i ∩ U_j) ⊆ domaine cible n'est pas certifiée ici (atlas explicite = T1)"
   ],
-  "what_the_regional_arc_becomes": [
-   "C7 (loi de transport) = la classe « g′ ∈ S » de la table : la détermination source est un paramètre cible",
-   "T = flip(5), D = flip(1,5) : éléments du deck (Z/2)³_S, réalisation lue dans la classe",
-   "RFace / C5 / C6 : négatifs et validations du lemme F1′ et des inclusions"
-  ]
- },
- "gates": {
-  "T1_60_types_3540_ordered_pairs_all_classified": true,
-  "T2_identity_inverse_cocycle_exact_on_all_tests": true,
-  "T3_root_relation_transfer_exact_3540_of_3540": true,
-  "T4_domain_of_t_ij_contains_U_target_from_B5": true
- },
- "gates_passed": 4,
- "gates_total": 4,
- "n_atteste_pas": [
-  "rien n'est prouvé sur les sections : F1′ reste le seul contenu certifié de T2",
-  "la classification est combinatoire (μ distincts) ; aucune orbite sous permutation n'est revendiquée",
-  "l'inclusion t_ij(U_i ∩ U_j) ⊆ domaine cible n'est pas certifiée ici (atlas explicite = T1)"
- ],
- "issue": "exact_transitions_are_rescalings_cocycle_identity_biconditional_identity_T2_reduces_to_F1_and_F1prime",
- "self_tests": {
-  "N1_unnormalised_gauge_breaks_cocycle": true,
-  "N2_perturbed_root_relation_breaks_transfer": true
- },
- "self_tests_passed": 2,
- "self_tests_total": 2,
- "seconds": 1.51,
- "built_from_head": "4cce6736519eedfc53c1fa3631b8ef3b6330cff9",
- "self_sha256": "1c0dcd4402261257ce0cf1c336cc8527ae0151666341a53b6abaef853c24317f"
+  "issue": "exact_transitions_are_rescalings_cocycle_identity_biconditional_identity_T2_reduces_to_F1_and_F1prime",
+  "perturbation_tests": {
+    "N1_unnormalised_gauge_breaks_cocycle": true,
+    "N2_perturbed_root_relation_breaks_transfer": true
+  },
+  "perturbation_tests_passed": 2,
+  "perturbation_tests_total": 2,
+  "seconds": 1.51,
+  "built_from_head": "4cce6736519eedfc53c1fa3631b8ef3b6330cff9",
+  "self_sha256": "1c0dcd4402261257ce0cf1c336cc8527ae0151666341a53b6abaef853c24317f"
 }

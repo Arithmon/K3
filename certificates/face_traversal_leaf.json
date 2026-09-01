@@ -441,7 +441,7 @@
     "les faces basses (frontière d'énumération)",
     "les 895 autres paires"
   ],
-  "gates": {
+  "checks": {
     "B1a_upstream_green_full_modes": true,
     "B1b_geometry_2H_exact_negative_narrow": true,
     "B1c_section_on_widened_box_chart_revalidated": true,
@@ -451,8 +451,8 @@
     "B1g_single_line_mutation_breaks": true,
     "B1h_no_silent_filtering": true
   },
-  "gates_passed": 8,
-  "gates_total": 8,
+  "checks_passed": 8,
+  "checks_total": 8,
   "verdict": "B1 v2 LIVRÉ — première continuation analytique locale entre deux cellules canoniquement adressées : la feuille atteinte est la classe 0, identifiée PAR CONVERSION EXPLICITE (κ dérivé, candidates converties reconstruites, une seule ferme) ; aucune deck SUPPLÉMENTAIRE après conversion.",
   "provenance": {
     "git_head": "2450d038b21db3a795f2fe85b7f5d6cb5218c21e",

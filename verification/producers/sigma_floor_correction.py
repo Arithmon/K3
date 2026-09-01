@@ -5,7 +5,7 @@ WHAT U1 PUBLISHES. `sigma_floor_lo(S) = 2·σ_min(Ṽ_S)·m/(8|V_S|)`, then ρ p
 hence ρ_unif ∈ [9.60e-10, 2.44e-8]. The whole Newton contraction depends on 1/σ with σ ≤ s_min(M̃(w₀)).
 
 THE DEFECT. M̃(w) = 2 Ṽ_S diag(w) with w = z_S (the resolved coordinates). The CORRECT chain is
-    s_min(M̃(w₀)) ≥ 2·σ_min(Ṽ_S)·**min_i |z_{s_i}|**            [identity ‖ADx‖ ≥ σ_min(A)·min|d_i|·‖x‖, gated]
+    s_min(M̃(w₀)) ≥ 2·σ_min(Ṽ_S)·**min_i |z_{s_i}|**            [identity ‖ADx‖ ≥ σ_min(A)·min|d_i|·‖x‖, checked]
 whereas the pivot threshold bounds only the **PRODUCT**: |det M_S^alg| = 8|V_S|∏|z_{s_i}| > m ⇒ ∏|z_{s_i}| > m/(8|V_S|).
 U1 places the PRODUCT bound in the slot of the MINIMUM. The implication "∏ ≥ c ⇒ min ≥ c" is false as soon as one
 factor exceeds 1 — and the resolved coordinates do exceed 1 on the certified domains (B_s up to 3.4).
@@ -18,14 +18,14 @@ THE REPAIR. Replace the slot by the true lower bound on min_i|z_{s_i}|, the bett
 Result: **corrected ρ_unif ≈ 2.11e-12 instead of 9.60e-10, i.e. a factor of 455**. The theorem SURVIVES (uniform radius
 strictly positive, everything else unchanged); it is the CONSTANT that was optimistic, not the statement.
 
-SCOPE. U1 remains 8/8 on its other gates; T2 ("quantitative existence of a finite atlas with a guaranteed explicit
+SCOPE. U1 remains 8/8 on its other checks; T2 ("quantitative existence of a finite atlas with a guaranteed explicit
 radius") is NOT invalidated — only the value of the radius changes. This batch does not rewrite U1: it publishes the
-correction, and it is for the ledger to decide whether U1 is replayed. The paper cites the CORRECTED constant.
+correction, and it is for the sheet record to decide whether U1 is replayed. The paper cites the CORRECTED constant.
 Negative controls: N1, if |z_s| ≤ 1 is imposed (sector extended to the six coordinates), the substitution made by U1
-BECOMES valid (the corrected radius ceases to be a loss) — the gate does measure the right hypothesis; N2, chain
-reversed (min → product): the witness no longer makes the gate fail; N3, threshold m set to 0: both floors collapse
+BECOMES valid (the corrected radius ceases to be a loss) — the check does measure the right hypothesis; N2, chain
+reversed (min → product): the witness no longer makes the check fail; N3, threshold m set to 0: both floors collapse
 to 0 and the comparison loses its meaning.
-Does not attest: that the other gates of U1 are affected (they are not); that the witness is the worst case (search
+Does not attest: that the other checks of U1 are affected (they are not); that the witness is the worst case (search
 over a deterministic rational grid, not an optimisation); the sharpness of the corrected constant (Frobenius/det
 bounds, deliberately loose); anything about the other parts of the wider project.
 """
@@ -193,7 +193,7 @@ def build(mutate=None):
                         "verdict": "the THEOREM survives (uniform radius strictly positive); it is the CONSTANT that was optimistic"},
            "D_scope": {"upstream_repaired_since": bool(upstream_repaired), "u1_other_gates": "not affected", "t2_closeout": "NOT invalidated — \"quantitative existence with a guaranteed explicit radius\" holds; only the value changes",
                        "action_left_to_the_ledger": "this certificate does not replay U1; the paper cites the corrected constant"},
-           "does_not_attest": ["that the other gates of U1 are affected", "that the witness is the worst case (deterministic grid, not an optimisation)",
+           "does_not_attest": ["that the other checks of U1 are affected", "that the witness is the worst case (deterministic grid, not an optimisation)",
                              "the sharpness of the corrected constant (Frobenius/det bounds deliberately loose)", "anything about the other parts of the wider project"]}
     g = {"Q1_reproduces_U1_published_radius": bool(reproduces),
          "Q2_matrix_inequality_smin_AD_control": bool(ineq_ok),
@@ -201,8 +201,8 @@ def build(mutate=None):
          "Q4_corrected_radius_strictly_positive": rho_new[0] > 0,
          "Q5_correction_is_a_loss_not_a_gain": rho_new[0] < rho_old[0],
          "Q6_upstream_read": bool(u1)}
-    out["gates"] = {k: bool(v) for k, v in g.items()}
-    out["gates_passed"] = sum(bool(v) for v in g.values()); out["gates_total"] = len(g)
+    out["checks"] = {k: bool(v) for k, v in g.items()}
+    out["checks_passed"] = sum(bool(v) for v in g.values()); out["checks_total"] = len(g)
     out["outcome"] = "u1_sigma_floor_defect_confirmed_with_witness_radius_corrected_9p6e10_to_2p1e12_theorem_survives" if all(g.values()) else "sigma_floor_correction_gates_red"
     out["seconds"] = round(time.time() - t0, 1)
     return out
@@ -220,9 +220,9 @@ def main():
           # from "the upstream floor was merely a little too high" -- and that
           # distinction is the entire subject of this certificate.
           "N2_inverting_the_chain_min_to_product_silences_the_witness":
-              not build(mutate={"chain_inverted"})["gates"]["Q3_explicit_witness_on_the_variety"],
-          "N3_m_zero_collapses_both_floors": not build(mutate={"m_zero"})["gates"]["Q3_explicit_witness_on_the_variety"]}
-    out["self_tests"] = st; out["self_tests_passed"] = sum(bool(v) for v in st.values()); out["self_tests_total"] = len(st)
+              not build(mutate={"chain_inverted"})["checks"]["Q3_explicit_witness_on_the_variety"],
+          "N3_m_zero_collapses_both_floors": not build(mutate={"m_zero"})["checks"]["Q3_explicit_witness_on_the_variety"]}
+    out["perturbation_tests"] = st; out["perturbation_tests_passed"] = sum(bool(v) for v in st.values()); out["perturbation_tests_total"] = len(st)
     try:
         import subprocess
         out["built_from_head"] = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
@@ -230,9 +230,9 @@ def main():
         out["built_from_head"] = None
     out["self_sha256"] = sha(HERE)
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"gates {out['gates_passed']}/{out['gates_total']} · self-tests {out['self_tests_passed']}/{out['self_tests_total']} · {out['seconds']} s")
-    for k, v in out["gates"].items(): print(f"  {'OK ' if v else 'RED'} {k}")
-    for k, v in out["self_tests"].items(): print(f"  {'OK ' if v else 'RED'} {k}")
+    print(f"checks {out['checks_passed']}/{out['checks_total']} · self-tests {out['perturbation_tests_passed']}/{out['perturbation_tests_total']} · {out['seconds']} s")
+    for k, v in out["checks"].items(): print(f"  {'OK ' if v else 'RED'} {k}")
+    for k, v in out["perturbation_tests"].items(): print(f"  {'OK ' if v else 'RED'} {k}")
     r = out["C_repair"]
     print(f"ρ published {r['rho_unif_published_by_U1']} → corrected {r['rho_unif_corrected']} (factor {r['loss_factor']})")
     print("witness:", json.dumps(out["B_defect"]["witness_on_the_variety"], ensure_ascii=False)[:220])

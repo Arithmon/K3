@@ -33,7 +33,7 @@ WHAT THIS SCRIPT PAYS:
      SÉPARATION STRICTE des deux branches — marge > 0 sérialisée, refus
      si ambigu — puis figé ; `σ'` certifié par la composante ;
      compatibilité projective au même signe avec ses bornes ; AUCUN
-     échec filtré : le gate exige `n_ok == n_selectionnés == n_attendu`.
+     échec filtré : le check exige `n_ok == n_selectionnés == n_attendu`.
 
   C. STABILITY: the REAL positivity transport, by Weyl. With
      `C = Jᵀ Q_target conj(J)` et `D = Q_source − C`,
@@ -76,7 +76,7 @@ the appearance of verification):
           the constant coefficient alone is not the value at the centre;
   the directed-float amendment  λmin_lo et ‖D‖_F en arithmétique d'intervalle mpmath de bout
           en bout, conversion float DIRIGÉE à la sérialisation seule,
-          chaînes exactes publiées, gate d'HERMITICITÉ de C, slack
+          chaînes exactes publiées, check d'HERMITICITÉ de C, slack
           exact λ − ‖D‖ par tuile ;
   C  the ratio checked against delta is CERTIFIED: sup_entry(D) rounded up over
           q00_lo rounded down (the earlier max-endpoint denominator was a
@@ -142,7 +142,7 @@ ART = RES / ("k3_cap_b1e2iii_c127_transport_all.json" if MODE == "full"
 # (max_entry(Q) >= q00 >= q00_lo, so the quotient bounds the true ratio).
 DELTA_REL = 1e-5          # plafond du résidu relatif CERTIFIÉ
 N_RESIDUAL_ADJACENT = 3   # tiles adjacent to the residual in the pilot
-SCALING_LEVELS = 4        # h, h/2, h/4, h/8 à chart ET ledger figés
+SCALING_LEVELS = 4        # h, h/2, h/4, h/8 à chart ET sheet record figés
 # the autonomy probe : fenêtre pré-enregistrée du ratio de scaling — ordre observé
 # 5 ± 1 (2⁴ à 2⁶), déclarée AVANT le rerun, jamais ajustée dessus.
 SCALING_RATIO_WINDOW = (16.0, 64.0)
@@ -186,7 +186,7 @@ def provenance(src, t_wall):
 
 
 # ===========================================================================
-#  the address ledger step — le ledger dyadique AUTONOME
+#  the address sheet record step — le sheet record dyadique AUTONOME
 # ===========================================================================
 def address_of(root_c, root_h, c, h):
     """Adresse dyadique d'une feuille, reconstruite ARITHMÉTIQUEMENT en
@@ -379,7 +379,7 @@ def _conj_tmc(x):
 
 
 def hermitian_contains_zero(C):
-    """Gate d'hermiticité (the directed-float amendment) : `C[0][1] − conj(C[1][0]) ∋ 0` et
+    """Check d'hermiticité (the directed-float amendment) : `C[0][1] − conj(C[1][0]) ∋ 0` et
     the diagonal imaginary parts contain 0, without which
     `lambda_min(C)` lacks the spectral meaning Weyl requires."""
     off = C[0][1] + _conj_tmc(C[1][0]).mul_real(riv(-1.0))
@@ -622,7 +622,7 @@ def build():
     log(f"cover chargé : {len(tiles)} tuiles, {len(residual)} boîtes "
         f"résiduelles · cellule S={list(S)} g={g} eps={list(eps)}")
 
-    # --- the address ledger step : le ledger dyadique autonome --------------------------------
+    # --- the address sheet record step : le sheet record dyadique autonome --------------------------------
     leaves = [(t, "tile") for t in tiles] + [(r, "residual")
                                              for r in residual]
     addresses, addr_fail, leaf_addr = [], 0, []
@@ -643,7 +643,7 @@ def build():
     fr = frontier_fractions(addresses)
     residual_final = sum(Fraction(1, 16 ** r["depth"])
                          for r in residual)
-    log(f"the address ledger step : {len(addresses)}/{len(leaves)} adresses exactes, "
+    log(f"the address sheet record step : {len(addresses)}/{len(leaves)} adresses exactes, "
         f"prefix-free={tg['prefix_free']}, clos={tg['tree_closed']}, "
         f"Kraft={tg['kraft_sum'][0]}/{tg['kraft_sum'][1]} · frontière "
         f"{[x['fraction_float'] for x in fr]}")
@@ -680,7 +680,7 @@ def build():
         probe_jobs.append((i, tiles[i], "autonomy",
                            {"eps_target": r0["eps_target"],
                             "sigma_target": r0["sigma_target"]}))
-    # scaling à chart ET ledger figés (the autonomy probe) : une tuile par chart
+    # scaling à chart ET sheet record figés (the autonomy probe) : une tuile par chart
     # distinct du cover (3), niveaux h/2 … h/2^(SCALING_LEVELS−1)
     seen_ch, scale_base = set(), []
     for i in probe_idx:
@@ -725,7 +725,7 @@ def build():
         ratios = [seq[k] / seq[k + 1] if seq[k + 1] else None
                   for k in range(len(seq) - 1)]
         dec = all(seq[k + 1] < seq[k] for k in range(len(seq) - 1))
-        # the autonomy probe : fenêtre pré-enregistrée + ledger analytique FIGÉ —
+        # the autonomy probe : fenêtre pré-enregistrée + sheet record analytique FIGÉ —
         # a determination that changed when reducing h would invalidate the
         # mesure (on comparerait deux branches, pas deux restes)
         in_window = all(r is not None
@@ -743,16 +743,16 @@ def build():
             "ratios": ratios,
             "ratio_window_preregistered": list(SCALING_RATIO_WINDOW),
             "ratios_in_window": bool(in_window),
-            "ledger_frozen_across_levels": bool(frozen),
+            "sheet_record_frozen_across_levels": bool(frozen),
             "strictly_decreasing": bool(dec)})
     log(f"probes : mutation casse {sum(mut_break)}/{len(mut_break)} · "
         f"autonomie {sum(auto_ok)}/{len(auto_ok)} · scaling "
         f"{sum(scale_ok)}/{len(scale_ok)}")
 
-    # --- Gates pré-enregistrés ------------------------------------------------
+    # --- Checks pré-enregistrés ------------------------------------------------
     max_rel = max((r["residual_relative"] for r in ok), default=None)
     eps_margins_all = [m for r in ok for m in (r["eps_margins"] or [])]
-    gates = {
+    checks = {
         "G1_dyadic_tree_autonomous": bool(
             addr_fail == 0 and tg["unique"] and tg["prefix_free"]
             and tg["tree_closed"] and tg["kraft_is_one"]),
@@ -790,7 +790,7 @@ def build():
             and set(sel_pilot) <= set(selected)
             and len(strat["strata"]) == strat["n_strata"])}
 
-    n_pass = sum(1 for v in gates.values() if v)
+    n_pass = sum(1 for v in checks.values() if v)
     wall_tiles = [r["wall_s"] for r in ok]
     verdict = (
         "Transport (%s) over the dyadic cover, under the hardened "
@@ -859,19 +859,19 @@ def build():
                              "contrat exact de l'identité (E3 reste "
                              "« congruence approchée certifiée »)",
                              "globalisation", "the later scaling"],
-           "verdict": verdict, "gates": gates,
-           "gates_passed": n_pass, "gates_total": len(gates),
+           "verdict": verdict, "checks": checks,
+           "checks_passed": n_pass, "checks_total": len(checks),
            "provenance": provenance([COVER_JSON], time.time() - T0)}
     ART.parent.mkdir(parents=True, exist_ok=True)
     ART.write_text(json.dumps(art, indent=2, ensure_ascii=False),
                    encoding="utf-8")
     print("-" * 78)
-    for k, v in gates.items():
+    for k, v in checks.items():
         print(f"  {'PASS' if v else 'FAIL'}  {k}")
     print("-" * 78)
     print(verdict)
     print(f"→ {ART}")
-    return 0 if all(gates.values()) else 1
+    return 0 if all(checks.values()) else 1
 
 
 # ===========================================================================

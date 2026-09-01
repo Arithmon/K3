@@ -23,7 +23,7 @@ de redériver (reco R2, friction_report_2026-07-15).
  2. Potentiel : K̃(Z) = log(Z†MZ) + Σ_e c_e φ_e(Z)/s^{d_e},
     s = |Z|², M = LL† hermitienne. Invariance projective : Z → λ(w)·Z
     (λ holomorphe sans zéro) ajoute log|λ|² pluriharmonique ⟹ G inchangé
-    (testé : gate G5, transition de charts).
+    (testé : check G5, transition de charts).
  3. Gradient holomorphe : p_I = Wᵀ·∇z^I — SANS conjugaison
     (the former W-dagger convention is the root cause of the Ritz wall).
  4. d_alpha s = zW_alpha = sum_a conj(Z_a).W[a,alpha]  (s is not holomorphic: a real term).

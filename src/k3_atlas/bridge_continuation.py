@@ -89,7 +89,7 @@ the scoping note: the conjugate neighbour is a legitimate atlas, but it
 is NOT the one that analytic continuation reaches. The `theta` pattern
 is PREDICTED from the regime alone, and the prediction is verified on
 64 of 64: the surprise becomes a falsifiable result instead of staying a
-échec de gate.
+échec de check.
 
 EXACTNESS. The separation `sep_phase` is POINTWISE over the whole
 overlap (it bears on correlated enclosures after recentring):
@@ -127,7 +127,7 @@ GATES
        interior (Im < 0 and Im > 0), never on the face;
   F2d(bis) THE BRIDGE RECORD IS DERIVED: it is measured against the
        LOWER side (the established atlas, anchor of truth), then the section is
-       RECONSTRUITE et RE-VÉRIFIÉE. Défauter le ledger reviendrait à
+       RECONSTRUITE et RE-VÉRIFIÉE. Défauter le sheet record reviendrait à
        appeler « raccord » un choix de feuille par défaut ;
   F3b  the bridge glues EXACTLY to the lower side: `theta = +1` on
        TOUTES les lignes, par recentrage ANISOTROPE exact + séparation
@@ -574,9 +574,9 @@ def sep_at_point(a, b):
 _G = {}
 
 
-def _init(cell, leaves, halos, bridges, ledgers=None):
+def _init(cell, leaves, halos, bridges, sheet_records=None):
     _G.update(cell=cell, leaves=leaves, halos=halos, bridges=bridges,
-              ledgers=ledgers or {})
+              sheet_records=sheet_records or {})
 
 
 def _bridge_job(i):
@@ -670,7 +670,7 @@ def _bridge_job(i):
         out["refused"] = th0["refused"]
         return out
     if any(th0[k].get("theta") is None for k in S):
-        out["refused"] = "ledger_derivation_ambiguous"
+        out["refused"] = "sheet_record_derivation_ambiguous"
         out["F2d_ledger_probe"] = {str(k): th0[k].get("theta") for k in S}
         return out
     eps_bridge = tuple(int(th0[list(S)[r]]["theta"]) * int(eps[r])
@@ -848,7 +848,7 @@ def _bb_job(arg):
     if W is None:
         rec["refused"] = "overlap_not_open"
         return rec
-    ei, ej = _G["ledgers"][i], _G["ledgers"][j]
+    ei, ej = _G["sheet records"][i], _G["sheet records"][j]
     ci, hi_ = center_hw(Wi)
     cj, hj_ = center_hw(Wj)
     Zi, _di, ri = build_section_bilateral(
@@ -1014,8 +1014,8 @@ def build():
             ("c127d_atlas", atl, True),
             ("c129f_bridge_scout", scout, False),
             ("c129f_f1_mirror_ledger", f1, False)):
-        gp, gt = blob.get("gates_passed"), blob.get("gates_total")
-        up[name] = {"gates": f"{gp}/{gt}", "green": bool(gp == gt and gt),
+        gp, gt = blob.get("checks_passed"), blob.get("checks_total")
+        up[name] = {"checks": f"{gp}/{gt}", "green": bool(gp == gt and gt),
                     "mode": blob.get("mode")}
         if need_full:
             up[name]["full"] = bool(blob.get("mode") == "full")
@@ -1028,14 +1028,14 @@ def build():
         except OSError:
             up[name] = {"green": False, "missing": True}
             continue
-        gp, gt = b.get("gates_passed"), b.get("gates_total")
-        up[name] = {"gates": f"{gp}/{gt}",
+        gp, gt = b.get("checks_passed"), b.get("checks_total")
+        up[name] = {"checks": f"{gp}/{gt}",
                     "green": bool(gp == gt and gt),
                     "mode": b.get("mode")}
     upstream_ok = all(v.get("green") and v.get("full", True)
                       for v in up.values())
     log(f"R4c : chaîne amont — " + " ; ".join(
-        f"{k} {v.get('gates', '?')}" for k, v in up.items())
+        f"{k} {v.get('checks', '?')}" for k, v in up.items())
         + f" ⟹ {upstream_ok}")
 
     # --- F2a : la géométrie, RE-DÉRIVÉE puis confrontée au preliminary computation ------
@@ -1115,11 +1115,11 @@ def build():
                     diff_max = max(diff_max, v["diff_sup"])
             w = min(d["widths"])
             wid_min = w if wid_min is None else min(wid_min, w)
-    ledger_census = Counter(tuple(r["F2d_ledger_derived"]) for r in rows)
+    sheet_record_census = Counter(tuple(r["F2d_ledger_derived"]) for r in rows)
     log(f"F3a : overlaps ouverts (largeur min {wid_min:.3e}) + ancres "
         f"strictement intérieures HORS de la face : {f3a}")
     log(f"F2d(bis) : ledger du pont DÉRIVÉ du côté inférieur — "
-        f"{dict(ledger_census)} (défaut {list(eps)})")
+        f"{dict(sheet_record_census)} (défaut {list(eps)})")
     log(f"F3b⁻ : le pont se recolle EXACTEMENT au côté inférieur, θ = +1 "
         f"on every row: {f3b_lo}; minimum margin {marg_min:.3e}; "
         f"sup de la différence recentrée {diff_max:.3e}")
@@ -1133,7 +1133,7 @@ def build():
     # had explicitly FAILED, and bridge-to-bridge edges without any
     # computed transition, then enumerated triples from that graph.
     # A NERVE edge is a CERTIFIED transition. Nothing else.
-    _G["ledgers"] = {r["tile"]: tuple(r["F2d_ledger_derived"])
+    _G["sheet records"] = {r["tile"]: tuple(r["F2d_ledger_derived"])
                      for r in rows}
     bb_geo = [(a, b) for a, b in itertools.combinations(clipped, 2)
               if inter(bridges[a], bridges[b]) is not None]
@@ -1141,7 +1141,7 @@ def build():
         f"transitions en cours de certification…")
     with mpctx.Pool(N_WORKERS, initializer=_init,
                     initargs=((S, g, eps), leaves, halos, bridges,
-                              _G["ledgers"])) as pool:
+                              _G["sheet records"])) as pool:
         bb = pool.map(_bb_job, bb_geo)
     bb_ok = [x for x in bb if x.get("certified")]
     bb_bad = [x for x in bb if not x.get("certified")]
@@ -1272,7 +1272,7 @@ def build():
         f"CONTINUED) on {n_bu_cont}/{len(rows)}: {r2}, and NOT to "
         f"Z_conj alone ({conj_fail}), which stays a diagnostic")
 
-    gates = {
+    checks = {
         "F2a_bridge_geometry_2H_matches_scout": bool(f2a),
         "F2b_bridge_contains_both_cores": bool(f2b),
         "F2c_regime_assigned_without_trial": bool(f2c),
@@ -1291,7 +1291,7 @@ def build():
         "F3d_non_scalar_mutation_breaks_gluing": bool(f3d),
         "R1e_wrong_deck_sign_breaks_identity": bool(r1e),
         "R4_upstream_chain_verified": bool(upstream_ok)}
-    npass = sum(1 for v in gates.values() if v)
+    npass = sum(1 for v in checks.values() if v)
 
     try:
         head = subprocess.run(
@@ -1340,7 +1340,7 @@ def build():
         "upper_theta_pattern_census": {str(k): v
                                        for k, v in pat_census.items()},
         "bridge_ledger_census": {str(k): v
-                                 for k, v in ledger_census.items()},
+                                 for k, v in sheet_record_census.items()},
         "real_structure_finding": (
             "ON THE CORNER, THE ANTIHOLOMORPHIC INVOLUTION ACTS WITH "
             "MIXED SIGNS. R is REAL there: positive on the principal "
@@ -1448,7 +1448,7 @@ def build():
             "gluing across the real faces, where the bridges stay "
             "cartes RELATIVES (marge 0 contre la face de la cellule)",
             "les voisines de codimension 1, les 895 autres paires, the later scaling"],
-        "gates": gates, "gates_passed": npass, "gates_total": len(gates),
+        "checks": checks, "checks_passed": npass, "checks_total": len(checks),
         "verdict": (
             "F2 + F3 + R1-R4 LIVRÉS — 64 ponts bilatéraux, recollés "
             "EXACTEMENT au côté inférieur (64) ET à la feuille "
@@ -1456,8 +1456,8 @@ def build():
             "certifiées, nerf de 380 nœuds connexe sur arêtes "
             "certified ONLY. D = diag(+,-,+,+,+,-) is the "
             "deck transformation separating the conjugate from the continued sheet."
-            if npass == len(gates) else
-            f"ROUGE — {len(gates) - npass} gate(s) en échec"),
+            if npass == len(checks) else
+            f"ROUGE — {len(checks) - npass} gate(s) en échec"),
         "provenance": {
             "git_head": head, "python": sys.version.split()[0],
             "platform": platform.platform(), "mp_prec": int(mp.prec),
@@ -1473,12 +1473,12 @@ def build():
     ART.write_text(json.dumps(out, indent=2, ensure_ascii=False),
                    encoding="utf-8")
     print("=" * 78)
-    for k, v in gates.items():
+    for k, v in checks.items():
         print(f"  {'OK  ' if v else 'FAIL'} {k}")
     print(f"\n{out['verdict']}")
-    print(f"gates {npass}/{len(gates)} — artefact : {ART.name}")
+    print(f"gates {npass}/{len(checks)} — artefact : {ART.name}")
     print("=" * 78)
-    return npass == len(gates)
+    return npass == len(checks)
 
 
 if __name__ == "__main__":

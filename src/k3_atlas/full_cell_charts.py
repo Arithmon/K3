@@ -24,9 +24,9 @@ for both, one gets `2 Z_s dZ_s = dR_s`, hence
     ∂Z_s/∂u = ∂_u R_s / (2 Z_s) = a₁·u / Z_s
 
 identical to the principal case: the pilot formula carries over
-verbatim, et c'est vérifié (gate D3).
+verbatim, et c'est vérifié (check D3).
 
-Gates pré-enregistrés :
+Checks pré-enregistrés :
     D1 COMPLETE SECTION: the six ambient coordinates are built
           on the WHOLE box, with the determination used per row
      SÉRIALISÉE (principale / tournée + σ)
@@ -356,7 +356,7 @@ def build():
         f"{gneg['gauge_absmin']} → refusé "
         f"{gauge_neg['discriminating']}")
 
-    gates = {
+    checks = {
         "D1_section_complete_on_full_box": bool(cells) and all(
             c["section_complete"] for c in cells),
         "D2_domain_certified_on_full_box": bool(cells) and all(
@@ -373,8 +373,8 @@ def build():
             (x["gauge_absmin"] > 0 and x["u_absmax"] <= 1
              and x["v_absmax"] <= 1 and x["detJ_nonzero"])
             for c in cells for x in c["charts"] if x.get("admissible"))}
-    n_pass = sum(1 for v in gates.values() if v)
-    log(f"gates : {n_pass}/{len(gates)} " + str(gates))
+    n_pass = sum(1 for v in checks.values() if v)
+    log(f"checks : {n_pass}/{len(checks)} " + str(checks))
 
     tot = Counter()
     for c in cells:
@@ -417,7 +417,7 @@ def build():
         "transport stay UNTESTED**; the success of the checks above "
         "does not prejudge them. Result established on %d cells, not on a "
         "cover. Aucun chiffre d'atlas ne bouge." % (
-            n_pass, len(gates),
+            n_pass, len(checks),
             sum(1 for c in cells if c["section_complete"]), len(cells),
             "/".join(aggregate["determinations_used"]),
             tot["charts"], tot["reachable"], tot["admissible"],
@@ -440,7 +440,7 @@ def build():
         "not_tested": ["congruence congruence", "positivity transport transport de PD",
                        "cover multi-chart"],
         "aggregate": aggregate,
-        "gates_prereg": gates,
+        "checks_prereg": checks,
         "verdict": verdict}
     ART.write_text(json.dumps(out, indent=2, ensure_ascii=False,
                               default=float), encoding="utf-8")

@@ -1,14 +1,13 @@
 {
  "artifact": "k3_cap_f1prime_u1_open_chart_theorem_certificate",
- "lot": "F1PRIME-U1_OPEN_CHART_THEOREM_CERTIFICATE (NEXT-0, 3ᵉ revue) — theorem-grade, sans atlas, sans flottant load-bearing",
+ "subject": "OPEN CHART THEOREM CERTIFICATE (U1) — theorem-grade, no atlas enumerated, no load-bearing floating-point value",
  "kind": "theorem_certificate_read_only",
  "no_measurement_performed": true,
  "nothing_is_rewritten": true,
  "upstream": {
   "d3_coverage_legacy": "bbfd61db610fd6822b699b6b2d28264a1ddf6541633b55a1a43084ec37cd74fa",
   "f1prime_u0": "d10ef04da335f07da136b5e000a5cbb7a7142df61550d93ec0dbb59e6013aeb3",
-  "review": "55c166a871c9a02c0390c19878d0be74de1b7f59a511a32ea2ed7d1889d42218",
-  "interval_kernel_mu": "b6da94fd4bae532249ce6c0886c285c70727e7ebdb6e3cfdb74f5792fd4fe4d8"
+  "interval_kernel_mu": "df2845c64e8b1ab379880e01986d842a3daef5a6e89b91a2d9fe8dd413a419a0"
  },
  "mu": [
   1,
@@ -30,7 +29,7 @@
  ],
  "U1A_domains_typed": {
   "U_S": {
-   "def": "{Z ∈ K : q_S(Z) = |det M_S(Z)|/‖Z‖³ > m}  (invariant projectif : |det| est homogène de degré 3, donc le seuil se pose sur le représentant normalisé)",
+   "def": "{Z ∈ K : q_S(Z) = |det M_S(Z)|/‖Z‖³ > m}  (projectively invariant: |det| is homogeneous of degree 3, so the threshold is set on the normalised representative)",
    "role": "pivot_open",
    "open": true,
    "m": "4",
@@ -40,7 +39,7 @@
    "def": "{Z ∈ U_S : |z_g| = max_{t∈T} |z_t|}",
    "role": "selector_only",
    "open": false,
-   "note": "secteur FERMÉ de sélection des centres — jamais un ouvert d'atlas ; garantit |u|,|v| ≤ 1 au centre"
+   "note": "CLOSED sector used to select the centres — never an open set of the atlas; it guarantees |u|,|v| ≤ 1 at the centre"
   },
   "A_g": {
    "def": "{z_g ≠ 0}",
@@ -52,14 +51,14 @@
    "role": "local_chart_open",
    "open": true,
    "sections_are_local": true,
-   "note": "un chart LOCAL par centre Z0 ∈ C_{S,g} ; la section s_{Z0,S,g} est locale (une feuille), pas une section globale du type"
+   "note": "one LOCAL chart per centre Z0 ∈ C_{S,g}; the section s_{Z0,S,g} is local (a single sheet), not a global section of the type"
   },
   "n_chart_types": 60,
-  "n_charts": "fini par compacité, NON énuméré"
+  "n_charts": "finite by compactness, NOT enumerated"
  },
  "U1B_proof": {
   "self_contained": true,
-  "where": "docstring PROOF de ce script (E1–E3, contraction de Newton simplifié, unicité par le point milieu — exacte pour des quadriques —, holomorphie par convergence uniforme des itérés polynomiaux)",
+  "where": "the PROOF section of this script's docstring (E1–E3, simplified Newton contraction, uniqueness through the midpoint — exact for quadrics — and holomorphy through uniform convergence of the polynomial iterates)",
   "external_citation_load_bearing": false,
   "gates_at_rho_uniform_lo_per_type": [
    {
@@ -1087,7 +1086,7 @@
   "all_contraction_uniqueness_ok": true
  },
  "U1C_constants_certified": {
-  "method": "Fraction exacte ; racines encadrées par isqrt à 10⁻⁴⁰ ; σ_max ≤ ‖·‖_F (borne sup) ; σ_min ≥ |det|/‖·‖_F² (borne inf) ; ρ ≥ −1 + sqrt_lo(1+x)",
+  "method": "exact Fraction arithmetic; square roots enclosed by isqrt to 10⁻⁴⁰; σ_max ≤ ‖·‖_F (upper bound); σ_min ≥ |det|/‖·‖_F² (lower bound); ρ ≥ −1 + sqrt_lo(1+x)",
   "triples_20": {
    "[0, 1, 2]": {
     "S": [
@@ -1102,7 +1101,7 @@
     "sigma_min_lo": "3011090610836323979962733314625487193697/4068200000000000000000000000000000000000000",
     "L_up": "3783193462183118951806449090170210562259/2500000000000000000000000000000000000000",
     "product_floor_lo": "1/4",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[0, 1, 3]": {
     "S": [
@@ -1117,7 +1116,7 @@
     "sigma_min_lo": "475435359605735365257273681256655872689/127100000000000000000000000000000000000000",
     "L_up": "8244265548761919507508986082112589647773/5000000000000000000000000000000000000000",
     "product_floor_lo": "1/24",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[0, 1, 4]": {
     "S": [
@@ -1132,7 +1131,7 @@
     "sigma_min_lo": "3702160587093840958970573747490353107121/521000000000000000000000000000000000000000",
     "L_up": "1891542793637839516490958318724971771259/1000000000000000000000000000000000000000",
     "product_floor_lo": "1/60",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[0, 1, 5]": {
     "S": [
@@ -1147,7 +1146,7 @@
     "sigma_min_lo": "84686923429771611936451874473841827325837/8562625000000000000000000000000000000000000",
     "L_up": "3471289708097803812250812006212944096257/1250000000000000000000000000000000000000",
     "product_floor_lo": "1/180",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[0, 2, 3]": {
     "S": [
@@ -1162,7 +1161,7 @@
     "sigma_min_lo": "120443624433452959198509332585019487751433/25129000000000000000000000000000000000000000",
     "L_up": "1051235485319664997020798921008600368399/625000000000000000000000000000000000000",
     "product_floor_lo": "1/32",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[0, 2, 4]": {
     "S": [
@@ -1177,7 +1176,7 @@
     "sigma_min_lo": "361330873300358877595527997755058463254299/32761000000000000000000000000000000000000000",
     "L_up": "9602426046769418726586498849767480990553/5000000000000000000000000000000000000000",
     "product_floor_lo": "1/96",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[0, 2, 5]": {
     "S": [
@@ -1192,7 +1191,7 @@
     "sigma_min_lo": "1204436244334529591985093325850194877524989/69481000000000000000000000000000000000000000",
     "L_up": "559365166280956733171353122451584317219/200000000000000000000000000000000000000",
     "product_floor_lo": "1/320",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[0, 3, 4]": {
     "S": [
@@ -1207,7 +1206,7 @@
     "sigma_min_lo": "361330873300358877595527997755058463254299/36569000000000000000000000000000000000000000",
     "L_up": "1014516088255667159029230876816854795857/500000000000000000000000000000000000000",
     "product_floor_lo": "1/96",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[0, 3, 5]": {
     "S": [
@@ -1222,7 +1221,7 @@
     "sigma_min_lo": "1806654366501794387977639988775292316285707/73289000000000000000000000000000000000000000",
     "L_up": "14362227251704687509684882954730853354357/5000000000000000000000000000000000000000",
     "product_floor_lo": "1/480",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[0, 4, 5]": {
     "S": [
@@ -1237,7 +1236,7 @@
     "sigma_min_lo": "95087071921147073051454736251331174541353/4259000000000000000000000000000000000000000",
     "L_up": "7545760576230655321802054053285372572703/2500000000000000000000000000000000000000",
     "product_floor_lo": "1/480",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[1, 2, 3]": {
     "S": [
@@ -1252,7 +1251,7 @@
     "sigma_min_lo": "475435359605735365257273681256655872689/270200000000000000000000000000000000000000",
     "L_up": "8499764073479500655863028305627557161403/5000000000000000000000000000000000000000",
     "product_floor_lo": "1/12",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[1, 2, 4]": {
     "S": [
@@ -1267,7 +1266,7 @@
     "sigma_min_lo": "150554530541816198998136665731274359688403/33301000000000000000000000000000000000000000",
     "L_up": "4840620527638765929719825749921076742617/2500000000000000000000000000000000000000",
     "product_floor_lo": "1/40",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[1, 2, 5]": {
     "S": [
@@ -1282,7 +1281,7 @@
     "sigma_min_lo": "21679852398021532655731679865303507795329/2800840000000000000000000000000000000000000",
     "L_up": "14038365669373409522085378810088006472239/5000000000000000000000000000000000000000",
     "product_floor_lo": "1/144",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[1, 3, 4]": {
     "S": [
@@ -1297,7 +1296,7 @@
     "sigma_min_lo": "225831795812724298497204998596911539534381/37109000000000000000000000000000000000000000",
     "L_up": "408791647115590688096030023996148103537/200000000000000000000000000000000000000",
     "product_floor_lo": "1/60",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[1, 3, 5]": {
     "S": [
@@ -1312,7 +1311,7 @@
     "sigma_min_lo": "609745848694355605942453496211661156746737/36914500000000000000000000000000000000000000",
     "L_up": "14415041242269278816067739186856867065529/5000000000000000000000000000000000000000",
     "product_floor_lo": "1/324",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[1, 4, 5]": {
     "S": [
@@ -1327,7 +1326,7 @@
     "sigma_min_lo": "84686923429771611936451874473841827325837/5091312500000000000000000000000000000000000",
     "L_up": "1892723950924890789721613946698332980759/625000000000000000000000000000000000000",
     "product_floor_lo": "1/360",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[2, 3, 4]": {
     "S": [
@@ -1342,7 +1341,7 @@
     "sigma_min_lo": "120443624433452959198509332585019487751433/38089000000000000000000000000000000000000000",
     "L_up": "2588464363759768666105133842380503301821/1250000000000000000000000000000000000000",
     "product_floor_lo": "1/32",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[2, 3, 5]": {
     "S": [
@@ -1357,7 +1356,7 @@
     "sigma_min_lo": "722661746600717755191055995510116926512151/74809000000000000000000000000000000000000000",
     "L_up": "1451039787517623314530733078834265710491/500000000000000000000000000000000000000",
     "product_floor_lo": "1/192",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[2, 4, 5]": {
     "S": [
@@ -1372,7 +1371,7 @@
     "sigma_min_lo": "5071310502461177229410919266737662642203/433900000000000000000000000000000000000000",
     "L_up": "761629971773526856068061424355234660011/250000000000000000000000000000000000000",
     "product_floor_lo": "1/256",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    },
    "[3, 4, 5]": {
     "S": [
@@ -1387,7 +1386,7 @@
     "sigma_min_lo": "361330873300358877595527997755058463254299/86249000000000000000000000000000000000000000",
     "L_up": "1558042967670595478863184746405779035789/500000000000000000000000000000000000000",
     "product_floor_lo": "1/96",
-    "note_rev2": "sigma_floor n'est PLUS ici : il dépend du type (S,g) via les radicandes — voir types_60.sigma_lo"
+    "note_rev2": "sigma_floor is NO LONGER stored here: it depends on the type (S,g) through the radicands — see types_60.sigma_lo"
    }
   },
   "types_60": [
@@ -2720,7 +2719,7 @@
    "Fraction"
   ]
  },
- "gates": {
+ "checks": {
   "G1_m_prereg_lt_4p8": true,
   "G2_sector_is_closed_selector_only": true,
   "G3_n_chart_types_60_and_sections_local": true,
@@ -2730,15 +2729,15 @@
   "G7_contraction_uniqueness_r_star_all_types": true,
   "G8_proof_self_contained_no_external_load_bearing": true
  },
- "gates_passed": 8,
- "gates_total": 8,
+ "checks_passed": 8,
+ "checks_total": 8,
  "outcome": "uniform_open_chart_theorem_certified",
- "n_atteste_pas": [
-  "aucun atlas énuméré, aucune section produite : le théorème est quantitatif-existentiel (rayon garanti par centre)",
-  "les bornes sont non-sharp par construction (Frobenius / det) — strictement positives et reproductibles, c'est tout ce qui est requis",
-  "K3 = K fixe ; rien sur T3 (famille) : les μ sont fixes ICI, l'uniformité en b n'est pas exportée"
+ "does_not_attest": [
+  "no atlas is enumerated and no section is produced: the theorem is quantitative-existential (a guaranteed radius at each centre)",
+  "the bounds are non-sharp by construction (Frobenius / determinant) — they are strictly positive and reproducible, which is all that is required here",
+  "K is the fixed surface; nothing is claimed about the family: the μ are fixed HERE, and uniformity in b is not exported"
  ],
- "self_tests": {
+ "perturbation_tests": {
   "N1_m_ge_4p8_reddens": true,
   "N2_sector_declared_open_reddens": true,
   "N3_n_types_ne_60_reddens": true,
@@ -2746,9 +2745,9 @@
   "N5_float_load_bearing_reddens": true,
   "N6_rho_x100_gives_h_gt_half_reddens": true
  },
- "self_tests_passed": 6,
- "self_tests_total": 6,
- "seconds": 0.14,
- "built_from_head": "50ac10d6113dc31d06120b9b5b17a23eab738c1e",
- "self_sha256": "3625f8d9eda67ec95906b2049b3e1b6d743dd4f29c46ce65e42f24d283b4f92b"
+ "perturbation_tests_passed": 6,
+ "perturbation_tests_total": 6,
+ "seconds": 0.07,
+ "built_from_head": "632474d3b3fe9c0e05903cb65c2034750bcc17ba",
+ "self_sha256": "dca8fc278338966b9915ddb146917a7fb6db95098eeec12b94a85601cdc05d98"
 }

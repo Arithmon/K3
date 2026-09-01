@@ -1,14 +1,14 @@
 {
  "artifact": "k3_cap_atlas_paper_smoothness_coverage_and_transitions",
- "lot": "papier atlas — lemme « ≥ 3 coordonnées non nulles » (lissité ET couverture), factorisation exacte du pivot, invariant projectif q_S de degré 3, involutions diagonales + discriminant du patch distingué, transitions explicites",
+ "subject": "atlas paper — lemma 'at least 3 nonzero coordinates' (smoothness AND coverage), exact factorisation of the pivot, projective invariant q_S of degree 3, diagonal involutions + discriminant of the distinguished patch, explicit transitions",
  "kind": "exact_algebra_sympy",
- "front": "papier atlas T2",
+ "front": "atlas paper",
  "no_measurement_performed": "exact algebra only",
  "nothing_is_rewritten": true,
  "upstream": {
-  "u1": "23ffc1df3b3d385c4c02e3adc3494a963439dc8116184861ca01febe4599f8a1",
+  "u1": "5e155bc7660d6985946a02d1406cafb9bc51366b951859e90f4407259477b952",
   "u1_outcome": "uniform_open_chart_theorem_certified",
-  "generators": "3a1eec4ec1fbc88d62e0d7148f066e4d9afa36bea05b9ec8584c15a41478018c",
+  "generators": "0cf754405c79e5c0cabf7ce6b66cbeb92b2afcf4844350e6754654c7de18965e",
   "d3_read_from_u1": {
    "tau": 0.6,
    "minor_floor": 4.8,
@@ -139,10 +139,10 @@
     "rank2": true
    }
   },
-  "statement": "au plus 2 coordonnées non nulles ⇒ W·(w_i,w_j)ᵀ = 0 avec W de rang 2 ⇒ toutes nulles : pas un point de P⁵",
-  "use_1_smoothness": "le triple à coordonnées non nulles a det M_S ≠ 0 ⇒ jacobienne de rang 3 ⇒ X lisse",
-  "use_2_coverage": "det M_S ≠ 0 ⟺ Z ∈ U_S ⇒ les ouverts de pivot COUVRENT X (couverture qualitative, exacte)",
-  "what_the_audit_adds": "le PLANCHER quantitatif (τ, m) seulement — pas la couverture"
+  "statement": "at most 2 nonzero coordinates ⇒ W·(w_i,w_j)ᵀ = 0 with W of rank 2 ⇒ all vanish: not a point of P⁵",
+  "use_1_smoothness": "the triple with nonzero coordinates has det M_S ≠ 0 ⇒ Jacobian of rank 3 ⇒ X smooth",
+  "use_2_coverage": "det M_S ≠ 0 ⟺ Z ∈ U_S ⇒ the pivot open sets COVER X (qualitative coverage, exact)",
+  "what_the_audit_adds": "the quantitative FLOOR (τ, m) only — not the coverage"
  },
  "B_pivot_factorisation": {
   "identity": "det M_S = 8 V_S z_{s1}z_{s2}z_{s3} / (c0 c1 c2)",
@@ -158,12 +158,12 @@
   "det_homogeneous_degree_3": true,
   "q_S": "q_S(Z) = |det M_S(Z)| / ||Z||^3",
   "scale_invariant": true,
-  "reading": "le rayon certifie se lit sur un invariant projectif ; le secteur |z_g| = max|z_t| est un SELECTEUR de representant, pas un ouvert de recouvrement"
+  "reading": "the certified radius is read off a projective invariant; the sector |z_g| = max|z_t| is a SELECTOR of a representative, not an open set of the cover"
  },
  "D_involutions_and_branch": {
   "diagonal_sign_involutions_preserve_all_F_k": true,
   "group_order_mod_projective_scalar": 32,
-  "generators": "sigma_1..sigma_5 (sigma_0 = -sigma_1...sigma_5 dans P^5)",
+  "generators": "sigma_1..sigma_5 (sigma_0 = -sigma_1...sigma_5 in P^5)",
   "patch": {
    "S": [
     3,
@@ -217,7 +217,7 @@
    "rows_that_change": 1,
    "coordinate_form": "z_{s'} = eps_{s'} sqrt((P w_S)_{s'})"
   },
-  "gauge_change": "(S,g) -> (S,g') : rescaling projectif par z_g/z_{g'}"
+  "gauge_change": "(S,g) -> (S,g') : projective rescaling by z_g/z_{g'}"
  },
  "F_product_to_factors": {
   "pivot_threshold_m": "4",
@@ -232,22 +232,22 @@
    "gauge": 0,
    "coordinate": 5
   },
-  "reading": "séparation des feuilles UNIFORME sur les domaines certifiés : deux ledgers différant en slot s sont distants d'au moins 2× cette borne"
+  "reading": "separation of the sheets is UNIFORM on the certified domains: two sheet records differing in slot s lie at distance at least 2x this bound"
  },
  "G_grassmannian": {
   "pivots_are_plucker_coordinates_of_rowspace_dF": true,
-  "statement": "dF = 2 V diag(z) est 3×6 ; son espace de lignes est un point de Gr(3,6) et son mineur S vaut det M_S^alg",
-  "chart_reading": "les 20 triples = cartes de coordonnées standard de Gr(3,6) tirées en arrière ; swap élémentaire = changement de carte standard",
-  "nerve_caveat": "J(6,3) est le graphe d'adjacence des changements de carte ÉLÉMENTAIRES, pas le nerf du recouvrement (les cartes standard de Gr(3,6) se rencontrent toutes)"
+  "statement": "dF = 2 V diag(z) is 3x6; its row space is a point of Gr(3,6) and its minor S equals det M_S^alg",
+  "chart_reading": "the 20 triples = standard coordinate charts of Gr(3,6) pulled back; elementary swap = standard change of chart",
+  "nerve_caveat": "J(6,3) is the adjacency graph of the ELEMENTARY changes of chart, not the nerve of the cover (the standard charts of Gr(3,6) all meet)"
  },
- "n_atteste_pas": [
-  "le plancher quantitatif de couverture (tau = 0,6, m = 4,8 — certificat amont relu par U1)",
-  "le rayon certifie (U1)",
-  "la geometrie des ponts",
-  "rien de metrique",
-  "rien sur T1/P4'/L4"
+ "does_not_attest": [
+  "the quantitative coverage floor (tau = 0.6, m = 4.8 — upstream certificate read by U1)",
+  "the certified radius (U1)",
+  "the geometry of the bridges",
+  "nothing metric",
+  "nothing about the other fronts"
  ],
- "gates": {
+ "checks": {
   "Q1_all_pairs_rank2_three_nonzero_lemma": true,
   "Q2_pivot_factorisation_exact_all_20_triples": true,
   "Q3_det_homogeneous_degree_3_and_q_invariant": true,
@@ -258,19 +258,19 @@
   "Q8_product_to_factors_positive_uniform_bound": true,
   "Q9_pivots_are_plucker_coordinates_of_dF": true
  },
- "gates_passed": 9,
- "gates_total": 9,
+ "checks_passed": 9,
+ "checks_total": 9,
  "outcome": "atlas_paper_three_nonzero_lemma_carries_smoothness_and_coverage_pivot_degree3_invariant_transitions_explicit",
- "seconds": 0.4,
- "self_tests": {
+ "seconds": 0.2,
+ "perturbation_tests": {
   "N1_mu_repeat_breaks_three_nonzero_lemma": true,
   "N2_bad_factor_reddens_pivot_identity": true,
   "N3_degree_2_reddens_projective_invariance": true
  },
- "self_tests_passed": 3,
- "self_tests_total": 3,
- "built_from_head": "50ac10d6113dc31d06120b9b5b17a23eab738c1e",
- "self_sha256": "88a732504bb1c15958a2d456d80f8c0b065aa76590b9c8e93b49106c076aaf1f",
+ "perturbation_tests_passed": 3,
+ "perturbation_tests_total": 3,
+ "built_from_head": "632474d3b3fe9c0e05903cb65c2034750bcc17ba",
+ "self_sha256": "33ac389383188f9ccd02ced57e31a6e9562ad03c1b99e01dd4abfb3b67e38d53",
  "provenance": {
   "sympy_version": "1.14.0"
  }

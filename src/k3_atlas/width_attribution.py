@@ -60,7 +60,7 @@ the tool that will reduce it:
           measured anchors (the equation in the direct-probe note gave 8.7e11
      cellules/3e5 ans, pas 9e14/3e8 — corrigé, mur intact).
 
-Self-test (gates DISCRIMINANTS, négatifs inclus) :
+Self-test (checks DISCRIMINANTS, négatifs inclus) :
   T1 enclose_decompose ≡ taylor2_enclose kernel (bornes bit-identiques)
   T2 additivité des largeurs : w_t2 = w_val + w_lin + w_quad (exact)
   T3 congruence R₀ = I ≡ brut (bornes bit-identiques, 4 comp + det)
@@ -497,7 +497,7 @@ def build():
     mids = [sum(iv_bounds(q0_c[c].val)) / 2 for c in range(4)]
     rel_h0 = max(abs(m - r) / max(abs(r), 1e-30)
                  for m, r in zip(mids, ref))
-    log(f"A0 : dégénéré h=0 sous M_H — rel {rel_h0:.2e} (gate < 5e-12)")
+    log(f"A0 : dégénéré h=0 sous M_H — rel {rel_h0:.2e} (check < 5e-12)")
 
     # --- W : témoin négatif sous M_H, brut + congruent ------------------------------
     bw = probe["b_r_sampled"]["argmin"]
@@ -680,9 +680,9 @@ def build():
     cov = coverage_table(tiling, probe)
     err = atlas_erratum(direct)
 
-    # --- gates (dérivés des comptes — GPT A0.3) -------------------------------------
+    # --- checks (dérivés des comptes — GPT A0.3) -------------------------------------
     all_cells = [r for a in a1 for r in a["records"]]
-    gates = {
+    checks = {
         "G0_MH_bit_hermitian": bit_herm,
         "G1_h0_degenerate_vs_float_MH": bool(rel_h0 < 5e-12),
         "G2_negative_raw_certified": bool(neg["raw_certified_nonPD"]),
@@ -704,11 +704,11 @@ def build():
             and cov["counts"]["sampled_C39"] == 26
             and len(cov["ambiguous_no_points_named"])
             + len(cov["owner_no_points_named"]) + 17 == 34)}
-    n_pass = sum(1 for v in gates.values() if v)
-    log(f"gates exécutés : {n_pass}/{len(gates)} PASS")
+    n_pass = sum(1 for v in checks.values() if v)
+    log(f"checks exécutés : {n_pass}/{len(checks)} PASS")
 
     verdict = (
-        "P0a2-A EXÉCUTÉ (gates exécutés %d/%d PASS) : attribution de la "
+        "P0a2-A EXÉCUTÉ (checks exécutés %d/%d PASS) : attribution de la "
         "largeur mesurée AVANT décision T4 (contrat GPT A0-A4). C42 : "
         "M_H canonisé (sha %s…), dégénéré h=0 rejoué (rel %.1e). "
         "Témoin t_bad certifié non-PD brut ET sous congruence. Boîte B "
@@ -716,7 +716,7 @@ def build():
         "%.3f / quad réel centre %.3f / EXCÈS d'enclosure Hessienne "
         "%.3f. Float > 0 là où l'enclosure échoue : %s. Congruence "
         "fixe R₀ (Gρ) : h_pass %s vs raw %s. Route A4 : %s" % (
-            n_pass, len(gates), sha_MH[:12], rel_h0,
+            n_pass, len(checks), sha_MH[:12], rel_h0,
             shares["lin_real"] if shares else float("nan"),
             shares["quad_real_center"] if shares else float("nan"),
             shares["hess_enclosure_excess"] if shares else float("nan"),
@@ -739,7 +739,7 @@ def build():
         "a4_decision": a4,
         "coverage_table_gpt6": cov,
         "atlas_erratum_kimi_v3": err,
-        "gates_executed": gates,
+        "checks_executed": checks,
         "verdict": verdict}
 
     art = RES / "k3_cap_b1e2iii_p0a2_attrib.json"

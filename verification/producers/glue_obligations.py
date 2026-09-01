@@ -39,22 +39,22 @@ matrix of exponents, the variety imposes V_full·w = 0.
 
 (D) THE SEVEN GLUING OBLIGATIONS (§4.3), CLASSIFIED. X_atlas = (⊔_α U_α)/∼, with Φ : X_atlas → X ⊂ P⁵ tautological
     chart by chart.
-    O1 ∼ is an equivalence relation     ← exact cocycle (A) + P_{SS} = I + inverses [EXACT ALGEBRA, gated here]
+    O1 ∼ is an equivalence relation     ← exact cocycle (A) + P_{SS} = I + inverses [EXACT ALGEBRA, checked here]
     O2 Φ is well defined                ← each chart lands in X (the sections solve F₀ = F₁ = F₂ = 0) [ALGEBRA]
     O3 Φ is a local biholomorphism      ← Prop. 3.1 (certified radius ρ_unif) [CERTIFICATE U1]
     O4 Φ is surjective                  ← the pivot open sets cover X (τ = 0.6) [COVERING CERTIFICATE]
     O5 Φ is injective                   ← ∼ captures ALL coincidences: two chart points with the same projective image
-                                           are related by a transition — this is the role of the sheet ledger (exactly
+                                           are related by a transition — this is the role of the sheet sheet record (exactly
                                            one sheet per point: 8 exhaustive sheets) [ALGEBRA + LEDGER]
     O6 X_atlas is Hausdorff             ← UNIFORM separation of the sheets over the overlaps (certified margin ≥ 1.043):
                                            two points that are not identified stay at distance ≥ the margin
                                            [SEPARATION CERTIFICATE]
     O7 X_atlas is second countable      ← the atlas is FINITE by compactness [TOPOLOGY + finiteness]
     Distribution derived here: 3 obligations of exact algebra, 3 of certificate, 1 topological — and the TWO genuinely
-    topological obligations of the abstract gluing (O5, O6) consume precisely the certified data (ledger, separation).
-Negative controls: N1 repeated μ = (1,1,3,5,7,11) ⇒ V_S = 0 for S ⊇ {0,1} ⇒ the transitions cease to exist (gate Q1
-fails); N2 gauge moves removed ⇒ 6 components ⇒ generation fails (gate Q4); N3 one entry of P mutated ⇒ the cocycle
-fails (gate Q2).
+    topological obligations of the abstract gluing (O5, O6) consume precisely the certified data (sheet record, separation).
+Negative controls: N1 repeated μ = (1,1,3,5,7,11) ⇒ V_S = 0 for S ⊇ {0,1} ⇒ the transitions cease to exist (check Q1
+fails); N2 gauge moves removed ⇒ 6 components ⇒ generation fails (check Q4); N3 one entry of P mutated ⇒ the cocycle
+fails (check Q2).
 Does not attest: the certified panel itself (3540/3540, margins, ρ_unif — produced upstream and re-read here through
 their artifacts); the covering (D3); the geometry of the bridges (C129-F0); O6/O7 as complete topological proofs (the
 certified inputs are named, the argument is written out in the paper); anything outside the atlas paper.
@@ -238,7 +238,7 @@ def build(mutate=None):
     # ---- (D) classified obligations --------------------------------------------------------------------------------------
     obligations = [
         {"id": "O1", "claim": "∼ is an equivalence relation", "mode": "EXACT_ALGEBRA",
-         "support": "cocycle P_{S″S′}P_{S′S} = P_{S″S} + P_{SS} = I + inverses (all gated here)"},
+         "support": "cocycle P_{S″S′}P_{S′S} = P_{S″S} + P_{SS} = I + inverses (all checked here)"},
         {"id": "O2", "claim": "Φ is well defined (each chart lands in X)", "mode": "EXACT_ALGEBRA",
          "support": "the sections solve F₀ = F₁ = F₂ = 0 by construction (elimination)"},
         {"id": "O3", "claim": "Φ is a local biholomorphism", "mode": "CERTIFICATE",
@@ -246,7 +246,7 @@ def build(mutate=None):
         {"id": "O4", "claim": "Φ is surjective", "mode": "CERTIFICATE",
          "support": "the pivot open sets cover X (margin τ = 0.6)"},
         {"id": "O5", "claim": "Φ is injective", "mode": "EXACT_ALGEBRA_PLUS_LEDGER",
-         "support": "8 exhaustive signed sheets: a point of X matches exactly one ledger entry, so ∼ captures every coincidence"},
+         "support": "8 exhaustive signed sheets: a point of X matches exactly one sheet record entry, so ∼ captures every coincidence"},
         # O6 MERGES the former O6/O7 pair and changes MODE. The old O6
         # "Hausdorff" was a CERTIFICATE: it bought separation with a numerical
         # margin. The paper has since established that it is not bought that
@@ -296,7 +296,7 @@ def build(mutate=None):
                       "D_base_moving_types": len(types) - len(D_vert_types),
                       "reading": "§6.3 in numbers: the same abstract transformation is vertical for 12 types out of 60 and moves the base point on the other 48"},
            "D_glue_obligations": {"obligations": obligations, "n_exact_algebra": n_alg, "n_certificate": n_cert, "n_topology": n_top,
-                                  "reading": "the two genuinely topological obligations of the abstract gluing (O5 injectivity, O6 separation) consume the certified data (exhaustive ledger, separation margin)"},
+                                  "reading": "the two genuinely topological obligations of the abstract gluing (O5 injectivity, O6 separation) consume the certified data (exhaustive sheet record, separation margin)"},
            "does_not_attest": ["the certified panel itself (3540/3540, margins, ρ_unif — produced upstream)", "the covering D3",
                              "the geometry of the bridges (C129-F0)", "O6/O7 as complete topological proofs (inputs named, argument written out in the paper)",
                              "anything outside the atlas paper"]}
@@ -309,8 +309,8 @@ def build(mutate=None):
                                                            and len(D_vert_types) == 12 and len(D_vert_triples) == 4),
          "Q7_six_obligations_typed_3_2_1": (len(obligations) == 6 and n_alg == 3 and n_cert == 2 and n_top == 1),
          "Q8_upstream_and_paper_read": bool(upstream_ok)}
-    out["gates"] = {k: bool(v) for k, v in g.items()}
-    out["gates_passed"] = sum(bool(v) for v in g.values()); out["gates_total"] = len(g)
+    out["checks"] = {k: bool(v) for k, v in g.items()}
+    out["checks_passed"] = sum(bool(v) for v in g.values()); out["checks_total"] = len(g)
     out["outcome"] = "atlas_paper_glue_obligations_typed_and_transition_generators_derived_word_length_le_4" if all(g.values()) else "atlas_paper_gates_red"
     out["seconds"] = round(time.time() - t0, 1)
     return out
@@ -318,10 +318,10 @@ def build(mutate=None):
 
 def main():
     out = build()
-    st = {"N1_mu_repeat_kills_transitions": not build(mutate={"mu_repeat"})["gates"]["Q1_vandermonde_all_nonzero_and_transitions_exist"],
-          "N2_no_gauge_moves_disconnects_type_graph": not build(mutate={"no_gauge_moves"})["gates"]["Q4_type_graph_connected_bounds_word_length"],
-          "N3_mutated_P_entry_breaks_cocycle": not build(mutate={"mutate_P"})["gates"]["Q2_square_cocycle_exact_on_all_ordered_triples"]}
-    out["self_tests"] = st; out["self_tests_passed"] = sum(bool(v) for v in st.values()); out["self_tests_total"] = len(st)
+    st = {"N1_mu_repeat_kills_transitions": not build(mutate={"mu_repeat"})["checks"]["Q1_vandermonde_all_nonzero_and_transitions_exist"],
+          "N2_no_gauge_moves_disconnects_type_graph": not build(mutate={"no_gauge_moves"})["checks"]["Q4_type_graph_connected_bounds_word_length"],
+          "N3_mutated_P_entry_breaks_cocycle": not build(mutate={"mutate_P"})["checks"]["Q2_square_cocycle_exact_on_all_ordered_triples"]}
+    out["perturbation_tests"] = st; out["perturbation_tests_passed"] = sum(bool(v) for v in st.values()); out["perturbation_tests_total"] = len(st)
     try:
         import subprocess
         out["built_from_head"] = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
@@ -329,9 +329,9 @@ def main():
         out["built_from_head"] = None
     out["self_sha256"] = sha(HERE)
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"gates {out['gates_passed']}/{out['gates_total']} · self-tests {out['self_tests_passed']}/{out['self_tests_total']} · {out['seconds']} s")
-    for k, v in out["gates"].items(): print(f"  {'OK ' if v else 'RED'} {k}")
-    for k, v in out["self_tests"].items(): print(f"  {'OK ' if v else 'RED'} {k}")
+    print(f"checks {out['checks_passed']}/{out['checks_total']} · self-tests {out['perturbation_tests_passed']}/{out['perturbation_tests_total']} · {out['seconds']} s")
+    for k, v in out["checks"].items(): print(f"  {'OK ' if v else 'RED'} {k}")
+    for k, v in out["perturbation_tests"].items(): print(f"  {'OK ' if v else 'RED'} {k}")
     a, b, c = out["A_square_cocycle"], out["B_generators"], out["C_deck"]
     print(f"cocycle {a['cocycle_ok']}/{a['cocycle_checked']} | C = {a['C_inf_norm']} (max entry {a['max_abs_entry']}) | "
           f"types {b['n_types']} diam {b['type_graph']['diameter']} | deck {c['order']}, vertical {c['vertical_subgroup_order']} (index {c['vertical_index']}), D: {c['D_vertical_types']}/{b['n_types']} vertical")

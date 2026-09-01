@@ -5,7 +5,7 @@ OPEN CHART THEOREM — certificate producer (U1).
 
 Theorem-grade, with NO atlas enumerated and NO load-bearing floating-point
 value: every constant is a certified RATIONAL bound (Fraction, with square
-roots enclosed by integer square roots), and every gate is an exact
+roots enclosed by integer square roots), and every check is an exact
 comparison.
 
 U1-A  Typed domains (serialised separately, each with an explicit role):
@@ -21,7 +21,7 @@ U1-A  Typed domains (serialised separately, each with an explicit role):
       60 is the number of TYPES (S,g); the charts themselves are local (one
       per centre); compactness of K then gives a finite subfamily.
 U1-B  Self-contained proof (simplified Newton contraction, exact for
-      quadrics) — see PROOF below; the load-bearing gates bear on the
+      quadrics) — see PROOF below; the load-bearing checks bear on the
       residual, σ, β, L, h ≤ 1/2, r*, contraction < 1, uniqueness, holomorphy.
 REVISION 2 (2026-08-20) — REPAIR OF A DEFECT, found while writing the atlas paper.
       Version 1 set `sigma_floor = 2·σ_min(Ṽ_S)·m/(8|V_S|)`. Since M̃(w) = 2Ṽ_S·diag(z_S),
@@ -42,7 +42,7 @@ U1-C  Certified constants (rational bounds): c_k, σ_min(Ṽ_S) (lower bound),
       bounds), for the 20 triples / 60 types.
 U1-D  Semantic negative controls: m ≥ 4.8; sector declared open; n_types ≠ 60;
       a global section per type; a load-bearing floating-point constant;
-      h > 1/2 accepted — each of these must make the corresponding gate fail.
+      h > 1/2 accepted — each of these must make the corresponding check fail.
 
 PROOF (self-contained). Normalised equations F̃_k = F_k/c_k, c_k² = Σ_j μ_j^{2k}
 (an integer). Chart (S,g): w = z_S ∈ C³, gauge z_g = 1, base b = (u,v) ∈ C²,
@@ -189,7 +189,7 @@ def constants(mu, m):
 
 
 def kantorovich_check(sigma: Fraction, L: Fraction, a: Fraction, rho: Fraction):
-    """Exact gates of the proof at radius rho: h ≤ 1/2, r* ≤ 2η, contraction < 1, uniqueness."""
+    """Exact checks of the proof at radius rho: h ≤ 1/2, r* ≤ 2η, contraction < 1, uniqueness."""
     eta_up = a * rho * (2 + rho) / sigma
     h = L * eta_up / sigma
     ok_h = h < Fraction(1, 2)                      # strict: the domain is open
@@ -224,7 +224,7 @@ def build(m=M_PREREG, mutate=None):
                      "note": "one LOCAL chart per centre Z0 ∈ C_{S,g}; the section s_{Z0,S,g} is local (a single sheet), not a global section of the type"},
         "n_chart_types": len(types), "n_charts": "finite by compactness, NOT enumerated",
     }
-    # proof gates at ρ_uniform_lo for each type (exact)
+    # proof checks at ρ_uniform_lo for each type (exact)
     proofs = []
     for t in types:
         f = t["_frac"]
@@ -257,7 +257,7 @@ def build(m=M_PREREG, mutate=None):
                                        "rho_uniform_lo_max_float_display_only": float(max(rho_vals)) if rho_vals else None,
                                        "load_bearing_types": sorted(t.__name__ for t in lb_types)},
            }
-    gates = {
+    checks = {
         "G1_m_prereg_lt_4p8": domains["U_S"]["m_lt_4p8"],
         "G2_sector_is_closed_selector_only": (domains["C_S_g"]["role"] == "selector_only" and domains["C_S_g"]["open"] is False),
         "G3_n_chart_types_60_and_sections_local": len(types) == 60 and domains["B_Z0_S_g"]["sections_are_local"] is True,
@@ -267,8 +267,8 @@ def build(m=M_PREREG, mutate=None):
         "G7_contraction_uniqueness_r_star_all_types": all_c,
         "G8_proof_self_contained_no_external_load_bearing": out["U1B_proof"]["self_contained"] and not out["U1B_proof"]["external_citation_load_bearing"],
     }
-    out["gates"] = gates; out["gates_passed"] = sum(bool(v) for v in gates.values()); out["gates_total"] = len(gates)
-    out["outcome"] = "uniform_open_chart_theorem_certified" if all(gates.values()) else "uniform_open_chart_theorem_refused"
+    out["checks"] = checks; out["checks_passed"] = sum(bool(v) for v in checks.values()); out["checks_total"] = len(checks)
+    out["outcome"] = "uniform_open_chart_theorem_certified" if all(checks.values()) else "uniform_open_chart_theorem_refused"
     out["does_not_attest"] = ["no atlas is enumerated and no section is produced: the theorem is quantitative-existential (a guaranteed radius at each centre)",
                             "the bounds are non-sharp by construction (Frobenius / determinant) — they are strictly positive and reproducible, which is all that is required here",
                             "K is the fixed surface; nothing is claimed about the family: the μ are fixed HERE, and uniformity in b is not exported"]
@@ -279,14 +279,14 @@ def main():
     t0 = time.time()
     out = build()
     st = {}
-    st["N1_m_ge_4p8_reddens"] = not build(m=Fraction(5))["gates"]["G1_m_prereg_lt_4p8"]
-    st["N2_sector_declared_open_reddens"] = not build(mutate={"sector_open": True})["gates"]["G2_sector_is_closed_selector_only"]
-    st["N3_n_types_ne_60_reddens"] = not build(mutate={"n_types": 59})["gates"]["G3_n_chart_types_60_and_sections_local"]
-    st["N4_global_section_per_type_reddens"] = not build(mutate={"global_section": True})["gates"]["G3_n_chart_types_60_and_sections_local"]
-    st["N5_float_load_bearing_reddens"] = not build(mutate={"float_leak": True})["gates"]["G5_no_float_load_bearing"]
+    st["N1_m_ge_4p8_reddens"] = not build(m=Fraction(5))["checks"]["G1_m_prereg_lt_4p8"]
+    st["N2_sector_declared_open_reddens"] = not build(mutate={"sector_open": True})["checks"]["G2_sector_is_closed_selector_only"]
+    st["N3_n_types_ne_60_reddens"] = not build(mutate={"n_types": 59})["checks"]["G3_n_chart_types_60_and_sections_local"]
+    st["N4_global_section_per_type_reddens"] = not build(mutate={"global_section": True})["checks"]["G3_n_chart_types_60_and_sections_local"]
+    st["N5_float_load_bearing_reddens"] = not build(mutate={"float_leak": True})["checks"]["G5_no_float_load_bearing"]
     r = build(mutate={"rho_factor": 100})
-    st["N6_rho_x100_gives_h_gt_half_reddens"] = not r["gates"]["G6_kantorovich_h_lt_half_all_types"]
-    out["self_tests"] = st; out["self_tests_passed"] = sum(bool(v) for v in st.values()); out["self_tests_total"] = len(st)
+    st["N6_rho_x100_gives_h_gt_half_reddens"] = not r["checks"]["G6_kantorovich_h_lt_half_all_types"]
+    out["perturbation_tests"] = st; out["perturbation_tests_passed"] = sum(bool(v) for v in st.values()); out["perturbation_tests_total"] = len(st)
     out["seconds"] = round(time.time() - t0, 2)
     try:
         import subprocess
@@ -295,8 +295,8 @@ def main():
         out["built_from_head"] = None
     out["self_sha256"] = sha(HERE)
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"gates {out['gates_passed']}/{out['gates_total']} · self-tests {out['self_tests_passed']}/{out['self_tests_total']} · {out['seconds']} s")
-    for k, v in {**out['gates'], **st}.items():
+    print(f"checks {out['checks_passed']}/{out['checks_total']} · self-tests {out['perturbation_tests_passed']}/{out['perturbation_tests_total']} · {out['seconds']} s")
+    for k, v in {**out['checks'], **st}.items():
         print(f"  {'OK ' if v else 'RED'} {k}")
     c = out["U1C_constants_certified"]
     print(f"ρ_uniform_lo ∈ [{c['rho_uniform_lo_min_float_display_only']:.3e}, {c['rho_uniform_lo_max_float_display_only']:.3e}] (display only; the rational values are in the certificate)")

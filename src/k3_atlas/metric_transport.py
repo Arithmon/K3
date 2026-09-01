@@ -44,7 +44,7 @@ WHAT THIS STEP CERTIFIES
 GATES
   G1  NON-REGRESSION OF THE INJECTION: the default path (`section=None`)
       replayed on a regularly spaced panel of the full run, giving ratio,
-      slack Weyl, ledger et déterminations IDENTIQUES à l'artefact full
+      slack Weyl, sheet record et déterminations IDENTIQUES à l'artefact full
       sérialisé ;
   G2  amont gaté et complet : the atlas step 14/14, the exact-identity step 9/9, the full run 8/8,
       the bridge step 17/17 — et `mode == "full"` EXIGÉ de CHACUN des quatre
@@ -200,9 +200,9 @@ def box_ok(r, kinds_expected):
 _G = {}
 
 
-def _init(cell, M, c218, rw, leaves, bridges, ledgers, halos):
+def _init(cell, M, c218, rw, leaves, bridges, sheet_records, halos):
     _G.update(cell=cell, M=M, c218=c218, rw=rw, leaves=leaves,
-              bridges=bridges, ledgers=ledgers, halos=halos)
+              bridges=bridges, sheet_records=sheet_records, halos=halos)
 
 
 def _metric_on_box(S, g, eps_src, box, S2, g2, kw):
@@ -228,7 +228,7 @@ def _bridge_metric_job(arg):
     S, g, _eps = _G["cell"]
     leaf = _G["leaves"][i]
     S2, g2 = tuple(leaf["chart"]["S"]), leaf["chart"]["g"]
-    eps_src = _G["ledgers"][i]           # ledger du PONT, dérivé en F2
+    eps_src = _G["sheet records"][i]           # sheet record du PONT, dérivé en F2
     kw = {"fixed_eps2": tuple(leaf["eps_target"]),
           "fixed_sigma2": list(leaf["sigma_target"])}
     if kind == "mutation_J":
@@ -276,7 +276,7 @@ def _edge_metric_job(arg):
     S2, g2 = tuple(leaf["chart"]["S"]), leaf["chart"]["g"]
     kw = {"fixed_eps2": tuple(leaf["eps_target"]),
           "fixed_sigma2": list(leaf["sigma_target"])}
-    r = _metric_on_box(S, g, _G["ledgers"][a], W, S2, g2, kw)
+    r = _metric_on_box(S, g, _G["sheet records"][a], W, S2, g2, kw)
     out.update(r)
     return out
 
@@ -371,12 +371,12 @@ def build():
     up = {}
     for name, blob in (("c127d", atl), ("c129d", c129d),
                        ("c129e", c129e), ("f2f3_v2", f23)):
-        gp, gt = blob.get("gates_passed"), blob.get("gates_total")
-        up[name] = {"gates": f"{gp}/{gt}", "mode": blob.get("mode"),
+        gp, gt = blob.get("checks_passed"), blob.get("checks_total")
+        up[name] = {"checks": f"{gp}/{gt}", "mode": blob.get("mode"),
                     "green": bool(gp == gt and gt
                                   and blob.get("mode") == "full")}
     g2 = all(v["green"] for v in up.values())
-    log("G2 : amont — " + " ; ".join(f"{k} {v['gates']}"
+    log("G2 : amont — " + " ; ".join(f"{k} {v['checks']}"
                                      for k, v in up.items())
         + f" ⟹ {g2}")
 
@@ -385,7 +385,7 @@ def build():
                for t in json.loads(
                    (RES / "k3_cap_b1e2iii_c129f_bridge_scout.json")
                    .read_text(encoding="utf-8"))["per_tile"]}
-    ledgers = {r["tile"]: tuple(r["F2d_ledger_derived"])
+    sheet_records = {r["tile"]: tuple(r["F2d_ledger_derived"])
                for r in f23["per_bridge"]}
     clipped = sorted(bridges)
     log(f"    {len(clipped)} ponts, ledgers dérivés importés de the bridge step")
@@ -395,7 +395,7 @@ def build():
     c218 = reg["coeffs218"]
     rw = 1.0 - GAMMA
     mpctx = get_context("fork")
-    initargs = ((S, g, eps), M, c218, rw, leaves, bridges, ledgers, halos)
+    initargs = ((S, g, eps), M, c218, rw, leaves, bridges, sheet_records, halos)
     _init(*initargs)
 
     # --- G1: NON-REGRESSION of the injection --------------------------
@@ -529,7 +529,7 @@ def build():
             f"congruence contains zero={r.get('congruence_contains_zero')})")
 
     g7 = bool(len(met) == len(sel) and len(edg) == len(edges))
-    gates = {
+    checks = {
         "G1_injection_does_not_regress_default_path": bool(g1),
         "G2_upstream_green_and_full": bool(g2),
         "G3_frozen_ledger_target_kinds_unchanged": bool(g3),
@@ -537,7 +537,7 @@ def build():
         "G5_metric_certified_on_nerve_edges": bool(g5),
         "G6_three_negatives_break_on_bridge": bool(g6),
         "G7_no_silent_filtering": bool(g7)}
-    npass = sum(1 for v in gates.values() if v)
+    npass = sum(1 for v in checks.values() if v)
 
     try:
         head = subprocess.run(
@@ -605,12 +605,12 @@ def build():
             "concerns the SECTION identity, not the "
             "triple, so the epistemic map HOLDS",
             "the full scaling, and the 895 other pairs"],
-        "gates": gates, "gates_passed": npass, "gates_total": len(gates),
+        "checks": checks, "checks_passed": npass, "checks_total": len(checks),
         "verdict": (
             f"F4 {'FULL' if MODE == 'full' else 'PANEL'} LIVRÉ — la "
             f"metric joins the bridge charts and the nerve edges."
-            if npass == len(gates) else
-            f"ROUGE — {len(gates) - npass} gate(s) en échec"),
+            if npass == len(checks) else
+            f"ROUGE — {len(checks) - npass} gate(s) en échec"),
         "provenance": {
             "git_head": head, "python": sys.version.split()[0],
             "platform": platform.platform(), "mp_prec": int(mp.prec),
@@ -626,12 +626,12 @@ def build():
     ART.write_text(json.dumps(out, indent=2, ensure_ascii=False),
                    encoding="utf-8")
     print("=" * 78)
-    for k, v in gates.items():
+    for k, v in checks.items():
         print(f"  {'OK  ' if v else 'FAIL'} {k}")
     print(f"\n{out['verdict']}")
-    print(f"gates {npass}/{len(gates)} — artefact : {ART.name}")
+    print(f"gates {npass}/{len(checks)} — artefact : {ART.name}")
     print("=" * 78)
-    return npass == len(gates)
+    return npass == len(checks)
 
 
 if __name__ == "__main__":

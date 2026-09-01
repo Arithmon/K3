@@ -19,22 +19,22 @@
   "delta_rel_preregistered": 1e-05,
   "upstream": {
     "c127d": {
-      "gates": "14/14",
+      "checks": "14/14",
       "mode": "full",
       "green": true
     },
     "c129d": {
-      "gates": "9/9",
+      "checks": "9/9",
       "mode": "full",
       "green": true
     },
     "c129e": {
-      "gates": "8/8",
+      "checks": "8/8",
       "mode": "full",
       "green": true
     },
     "f2f3_v2": {
-      "gates": "17/17",
+      "checks": "17/17",
       "mode": null,
       "green": true
     }
@@ -68235,7 +68235,7 @@
     "le contrat EXACT de la congruence métrique — elle reste certifiée SOUS δ, pas exacte ; la promotion d'exactitude de C129-D porte sur l'identité de SECTION, pas sur le triplet HK, donc §4.4 de la carte épistémique TIENT",
     "le scaling complet, les 895 autres paires, R12-C"
   ],
-  "gates": {
+  "checks": {
     "G1_injection_does_not_regress_default_path": true,
     "G2_upstream_green_and_full": true,
     "G3_frozen_ledger_target_kinds_unchanged": true,
@@ -68244,8 +68244,8 @@
     "G6_three_negatives_break_on_bridge": true,
     "G7_no_silent_filtering": true
   },
-  "gates_passed": 7,
-  "gates_total": 7,
+  "checks_passed": 7,
+  "checks_total": 7,
   "verdict": "F4 FULL LIVRÉ — la métrique rejoint les cartes-ponts et les arêtes du nerf.",
   "provenance": {
     "git_head": "20878ebd6c1e8c4ac61c17ee6f73e0ac7047da59",

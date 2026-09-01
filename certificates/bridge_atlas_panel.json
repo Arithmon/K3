@@ -39,28 +39,28 @@
   "min_target_gauge_absmin": 1.0,
   "upstream_chain": {
     "c127d_atlas": {
-      "gates": "14/14",
+      "checks": "14/14",
       "green": true,
       "mode": "full",
       "full": true
     },
     "c129f_bridge_scout": {
-      "gates": "7/7",
+      "checks": "7/7",
       "green": true,
       "mode": null
     },
     "c129f_f1_mirror_ledger": {
-      "gates": "9/9",
+      "checks": "9/9",
       "green": true,
       "mode": null
     },
     "c129d_exact_gluing": {
-      "gates": "9/9",
+      "checks": "9/9",
       "green": true,
       "mode": "full"
     },
     "c129e_halo_metric": {
-      "gates": "8/8",
+      "checks": "8/8",
       "green": true,
       "mode": "full"
     }
@@ -55375,7 +55375,7 @@
     "le raccord à travers les faces Re : les ponts y restent des cartes RELATIVES (marge 0 contre la face de la cellule)",
     "les voisines de codimension 1, les 895 autres paires, R12-C"
   ],
-  "gates": {
+  "checks": {
     "F2a_bridge_geometry_2H_matches_scout": true,
     "F2b_bridge_contains_both_cores": true,
     "F2c_regime_assigned_without_trial": true,
@@ -55394,8 +55394,8 @@
     "R1e_wrong_deck_sign_breaks_identity": true,
     "R4_upstream_chain_verified": true
   },
-  "gates_passed": 17,
-  "gates_total": 17,
+  "checks_passed": 17,
+  "checks_total": 17,
   "verdict": "F2 + F3 + R1-R4 LIVRÉS — 64 ponts bilatéraux, recollés EXACTEMENT au côté inférieur (64) ET à la feuille CONTINUÉE D·Z_conj (64), 210/210 transitions pont↔pont certifiées, nerf de 380 nœuds connexe sur arêtes certifiées SEULEMENT. D = diag(+,−,+,+,+,−) est la transformation de deck qui sépare le conjugué du continué.",
   "provenance": {
     "git_head": "117aa037273af2e05b8e7e55d3410b5d16cdc60b",

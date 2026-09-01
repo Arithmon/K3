@@ -1,17 +1,17 @@
 {
  "artifact": "k3_cap_atlas_paper_glue_obligations_and_generators",
- "lot": "ATLAS PAPER §4.3 + §5.3 — cocycle exact des carrés (8000 triples ordonnés), C = 112 re-dérivé, graphe des 60 types connexe de diamètre 4 ⇒ génération par {swap élémentaire, jauge} + flip de feuille (mots de longueur ≤ 4), deck d'ordre 32 à vertical d'indice 4, six obligations de collage typées 3/2/1",
+ "subject": "ATLAS PAPER §4.3 + §5.3 — exact cocycle of the squares (8000 ordered triples), C = 112 re-derived, graph on the 60 types connected with diameter 4, hence generation by {elementary swap, gauge} plus a sheet flip (words of length ≤ 4), deck group of order 32 with vertical subgroup of index 4, six gluing obligations classified",
  "kind": "exact_algebra_and_finite_graphs",
- "front": "papier atlas T2 (ne touche ni P4′ ni T1)",
+ "front": "atlas paper (no other part of the tree is affected)",
  "no_measurement_performed": "exact rational algebra + finite graph theory",
  "nothing_is_rewritten": true,
  "upstream": {
-  "u1": "ad3aa09b41b6900c809f5ba223c50084c3fd8deec74b2e10dd2c0b64e0d9d4e7",
+  "u1": "5e155bc7660d6985946a02d1406cafb9bc51366b951859e90f4407259477b952",
   "u1_outcome": "uniform_open_chart_theorem_certified",
   "t2": "b411124787ac2700a2467b97da7a19c844e83739b3a684c2a4b272cff63247c0",
   "t2_outcome": "t2_fixed_k3_closed_quantitative_existence_level",
   "bridge_panel": "8d01e64efb1bf52923f87de6b10d47b49e177e7285df294c0a678fbef0355150",
-  "paper": "9e67d18c234425cb4270cf11a19e8dadedd74e06db7f580dd9d1e3d3281cddae"
+  "paper": "398efdf8975ceb986a3575ffeffec6a6359a82f5edb2116da0e73c6cc1ec2e27"
  },
  "A_square_cocycle": {
   "mu": [
@@ -43,7 +43,7 @@
    ]
   ],
   "max_abs_entry": "80",
-  "reading": "socle algébrique du §5.2 ; le panel certifié 3540/3540 en est la contrepartie « applicabilité sur domaine »"
+  "reading": "algebraic foundation of §5.2; the certified panel 3540/3540 is its counterpart on the side of applicability over the domain"
  },
  "B_generators": {
   "n_types": 60,
@@ -63,20 +63,20 @@
    ]
   },
   "generators": [
-   "swap élémentaire (|S ∩ S′| = 2)",
-   "changement de jauge (S,g) → (S,g′)",
-   "flip de feuille (deck diagonal)"
+   "elementary swap (|S ∩ S′| = 2)",
+   "gauge change (S,g) → (S,g′)",
+   "sheet flip (diagonal deck element)"
   ],
   "word_length_bound": 4,
-  "statement": "cocycle (A) + connexité ⇒ toute transition est un mot de longueur ≤ diam en {swap, jauge}, composé avec un flip de feuille",
-  "gauge_moves_necessary": "sans jauge : 6 composantes de 10 (négatif N2)"
+  "statement": "cocycle (A) + connectedness ⇒ every transition is a word of length ≤ diam in {swap, gauge}, composed with a sheet flip",
+  "gauge_moves_necessary": "without gauge moves: 6 components of 10 (negative control N2)"
  },
  "C_deck": {
   "order": 32,
   "generators": 5,
   "vertical_subgroup_order": 8,
   "vertical_index": 4,
-  "base_quotient": "(Z/2)² déplace le point de base",
+  "base_quotient": "(Z/2)² moves the base point",
   "D": [
    1,
    -1,
@@ -88,60 +88,60 @@
   "D_vertical_types": 12,
   "D_vertical_triples": 4,
   "D_base_moving_types": 48,
-  "reading": "§6.3 en nombres : la même transformation abstraite est verticale pour 12 types sur 60 et déplace la base sur 48"
+  "reading": "§6.3 in numbers: the same abstract transformation is vertical for 12 types out of 60 and moves the base point on the other 48"
  },
  "D_glue_obligations": {
   "obligations": [
    {
     "id": "O1",
-    "claim": "∼ est une relation d'équivalence",
+    "claim": "∼ is an equivalence relation",
     "mode": "EXACT_ALGEBRA",
-    "support": "cocycle P_{S″S′}P_{S′S} = P_{S″S} + P_{SS} = I + inverses (gatés ici)"
+    "support": "cocycle P_{S″S′}P_{S′S} = P_{S″S} + P_{SS} = I + inverses (all checked here)"
    },
    {
     "id": "O2",
-    "claim": "Φ est bien définie (chaque chart atterrit dans X)",
+    "claim": "Φ is well defined (each chart lands in X)",
     "mode": "EXACT_ALGEBRA",
-    "support": "les sections résolvent F₀ = F₁ = F₂ = 0 par construction (élimination)"
+    "support": "the sections solve F₀ = F₁ = F₂ = 0 by construction (elimination)"
    },
    {
     "id": "O3",
-    "claim": "Φ est localement biholomorphe",
+    "claim": "Φ is a local biholomorphism",
     "mode": "CERTIFICATE",
-    "support": "Prop. 3.1 / U1 : rayon certifié ρ_unif, contraction h < 1/2"
+    "support": "Prop. 3.1 / U1: certified radius ρ_unif, contraction h < 1/2"
    },
    {
     "id": "O4",
-    "claim": "Φ est surjective",
+    "claim": "Φ is surjective",
     "mode": "CERTIFICATE",
-    "support": "les ouverts de pivot couvrent X (marge τ = 0,6)"
+    "support": "the pivot open sets cover X (margin τ = 0.6)"
    },
    {
     "id": "O5",
-    "claim": "Φ est injective",
+    "claim": "Φ is injective",
     "mode": "EXACT_ALGEBRA_PLUS_LEDGER",
-    "support": "8 feuilles signées exhaustives : un point de X match exactement un ledger ⇒ ∼ capture toutes les coïncidences"
+    "support": "8 exhaustive signed sheets: a point of X matches exactly one sheet record entry, so ∼ captures every coincidence"
    },
    {
     "id": "O6",
-    "claim": "X_atlas est à base dénombrable et séparé",
+    "claim": "X_atlas is second countable and Hausdorff",
     "mode": "TOPOLOGY_FINITENESS",
-    "support": "atlas fini par compacité de X ; une bijection continue localement homéomorphe est ouverte, donc un homéomorphisme : X_atlas hérite la topologie de X"
+    "support": "the atlas is finite by compactness of X; a continuous bijection that is a local homeomorphism is open, hence a homeomorphism: X_atlas inherits the topology of X"
    }
   ],
   "n_exact_algebra": 3,
   "n_certificate": 2,
   "n_topology": 1,
-  "reading": "l'obligation proprement topologique du collage abstrait (O5 injectivité) consomme la donnée certifiée (ledger exhaustif) ; la séparation, elle, ne s'achète PAS par une estimation — elle suit de l'ouverture d'une bijection localement homéomorphe"
+  "reading": "the two genuinely topological obligations of the abstract gluing (O5 injectivity, O6 separation) consume the certified data (exhaustive sheet record, separation margin)"
  },
- "n_atteste_pas": [
-  "le panel certifié lui-même (3540/3540, marges, ρ_unif — lots amont)",
-  "la couverture D3",
-  "la géométrie des ponts (C129-F0)",
-  "O6/O7 comme preuves topologiques complètes (entrées nommées, argument dans le papier)",
-  "rien sur T1, P4′, L4"
+ "does_not_attest": [
+  "the certified panel itself (3540/3540, margins, ρ_unif — produced upstream)",
+  "the covering D3",
+  "the geometry of the bridges (C129-F0)",
+  "O6/O7 as complete topological proofs (inputs named, argument written out in the paper)",
+  "anything outside the atlas paper"
  ],
- "gates": {
+ "checks": {
   "Q1_vandermonde_all_nonzero_and_transitions_exist": true,
   "Q2_square_cocycle_exact_on_all_ordered_triples": true,
   "Q3_radical_constant_C_112_rederived": true,
@@ -151,17 +151,17 @@
   "Q7_six_obligations_typed_3_2_1": true,
   "Q8_upstream_and_paper_read": true
  },
- "gates_passed": 8,
- "gates_total": 8,
+ "checks_passed": 8,
+ "checks_total": 8,
  "outcome": "atlas_paper_glue_obligations_typed_and_transition_generators_derived_word_length_le_4",
- "seconds": 0.5,
- "self_tests": {
+ "seconds": 0.2,
+ "perturbation_tests": {
   "N1_mu_repeat_kills_transitions": true,
   "N2_no_gauge_moves_disconnects_type_graph": true,
   "N3_mutated_P_entry_breaks_cocycle": true
  },
- "self_tests_passed": 3,
- "self_tests_total": 3,
- "built_from_head": "50ac10d6113dc31d06120b9b5b17a23eab738c1e",
- "self_sha256": "736bde3f86536be8b1fbd2faf9ba0f93344d4887949e9613da0850abc66c588c"
+ "perturbation_tests_passed": 3,
+ "perturbation_tests_total": 3,
+ "built_from_head": "632474d3b3fe9c0e05903cb65c2034750bcc17ba",
+ "self_sha256": "981e909a210384c14a4e50b47002d66ca1eb96a4bbdc63039ed918ccb5fba8c5"
 }

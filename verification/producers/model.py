@@ -2,7 +2,7 @@
 
 Every certificate in this repository derives the defining data of the surface
 from this module rather than restating it, so that a change here would turn
-the gates red instead of silently disagreeing with them.
+the checks red instead of silently disagreeing with them.
 
     X = { Z in P^5 : F_0(Z) = F_1(Z) = F_2(Z) = 0 },
     F_k(Z) = sum_{j=0}^{5} mu_j^k z_j^2,     k = 0, 1, 2.

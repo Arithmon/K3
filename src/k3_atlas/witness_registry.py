@@ -8,7 +8,7 @@ ACTIVE DATUM (reconciled 2026-07-16)
 ------------------------------------
 The active witness is the R3 freeze `results/k3_closedform_witness_kahler_v2.npz`
 (schema `k3_kahler_witness_v2`: native coeffs218 + M, gauge det M = 1), produced
-by `k3_cap_r3_freeze.py` and certified by the witness gate `k3_cap_r3_gate.py`
+by `k3_cap_r3_freeze.py` and certified by the witness check `k3_cap_r3_gate.py`
 (11/11 PASS). Its bytes are pinned by `artifact_sha256` in the sidecar manifest
 `results/k3_cap_r3_freeze.json`; the frozen npz is NEVER rewritten — this
 module validates it against the sidecar instead of stamping metadata into it.
@@ -94,7 +94,7 @@ def _validate_kahler_v2_payload(
     """Validate the R3 kahler witness against its embedded + sidecar manifest.
 
     Returns the parsed manifest. The frozen npz carries no schema fields by
-    design (its bytes were pinned by the R3 gate before this registry knew the
+    design (its bytes were pinned by the R3 check before this registry knew the
     schema); integrity is enforced through the sidecar pin instead.
     """
     for key, shape in (("p9", (9,)), ("c208", (208,)), ("coeffs218", (218,))):
@@ -253,7 +253,7 @@ def load_canonical_MH() -> dict[str, Any]:
     The serialized witness M is NOT bit-hermitian (anti-hermitian residual
     ~1.45e-23, caught by C37). The analytic object every metric engine
     consumes is H = (M+M†)/2 — canonize it HERE, once, and let consumers
-    request `M_H_canonical` and gate on `sha256_MH` instead of re-deriving
+    request `M_H_canonical` and check on `sha256_MH` instead of re-deriving
     it locally. `M_serialized` stays available for byte-level audits."""
     payload = load_witness_artifact()
     M = np.asarray(payload["M"], complex)

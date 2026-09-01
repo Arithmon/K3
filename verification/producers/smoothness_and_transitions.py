@@ -29,7 +29,7 @@ THE CENTRAL LEMMA (A) — "at least three nonzero coordinates", and it is used T
     |det M_S^alg| > m bounds the PRODUCT |z_{s₁}z_{s₂}z_{s₃}| > m/(8|V_S|), not each factor. The sector selector gives
     |u|, |v| ≤ 1, hence |z_s|² = |R_s(u,v)| ≤ |a_s| + |b_s| + |c_s| =: B_s² (rational coefficients of the type). Therefore,
     for each solved coordinate, **|z_{s_i}| > m / (8|V_S| ∏_{j≠i} B_{s_j}) > 0**, an EXPLICIT bound, uniform over the type.
-    Computed here on all 60 types: the worst one is ≈ 9.6e-4 (attained at S = {3,4,5}, gauge z₀, coordinate z₅). Two ledgers
+    Computed here on all 60 types: the worst one is ≈ 9.6e-4 (attained at S = {3,4,5}, gauge z₀, coordinate z₅). Two sheet records
     differing in slot s therefore give points at distance at least 2× this bound in that coordinate: the sheets merge only
     at the branch locus, which the pivot threshold keeps every chart away from.
 (G) GRASSMANNIAN READING (§5.3) — why J(6,3) is not an imported piece of combinatorics.
@@ -208,7 +208,7 @@ def build(mutate=None):
                                     "chain": "|det M_S^alg| > m ⇒ ∏|z_s| > m/(8|V_S|) ; |u|,|v| ≤ 1 ⇒ |z_s| ≤ B_s = sqrt(|a|+|b|+|c|) ⇒ |z_{s_i}| > m/(8|V_S| ∏_{j≠i} B_{s_j})",
                                     "worst_lower_bound_over_60_types": (repr(worst[0]) if worst else None),
                                     "attained_at": ({"S": worst[1], "gauge": worst[2], "coordinate": worst[3]} if worst else None),
-                                    "reading": "separation of the sheets is UNIFORM on the certified domains: two ledgers differing in slot s lie at distance at least 2x this bound"},
+                                    "reading": "separation of the sheets is UNIFORM on the certified domains: two sheet records differing in slot s lie at distance at least 2x this bound"},
            "G_grassmannian": {"pivots_are_plucker_coordinates_of_rowspace_dF": bool(plucker_ok),
                               "statement": "dF = 2 V diag(z) is 3x6; its row space is a point of Gr(3,6) and its minor S equals det M_S^alg",
                               "chart_reading": "the 20 triples = standard coordinate charts of Gr(3,6) pulled back; elementary swap = standard change of chart",
@@ -224,8 +224,8 @@ def build(mutate=None):
          "Q7_upstream_read": bool(upstream_ok) and bool(d3),
          "Q8_product_to_factors_positive_uniform_bound": worst is not None and worst[0] > 0,
          "Q9_pivots_are_plucker_coordinates_of_dF": bool(plucker_ok)}
-    out["gates"] = {k: bool(v) for k, v in g.items()}
-    out["gates_passed"] = sum(bool(v) for v in g.values()); out["gates_total"] = len(g)
+    out["checks"] = {k: bool(v) for k, v in g.items()}
+    out["checks_passed"] = sum(bool(v) for v in g.values()); out["checks_total"] = len(g)
     out["outcome"] = "atlas_paper_three_nonzero_lemma_carries_smoothness_and_coverage_pivot_degree3_invariant_transitions_explicit" if all(g.values()) else "atlas_paper_math_gates_red"
     out["seconds"] = round(time.time() - t0, 1)
     return out
@@ -233,10 +233,10 @@ def build(mutate=None):
 
 def main():
     out = build()
-    st = {"N1_mu_repeat_breaks_three_nonzero_lemma": not build(mutate={"mu_repeat"})["gates"]["Q1_all_pairs_rank2_three_nonzero_lemma"],
-          "N2_bad_factor_reddens_pivot_identity": not build(mutate={"bad_factor"})["gates"]["Q2_pivot_factorisation_exact_all_20_triples"],
-          "N3_degree_2_reddens_projective_invariance": not build(mutate={"bad_degree"})["gates"]["Q3_det_homogeneous_degree_3_and_q_invariant"]}
-    out["self_tests"] = st; out["self_tests_passed"] = sum(bool(v) for v in st.values()); out["self_tests_total"] = len(st)
+    st = {"N1_mu_repeat_breaks_three_nonzero_lemma": not build(mutate={"mu_repeat"})["checks"]["Q1_all_pairs_rank2_three_nonzero_lemma"],
+          "N2_bad_factor_reddens_pivot_identity": not build(mutate={"bad_factor"})["checks"]["Q2_pivot_factorisation_exact_all_20_triples"],
+          "N3_degree_2_reddens_projective_invariance": not build(mutate={"bad_degree"})["checks"]["Q3_det_homogeneous_degree_3_and_q_invariant"]}
+    out["perturbation_tests"] = st; out["perturbation_tests_passed"] = sum(bool(v) for v in st.values()); out["perturbation_tests_total"] = len(st)
     try:
         import subprocess
         out["built_from_head"] = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
@@ -244,9 +244,9 @@ def main():
         out["built_from_head"] = None
     out["self_sha256"] = sha(HERE); out["provenance"] = {"sympy_version": sp.__version__}
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"gates {out['gates_passed']}/{out['gates_total']} · self-tests {out['self_tests_passed']}/{out['self_tests_total']} · {out['seconds']} s")
-    for k, v in out["gates"].items(): print(f"  {'OK ' if v else 'RED'} {k}")
-    for k, v in out["self_tests"].items(): print(f"  {'OK ' if v else 'RED'} {k}")
+    print(f"checks {out['checks_passed']}/{out['checks_total']} · self-tests {out['perturbation_tests_passed']}/{out['perturbation_tests_total']} · {out['seconds']} s")
+    for k, v in out["checks"].items(): print(f"  {'OK ' if v else 'RED'} {k}")
+    for k, v in out["perturbation_tests"].items(): print(f"  {'OK ' if v else 'RED'} {k}")
     d = out["D_involutions_and_branch"]
     print("radicands:", d["radicands"])
     print("product to factors: worst bound %s" % out["F_product_to_factors"]["worst_lower_bound_over_60_types"])

@@ -1,446 +1,446 @@
 {
- "artifact": "k3_cap_global_closure_theorem_skeleton_amendment_b",
- "lot": "GLOBAL_CLOSURE_THEOREM_SKELETON — amendement B / THEOREM-STACK CLEANUP (NEXT-0, seconde revue)",
- "kind": "skeleton_amendment_read_only_new_artifact",
- "no_measurement_performed": true,
- "nothing_is_rewritten": true,
- "amends": {
-  "base": {
-   "file": "k3_cap_global_closure_theorem_skeleton.json",
-   "sha256": "710c4fc6099ef84de14c4c29267d13266ff65e0c4d8f16d70ec23a3bc09d57e6"
+  "artifact": "k3_cap_global_closure_theorem_skeleton_amendment_b",
+  "lot": "GLOBAL_CLOSURE_THEOREM_SKELETON — amendement B / THEOREM-STACK CLEANUP (NEXT-0, seconde revue)",
+  "kind": "skeleton_amendment_read_only_new_artifact",
+  "no_measurement_performed": true,
+  "nothing_is_rewritten": true,
+  "amends": {
+    "base": {
+      "file": "k3_cap_global_closure_theorem_skeleton.json",
+      "sha256": "710c4fc6099ef84de14c4c29267d13266ff65e0c4d8f16d70ec23a3bc09d57e6"
+    },
+    "amendment_a": {
+      "file": "k3_cap_global_closure_theorem_skeleton_amendment_a.json",
+      "sha256": "d756111b6883837b06cb4ac119f6741c19d623788ae216c6953bd5120a9dfa3e",
+      "issue": "skeleton_amended_closure_is_canonical_identification_homology_is_audit"
+    }
   },
-  "amendment_a": {
-   "file": "k3_cap_global_closure_theorem_skeleton_amendment_a.json",
-   "sha256": "d756111b6883837b06cb4ac119f6741c19d623788ae216c6953bd5120a9dfa3e",
-   "issue": "skeleton_amended_closure_is_canonical_identification_homology_is_audit"
-  }
- },
- "review": {
-  "file": "gpt_global_closure_amendment_a_second_review_f8_f1prime_next_2026_08_18.md",
-  "sha256": "90feb392852fc65587baf95fe7d1a4c3785be2b66324a696115a6b0e32dd94f0",
-  "verdict": "GO STRONG recentrage + Φ/audit ; HOLD-SHORT avant F8/F1′ sur la sémantique globale et le niveau de théorème"
- },
- "B1_notation_frozen": {
-  "K": "le K3 algébrique CI(2,2,2) ⊂ P⁵ (alias X_CI) — le seul référent des énoncés globaux",
-  "X_reg": "le complexe régional historique de certification (contrat C1–C7, D3/H1/H2/B1-M, 380 → 444 sommets) et ses Betti instrumentaux",
-  "N(U)": "un nerf de recouvrement, seulement quand il existe réellement comme tel (bon recouvrement déclaré)",
-  "K_S°, B_S": "pour une projection π_S FIXÉE : B_S ⊂ P²_T le lieu de branchement (3 coniques dans la présentation (S,g)), K_S° = K ∖ π_S⁻¹(B_S), deck (Z/2)³_S ; les présentations S ≠ S′ se relient par transitions, pas par un local system global sur une base qui n'existe pas canoniquement",
-  "rule": "aucun gate n'accepte un énoncé global avec « X » non qualifié",
-  "sources_where_X_means_X_reg": [
-   "k3_cap_global_gluing_contract_prereg.json (C1 : recouvrement autoritatif X)",
-   "k3_cap_h1_top_region_topology.json (b₁(X) = 63)",
-   "k3_cap_h2_coeff_leaf_class.json ([θ] ∈ H¹(X; H_A))",
-   "k3_cap_low_boundary_p1_topology_reconciliation.json (X_Re⁺)"
-  ]
- },
- "B2_theorem_stack": {
-  "T1_NK_fixed_K": {
-   "statement": "si le polynôme des rayons p(r) = Z₂(r) r² − (1 − Z₀ − Z₁) r + Y a p(r₀) < 0 dans le domaine de positivité de g₀ + i∂∂̄φ, alors F a un zéro unique dans B̄(x₀, r₀) : une métrique Ricci-plate Kähler Z₂³-invariante à distance ≤ r₀ de la métrique explicite",
-   "status": "ouvert par D2 / D1b / D1e / production — résultat analytique autonome"
+  "review": {
+    "file": "gpt_global_closure_amendment_a_second_review_f8_f1prime_next_2026_08_18.md",
+    "sha256": "90feb392852fc65587baf95fe7d1a4c3785be2b66324a696115a6b0e32dd94f0",
+    "verdict": "GO STRONG recentrage + Φ/audit ; HOLD-SHORT avant F8/F1′ sur la sémantique globale et le niveau de théorème"
   },
-  "T2_GLOBAL_ATLAS_FIXED_K3": {
-   "statement": "Pour le CI(2,2,2) fixé K : (i) un recouvrement fini par ouverts de pivot/gauge U_{S,g} (F1, pivot-cover abstrait) ; (ii) un lemme de chart uniforme (F1′, IFT quantitatif) donnant des inverses locales holomorphes s_i : U_i → K ; (iii) des transitions algébriques exactes t_ij entre présentations (S,g) ↔ (S′,g′) ; (iv) le quotient analytique (⊔ U_i)/~_alg est canoniquement ≅ K (F9). Résultat autonome ; modèle de fibre ; validation de l'instrument.",
-   "status": "peut être beaucoup plus petit que l'arc régional ne le laissait croire : structure d'abord, calcul en repli"
+  "B1_notation_frozen": {
+    "K": "le K3 algébrique CI(2,2,2) ⊂ P⁵ (alias X_CI) — le seul référent des énoncés globaux",
+    "X_reg": "le complexe régional historique de certification (contrat C1–C7, D3/H1/H2/B1-M, 380 → 444 sommets) et ses Betti instrumentaux",
+    "N(U)": "un nerf de recouvrement, seulement quand il existe réellement comme tel (bon recouvrement déclaré)",
+    "K_S°, B_S": "pour une projection π_S FIXÉE : B_S ⊂ P²_T le lieu de branchement (3 coniques dans la présentation (S,g)), K_S° = K ∖ π_S⁻¹(B_S), deck (Z/2)³_S ; les présentations S ≠ S′ se relient par transitions, pas par un local system global sur une base qui n'existe pas canoniquement",
+    "rule": "aucun gate n'accepte un énoncé global avec « X » non qualifié",
+    "sources_where_X_means_X_reg": [
+      "k3_cap_global_gluing_contract_prereg.json (C1 : recouvrement autoritatif X)",
+      "k3_cap_h1_top_region_topology.json (b₁(X) = 63)",
+      "k3_cap_h2_coeff_leaf_class.json ([θ] ∈ H¹(X; H_A))",
+      "k3_cap_low_boundary_p1_topology_reconciliation.json (X_Re⁺)"
+    ]
   },
-  "T3_K3_FAMILY_TO_L4": {
-   "statement": "Sur le recouvrement autoritatif de K7 : famille locale {K_b}_{b∈B} / données de déformation ; uniformité en b des constantes de T1/T2 là où nécessaire ; transitions de familles ; Picard–Lefschetz / périodes / structure HK exigées par L4 ; cocycle sur les vrais recouvrements de la base K7.",
-   "status": "OUVERT — c'est ce que L4 consomme (B3) ; T1/T2 en sont des ingrédients"
-  }
- },
- "B3_F8_derived": {
-  "l4_problem_v1": "réalisation d'une famille K3 hyperkählérienne GLOBALE sur le K7 topologique, avec la monodromie de Picard-Lefschetz de rang un prescrite et les données de périodes affines au collier",
-  "l4_minimal_target_v3": "À partir des familles locales K3 et des transitions certifiées par K3-CAP, construire un système global de feuilles/transitions sur le recouvrement autoritatif de K7. Les transformations inter-domaines et inter-branches doivent être compatibles aux changements de chart, satisfaire les lois de cocycle sur les vrais overlaps multiples, et porter les contrôles analytiques de voisinage requis. La disparition de la composante scalaire C124 est une condition NÉCESSAIRE dans les secteurs où elle est définie, mais elle n'est plus présumée suffisante à elle seule.",
-  "v1_names_family_on_K7": true,
-  "v3_names_family_on_K7": true,
-  "derivation": "les deux sources L4 autoritatives disponibles nomment une FAMILLE K3 sur le K7 (recouvrement autoritatif de K7, monodromie de Picard-Lefschetz prescrite, périodes au collier) : L4 consomme T3 ; la fermeture d'un K3 fixe (T2) est un résultat autonome / modèle de fibre / validation d'instrument, pas le closeout consommé par L4",
-  "consequence": "ne plus baptiser « K3_GLOBAL_FAMILY_CLOSEOUT » un théorème qui reconstruit une fibre fixe",
-  "open": "aucune source L4 plus autoritative n'a été trouvée qui contredise cette lecture ; si elle existe, F8 se re-dérive"
- },
- "B4_reclassification": {
-  "F5_windings_monodromy": {
-   "level": "T3 (utile), non nécessaire pour T2",
-   "why": "description du revêtement d'une projection donnée ; T2 se ferme par transitions algébriques exactes"
+  "B2_theorem_stack": {
+    "T1_NK_fixed_K": {
+      "statement": "si le polynôme des rayons p(r) = Z₂(r) r² − (1 − Z₀ − Z₁) r + Y a p(r₀) < 0 dans le domaine de positivité de g₀ + i∂∂̄φ, alors F a un zéro unique dans B̄(x₀, r₀) : une métrique Ricci-plate Kähler Z₂³-invariante à distance ≤ r₀ de la métrique explicite",
+      "status": "ouvert par D2 / D1b / D1e / production — résultat analytique autonome"
+    },
+    "T2_GLOBAL_ATLAS_FIXED_K3": {
+      "statement": "Pour le CI(2,2,2) fixé K : (i) un recouvrement fini par ouverts de pivot/gauge U_{S,g} (F1, pivot-cover abstrait) ; (ii) un lemme de chart uniforme (F1′, IFT quantitatif) donnant des inverses locales holomorphes s_i : U_i → K ; (iii) des transitions algébriques exactes t_ij entre présentations (S,g) ↔ (S′,g′) ; (iv) le quotient analytique (⊔ U_i)/~_alg est canoniquement ≅ K (F9). Résultat autonome ; modèle de fibre ; validation de l'instrument.",
+      "status": "peut être beaucoup plus petit que l'arc régional ne le laissait croire : structure d'abord, calcul en repli"
+    },
+    "T3_K3_FAMILY_TO_L4": {
+      "statement": "Sur le recouvrement autoritatif de K7 : famille locale {K_b}_{b∈B} / données de déformation ; uniformité en b des constantes de T1/T2 là où nécessaire ; transitions de familles ; Picard–Lefschetz / périodes / structure HK exigées par L4 ; cocycle sur les vrais recouvrements de la base K7.",
+      "status": "OUVERT — c'est ce que L4 consomme (B3) ; T1/T2 en sont des ingrédients"
+    }
   },
-  "F6_interface_handoff": {
-   "level": "T2 : théorème UNIFORME de changement de chart entre les 60 types d'abord ; RFace/C7/C5 = validations/négatifs ; interfaces particulières seulement si T3 l'exige",
-   "why": "ne doit pas redevenir un tunnel"
+  "B3_F8_derived": {
+    "l4_problem_v1": "réalisation d'une famille K3 hyperkählérienne GLOBALE sur le K7 topologique, avec la monodromie de Picard-Lefschetz de rang un prescrite et les données de périodes affines au collier",
+    "l4_minimal_target_v3": "À partir des familles locales K3 et des transitions certifiées par K3-CAP, construire un système global de feuilles/transitions sur le recouvrement autoritatif de K7. Les transformations inter-domaines et inter-branches doivent être compatibles aux changements de chart, satisfaire les lois de cocycle sur les vrais overlaps multiples, et porter les contrôles analytiques de voisinage requis. La disparition de la composante scalaire C124 est une condition NÉCESSAIRE dans les secteurs où elle est définie, mais elle n'est plus présumée suffisante à elle seule.",
+    "v1_names_family_on_K7": true,
+    "v3_names_family_on_K7": true,
+    "derivation": "les deux sources L4 autoritatives disponibles nomment une FAMILLE K3 sur le K7 (recouvrement autoritatif de K7, monodromie de Picard-Lefschetz prescrite, périodes au collier) : L4 consomme T3 ; la fermeture d'un K3 fixe (T2) est un résultat autonome / modèle de fibre / validation d'instrument, pas le closeout consommé par L4",
+    "consequence": "ne plus baptiser « K3_GLOBAL_FAMILY_CLOSEOUT » un théorème qui reconstruit une fibre fixe",
+    "open": "aucune source L4 plus autoritative n'a été trouvée qui contredise cette lecture ; si elle existe, F8 se re-dérive"
   },
-  "F7_nerve_homology": {
-   "level": "audit indépendant, hors chemin critique",
-   "why": "pas de gros nerf pour obtenir (1,0,22) d'un K déjà connu ; theorem-grade seulement avec bon recouvrement gratuit"
+  "B4_reclassification": {
+    "F5_windings_monodromy": {
+      "level": "T3 (utile), non nécessaire pour T2",
+      "why": "description du revêtement d'une projection donnée ; T2 se ferme par transitions algébriques exactes"
+    },
+    "F6_interface_handoff": {
+      "level": "T2 : théorème UNIFORME de changement de chart entre les 60 types d'abord ; RFace/C7/C5 = validations/négatifs ; interfaces particulières seulement si T3 l'exige",
+      "why": "ne doit pas redevenir un tunnel"
+    },
+    "F7_nerve_homology": {
+      "level": "audit indépendant, hors chemin critique",
+      "why": "pas de gros nerf pour obtenir (1,0,22) d'un K déjà connu ; theorem-grade seulement avec bon recouvrement gratuit"
+    },
+    "freeze_confirmed": [
+      "anneaux",
+      "b₁(X_reg)",
+      "X_INTERNAL",
+      "PGL(6)"
+    ]
   },
-  "freeze_confirmed": [
-   "anneaux",
-   "b₁(X_reg)",
-   "X_INTERNAL",
-   "PGL(6)"
-  ]
- },
- "B5_F1_pivot_cover": {
-  "d3_serialises": {
-   "tau": 0.6,
-   "minor_floor": 4.8,
-   "verdict": "CERTIFIED",
-   "total_boxes_processed": 71807792,
-   "keys_that_are_large_lists": [],
-   "reading": "D3 sérialise un THÉORÈME de plancher (inf_K max_S |det M_S| ≥ 4,8) et des comptes de B&B ; aucun tableau de cellules : les 71,8 M boîtes ne sont pas un atlas"
+  "B5_F1_pivot_cover": {
+    "d3_serialises": {
+      "tau": 0.6,
+      "minor_floor": 4.8,
+      "verdict": "CERTIFIED",
+      "total_boxes_processed": 71807792,
+      "keys_that_are_large_lists": [],
+      "reading": "D3 sérialise un THÉORÈME de plancher (inf_K max_S |det M_S| ≥ 4,8) et des comptes de B&B ; aucun tableau de cellules : les 71,8 M boîtes ne sont pas un atlas"
+    },
+    "cover_definition": "pour m < 4,8 préinscrit : U_S = {Z ∈ K : |det M_S(Z)| > m}, S parmi les 20 triples ; {U_S} couvre K par D3",
+    "complementary_T_never_all_zero": {
+      "argument": "si z_t = 0 ∀ t ∈ T = Sᶜ alors Σ_{s∈S} μ_s^k z_s² = 0 (k = 0,1,2) avec V_S inversible ⇒ z_s = 0 ∀ s ⇒ Z = 0 ∉ P⁵",
+      "det_V_S_exact_20": {
+        "(0, 1, 2)": "2",
+        "(0, 1, 3)": "12",
+        "(0, 1, 4)": "30",
+        "(0, 1, 5)": "90",
+        "(0, 2, 3)": "16",
+        "(0, 2, 4)": "48",
+        "(0, 2, 5)": "160",
+        "(0, 3, 4)": "48",
+        "(0, 3, 5)": "240",
+        "(0, 4, 5)": "240",
+        "(1, 2, 3)": "6",
+        "(1, 2, 4)": "20",
+        "(1, 2, 5)": "72",
+        "(1, 3, 4)": "30",
+        "(1, 3, 5)": "162",
+        "(1, 4, 5)": "180",
+        "(2, 3, 4)": "16",
+        "(2, 3, 5)": "96",
+        "(2, 4, 5)": "128",
+        "(3, 4, 5)": "48"
+      },
+      "all_nonzero": true
+    },
+    "gauge_refinement": {
+      "rule": "U_{S,g} = {Z ∈ U_S : |z_g| = max_{t∈T} |z_t|}, g ∈ T",
+      "n_types": 60,
+      "equals_owner_tiling_couples": true
+    },
+    "gate_proposed_F1_GLOBAL_PIVOT_COVER": [
+      "D3 SHA-pinné",
+      "m < 4,8 préinscrit",
+      "{U_S} couvre K",
+      "T jamais tout nul sur K (exact)",
+      "raffinement par gauges → cover fini explicite",
+      "aucune dépendance à une liste de cellules",
+      "négatifs : m ≥ 4,8 rougit ; point synthétique sans (S,g) admissible rougit"
+    ],
+    "old_phrase_retired": "« un recouvrement fini de K3 par (boîte ambiante, triple) existe déjà » — plus fort que l'artefact"
   },
-  "cover_definition": "pour m < 4,8 préinscrit : U_S = {Z ∈ K : |det M_S(Z)| > m}, S parmi les 20 triples ; {U_S} couvre K par D3",
-  "complementary_T_never_all_zero": {
-   "argument": "si z_t = 0 ∀ t ∈ T = Sᶜ alors Σ_{s∈S} μ_s^k z_s² = 0 (k = 0,1,2) avec V_S inversible ⇒ z_s = 0 ∀ s ⇒ Z = 0 ∉ P⁵",
-   "det_V_S_exact_20": {
-    "(0, 1, 2)": "2",
-    "(0, 1, 3)": "12",
-    "(0, 1, 4)": "30",
-    "(0, 1, 5)": "90",
-    "(0, 2, 3)": "16",
-    "(0, 2, 4)": "48",
-    "(0, 2, 5)": "160",
-    "(0, 3, 4)": "48",
-    "(0, 3, 5)": "240",
-    "(0, 4, 5)": "240",
-    "(1, 2, 3)": "6",
-    "(1, 2, 4)": "20",
-    "(1, 2, 5)": "72",
-    "(1, 3, 4)": "30",
-    "(1, 3, 5)": "162",
-    "(1, 4, 5)": "180",
-    "(2, 3, 4)": "16",
-    "(2, 3, 5)": "96",
-    "(2, 4, 5)": "128",
-    "(3, 4, 5)": "48"
-   },
-   "all_nonzero": true
+  "B6_F1prime_uniform_IFT": {
+    "statement_target": "Uniform chart lemma : il existe σ₀ > 0, L < ∞, ρ > 0 explicites, dérivés de m, des μ et de la normalisation, tels que pour tout Z ∈ U_{S,g} la projection π_{S,g} possède sur la base de rayon ρ une inverse locale unique holomorphe avec les bornes quantitatives requises par la chaîne de certification",
+    "hessian_is_constant": "les trois quadriques ont une Hessienne CONSTANTE 2 μ_j^k δ_jl : la constante de Lipschitz du Jacobien est exacte et globale",
+    "crude_bound_derivation": [
+      "σ_max(M_S) ≤ ‖M_S‖_F ≤ 2 √(Σ_{s∈S,k} μ_s^{2k}) sur |Z|_∞ ≤ 1",
+      "σ_min(M_S) ≥ m / σ_max(M_S)² (3×3, |det| ≥ m)",
+      "Kantorovich h ≤ 1/2 ⇒ ρ_crude ≈ σ_min² / (4 L_S ‖M_T‖)"
+    ],
+    "per_triple": [
+      {
+        "S": [
+          0,
+          1,
+          2
+        ],
+        "sigma_max_bound": 21.447610589527216,
+        "L_S": 21.447610589527216,
+        "M_T_bound": 267.3200329193456,
+        "sigma_min_floor": 0.010434782608695653,
+        "rho_crude": 4.747843534185955e-09
+      },
+      {
+        "S": [
+          0,
+          1,
+          3
+        ],
+        "sigma_max_bound": 51.96152422706632,
+        "L_S": 51.96152422706632,
+        "M_T_bound": 263.09694030908076,
+        "sigma_min_floor": 0.0017777777777777776,
+        "rho_crude": 5.7795932548019125e-11
+      },
+      {
+        "S": [
+          0,
+          1,
+          4
+        ],
+        "sigma_max_bound": 99.498743710662,
+        "L_S": 99.498743710662,
+        "M_T_bound": 249.03814968795444,
+        "sigma_min_floor": 0.00048484848484848484,
+        "rho_crude": 2.37174839838522e-12
+      },
+      {
+        "S": [
+          0,
+          1,
+          5
+        ],
+        "sigma_max_bound": 243.2036183941349,
+        "L_S": 243.2036183941349,
+        "M_T_bound": 113.01327355669333,
+        "sigma_min_floor": 8.115236356258876e-05,
+        "rho_crude": 5.99022131270266e-14
+      },
+      {
+        "S": [
+          0,
+          2,
+          3
+        ],
+        "sigma_max_bound": 54.589376255824725,
+        "L_S": 54.589376255824725,
+        "M_T_bound": 262.5642778444928,
+        "sigma_min_floor": 0.0016107382550335568,
+        "rho_crude": 4.525287580609297e-11
+      },
+      {
+        "S": [
+          0,
+          2,
+          4
+        ],
+        "sigma_max_bound": 100.89598604503551,
+        "L_S": 100.89598604503551,
+        "M_T_bound": 248.47535089018388,
+        "sigma_min_floor": 0.00047151277013752444,
+        "rho_crude": 2.217020586520888e-12
+      },
+      {
+        "S": [
+          0,
+          2,
+          5
+        ],
+        "sigma_max_bound": 243.7785880671229,
+        "L_S": 243.7785880671229,
+        "M_T_bound": 111.76761606118295,
+        "sigma_min_floor": 8.077000740391734e-05,
+        "rho_crude": 5.985889685617131e-14
+      },
+      {
+        "S": [
+          0,
+          3,
+          4
+        ],
+        "sigma_max_bound": 111.44505372604026,
+        "L_S": 111.44505372604026,
+        "M_T_bound": 243.92621835300935,
+        "sigma_min_floor": 0.0003864734299516908,
+        "rho_crude": 1.3735991422553144e-12
+      },
+      {
+        "S": [
+          0,
+          3,
+          5
+        ],
+        "sigma_max_bound": 248.33042503889854,
+        "L_S": 248.33042503889854,
+        "M_T_bound": 101.25216047077711,
+        "sigma_min_floor": 7.783615489394823e-05,
+        "rho_crude": 6.023771998531075e-14
+      },
+      {
+        "S": [
+          0,
+          4,
+          5
+        ],
+        "sigma_max_bound": 262.42713274354844,
+        "L_S": 262.42713274354844,
+        "M_T_bound": 55.24490926773253,
+        "sigma_min_floor": 6.969855375500958e-05,
+        "rho_crude": 8.37696193089114e-14
+      },
+      {
+        "S": [
+          1,
+          2,
+          3
+        ],
+        "sigma_max_bound": 55.24490926773253,
+        "L_S": 55.24490926773253,
+        "M_T_bound": 262.42713274354844,
+        "sigma_min_floor": 0.0015727391874180868,
+        "rho_crude": 4.265327913224544e-11
+      },
+      {
+        "S": [
+          1,
+          2,
+          4
+        ],
+        "sigma_max_bound": 101.25216047077711,
+        "L_S": 101.25216047077711,
+        "M_T_bound": 248.33042503889854,
+        "sigma_min_floor": 0.0004682013265704253,
+        "rho_crude": 2.179571185463303e-12
+      },
+      {
+        "S": [
+          1,
+          2,
+          5
+        ],
+        "sigma_max_bound": 243.92621835300935,
+        "L_S": 243.92621835300935,
+        "M_T_bound": 111.44505372604026,
+        "sigma_min_floor": 8.067226890756304e-05,
+        "rho_crude": 5.985070509918585e-14
+      },
+      {
+        "S": [
+          1,
+          3,
+          4
+        ],
+        "sigma_max_bound": 111.76761606118295,
+        "L_S": 111.76761606118295,
+        "M_T_bound": 243.7785880671229,
+        "sigma_min_floor": 0.00038424591738712776,
+        "rho_crude": 1.354712029309505e-12
+      },
+      {
+        "S": [
+          1,
+          3,
+          5
+        ],
+        "sigma_max_bound": 248.47535089018388,
+        "L_S": 248.47535089018388,
+        "M_T_bound": 100.89598604503551,
+        "sigma_min_floor": 7.774538386783285e-05,
+        "rho_crude": 6.027428004104051e-14
+      },
+      {
+        "S": [
+          1,
+          4,
+          5
+        ],
+        "sigma_max_bound": 262.5642778444928,
+        "L_S": 262.5642778444928,
+        "M_T_bound": 54.589376255824725,
+        "sigma_min_floor": 6.962576153176675e-05,
+        "rho_crude": 8.455438862643477e-14
+      },
+      {
+        "S": [
+          2,
+          3,
+          4
+        ],
+        "sigma_max_bound": 113.01327355669333,
+        "L_S": 113.01327355669333,
+        "M_T_bound": 243.2036183941349,
+        "sigma_min_floor": 0.0003758221108675226,
+        "rho_crude": 1.2847102130812733e-12
+      },
+      {
+        "S": [
+          2,
+          3,
+          5
+        ],
+        "sigma_max_bound": 249.03814968795444,
+        "L_S": 249.03814968795444,
+        "M_T_bound": 99.498743710662,
+        "sigma_min_floor": 7.739438890680425e-05,
+        "rho_crude": 6.043318471757593e-14
+      },
+      {
+        "S": [
+          2,
+          4,
+          5
+        ],
+        "sigma_max_bound": 263.09694030908076,
+        "L_S": 263.09694030908076,
+        "M_T_bound": 51.96152422706632,
+        "sigma_min_floor": 6.9344120196475e-05,
+        "rho_crude": 8.793496882358419e-14
+      },
+      {
+        "S": [
+          3,
+          4,
+          5
+        ],
+        "sigma_max_bound": 267.3200329193456,
+        "L_S": 267.3200329193456,
+        "M_T_bound": 21.447610589527216,
+        "sigma_min_floor": 6.717044500419815e-05,
+        "rho_crude": 1.9673699695381257e-13
+      }
+    ],
+    "rho_crude_min": 5.985070509918585e-14,
+    "rho_crude_max": 4.747843534185955e-09,
+    "reading": "le bound crude est POSITIF (le lemme uniforme existe) mais de l'ordre de 1e-14…1e-9 : inutilisable tel quel. Ce qui est DÉRIVÉ, c'est que le lemme doit consommer des planchers LOCAUX de σ_min(M_S) par région (S,g) (le facteur perdu est σ_min ≥ m/σ_max², catastrophique quand un seul |z_s| est petit) — précisément l'information que le B&B ambiant porte boîte par boîte. F1′-U0 = dériver un σ_min(S,g) régional (par ex. min_{s∈S}|z_s| ≥ … sur U_{S,g}) et le rayon qui en sort ; le batch n'est que le repli",
+    "hold_short_honoured": "aucun sample/batch F1′ lancé"
   },
-  "gauge_refinement": {
-   "rule": "U_{S,g} = {Z ∈ U_S : |z_g| = max_{t∈T} |z_t|}, g ∈ T",
-   "n_types": 60,
-   "equals_owner_tiling_couples": true
+  "B7_F9_refined": {
+    "objects": {
+      "C_i": "core compact de certification",
+      "U_i": "voisinage OUVERT certifié ⊃ C_i (porte le recollement)",
+      "s_i": "U_i → K inverse locale holomorphe (F1′)",
+      "t_ij": "changement de chart/feuille défini ALGÉBRIQUEMENT (formules exactes (S,g)↔(S′,g′)), jamais par comparaison à K"
+    },
+    "obligations": [
+      "1 cover des U_i (F1)",
+      "2 inverses locales s_i (F1′)",
+      "3 t_ij algébriques, indépendants de K",
+      "4 s_j ∘ t_ij = s_i",
+      "5 domaine exact des t_ij = recouvrement réel",
+      "6 cocycle sur recouvrements triples",
+      "7 la relation ~_alg engendrée par les t_ij est EXACTEMENT l'égalité de points dans K (biconditionnelle : ni identification manquante, ni spurious)",
+      "8 conclusion : quotient analytique (⊔ U_i)/~_alg ≅ K"
+    ],
+    "tautologies_avoided": [
+      "ne pas définir ~ par s_i(p) = s_j(q) (Φ bijectif deviendrait tautologique)",
+      "ne pas prendre des boîtes fermées comme cartes (atlas complexe = ouverts)"
+    ],
+    "reading": "peut devenir presque entièrement une preuve de STRUCTURE"
   },
-  "gate_proposed_F1_GLOBAL_PIVOT_COVER": [
-   "D3 SHA-pinné",
-   "m < 4,8 préinscrit",
-   "{U_S} couvre K",
-   "T jamais tout nul sur K (exact)",
-   "raffinement par gauges → cover fini explicite",
-   "aucune dépendance à une liste de cellules",
-   "négatifs : m ≥ 4,8 rougit ; point synthétique sans (S,g) admissible rougit"
+  "NEXT": [
+    "NEXT-1 F1′-U0 : uniform chart lemma design (symbolique) — σ_min régional par (S,g), Hessienne constante, marge de gauge, rayon IFT/Krawczyk uniforme ou critère qui peut rougir",
+    "NEXT-2 F9-P0 : exact algebraic transition theorem — énumérer les types (S,g)↔(S′,g′), écrire les t_ij exacts, déterminer ce qui reste à certifier en intervalle",
+    "puis seulement : décider s'il reste un calcul massif sur le chemin critique"
   ],
-  "old_phrase_retired": "« un recouvrement fini de K3 par (boîte ambiante, triple) existe déjà » — plus fort que l'artefact"
- },
- "B6_F1prime_uniform_IFT": {
-  "statement_target": "Uniform chart lemma : il existe σ₀ > 0, L < ∞, ρ > 0 explicites, dérivés de m, des μ et de la normalisation, tels que pour tout Z ∈ U_{S,g} la projection π_{S,g} possède sur la base de rayon ρ une inverse locale unique holomorphe avec les bornes quantitatives requises par la chaîne de certification",
-  "hessian_is_constant": "les trois quadriques ont une Hessienne CONSTANTE 2 μ_j^k δ_jl : la constante de Lipschitz du Jacobien est exacte et globale",
-  "crude_bound_derivation": [
-   "σ_max(M_S) ≤ ‖M_S‖_F ≤ 2 √(Σ_{s∈S,k} μ_s^{2k}) sur |Z|_∞ ≤ 1",
-   "σ_min(M_S) ≥ m / σ_max(M_S)² (3×3, |det| ≥ m)",
-   "Kantorovich h ≤ 1/2 ⇒ ρ_crude ≈ σ_min² / (4 L_S ‖M_T‖)"
+  "what_the_regional_detour_bought": [
+    "validation sévère de l'implémentation contre des structures dérivables",
+    "bibliothèque de transitions/recadrages/négatifs réutilisable pour le théorème uniforme",
+    "preuve empirique que « étendre cellule par cellule jusqu'à K3 » est la mauvaise complexité"
   ],
-  "per_triple": [
-   {
-    "S": [
-     0,
-     1,
-     2
-    ],
-    "sigma_max_bound": 21.447610589527216,
-    "L_S": 21.447610589527216,
-    "M_T_bound": 267.3200329193456,
-    "sigma_min_floor": 0.010434782608695653,
-    "rho_crude": 4.747843534185955e-09
-   },
-   {
-    "S": [
-     0,
-     1,
-     3
-    ],
-    "sigma_max_bound": 51.96152422706632,
-    "L_S": 51.96152422706632,
-    "M_T_bound": 263.09694030908076,
-    "sigma_min_floor": 0.0017777777777777776,
-    "rho_crude": 5.7795932548019125e-11
-   },
-   {
-    "S": [
-     0,
-     1,
-     4
-    ],
-    "sigma_max_bound": 99.498743710662,
-    "L_S": 99.498743710662,
-    "M_T_bound": 249.03814968795444,
-    "sigma_min_floor": 0.00048484848484848484,
-    "rho_crude": 2.37174839838522e-12
-   },
-   {
-    "S": [
-     0,
-     1,
-     5
-    ],
-    "sigma_max_bound": 243.2036183941349,
-    "L_S": 243.2036183941349,
-    "M_T_bound": 113.01327355669333,
-    "sigma_min_floor": 8.115236356258876e-05,
-    "rho_crude": 5.99022131270266e-14
-   },
-   {
-    "S": [
-     0,
-     2,
-     3
-    ],
-    "sigma_max_bound": 54.589376255824725,
-    "L_S": 54.589376255824725,
-    "M_T_bound": 262.5642778444928,
-    "sigma_min_floor": 0.0016107382550335568,
-    "rho_crude": 4.525287580609297e-11
-   },
-   {
-    "S": [
-     0,
-     2,
-     4
-    ],
-    "sigma_max_bound": 100.89598604503551,
-    "L_S": 100.89598604503551,
-    "M_T_bound": 248.47535089018388,
-    "sigma_min_floor": 0.00047151277013752444,
-    "rho_crude": 2.217020586520888e-12
-   },
-   {
-    "S": [
-     0,
-     2,
-     5
-    ],
-    "sigma_max_bound": 243.7785880671229,
-    "L_S": 243.7785880671229,
-    "M_T_bound": 111.76761606118295,
-    "sigma_min_floor": 8.077000740391734e-05,
-    "rho_crude": 5.985889685617131e-14
-   },
-   {
-    "S": [
-     0,
-     3,
-     4
-    ],
-    "sigma_max_bound": 111.44505372604026,
-    "L_S": 111.44505372604026,
-    "M_T_bound": 243.92621835300935,
-    "sigma_min_floor": 0.0003864734299516908,
-    "rho_crude": 1.3735991422553144e-12
-   },
-   {
-    "S": [
-     0,
-     3,
-     5
-    ],
-    "sigma_max_bound": 248.33042503889854,
-    "L_S": 248.33042503889854,
-    "M_T_bound": 101.25216047077711,
-    "sigma_min_floor": 7.783615489394823e-05,
-    "rho_crude": 6.023771998531075e-14
-   },
-   {
-    "S": [
-     0,
-     4,
-     5
-    ],
-    "sigma_max_bound": 262.42713274354844,
-    "L_S": 262.42713274354844,
-    "M_T_bound": 55.24490926773253,
-    "sigma_min_floor": 6.969855375500958e-05,
-    "rho_crude": 8.37696193089114e-14
-   },
-   {
-    "S": [
-     1,
-     2,
-     3
-    ],
-    "sigma_max_bound": 55.24490926773253,
-    "L_S": 55.24490926773253,
-    "M_T_bound": 262.42713274354844,
-    "sigma_min_floor": 0.0015727391874180868,
-    "rho_crude": 4.265327913224544e-11
-   },
-   {
-    "S": [
-     1,
-     2,
-     4
-    ],
-    "sigma_max_bound": 101.25216047077711,
-    "L_S": 101.25216047077711,
-    "M_T_bound": 248.33042503889854,
-    "sigma_min_floor": 0.0004682013265704253,
-    "rho_crude": 2.179571185463303e-12
-   },
-   {
-    "S": [
-     1,
-     2,
-     5
-    ],
-    "sigma_max_bound": 243.92621835300935,
-    "L_S": 243.92621835300935,
-    "M_T_bound": 111.44505372604026,
-    "sigma_min_floor": 8.067226890756304e-05,
-    "rho_crude": 5.985070509918585e-14
-   },
-   {
-    "S": [
-     1,
-     3,
-     4
-    ],
-    "sigma_max_bound": 111.76761606118295,
-    "L_S": 111.76761606118295,
-    "M_T_bound": 243.7785880671229,
-    "sigma_min_floor": 0.00038424591738712776,
-    "rho_crude": 1.354712029309505e-12
-   },
-   {
-    "S": [
-     1,
-     3,
-     5
-    ],
-    "sigma_max_bound": 248.47535089018388,
-    "L_S": 248.47535089018388,
-    "M_T_bound": 100.89598604503551,
-    "sigma_min_floor": 7.774538386783285e-05,
-    "rho_crude": 6.027428004104051e-14
-   },
-   {
-    "S": [
-     1,
-     4,
-     5
-    ],
-    "sigma_max_bound": 262.5642778444928,
-    "L_S": 262.5642778444928,
-    "M_T_bound": 54.589376255824725,
-    "sigma_min_floor": 6.962576153176675e-05,
-    "rho_crude": 8.455438862643477e-14
-   },
-   {
-    "S": [
-     2,
-     3,
-     4
-    ],
-    "sigma_max_bound": 113.01327355669333,
-    "L_S": 113.01327355669333,
-    "M_T_bound": 243.2036183941349,
-    "sigma_min_floor": 0.0003758221108675226,
-    "rho_crude": 1.2847102130812733e-12
-   },
-   {
-    "S": [
-     2,
-     3,
-     5
-    ],
-    "sigma_max_bound": 249.03814968795444,
-    "L_S": 249.03814968795444,
-    "M_T_bound": 99.498743710662,
-    "sigma_min_floor": 7.739438890680425e-05,
-    "rho_crude": 6.043318471757593e-14
-   },
-   {
-    "S": [
-     2,
-     4,
-     5
-    ],
-    "sigma_max_bound": 263.09694030908076,
-    "L_S": 263.09694030908076,
-    "M_T_bound": 51.96152422706632,
-    "sigma_min_floor": 6.9344120196475e-05,
-    "rho_crude": 8.793496882358419e-14
-   },
-   {
-    "S": [
-     3,
-     4,
-     5
-    ],
-    "sigma_max_bound": 267.3200329193456,
-    "L_S": 267.3200329193456,
-    "M_T_bound": 21.447610589527216,
-    "sigma_min_floor": 6.717044500419815e-05,
-    "rho_crude": 1.9673699695381257e-13
-   }
+  "B1_bare_X_hits": [],
+  "n_atteste_pas": [
+    "rien n'est prouvé ; T2/T3 sont des cibles ; F1′ uniforme n'est PAS obtenu (le crude est publié pour ce qu'il montre)",
+    "F8 est dérivé de deux sources ; une source L4 plus autoritative pourrait le re-dériver",
+    "K3 globale (T2) et famille (T3) restent NOT_CLOSED"
   ],
-  "rho_crude_min": 5.985070509918585e-14,
-  "rho_crude_max": 4.747843534185955e-09,
-  "reading": "le bound crude est POSITIF (le lemme uniforme existe) mais de l'ordre de 1e-14…1e-9 : inutilisable tel quel. Ce qui est DÉRIVÉ, c'est que le lemme doit consommer des planchers LOCAUX de σ_min(M_S) par région (S,g) (le facteur perdu est σ_min ≥ m/σ_max², catastrophique quand un seul |z_s| est petit) — précisément l'information que le B&B ambiant porte boîte par boîte. F1′-U0 = dériver un σ_min(S,g) régional (par ex. min_{s∈S}|z_s| ≥ … sur U_{S,g}) et le rayon qui en sort ; le batch n'est que le repli",
-  "hold_short_honoured": "aucun sample/batch F1′ lancé"
- },
- "B7_F9_refined": {
-  "objects": {
-   "C_i": "core compact de certification",
-   "U_i": "voisinage OUVERT certifié ⊃ C_i (porte le recollement)",
-   "s_i": "U_i → K inverse locale holomorphe (F1′)",
-   "t_ij": "changement de chart/feuille défini ALGÉBRIQUEMENT (formules exactes (S,g)↔(S′,g′)), jamais par comparaison à K"
+  "checks": {
+    "B3_F8_derived_L4_consumes_family_T3": true,
+    "B5_D3_has_no_cell_list_and_T_never_all_zero_20_20": true,
+    "B5_gauge_types_60_equal_owner_couples": true,
+    "B6_crude_uniform_radius_positive_but_tiny": true,
+    "B1_no_bare_X_in_global_statements": true,
+    "B0_base_and_amendment_a_pinned": true
   },
-  "obligations": [
-   "1 cover des U_i (F1)",
-   "2 inverses locales s_i (F1′)",
-   "3 t_ij algébriques, indépendants de K",
-   "4 s_j ∘ t_ij = s_i",
-   "5 domaine exact des t_ij = recouvrement réel",
-   "6 cocycle sur recouvrements triples",
-   "7 la relation ~_alg engendrée par les t_ij est EXACTEMENT l'égalité de points dans K (biconditionnelle : ni identification manquante, ni spurious)",
-   "8 conclusion : quotient analytique (⊔ U_i)/~_alg ≅ K"
-  ],
-  "tautologies_avoided": [
-   "ne pas définir ~ par s_i(p) = s_j(q) (Φ bijectif deviendrait tautologique)",
-   "ne pas prendre des boîtes fermées comme cartes (atlas complexe = ouverts)"
-  ],
-  "reading": "peut devenir presque entièrement une preuve de STRUCTURE"
- },
- "NEXT": [
-  "NEXT-1 F1′-U0 : uniform chart lemma design (symbolique) — σ_min régional par (S,g), Hessienne constante, marge de gauge, rayon IFT/Krawczyk uniforme ou critère qui peut rougir",
-  "NEXT-2 F9-P0 : exact algebraic transition theorem — énumérer les types (S,g)↔(S′,g′), écrire les t_ij exacts, déterminer ce qui reste à certifier en intervalle",
-  "puis seulement : décider s'il reste un calcul massif sur le chemin critique"
- ],
- "what_the_regional_detour_bought": [
-  "validation sévère de l'implémentation contre des structures dérivables",
-  "bibliothèque de transitions/recadrages/négatifs réutilisable pour le théorème uniforme",
-  "preuve empirique que « étendre cellule par cellule jusqu'à K3 » est la mauvaise complexité"
- ],
- "B1_bare_X_hits": [],
- "n_atteste_pas": [
-  "rien n'est prouvé ; T2/T3 sont des cibles ; F1′ uniforme n'est PAS obtenu (le crude est publié pour ce qu'il montre)",
-  "F8 est dérivé de deux sources ; une source L4 plus autoritative pourrait le re-dériver",
-  "K3 globale (T2) et famille (T3) restent NOT_CLOSED"
- ],
- "gates": {
-  "B3_F8_derived_L4_consumes_family_T3": true,
-  "B5_D3_has_no_cell_list_and_T_never_all_zero_20_20": true,
-  "B5_gauge_types_60_equal_owner_couples": true,
-  "B6_crude_uniform_radius_positive_but_tiny": true,
-  "B1_no_bare_X_in_global_statements": true,
-  "B0_base_and_amendment_a_pinned": true
- },
- "gates_passed": 6,
- "gates_total": 6,
- "issue": "theorem_stack_cleaned_T1_T2fixed_T3family_F8_derived_L4_consumes_family_F1_pivot_cover_F1prime_uniform_needs_regional_sigma_min",
- "self_tests": {
-  "N1_bare_X_reddens_B1": true,
-  "N2_sources_without_family_redden_F8": true,
-  "N3_zero_radius_reddens_B6": true
- },
- "self_tests_passed": 3,
- "self_tests_total": 3,
- "seconds": 0.01,
- "built_from_head": "1279b267faed8c35a279660aefb357d392f7c99b",
- "self_sha256": "a04002b3df52708d01911730633ec49f1f5a317169b8b25d24e2c43ce32fc307"
+  "checks_passed": 6,
+  "checks_total": 6,
+  "issue": "theorem_stack_cleaned_T1_T2fixed_T3family_F8_derived_L4_consumes_family_F1_pivot_cover_F1prime_uniform_needs_regional_sigma_min",
+  "perturbation_tests": {
+    "N1_bare_X_reddens_B1": true,
+    "N2_sources_without_family_redden_F8": true,
+    "N3_zero_radius_reddens_B6": true
+  },
+  "perturbation_tests_passed": 3,
+  "perturbation_tests_total": 3,
+  "seconds": 0.01,
+  "built_from_head": "1279b267faed8c35a279660aefb357d392f7c99b",
+  "self_sha256": "a04002b3df52708d01911730633ec49f1f5a317169b8b25d24e2c43ce32fc307"
 }

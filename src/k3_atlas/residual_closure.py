@@ -36,7 +36,7 @@ What is requalified and what is not:
     of the residual tiles uses the third determination, and
     chaque emploi est sérialisé).
 
-Gates pré-enregistrés :
+Checks pré-enregistrés :
   R1 MÉCANISME SÉRIALISÉ — chaque nouvelle tuile publie, par ligne :
      détermination, provenance du label, enclosures `Re R'`/`Im R'`,
      et le résidu `w² − R'`.
@@ -470,11 +470,11 @@ def build():
     log(f"R5 : Kraft {tg['kraft_sum'][0]}/{tg['kraft_sum'][1]}, couvert "
         f"{float(100 * vol_cov):.4f} %, résidu {float(100 * vol_res):.4f} %")
 
-    # --- Gates ----------------------------------------------------------------
+    # --- Checks ----------------------------------------------------------------
     max_rel = max((r["residual_relative"] for r in tr_ok), default=None)
     eps_m = [m for r in tr_ok for m in (r["eps_margins"] or [])]
     id_rows = [x for t in new_tiles for x in t["rows"]]
-    gates = {
+    checks = {
         "R1_mechanism_serialised": bool(new_tiles) and all(
             x.get("Re_R") and x.get("Im_R")
             and x.get("determination") for x in id_rows),
@@ -506,7 +506,7 @@ def build():
             and len(negs) == len(pjobs)
             and len(new_tiles) + len(unclosed) == len(boxes))}
 
-    n_pass = sum(1 for v in gates.values() if v)
+    n_pass = sum(1 for v in checks.values() if v)
     verdict = (
         "the residual closure (%s) — la TROISIÈME DÉTERMINATION ferme %d/%d boîtes "
         "résiduelles examinées (%d lignes en σ canonique, feuille "
@@ -553,20 +553,20 @@ def build():
                              "raccord entre déterminations de tuiles "
                              "voisines (cocycle du nerf)",
                              "contrat exact", "globalisation", "the later scaling"],
-           "verdict": verdict, "gates": gates,
-           "gates_passed": n_pass, "gates_total": len(gates),
+           "verdict": verdict, "checks": checks,
+           "checks_passed": n_pass, "checks_total": len(checks),
            "provenance": provenance([COVER_JSON, C127_JSON],
                                     time.time() - T0)}
     ART.parent.mkdir(parents=True, exist_ok=True)
     ART.write_text(json.dumps(art, indent=2, ensure_ascii=False),
                    encoding="utf-8")
     print("-" * 78)
-    for k, v in gates.items():
+    for k, v in checks.items():
         print(f"  {'PASS' if v else 'FAIL'}  {k}")
     print("-" * 78)
     print(verdict)
     print(f"→ {ART}")
-    return 0 if all(gates.values()) else 1
+    return 0 if all(checks.values()) else 1
 
 
 # ===========================================================================

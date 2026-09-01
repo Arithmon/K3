@@ -8,7 +8,7 @@ THREE LEVELS, and the distinction is the point.
 
   REPLAY — the inexpensive certificates (under a second each) are RE-EXECUTED
     from the producers in `verification/producers/`, and we then check that
-    every gate and every negative control is green and that the recorded
+    every check and every negative control is green and that the recorded
     outcome still carries its expected prefix. A regenerated artefact is NOT
     compared by hash: its provenance block records the commit it was built
     from, which changes with every commit, so hashing a regenerated file
@@ -16,7 +16,7 @@ THREE LEVELS, and the distinction is the point.
 
   RECOMPUTE — the coverage certificate (71.8 M boxes, about 70 s on four
   cores) is RECOMPUTED and its counters compared one by one with the shipped
-  file. It predates the gates/self_tests convention, so reading it would only
+  file. It predates the checks/perturbation_tests convention, so reading it would only
   re-read a verdict; recomputing it would redden if a single counter moved.
   This is the computation carrying the pivot floor 4.8, so it is the one that
   most deserves to be reproduced rather than trusted.
@@ -83,7 +83,7 @@ REPLAY = [
     ("sigma_floor_correction", "sigma_floor_correction.py",
      "u1_sigma_floor_defect_confirmed_with_witness_radius_corrected_9p6e10_to_2p1e12_theorem_survives"),
     # The four design certificates are deliberately NOT replayed. They do
-    # have gates, self-tests and producers, and they pass; but shipping their
+    # have checks, self-tests and producers, and they pass; but shipping their
     # producers pulls twenty-three further artefacts into this repository,
     # through everything those producers read — contract amendments,
     # preregistrations, the internal chain those design documents rest on.
@@ -109,11 +109,11 @@ RECOMPUTE = [
 # (certificate, recorded SHA-256) — checked by hash, not replayed
 HASHED = [
     ("bridge_atlas_panel",
-     "8d01e64efb1bf52923f87de6b10d47b49e177e7285df294c0a678fbef0355150"),
+     "3dee33ed55bfc3028b643eda0217bd8b72d47e8b9968d0f8b89e6fb839eb6450"),
     ("bridge_metric_path",
-     "aa00dea0111577928869913ae4fa399655aac72577c65e6313e26c623baba316"),
+     "6011b89880272b0a32d0809c366f918b094cba92bd2abb241c9deb29e7335d7c"),
     ("face_traversal_leaf",
-     "35b5d0abd6f7a952f5970332ac9b013909485c7879fee3fed629b659278ecc54"),
+     "781177e658c07e9203d26d2ca8c6260abc091a39ebb9f3fe859ac543c76f5716"),
 ]
 
 
@@ -145,8 +145,8 @@ def check_shipped(blob, prefix):
     original bytes, so a repository shipping a RED artefact still passed:
     only the regenerated file was examined, never the one a reader opens."""
     d = json.loads(blob.decode("utf-8"))
-    gp, gt = d.get("gates_passed"), d.get("gates_total")
-    st = d.get("self_tests", {})
+    gp, gt = d.get("checks_passed"), d.get("checks_total")
+    st = d.get("perturbation_tests", {})
     field = "outcome" if "outcome" in d else "issue"
     return (gp is not None and gp == gt and gt > 0
             and all(bool(v) for v in st.values())
@@ -155,8 +155,8 @@ def check_shipped(blob, prefix):
 
 def check_json(path, prefix):
     d = json.loads(path.read_text(encoding="utf-8"))
-    gp, gt = d.get("gates_passed"), d.get("gates_total")
-    st = d.get("self_tests", {})
+    gp, gt = d.get("checks_passed"), d.get("checks_total")
+    st = d.get("perturbation_tests", {})
     ok_gates = gp is not None and gp == gt and gt > 0
     ok_neg = all(bool(v) for v in st.values()) if st else True
     # Two naming conventions coexist: recent certificates serialise
@@ -165,10 +165,10 @@ def check_json(path, prefix):
     field = "outcome" if "outcome" in d else "issue"
     # The EXACT outcome, not a prefix. While only the beginning was compared,
     # everything after it was free-form comment: `..._word_length_le_3`
-    # survived a gate that already required 4, and the shipped certificate
+    # survived a check that already required 4, and the shipped certificate
     # told the reader the opposite of what its producer computed.
     ok_out = bool(prefix) and str(d.get(field, "")) == prefix
-    detail = f"gates {gp}/{gt}"
+    detail = f"checks {gp}/{gt}"
     if st:
         detail += (f" · negative controls "
                    f"{sum(bool(v) for v in st.values())}/{len(st)}")

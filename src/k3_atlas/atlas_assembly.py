@@ -49,7 +49,7 @@ WHAT THIS SCRIPT PAYS (the four points of the contract):
      . THE TRANSITION IDENTITY, without division: `Zt_a.Z[g']` contains `Z_a` per
        tile, and from one tile to the next `Zt^(j)_a.Z[g'_j] -
        Zt^(i)_a.Z[g'_i]` contains 0: this is the gluing that brings the
-       deux ledgers `ε'` dérivés indépendamment.
+       deux sheet records `ε'` dérivés indépendamment.
 
   D-d. COCYCLE ON THE NERVE: on each non-empty triple intersection
      vide : `θ_ij·θ_jk·θ_ki = +1` (exact, discret), `λ_ij·λ_jk·λ_ki ∋ 1`
@@ -61,7 +61,7 @@ HONESTY ABOUT WHAT IS TAUTOLOGICAL AND WHAT IS NOT:
   . `theta = +1` is NOT tautological: the source determinations vary
     from tile to tile and nothing forced the same sheet;
   . the transition identity is NOT tautological: it brings into
-    présence deux ledgers `ε'` dérivés séparément ;
+    présence deux sheet records `ε'` dérivés séparément ;
   . at the level of TRIPLES, the cocycle condition is IMPLIED by the
     pairwise identities (all charts are affine charts of the
     same projective space and all sections descend from ONE source section),
@@ -92,7 +92,7 @@ payées SANS changer aucun contrat :
      de triple) restent en mp jusqu'à la comparaison à δ ; la
      float conversion is DIRECTED (`_f_up`) and happens only at the
      sérialisation — la borne publiée MAJORE la borne comparée.
-  C. gate D2c : l'ÉGALITÉ D'ENSEMBLES {tuiles clippées} = {tuiles nées
+  C. check D2c : l'ÉGALITÉ D'ENSEMBLES {tuiles clippées} = {tuiles nées
      of the residual}, published with both sorted sets and their
      SHA-256: "64 = 64" does not exclude a permutation 63+1.
 
@@ -708,7 +708,7 @@ def pair_certificate(i, j, corrupt=None):
         out["charts_equal"] = bool(g_i == g_j)
 
     # --- (4) the transition IDENTITY, without division ------------------
-    #  Zt^(j)_a·Z[g'_j] − Zt^(i)_a·Z[g'_i] ∋ 0 : les deux ledgers ε'
+    #  Zt^(j)_a·Z[g'_j] − Zt^(i)_a·Z[g'_i] ∋ 0 : les deux sheet records ε'
     #  derived SEPARATELY are brought together on the overlap.
     # The supremum stays in multiprecision until the check; _f_up only for
     # la sérialisation — la borne publiée MAJORE la borne comparée.
@@ -776,7 +776,7 @@ def triple_certificate(i, j, k, lam):
         # lost, and the measured "defect" IS ONLY the decorrelation
         # width (exactly the phenomenon that forced the
         # recentring elsewhere in this script). The number is therefore published
-        # comme DIAGNOSTIC de décorrélation, JAMAIS comme gate.
+        # comme DIAGNOSTIC de décorrélation, JAMAIS comme check.
         # What has content at the triple level, and what is checked:
         #   . the three gauges are BOUNDED BELOW by 0 on the triple box
         #     (the three lambdas exist and the composition is licit);
@@ -793,7 +793,7 @@ def triple_certificate(i, j, k, lam):
         out["lambda_note"] = ("identité algébrique — largeur de "
                               "décorrélation publiée, non gatée")
     # the transition identity on the THREE edges, on the TRIPLE box.
-    # Sup en mp jusqu'au gate (the directed-rounding step), _f_up à la sérialisation.
+    # Sup en mp jusqu'au check (the directed-rounding step), _f_up à la sérialisation.
     idsup, idok = mp.mpf(0), True
     for (a, b) in ((i, j), (j, k), (i, k)):
         ga, gb = _G["geom"][a], _G["geom"][b]
@@ -828,7 +828,7 @@ def _triple_job(job):
 
 
 # ===========================================================================
-#  Chargement des feuilles et de leurs ledgers
+#  Chargement des feuilles et de leurs sheet records
 # ===========================================================================
 def load_leaves():
     cov = json.loads(COVER_JSON.read_text(encoding="utf-8"))
@@ -1043,7 +1043,7 @@ def build():
         + " · ".join(f"{k}={'CASSE' if v['breaks'] else 'NE CASSE PAS'}"
                      for k, v in negs.items()))
 
-    # --- gates ----------------------------------------------------------
+    # --- checks ----------------------------------------------------------
     max_halo = max((h["record"]["halo_congruence_sup"]
                     for h in halo_ok), default=0.0)
     max_id = max((r.get("transition_identity_defect", 0.0)
@@ -1078,7 +1078,7 @@ def build():
     def _set_sha(idx):
         return hashlib.sha256(
             json.dumps(idx, separators=(",", ":")).encode()).hexdigest()
-    gates = {
+    checks = {
         "D1_partition_reasserted": bool(
             addr_fail == 0 and tg["unique"] and tg["prefix_free"]
             and tg["tree_closed"] and tg["kraft_is_one"]),
@@ -1110,7 +1110,7 @@ def build():
             len(halos) == len(sel) and len(pres) == len(pairs)
             and len(tres) == len(triples)
             and all((r["i"], r["j"]) in pmap for r in pres))}
-    n_pass = sum(1 for v in gates.values() if v)
+    n_pass = sum(1 for v in checks.values() if v)
 
     verdict = (
         "(%s) THE PARTITION HAS BECOME AN ATLAS. The %d "
@@ -1243,27 +1243,27 @@ def build():
             "contrat exact de l'identité de congruence",
             "scaling complet (the scaling step)",
             "les 895 autres paires cellule/classe", "the later scaling"],
-        "verdict": verdict, "gates": gates,
-        "gates_passed": n_pass, "gates_total": len(gates),
+        "verdict": verdict, "checks": checks,
+        "checks_passed": n_pass, "checks_total": len(checks),
         "provenance": provenance([COVER_JSON, C127_JSON, C127E_JSON],
                                  time.time() - T0)}
     ART.parent.mkdir(parents=True, exist_ok=True)
     ART.write_text(json.dumps(art, indent=2, ensure_ascii=False),
                    encoding="utf-8")
     print("-" * 78)
-    for k, v in gates.items():
+    for k, v in checks.items():
         print(f"  {'PASS' if v else 'FAIL'}  {k}")
     print("-" * 78)
     print(verdict)
     print(f"→ {ART}")
-    return 0 if all(gates.values()) else 1
+    return 0 if all(checks.values()) else 1
 
 
 # ===========================================================================
 #  The negative controls: discriminating power, not decoration
 # ===========================================================================
 def run_negatives(leaves, geom, tm, pairs, pmap):
-    """Six falsifications. Chacune DOIT casser un gate nominal."""
+    """Six falsifications. Chacune DOIT casser un check nominal."""
     out = {}
     ids = sorted(geom)
     ref = next(((i, j) for (i, j) in pairs
@@ -1274,7 +1274,7 @@ def run_negatives(leaves, geom, tm, pairs, pmap):
 
     # N1: a corrupted sheet record on one tile makes the transition identity
     #      doit cesser de contenir 0 (elle met en présence les DEUX
-    #      ledgers ; si elle ne voyait pas ε', elle serait décorative)
+    #      sheet records ; si elle ne voyait pas ε', elle serait décorative)
     Zj, Pj = tm[j]
     Pbad = [([CIV(-c.re, -c.im) for c in Pj[a][0]], Pj[a][1])
             if a == leaves[j]["chart"]["S"][0] else Pj[a]
@@ -1299,7 +1299,7 @@ def run_negatives(leaves, geom, tm, pairs, pmap):
                        and not r2.get("same_sheet")),
         "theta": r2.get("theta"),
         "note": ("Z_s negated on tile j: theta must equal -1 on that "
-                 "ligne et le gate de feuillet doit tomber")}
+                 "ligne et le check de feuillet doit tomber")}
 
     # N3: rho = 0; the halos become the cores again and the overlap loses its
     #      largeur ; « ouvert » doit cesser d'être vrai
@@ -1413,7 +1413,7 @@ def _selftest():
         "ne donnent aucun overlap ouvert",
         _inter_generic(lo1, hi1, lo3, hi3) is None)
 
-    # T3 : la carte ε et son gate de domaine
+    # T3 : la carte ε et son check de domaine
     E = eps_box({"lo": [Fraction(-1, 2)] * 4,
                  "hi": [Fraction(1, 2)] * 4},
                 [Fraction(0)] * 4, Fraction(1))

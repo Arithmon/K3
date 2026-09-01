@@ -50,7 +50,7 @@ PRÉDICTIONS PRÉ-ENREGISTRÉES (falsifiables) : (i) les deux candidates
 differ only by the sign of row 2 (`s = 5`), so if the regimes
 sur `W_cell` restent `(principal, canonical, canonical)`, leurs motifs
 theta patterns can differ ONLY on coordinate 5; (ii) the pattern of the
-contrôle doit relier étiquette et ledger dérivé par
+contrôle doit relier étiquette et sheet record dérivé par
 `motif[s] = ε_dérivé[s]·étiquette[s]` ligne à ligne.
 
 CONVENTIONS, DECLARED AND NOT OVERWRITTEN: the naive check and its
@@ -81,7 +81,7 @@ GATES
   B1d  restriction: `theta = +1` on 6 of 6 coordinates against the certified section
        (elle-même re-construite et confrontée aux régimes sérialisés),
        marges de séparation publiées ;
-  B1e  ledger voisin DÉRIVÉ puis RECONSTRUIT : `θ = +1` sur 6/6 après
+  B1e  sheet record voisin DÉRIVÉ puis RECONSTRUIT : `θ = +1` sur 6/6 après
        reconstruction, and W_cell is the expected CUBE (4 widths
        égales, ancre centrale STRICTEMENT intérieure, Re u > face) ;
   B1f′ identification PAR CONVERSION EXPLICITE (v2, a review §3) :
@@ -95,7 +95,7 @@ GATES
             ONE closes (and it equals the record derived in B1e);
        B1f5 the converted loser breaks ONLY on coordinate 5
             prédite, marge O(1) ;
-       B1f6 le gate naïf `none_closes` reste publié en diagnostic ;
+       B1f6 le check naïf `none_closes` reste publié en diagnostic ;
   B1g  NEGATIVE CONTROL: mutating ONE row of the derived record makes the gluing fall
        on that row (theta = -1), with margin of order 1;
   B1h  aucun filtrage silencieux : 6 coordonnées partout, tout refus
@@ -284,9 +284,9 @@ def build():
     for name, blob in (("rface_scout_v2", rs), ("f0_scout", scout0),
                        ("f2f3_v2", f23), ("c127d", atl),
                        ("c127e_residual", c127e)):
-        gp, gt = blob.get("gates_passed"), blob.get("gates_total")
+        gp, gt = blob.get("checks_passed"), blob.get("checks_total")
         mode = blob.get("mode")
-        up[name] = {"gates": f"{gp}/{gt}", "mode": mode,
+        up[name] = {"checks": f"{gp}/{gt}", "mode": mode,
                     "green": bool(gp == gt and gt
                                   and (mode == "full"
                                        if mode is not None else True))}
@@ -295,7 +295,7 @@ def build():
         and len(c127e.get("new_tiles", [])) == 64)
     b1a = all(v["green"] for v in up.values())
     log("B1a : amont — " + " ; ".join(
-        f"{k} {v['gates']}" for k, v in up.items()) + f" ⟹ {b1a}")
+        f"{k} {v['checks']}" for k, v in up.items()) + f" ⟹ {b1a}")
 
     cell = cov["cell"]
     S, g = tuple(cell["S"]), cell["g"]
@@ -314,7 +314,7 @@ def build():
     chart = c127e["new_tiles"][tile - 252]["chart"]
     S2, g2 = tuple(chart["S"]), chart["g"]
     log(f"témoin {tile} (importé du preliminary computation v2), face Re u = {face} "
-        f"({float(face):+.9f}), ledger the base bridge {eps_f0}, chart cible "
+        f"({float(face):+.9f}), sheet record the base bridge {eps_f0}, chart cible "
         f"S₂={S2} g₂={g2}")
 
     # --- B1b : géométrie 2H ------------------------------------------
@@ -372,7 +372,7 @@ def build():
                    and regimes_f0_re == regimes_f0)
     log(f"B1d : restriction au pont the base bridge — {th_src} ⟹ {b1d}")
 
-    # --- B1e : W_cell et ledger dérivé -------------------------------
+    # --- B1e : W_cell et sheet record dérivé -------------------------------
     W = inter(bridge, nb_box)
     b1e = False
     eps_der = None
@@ -399,7 +399,7 @@ def build():
                     b1e = bool(th_der["closed"] and is_cube
                                and anchor_interior)
     log(f"B1e : W_cell largeurs {[str(x) for x in (W_widths or [])]} "
-        f"(cube), ledger DÉRIVÉ {eps_der}, reconstruit ⟹ "
+        f"(cube), sheet record DÉRIVÉ {eps_der}, reconstruit ⟹ "
         f"{th_der} ⟹ {b1e}")
 
     # --- B1f : les deux candidates -----------------------------------
@@ -506,9 +506,9 @@ def build():
     log(f"B1f′ : κ = {kappa} (dérivé du contrôle : {b1f1} ; confiné "
         f"aux lignes rotated→canonique du core : {b1f2}) ; converties "
         f"{ {c: list(v) for c, v in eps_conv.items()} } ; EXACTEMENT "
-        f"UNE ferme : classe {winner} ({b1f4}, == ledger dérivé : "
+        f"UNE ferme : classe {winner} ({b1f4}, == sheet record dérivé : "
         f"{winner_is_derived}); the loser breaks ONLY on "
-        f"{PREDICTED_DIFF_COORD} : {b1f5} ; gate naïf = {outcome} "
+        f"{PREDICTED_DIFF_COORD} : {b1f5} ; check naïf = {outcome} "
         f"(diagnostic conservé) ⟹ {b1f}")
 
     # --- B1g: NEGATIVE CONTROL, mutate ONE row of the derived record --
@@ -533,7 +533,7 @@ def build():
                and len(closed) == len(cands) == 2)
     log(f"B1h : 6 coordonnées partout, 2 candidates traitées ⟹ {b1h}")
 
-    gates = {
+    checks = {
         "B1a_upstream_green_full_modes": bool(b1a),
         "B1b_geometry_2H_exact_negative_narrow": bool(b1b),
         "B1c_section_on_widened_box_chart_revalidated": bool(b1c),
@@ -542,7 +542,7 @@ def build():
         "B1f_explicit_label_to_ledger_conversion_identifies": bool(b1f),
         "B1g_single_line_mutation_breaks": bool(b1g),
         "B1h_no_silent_filtering": bool(b1h)}
-    npass = sum(1 for v in gates.values() if v)
+    npass = sum(1 for v in checks.values() if v)
 
     try:
         head = subprocess.run(
@@ -654,7 +654,7 @@ def build():
             "the atlas of the neighbouring cell",
             "the low faces (enumeration boundary)",
             "the 895 other pairs"],
-        "gates": gates, "gates_passed": npass, "gates_total": len(gates),
+        "checks": checks, "checks_passed": npass, "checks_total": len(checks),
         "verdict": (
             f"B1 v2 DELIVERED: a first local analytic continuation "
             f"between two canonically addressed cells. The sheet "
@@ -662,8 +662,8 @@ def build():
             f"EXPLICIT CONVERSION (kappa derived, candidates converted "
             f"and rebuilt, exactly one closing); no ADDITIONAL deck "
             f"after conversion."
-            if npass == len(gates) else
-            f"RED: {len(gates) - npass} check(s) failed"),
+            if npass == len(checks) else
+            f"RED: {len(checks) - npass} check(s) failed"),
         "provenance": {
             "git_head": head, "python": sys.version.split()[0],
             "platform": platform.platform(), "mp_prec": int(mp.prec),
@@ -676,12 +676,12 @@ def build():
     ART.write_text(json.dumps(out, indent=2, ensure_ascii=False),
                    encoding="utf-8")
     print("=" * 78)
-    for k, v in gates.items():
+    for k, v in checks.items():
         print(f"  {'OK  ' if v else 'FAIL'} {k}")
     print(f"\n{out['verdict']}")
-    print(f"gates {npass}/{len(gates)} — artefact : {ART.name}")
+    print(f"checks {npass}/{len(checks)} — artefact : {ART.name}")
     print("=" * 78)
-    return npass == len(gates)
+    return npass == len(checks)
 
 
 if __name__ == "__main__":

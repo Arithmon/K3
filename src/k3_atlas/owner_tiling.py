@@ -38,7 +38,7 @@ ambiguous (sum 16), counts by depth. The volume is PARAMETRIC
 (the (u,v) coordinates of the pair); the mass (integral of det g, closure 4 pi^2, check O2)
 is the next stage, and it will consume only certified OWNER boxes.
 
-Self-test (gates DISCRIMINANTS, dont les tests négatifs obligatoires O0) :
+Self-test (checks DISCRIMINANTS, dont les tests négatifs obligatoires O0) :
   S1 point possédé (MC) ⟹ boîte dégénérée OWNER ; même (u,v) sous une
      JAUGE fausse ⟹ OUTSIDE ; sous un TRIPLE faux ⟹ OUTSIDE
   S2 boîte volontairement à cheval (domaine entier) ⟹ ni OWNER ni
@@ -107,7 +107,7 @@ def classify_box(S, g_col, box, setup=None, with_flags=False):
     Retourne 'OWNER' | 'OUTSIDE' | 'BRANCH' | 'AMBIGUOUS'.
         OUTSIDE takes precedence over BRANCH (sound: a box certified outside the
     propriétaire n'a pas besoin de traitement de branche) ; with_flags
-    expose le drapeau branch interne (gate S3)."""
+    expose le drapeau branch interne (check S3)."""
     T, o1, o2, A = setup if setup is not None else couple_setup(S, g_col)
     ur, ui = _iv(box[0], box[1]), _iv(box[2], box[3])
     vr, vi = _iv(box[4], box[5]), _iv(box[6], box[7])
@@ -402,7 +402,7 @@ def build():
         "max_frontier": MAX_FRONTIER, "n_couples_capped": n_capped,
         "fast_kernel": ("numpy + arrondi dirigé émulé nextafter "
                         "(design-grade ; oracle mpmath = référence, "
-                        "gate S6)"),
+                        "check S6)"),
         "n_boxes_classified": n_boxes,
         "n_couples_with_certified_owner": n_owner_couples,
         "n_couples_vacuous_certified": n_empty_cert,
@@ -486,7 +486,7 @@ def _selftest():
                                                  with_flags=True)
                         # au zéro de R_s : |Z_s| = 0 ⟹ score du triple
                         # s'effondre ⟹ OUTSIDE prime légitimement sur
-                        # BRANCH ; le gate exige (a) drapeau branch levé
+                        # BRANCH ; le check exige (a) drapeau branch levé
                         # (b) JAMAIS OWNER
                         if fl["branch"] and v_rad != "OWNER":
                             s3 = True

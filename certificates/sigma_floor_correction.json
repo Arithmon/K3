@@ -1,28 +1,28 @@
 {
  "artifact": "k3_cap_atlas_paper_sigma_floor_correction",
- "lot": "DÉFAUT trouvé dans U1 en écrivant le papier : sigma_floor place la borne du PRODUIT ∏|z_s| dans le slot du MINIMUM min|z_s| requis par s_min(M̃) ≥ 2σ_min(Ṽ)·min|z| ; témoin explicite sur la variété ; constante corrigée",
+ "subject": "DEFECT found in U1 while writing the paper: sigma_floor places the PRODUCT bound ∏|z_s| in the slot of the MINIMUM min|z_s| required by s_min(M̃) ≥ 2σ_min(Ṽ)·min|z|; explicit witness on the variety; constant corrected",
  "kind": "defect_report_and_correction",
- "front": "papier atlas T2 (amont U1)",
+ "front": "atlas paper T2 (upstream U1)",
  "nothing_is_rewritten": true,
  "u1_is_not_modified_by_this_lot": true,
  "upstream": {
-  "u1_live": "ad3aa09b41b6900c809f5ba223c50084c3fd8deec74b2e10dd2c0b64e0d9d4e7",
+  "u1_live": "5e155bc7660d6985946a02d1406cafb9bc51366b951859e90f4407259477b952",
   "u1_outcome_live": "uniform_open_chart_theorem_certified",
   "u1_sha_at_defect": "d30959de5e0e2d9233cf09fc03e450f695ef68a1dfde82a8dcd32797dd776e07",
   "u1_rho_published_at_defect": "9.59780680865981e-10",
   "u1_rho_live": "2.109162520036473e-12",
   "upstream_repaired": true,
-  "note": "Q1 se compare à la trace GELÉE ; ce lot reste valide après réparation amont et en garde le témoignage"
+  "note": "Q1 compares against the FROZEN trace; this certificate stays valid after the upstream repair and keeps the record of it"
  },
  "A_correct_chain": {
   "identity": "s_min(A·diag(d)) ≥ s_min(A)·min_i|d_i|  (‖ADx‖ ≥ s_min(A)‖Dx‖ ≥ s_min(A)min|d_i|‖x‖)",
   "numeric_control_300_random": true,
-  "what_the_pivot_gives": "|det M_S^alg| = 8|V_S|∏|z_s| > m ⇒ le PRODUIT, pas le minimum"
+  "what_the_pivot_gives": "|det M_S^alg| = 8|V_S|∏|z_s| > m ⇒ the PRODUCT, not the minimum"
  },
  "B_defect": {
   "u1_formula": "sigma_floor_lo = 2·σ_min(Ṽ_S)·m/(8|V_S|)",
-  "substitution": "m/(8|V_S|) est une borne du PRODUIT, employée là où le MINIMUM est requis",
-  "why_invalid": "∏ ≥ c ⇒ min ≥ c est faux dès qu'un facteur dépasse 1 ; les coordonnées résolues atteignent B_s ≈ 3,4 sur les domaines certifiés",
+  "substitution": "m/(8|V_S|) is a bound on the PRODUCT, used where the MINIMUM is required",
+  "why_invalid": "∏ ≥ c ⇒ min ≥ c is false as soon as one factor exceeds 1; the resolved coordinates reach B_s ≈ 3.4 on the certified domains",
   "witness_on_the_variety": {
    "S": [
     0,
@@ -46,11 +46,11 @@
    "product": 0.305268,
    "prod_lo_used_by_U1": 0.25,
    "min_abs_z": 0.204124,
-   "reading": "point du secteur SUR le domaine de pivot (produit > plancher) dont le MINIMUM est sous le plancher"
+   "reading": "point of the sector ON the pivot domain (product > floor) whose MINIMUM lies below the floor"
   }
  },
  "C_repair": {
-  "replacement": "min_i|z_{s_i}| ≥ max( m/(8|V_S| ∏_{j≠i}B_{s_j}) , sqrt(|a|−|b|−|c|) si > 0 )",
+  "replacement": "min_i|z_{s_i}| ≥ max( m/(8|V_S| ∏_{j≠i}B_{s_j}) , sqrt(|a|−|b|−|c|) if > 0 )",
   "rho_unif_published_by_U1": "9.597806993610902e-10",
   "rho_unif_corrected": "2.1092017021828724e-12",
   "loss_factor": 455.0,
@@ -673,21 +673,21 @@
    ],
    "g": 3
   },
-  "verdict": "le THÉORÈME survit (rayon uniforme strictement positif) ; c'est la CONSTANTE qui était optimiste"
+  "verdict": "the THEOREM survives (uniform radius strictly positive); it is the CONSTANT that was optimistic"
  },
  "D_scope": {
   "upstream_repaired_since": true,
-  "u1_other_gates": "non touchés",
-  "t2_closeout": "PAS invalidé — « existence quantitative avec rayon explicite garanti » tient ; seule la valeur change",
-  "action_left_to_the_ledger": "ce lot ne rejoue pas U1 ; le papier cite la constante corrigée"
+  "u1_other_gates": "not affected",
+  "t2_closeout": "NOT invalidated — \"quantitative existence with a guaranteed explicit radius\" holds; only the value changes",
+  "action_left_to_the_ledger": "this certificate does not replay U1; the paper cites the corrected constant"
  },
- "n_atteste_pas": [
-  "que les autres gates de U1 soient touchés",
-  "que le témoin soit le pire cas (grille déterministe, pas une optimisation)",
-  "la netteté de la constante corrigée (bornes Frobenius/det volontairement lâches)",
-  "rien sur T1/P4′/L4"
+ "does_not_attest": [
+  "that the other checks of U1 are affected",
+  "that the witness is the worst case (deterministic grid, not an optimisation)",
+  "the sharpness of the corrected constant (Frobenius/det bounds deliberately loose)",
+  "anything about the other parts of the wider project"
  ],
- "gates": {
+ "checks": {
   "Q1_reproduces_U1_published_radius": true,
   "Q2_matrix_inequality_smin_AD_control": true,
   "Q3_explicit_witness_on_the_variety": true,
@@ -695,17 +695,17 @@
   "Q5_correction_is_a_loss_not_a_gain": true,
   "Q6_upstream_read": true
  },
- "gates_passed": 6,
- "gates_total": 6,
+ "checks_passed": 6,
+ "checks_total": 6,
  "outcome": "u1_sigma_floor_defect_confirmed_with_witness_radius_corrected_9p6e10_to_2p1e12_theorem_survives",
- "seconds": 0.3,
- "self_tests": {
+ "seconds": 0.1,
+ "perturbation_tests": {
   "N1_capping_z_at_one_validates_U1_substitution": true,
   "N2_inverting_the_chain_min_to_product_silences_the_witness": true,
   "N3_m_zero_collapses_both_floors": true
  },
- "self_tests_passed": 3,
- "self_tests_total": 3,
- "built_from_head": "b10fdfdbacd3f8c89795113f7152d8a34d3a697a",
- "self_sha256": "63f62acec5d8ed2c457282a5ff3bb5eb5150f56d34fe99433d1ebb15fa85b9c6"
+ "perturbation_tests_passed": 3,
+ "perturbation_tests_total": 3,
+ "built_from_head": "632474d3b3fe9c0e05903cb65c2034750bcc17ba",
+ "self_sha256": "73302cbededda72ac3453e084ff3f0532dffae9252090b7c75c20380264abb81"
 }

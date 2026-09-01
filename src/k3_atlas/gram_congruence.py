@@ -28,7 +28,7 @@ and whether `J` is the Jacobian or its conjugate transpose). The self-test
 measures both forms and shows that they DIFFER, so the check
 discrimine.
 
-Gates pré-enregistrés :
+Checks pré-enregistrés :
   E1 INVARIANCE DE JAUGE — `Q(Z', W_{Z'})` et `Q(Z, W)` ont des
      enclosures whose difference contains 0, on the WHOLE box
   E1b MUTATION DE JAUGE — renormaliser `Z` SANS renormaliser `W` casse
@@ -200,7 +200,7 @@ def pd_bounds(Q):
 # ===========================================================================
 def native_target_section(S2, g2, up, vp, eps2, sigma2):
     """NATIVE section of the target chart, with the sheet and component FIXED
-    ENTRÉE** — jamais choisis par essai ni ajustés par le gate qu'ils
+    ENTRÉE** — jamais choisis par essai ni ajustés par le check qu'ils
     doivent passer.
 
     The component comes from the certified COMPONENT of the radicand
@@ -523,7 +523,7 @@ def build():
     log(f"E2 quadraticité : Aᵀ Q conj(A) convient {good_ok} · "
         f"A* Q A convient {bad_ok} (doit être False)")
 
-    gates = {
+    checks = {
         "E1_gauge_invariance": bool(cells) and all(
             x["E1_gauge_invariance"]["ok"] for x in cells),
         "E2_quadratic_in_W": good_ok and not bad_ok,
@@ -540,8 +540,8 @@ def build():
         "C125C_target_component_certified": bool(cells) and all(
             all(s in (-1, 1, None) for s in x["sigma_target_certified"])
             for x in cells)}
-    n_pass = sum(1 for v in gates.values() if v)
-    log(f"gates : {n_pass}/{len(gates)} " + str(gates))
+    n_pass = sum(1 for v in checks.values() if v)
+    log(f"checks : {n_pass}/{len(checks)} " + str(checks))
 
     verdict = (
         "CONGRUENCE AND POSITIVITY TRANSPORT (checks "
@@ -568,7 +568,7 @@ def build():
         "SCOPE: established on %d cell(s) and ONE chart each, not a "
         "multi-chart cover, not a globalisation. No atlas "
         "figure moves." % (
-            n_pass, len(gates), good_ok, bad_ok, len(cells),
+            n_pass, len(checks), good_ok, bad_ok, len(cells),
             all(x["E1_gauge_invariance"]["ok"] for x in cells),
             all(x["E3_congruence"]["ok"] for x in cells),
             "oui" if not j_ok else "NON", len(cells)))
@@ -605,7 +605,7 @@ def build():
             "E6 revealed it."),
         "E6_jacobian_mutation_congruence_still_holds": j_ok,
         "not_established": ["the dyadic cover cover multi-chart", "globalisation"],
-        "gates_prereg": gates,
+        "checks_prereg": checks,
         "verdict": verdict}
     ART.write_text(json.dumps(out, indent=2, ensure_ascii=False,
                               default=float), encoding="utf-8")

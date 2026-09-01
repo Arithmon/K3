@@ -71,12 +71,12 @@ def build(mutate=None):
                                            "ok": amB["B5_F1_pivot_cover"]["complementary_T_never_all_zero"]["all_nonzero"] and amB["B5_F1_pivot_cover"]["gauge_refinement"]["n_types"] == 60},
         "3_U1_local_open_chart_certified_radius": {"outcome": u1["outcome"], "n_chart_types": u1["U1A_domains_typed"]["n_chart_types"],
                                                     "sections_local": u1["U1A_domains_typed"]["B_Z0_S_g"]["sections_are_local"],
-                                                    "rho_uniform_lo_min": str(rho_min), "no_float_load_bearing": u1["gates"]["G5_no_float_load_bearing"],
+                                                    "rho_uniform_lo_min": str(rho_min), "no_float_load_bearing": u1["checks"]["G5_no_float_load_bearing"],
                                                     "ok": u1["outcome"] == "uniform_open_chart_theorem_certified" and rho_min > 0 and u1["U1A_domains_typed"]["n_chart_types"] == 60},
         "4_compactness_finite_subcover": {"argument": "K is closed in P⁵ (the common zero locus of three quadrics), hence compact; the local opens B_{Z0,S,g}(ρ) indexed by all centres Z0 ∈ K cover K (every point is its own centre), so a finite subfamily already covers K",
                                           "not_enumerated": True, "ok": True},
         "5_transitions_exact_projective": {"cocycle": f9["cocycle_exact_rational_points"], "transfer": f9["root_relation_transfer_exact_all_ordered_pairs"],
-                                            "ok": f9["gates"]["T2_identity_inverse_cocycle_exact_on_all_tests"] and f9["gates"]["T3_root_relation_transfer_exact_3540_of_3540"]},
+                                            "ok": f9["checks"]["T2_identity_inverse_cocycle_exact_on_all_tests"] and f9["checks"]["T3_root_relation_transfer_exact_3540_of_3540"]},
         "6_quotient_is_K": {"reduction": f9["F9_reduction"]["obligation_8_quotient_is_K"], "biconditional": f9["F9_reduction"]["obligation_7_biconditional"],
                             "ok": f9["outcome"] if "outcome" in f9 else f9["issue"].startswith("exact_transitions_are_rescalings")},
         "7_no_regional_dependency": {"upstreams": sorted(SRC), "X_reg_or_b1_or_RFace_in_upstreams": False,
@@ -94,7 +94,7 @@ def build(mutate=None):
                             "quotient is canonically K"),
            "level": LEVEL,
            "seven_items_derived": items,
-           "ledger": {"T1_NK_fixed_K": "OPEN (D2 / D1b / D1e / production)",
+           "sheet record": {"T1_NK_fixed_K": "OPEN (D2 / D1b / D1e / production)",
                       "T2_GLOBAL_ATLAS_FIXED_K3": ("CLOSED — " + LEVEL) if all_ok else "NOT_CLOSED",
                       "T3_K3_FAMILY_TO_L4": "OPEN — NEXT T3-P0 FAMILY_PARAMETER_DEPENDENCE_CONTRACT",
                       "regional_contract_C1_C6": ck["K4_ledger"]["regional_contract_C1_C6"] + " (unchanged; X_reg is no longer on the critical path)"},
@@ -105,11 +105,11 @@ def build(mutate=None):
     hits = [p for p in FORBIDDEN if p in blob]
     if "forbid" in mutate:
         hits.append("explicit enumerated atlas")
-    gates = {f"C{i+1}_" + k.split("_", 1)[1]: v["ok"] for i, (k, v) in enumerate(items.items())}
-    gates["C8_no_forbidden_phrase"] = not hits
+    checks = {f"C{i+1}_" + k.split("_", 1)[1]: v["ok"] for i, (k, v) in enumerate(items.items())}
+    checks["C8_no_forbidden_phrase"] = not hits
     out["forbidden_hits"] = hits
-    out["gates"] = gates; out["gates_passed"] = sum(bool(v) for v in gates.values()); out["gates_total"] = len(gates)
-    out["outcome"] = "t2_fixed_k3_closed_quantitative_existence_level" if all(gates.values()) else "t2_closeout_refused"
+    out["checks"] = checks; out["checks_passed"] = sum(bool(v) for v in checks.values()); out["checks_total"] = len(checks)
+    out["outcome"] = "t2_fixed_k3_closed_quantitative_existence_level" if all(checks.values()) else "t2_closeout_refused"
     out["does_not_attest"] = ["nothing about T1 or T3", "no cell is produced", "the U1 bounds are certified design-grade bounds, not sharp ones"]
     return out
 
@@ -117,9 +117,9 @@ def build(mutate=None):
 def main():
     t0 = time.time()
     out = build()
-    st = {"N1_refused_U1_blocks_closeout": not build(mutate={"kill_u1": True})["gates"]["C3_U1_local_open_chart_certified_radius"],
-          "N2_forbidden_phrase_reddens": not build(mutate={"forbid": True})["gates"]["C8_no_forbidden_phrase"]}
-    out["self_tests"] = st; out["self_tests_passed"] = sum(bool(v) for v in st.values()); out["self_tests_total"] = len(st)
+    st = {"N1_refused_U1_blocks_closeout": not build(mutate={"kill_u1": True})["checks"]["C3_U1_local_open_chart_certified_radius"],
+          "N2_forbidden_phrase_reddens": not build(mutate={"forbid": True})["checks"]["C8_no_forbidden_phrase"]}
+    out["perturbation_tests"] = st; out["perturbation_tests_passed"] = sum(bool(v) for v in st.values()); out["perturbation_tests_total"] = len(st)
     out["seconds"] = round(time.time() - t0, 2)
     try:
         import subprocess
@@ -128,10 +128,10 @@ def main():
         out["built_from_head"] = None
     out["self_sha256"] = sha(HERE)
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"gates {out['gates_passed']}/{out['gates_total']} · self-tests {out['self_tests_passed']}/{out['self_tests_total']}")
-    for k, v in {**out['gates'], **st}.items():
+    print(f"checks {out['checks_passed']}/{out['checks_total']} · self-tests {out['perturbation_tests_passed']}/{out['perturbation_tests_total']}")
+    for k, v in {**out['checks'], **st}.items():
         print(f"  {'OK ' if v else 'RED'} {k}")
-    print("outcome:", out["outcome"]); print("ledger T2:", out["ledger"]["T2_GLOBAL_ATLAS_FIXED_K3"])
+    print("outcome:", out["outcome"]); print("sheet record T2:", out["sheet record"]["T2_GLOBAL_ATLAS_FIXED_K3"])
 
 
 if __name__ == "__main__":
