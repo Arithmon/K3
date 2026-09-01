@@ -1,59 +1,59 @@
 #!/usr/bin/env python3
 """
-k3_cap_b1e2iii_d5_congruence.py — D5.4 / D5.5 : la CONGRUENCE des Gram
-et le TRANSPORT DE POSITIVITÉ, sur une cellule entière.
+Gram CONGRUENCE and POSITIVITY TRANSPORT, on a whole cell.
 
-D5.1/D5.2 ont certifié, sur la boîte entière, que des charts cibles sont
-atteignables, dans le domaine, et de Jacobien inversible. Restait la
-question que le pilote D5 avait explicitement laissée ouverte, et que le
-succès de D5.1/D5.2 **ne préjugeait pas** : la positivité se
+
+The chart criterion and Jacobian certified, on the whole box, that target
+charts are reachable, in the domain, and of invertible Jacobian. What remained
+was the question the pilot had explicitly left open, and which the
+success of those checks **did not prejudge**: positivity
 transporte-t-elle ?
 
 LA STRUCTURE. `Q` se calcule à partir de `(Z, W)` où `W[a][A] =
 ∂Z_a/∂(u,v)_A`. Deux propriétés suffisent :
 
   (a) **quadratique en W** — `Q(Z, W·A) = Aᵀ · Q(Z, W) · conj(A)` ;
-  (b) **invariance de jauge** — `Q` est de degré 0 en `Z` : la
-      renormalisation projective `Z ↦ Z/Z_{g'}` ne la change pas.
+  (b) **gauge invariance**: `Q` has degree 0 in `Z`, so the projective
+      renormalisation does not change it.
 
 Elles se composent : en posant `Z' = Z/Z_{g'}` et `W_{Z'} = ∂Z'/∂(u,v)`,
 on a `W_{Z'} = W' · J` où `J[A'][A] = ∂(u',v')_{A'}/∂(u,v)_A`, donc
 
     Q_source  =(b)=  Q(Z', W_{Z'})  =(a)=  Jᵀ · Q_target · conj(J)
 
-**La convention est celle-ci, et elle est vérifiée, pas supposée** : le
-contrat de la revue écrit `Q_source = J* Q_target J`, ce qui est le même
-énoncé à la convention près (dans quel argument `Q` est conjuguée-linéaire
-et si `J` désigne la jacobienne ou sa transconjuguée). Le self-test
-mesure les deux formes et montre qu'elles DIFFÈRENT — donc le gate
+**This is the convention, and it is verified rather than assumed**: the
+review contract writes `Q_source = J* Q_target J`, which is the same
+statement up to convention (in which argument `Q` is conjugate-linear,
+and whether `J` is the Jacobian or its conjugate transpose). The self-test
+measures both forms and shows that they DIFFER, so the check
 discrimine.
 
 Gates pré-enregistrés :
   E1 INVARIANCE DE JAUGE — `Q(Z', W_{Z'})` et `Q(Z, W)` ont des
-     enclosures dont la différence contient 0, sur la boîte ENTIÈRE
+     enclosures whose difference contains 0, on the WHOLE box
   E1b MUTATION DE JAUGE — renormaliser `Z` SANS renormaliser `W` casse
-     l'identité. Sans elle, E1 serait satisfait par une formule qui
+     the identity. Without it, E1 would be satisfied by a formula that
      ignore `Z`.
-  E2 QUADRATICITÉ EN W — `Q(Z, W·A) = Aᵀ Q conj(A)` pour une matrice
-     constante inversible, et **`A* Q A` ne convient PAS** : la mutation
-     est la convention concurrente
-  E3 **D5.4** — sur la cellule et un chart ADMISSIBLE nommé,
-     `Q_source − Jᵀ Q_target conj(J)` contient 0 sur les 4 composantes
-  E4 **D5.5** — `Q_target` est certifiée PD sur la boîte (pivot > 0 et
+  E2 QUADRATICITY IN W: `Q(Z, W.A) = A^T Q conj(A)` for a constant
+     invertible matrix, and **`A* Q A` does NOT work**: the mutation
+     is the competing convention
+  E3 CONGRUENCE: on the cell and a named ADMISSIBLE chart,
+     `Q_source - J^T Q_target conj(J)` contains 0 on all four components
+  E4 POSITIVITY TRANSPORT: `Q_target` is certified positive definite (pivot > 0 and
      det > 0), et `det(Jᵀ Q_t conj(J)) = |det J|²·det Q_t > 0` transporte
-     la positivité ; `Q_source` est PD directement, les deux concordent
-  E5 MUTATION DE PHASE — inverser le signe d'une ligne de section NE
-     CASSE PAS E3, et c'est correct : la congruence est **agnostique à
+     positivity; `Q_source` is positive definite directly, and the two agree
+  E5 PHASE MUTATION: flipping the sign of a section row does NOT
+     break E3, and that is correct: congruence is **agnostic to
      la branche**. Elle relie deux descriptions de la MÊME configuration,
-     quel que soit le choix de branche, POURVU qu'il soit cohérent — et
-     il l'est ici, puisque `(u', v')` est dérivé du `Z` source. Le
-     négatif discriminant de D5.4 est donc E6, pas E5. C'est publié
-     comme tel plutôt que présenté comme un négatif qui aurait dû
+     whatever the branch choice, PROVIDED it is coherent, and
+     it is here, since `(u', v')` derives from the source `Z`. The
+     discriminating negative control is therefore E6, not E5. This is published
+     as such rather than presented as a negative control that ought to
      mordre.
   E6 MUTATION DU JACOBIEN — perturber `J` casse E3
 
-Ce que ce script N'ÉTABLIT PAS : le cover multi-chart (D5.6), ni la
-globalisation. Il établit le transport sur UNE cellule et UN chart.
+What this script does NOT establish: the multi-chart cover, nor
+globalisation. It establishes transport on ONE cell and ONE chart.
 
 Sorties : results/k3_cap_b1e2iii_d5_congruence.json
 Usage   : k3_cap_b1e2iii_d5_congruence.py [--selftest]
@@ -128,7 +128,7 @@ def provenance(src, t):
 
 
 # ===========================================================================
-#  Algèbre 2×2 sur des TMC
+#  2x2 algebra on complex Taylor models
 # ===========================================================================
 def _c(z):
     return CIV(riv(z.real), riv(z.imag))
@@ -196,17 +196,17 @@ def pd_bounds(Q):
 
 
 # ===========================================================================
-#  Le transport, sur une cellule et un chart
+#  The transport, on one cell and one chart
 # ===========================================================================
 def native_target_section(S2, g2, up, vp, eps2, sigma2):
-    """Section NATIVE du chart cible, avec `ε'` et `σ'` **FIXÉS EN
+    """NATIVE section of the target chart, with the sheet and component FIXED
     ENTRÉE** — jamais choisis par essai ni ajustés par le gate qu'ils
     doivent passer.
 
-    **C125-C** : `σ'` vient de la COMPOSANTE certifiée du radicande
+    The component comes from the certified COMPONENT of the radicand
     cible. L'ancienne boucle `for sg in (-1, 1): … break` prenait
-    toujours −1, la garde de `tm_sqrt_rotated` ne dépendant que de `−R`
-    et pas du signe : elle ne certifiait donc RIEN. Même défaut que
+    always -1, the guard of the rotated root depending only on `-R`
+    and not on the sign, so it certified NOTHING. The same defect as
     celui corrigé dans C124, réintroduit ici.
     """
     T2 = tuple(j for j in range(6) if j not in S2)
@@ -250,8 +250,8 @@ def native_target_section(S2, g2, up, vp, eps2, sigma2):
 
 
 def target_component(S2, g2, up, vp):
-    """C125-C : la composante `σ'` du radicande CIBLE, depuis les signes
-    des coefficients et les enclosures de `(u', v')`."""
+    """The component of the TARGET radicand, from the signs
+    of the coefficients and the enclosures of `(u', v')`."""
     T2 = tuple(j for j in range(6) if j not in S2)
     others = [c for c in T2 if c != g2]
     Ae = minor_inv_times_T_exact(S2, T2)
@@ -268,10 +268,10 @@ def target_component(S2, g2, up, vp):
     u2, v2 = up * up, vp * vp
     out = []
     for r in range(3):
-        # (i) d'abord l'ENCLOSURE DIRECTE de Im R'. Sur le chart cible
-        # elle n'est PAS contrainte de contenir 0 (contrairement à la
-        # source, face-alignée), donc elle est souvent plus fine que la
-        # règle par coefficients, qui est conservatrice. Les deux sont
+        # (i) first the DIRECT ENCLOSURE of Im R'. On the target chart
+        # it is NOT constrained to contain 0 (unlike the face-aligned
+        # source), so it is often sharper than the coefficient rule,
+        # which is conservative. The two are
         # certifiées ; on prend la plus informative.
         R = TMC.const(CIV(A[r][0])) + u2.mul_real(A[r][1]) \
             + v2.mul_real(A[r][2])
@@ -292,13 +292,13 @@ def target_component(S2, g2, up, vp):
 def derive_eps_target(S2, g2, up, vp, sigma2, Zp):
     """C125-B : `ε'` **DÉRIVÉ**, pas ajusté par E3.
 
-    Au CENTRE de la cellule, on compare la racine cible calculée avec
-    `ε' = +1` à la coordonnée normalisée `Z/Z_{g'}` : le signe qui les
-    fait coïncider EST `ε'_r`. Il est ensuite FIGÉ, et la compatibilité
-    est exigée sur la BOÎTE ENTIÈRE, coordonnée par coordonnée, **au
+    At the CENTRE of the cell, the target root computed with the
+    sheet +1 is compared to the normalised coordinate: the sign that makes
+    them coincide IS the sheet. It is then FROZEN, and compatibility
+    is required on the WHOLE BOX, coordinate by coordinate,
     MÊME signe** — « au signe près » accepterait un changement de
-    FEUILLE pour une jauge, ce qui est faux dès que les deux
-    descriptions sont déjà normalisées par la même jauge (`Z_{g'} = 1`).
+    a SHEET change for a gauge, which is wrong as soon as the two
+    descriptions are already normalised by the same gauge.
     """
     Zt1, _d, _k = native_target_section(S2, g2, up, vp, (1, 1, 1),
                                         sigma2)
@@ -347,7 +347,7 @@ def transport(S, g, eps, center, hw, S2, g2, M, c218, rw,
     if perturb_J is not None:
         J[0][0] = J[0][0] + TMC.const(_c(perturb_J))
 
-    # C125-C : σ' CERTIFIÉ depuis la composante du radicande cible
+    # component CERTIFIED from the target radicand component
     sigma2 = target_component(S2, g2, up, vp)
     # C125-B : ε' DÉRIVÉ au centre, puis FIGÉ
     eps2d = derive_eps_target(S2, g2, up, vp, sigma2, Zp)
@@ -362,12 +362,12 @@ def transport(S, g, eps, center, hw, S2, g2, M, c218, rw,
     Q_tgt = Qmat(Zt, Wt, M, c218, rw)
     cong = congruence(J, Q_tgt)
     # compatibilité des deux sections : Z_native vs Z/Z_{g'} (au signe
-    # de chaque coordonnée de section près — c'est le ledger des ε')
+    # of each section coordinate: this is the record of the sheets)
     # C125-B : compatibilité PROJECTIVE — MÊME signe, coordonnée par
-    # coordonnée, sur la boîte entière. Les deux descriptions sont déjà
+    # coordinate, on the whole box. The two descriptions are already
     # normalisées par la MÊME jauge (Z_{g'} = 1) : elles ne peuvent plus
-    # différer d'un signe global, et un signe INDÉPENDANT par coordonnée
-    # serait un changement de FEUILLE, pas une jauge.
+    # differ by a global sign, and an INDEPENDENT sign per coordinate
+    # would be a SHEET change, not a gauge one.
     compat = []
     for a in range(6):
         D = Zt[a] + Zp[a].mul_real(riv(-1.0))
@@ -412,7 +412,7 @@ def build():
             continue
         tgt = adm[0]
         S2, g2 = tuple(tgt["S"]), tgt["g"]
-        # C125-B : plus AUCUNE recherche sur ε' — il est DÉRIVÉ dans
+        # no search on the sheet any more: it is DERIVED in
         # `transport`, puis E3 le teste en aveugle.
         tr = transport(S, g, eps, c, hw, S2, g2, M, c218, rw)
         if tr is None or tr.get("native_failed"):
@@ -428,8 +428,8 @@ def build():
             mat_sub(tr["Q_src"], tr["Q_mid"]))
         cong_ok, cong_d = contains_zero(
             mat_sub(tr["Q_src"], tr["cong"]))
-        # C125-A : le résidu, QUANTITATIF — `contains_zero` borne un
-        # défaut, il ne prouve pas une identité. On publie donc le
+        # the residual, QUANTITATIVE: `contains_zero` bounds a
+        # defect, it does not prove an identity. We therefore publish
         # sup |résidu| et sa taille RELATIVE à ‖Q_source‖.
         qs_norm = max(abs(x) for i in range(2) for k in range(2)
                       for x in iv_bounds(tr["Q_src"][i][k].re_tm()
@@ -501,7 +501,7 @@ def build():
     log(f"E6 mutation du Jacobien : congruence tient encore ? {j_ok} "
         f"(doit être False)")
 
-    # --- E2 : quadraticité en W, avec la convention concurrente --------------------
+    # --- E2: quadraticity in W, with the competing convention ----------------
     A = [[complex(2.0, 0.3), complex(0.1, -0.4)],
          [complex(-0.2, 0.5), complex(1.5, 0.1)]]
     Atm = [[TMC.const(_c(A[i][k])) for k in range(2)] for i in range(2)]
@@ -650,7 +650,7 @@ def _selftest():
     print(f"[{'PASS' if ok1 else 'FAIL'}] S1 quadraticité : "
           f"Q(Z, W·A) = Aᵀ Q conj(A)")
 
-    # S2 : NÉGATIF — la convention concurrente ne convient PAS
+    # S2 NEGATIVE CONTROL: the competing convention does NOT work
     ok2, _ = contains_zero(
         mat_sub(QA, congruence(Atm, Q0, conj_left=True)))
     fails.append(ok2)
@@ -668,7 +668,7 @@ def _selftest():
     print(f"[{'PASS' if ok3 else 'FAIL'}] S3 invariance de jauge : "
           f"Q(λZ, λW) = Q(Z, W) pour λ = {lam}")
 
-    # S4 : NÉGATIF de jauge — mettre λ sur Z SANS le mettre sur W casse
+    # S4 gauge NEGATIVE CONTROL: scaling Z WITHOUT scaling W breaks
     ok4, _ = contains_zero(mat_sub(Qmat(Zl, W, M, c218, rw), Q0))
     fails.append(ok4)
     print(f"[{'PASS' if not ok4 else 'FAIL'}] S4 négatif de jauge : "

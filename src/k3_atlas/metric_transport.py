@@ -3,80 +3,80 @@
 k3_cap_b1e2iii_c129f_f4_bridge_metric.py — C129-F0 / F4 : LA MÉTRIQUE
 REJOINT LES CARTES-PONTS.
 
-CE QUE CE SCRIPT PAIE — le contrat R5 de la 11ᵉ revue GPT
+WHAT THIS SCRIPT PAYS: the contract that put the metric step on
 (`gpt_b1e2iii_c129f0_scout_f1_f2f3_review_2026_07_31.md`), qui met F4 en
-HOLD tant que l'architecture d'atlas n'est pas réparée. Elle l'est
+HOLD until the atlas architecture was repaired. It now is,
 (F2/F3 v2, 17/17 : nerf sur arêtes certifiées, feuille continuée `D·Z`,
 portée stratifiée), donc F4 peut tourner.
 
-LE CHEMIN EST CELUI DE C129-E, PAS UN NOUVEAU. `transport_hardened`
+THE PATH IS THE ESTABLISHED ONE, NOT A NEW ONE. `transport_hardened`
 (C127 durci C128-A/B/C : quatre `Qmat` source/mid/cible/congruence,
 hermiticité gatée, Weyl en arithmétique dirigée, ratio relatif certifié)
-est appelé sur la BOÎTE-PONT, en mode LEDGER FIGÉ — `ε'/σ'` viennent du
-core certifié par C127 et ne sont JAMAIS re-dérivés, exactement le mode
-éprouvé des probes d'autonomie C128-D et du full C129-E.
+is called on the BRIDGE BOX, in FROZEN-RECORD mode: sheet and component come from the
+core certified earlier and are NEVER re-derived, exactly the mode
+proven by the autonomy probes and the full run.
 
-LE SEUL AJOUT, ET IL EST MINIMAL. `transport_hardened` construisait sa
-section par `build_section`, qui (i) prend une demi-largeur SCALAIRE et
-(ii) retombe sur `σ` de composante — or le pont est ANISOTROPE (`2H` en
+THE ONLY ADDITION, AND IT IS MINIMAL. `transport_hardened` built its
+section through `build_section`, which (i) takes a SCALAR half-width and
+(ii) falls back on the component rule, whereas the bridge is ANISOTROPIC (`2H` in
 Im, `H` en Re) et `σ` y est indéterminé, puisque `Im R` change de signe.
-Un paramètre `section=` ADDITIF a donc été ajouté à `transport_hardened`
-(`center`/`hw` n'y servaient QU'À `build_section` ; tout l'aval est
-box-agnostique). Quand il vaut `None`, le comportement est inchangé —
-et le gate **G1** le PROUVE en rejouant le chemin par défaut sur un
-panel RÉGULIÈREMENT ESPACÉ du full C129-E (un pas constant sur les
-indices de tuiles, PAS le panel stratifié de C129-E — nom corrigé,
+An ADDITIVE `section=` parameter was therefore added to `transport_hardened`
+(`center` and `hw` served ONLY `build_section`; everything downstream is
+box-agnostic). When it is `None` the behaviour is unchanged,
+and check **G1** PROVES it by replaying the default path on a
+REGULARLY SPACED panel of the full run (a constant step over the tile
+indices, NOT a stratified panel) and requiring the SAME numbers as
 12ᵉ revue D3) et en exigeant les MÊMES nombres que
-l'artefact sérialisé. Une injection qui déplacerait un chiffre du full
-C129-E serait un désastre silencieux ; elle est donc gatée, pas
+the serialised artefact. An injection that moved a digit of the full
+run would be a silent disaster; it is therefore checked, not
 supposée.
 
-CE QUE F4 CERTIFIE
-  · la métrique sur chacune des 64 boîtes-ponts (PD source, PD cible,
+WHAT THIS STEP CERTIFIES
+  . the metric on each of the 64 bridge boxes (source and target positive definite,
     invariance de jauge, congruence, Weyl) ;
-  · le ratio relatif certifié contre le MÊME `δ = 1e-5` que C127/C129-E
-    — le seuil n'est PAS relâché pour accommoder une boîte plus grande ;
-    s'il ne passait pas, ce serait un REFUS à porter en revue, pas un δ
+  . the certified relative ratio against the SAME `delta = 1e-5` as before:
+    the threshold is NOT relaxed to accommodate a larger box;
+    were it to fail, that would be a REFUSAL to take to review, not a delta
     à ajuster ;
-  · la congruence sur les overlaps pont↔inférieur et pont↔pont, c'est-
-    à-dire sur les arêtes qui portent réellement le nerf de F3 v2.
+  . congruence on the bridge-to-lower and bridge-to-bridge overlaps, that
+    is, on the edges that really carry the nerve.
 
 GATES
-  G1  NON-RÉGRESSION DE L'INJECTION : chemin par défaut (`section=None`)
-      rejoué sur un panel régulièrement espacé du full C129-E ⟹ ratio,
+  G1  NON-REGRESSION OF THE INJECTION: the default path (`section=None`)
+      replayed on a regularly spaced panel of the full run, giving ratio,
       slack Weyl, ledger et déterminations IDENTIQUES à l'artefact full
       sérialisé ;
   G2  amont gaté et complet : C127-D 14/14, C129-D 9/9, C129-E 8/8,
       F2/F3 v2 17/17 — et `mode == "full"` EXIGÉ de CHACUN des quatre
       (durci, 12ᵉ revue D2 : avant, seul C127-D le devait) ;
-  G3  LEDGER FIGÉ : `ε'/σ'` du core, jamais re-dérivés ; et les `kinds`
-      cible obtenus sur le pont sont ceux du core, sinon REFUS (le
+  G3  FROZEN RECORD: sheet and component from the core, never re-derived; and the target
+      kinds obtained on the bridge are those of the core, otherwise REFUSAL (the
       régime de certification ne doit pas changer en silence) ;
-  G4  MÉTRIQUE SUR LES 64 PONTS : ratio relatif certifié `≤ δ = 1e-5`,
+  G4  METRIC ON THE 64 BRIDGES: certified relative ratio `<= delta = 1e-5`,
       slack Weyl `> 0`, PD source et cible, invariance de jauge, même
       point projectif ;
-  G5  CERTIFICAT MÉTRIQUE SUR LES DOMAINES D'ARÊTE CERTIFIÉS
+  G5  METRIC CERTIFICATE ON THE CERTIFIED EDGE DOMAINS
       (`metric_certificate_on_certified_edge_domains`, 12ᵉ revue D1) :
       les 64 overlaps pont↔inférieur et les 210 overlaps pont↔pont
-      reçoivent leur transport sur leur boîte exacte, mêmes seuils,
-      DEPUIS UN REPRÉSENTANT (la section du pont). La compatibilité des
-      DEUX extrémités est transportée par l'identité analytique EXACTE
-      des sections (F2/F3 v2) et par les certificats de carte (C129-E,
+      receive their transport on their exact box, same thresholds,
+      FROM ONE REPRESENTATIVE (the bridge section). Compatibility of the
+      TWO endpoints is transported by the EXACT analytic identity
+      of the sections and by the chart certificates,
       G4) — AUCUNE comparaison métrique bilatérale indépendante n'est
-      exécutée, et elle n'est pas requise pour le théorème local ; la
-      base de l'implication est SÉRIALISÉE
+      executed, and it is not required for the local theorem; the
+      basis of the implication is SERIALISED
       (`edge_certificate_contract`) ;
-  G6  NÉGATIFS sur le pont : `J` perturbé ⟹ la congruence exclut 0 ;
+  G6  NEGATIVE CONTROLS on the bridge: a perturbed `J` makes the congruence exclude 0;
       `ε'` figé FAUX ⟹ refus ; `σ'` figé FAUX ⟹ refus ;
-  G7  AUCUN FILTRAGE SILENCIEUX : 64 = 64, 274 = 274 sur les arêtes, et
-      tout refus est publié avec sa cause.
+  G7  NO SILENT FILTERING: 64 = 64, 274 = 274 on the edges, and
+      every refusal is published with its cause.
 
-CE QUE CE SCRIPT NE PAIE PAS : l'identification canonique de la voisine
-(F1a a REFUSÉ — l'atlas supérieur reste DÉRIVÉ) ; les faces Re, où
-28/64 ponts restent des cartes RELATIVES ; le contrat EXACT de la
-congruence métrique, qui reste certifiée SOUS δ et non exacte (la
-promotion d'exactitude de C129-D porte sur l'identité de SECTION, pas
-sur le triplet HK) ; le scaling complet ; les 895 autres paires ; R12-C.
+WHAT THIS SCRIPT DOES NOT PAY: the canonical identification of the neighbour
+(REFUSED: the upper atlas stays DERIVED); the Re faces, where
+28 of the 64 bridges remain RELATIVE charts; the EXACT contract of the
+metric congruence, which stays certified UNDER delta rather than exact (the
+exactness promotion concerns the SECTION identity, not
+the triple); the full scaling; the 895 other pairs.
 
 Sortie : results/k3_cap_b1e2iii_c129f_f4_bridge_metric.json
 Usage  : k3_cap_b1e2iii_c129f_f4_bridge_metric.py [--selftest]
@@ -130,7 +130,7 @@ N_WORKERS = int(os.environ.get("K3_F4_WORKERS", "4"))
 ART = RES / ("k3_cap_b1e2iii_c129f_f4_bridge_metric.json" if MODE == "full"
              else "k3_cap_b1e2iii_c129f_f4_bridge_metric_panel.json")
 
-# --- PRÉ-ENREGISTRÉ : le MÊME δ que C127 / C129-E. Non ajustable ----------
+# --- PREREGISTERED: the SAME delta as the earlier steps. Not adjustable ---
 DELTA_REL = 1e-5
 N_PANEL = 6
 T0 = time.time()
@@ -206,9 +206,9 @@ def _init(cell, M, c218, rw, leaves, bridges, ledgers, halos):
 
 
 def _metric_on_box(S, g, eps_src, box, S2, g2, kw):
-    """Le chemin durci C127/C128, sur une boîte QUELCONQUE (le pont n'est
-    pas un cube) : la section bilatérale est construite ici et INJECTÉE,
-    tout le reste est le chemin C129-E verbatim."""
+    """The hardened path, on an ARBITRARY box (the bridge is not
+    a cube): the bilateral section is built here and INJECTED,
+    everything else is the established path verbatim."""
     c, h = center_hw(box)
     cf = [float(x) for x in c]
     hf = [float(x) for x in h]
@@ -249,14 +249,14 @@ def _bridge_metric_job(arg):
 
 
 def _edge_metric_job(arg):
-    """G5 — le certificat métrique sur le DOMAINE D'ARÊTE : le transport
-    est refait sur la BOÎTE D'OVERLAP elle-même, depuis UN représentant
-    (la section du pont `a`). Une arête d'atlas dont la métrique n'est
-    pas certifiée sur son propre domaine n'est qu'une transition de
-    coordonnées. Ce job ne compare PAS les deux extrémités entre elles :
-    l'autre représentant décrit la MÊME section analytique (identité
-    exacte F2/F3 v2), donc le même pullback métrique — l'implication est
-    déclarée dans l'artefact (`edge_certificate_contract`), pas laissée
+    """G5: the metric certificate on the EDGE DOMAIN. The transport
+    is redone on the OVERLAP BOX itself, from ONE representative
+    (the section of bridge `a`). An atlas edge whose metric is not
+    certified on its own domain is only a coordinate
+    transition. This job does NOT compare the two endpoints with each other:
+    the other representative describes the SAME analytic section
+    (exact identity), hence the same metric pullback; the implication is
+    declared in the artefact (`edge_certificate_contract`), not left
     implicite (12ᵉ revue D1)."""
     tag, a, b = arg
     S, g, _eps = _G["cell"]
@@ -282,7 +282,7 @@ def _edge_metric_job(arg):
 
 
 def _regression_job(arg):
-    """G1 — le chemin PAR DÉFAUT (`section=None`), rejoué à l'identique."""
+    """G1: the DEFAULT path (`section=None`), replayed identically."""
     i, c_hex, H_hex = arg
     S, g, eps = _G["cell"]
     leaf = _G["leaves"][i]
@@ -398,12 +398,12 @@ def build():
     initargs = ((S, g, eps), M, c218, rw, leaves, bridges, ledgers, halos)
     _init(*initargs)
 
-    # --- G1 : NON-RÉGRESSION de l'injection ---------------------------
-    # Un panel RÉGULIÈREMENT ESPACÉ du full C129-E (pas constant sur les
-    # indices — PAS le panel stratifié de C129-E, nom corrigé 12ᵉ revue
-    # D3), rejoué par le chemin PAR DÉFAUT. Les nombres doivent être
-    # IDENTIQUES à ceux SÉRIALISÉS : une injection qui déplacerait un
-    # chiffre du full serait un désastre silencieux.
+    # --- G1: NON-REGRESSION of the injection --------------------------
+    # A REGULARLY SPACED panel of the full run (constant step over the
+    # indices, NOT a stratified panel), replayed through the DEFAULT
+    # path. The numbers must be
+    # IDENTICAL to those SERIALISED: an injection moving a digit
+    # of the full run would be a silent disaster.
     ref = {r["tile_index"]: r for r in c129e["transports"]
            if r.get("kind") == "transport" and not r.get("failed")}
     probe = sorted(ref)[::max(1, len(ref) // 6)][:6]
@@ -428,7 +428,7 @@ def build():
         f"{len(probe)} tuiles du full C129-E ⟹ ratio, ledger, "
         f"déterminations et slack IDENTIQUES : {g1}")
 
-    # --- G3/G4 : la métrique sur les ponts ----------------------------
+    # --- G3/G4: the metric on the bridges -----------------------------
     sel = clipped if MODE == "full" else clipped[::max(
         1, len(clipped) // N_PANEL)][:N_PANEL]
     log(f"G4 : métrique sur {len(sel)} pont(s)…")
@@ -456,7 +456,7 @@ def build():
             f"ratio={r.get('residual_relative')} "
             f"kinds={r.get('kinds_target')}")
 
-    # --- G5 : la congruence sur les ARÊTES ---------------------------
+    # --- G5: congruence on the EDGES ----------------------------------
     bb = [tuple(x["pair"]) for x in f23["bridge_bridge_transitions"]
           if x.get("certified")]
     edges = [("BL", i, i) for i in sel]
@@ -485,9 +485,9 @@ def build():
         log(f"     REFUS arête {r['edge']} : {r.get('failed')} "
             f"ratio={r.get('residual_relative')}")
 
-    # --- G6 : les négatifs sur le PONT -------------------------------
-    # Les CANAUX attendus sont PRÉ-ENREGISTRÉS, repris de C129-E : un
-    # négatif qui casse par un autre canal que celui annoncé n'est pas
+    # --- G6: the negative controls on the BRIDGE ----------------------
+    # The expected CHANNELS are PREREGISTERED, carried over: a
+    # negative control that breaks through another channel than announced is not
     # le négatif qu'on croit avoir écrit.
     NEG_CHANNEL = {
         "mutation_J": "congruence exclut 0",

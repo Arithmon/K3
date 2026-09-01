@@ -1,39 +1,39 @@
 #!/usr/bin/env python3
 """
-k3_cap_b1e2iii_c127e_residual.py — C127-E : FERMER LE RÉSIDU 1/64 par la
+Closing the residual 1/64 of the volume by the THIRD determination.
 TROISIÈME DÉTERMINATION.
 
-D5.6 laisse 64 boîtes (1/64 du volume) sans chart : sur chacune, toute
-carte candidate a au moins une ligne de section dont le radicande `R'`
+The dyadic cover leaves 64 boxes (1/64 of the volume) without a chart: on each,
+every candidate chart has at least one section row whose radicand `R'`
 a `Re R' < 0` strict et `Im R'` qui straddle 0 (mécanisme mesuré par
 C126, 29/29 lignes sondées). Pour ces lignes :
 
-  · la branche PRINCIPALE est refusée — `R'` touche la coupure (−∞,0] ;
+  . the PRINCIPAL branch is refused, `R'` meeting the cut on the non-positive reals;
   · la branche TOURNÉE de C122 a sa garde SATISFAITE — `R'` évite
     [0,+∞) puisque `Re R' < 0` — mais son LABEL `σ' = signe(Im R')`
-    est INDÉTERMINÉ (l'enclosure de `Im R'` contient 0). C125-C
-    interdit de le choisir par essai : la ligne était donc REFUSÉE.
+    is UNDETERMINED (the enclosure of `Im R'` contains 0). The component rule
+    forbids choosing it by trial, so the row was REFUSED.
 
-LA TROISIÈME DÉTERMINATION lève ce verrou SANS nouvelle garde et SANS
-essai. Observation algébrique : dans la section, `σ'` et `ε'` n'entrent
-que par leur PRODUIT — `Z_s = ε'·σ'·i·√_p(−R')`. On peut donc FIXER
-`σ' = +1` (canonique) : `w = i·√_p(−R')` est une branche continue
-légitime sur ℂ∖[0,+∞) (la garde C103 appliquée à `−R'`, verbatim), et
-le choix de FEUILLE (`w` ou `−w`) est porté par `ε'`, dérivé à l'ANCRE
+THE THIRD DETERMINATION lifts this lock WITHOUT a new guard and WITHOUT
+trial. Algebraic observation: in the section, the component and the sheet enter
+only through their PRODUCT, `Z_s = sheet.component.i.sqrt_p(-R')`. One can therefore FIX
+the component to +1 (canonical): `w = i.sqrt_p(-R')` is a legitimate continuous branch
+on the plane cut along the non-negative reals (the guard applied to `-R'`, verbatim), and
+the SHEET choice (`w` or `-w`) is carried by the sheet label, derived at the ANCHOR
 par la SÉPARATION STRICTE de C127 (marge > 0 sérialisée, refus si
-ambigu) puis vérifié au MÊME signe sur la boîte entière. Le certificat
-de feuille est la MARGE — pas un essai, pas la composante.
+ambiguous) then verified with the SAME sign on the whole box. The sheet
+certificate is the MARGIN: not a trial, not the component.
 
-Ce qui est requalifié et ce qui ne l'est pas :
+What is requalified and what is not:
   · le σ-par-composante de C122/C125 reste NÉCESSAIRE quand on doit
-    coïncider avec la branche principale sur un chevauchement — ici la
-    principale N'EXISTE PAS sur la ligne, il n'y a rien à raccorder
-    localement ; le raccord ENTRE tuiles est l'affaire du cocycle
-    (C127-D), pas de ce script ;
-  · la SECTION SOURCE n'est PAS touchée (la mise en garde « coupure
-    tournée : ne pas refaire l'étiquetage des classes unilatéralement »
-    porte sur l'arc source ; ici seule la section NATIVE du chart cible
-    des tuiles résiduelles emploie la troisième détermination, et
+    coincide with the principal branch on an overlap; here the principal
+    one DOES NOT EXIST on the row, so there is nothing to glue
+    locally. Gluing BETWEEN tiles is the business of the cocycle,
+    not of this script;
+  . the SOURCE SECTION is NOT touched (the warning about a rotated cut
+    and not relabelling the classes unilaterally
+    concerns the source; here only the NATIVE section of the target chart
+    of the residual tiles uses the third determination, and
     chaque emploi est sérialisé).
 
 Gates pré-enregistrés :
@@ -42,22 +42,22 @@ Gates pré-enregistrés :
      et le résidu `w² − R'`.
   R2 IDENTITÉ UNIVERSELLE — `w² − R'` contient 0 sur TOUTE ligne de
      TOUTE nouvelle tuile (largeurs publiées).
-  R3 MARGE ε' UNIVERSELLE — marge > 0 sur toutes les lignes.
-  R4 NON-TAUTOLOGIE — pour chaque nouvelle tuile, le critère C126
-     (importé, pas réimplémenté) REFUSE le même chart sur la même boîte
-     et le critère étendu l'ACCEPTE ; la troisième détermination n'est
-     employée QUE si principale ET tournée-à-σ-certifié sont refusées
+  R3 UNIVERSAL SHEET MARGIN: margin > 0 on every row.
+  R4 NON-TAUTOLOGY: for each new tile, the chart criterion
+     (imported, not reimplemented) REFUSES the same chart on the same box
+     and the extended criterion ACCEPTS it; the third determination is
+     used ONLY if both the principal and the certified-component rotated ones are refused
      (ordre strict, compté).
-  R5 LE COVER SE FERME EXACTEMENT — adresses dyadiques des 252 tuiles
+  R5 THE COVER CLOSES EXACTLY: dyadic addresses of the 252 tiles
      C127 + nouvelles tuiles + résidu restant : prefix-free, clos,
-     Kraft = 1 (machinerie C127-A importée). Le nombre de boîtes NON
-     fermées n'est PAS pré-engagé : il est publié.
-  R6 TRANSPORT UNIVERSEL SUR LES NOUVELLES TUILES — mêmes gates que
+     Kraft equal to 1 (imported machinery). The number of boxes NOT
+     closed is NOT pre-committed: it is published.
+  R6 UNIVERSAL TRANSPORT ON THE NEW TILES: the same checks as
      C127 : congruence, même point projectif, δ_rel ≤ 1e-5
      (pré-enregistré, inchangé), PD par WEYL, zéro échec filtré.
-  R7 NÉGATIF DE FEUILLE — inverser `ε'` sur une ligne à troisième
+  R7 SHEET NEGATIVE CONTROL: flipping the sheet on a row with a third
      détermination CASSE la compatibilité projective (probes).
-  R8 NÉGATIF DE σ CANONIQUE — `tm_sqrt_rotated(R, −1)` est la NÉGATION
+  R8 CANONICAL COMPONENT NEGATIVE CONTROL: the rotated root at -1 is the EXACT NEGATION
      bit-à-bit de `tm_sqrt_rotated(R, +1)` : (ε', σ') n'entrent que par
      leur produit, σ canonique ne cache aucun degré de liberté.
   R9 PAS DE PLAFOND SILENCIEUX — comptes publiés et cohérents.
@@ -162,12 +162,12 @@ def _rng(tm, im=False):
 
 
 def _exact_negation(wp, wm):
-    """`wm` est-il la NÉGATION EXACTE de `wp` ? Vérifié coefficient par
-    coefficient (l'intervalle négé de [a,b] est [−b,−a]) et sur le
-    reste — PAS sur l'enclosure de la somme, dont le reste additionne
+    """Is `wm` the EXACT NEGATION of `wp`? Checked coefficient by
+    coefficient (the negated interval of [a,b] is [-b,-a]) and on the
+    remainder, NOT on the enclosure of the sum, whose remainder adds
     `rem(wp) + rem(wm) > 0` et ne peut jamais être exactement {0} sur
-    un vrai TM (leçon du pilote : le gate R8 v1 échouait pour cette
-    raison, sur du code correct)."""
+    a true Taylor model (lesson from the pilot: check R8 v1 failed for that
+    reason, on correct code)."""
     if len(wp.p) != len(wm.p):
         return False
     for c1, c2 in zip(wp.p, wm.p):
@@ -185,14 +185,14 @@ def _exact_negation(wp, wm):
 #  Le critère ÉTENDU — trois étapes, ordre strict
 # ===========================================================================
 def native_rows_ext(S2, g2, up, vp):
-    """Miroir de `native_section_constructible` (C126) avec la TROISIÈME
+    """Mirror of `native_section_constructible` with the THIRD
     étape. Ordre STRICT par ligne :
       (1) principale ;
       (2) tournée à σ CERTIFIÉ (enclosure de Im R', puis signes des
           coefficients) — jamais d'essai ;
       (3) tournée CANONIQUE σ = +1 — uniquement si (1) ET (2) refusées ;
-          la garde est celle de `tm_sqrt_rotated` (C103 sur −R'),
-          le label de feuille est délégué à `ε'` (marge C127).
+          the guard is that of the rotated root (applied to -R'),
+          the sheet label is delegated to the sheet variable (margin).
     """
     T2 = tuple(j for j in range(6) if j not in S2)
     others = [c for c in T2 if c != g2]
@@ -255,7 +255,7 @@ def native_rows_ext(S2, g2, up, vp):
 
 
 def strong_chart_ok_ext(Z, dZ, S2, g2):
-    """Critère C126 (domaine + Jacobien + disjonction) avec la
+    """Chart criterion (domain, Jacobian, disjointness) with the
     constructibilité ÉTENDUE."""
     cert = chart_certificate(Z, dZ, S2, g2)
     if not (cert.get("admissible")
@@ -279,8 +279,8 @@ def _init_worker(cell, M, c218, rw):
 
 
 def _search_box(job):
-    """Cherche un chart pour une boîte résiduelle, critère étendu,
-    seeds = charts du cover C127 (les plus proches d'abord)."""
+    """Look for a chart for a residual box, extended criterion,
+    seeds = charts of the cover (nearest first)."""
     bi, box, seeds = job
     S, g, eps = _G["cell"]
     c = [float.fromhex(x) for x in box["center_hex"]]
@@ -295,7 +295,7 @@ def _search_box(job):
         n_tried += 1
         ok, cert, rows = strong_chart_ok_ext(Z, dZ, S2, g2)
         if ok:
-            # R4 non-tautologie : le critère C126 (importé) doit REFUSER
+            # R4 non-tautology: the imported chart criterion must REFUSE
             uv = target_uv(Z, S2, g2)
             _old_rows, old_ok = native_section_constructible(
                 S2, g2, uv[0], uv[1])
@@ -360,7 +360,7 @@ def build():
 
     boxes = residual if MODE == "full" else residual[:N_PILOT_BOXES]
 
-    # seeds : les charts du cover, triés par proximité de chaque boîte
+    # seeds: the charts of the cover, sorted by proximity to each box
     def seeds_for(box):
         cb = [float.fromhex(x) for x in box["center_hex"]]
         d = {}
@@ -383,7 +383,7 @@ def build():
         f"({n_canon} lignes en 3ᵉ détermination), {len(unclosed)} non "
         f"fermées (PUBLIÉES)")
 
-    # --- R6 : transport sur toutes les nouvelles tuiles -----------------------
+    # --- R6: transport on all the new tiles -----------------------------------
     tjobs = [(t, "transport", None) for t in new_tiles]
     with mpctx.Pool(N_WORKERS, initializer=_init_worker,
                     initargs=((S, g, eps), M, c218, rw)) as pool:
@@ -393,7 +393,7 @@ def build():
     log(f"transport : {len(tr_ok)}/{len(new_tiles)} OK, "
         f"{len(tr_fail)} échecs (REFUSÉS, pas filtrés)")
 
-    # --- R7 : négatif de feuille (ε' inversé sur une ligne canonique) ---------
+    # --- R7: sheet negative control (sheet flipped on a canonical row) --------
     probe = [t for t in new_tiles if t["n_canonical_rows"] > 0]
     probe = probe[:N_PROBE_NEG]
     pjobs = []
@@ -451,8 +451,8 @@ def build():
             addresses.append(a)
             if lf in unclosed:
                 residual_addr.append(a)
-    # en mode pilot, les boîtes résiduelles NON examinées comptent au
-    # résidu pour que la partition reste exacte
+    # in pilot mode, the residual boxes NOT examined count towards the
+    # residual so that the partition stays exact
     if MODE != "full":
         for b in residual[N_PILOT_BOXES:]:
             a = address_of(root_c, root_h,
@@ -570,7 +570,7 @@ def build():
 
 
 # ===========================================================================
-#  Self-test — la troisième détermination sur des radicandes de contrôle
+#  Self-test: the third determination on control radicands
 # ===========================================================================
 def _selftest():
     ok = True
@@ -583,7 +583,7 @@ def _selftest():
     def const_tmc(re, im=0.0):
         return TMC.const(CIV(riv(re), riv(im)))
 
-    # T1 : R = −4 exact (Re < 0, Im ≡ 0 : la configuration du résidu) —
+    # T1: R = -4 exactly (Re < 0, Im identically 0: the residual configuration)
     #      principale refusée, composante indéterminée, CANONIQUE passe
     #      et w² = R
     R = const_tmc(-4.0)
@@ -598,28 +598,28 @@ def _selftest():
     chk("T1 R=−4 : principale refusée, canonique passe, w² = R",
         p_refused and dr[0] <= 0 <= dr[1] and di[0] <= 0 <= di[1])
 
-    # T2 : w(σ=−1) est la NÉGATION EXACTE de w(σ=+1) — (ε,σ) n'entrent
-    #      que par leur produit. Vérifié COEFFICIENT PAR COEFFICIENT :
-    #      l'enclosure de la somme ne peut pas servir de test, car
-    #      l'addition de TM additionne les restes (rem+rem > 0 sur un
-    #      vrai TM — c'est le défaut du gate R8 v1, trouvé au pilote).
+    # T2: w(component=-1) is the EXACT NEGATION of w(component=+1); the sheet and
+    #      component enter only through their product. Checked COEFFICIENT BY COEFFICIENT:
+    #      the enclosure of the sum cannot serve as a test, because
+    #      adding Taylor models adds the remainders (rem+rem > 0 on a
+    #      true model, which is the defect of check R8 v1, found in the pilot).
     wm = tm_sqrt_rotated(R, -1)
     chk("T2 w(σ=−1) = négation exacte de w(σ=+1) (coefficients + reste)",
         _exact_negation(w, wm))
 
-    # T2b : NÉGATIF — w n'est PAS sa propre négation (le test ne peut
-    #      pas être satisfait par une fonction qui retourne True)
+    # T2b NEGATIVE CONTROL: w is NOT its own negation (the test cannot
+    #      be satisfied by a function that returns True)
     chk("T2b négatif : w n'est pas la négation de w",
         not _exact_negation(w, w))
 
-    # T3 : w = i·√_p(−R) vaut 2i pour R = −4 (la bonne branche, pas ±2)
+    # T3: w = i.sqrt_p(-R) equals 2i for R = -4 (the right branch, not +-2)
     wr, wi = _rng(w), _rng(w, True)
     chk("T3 w(−4, σ=+1) = 2i (enclosure serrée autour de (0, 2))",
         abs(wr[0]) < 1e-12 and abs(wr[1]) < 1e-12
         and abs(wi[0] - 2.0) < 1e-12 and abs(wi[1] - 2.0) < 1e-12)
 
-    # T4 : NÉGATIF — R = +4 : la principale passe, donc l'ordre strict
-    #      ne doit JAMAIS invoquer la canonique (pas de remplacement
+    # T4 NEGATIVE CONTROL: R = +4, the principal branch passes, so the strict order
+    #      must NEVER invoke the canonical one (no substitution
     #      silencieux d'une détermination valide)
     R4 = const_tmc(4.0)
     p_ok = True
@@ -630,7 +630,7 @@ def _selftest():
     chk("T4 R=+4 : la principale passe (la canonique resterait inerte)",
         p_ok)
 
-    # T5 : NÉGATIF — R dont l'enclosure CONTIENT 0 : les trois
+    # T5 NEGATIVE CONTROL: R whose enclosure CONTAINS 0: all three
     #      déterminations doivent refuser (aucune branche n'existe)
     R0 = TMC.const(CIV(riv([-1.0, 1.0]), riv([-1.0, 1.0])))
     refuse = 0
@@ -646,9 +646,9 @@ def _selftest():
     chk("T5 négatif : R ∋ 0 → les trois déterminations refusent",
         refuse == 3)
 
-    # T6 : R = 4i (Im > 0 strict) : la composante est CERTIFIABLE, donc
-    #      l'étape (2) doit suffire — la canonique ne doit pas être
-    #      atteinte quand un σ certifié existe (c'est l'ordre strict de
+    # T6: R = 4i (Im > 0 strictly): the component is CERTIFIABLE, so
+    #      step (2) must suffice; the canonical one must not be
+    #      reached when a certified component exists (this is the strict order of
     #      native_rows_ext, vérifié ici sur sa brique)
     Ri = const_tmc(0.0, 4.0)
     w2 = tm_sqrt_rotated(Ri, 1)
