@@ -3,156 +3,156 @@
 k3_cap_b1e2iii_c129f_f2f3_bridge_atlas.py — C129-F0 : F2 + F3, LES
 CARTES-PONTS ET LEURS DEUX TRANSITIONS.
 
-CE QUE CE SCRIPT PAIE (V2) — le contrat §12 de la 10ᵉ revue GPT
+WHAT THIS SCRIPT PAYS (v2): the contract of a review
 (`gpt_b1e2iii_c129f_cadrage_review_2026_07_31.md`), corrigé du facteur 2
 établi par le scout et sous le nom honnête fixé par F1a, ET le contrat
 de réparation de la 11ᵉ revue
-(`gpt_b1e2iii_c129f0_scout_f1_f2f3_review_2026_07_31.md`). LA V1 DE CE
+The v1 of this
 SCRIPT AVAIT DEUX DÉFAUTS LOAD-BEARING, CASSÉS EN REVUE ET RÉPARÉS
-ICI : (i) elle lisait le motif de θ du côté supérieur comme une
-« prédiction vérifiée » — c'est-à-dire qu'elle renommait un ÉCHEC de
-raccord en gate vert ; la v2 en fait un THÉORÈME DE DECK
+HERE: (i) it read the theta pattern on the upper side as a
+"verified prediction", that is, it renamed a gluing FAILURE
+as a green check; v2 turns it into a DECK THEOREM
 (`D = diag(+1,−1,+1,+1,+1,−1)`) et recolle la feuille CONTINUÉE
-`D·Z_conj`, qui est LA transition supérieure (le conjugué seul ne se
-recolle PAS et reste un diagnostic) ; (ii) son « nerf » comptait comme
-arêtes des intersections sans transition certifiée — la v2 le publie
+`D.Z_conj`, which IS the upper transition (the conjugate alone does not
+glue and stays a diagnostic); (ii) its "nerve" counted as
+edges intersections without a certified transition; v2 publishes it
 sous son vrai nom (`domain_intersection_graph`) et reconstruit le NERF
-sur arêtes CERTIFIÉES seulement. La portée est STRATIFIÉE (36/64
+on CERTIFIED edges only. The scope is STRATIFIED (36 of 64
 pleinement ouvertes en 4D), pas « ambiante » en bloc.
 
-L'ARCHITECTURE, ET POURQUOI ELLE N'EST PAS CELLE DE LA NOTE DE CADRAGE.
+THE ARCHITECTURE, AND WHY IT IS NOT THE ONE OF THE SCOPING NOTE.
 `U⁻` (Im u, Im v < 0) et `U⁺` (Im u, Im v > 0) n'ont AUCUN overlap
-ouvert : leurs adhérences ne se rencontrent que sur le coin de
+open: their closures meet only on the corner of
 codimension réelle 2 `{Im u = Im v = 0}`. Comparer directement une
-section inférieure et une section supérieure « sur la face » serait un
-argument par valeur de bord. On introduit donc une CARTE-PONT `B` sur la
+lower section and an upper section "on the face" would be an
+argument by boundary value. We therefore introduce a BRIDGE CHART `B` on the
 boîte bilatérale, et on certifie DEUX transitions séparées :
 
     B = Z⁻  sur  bridge ∩ halo⁻        B = Z⁺  sur  bridge ∩ halo⁺
 
-Ces deux intersections ont une largeur STRICTEMENT POSITIVE dans les
-quatre coordonnées : ce sont de vrais overlaps ouverts, et les ancres y
-sont prises STRICTEMENT à l'intérieur (Im < 0 d'un côté, Im > 0 de
-l'autre), jamais sur la face.
+These two intersections have STRICTLY POSITIVE width in all
+four coordinates: they are genuine open overlaps, and the anchors there
+are taken STRICTLY inside (Im < 0 on one side, Im > 0 on
+the other), never on the face.
 
-LE CONSTRUCTEUR BILATÉRAL, ET POURQUOI C129-E N'EST PAS RÉUTILISABLE.
+THE BILATERAL CONSTRUCTOR, AND WHY THE EARLIER ONE IS NOT REUSABLE.
 `build_section` fait « principale, sinon tournée avec σ de composante ».
-Sur une boîte bilatérale, `Im R` change de signe — `σ` n'existe pas.
-`build_section_bilateral` choisit donc PAR LE SIGNE CERTIFIÉ DE `Re R`,
+On a bilateral box `Im R` changes sign, so the component does not exist.
+`build_section_bilateral` therefore chooses BY THE CERTIFIED SIGN OF `Re R`,
 sans aucun essai :
 
-    Re R minoré > 0 sur toute la boîte  →  principale
-    Re R majoré < 0 sur toute la boîte  →  canonique `w = i√_p(−R)`
-                                           (σ ÉPINGLÉ à +1 : c'est la
+    Re R bounded below by 0 on the whole box  ->  principal branch
+    Re R bounded above by 0 on the whole box  ->  canonical `w = i.sqrt_p(-R)`
+                                           (component PINNED to +1: this is the
                                             définition du régime C127-E,
                                             garde C103 verbatim sur −R)
     sinon                               →  REFUS
 
-Le signe est lu sur l'ENCLOSURE TM de `Re R` (reste compris), pas sur la
-borne rationnelle du scout : la décision est prise dans l'arithmétique
-qui construit la section. La borne rationnelle exacte est publiée à côté
-comme CROSS-CHECK — deux chemins indépendants pour le même signe.
+The sign is read on the model ENCLOSURE of `Re R` (remainder included), not on the
+rational bound of the scouting step: the decision is taken in the arithmetic
+that builds the section. The exact rational bound is published alongside
+as a CROSS-CHECK: two independent paths to the same sign.
 
-LA COMPARAISON, ET LE PIÈGE QU'ELLE ÉVITE. Comparer `B` et `Z∓` par
+THE COMPARISON, AND THE TRAP IT AVOIDS. Comparing `B` and `Z` by
 leurs ENCLOSURES ne compare rien : chaque enclosure a la largeur de la
-VARIATION de la fonction sur l'overlap, donc leur différence aussi. On
-RECENTRE donc les deux Taylor-modèles dans le cadre de l'overlap —
+VARIATION of the function on the overlap, so their difference does too. We
+therefore RECENTRE both Taylor models in the frame of the overlap,
 substitution affine `ε = off + scale·ε'` exacte en Fraction, ANISOTROPE
-(le pont vaut 2H en Im et H en Re, ce n'est pas un cube) — puis on
-soustrait COEFFICIENT PAR COEFFICIENT. C'est la parade C127-D, ici avec
+(the bridge is 2H in the imaginary direction and H in the real one, so not a cube), then
+subtract COEFFICIENT BY COEFFICIENT. This is the same countermeasure as before, here with
 une matrice de recentrage à échelle par coordonnée.
 
-LA PHASE EST UN RÉSULTAT OUVERT, LE GATE EST PRÉ-ENREGISTRÉ. `θ = +1`
-signifie que le pont et le côté décrivent le MÊME point projectif (la
-jauge source étant normalisée `Z_g = 1`, le scalaire projectif est fixé :
-des signes indépendants par ligne ne sont PAS une compatibilité
-projective). Le test est ouvert quant au résultat, préregistré quant à
-la signification du succès.
+THE PHASE IS AN OPEN RESULT, THE CHECK IS PREREGISTERED. `theta = +1`
+means that the bridge and the side describe the SAME projective point (the
+source gauge being normalised to `Z_g = 1`, the projective scalar is fixed:
+independent signs per row are NOT a projective
+compatibility). The test is open as to its outcome, preregistered as to
+the meaning of success.
 
-ET LE RÉSULTAT N'EST PAS CELUI QU'ON ATTENDAIT — C'EST LA TROUVAILLE.
+AND THE RESULT IS NOT THE EXPECTED ONE, WHICH IS THE FINDING.
 Le pont se recolle exactement au côté INFÉRIEUR. Contre le côté
-SUPÉRIEUR dérivé par conjugaison, `θ` est MIXTE : `+1` sur la ligne
-principale, `−1` sur les deux lignes canoniques. Ce n'est ni un bug ni
-une ambiguïté (les marges sont O(1), min 1,04), et ce n'est PAS une
-renormalisation projective. La raison est structurelle et se prédit :
+UPPER side derived by conjugation, `theta` is MIXED: `+1` on the principal
+row, `-1` on the two canonical rows. This is neither a bug nor
+an ambiguity (the margins are of order 1, minimum 1.04), and it is NOT a
+projective renormalisation. The reason is structural and can be predicted:
 
-    sur le coin `Im u = Im v = 0`, le radicande `R` est RÉEL ;
-    là où `Re R > 0` (régime principal) la racine est RÉELLE et
-      l'involution antiholomorphe la FIXE ;
-    là où `Re R < 0` (régime canonique) la racine `i√(−R)` est
-      PUREMENT IMAGINAIRE et l'involution la NIE.
+    on the corner `Im u = Im v = 0` the radicand `R` is REAL;
+    where `Re R > 0` (principal regime) the root is REAL and
+      the antiholomorphic involution FIXES it;
+    where `Re R < 0` (canonical regime) the root `i.sqrt(-R)` is
+      PURELY IMAGINARY and the involution NEGATES it.
 
-Donc **le point conjugué et le point continué analytiquement à travers
-le coin sont deux points DISTINCTS de `P⁵` au-dessus du même `(ū, v̄)`,
-échangés par l'involution réelle.** Conséquence pour le levier n° 1 de
-la note de cadrage : la voisine conjuguée est un atlas légitime, mais ce
-n'est PAS celui que la continuation analytique atteint. Le motif de `θ`
-est PRÉDIT depuis le seul régime, et la prédiction est vérifiée sur
-64/64 : la surprise devient un résultat falsifiable au lieu de rester un
+So **the conjugate point and the point continued analytically across
+the corner are two DISTINCT points of projective space above the same base point,
+exchanged by the real involution.** The consequence for the first lever of
+the scoping note: the conjugate neighbour is a legitimate atlas, but it
+is NOT the one that analytic continuation reaches. The `theta` pattern
+is PREDICTED from the regime alone, and the prediction is verified on
+64 of 64: the surprise becomes a falsifiable result instead of staying a
 échec de gate.
 
-L'EXACTITUDE. La séparation `sep_phase` est PONCTUELLE sur tout
-l'overlap (elle porte sur des enclosures corrélées après recentrage) :
-en chaque point, `B` et `Z∓` sont deux racines analytiques du MÊME
+EXACTNESS. The separation `sep_phase` is POINTWISE over the whole
+overlap (it bears on correlated enclosures after recentring):
+at each point `B` and `Z` are two analytic roots of the SAME
 `R ≠ 0`, et `θ = −1` donnerait `|diff| = 2|Z| > 0 = |somme|`, exclu. Le
-lemme C129-D s'applique alors VERBATIM sur chaque overlap — mais ses
-gates sont RECONSTRUITS ici, pas importés : `F ≠ 0` sur le pont ET sur
-le côté, jauge non nulle, ancre intérieure, séparation stricte.
+lemma then applies VERBATIM on each overlap, but its
+checks are REBUILT here, not imported: `F` nonzero on the bridge AND on
+the side, nonzero gauge, interior anchor, strict separation.
 
-CE QUE CE SCRIPT NE PAIE PAS : la métrique du pont (F4 — Qmat, Weyl,
-congruences latérales) ; l'identification canonique de la voisine, qui a
-REFUSÉ (F1a, artefact `c129f_f1_mirror_ledger`) — l'atlas supérieur est
-DÉRIVÉ par conjugaison, pas énuméré, et ce script hérite de ce statut ;
-les voisines de codimension 1 ; le raccord à travers les faces Re, où
-les ponts restent des cartes RELATIVES ; les 895 autres paires ; R12-C.
+WHAT THIS SCRIPT DOES NOT PAY: the metric of the bridge (Qmat, Weyl,
+lateral congruences); the canonical identification of the neighbour, which
+REFUSED (see the mirror record artefact): the upper atlas is
+DERIVED by conjugation, not enumerated, and this script inherits that status;
+the codimension-1 neighbours; gluing across the Re faces, where
+the bridges stay RELATIVE charts; the 895 other pairs.
 
 GATES
-  F2a  géométrie : demi-largeur 2H dans les deux directions Im
-       réfléchies, H dans les directions Re — re-dérivée ici en
+  F2a  geometry: half-width 2H in the two reflected imaginary
+       directions, H in the real ones, re-derived here in
        Fraction, et IDENTIQUE à celle du scout (import vérifié) ;
-  F2b  `core⁻ ∪ core⁺ ⊆ bridge`, STRICTEMENT dans les directions Im ;
-  F2c  régime par signe CERTIFIÉ de `Re R` sur l'enclosure TM, sans
-       essai, sur 64 × 3 lignes — et accord avec la borne rationnelle
-       exacte du scout (deux arithmétiques, un seul verdict) ;
-  F2d  section bilatérale COMPLÈTE : les six coordonnées existent, la
-       jauge du chart cible est minorée > 0, le ledger du pont
+  F2b  the union of the two cores is inside the bridge, STRICTLY in the imaginary directions;
+  F2c  regime by CERTIFIED sign of `Re R` on the model enclosure, without
+       trial, on 64 x 3 rows, and agreement with the exact rational
+       bound of the scouting step (two arithmetics, one verdict);
+  F2d  COMPLETE bilateral section: the six coordinates exist, the
+       gauge of the target chart is bounded below by 0, the bridge record
        (ε, régime) est FIGÉ et sérialisé ;
-  F2e  NÉGATIFS : (i) le faux pont de demi-largeur H est REFUSÉ par
-       l'inclusion ; (ii) le recours à `σ` de composante sur le pont est
-       REFUSÉ (Im R straddle) ; (iii) une boîte où `Re R` straddle est
-       REFUSÉE au lieu de retomber sur un régime ;
+  F2e  NEGATIVE CONTROLS: (i) the false bridge of half-width H is REFUSED by
+       the inclusion; (ii) resorting to the component rule on the bridge is
+       REFUSED (Im R straddles); (iii) a box where `Re R` straddles is
+       REFUSED instead of falling back on a regime;
   F2f  64/64 sans filtrage silencieux ;
-  F3a  les deux overlaps ont une largeur > 0 dans les 4 coordonnées, en
-       rationnels exacts, et les deux ancres sont STRICTEMENT
-       intérieures (Im < 0 / Im > 0), jamais sur la face ;
-  F2d(bis) LE LEDGER DU PONT SE DÉRIVE : il est mesuré contre le côté
-       INFÉRIEUR (l'atlas établi, ancre de vérité), puis la section est
+  F3a  both overlaps have width > 0 in all 4 coordinates, in
+       exact rationals, and both anchors are STRICTLY
+       interior (Im < 0 and Im > 0), never on the face;
+  F2d(bis) THE BRIDGE RECORD IS DERIVED: it is measured against the
+       LOWER side (the established atlas, anchor of truth), then the section is
        RECONSTRUITE et RE-VÉRIFIÉE. Défauter le ledger reviendrait à
        appeler « raccord » un choix de feuille par défaut ;
-  F3b⁻ le pont se recolle EXACTEMENT au côté inférieur : `θ = +1` sur
+  F3b  the bridge glues EXACTLY to the lower side: `theta = +1` on
        TOUTES les lignes, par recentrage ANISOTROPE exact + séparation
        stricte, refus si ambigu ;
-  R1   `D = diag(+1,−1,+1,+1,+1,−1)` est une TRANSFORMATION DE DECK :
-       involutive, NON scalaire, préserve les trois quadriques, et
-       l'identité `Z_conj = D·Z_bridge` est certifiée AU COEFFICIENT
-       sur 64/64. L'algèbre seule ne distingue rien (tout diagonal de
-       signes préserve les quadriques) : la discriminance est portée
+  R1   `D = diag(+1,-1,+1,+1,+1,-1)` is a DECK TRANSFORMATION:
+       involutive, NON scalar, preserving the three quadrics, and
+       the identity `Z_conj = D.Z_bridge` is certified AT THE COEFFICIENT
+       level on 64 of 64. Algebra alone distinguishes nothing (any diagonal of
+       signs preserves the quadrics): the discriminating power is carried
        par le négatif R1e ;
-  R2   le pont se recolle EXACTEMENT (`θ = +1` sur les six
-       coordonnées) à la feuille CONTINUÉE `D·Z_conj` — c'est ELLE la
-       transition supérieure ; le conjugué SEUL ne se recolle PAS
+  R2   the bridge glues EXACTLY (`theta = +1` on all six
+       coordinates) to the CONTINUED sheet `D.Z_conj`, and THAT is the
+       upper transition; the conjugate ALONE does NOT glue
        (R2b) et reste publié comme diagnostic d'une autre feuille ;
-  R3   le NERF ne compte que des arêtes dont la transition est
+  R3   the NERVE counts only edges whose transition is
        CERTIFIÉE (380 nœuds ; 5396 L↔L importées de C127-D, 64 B↔L,
-       210/210 B↔B ; connexe) ; le graphe des intersections de boîtes
-       est publié séparément sous `domain_intersection_graph`, qui
-       n'est PAS un nerf ;
+       210 of 210 bridge-to-bridge; connected). The box intersection graph
+       is published separately as `domain_intersection_graph`, which
+       is NOT a nerve;
   F3d  négatif PROJECTIVEMENT DISCRIMINANT : mutation NON scalaire
        (une seule ligne canonique niée, jauge et affines inchangées)
-       ⟹ le raccord tombe 64/64 ; la négation globale `Z→−Z` est
+       so the gluing falls 64 of 64; the global negation `Z -> -Z` is
        publiée comme MÊME point de `P⁵` — elle ne discriminait rien,
-       c'était le défaut de la v1 ;
-  R1e  un seul signe changé dans `D` ⟹ l'identité de deck CASSE ;
+       that was the defect of v1;
+  R1e  a single sign changed in `D` breaks the deck identity;
   R4   chaîne amont vérifiée (scout, F1, C127-D, C127-E).
 
 Sortie : results/k3_cap_b1e2iii_c129f_f2f3_bridge_atlas.json
@@ -207,8 +207,8 @@ N_WORKERS = int(os.environ.get("K3_F2F3_WORKERS", "6"))
 # --- PRÉ-ENREGISTRÉ, figé avant le run ------------------------------------
 IM_DIRS = (1, 3)
 NG = 4
-# Le raccord SUCCÈDE si et seulement si θ = +1 des deux côtés. −1 est un
-# résultat publiable et un ÉCHEC de raccord : préregistré ici, pas
+# The gluing SUCCEEDS if and only if theta = +1 on both sides. -1 is a
+# publishable result and a gluing FAILURE: preregistered here, not
 # arbitré après coup.
 THETA_REQUIRED = 1
 T0 = time.time()
@@ -237,7 +237,7 @@ def _qbox(bx):
 
 
 # ===========================================================================
-#  Géométrie exacte — jamais un float dans une décision
+#  Exact geometry: never a float inside a decision
 # ===========================================================================
 def box_of(o):
     return ([Fraction(float.fromhex(x)) for x in o["center_hex"]],
@@ -254,9 +254,9 @@ def mirror_bounds(bx):
 
 
 def inter(a, b):
-    """Boîte d'intersection, ou None si la largeur n'est pas STRICTEMENT
-    positive dans les quatre coordonnées. Tout en Fractions — « ouvert »
-    est une comparaison rationnelle, jamais un test float."""
+    """Intersection box, or None if the width is not STRICTLY
+    positive in all four coordinates. Everything in rationals: "open"
+    is a rational comparison, never a float test."""
     out = []
     for k in range(4):
         lo, hi = max(a[k][0], b[k][0]), min(a[k][1], b[k][1])
@@ -271,12 +271,12 @@ def center_hw(bx):
 
 
 def contains(outer, inner, strict_dirs=IM_DIRS):
-    """`inner ⊆ outer`, STRICTEMENT dans `strict_dirs`. La distinction
-    est du contenu : le pont est ouvert dans les directions Im
-    réfléchies (c'est la promotion du coin en voisinage ambiant), il
-    reste AFFLEURANT dans les directions Re, où il hérite du halo
+    """`inner` inside `outer`, STRICTLY in `strict_dirs`. The distinction
+    is content: the bridge is open in the reflected imaginary
+    directions (this is the promotion of the corner to an ambient neighbourhood), it
+    stays FLUSH in the real directions, where it inherits the halo
     clippé — ces faces-là appartiennent aux voisines de codimension 1 et
-    ne sont pas payées ici."""
+    are not paid here."""
     marg = [(inner[k][0] - outer[k][0], outer[k][1] - inner[k][1])
             for k in range(4)]
     ok = (all(a >= 0 and b >= 0 for a, b in marg)
@@ -285,16 +285,16 @@ def contains(outer, inner, strict_dirs=IM_DIRS):
 
 
 # ===========================================================================
-#  Recentrage ANISOTROPE exact — la généralisation dont le pont a besoin
+#  Exact ANISOTROPIC recentring: the generalisation the bridge needs
 # ===========================================================================
-#  C127-D recentrait entre deux cubes : une seule `scale`. Le pont vaut
-#  2H en Im et H en Re, donc l'échelle est PAR COORDONNÉE. La
-#  substitution reste affine, donc elle ne crée AUCUN reste (composer un
-#  polynôme de degré ≤ N avec une application affine donne un polynôme de
-#  degré ≤ N), et la matrice est exacte en Fractions avant conversion.
+#  The earlier step recentred between two cubes, with a single `scale`. The bridge is
+#  2H in the imaginary directions and H in the real ones, so the scale is PER COORDINATE. The
+#  substitution stays affine, so it creates NO remainder (composing a
+#  polynomial of degree at most N with an affine map gives a polynomial of
+#  degree at most N), and the matrix is exact in rationals before conversion.
 # ===========================================================================
 def recenter_matrix_aniso(off, scale):
-    """T tel que p∘φ [β] = Σ_{α ≥ β} T[β][α]·p[α], pour
+    """T such that (p composed with phi)[beta] = sum_{alpha >= beta} T[beta][alpha].p[alpha], for
     φ(ε)_k = off_k + scale_k·ε_k."""
     acc = {}
     for ai, am in enumerate(MONO):
@@ -312,7 +312,7 @@ def recenter_matrix_aniso(off, scale):
 
 
 def reframe(src_box, dst_box):
-    """(off, scale) EXACTS envoyant le cadre ε de `dst_box` dans celui de
+    """EXACT (off, scale) sending the frame of `dst_box` into that of
     `src_box` : si `x = c_s + h_s·ε_s = c_d + h_d·ε_d`, alors
     `ε_s = (c_d − c_s)/h_s + (h_d/h_s)·ε_d`."""
     cs, hs = center_hw(src_box)
@@ -322,8 +322,8 @@ def reframe(src_box, dst_box):
 
 
 def frame_admissible(off, scale):
-    """Le TM n'est valide que sur ε ∈ [−1,1]⁴ : l'image du cadre cible
-    doit y tenir. C'est un GATE, pas une hypothèse."""
+    """The model is valid only on the unit cube of symbols: the image of the target frame
+    must fit there. This is a CHECK, not an assumption."""
     return all(-1 <= off[k] - scale[k] and off[k] + scale[k] <= 1
                for k in range(4))
 
@@ -332,7 +332,7 @@ def frame_admissible(off, scale):
 #  Le constructeur BILATÉRAL
 # ===========================================================================
 def uv_tm(center, hw):
-    """`u`, `v` en TMC sur une boîte à demi-largeurs PAR COORDONNÉE."""
+    """`u` and `v` as complex models on a box with PER-COORDINATE half-widths."""
     e = [MIDX[tuple(1 if k == j else 0 for k in range(NG))]
          for j in range(NG)]
     pu = [CZERO] * NM
@@ -368,13 +368,13 @@ def _rng_im(t):
 
 
 def build_section_bilateral(S, g, eps, center, hw, force_sigma=False):
-    """La section source sur une boîte BILATÉRALE, régime choisi par le
+    """The source section on a BILATERAL box, regime chosen by the
     SIGNE CERTIFIÉ de `Re R` — jamais par essai, jamais de repli.
 
-    `force_sigma` est la MUTATION du négatif F2e(ii) : elle tente la
-    détermination tournée avec un `σ` de composante là où `Im R`
-    straddle. Un code qui ferait cela sur un pont accepterait une
-    continuation dont la feuille n'est pas définie — c'est ce que le
+    `force_sigma` is the MUTATION of negative control (ii): it attempts the
+    rotated determination with a component rule where `Im R`
+    straddles. Code doing that on a bridge would accept a
+    continuation whose sheet is not defined, which is what the
     négatif doit exhiber, et il doit CASSER."""
     A, _Aq, others = line_coeffs(S, g)
     o1, o2 = others
@@ -430,14 +430,14 @@ def build_section_bilateral(S, g, eps, center, hw, force_sigma=False):
                 if sel == "principal":
                     Zs = R.sqrt_principal().mul_real(riv(int(eps[r])))
                 else:
-                    # σ ÉPINGLÉ à +1 : c'est la DÉFINITION du régime
-                    # canonique (C127-E), pas un essai. La garde C103
+                    # component PINNED to +1: this is the DEFINITION of the
+                    # canonical regime, not a trial. The guard
                     # s'applique verbatim à −R.
                     Zs = tm_sqrt_rotated(R, 1).mul_real(riv(int(eps[r])))
                 rec["regime"] = sel
             except BranchCutError as exc:
-                # Le signe était certifié : si la garde refuse quand
-                # même, c'est un REFUS, jamais un repli sur l'autre
+                # The sign was certified: if the guard refuses
+                # anyway, that is a REFUSAL, never a fallback on the other
                 # branche.
                 rec["refused"] = exc.diag.get("guard")
                 rows.append(rec)
@@ -445,12 +445,12 @@ def build_section_bilateral(S, g, eps, center, hw, force_sigma=False):
         Z[s] = Zs
         iZ = Zs.inv()
         dZ[s] = (u.mul_real(A[r][1]) * iZ, v.mul_real(A[r][2]) * iZ)
-        # Alias de compatibilité avec `transport_hardened`, qui sérialise
-        # `source_determinations`. Le régime du PONT diffère légitimement
-        # de celui du core (canonique là où le core était tourné) : la
-        # différence doit être VISIBLE dans l'artefact, pas masquée — le
-        # gate métrique porte sur les `kinds` CIBLE, pas sur le régime
-        # source, précisément parce que ce dernier a changé exprès.
+        # Compatibility alias with `transport_hardened`, which serialises
+        # `source_determinations`. The regime of the BRIDGE legitimately differs
+        # from that of the core (canonical where the core was rotated): the
+        # difference must be VISIBLE in the artefact, not masked. The
+        # metric check bears on the TARGET kinds, not on the source
+        # regime, precisely because the latter changed on purpose.
         rec["determination"] = rec["regime"]
         rr, ri = R.to_iv_pair()
         rec["radicand_absmin"] = _f_down(
@@ -460,7 +460,7 @@ def build_section_bilateral(S, g, eps, center, hw, force_sigma=False):
 
 
 # ===========================================================================
-#  Comparaison de deux sections sur un overlap — recentrage puis
+#  Comparing two sections on an overlap: recentring, then
 #  soustraction COEFFICIENT PAR COEFFICIENT
 # ===========================================================================
 UNIT_E = [iv.mpf([-1, 1])] * 4
@@ -493,30 +493,30 @@ def theta_lines(Za, box_a, Zb, box_b, W, keys):
 # ===========================================================================
 #  R1 — LA TRANSFORMATION DE DECK
 # ===========================================================================
-#  Le motif de θ mesuré contre le conjugué définit un diagonal de signes
+#  The theta pattern measured against the conjugate defines a diagonal of signs
 #
 #      D = diag(+1, −1, +1, +1, +1, −1)
 #
-#  qui préserve les trois quadriques ambiantes `Q_m(Z) = Σ_a μ_a^m Z_a²`
-#  (les coordonnées n'y entrent que par leur CARRÉ), vaut son propre
-#  inverse, et n'est PAS un scalaire projectif. C'est donc un
-#  automorphisme holomorphe non trivial de l'intersection complète : une
+#  which preserves the three ambient quadrics `Q_m(Z) = sum_a mu_a^m Z_a^2`
+#  (the coordinates enter only through their SQUARE), is its own
+#  inverse, and is NOT a projective scalar. It is therefore a
+#  non-trivial holomorphic automorphism of the complete intersection: a
 #  TRANSFORMATION DE DECK de la description par racines carrées.
 #
-#  HONNÊTETÉ SUR CE QUI EST TRIVIAL. « D préserve les quadriques » est
-#  vrai de TOUT diagonal de signes — ce n'est pas ce qui distingue CE D.
-#  Le contenu est ailleurs, et il est mesuré : c'est CE D-là, et aucun
-#  autre, qui relie la section conjuguée à la section du pont. Le
-#  négatif R1e (un seul signe changé) porte donc toute la discriminance ;
-#  la préservation des quadriques dit seulement que `D·Z` est encore un
-#  point de la K3, ce qui est nécessaire pour que la réparation R2 ait
+#  HONESTY ABOUT WHAT IS TRIVIAL. "D preserves the quadrics" is
+#  true of ANY diagonal of signs; that is not what singles out THIS D.
+#  The content lies elsewhere, and it is measured: it is THAT D, and no
+#  other, that links the conjugate section to the bridge section. The
+#  negative control (a single sign changed) therefore carries all the discriminating power;
+#  preserving the quadrics says only that `D.Z` is still a
+#  point of the surface, which is necessary for the repair to have
 #  un sens.
 # ===========================================================================
 DECK_D = (1, -1, 1, 1, 1, -1)
 
 
 def apply_deck(Z, D, keys):
-    """`D·Z` au niveau des Taylor-modèles : un signe par coordonnée."""
+    """`D.Z` at the level of Taylor models: one sign per coordinate."""
     out = {}
     for k in keys:
         z = Z[k]
@@ -528,8 +528,8 @@ def apply_deck(Z, D, keys):
 
 
 def deck_algebra(D):
-    """Les trois faits structurels sur `D`, EXACTS (entiers/Fractions) :
-    involution, non-scalaire dans PGL(6), et préservation des trois
+    """The three structural facts about `D`, EXACT (integers and rationals):
+    involution, non-scalar in the projective group, and preservation of the three
     quadriques de Vandermonde."""
     from .interval_arithmetic import MU_INT
     invol = all(d * d == 1 for d in D)
@@ -547,8 +547,8 @@ def deck_algebra(D):
 
 
 def eval_at_point(Z, box, x, keys):
-    """Valeur des coordonnées en un POINT (ancre), via le cadre ε du TM.
-    L'appartenance de l'ancre à la boîte est un gate EXACT en Fraction,
+    """Value of the coordinates at a POINT (anchor), through the symbol frame of the model.
+    Membership of the anchor in the box is an EXACT rational check,
     vérifié par l'appelant."""
     c, h = center_hw(box)
     E = [frac_to_iv((x[k] - c[k]) / h[k]) for k in range(4)]
@@ -599,7 +599,7 @@ def _bridge_job(i):
     ok_inc, marg = contains(Wb, union)
     out["F2b_contains_union"] = bool(ok_inc)
     out["F2b_margins"] = [[float(a), float(b)] for a, b in marg]
-    # NÉGATIF (i) : le faux pont de la note de cadrage
+    # NEGATIVE CONTROL (i): the false bridge of the scoping note
     Wbad = [((-H, H) if k in IM_DIRS else Wb[k]) for k in range(4)]
     out["F2e_i_false_bridge_refused"] = bool(
         not contains(Wbad, union)[0])
@@ -613,7 +613,7 @@ def _bridge_job(i):
         all(r["regime"] is not None for r in rows_b))
     out["F2d_section_complete"] = bool(all(z is not None for z in Zb))
 
-    # NÉGATIF (ii) : forcer le recours à σ de composante sur le pont
+    # NEGATIVE CONTROL (ii): forcing the component rule on the bridge
     _Zf, _df, rows_f = build_section_bilateral(
         S, g, eps, cbf, hbf, force_sigma=True)
     out["F2e_ii_sigma_refused"] = bool(
@@ -628,7 +628,7 @@ def _bridge_job(i):
         out["refused"] = "bridge_section_incomplete"
         return out
 
-    # jauge du chart CIBLE minorée > 0 sur le pont
+    # gauge of the TARGET chart bounded below by 0 on the bridge
     S2, g2 = tuple(leaf["chart"]["S"]), leaf["chart"]["g"]
     gr, gi = Zb[g2].to_iv_pair()
     gmin = mp.mpf(civ_absmin(CIV(gr, gi)).a)
@@ -643,22 +643,22 @@ def _bridge_job(i):
     Zup, _d2, rows_up = build_section(S, g, eps, cup, Hf)
     out["lower_dets"] = [r["determination"] for r in rows_lo]
     out["upper_dets"] = [r["determination"] for r in rows_up]
-    # R4c — le côté inférieur RECONSTRUIT doit être l'objet EFFECTIVEMENT
-    # certifié par C127-D, pas une nouvelle reconstruction qui lui
-    # ressemble. Sans ce gate, une dérive future du code dériverait le
-    # pont contre autre chose que l'atlas établi.
+    # R4c: the RECONSTRUCTED lower side must be the object ACTUALLY
+    # certified by the atlas step, not a new reconstruction that
+    # resembles it. Without this check, a future drift of the code would derive the
+    # bridge against something other than the established atlas.
     out["R4c_lower_dets_match_c127d"] = bool(
         out["lower_dets"] == list(rec_h["source_determinations"]))
 
     keys = list(S) + [x for x in range(6) if x not in S]
 
-    # --- F2d bis : LE LEDGER DU PONT SE DÉRIVE, IL NE SE DÉFAUT PAS ----
-    # L'atlas INFÉRIEUR est l'objet établi (C127-D/E, C129-D/E) : c'est
-    # lui l'ancre de vérité, et le ledger du pont doit s'y accorder. On
+    # --- THE BRIDGE RECORD IS DERIVED, IT IS NOT DEFAULTED ------------
+    # The LOWER atlas is the established object: it is
+    # the anchor of truth, and the bridge record must agree with it. We
     # le DÉRIVE (mesure de θ ligne par ligne contre le côté inférieur),
-    # puis on RECONSTRUIT et on RE-VÉRIFIE — ce n'est pas un essai : la
-    # re-vérification doit rendre θ = +1 sur TOUTES les lignes, sinon
-    # REFUS. Ne pas dériver reviendrait à appeler « raccord » un simple
+    # then RECONSTRUCT and RE-CHECK. This is not a trial: the
+    # re-check must give theta = +1 on ALL rows, otherwise
+    # REFUSAL. Not deriving would amount to calling "gluing" a mere
     # choix de feuille par défaut.
     Wl0 = inter(Wb, halo_lo)
     if Wl0 is None:
@@ -687,12 +687,12 @@ def _bridge_job(i):
 
     # --- F3a : overlaps ouverts + ancres STRICTEMENT intérieures -------
     res = {}
-    # R2 — la feuille supérieure CONTINUÉE. `Z_upper_conj` est l'atlas
-    # dérivé par conjugaison ; il vit sur une AUTRE feuille, reliée à
-    # celle du pont par la transformation de deck `D`. La feuille que la
-    # continuation analytique atteint est donc `D·Z_upper_conj`, et
-    # c'est ELLE qui doit passer le vrai contrat F3b⁺. L'atlas conjugué
-    # est conservé comme DIAGNOSTIC séparé, pas comme arête d'atlas.
+    # R2: the CONTINUED upper sheet. `Z_upper_conj` is the atlas
+    # derived by conjugation; it lives on ANOTHER sheet, linked to
+    # that of the bridge by the deck transformation `D`. The sheet that
+    # analytic continuation reaches is therefore `D.Z_upper_conj`, and
+    # THAT is what must pass the real upper contract. The conjugate atlas
+    # is kept as a separate DIAGNOSTIC, not as an atlas edge.
     Zup_cont = apply_deck(Zup, DECK_D, keys)
     for side, halo, Zside, box_side in (
             ("lower", halo_lo, Zlo, halo_lo),
@@ -702,8 +702,8 @@ def _bridge_job(i):
         if W is None:
             res[side] = {"refused": "overlap_not_open"}
             continue
-        # ancre : centre de l'overlap, puis DÉCALÉE strictement du bon
-        # côté de la face si l'overlap y touche. Jamais sur Im = 0.
+        # anchor: centre of the overlap, then SHIFTED strictly to the right
+        # side of the face if the overlap touches it. Never on Im = 0.
         anc = [(a + b) / 2 for a, b in W]
         strict_in = all(W[k][0] < anc[k] < W[k][1] for k in range(4))
         sgn = -1 if side == "lower" else 1
@@ -744,7 +744,7 @@ def _bridge_job(i):
         r["anchor_agrees_with_box"] = bool(
             anc_ok and all(anc_th[j] == th[list(S)[j]].get("theta")
                            for j in range(len(list(S)))))
-        # radicandes non nuls SUR L'OVERLAP, des DEUX côtés (lemme C129-D)
+        # nonzero radicands ON THE OVERLAP, on BOTH sides (the lemma)
         r["glued_exactly"] = bool(
             r.get("theta") == THETA_REQUIRED
             and r["theta_consistent_across_lines"]
@@ -752,15 +752,15 @@ def _bridge_job(i):
             and r["anchor_agrees_with_box"]
             and r["anchor_strictly_inside_overlap"]
             and r["anchor_off_the_face"])
-        # LA PRÉDICTION DE STRUCTURE RÉELLE. Sur le coin `Im u = Im v = 0`
-        # le radicande `R` est RÉEL. Là où `Re R > 0` (régime principal)
-        # la racine est RÉELLE et l'involution antiholomorphe la FIXE ;
-        # là où `Re R < 0` (régime canonique) la racine `i√(−R)` est
-        # PUREMENT IMAGINAIRE et l'involution la NIE. Le côté supérieur
-        # étant DÉRIVÉ par conjugaison, sa phase contre le pont est donc
-        # PRÉDITE ligne par ligne — et prédite MIXTE, ce qui n'est pas
-        # une renormalisation projective. Cette prédiction est
-        # falsifiable : c'est ce qui transforme la surprise en résultat.
+        # THE REAL-STRUCTURE PREDICTION. On the corner `Im u = Im v = 0`
+        # the radicand `R` is REAL. Where `Re R > 0` (principal regime)
+        # the root is REAL and the antiholomorphic involution FIXES it;
+        # where `Re R < 0` (canonical regime) the root `i.sqrt(-R)` is
+        # PURELY IMAGINARY and the involution NEGATES it. The upper side
+        # being DERIVED by conjugation, its phase against the bridge is therefore
+        # PREDICTED row by row, and predicted MIXED, which is not
+        # a projective renormalisation. This prediction is
+        # falsifiable, and that is what turns the surprise into a result.
         pred = {}
         for j, k in enumerate(S):
             rg = rows_b[j]["regime"]
@@ -768,15 +768,15 @@ def _bridge_job(i):
         for k in keys:
             if k not in S:
                 pred[str(k)] = 1        # jauge et coordonnées affines :
-                                        # réelles sur le coin, donc fixées
+                                        # real on the corner, hence fixed
         r["real_structure_prediction"] = pred
         r["deck_D_from_prediction"] = [pred[str(k)] for k in range(6)]
         r["matches_real_structure_prediction"] = bool(
             side != "upper_conj"
             or all(th[k].get("theta") == pred[str(k)] for k in keys))
-        # R1d — l'identité de deck AU COEFFICIENT : le motif de θ contre
+        # R1d: the deck identity AT THE COEFFICIENT level. The theta pattern against
         # le conjugué doit être EXACTEMENT `D`, ligne par ligne, et le
-        # `D` mesuré doit être celui pré-enregistré. C'est la seule part
+        # the measured `D` must be the preregistered one. This is the only part
         # discriminante du théorème de deck.
         if side == "upper_conj":
             r["deck_D_measured_equals_preregistered"] = bool(
@@ -786,12 +786,12 @@ def _bridge_job(i):
     out["sides"] = res
 
     # --- F3d : LE NÉGATIF DOIT ÊTRE PROJECTIVEMENT DISCRIMINANT -------
-    # v1 niait TOUTES les coordonnées : `Z` et `−Z` sont LE MÊME POINT de
-    # P⁵, donc le test ne montrait que la sensibilité de la
+    # v1 negated ALL coordinates: `Z` and `-Z` are THE SAME POINT of
+    # projective space, so the test showed only the sensitivity of the
     # normalisation affine `Z_g = 1` au changement de représentant — pas
-    # la détection d'un mauvais POINT. v2 garde la jauge et les
+    # detecting a wrong POINT. v2 keeps the gauge and the
     # coordonnées affines INCHANGÉES et nie UNE SEULE ligne racine
-    # canonique : `D_bad = diag(1,−1,1,1,1,1)`, non scalaire, donc un
+    # canonical: `D_bad = diag(1,-1,1,1,1,1)`, non scalar, hence a
     # point projectif RÉELLEMENT différent.
     Wl = inter(Wb, halo_lo)
     if Wl is not None:
@@ -803,12 +803,12 @@ def _bridge_job(i):
         out["F3d_D_bad"] = list(D_bad)
         out["F3d_bad_theta_by_line"] = {
             str(k): thn[k].get("theta") for k in keys}
-        # le raccord doit tomber : au moins une ligne à −1 ET un motif
-        # NON constant (donc pas un simple changement de représentant)
+        # the gluing must fall: at least one row at -1 AND a
+        # NON constant pattern (so not a mere change of representative)
         vals = [thn[k].get("theta") for k in keys]
         out["F3d_non_scalar_mutation_breaks_gluing"] = bool(
             any(v != THETA_REQUIRED for v in vals) and len(set(vals)) > 1)
-        # et le contrôle : la négation GLOBALE, elle, est le MÊME point
+        # and the control: the GLOBAL negation is the SAME point
         # projectif — publiée pour dire pourquoi elle ne vaut rien
         Zglob = apply_deck(Zb, tuple([-1] * 6), keys)
         thg = theta_lines(Zglob, Wb, {k: Zlo[k] for k in keys},
@@ -819,7 +819,7 @@ def _bridge_job(i):
         out["F3d_global_negation_is_same_projective_point"] = bool(
             len(gv) == 1)
 
-    # --- R1e : NÉGATIF DU DECK — un seul signe changé doit CASSER ------
+    # --- R1e: DECK NEGATIVE CONTROL, a single sign changed must BREAK --
     Wu = inter(Wb, halo_up)
     if Wu is not None:
         D_wrong = tuple(-d if k == list(S)[0] else d
@@ -835,9 +835,9 @@ def _bridge_job(i):
 
 
 # ===========================================================================
-#  R3 — les transitions PONT ↔ PONT, certifiées (pas seulement
-#  géométriques). Une arête de NERF est une transition CERTIFIÉE ; une
-#  intersection de boîtes n'est qu'un graphe de domaines.
+#  R3: the BRIDGE to BRIDGE transitions, certified (not merely
+#  geometric). A NERVE edge is a CERTIFIED transition; an
+#  intersection of boxes is only a graph of domains.
 # ===========================================================================
 def _bb_job(arg):
     i, j = arg
@@ -913,7 +913,7 @@ def selftest():
     chk("frame_admissible REFUSE une boîte qui déborde",
         not frame_admissible([F(1), F(0), F(0), F(0)], [F(1)] * 4))
 
-    # Le recentrage anisotrope, sur un polynôme dont on connaît la valeur
+    # The anisotropic recentring, on a polynomial whose value is known
     e = [MIDX[tuple(1 if k == j else 0 for k in range(NG))]
          for j in range(NG)]
     p = [CZERO] * NM
@@ -936,7 +936,7 @@ def selftest():
                 apply_recenter(
                     recenter_matrix_aniso([F(0)] * 4, [F(1)] * 4), p), p)))
 
-    # sep_phase, sur des valeurs construites
+    # sep_phase, on constructed values
     th, _ = sep_phase(CIV(iv.mpf(0), IV0), CIV(iv.mpf(4), IV0))
     chk("sep_phase lit θ = +1 quand la différence est nulle", th == 1)
     th, _ = sep_phase(CIV(iv.mpf(4), IV0), CIV(iv.mpf(0), IV0))
@@ -945,7 +945,7 @@ def selftest():
     th, _ = sep_phase(CIV(iv.mpf([-1, 1]), IV0), CIV(iv.mpf([-1, 1]), IV0))
     chk("sep_phase REFUSE l'ambigu", th is None)
 
-    # Le constructeur bilatéral sur la vraie cellule : régimes assignés,
+    # The bilateral constructor on the real cell: regimes assigned,
     # et la mutation σ doit casser.
     cov = json.loads(COVER_JSON.read_text(encoding="utf-8"))
     cell = cov["cell"]
@@ -1005,8 +1005,8 @@ def build():
         f"supérieur est DÉRIVÉ, pas énuméré "
         f"(claim_level={f1['claim_level']})")
 
-    # --- R4c : LA CHAÎNE AMONT EST GATÉE, PAS SEULEMENT IMPORTÉE ------
-    # v1 lisait les JSON amont sans jamais vérifier qu'ils étaient VERTS
+    # --- R4c: THE UPSTREAM CHAIN IS CHECKED, NOT MERELY IMPORTED ------
+    # v1 read the upstream JSON without ever checking that they were GREEN
     # ni en mode complet. Un artefact pilote ou rouge aurait été consommé
     # en silence.
     up = {}
@@ -1128,11 +1128,11 @@ def build():
         f"une transition d'atlas : voir R2 pour la feuille continuée.")
 
     # --- R3 : LE GRAPHE DE DOMAINES ET LE VRAI NERF -------------------
-    # v1 confondait les deux : elle ajoutait une arête pont↔côté dès
-    # qu'un overlap GÉOMÉTRIQUE existait — y compris quand le raccord
-    # avait explicitement ÉCHOUÉ — et des arêtes pont↔pont sans aucune
-    # transition calculée, puis énumérait des triples depuis ce graphe.
-    # Une arête de NERF est une transition CERTIFIÉE. Rien d'autre.
+    # v1 confused the two: it added a bridge-to-side edge as soon
+    # as a GEOMETRIC overlap existed, including when the gluing
+    # had explicitly FAILED, and bridge-to-bridge edges without any
+    # computed transition, then enumerated triples from that graph.
+    # A NERVE edge is a CERTIFIED transition. Nothing else.
     _G["ledgers"] = {r["tile"]: tuple(r["F2d_ledger_derived"])
                      for r in rows}
     bb_geo = [(a, b) for a, b in itertools.combinations(clipped, 2)
@@ -1156,8 +1156,8 @@ def build():
     # graphe de DOMAINES (géométrique, publié comme tel)
     dom_edges = (2 * len(clipped)) + len(bb_geo)
 
-    # NERF : uniquement les arêtes dont la transition est CERTIFIÉE.
-    # Nœuds : les 316 cartes de l'atlas inférieur + les 64 ponts. Les
+    # NERVE: only the edges whose transition is CERTIFIED.
+    # Nodes: the 316 charts of the lower atlas plus the 64 bridges. The
     # arêtes inférieur↔inférieur sont IMPORTÉES de C127-D et vérifiées
     # vertes, pas recalculées.
     lower_pairs = [tuple(sorted((p["i"], p["j"]))) for p in atl["pairs"]
@@ -1204,9 +1204,9 @@ def build():
                        for x in rr["center_hex"]],
                       Fraction(float.fromhex(rr["H_hex"])))
 
-    # triples NOUVEAUX (impliquant au moins un pont), depuis les seules
-    # arêtes CERTIFIÉES. Les triples purement inférieurs sont ceux de
-    # C127-D, déjà certifiés là-bas — ils ne sont pas recomptés ici.
+    # NEW triples (involving at least one bridge), from the certified
+    # edges alone. The purely lower triples are those of the
+    # atlas step, already certified there; they are not recounted here.
     new_triples = []
     for i in clipped:
         x = ("B", i)
@@ -1303,9 +1303,9 @@ def build():
 
     out = {
         "artifact": "k3_cap_b1e2iii_c129f_f2f3_bridge_atlas",
-        # Ce script n'a qu'un seul mode : les 64 ponts, toujours tous.
-        # Sérialisé EXPLICITEMENT depuis la 12ᵉ revue (D2) : le G2 de F4
-        # exige mode == "full" de chaque amont, null n'est pas un mode.
+        # This script has only one mode: the 64 bridges, always all of them.
+        # Serialised EXPLICITLY: the upstream check of the metric step
+        # requires mode == "full" of every upstream, and null is not a mode.
         "mode": "full",
         "claim_level": f1["claim_level"],
         "claim": (
