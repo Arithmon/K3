@@ -1,29 +1,29 @@
 #!/usr/bin/env python3
 """
-k3_cap_tm_kernel.py — LE TAYLOR-MODÈLE (au sens propre) sur le champ
-Q_γ : polynôme de degré ≤ N dans les symboles de boîte ε ∈ [−1,1]⁴
-PLUS un reste borné par la QUEUE de troncature — pas par une dérivée
-évaluée en intervalle sur la boîte.
+THE TAYLOR MODEL, in the proper sense, on the field
+Q_gamma: a polynomial of degree at most N in the box symbols in [-1,1]^4
+PLUS a remainder bounded by the truncation TAIL, not by a derivative
+evaluated in interval arithmetic on the box.
 
-Pourquoi cette couche existe (mesuré, pas supposé) :
+Why this layer exists (measured, not assumed):
 
-  * les couches t2/t3/t4 sont des « jets exacts au centre + reste
+  * the earlier layers are "exact jets at the centre plus a remainder
     D^{n}(BOÎTE) enclos en intervalle ». Quatre ablations (C48, T4b,
-    T5b) ont montré que le jet central passe toujours et que 100 % du
-    mur est le reste : l'évaluation intervalle de la dérivée sur la
-    boîte additionne les modules des 218 éléments là où la dérivée
-    réelle les annule (×1e3 → ×6e9 selon le rang).
-  * le spike AFFINE (`k3_cap_affine_kernel`, 6/6) a mesuré l'autre
-    bout : la partie LINÉAIRE en δ est transportée exactement (det :
-    7.5e-5 @4e-3, 3.2e-4 @1.7e-2 — l'ordre du span float vrai, ~9 %
-    de la marge à la cible) mais son RAYON explose (3.4 → 1.4e3) : à
-    l'ordre 1, les intermédiaires géants s'annulent dans la valeur,
-    jamais dans le rayon.
+    showed that the central jet always passes and that 100 percent of the
+    wall is the remainder: the interval evaluation of the derivative on the
+    box adds the moduli of the 218 elements where the true derivative
+    cancels them (a factor 1e3 to 6e9 depending on the rank).
+  * the AFFINE spike measured the other
+    end: the part LINEAR in delta is transported exactly (determinant:
+    7.5e-5 at 4e-3, 3.2e-4 at 1.7e-2, the order of the true float span, about 9 percent
+    of the margin to target) but its RADIUS explodes (3.4 to 1.4e3): at
+    first order the giant intermediates cancel in the value,
+    never in the radius.
 
-  ⟹ il faut la synthèse : garder EXACTEMENT le polynôme jusqu'au
-  degré N (les annulations survivent jusqu'à ce rang) et borner le
-  reste par la queue du produit tronqué — dont l'échelle est celle
-  des COEFFICIENTS locaux (dociles), pas celle d'une dérivée enclose.
+  So the synthesis is needed: keep the polynomial EXACTLY up to
+  degree N (the cancellations survive to that rank) and bound the
+  remainder by the tail of the truncated product, whose scale is that
+  of the local COEFFICIENTS (tame), not that of an enclosed derivative.
 
 Algèbre (standard TM, toutes les bornes extérieures) :
   x = P(ε) + I,  P = Σ_{|α| ≤ N} p_α ε^α,  |I| ≤ rem
@@ -34,7 +34,7 @@ Algèbre (standard TM, toutes les bornes extérieures) :
   · racine : √x = √p₀·(1 + z/2 − z²/8 + z³/16) + queue,
     |queue| ≤ |√p₀|·q⁴/(8(1−q))   (|C(½,k)| ≤ ⅛ pour k ≥ 2)
   · enclosure : p₀ + Σ_{|α|≥1} p_α·rng(α) ± rem, avec rng(α) = [0,1]
-    si tous les exposants sont PAIRS (la leçon C64, gratuite ici et
+    if every exponent is EVEN (a free lesson here and
     liante partout), [−1,1] sinon.
 
 Garde de branche : identique t2/t3/t4 (`civ_sqrt_principal` sur p₀)
@@ -43,7 +43,7 @@ PLUS la garde de plage (la plage entière doit éviter (−∞, 0]).
 Ordre : `K3_TM_ORDER` (défaut 3). N=2 → 15 monômes, N=3 → 35, N=4 → 70.
 
 Self-test (négatifs inclus) :
-  M1 exactitude polynomiale : un polynôme de degré ≤ N est enclos
+  M1 polynomial exactness: a polynomial of degree at most N is enclosed
      EXACTEMENT (rem = 0) ; NÉGATIF : degré N+1 ⟹ rem > 0
   M2 identités : f·inv(f) ∋ 1, (√f)² ∋ f (bornes)
   M3 soundness réelle : 400 points float ⊆ enclosure (4 composantes
@@ -51,8 +51,8 @@ Self-test (négatifs inclus) :
   M4 dégénéré h=0 ≡ moteur float (rel < 5e-12)
   M5 NÉGATIFS : w = −1 échoue ; t_bad det.hi < 0
   M6 garde de branche : adverse C63 refusé, boîte latérale acceptée
-  M7 monotonie d'ordre : l'enclosure à N=3 est plus serrée qu'à N=2
-     sur la cellule dure (le mécanisme fait ce qu'il annonce)
+  M7 order monotonicity: the enclosure at N=3 is tighter than at N=2
+     on the hard cell (the mechanism does what it announces)
 
 Usage : k3_cap_tm_kernel.py --selftest
 """
@@ -87,9 +87,9 @@ IV01 = iv.mpf([0, 1])
 
 TM_ORDER = int(os.environ.get("K3_TM_ORDER", "3"))
 # C74 / Kimi §4 (les DEUX reviews, indépendamment) : `TM_ORDER` ne fixait
-# que la BASE polynomiale — inv/√ étaient tronquées à z³ EN DUR, donc
-# N-indépendantes, et leur queue q⁴/(1−q) PLAFONNAIT le reste (~2.6e-3 à
-# h = 1.7e-2 : N=6 naïf n'aurait rien gagné). Les deux paramètres sont
+# than the polynomial BASE: inverse and root were truncated at z^3 IN HARD CODE, hence
+# N-independent, and their tail q^4/(1-q) CAPPED the remainder (about 2.6e-3 at
+# h = 1.7e-2: a naive N=6 would have gained nothing). Both parameters are
 # désormais séparés et sérialisables :
 #   POLY_DEG = degré de la base monomiale (convolution tronquée)
 #   UNARY_SERIES_DEG = profondeur des séries analytiques inv/√
@@ -97,7 +97,7 @@ UNARY_SERIES_DEG = int(os.environ.get("K3_TM_SERIES", str(TM_ORDER)))
 if UNARY_SERIES_DEG < 1:
     raise ValueError("K3_TM_SERIES ≥ 1")
 
-# coefficients binomiaux C(1/2, k) EXACTS (Fractions) pour la racine
+# EXACT binomial coefficients C(1/2, k) in rational arithmetic for the root
 _BINOM_HALF = [Fraction(1)]
 for _k in range(1, UNARY_SERIES_DEG + 1):
     _BINOM_HALF.append(_BINOM_HALF[-1]
@@ -151,10 +151,10 @@ def _hi(x):
 
 # ===========================================================================
 #  C101 — sérialisation des diagnostics de branche
-#  Un refus de garde doit être reconstructible depuis l'artefact SEUL.
-#  Les floats servent au JSON, les chaînes 25 chiffres à l'audit : un
-#  float arrondi AU PLUS PROCHE peut mentir sur une inclusion (C104), et
-#  c'est précisément l'inclusion « le disque de garde évite (−∞,0] » qui
+#  A guard refusal must be reconstructible from the artefact ALONE.
+#  Floats serve the JSON, 25-digit strings serve the audit: a
+#  float rounded TO NEAREST can lie about an inclusion, and
+#  it is precisely the inclusion "the guard disc avoids the cut" that
 #  est en cause ici.
 # ===========================================================================
 def _iv_diag(x):
@@ -171,14 +171,14 @@ def _civ_diag(c: CIV):
 
 # C85 : instrumentation SÉPARÉE des queues (produits vs séries unaires)
 # + `UNARY_TAIL_SCALE` : diviseur de test des SEULES queues unaires —
-# le négatif ciblé demandé par GPT (la vérité DOIT sortir si on rétrécit
+# the targeted negative control (the truth MUST come out if the disc is
 # uniquement cette borne-là). Jamais ≠ 1 en production.
 STATS = {}
 UNARY_TAIL_SCALE = 1.0
 
 # C103 : quelle branche de la garde √ a autorisé chaque appel. Compté
-# séparément pour que « la branche range-aware sert / ne sert pas » soit
-# une mesure et non une impression.
+# separately, so that "the range-aware branch helps or does not help" is
+# a measurement and not an impression.
 GUARD_STATS = {"sqrt_disc": 0, "sqrt_range": 0}
 
 
@@ -290,13 +290,13 @@ class TMR:
         p0 = a.p[0]
         m = _dist0(p0)
         # C83 : borne INFÉRIEURE certifiée de la distance à 0 (.a),
-        # pas la supérieure — une enclosure [0, ε] n'est pas « ≠ 0 »
+        # not the upper one: an enclosure [0, eps] is not "nonzero"
         if not (mp.mpf(m.a) > 0):
             raise BranchCutError("TM inv : terme constant contenant 0")
-        # C82 : ANCRAGE PONCTUEL. p₀ est un INTERVALLE, donc p₀ − p₀ ≠ {0}
-        # et q = |1/p₀|·dev(a) ne majorait PAS le z réellement construit.
-        # On ancre sur un POINT c (a = c(1+z) est alors une identité
-        # analytique explicite) et on borne q par la norme du z construit.
+        # POINTWISE ANCHORING. p_0 is an INTERVAL, so p_0 - p_0 is not {0}
+        # and q = |1/p_0|.dev(a) did NOT bound the z actually built.
+        # We anchor on a POINT c (a = c(1+z) is then an explicit
+        # analytic identity) and bound q by the norm of the built z.
         c = _mid_iv(p0)
         u = IV1 / c
         U = iv_absmax(u)
@@ -467,7 +467,7 @@ class TMC:
         return a * b.inv()
 
     def sqrt_principal(a):
-        """√ principale : garde CIV sur p₀ + garde de PLAGE (la plage
+        """Principal root: a containment guard on p_0 plus a RANGE guard (the range
         entière évite (−∞, 0]) ; série binomiale tronquée + queue."""
         p0 = a.p[0]
         # C82 : ancrage POINT — a = c(1+z), q = norm(z) borne |z|
@@ -487,8 +487,8 @@ class TMC:
                 {"guard": "sqrt_q_ge_1", "kernel": "mpmath",
                  "p0": _civ_diag(p0), "anchor": _civ_diag(c),
                  "q": _iv_diag(q)})
-        # garde de coupure sur la PLAGE ENTIÈRE : |a − c| ≤ |c|·q, donc
-        # il suffit que le disque de rayon |c|q autour de c évite
+        # cut guard on the WHOLE RANGE: |a - c| <= |c|.q, so
+        # it suffices that the disc of radius |c|q around c avoid
         # (−∞, 0] — Re(c) > |c|q OU |Im(c)| > |c|q
         rad = civ_absmax(c) * q
         rh = _hi(rad)
@@ -497,12 +497,12 @@ class TMC:
         disc_ok = re_ok or im_ok
         # C103 — branche RANGE-AWARE. Le lemme de convexité (note
         # `k3_cap_r12b_c103_range_guard_proof_2026_07_28.md` §2) autorise
-        # tout K CONVEXE contenant l'ancre, évitant (−∞,0] et inclus dans
-        # D̄(c, ρ|c|) avec ρ < 1. Le disque isotrope n'est qu'UN choix de
-        # K ; ici K = R ∩ D̄(c, rad), où R est l'enclosure rectangulaire
-        # du TM. Les deux branches ne s'impliquent pas (mesuré C101 :
-        # 240/400 cellules de la coquille passent par range et pas par
-        # disque), d'où la DISJONCTION — et donc la sûreté monotone :
+        # any CONVEX K containing the anchor, avoiding the cut and inside
+        # the closed disc of radius rho|c| with rho < 1. The isotropic disc is only ONE choice of
+        # K; here K = R intersected with that disc, where R is the rectangular enclosure
+        # of the model. The two branches do not imply each other (measured:
+        # 240 of 400 shell cells pass by range and not by
+        # disc), hence the DISJUNCTION, and therefore monotone safety:
         # aucune cellule qui passait ne peut se mettre à échouer, et
         # aucune borne en aval ne change.
         range_diag = None
@@ -513,13 +513,13 @@ class TMC:
             cr, ci = mp.mpf(c.re.a), mp.mpf(c.im.a)
             # (G2b) le rectangle rencontre (−∞,0] ssi im ∋ 0 ET re_lo ≤ 0
             cut_free = (i_lo > 0) or (i_hi < 0) or (r_lo > 0)
-            # (G1) l'ancre est dans R — exact, c est un POINT. Porte
-            # l'hypothèse (1) du lemme ET, avec (G2b), interdit une ancre
-            # sur la coupure (que le test du disque excluait par effet de
-            # bord et que cette branche ne recevrait plus).
+            # (G1) the anchor is in R, exactly, since c is a POINT. It carries
+            # hypothesis (1) of the lemma AND, with (G2b), forbids an anchor
+            # on the cut (which the disc test excluded as a side
+            # effect and which this branch would no longer receive).
             anchor_in = (r_lo <= cr <= r_hi) and (i_lo <= ci <= i_hi)
             # (G1b) hypothèse (3) : ρ = rad/|c| < 1. NON impliquée par
-            # q < 1, car rad est arrondi VERS LE HAUT.
+            # q < 1, because rad is rounded UPWARDS.
             rho_ok = rh < mp.mpf(civ_absmin(c).a)
             range_ok = bool(cut_free and anchor_in and rho_ok)
             range_diag = {"cut_free": bool(cut_free),
@@ -530,11 +530,11 @@ class TMC:
         else:
             range_ok = False
         if not (disc_ok or range_ok):
-            # C101 : c'est LA garde qui produit la coquille de branche.
-            # Tout ce qui la rend reproductible part d'ici — y compris
-            # les trois slacks signés qui disent DE COMBIEN le disque
+            # This is THE guard that produces the branch shell.
+            # Everything that makes it reproducible starts here, including
+            # the three signed slacks that say BY HOW MUCH the disc
             # générique déborde, et désormais POURQUOI la branche
-            # range-aware n'a pas pu la sauver non plus.
+            # range-aware form could not save it either.
             raise BranchCutError(
                 "TM √ : la plage touche la coupure (−∞, 0]",
                 {"guard": "sqrt_disc_touches_cut", "kernel": "mpmath",
@@ -582,19 +582,19 @@ def _pow(z: TMC, k: int) -> TMC:
 #  Section et métrique — miroir strict de t2_chart_metric
 # ===========================================================================
 def rotated_sigma_from_coeffs(a1, a2, ur, ui, vr, vi):
-    """C122/C124-E : la COMPOSANTE de `Im R`, déterminée sur les SIGNES
-    des coefficients et des coordonnées — pas lue dans une enclosure qui,
-    sur une cellule face-alignée, contient 0 par construction.
+    """The COMPONENT of `Im R`, determined from the SIGNS
+    of the coefficients and coordinates, not read off an enclosure which,
+    on a face-aligned cell, contains 0 by construction.
 
     `Im R = 2a₁·Re(u)·Im(u) + 2a₂·Re(v)·Im(v)`.
 
-    **C124-E — le zéro identique.** Un facteur d'intervalle `[0, 0]` rend
-    son terme IDENTIQUEMENT NUL ; le classer « positif » (ce que faisait
-    `lo >= 0`) est faux comme algèbre de signes. Un terme identiquement
-    nul ne contribue pas à la somme : il doit être ÉCARTÉ, pas compté.
-    Et si les DEUX termes sont identiquement nuls, `Im R ≡ 0` — le
-    radicande est réel sur toute la boîte et la composante n'existe pas :
-    **refus**, pas un signe par défaut.
+    **The identical zero.** An interval factor `[0, 0]` makes
+    its term IDENTICALLY ZERO; classifying it as "positive" (which
+    `lo >= 0` did) is wrong as a sign algebra. A term identically
+    zero does not contribute to the sum: it must be SET ASIDE, not counted.
+    And if BOTH terms are identically zero then `Im R` vanishes: the
+    radicand is real on the whole box and the component does not exist,
+    so **refusal**, not a default sign.
 
     Retourne +1 (composante supérieure), −1 (inférieure), ou 0 =
     INDÉTERMINÉ — auquel cas la continuation doit être REFUSÉE.
@@ -628,20 +628,20 @@ def rotated_sigma_from_coeffs(a1, a2, ur, ui, vr, vi):
 def tm_sqrt_rotated(a: TMC, sigma: int) -> TMC:
     """C122 — la DÉTERMINATION TOURNÉE : `√_rot(R) = σ·i·√_principal(−R)`.
 
-    `R` évite `[0, +∞)` ⟺ `−R` évite `(−∞, 0]`, donc **la garde
+    `R` avoids the non-negative reals exactly when `-R` avoids the non-positive ones, so **the guard
     existante s'applique verbatim à `−R`** : il n'y a aucune nouvelle
-    garde à prouver, et le lemme de convexité de C103 se transpose sans
-    modification (il ne dépend pas de l'orientation du rayon).
+    guard to prove, and the convexity lemma carries over without
+    change (it does not depend on the orientation of the ray).
 
-    Le signe `σ` n'est PAS libre : le calcul d'arguments donne
+    The sign is NOT free: the argument computation gives
     `i·√_p(−R) = √_p(R)` si `Im R > 0` et `= −√_p(R)` si `Im R < 0`,
-    donc **σ = signe de `Im R`** — la composante. C'est pourquoi
+    so **it is the sign of `Im R`**, the component. That is why
     `rotated_sigma_from_coeffs` refuse de deviner quand elle est
     indéterminée.
 
-    Sur une cellule dont l'intérieur est dans la composante inférieure et
-    dont le bord touche la tranche, `√_rot` est CONTINUE sur la cellule
-    fermée et coïncide avec `√_principal` sur l'intérieur — c'est
+    On a cell whose interior lies in the lower component and
+    whose boundary meets the slice, the rotated root is CONTINUOUS on the closed
+    cell and agrees with the principal root on the interior, which is
     exactement la continuation analytique cherchée, là où la
     détermination principale saute.
     """
@@ -656,14 +656,14 @@ def tm_sqrt_rotated(a: TMC, sigma: int) -> TMC:
 
 
 def section_radicands(S, g_col, u0: complex, v0: complex, h: float):
-    """C118 : les enclosures des TROIS radicandes de section, calculées
-    SANS passer par la racine — donc disponibles même quand la garde
+    """The enclosures of the THREE section radicands, computed
+    WITHOUT going through the root, hence available even when the guard
     accepte et ne lève aucun diagnostic.
 
-    C'est ce qui rend la prédiction range-aware **recalculable** au lieu
-    d'être relue dans un artefact produit sous une garde antérieure : le
-    prédicat `R évite (−∞,0]` est une fonction de la cellule seule.
-    Miroir strict des quatre lignes de `tm_chart_cell_section` qui
+    This is what makes the range-aware prediction **recomputable** instead
+    of being read back from an artefact produced under an earlier guard: the
+    predicate "R avoids the cut" is a function of the cell alone.
+    A strict mirror of the four rows of `tm_chart_cell_section` that
     construisent `R` (mêmes A, mêmes u², v²).
     """
     T = tuple(j for j in range(6) if j not in S)
@@ -735,10 +735,10 @@ def tm_chart_cell_section(S, g_col, eps, u0: complex, v0: complex,
     for r, s_coord in enumerate(S):
         R = TMC.const(CIV(A[r][0])) + u2.mul_real(A[r][1]) \
             + v2.mul_real(A[r][2])
-        # C101 : la garde √ ne sait pas QUELLE racine de section elle
-        # refuse. Le radicande est le quadratique EXPLICITE
+        # the root guard does not know WHICH section root it
+        # refuses. The radicand is the EXPLICIT quadratic
         # R_r = a₀ + a₁·u² + a₂·v² (coefficients rationnels exacts) —
-        # on l'attache au diagnostic, ce qui rend le refus reconstructible
+        # it is attached to the diagnostic, which makes the refusal reconstructible
         # depuis l'artefact seul, et donne à C103 son objet de travail.
         try:
             Zs = R.sqrt_principal().mul_real(riv(int(eps[r])))
@@ -907,7 +907,7 @@ def tm_chart_metric(Z, W, M_civ, coeffs218, basis=B3, midx=B3_IDX,
 
 
 def det_packed_tm(g):
-    """det DANS l'algèbre TM (les corrélations entre composantes ET
+    """Determinant INSIDE the model algebra (correlations between components AND
     les annulations jusqu'au degré N survivent)."""
     return g[0] * g[1] - g[2] * g[2] - g[3] * g[3]
 
@@ -1103,7 +1103,7 @@ def _selftest():
     print(f"[{'PASS' if t6 else 'FAIL'}] M6 branche : traversée "
           f"{cross}, côté {okside}")
 
-    # --- M7 : monotonie d'ordre (diagnostic sur le det à h dur) -------------------------
+    # --- M7: order monotonicity (diagnostic on the determinant at hard h) ---------------
     r17 = reps[1.7e-2]
     print(f"      M7 (info) : det @1.7e-2 largeur "
           f"{r17['w_det_final']:.3e}, normes par degré "
