@@ -1,85 +1,85 @@
 #!/usr/bin/env python3
 """
-k3_cap_b1e2iii_c127_transport_all.py — C127 : le TRANSPORT SUR TOUTES
-LES TUILES du cover D5.6, sous le contrat durci de la 6ᵉ revue GPT.
+TRANSPORT ON EVERY TILE of the dyadic cover, under the hardened
+contract of a review.
 
-D5.6 a construit 252 tuiles chartées (63/64 du volume d'une cellule
-résiduelle) mais n'a transporté que 3 tuiles, avec quatre trous nommés
+The cover built 252 charted tiles (63/64 of the volume of a residual
+cell) but transported only 3, with four named gaps
 par la revue (`gpt_b1e2iii_c125_c126_d56_review_2026_07_29.md`) :
 
-  · H1 affirmait « partition » depuis un ledger qui ne porte AUCUNE
-    adresse d'arbre (somme des volumes + unicité ne détectent ni une
+  . a claim of "partition" rested on a record carrying NO
+    tree address (a volume sum plus uniqueness detects neither a
     feuille ET sa descendante, ni une branche omise compensée) ;
-  · `ε'` n'était sérialisé que sur les 3 tuiles transportées, et sa
-    dérivation comparait des BORNES BASSES d'intervalles sans marge ;
+  . the sheet was serialised only on the 3 transported tiles, and its
+    derivation compared interval LOWER BOUNDS without margin;
   · H6–H8 filtraient silencieusement les `native_failed` ;
   · aucun seuil pré-enregistré, aucun scaling à chart fixé, et le
-    « transport de PD » était une DOUBLE certification, pas un transport.
+    "positivity transport" was a DOUBLE certification, not a transport.
 
-CE QUE CE SCRIPT PAIE (C127-A, C127-B, une part de C127-C) :
+WHAT THIS SCRIPT PAYS:
 
   A. LEDGER DYADIQUE AUTONOME — chaque feuille (tuile OU résidu) reçoit
-     son ADRESSE reconstruite arithmétiquement depuis la racine, avec
-     égalité float EXACTE ; l'ensemble des adresses est vérifié UNIQUE,
+     its ADDRESS reconstructed arithmetically from the root, with
+     EXACT float equality; the set of addresses is checked UNIQUE,
      PREFIX-FREE (donc intérieurs disjoints), CLOS (chaque nœud subdivisé
      a ses 16 enfants couverts, récursivement), et d'égalité de Kraft
-     `Σ 16^{-d} = 1` en rationnels. La fraction de FRONTIÈRE non résolue
-     après chaque niveau est dérivée des adresses et gatée strictement
+     `sum 16^{-d} = 1` in rationals. The unresolved BOUNDARY fraction
+     after each level is derived from the addresses and checked strictly
      décroissante.
 
-  B. TRANSPORT UNIVERSEL — la congruence D5.4 et les PD D5.5 sur les
-     252 tuiles (mode full) avec, PAR TUILE : `ε'` dérivé à l'ancre
-     (coefficient constant du TM = enclosure de la valeur au centre) par
+  B. UNIVERSAL TRANSPORT: congruence and positive definiteness on the
+     252 tiles (full mode) with, PER TILE: the sheet derived at the anchor
+     (constant coefficient of the model = enclosure of the value at the centre) by
      SÉPARATION STRICTE des deux branches — marge > 0 sérialisée, refus
      si ambigu — puis figé ; `σ'` certifié par la composante ;
      compatibilité projective au même signe avec ses bornes ; AUCUN
      échec filtré : le gate exige `n_ok == n_selectionnés == n_attendu`.
 
-  C. STABILITÉ — le VRAI transport de positivité, par Weyl : avec
+  C. STABILITY: the REAL positivity transport, by Weyl. With
      `C = Jᵀ Q_target conj(J)` et `D = Q_source − C`,
          λ_min(Q_source) ≥ λ_min(C) − ‖D‖₂ ≥ λmin_lo(C) − ‖D‖_F^up,
-     donc le gate `‖D‖_F^up < λmin_lo(C)` (avec C certifiée PD depuis sa
-     propre enclosure) prouve la PD de `Q_source` PAR TRANSPORT, sans la
+     so the check `||D||_F^up < lambda_min_lo(C)` (with C certified positive definite from its
+     own enclosure) proves positive definiteness of `Q_source` BY TRANSPORT, without
      certifier directement — la certification directe reste publiée en
      CROSS-CHECK. λmin_lo(C) = det_lo/trace_hi (arrondi vers le bas),
-     valide car λ_max ≤ trace pour une hermitienne PD.
+     valid since lambda_max is at most the trace for a positive definite Hermitian matrix.
      Seuil PRÉ-ENREGISTRÉ : résidu relatif ≤ DELTA_REL = 1e-5 sur toute
-     tuile (les 3 tuiles pilotes étaient ≤ 3,93e-7 ; le seuil est fixé
-     AVANT le run et ne sera pas ajusté).
-     Scaling À CHART FIXÉ (C125-A, première tranche) : sur des tuiles
+     tile (the 3 pilot tiles were at most 3.93e-7; the threshold is fixed
+     BEFORE the run and will not be adjusted).
+     Scaling AT FIXED CHART (first slice): on tiles
      sondes, même centre, même chart, demi-largeurs h, h/2, h/4 — le
      résidu sup doit DÉCROÎTRE STRICTEMENT à chaque division ; les
-     ratios sont publiés sans seuil (pas d'extrapolation).
+     ratios are published without a threshold (no extrapolation).
 
-  PROBES (portée DÉCLARÉE, pas silencieuse) : la mutation du Jacobien
+  PROBES (DECLARED scope, not silent): the Jacobian mutation
   (doit casser) et le recheck d'AUTONOMIE (retransport à `ε'`/`σ'` FIGÉS
-  depuis le ledger, bornes de congruence bit-identiques) tournent sur le
-  SOUS-ENSEMBLE STRATIFIÉ, pas sur les 252 — chaque probe est un
-  transport complet (~coût d'une tuile) et la mutation teste la
-  DISCRIMINANCE DU TEST, pas chaque tuile. Les indices sont publiés.
+     from the record, bit-identical congruence bounds) run on the
+  STRATIFIED SUBSET, not on all 252: each probe is a
+  complete transport (about the cost of one tile) and the mutation tests the
+  DISCRIMINATING POWER OF THE TEST, not each tile. The indices are published.
 
   STRATIFICATION (§13 de la revue) : représentant de chaque signature
   (profondeur, chart, déterminations source/cible, σ cible) + tuile de
   jauge minimale + tuile de `det J` minimal + 3 tuiles ADJACENTES AU
   RÉSIDU (distance de Tchebychev nulle). Publiée intégralement.
 
-CE QUE CE SCRIPT NE PAIE PAS : C127-D (halos, overlaps ouverts, cocycle
-du nerf — la partition reste une partition, pas un atlas recollé) ;
-C127-E (le résidu 1/64 n'est ni couvert ni exclu) ; le contrat EXACT de
-D5.4 (l'identité reste « congruence approchée certifiée » avec bornes) ;
+WHAT THIS SCRIPT DOES NOT PAY: halos, open overlaps, the nerve
+cocycle (the partition stays a partition, not a glued atlas);
+the residual 1/64 (neither covered nor excluded); the EXACT contract of
+congruence (the identity stays "certified approximate congruence" with bounds);
 la globalisation ; R12-C.
 
 DURCISSEMENTS C128 (7ᵉ revue GPT, 2026-07-30) — appliqués puis TOUS les
-artefacts régénérés (leçon C120 : un script modifié sans rerun donne
-l'apparence de la vérification) :
-  C128-A  l'ancre de `ε'` inclut le RESTE TM (`p[0] ± rem` par partie) —
-          le coefficient constant seul n'est pas la valeur au centre ;
+regenerated artefacts (lesson: a modified script without a rerun gives
+the appearance of verification):
+  A  the sheet anchor includes the model REMAINDER (`p[0] +- rem` per part):
+          the constant coefficient alone is not the value at the centre;
   C128-B  λmin_lo et ‖D‖_F en arithmétique d'intervalle mpmath de bout
           en bout, conversion float DIRIGÉE à la sérialisation seule,
           chaînes exactes publiées, gate d'HERMITICITÉ de C, slack
           exact λ − ‖D‖ par tuile ;
-  C128-C  le ratio gaté par δ est CERTIFIÉ : sup_entry(D)↑ / q00_lo↓
-          (l'ancien max-endpoint au dénominateur était une borne
+  C  the ratio checked against delta is CERTIFIED: sup_entry(D) rounded up over
+          q00_lo rounded down (the earlier max-endpoint denominator was a
           SUPÉRIEURE — un quotient majorant exige un dénominateur
           inférieur) ; l'ancien ratio publié en `_legacy` ;
   C128-D  le scaling fige le LEDGER (ε', σ', déterminations refusées si
@@ -136,12 +136,12 @@ N_WORKERS = int(os.environ.get("K3_C127_WORKERS", "3"))
 ART = RES / ("k3_cap_b1e2iii_c127_transport_all.json" if MODE == "full"
              else "k3_cap_b1e2iii_c127_transport_pilot.json")
 
-# --- PRÉ-ENREGISTRÉ, fixé avant le run, non ajustable -----------------------
-# C128-C : le ratio gaté est désormais CERTIFIÉ — sup_entry(D) arrondi
-# vers le HAUT sur un dénominateur INFÉRIEUR certifié q00_lo(Q_src)
-# (max_entry(Q) ≥ q00 ≥ q00_lo, donc le quotient majore le ratio vrai).
+# --- PREREGISTERED, fixed before the run, not adjustable --------------------
+# The checked ratio is now CERTIFIED: sup_entry(D) rounded
+# UP over a certified LOWER denominator q00_lo(Q_src)
+# (max_entry(Q) >= q00 >= q00_lo, so the quotient bounds the true ratio).
 DELTA_REL = 1e-5          # plafond du résidu relatif CERTIFIÉ
-N_RESIDUAL_ADJACENT = 3   # tuiles adjacentes au résidu dans le pilote
+N_RESIDUAL_ADJACENT = 3   # tiles adjacent to the residual in the pilot
 SCALING_LEVELS = 4        # h, h/2, h/4, h/8 à chart ET ledger figés
 # C128-D : fenêtre pré-enregistrée du ratio de scaling — ordre observé
 # 5 ± 1 (2⁴ à 2⁶), déclarée AVANT le rerun, jamais ajustée dessus.
@@ -156,7 +156,7 @@ def log(msg):
 
 def _sha(p):
     # C128-E : SHA-256 COMPLETS (les 16 premiers caractères suffisaient
-    # à l'identité pratique, pas à la provenance publiable)
+    # to practical identity, not to publishable provenance)
     try:
         return hashlib.sha256(Path(p).read_bytes()).hexdigest()
     except OSError:
@@ -191,7 +191,7 @@ def provenance(src, t_wall):
 def address_of(root_c, root_h, c, h):
     """Adresse dyadique d'une feuille, reconstruite ARITHMÉTIQUEMENT en
     rejouant la récursion de `subboxes` (mêmes opérations float, même
-    ordre) : la reconstruction doit retomber sur `(c, h)` en égalité
+    order): the reconstruction must land back on `(c, h)` in exact
     float EXACTE, sinon None."""
     d, hh = 0, root_h
     while hh > h and d <= 60:
@@ -242,8 +242,8 @@ def tree_gates(addresses):
 
 
 def frontier_fractions(addresses):
-    """Fraction de frontière NON RÉSOLUE après chaque niveau : masse des
-    nœuds de profondeur d qui sont des préfixes PROPRES d'une feuille."""
+    """Fraction of the boundary NOT RESOLVED after each level: the mass of
+    depth-d nodes that are PROPER prefixes of a leaf."""
     max_d = max((len(a) for a in addresses), default=0)
     out = []
     for d in range(max_d):
@@ -261,7 +261,7 @@ def frontier_fractions(addresses):
 # ===========================================================================
 def _f_down(x):
     """Conversion mpf → float DIRIGÉE vers le bas (C128-B : `float()`
-    arrondit au plus proche, ce qui peut remonter une borne inférieure)."""
+    rounds to nearest, which can raise a lower bound)."""
     f = float(x)
     return math.nextafter(f, -math.inf) if f > x else f
 
@@ -272,9 +272,9 @@ def _f_up(x):
 
 
 def _anchor(Z):
-    """C128-A — l'enclosure de la valeur AU CENTRE d'un TMC : `p[0] ±
-    rem`, par partie. Le coefficient constant SEUL n'est PAS la valeur
-    au centre dès que `rem > 0` : le reste du TM appartient à l'ancre
+    """The enclosure of the value AT THE CENTRE of a complex model: `p[0] +-
+    rem`, per part. The constant coefficient ALONE is NOT the value
+    at the centre once `rem > 0`: the model remainder belongs to the anchor
     (défaut nommé par la 7ᵉ revue §4.2)."""
     rtm, itm = Z.re_tm(), Z.im_tm()
     return (rtm.p[0] + IVPM * rtm.rem, itm.p[0] + IVPM * itm.rem)
@@ -282,7 +282,7 @@ def _anchor(Z):
 
 def _eps_sep(aE, bE):
     """Choix de signe par séparation stricte des distances au carré,
-    sur des ANCRES-ENCLOSURES (reste inclus). Comparaisons en mpf, pas
+    on ANCHOR ENCLOSURES (remainder included). Comparisons in mpf, not
     en float. Retourne (eps, rec) ou (None, diagnostic)."""
     (are, aim), (bre, bim) = aE, bE
     d2p = (are - bre) ** 2 + (aim - bim) ** 2
@@ -304,9 +304,9 @@ def _eps_sep(aE, bE):
 def derive_eps_target_margined(S2, g2, up, vp, sigma2, Zp):
     """`ε'` dérivé à l'ancre par SÉPARATION STRICTE, marge sérialisée.
 
-    C128-A : l'ancre de chaque ligne est l'enclosure COMPLÈTE de la
+    The anchor of each row is the COMPLETE enclosure of the
     valeur au centre — `p[0] ± rem` par partie — et plus le seul
-    coefficient constant. Le signe n'est retenu que si `sup(d²_choisi) <
+    constant coefficient. The sign is kept only if `sup(chosen squared distance) <
     inf(d²_autre)` STRICTEMENT (comparaison en mpf) ; ambigu ⟹ REFUS."""
     Zt1, _d, _k = native_target_section(S2, g2, up, vp, (1, 1, 1),
                                         sigma2)
@@ -347,7 +347,7 @@ def lam_min_lo(Q):
 
 
 def fro_up(D):
-    """Majorant de ‖D‖_F depuis la MATRICE de TMC (plus depuis des
+    """Upper bound on ||D||_F from the MATRIX of complex models (rather than from
     bornes déjà converties en float) — C128-B : sommation et racine en
     iv, conversion float dirigée à la sérialisation seulement.
     Retourne (mpf, dict)."""
@@ -364,7 +364,7 @@ def fro_up(D):
 
 
 def sup_entry_up(D):
-    """sup des |composantes| (re et im) de la matrice, en mpf."""
+    """Supremum of the component moduli (real and imaginary) of the matrix, in mpf."""
     out = mp.mpf(0)
     for i in range(2):
         for k in range(2):
@@ -380,8 +380,8 @@ def _conj_tmc(x):
 
 def hermitian_contains_zero(C):
     """Gate d'hermiticité (C128-B) : `C[0][1] − conj(C[1][0]) ∋ 0` et
-    les parties imaginaires diagonales contiennent 0 — sans quoi
-    `λ_min(C)` n'a pas le sens spectral que Weyl exige."""
+    the diagonal imaginary parts contain 0, without which
+    `lambda_min(C)` lacks the spectral meaning Weyl requires."""
     off = C[0][1] + _conj_tmc(C[1][0]).mul_real(riv(-1.0))
     checks = [off.re_tm().to_iv(), off.im_tm().to_iv(),
               C[0][0].im_tm().to_iv(), C[1][1].im_tm().to_iv()]
@@ -398,14 +398,14 @@ def transport_hardened(S, g, eps, center, hw, S2, g2, M, c218, rw,
     `section` (C129-F0/F4, 2026-07-31) — POINT D'INJECTION ADDITIF.
     `center` et `hw` ne servent QU'À `build_section` : tout l'aval
     (Qmat, transport, congruence, Weyl, ratio certifié) est
-    BOX-AGNOSTIQUE. Passer une section déjà construite permet donc de
-    rejouer le chemin durci VERBATIM sur une boîte que `build_section`
-    ne sait pas décrire — la boîte-pont bilatérale de C129-F0, qui est
-    ANISOTROPE (2H en Im, H en Re) et dont le régime se choisit sur le
-    signe de `Re R` et non sur `σ` de composante, indéterminé là.
-    Quand `section is None`, le comportement est INCHANGÉ à l'octet :
-    aucun appelant existant n'est affecté, et le script F4 le vérifie
-    par un gate de non-régression contre l'artefact C129-E sérialisé."""
+    BOX-AGNOSTIC. Passing an already built section therefore allows
+    replaying the hardened path VERBATIM on a box that `build_section`
+    cannot describe: the bilateral bridge box, which is
+    ANISOTROPIC (2H in the imaginary direction, H in the real one) and whose regime is chosen on the
+    sign of `Re R` rather than on the component, undetermined there.
+    When `section is None` the behaviour is UNCHANGED to the byte:
+    no existing caller is affected, and the metric script checks it
+    with a non-regression check against the serialised artefact."""
     t_start = time.time()
     if section is None:
         Z, dZ, rows = build_section(S, g, eps, center, hw)
@@ -545,7 +545,7 @@ def _run_tile(job):
         kw["perturb_J"] = complex(0.3, 0.2)
     elif kind in ("autonomy", "scaling"):
         # C128-D : le scaling fige aussi le LEDGER (ε', σ') — réduire h
-        # sans figer la branche mesurerait autre chose que le reste TM
+        # without freezing the branch would measure something other than the model remainder
         kw["fixed_eps2"] = extra["eps_target"]
         kw["fixed_sigma2"] = extra["sigma_target"]
     r = transport_hardened(S, g, eps, c, h, S2, g2,
@@ -635,7 +635,7 @@ def build():
         else:
             addresses.append(a)
             # C128-E : adresses explicitement SÉRIALISÉES (elles
-            # n'étaient que reconstruites — autonome mais moins
+            # were only reconstructed: autonomous but less
             # auditable de l'extérieur)
             leaf_addr.append({"kind": kind, "depth": len(a),
                               "path": [list(d) for d in a]})
@@ -657,8 +657,8 @@ def build():
     expected_n = len(selected)
 
     # --- Les jobs : transports + probes ---------------------------------------
-    # fork (pas forkserver, défaut de Python 3.14) : les objets mpmath
-    # iv ne se picklent pas ; sous fork ils sont hérités sans pickling.
+    # fork (not forkserver, the Python 3.14 default): mpmath interval
+    # objects do not pickle; under fork they are inherited without pickling.
     mpctx = get_context("fork")
     jobs = [(i, tiles[i], "transport", None) for i in selected]
     with mpctx.Pool(N_WORKERS, initializer=_init_worker,
@@ -670,7 +670,7 @@ def build():
     log(f"transports : {len(ok)}/{expected_n} OK, {len(failed)} échecs "
         f"(REFUSÉS, pas filtrés)")
 
-    # --- Probes sur le sous-ensemble stratifié --------------------------------
+    # --- Probes on the stratified subset --------------------------------------
     probe_idx = [i for i in sel_pilot if i in by_idx
                  and not by_idx[i].get("failed")]
     probe_jobs = []
@@ -726,7 +726,7 @@ def build():
                   for k in range(len(seq) - 1)]
         dec = all(seq[k + 1] < seq[k] for k in range(len(seq) - 1))
         # C128-D : fenêtre pré-enregistrée + ledger analytique FIGÉ —
-        # une détermination qui change en réduisant h invaliderait la
+        # a determination that changed when reducing h would invalidate the
         # mesure (on comparerait deux branches, pas deux restes)
         in_window = all(r is not None
                         and SCALING_RATIO_WINDOW[0] <= r
@@ -875,7 +875,7 @@ def build():
 
 
 # ===========================================================================
-#  Self-test (fonctions pures — sans le registre ni les TM)
+#  Self-test (pure functions, without the registry or the models)
 # ===========================================================================
 def _selftest():
     ok = True
@@ -892,7 +892,7 @@ def _selftest():
         return [([c[k] + dg[k] * hh for k in range(4)], hh, dg)
                 for dg in product((-1, 1), repeat=4)]
 
-    # T1 : reconstruction d'adresse EXACTE sur un arbre synthétique
+    # T1: EXACT address reconstruction on a synthetic tree
     #      (feuille de profondeur 2, mêmes opérations float que subboxes)
     (c1, h1, d1) = children(root_c, root_h)[5]
     (c2, h2, d2) = children(c1, h1)[10]
@@ -900,7 +900,7 @@ def _selftest():
     chk("T1 adresse profondeur 2 reconstruite exactement",
         a == (d1, d2))
 
-    # T2 : une feuille PERTURBÉE d'un ulp n'a PAS d'adresse
+    # T2: a leaf PERTURBED by one ulp has NO address
     c_bad = list(c2)
     c_bad[0] = math.nextafter(c_bad[0], math.inf)
     chk("T2 négatif : centre perturbé d'un ulp → adresse REFUSÉE",
@@ -915,8 +915,8 @@ def _selftest():
         t["unique"] and t["prefix_free"] and t["tree_closed"]
         and t["kraft_is_one"])
 
-    # T4 : NÉGATIF — une feuille ET sa descendante (le trou que la somme
-    #      des volumes ne voit pas si compensé) → prefix-free FAIL
+    # T4 NEGATIVE CONTROL: a leaf AND its descendant (the hole that the volume
+    #      sum does not see if compensated) gives a prefix-free FAILURE
     bad = addrs + [((-1, -1, -1, -1), (1, 1, 1, 1))]
     t4 = tree_gates(bad)
     chk("T4 négatif : feuille + sa descendante → prefix-free REFUSÉ",
@@ -927,13 +927,13 @@ def _selftest():
     chk("T5 négatif : enfant manquant → arbre NON clos, Kraft ≠ 1",
         not t5["tree_closed"] and not t5["kraft_is_one"])
 
-    # T6 : fractions de frontière sur l'arbre mixte : 1 puis 1/16
+    # T6: boundary fractions on the mixed tree: 1 then 1/16
     fr = frontier_fractions(addrs)
     chk("T6 frontière : [1, 1/16] strictement décroissante",
         len(fr) == 2 and fr[0]["fraction_float"] == 1.0
         and abs(fr[1]["fraction_float"] - 1.0 / 16) < 1e-15)
 
-    # T7 : det_lo/tr_hi est bien une BORNE INFÉRIEURE (algèbre exacte :
+    # T7: det_lo/tr_hi really is a LOWER BOUND (exact algebra:
     #      diag(2, 3) → det/tr = 6/5 = 1.2 ≤ λ_min = 2)
     chk("T7 λmin_lo : det_lo/tr_hi ≤ λ_min sur un cas exact",
         _f_down(mp.mpf(6) / 5) <= 2.0)
@@ -947,8 +947,8 @@ def _selftest():
     _fm, fd = fro_up(D)
     chk("T8 fro_up ≥ ‖D‖_F vraie", fd["float"] >= true_f)
 
-    # T9 (C128-A) : l'ancre inclut le RESTE — deux ancres dont les p[0]
-    # SÉPARENT les signes mais dont les restes se recouvrent doivent
+    # T9: the anchor includes the REMAINDER; two anchors whose p[0]
+    # SEPARATE the signs but whose remainders overlap must
     # être REFUSÉES (l'ancien code au seul p[0] aurait tranché)
     a_clean = TMC.const(CIV(riv(1.0), riv(0.0)))
     a_fat = TMC(a_clean.p, iv.mpf(3.0))
@@ -958,16 +958,16 @@ def _selftest():
     chk("T9 ancre + reste : p[0] propre tranche (+1), reste large REFUSE",
         s_clean == 1 and s_fat is None)
 
-    # T10 (C128-B) : conversion float DIRIGÉE — 1/3 n'est pas un float,
-    # _f_down doit minorer et _f_up majorer ; un float exact ne bouge pas
+    # T10: DIRECTED float conversion. 1/3 is not a float,
+    # _f_down must round down and _f_up up; an exact float does not move
     third = mp.mpf(1) / 3
     chk("T10 _f_down ≤ x ≤ _f_up (x = 1/3), et 0.5 reste 0.5",
         _f_down(third) <= third <= _f_up(third)
         and _f_down(third) < _f_up(third)
         and _f_down(mp.mpf(0.5)) == 0.5 == _f_up(mp.mpf(0.5)))
 
-    # T11 (C128-B) : le gate d'hermiticité mord — une matrice dont le
-    # bloc [1][0] n'est PAS le conjugué de [0][1] est refusée
+    # T11: the hermiticity check bites. A matrix whose
+    # block [1][0] is NOT the conjugate of [0][1] is refused
     H = cmat(complex(1, 0), complex(0.3, 0.2), complex(0.3, -0.2),
              complex(2, 0))
     Hbad = cmat(complex(1, 0), complex(0.3, 0.2), complex(0.3, 0.2),
@@ -976,7 +976,7 @@ def _selftest():
         hermitian_contains_zero(H)
         and not hermitian_contains_zero(Hbad))
 
-    # T12 (C128-B) : λmin_lo est bien une borne inférieure dirigée sur
+    # T12: lambda_min_lo really is a directed lower bound on
     # diag(2, 3) : det/tr = 6/5 ≤ 2, et float(λ) ≤ λ exacte
     lm, ld = lam_min_lo(cmat(2 + 0j, 0j, 0j, 3 + 0j))
     chk("T12 λmin_lo(diag(2,3)) = 1.2 ≤ 2, float dirigé ≤ mpf",
