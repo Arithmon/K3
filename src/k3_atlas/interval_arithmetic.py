@@ -147,7 +147,7 @@ def civ_sqrt_principal(R: CIV) -> CIV:
     im_neg = mp.mpf(R.im.b) < 0
     if not (re_pos or im_pos or im_neg):
         raise BranchCutError(
-            f"radicande sur la coupure : re=[{mp.mpf(R.re.a)}, "
+            f"radicand on the cut: re=[{mp.mpf(R.re.a)}, "
             f"{mp.mpf(R.re.b)}], im=[{mp.mpf(R.im.a)}, {mp.mpf(R.im.b)}]")
     modulus4 = iv.sqrt(iv.sqrt(R.abs2()))          # |R|^{1/2} via (|R|²)^{1/4}
     half_arg = iv.atan2(R.im, R.re) / 2
@@ -284,7 +284,7 @@ def interval_chart_metric(Z, W, M_civ, coeffs218, basis=B3, midx=B3_IDX,
         r_vec[a_] = acc
         rho = rho + (acc * Z[a_]).re
     if not (mp.mpf(rho.a) > 0):
-        raise BranchCutError("rho = Z†MZ non strictement positif sur la boîte")
+        raise BranchCutError("rho = Z-dagger M Z is not strictly positive on the box")
 
     G = [[CZERO, CZERO], [CZERO, CZERO]]
     v_vec = [CZERO, CZERO]
@@ -757,7 +757,7 @@ def _iv_intersect(a, b):
     lo = max(mp.mpf(a.a), mp.mpf(b.a))
     hi = min(mp.mpf(a.b), mp.mpf(b.b))
     if lo > hi:
-        raise RuntimeError("intersection vide : une des deux enclosures "
+        raise RuntimeError("empty intersection: one of the two enclosures "
                            "est invalide (bug kernel)")
     return iv.mpf([lo, hi])
 
@@ -1365,7 +1365,7 @@ def _selftest() -> int:
             n_ok += all(g_p[c] in g_mv[c] for c in range(4))
             n_tot += 1
     check("D2_mean_value_containment_MC", n_tot > 0 and n_ok == n_tot,
-          f"{n_ok}/{n_tot} points contenus dans l'enclosure valeur-moyenne "
+          f"{n_ok}/{n_tot} points contained in the mean-value enclosure "
           f"(h = {h:g})")
 
     # D3: the mean-value form beats the naive form

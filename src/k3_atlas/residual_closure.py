@@ -510,10 +510,10 @@ def build():
     verdict = (
         "C127-E (%s) — la TROISIÈME DÉTERMINATION ferme %d/%d boîtes "
         "résiduelles examinées (%d lignes en σ canonique, feuille "
-        "épinglée par la marge ε' — min %.3e). Non-tautologie : le "
-        "critère C126 refuse et l'étendu accepte sur CHAQUE nouvelle "
-        "tuile. Identité w² = R' certifiée sur toutes les lignes. "
-        "Transport C127 complet sur les nouvelles tuiles : %d/%d, "
+        "pinned by the sheet margin, minimum %.3e). Non-tautology: the "
+        "plain criterion refuses and the extended one accepts on EACH new "
+        "tile. The identity w^2 = R' is certified on every row. "
+        "Complete transport on the new tiles: %d of %d, "
         "résidu relatif max %.3e ≤ δ = %.0e, Weyl partout. Le cover "
         "couvre désormais %.4f %% (résidu %.4f %%, %d boîtes non "
         "fermées publiées). Négatifs : ε' inversé casse %d/%d, "
@@ -546,9 +546,9 @@ def build():
            "delta_rel_preregistered": DELTA_REL,
            "source_section_untouched": (
                "la section SOURCE n'emploie jamais la troisième "
-               "détermination — seule la section NATIVE du chart cible "
-               "des tuiles résiduelles ; l'étiquetage des classes ε de "
-               "l'arc source est inchangé"),
+               "determination; only the NATIVE section of the target chart "
+               "of the residual tiles is concerned, and the class labelling of "
+               "the source arc is unchanged"),
            "not_paid_here": ["C127-D halos/overlaps/cocycle",
                              "raccord entre déterminations de tuiles "
                              "voisines (cocycle du nerf)",
@@ -609,7 +609,7 @@ def _selftest():
 
     # T2b NEGATIVE CONTROL: w is NOT its own negation (the test cannot
     #      be satisfied by a function that returns True)
-    chk("T2b négatif : w n'est pas la négation de w",
+    chk("T2b negative control: w is not the negation of w",
         not _exact_negation(w, w))
 
     # T3: w = i.sqrt_p(-R) equals 2i for R = -4 (the right branch, not +-2)

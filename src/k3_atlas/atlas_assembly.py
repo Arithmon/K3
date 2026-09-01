@@ -83,7 +83,7 @@ autres paires cellule/classe, R12-C.
 C129-A/B/C (8ᵉ revue GPT, 2026-07-31) — trois dettes theorem-grade
 payées SANS changer aucun contrat :
   A. les boîtes d'overlap (paires, triples, négatif N5) passaient par
-     `iv.mpf([float(lo), float(hi)])` au PLUS PROCHE — or les ε
+     `iv.mpf([float(lo), float(hi)])` TO NEAREST, whereas the symbols
      intersections carry denominators in 65 (halos of 65h/64), not
      représentables en binaire : l'intervalle pouvait être STRICTEMENT
      smaller than the rational box. Hence `fraction_box_to_iv`:
@@ -279,10 +279,10 @@ def fraction_box_to_iv(lo, hi):
     """(lo, hi) en Fractions → UN intervalle mpmath ENCLOSANT [lo, hi] :
     borne basse arrondie VERS LE BAS, borne haute VERS LE HAUT (C129-A,
     8ᵉ revue). L'ancien chemin `iv.mpf([float(lo), float(hi)])`
-    arrondissait les deux endpoints AU PLUS PROCHE — or les boîtes
+    rounded both endpoints TO NEAREST, whereas the boxes
     d'overlap héritent des demi-largeurs de halo `65h/64` et leurs
     coordinates carry denominators in 65, not representable in
-    binaire : l'intervalle construit pouvait être STRICTEMENT PLUS PETIT
+    binary: the built interval could be STRICTLY SMALLER
     than the exact rational box, and a certified containment of 0 on a truncated
     domain does not certify the domain. The widening is at most 1 ulp at
     mp.prec par borne : conservateur, jamais optimiste."""
@@ -904,7 +904,7 @@ def pilot_patch(leaves, n_max):
     sel = sorted(set(sel))[:n_max]
     return sel, {"seed": seed, "seed_c127_neighbours": best,
                  "n_selected": len(sel), "selected": sel,
-                 "note": ("patch = une tuile née du résidu + tout son "
+                 "note": ("patch = one tile born of the residual plus all its "
                           "voisinage + un représentant par signature "
                           "non couverte")}
 
@@ -1113,63 +1113,63 @@ def build():
     n_pass = sum(1 for v in gates.values() if v)
 
     verdict = (
-        "C127-D (%s) — LA PARTITION EST DEVENUE UN ATLAS. Les %d "
-        "feuilles du cover fermé (C127 + C127-E) portent chacune un HALO "
-        "`(1+ρ)h` avec ρ pris dans l'échelle pré-enregistrée %s : sur ce "
-        "voisinage OUVERT du core, les déterminations source sont "
-        "INCHANGÉES, le critère de chart qui a certifié le core tient "
-        "encore (et pour les tuiles nées du résidu, C126 REFUSE toujours "
-        "— la non-tautologie R4 survit au halo), la section cible native "
-        "à ledger FIGÉ a les mêmes `kinds`, et la congruence projective "
-        "reste sous δ (max %.3e). LA MESURE QUI A COÛTÉ UN AMENDEMENT : "
-        "%d tuiles ont REFUSÉ le halo symétrique sur TOUTE l'échelle ρ, "
-        "y compris à ρ = 1/64 — diagnostic : elles sont à cheval sur une "
-        "face de la CELLULE, et les 64 tuiles nées du résidu de D5.6 "
-        "sont EXACTEMENT celles qui affleurent la face {Im u = Im v = "
+        "(%s) THE PARTITION HAS BECOME AN ATLAS. The %d "
+        "leaves of the closed cover carry each a HALO "
+        "`(1+rho)h` with rho from the preregistered scale %s: on this "
+        "OPEN neighbourhood of the core the source determinations are "
+        "UNCHANGED, the chart criterion that certified the core still "
+        "holds (and for the tiles born of the residual, the plain criterion STILL REFUSES, "
+        "so non-tautology survives the halo), the native target section "
+        "with a FROZEN record has the same kinds, and projective congruence "
+        "stays under delta (maximum %.3e). THE MEASUREMENT THAT COST AN AMENDMENT: "
+        "%d tiles REFUSED the symmetric halo over the WHOLE rho scale, "
+        "including at rho = 1/64. Diagnosis: they sit astride a "
+        "face of the CELL, and the 64 tiles born of the residual "
+        "are EXACTLY those flush with the face {Im u = Im v = "
         "0}, là où σ de la détermination tournée devient indéterminé "
-        "dès qu'on déborde. Le résidu 1/64 de D5.6 était donc "
-        "géométriquement UNE FACE, pas une dispersion. Ces tuiles "
+        "as soon as one steps outside. The residual 1/64 was therefore "
+        "geometrically A FACE, not a scattering. These tiles "
         "reçoivent un halo CLIPPÉ (même demi-largeur, centre décalé vers "
-        "l'intérieur, halo affleurant : `core ⊂ halo ⊆ cellule`) — la "
-        "notion d'atlas d'une variété À BORD, cartes ouvertes dans la "
-        "topologie RELATIVE. Le gate D2b interdit que le clipping serve "
-        "ailleurs : il exige une face affleurante dans chaque direction "
-        "décalée ET le refus préalable de toute l'échelle symétrique. "
-        "Le nerf est calculé en RATIONNELS "
+        "inwards, halo flush: core inside halo inside cell), the "
+        "notion of an atlas of a manifold WITH BOUNDARY, charts open in the "
+        "RELATIVE topology. Check D2b forbids clipping from serving "
+        "elsewhere: it requires a flush face in each shifted "
+        "direction AND the prior refusal of the whole symmetric scale. "
+        "The nerve is computed in RATIONALS "
         "DYADIQUES EXACTS : %d paires de cores se touchent et %d/%d ont "
-        "un overlap de largeur STRICTEMENT POSITIVE dans les quatre "
-        "coordonnées ; le nerf est %s. Sur chaque overlap, les deux "
-        "sections source sont comparées par RECENTRAGE EXACT dans un "
+        "an overlap of STRICTLY POSITIVE width in all four "
+        "coordinates; the nerve is %s. On each overlap the two "
+        "source sections are compared by EXACT RECENTRING in a "
         "cadre commun puis soustraction coefficient par coefficient "
-        "(l'enclosure naïve, décorrélée, aurait une largeur ~1e-3 et "
-        "aucun contenu) : le feuillet θ est DÉRIVÉ à marge stricte, vaut "
-        "+1 sur %d/%d paires (marge min %.3e), et le défaut affine de "
-        "contrôle du recentrage est %.3e. La transition est un "
+        "(the naive, decorrelated enclosure would have width about 1e-3 and "
+        "no content): the sheet theta is DERIVED with a strict margin, equals "
+        "+1 on %d of %d pairs (minimum margin %.3e), and the affine control "
+        "defect of the recentring is %.3e. The transition is a "
         "BIHOLOMORPHISME certifié (|Z[g']| minoré > 0 des deux côtés) et "
-        "l'identité `Zt^(j)·Z[g'_j] − Zt^(i)·Z[g'_i] ∋ 0` — qui met en "
-        "présence deux ledgers ε' dérivés SÉPARÉMENT — tient avec un "
-        "défaut max %.3e ≤ δ. Sur les %d triples d'intersection triple "
-        "non vide, le cocycle est certifié %d/%d. HONNÊTETÉ SUR LE "
-        "COCYCLE : `λ_ij·λ_jk·λ_ki = 1` est une IDENTITÉ ALGÉBRIQUE de "
-        "la construction (mêmes cartes affines d'un même P⁵, trois "
-        "rapports des trois mêmes évaluations) — le vérifier en "
+        "the identity `Zt^(j).Z[g'_j] - Zt^(i).Z[g'_i]` containing 0, which brings "
+        "together two records derived SEPARATELY, holds with a "
+        "maximum defect %.3e at most delta. On the %d non-empty triple "
+        "intersections the cocycle is certified %d of %d. HONESTY ON THE "
+        "COCYCLE: `lambda_ij.lambda_jk.lambda_ki = 1` is an ALGEBRAIC IDENTITY of "
+        "the construction (the same affine charts of one projective space, three "
+        "ratios of the same three evaluations), so checking it in "
         "intervalles ne vérifie rien, chaque jauge y apparaît deux fois "
-        "et le « défaut » mesuré (%.3e) N'EST QUE la largeur de "
-        "décorrélation, exactement le phénomène qui a imposé le "
-        "recentrage ailleurs ; il est donc publié comme DIAGNOSTIC et "
-        "n'entre dans AUCUN gate. Ce qui est gaté au niveau du triple a "
-        "du contenu : les trois jauges MINORÉES > 0 sur la boîte triple, "
-        "le cocycle discret θ exact, et les trois identités d'arête "
-        "recentrées sur la boîte TRIPLE — l'inclusion `∋ 0` n'étant pas "
-        "transitive, i→k n'est pas une conséquence intervalliste de i→j "
-        "et j→k. Ce qui n'est PAS tautologique non plus, c'est θ ≡ +1 "
+        "and the measured defect (%.3e) IS ONLY the decorrelation "
+        "width, exactly the phenomenon that forced the "
+        "recentring elsewhere; it is therefore published as a DIAGNOSTIC and "
+        "enters NO check. What is checked at the triple level does have "
+        "content: the three gauges BOUNDED BELOW by 0 on the triple box, "
+        "the exact discrete cocycle, and the three edge identities "
+        "recentred on the TRIPLE box, since containment of 0 is not "
+        "transitive and i to k is no interval consequence of i to j "
+        "and j to k. What is NOT tautological either is theta = +1 "
         "(rien n'imposait aux voisines le même feuillet, leurs "
         "déterminations source DIFFÈRENT) et l'identité de transition, "
-        "qui met en présence deux ledgers ε' dérivés séparément. Les %d "
-        "négatifs cassent tous. NON PAYÉ ICI : le transport MÉTRIQUE "
-        "(congruence Q, Weyl) sur les halos — établi sur les cores par "
-        "C127, son extension coûte un quadruple Qmat par tuile ; le "
-        "contrat EXACT de l'identité ; le scaling complet ; les 895 "
+        "which brings together two records derived separately. The %d "
+        "negative controls all break. NOT PAID HERE: METRIC transport "
+        "(congruence of Q, Weyl) on the halos, established on the cores "
+        "earlier, whose extension costs four Qmat per tile; the "
+        "EXACT contract of the identity; the full scaling; the 895 "
         "autres paires cellule/classe ; R12-C. C129-A/B/C (8ᵉ revue) "
         "PAYÉS : endpoints d'overlap en arrondi EXTÉRIEUR "
         "(fraction_box_to_iv — l'ancien float-nearest pouvait tronquer "
@@ -1192,7 +1192,7 @@ def build():
         "artifact": ART.stem, "mode": MODE,
         "claim": ("C127-D — cores + halos, overlaps ouverts certifiés, "
                   "transitions (feuillet, carte, identité) et cocycle "
-                  "sur le nerf : le cover fermé de C127/C127-E devient "
+                "on the nerve: the closed cover becomes "
                   "un atlas multi-chart."),
         "cell": cell_d,
         "n_leaves": len(leaves),
@@ -1214,7 +1214,7 @@ def build():
             "c127e_sha256": _set_sha(c127e_idx),
             "equal": bool(clipped_idx == c127e_idx),
             "note": ("C129-C : égalité d'ensembles gatée (D2c), pas "
-                     "seulement le cardinal — 64 = 64 n'exclut pas une "
+                "only the cardinality: 64 = 64 does not exclude a "
                      "permutation 63+1")},
         "nerve": {
             "n_touching_core_pairs": len(touch_pairs),
@@ -1225,8 +1225,8 @@ def build():
             "degree": {"min": min((len(adj[i]) for i in ids), default=0),
                        "max": max((len(adj[i]) for i in ids), default=0)},
             "note": ("nerf calculé en Fraction exactes ; « largeur "
-                     "strictement positive dans les 4 coordonnées » est "
-                     "une comparaison rationnelle, pas un test float")},
+                "strictly positive in the 4 coordinates is "
+                "a rational comparison, not a float test")},
         "pairs": pres,
         "triples": tres,
         "negatives": negs,
@@ -1238,7 +1238,7 @@ def build():
         "delta_trans_preregistered": DELTA_TRANS,
         "delta_cocycle_preregistered": DELTA_COCYCLE,
         "not_paid_here": [
-            "transport métrique (Qmat/Weyl) sur les halos — établi sur "
+            "metric transport (Qmat and Weyl) on the halos, established on "
             "les cores par C127",
             "contrat exact de l'identité de congruence",
             "scaling complet (C125-A)",
@@ -1284,7 +1284,7 @@ def run_negatives(leaves, geom, tm, pairs, pmap):
     out["N1_eps_ledger_corrupted"] = {
         "breaks": bool(not r1.get("transition_identity_contains_zero")),
         "defect": r1.get("transition_identity_defect"),
-        "note": ("une ligne de Zt·Z[g'] niée sur la tuile j : "
+        "note": ("one row of Zt.Z[g'] negated on tile j: "
                  "l'identité de transition doit exclure 0")}
 
     # N2: sheet flipped; theta must come out at -1 (the test DETECTS a
@@ -1298,7 +1298,7 @@ def run_negatives(leaves, geom, tm, pairs, pmap):
         "breaks": bool(r2.get("theta") and r2["theta"][0] == -1
                        and not r2.get("same_sheet")),
         "theta": r2.get("theta"),
-        "note": ("Z_s nié sur la tuile j : θ doit valoir −1 sur cette "
+        "note": ("Z_s negated on tile j: theta must equal -1 on that "
                  "ligne et le gate de feuillet doit tomber")}
 
     # N3: rho = 0; the halos become the cores again and the overlap loses its
@@ -1314,8 +1314,8 @@ def run_negatives(leaves, geom, tm, pairs, pmap):
         "breaks": bool(n3 > 0), "n_pairs_losing_openness": n3,
         "n_tested": min(200, len(pairs)),
         "note": ("à ρ = 0 les boîtes fermées adjacentes ne se coupent "
-                 "plus en largeur positive : l'ouverture des overlaps "
-                 "est bien PORTÉE par ρ, pas par la partition")}
+                     "no longer in positive width: the openness of the overlaps "
+                     "is indeed CARRIED by rho, not by the partition")}
 
     # N4: a non-adjacent pair; the geometry must refuse
     far = None
@@ -1354,8 +1354,8 @@ def run_negatives(leaves, geom, tm, pairs, pmap):
     out["N5_recentering_is_load_bearing"] = {
         "breaks": bool(d_naive > 1e3 * max(d_true, 1e-300)),
         "defect_recentered": d_true, "defect_unrecentered": d_naive,
-        "note": ("sans recentrage la comparaison est vide de contenu ; "
-                 "le rapport mesure ce que le recentrage porte")}
+        "note": ("without recentring the comparison has no content; "
+                     "the ratio measures what the recentring carries")}
 
     # N6 — géométrie décalée : le test doit voir le décalage À SA TAILLE
     #      PREDICTED. A plain "it is larger" is settled by a threshold
@@ -1381,10 +1381,10 @@ def run_negatives(leaves, geom, tm, pairs, pmap):
         "delta_eps": float(delta), "degree1_coefficient": grad,
         "predicted_defect": pred,
         "ratio_measured_over_predicted": (d_bad / pred if pred else None),
-        "note": ("décalage δ = 2⁻²⁰ de l'application affine : le défaut "
-                 "doit apparaître à δ·|∂f/∂ε₀|, lu sur le coefficient de "
-                 "degré 1 du TM — le test voit la GÉOMÉTRIE, et il la "
-                 "voit à la bonne échelle, pas seulement « plus grand »")}
+        "note": ("a shift of 2^-20 of the affine map: the defect "
+                     "must appear at the shift times the first derivative, read on the "
+                     "degree-one coefficient of the model. The test sees the GEOMETRY, and it "
+                     "sees it at the right scale, not merely as larger")}
     return out
 
 
@@ -1404,12 +1404,12 @@ def _selftest():
     lo2, hi2 = cube_bounds([Fraction(3, 2)] + [Fraction(0)] * 3,
                            Fraction(1))
     w = _inter_generic(lo1, hi1, lo2, hi2)
-    chk("T1 overlap ouvert : largeur 1/2 dans la direction séparante",
+    chk("T1 open overlap: width 1/2 in the separating direction",
         w is not None and w["hw"][0] == Fraction(1, 4)
         and w["hw"][1] == Fraction(1))
     lo3, hi3 = cube_bounds([Fraction(2)] + [Fraction(0)] * 3,
                            Fraction(1))
-    chk("T2 NÉGATIF : deux boîtes qui se TOUCHENT sans se chevaucher "
+    chk("T2 NEGATIVE CONTROL: two boxes that TOUCH without overlapping "
         "ne donnent aucun overlap ouvert",
         _inter_generic(lo1, hi1, lo3, hi3) is None)
 
@@ -1421,11 +1421,11 @@ def _selftest():
         and E[0] == (Fraction(-1, 2), Fraction(1, 2)))
     E2 = eps_box({"lo": [Fraction(-2)] * 4, "hi": [Fraction(2)] * 4},
                  [Fraction(0)] * 4, Fraction(1))
-    chk("T4 NÉGATIF : une boîte qui déborde le domaine du TM est "
-        "REFUSÉE (le reste n'y est pas valide)", not eps_box_in_range(E2))
+    chk("T4 NEGATIVE CONTROL: a box outside the model domain is "
+        "REFUSED (the remainder is not valid there)", not eps_box_in_range(E2))
 
     # T5 : (1+ρ)h exactement représentable
-    chk("T5 halo dyadique exact pour toute l'échelle pré-enregistrée",
+    chk("T5 exact dyadic halo over the whole preregistered scale",
         all(halo_hw(Fraction(1, 1024), r)[1] is not None
             for r in RHO_LADDER))
 
@@ -1461,7 +1461,7 @@ def _selftest():
     v_direct = enclose(p2, IV0, [iv.mpf([0.25, 0.75])]
                        + [iv.mpf([-1, 1])] * 3)
     v_recent = enclose(q2, IV0, Efull)
-    chk("T8 le recentrage préserve l'enclosure au même point physique",
+    chk("T8 recentring preserves the enclosure at the same physical point",
         mp.mpf(v_recent.re.a) <= mp.mpf(v_direct.re.a)
         and mp.mpf(v_direct.re.b) <= mp.mpf(v_recent.re.b))
 
@@ -1491,9 +1491,9 @@ def _selftest():
     # T13: the discrete cocycle, and a deliberately broken triple
     def cocy(a, b, c):
         return all(a[r] * b[r] * c[r] == 1 for r in range(3))
-    chk("T13 cocycle θ trivial sur un triple sain",
+    chk("T13 trivial theta cocycle on a sound triple",
         cocy([1, 1, 1], [1, 1, 1], [1, 1, 1]))
-    chk("T14 NÉGATIF : un seul θ inversé casse le cocycle",
+    chk("T14 NEGATIVE CONTROL: a single flipped theta breaks the cocycle",
         not cocy([1, -1, 1], [1, 1, 1], [1, 1, 1]))
 
     # T15 : division intervalle complexe
@@ -1515,8 +1515,8 @@ def _selftest():
         mp.mpf(X.a) <= 1 <= mp.mpf(X.b))
     old = iv.mpf([float(q65), float(q65)])
     Xo = iv.mpf(65) * old
-    chk("T17 NÉGATIF : l'ancien chemin float-nearest RATE le rationnel "
-        "exact (65·[float(1/65)] ∌ 1) — le défaut C129-A est réel",
+    chk("T17 NEGATIVE CONTROL: the old nearest-float path MISSES the exact "
+        "rational (65.[float(1/65)] does not contain 1): the defect is real",
         not (mp.mpf(Xo.a) <= 1 <= mp.mpf(Xo.b)))
 
     print("SELF-TEST", "PASS" if ok else "FAIL")

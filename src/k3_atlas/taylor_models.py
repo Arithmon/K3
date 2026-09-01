@@ -38,7 +38,7 @@ Algèbre (standard TM, toutes les bornes extérieures) :
     liante partout), [−1,1] sinon.
 
 Garde de branche : identique t2/t3/t4 (`civ_sqrt_principal` sur p₀)
-PLUS la garde de plage (la plage entière doit éviter (−∞, 0]).
+PLUS the range guard (the whole range must avoid the cut).
 
 Ordre : `K3_TM_ORDER` (défaut 3). N=2 → 15 monômes, N=3 → 35, N=4 → 70.
 

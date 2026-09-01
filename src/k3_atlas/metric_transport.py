@@ -597,18 +597,18 @@ def build():
         "bridges": met,
         "edges": edg,
         "not_paid_here": [
-            "l'identification canonique de la voisine : F1a a REFUSÉ, "
+            "the canonical identification of the neighbour, which REFUSED, "
             "l'atlas supérieur reste DÉRIVÉ par conjugaison",
-            "les faces Re : 28/64 ponts y restent des cartes RELATIVES",
-            "le contrat EXACT de la congruence métrique — elle reste "
-            "certifiée SOUS δ, pas exacte ; la promotion d'exactitude de "
-            "C129-D porte sur l'identité de SECTION, pas sur le triplet "
-            "HK, donc §4.4 de la carte épistémique TIENT",
-            "le scaling complet, les 895 autres paires, R12-C"],
+            "the Re faces, where 28 of 64 bridges stay RELATIVE charts",
+            "the EXACT contract of metric congruence, which stays "
+            "certified UNDER delta rather than exact; the exactness promotion "
+            "concerns the SECTION identity, not the "
+            "triple, so the epistemic map HOLDS",
+            "the full scaling, and the 895 other pairs"],
         "gates": gates, "gates_passed": npass, "gates_total": len(gates),
         "verdict": (
             f"F4 {'FULL' if MODE == 'full' else 'PANEL'} LIVRÉ — la "
-            f"métrique rejoint les cartes-ponts et les arêtes du nerf."
+            f"metric joins the bridge charts and the nerve edges."
             if npass == len(gates) else
             f"ROUGE — {len(gates) - npass} gate(s) en échec"),
         "provenance": {

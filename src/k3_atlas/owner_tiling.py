@@ -380,14 +380,14 @@ def build():
         "en intervalle (miroir exact du critère du moteur — scores 20 "
         "triples + jauge + radicands ; répond C17), tuilage "
         "branch-and-bound depuis les 60 couples candidats (répond C19). "
-        "À D_MAX=%d : %d couples ont un volume OWNER CERTIFIÉ ; les %d "
+        "At D_MAX=%d: %d pairs have a CERTIFIED OWNER volume; the %d "
         "autres se répartissent en %d VACUITÉS CERTIFIÉES (épuisement "
-        "OUTSIDE) + %d à résiduel ambigu non tranché à cette profondeur "
+        "OUTSIDE) plus %d with an ambiguous residual undecided at this depth "
         "; volumes paramétriques globaux : owner %.2f%%, "
         "outside %.2f%%, résiduel ambigu %.2f%% (%d boîtes classées). Le "
-        "résiduel ambigu est le budget de subdivision d'O2/O3 — aucune "
-        "boîte ambiguë n'entre jamais dans un moment. Étage suivant : O2 "
-        "fermeture de masse scalaire (Z sur boîtes OWNER + majorant du "
+        "ambiguous residual is the subdivision budget of the next stages; no "
+        "ambiguous box ever enters a moment. Next stage: scalar "
+        "mass closure (Z on OWNER boxes plus an upper bound on the "
         "résiduel, cible 4π² ∈ [Z], tolérance fixée avant run)." % (
             D_MAX, n_owner_couples,
             60 - n_owner_couples, n_empty_cert, n_empty_amb,

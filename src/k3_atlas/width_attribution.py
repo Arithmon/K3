@@ -430,12 +430,12 @@ def coverage_table(tiling, probe):
             "owner_no_points_named": owner_no_points,
             "reconciliation": ("26 échantillonnés = 21 owner + 5 ambigus "
                                "; 34 absents = 17 vacuités + 16 ambigus "
-                               "sans points + 1 OWNER non échantillonné "
+                               "without points plus 1 OWNER not sampled "
                                "(précision au « 17+17 » de la review "
                                "Kimi §3)"),
-            "note": ("V_owner = 5.38 porte sur la partie owner certifiée "
-                     "O1 (22 couples) — pas le coût d'un certificat "
-                     "global : le résiduel ambigu (21 couples) reste un "
+            "note": ("V_owner = 5.38 concerns the certified owner part "
+                     "(22 pairs), not the cost of a global "
+                     "certificate: the ambiguous residual (21 pairs) stays a "
                      "budget de subdivision O1 (GPT §6)")}
 
 
@@ -461,7 +461,7 @@ def atlas_erratum(direct):
                                 "cible inchangés"),
             "erratum": ("la note P0a2-direct écrivait 9e14 cellules ~ "
                         "3e8 ans ; son équation vaut 8.7e11 / 3e5 ans "
-                        "(Kimi V3) — chiffre du mur = celui des inputs "
+                        "the wall figure is that of the inputs "
                         "mesurés ci-dessus")}
 
 
@@ -625,7 +625,7 @@ def build():
         "det_w_t2_top5": ddet_top["w_t2"],
         "det_w_t2_rest": ddet_rest["w_t2"],
         "note_218": ("218 jets individuels hors budget : le précalcul "
-                     "des monômes domine (~même coût quel que soit le "
+                     "of the monomials dominates (about the same cost whatever the "
                      "nombre de coeffs non nuls) ⟹ top-5 + groupes, "
                      "additivité exacte vérifiée sur q00 (linéaire en c)")}
 
