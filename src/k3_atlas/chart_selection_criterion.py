@@ -1,70 +1,70 @@
 #!/usr/bin/env python3
 """
-k3_cap_b1e2iii_c126_chart_criterion.py — LE CRITÈRE DE SÉLECTION DES
-CHARTS, RENFORCÉ, et rebalayé sur les 59 charts.
+The CHART SELECTION CRITERION, strengthened, and swept again over
+the 59 charts.
 
-C125 a fait tomber D5.4/D5.5 : avec `σ'` réellement certifié, la section
-NATIVE du chart cible n'est pas constructible, et le balayage donnait
-**0/15** sur la première cellule. Ce script en fait un critère de
-sélection à part entière et le rebalaye sur TOUTES les cellules.
+The certified component made the congruence step fall: with a genuinely certified component, the
+NATIVE section of the target chart is not constructible, and the sweep gave
+**0 out of 15** on the first cell. This script turns that into a selection
+criterion in its own right and sweeps it again over EVERY cell.
 
-LA FAILLE QUE CE SCRIPT RÉPARE. Le critère de D5.1/D5.2 portait sur :
+THE GAP THIS SCRIPT REPAIRS. The earlier criterion bore on:
 
     (i)  le DOMAINE     — jauge `|Z_{g'}|` loin de 0, `|u'| ≤ 1`, `|v'| ≤ 1`
     (ii) le JACOBIEN    — `det J` d'enclosure excluant 0
     (iii) la DISJONCTION — `Im u'` ou `Im v'` de signe constant
 
-Ces trois-là portent sur les **coordonnées** `(u', v')` du chart cible.
-Aucun ne dit quoi que ce soit des **radicandes** de la section PROPRE du
-chart cible. Un chart peut donc être hors de sa tranche réelle tout en
-ayant une racine de section incertifiable — et c'est précisément ce qui
-est arrivé. Le critère renforcé ajoute :
+Those three bear on the **coordinates** `(u', v')` of the target chart.
+None says anything about the **radicands** of the chart's OWN section.
+A chart can therefore lie outside its real slice while
+having an uncertifiable section root, and that is exactly what
+happened. The strengthened criterion adds:
 
-    (iv) SECTION NATIVE — les trois lignes de la section du chart CIBLE
-         admettent une détermination CERTIFIÉE sur la boîte entière
+    (iv) NATIVE SECTION: the three rows of the TARGET chart's section
+         admit a CERTIFIED determination on the whole box
          (principale si `R'` évite (−∞,0], sinon tournée avec `σ'`
          déterminé — jamais au seul centre)
 
 Gates pré-enregistrés :
-  F1 RAFFINEMENT — le critère renforcé est un SOUS-ENSEMBLE du critère
-     précédent, chart par chart. Gate UNIVERSEL : un critère qui
-     accepterait un chart refusé par D5.1/D5.2 ne serait pas un
-     renforcement mais un autre critère.
-  F2 EXHAUSTIVITÉ — les 59 charts sont examinés sur CHAQUE cellule,
-     aucun saut silencieux ; le verdict publié est un décompte
-     UNIVERSEL, pas une existence.
-  F3 LE CRITÈRE MORD — il refuse au moins un chart que D5.1+D5.2+
-     disjonction acceptaient. Sans quoi il n'ajouterait rien et le
-     rebalayage serait sans objet. (Si le critère ne mordait pas,
-     ce gate DOIT échouer et le dire.)
-  F4 NÉGATIF CENTRE-SEUL — la mutation qui détermine la constructibilité
-     sur le seul CENTRE (boîte de demi-largeur 0) doit accepter
-     STRICTEMENT PLUS de charts que la version certifiée sur la boîte.
-     C'est ce qui distingue « certifié sur la cellule » de « vu au
+  F1 REFINEMENT: the strengthened criterion is a SUBSET of the earlier
+     one, chart by chart. A UNIVERSAL check: a criterion that
+     accepted a chart refused before would not be a
+     strengthening but a different criterion.
+  F2 EXHAUSTIVENESS: the 59 charts are examined on EVERY cell,
+     with no silent skip; the published verdict is a UNIVERSAL
+     count, not an existence claim.
+  F3 THE CRITERION BITES: it refuses at least one chart that the earlier
+     one accepted. Otherwise it would add nothing and the
+     resweep would be pointless. (If the criterion did not bite,
+     this check MUST fail and say so.)
+  F4 CENTRE-ONLY NEGATIVE CONTROL: the mutation that decides constructibility
+     on the CENTRE alone (a box of half-width 0) must accept
+     STRICTLY MORE charts than the version certified on the box.
+     That is what separates "certified on the cell" from "seen at
      centre ».
-  F5 SOUNDNESS DES LIGNES CONSTRUCTIBLES — pour toute ligne déclarée
-     constructible, quelle que soit la détermination, l'enclosure de
-     `Z'² − R'` doit contenir 0. Gate UNIVERSEL sur toutes les lignes
-     acceptées, donc NON VIDE même si aucun chart entier ne passe.
-  F6 L'OBSTRUCTION EST-ELLE HÉRITÉE ? — C125 conjecture que la ligne qui
-     bloque le chart cible porte la MÊME coordonnée ambiante `Z_s` que
-     celle qui bloquait la source. Ce gate MESURE la proportion ; il ne
-     l'impose pas. Il échoue seulement si la mesure est absente.
-  F9 LA SUBDIVISION N'EFFACE PAS L'OBSTRUCTION — sur un chart perdu,
+  F5 SOUNDNESS OF THE CONSTRUCTIBLE ROWS: for any row declared
+     constructible, whatever the determination, the enclosure of
+     `Z'^2 - R'` must contain 0. A UNIVERSAL check over all accepted
+     rows, hence NON-VACUOUS even if no whole chart passes.
+  F6 IS THE OBSTRUCTION INHERITED? The conjecture is that the row
+     blocking the target chart carries the SAME ambient coordinate `Z_s` as
+     the one that blocked the source. This check MEASURES the proportion; it does not
+     impose it. It fails only if the measurement is missing.
+  F9 SUBDIVISION DOES NOT ERASE THE OBSTRUCTION: on a lost chart,
      on subdivise la cellule source en 16^d sous-cellules et on
-     recompte les refus. Si l'obstruction était un ARTEFACT
+     recounts the refusals. Were the obstruction an ARTEFACT
      D'ENCLOSURE (surestimation de `Im R'`), les refus DISPARAÎTRAIENT
-     à profondeur croissante. Le gate exige au contraire que le nombre
-     de refus CROISSE en `4^d` — la signature d'un lieu de branchement
-     de CODIMENSION 2, donc d'une obstruction GÉOMÉTRIQUE RÉELLE. Le
+     at increasing depth. The check requires instead that the number
+     of refusals GROW like `4^d`, the signature of a branch locus
+     of CODIMENSION 2, hence of a REAL GEOMETRIC obstruction. The
      gate échoue si les refus disparaissent OU s'ils croissent en
      `16^d` (codimension 0).
-  F7 VERDICT PUBLIÉ — le décompte final `n_strong` est publié pour
-     CHAQUE cellule, y compris s'il vaut 0. Un balayage qui ne
+  F7 PUBLISHED VERDICT: the final count `n_strong` is published for
+     EVERY cell, including when it is 0. A sweep that did not
      publierait que ses succès mentirait par omission.
 
-Ce script ne certifie NI D5.4 NI D5.5 : il sélectionne les paires
-(cellule, chart) sur lesquelles ces questions ont un sens.
+This script certifies NEITHER congruence NOR positivity transport: it selects the
+(cell, chart) pairs on which those questions make sense.
 
 Sorties : results/k3_cap_b1e2iii_c126_chart_criterion.json
 Usage   : k3_cap_b1e2iii_c126_chart_criterion.py [--selftest]
@@ -147,21 +147,21 @@ def _rng(tm, im=False):
 
 
 # ===========================================================================
-#  (iv) LA SECTION NATIVE DU CHART CIBLE — le critère ajouté
+#  (iv) THE NATIVE SECTION OF THE TARGET CHART: the added criterion
 # ===========================================================================
 def native_section_constructible(S2, g2, up, vp):
-    """Les trois lignes de la section PROPRE du chart cible, avec leur
-    détermination certifiée sur la BOÎTE ENTIÈRE.
+    """The three rows of the target chart's OWN section, with their
+    determination certified on the WHOLE BOX.
 
     Retourne (rows, ok). Chaque ligne porte sa détermination, son `σ'`,
-    les enclosures de `Re R'` / `Im R'`, et — si elle est constructible —
-    l'enclosure de `Z'² − R'` qui doit contenir 0 (gate F5).
+    the enclosures of `Re R'` and `Im R'`, and, if it is constructible,
+    the enclosure of `Z'^2 - R'`, which must contain 0 (check F5).
 
-    `σ'` est certifié en DEUX temps, comme dans C125 :
-      (i) enclosure DIRECTE de `Im R'` — sur le chart cible elle n'est
-          pas contrainte de contenir 0, donc souvent plus fine ;
+    The component is certified in TWO steps:
+      (i) DIRECT enclosure of `Im R'`: on the target chart it is
+          not constrained to contain 0, so it is often sharper;
      (ii) à défaut, la règle par SIGNES DE COEFFICIENTS.
-    Si les deux sont indéterminées, la ligne est REFUSÉE. Jamais d'essai.
+    If both are undetermined, the row is REFUSED. Never by trial.
     """
     T2 = tuple(j for j in range(6) if j not in S2)
     others = [c for c in T2 if c != g2]
@@ -205,7 +205,7 @@ def native_section_constructible(S2, g2, up, vp):
             else:
                 rec["rotated_refused"] = "rotated_component_undetermined"
         if Zp is not None:
-            # F5 : soundness de la ligne, quelle que soit la détermination
+            # F5: soundness of the row, whatever the determination
             d = Zp * Zp - R
             dr, di = _rng(d), _rng(d, True)
             rec["sq_residual_re"], rec["sq_residual_im"] = dr, di
@@ -249,7 +249,7 @@ def build():
         c = [float.fromhex(x) for x in r["center_hex"]]
         hw = float.fromhex(r["hw_hex"])
         Z, dZ, srows = build_section(S, g, eps, c, hw)
-        # la MUTATION centre-seul : la MÊME cellule vue en un point
+        # the centre-only MUTATION: the SAME cell seen at one point
         Zc, dZc, _ = build_section(S, g, eps, c, 0.0)
         src_rotated = [x["s_coord"] for x in srows
                        if x["determination"] == "rotated"]
@@ -281,7 +281,7 @@ def build():
                         if x["determination"] is None]
                 cert["strong_criterion"] = bool(
                     prev and cert["native_section_ok"])
-                # mutation centre-seul, sur le MÊME chart
+                # centre-only mutation, on the SAME chart
                 uvc = target_uv(Zc, tuple(S2), g2)
                 if uvc is None:
                     cert["native_section_ok_centre_only"] = False
@@ -298,7 +298,7 @@ def build():
         ctr_only = [x for x in real
                     if x.get("native_section_ok_centre_only")
                     and not x.get("native_section_ok")]
-        # l'obstruction est-elle héritée ?
+        # is the obstruction inherited?
         blocked = Counter()
         inherited = 0
         for x in lost:
@@ -334,17 +334,17 @@ def build():
             f"(−{len(lost)}) · centre-seul en accepterait "
             f"{len(ctr_only)} de plus")
 
-    # --- F9 : la subdivision efface-t-elle l'obstruction ? -------------------
-    # C'est LA question que 62 → 0 pose. Deux explications concurrentes :
+    # --- F9: does subdivision erase the obstruction? -------------------------
+    # This is THE question that 62 -> 0 raises. Two competing explanations:
     #   (a) ARTEFACT D'ENCLOSURE — `Im R'` est surestimé et straddle 0 par
     #       excès de largeur. Alors subdiviser doit FAIRE DISPARAÎTRE les
-    #       refus, et le rebalayage n'a qu'à descendre d'un cran.
+    #       refusals, and the resweep need only go one level down.
     #   (b) OBSTRUCTION GÉOMÉTRIQUE — le lieu `{Im R' = 0} ∩ {Re R' < 0}`
-    #       traverse réellement la cellule. Alors les refus PERSISTENT, et
-    #       leur nombre croît comme la mesure du lieu : `4^d` pour une
-    #       codimension 2 dans une boîte réelle de dimension 4, contre
+    #       really crosses the cell. Then the refusals PERSIST, and
+    #       their number grows like the measure of the locus: `4^d` for
+    #       codimension 2 in a real box of dimension 4, against
     #       `16^d` sous-cellules au total.
-    # Les deux prédictions sont DISJOINTES et le comptage tranche.
+    # The two predictions are DISJOINT and the count decides.
     sub = {"tested": False}
     c0 = cells[0]
     lost0 = [x for x in c0["charts"]
@@ -390,8 +390,8 @@ def build():
     # --- cross-check INDÉPENDANT contre l'artefact D5.1/D5.2 ----------------
     # `n_prev_criterion` DOIT reproduire `payoff_per_cell` de
     # `d5_fullcell` : deux scripts, même sélection de cellules, même
-    # critère ancien. Un désaccord signalerait une dérive de l'un ou
-    # de l'autre — c'est ce que la revue appelle un cross-check qui
+    # earlier criterion. A disagreement would signal drift in one or
+    # the other, which is what a review calls a cross-check that
     # n'existait dans aucun script.
     cross = {"checked": False}
     fc = RES / "k3_cap_b1e2iii_d5_fullcell.json"
@@ -487,7 +487,7 @@ def _selftest():
         print(f"  {'ok  ' if cond else 'FAIL'} {name}")
         ok = ok and bool(cond)
 
-    # T1 : une constante réelle POSITIVE est constructible en principale
+    # T1: a POSITIVE real constant is constructible on the principal branch
     from .taylor_models import CONE
     Rp = TMC.const(CIV.from_complex(complex(4.0, 0.0)))
     try:
@@ -496,8 +496,8 @@ def _selftest():
     except BranchCutError:
         chk("T1 constante positive : principale OK", False)
 
-    # T2 : une constante réelle NÉGATIVE refuse la principale ET la
-    #      tournée (composante indéterminée) — c'est le cœur de C125
+    # T2: a NEGATIVE real constant refuses both the principal and the
+    #      rotated one (undetermined component), which is the heart of the matter
     Rn = TMC.const(CIV.from_complex(complex(-4.0, 0.0)))
     p_ref = r_ref = False
     try:
@@ -511,9 +511,9 @@ def _selftest():
     chk("T2 réel négatif : principale ET tournée refusées",
         p_ref and r_ref)
 
-    # T3 : un radicande sur le rayon POSITIF — la principale l'accepte,
-    #      mais c'est la TOURNÉE qui est la continuation ; elle construit
-    #      dès que `σ` est certifié.
+    # T3: a radicand on the POSITIVE ray: the principal branch accepts it,
+    #      but the ROTATED one is the continuation; it builds
+    #      as soon as the component is certified.
     Rr = TMC.const(CIV.from_complex(complex(-4.0, 0.5)))
     try:
         got = tm_sqrt_rotated(Rr, 1)
@@ -521,7 +521,7 @@ def _selftest():
         got = None
     chk("T3 Im > 0 : la tournée σ=+1 construit", got is not None)
 
-    # T4 : soundness — Z² − R contient 0 pour la tournée de T3
+    # T4: soundness, Z^2 - R contains 0 for the rotated branch of T3
     if got is not None:
         d = got * got - Rr
         dr, di = _rng(d), _rng(d, True)
@@ -530,8 +530,8 @@ def _selftest():
     else:
         chk("T4 soundness Z² − R ∋ 0", False)
 
-    # T5 : NÉGATIF — le critère renforcé ne doit JAMAIS accepter un chart
-    #      que l'ancien refusait. On le vérifie sur la logique elle-même.
+    # T5 NEGATIVE CONTROL: the strengthened criterion must NEVER accept a chart
+    #      that the earlier one refused. This is checked on the logic itself.
     def strong(prev, native):
         return bool(prev and native)
     chk("T5 négatif : strong ⊆ prev (les 4 combinaisons)",
@@ -539,8 +539,8 @@ def _selftest():
             for p in (False, True) for n in (False, True))
         and not strong(False, True))
 
-    # T6 : NÉGATIF — une mutation qui prendrait `strong = native` seul
-    #      accepterait un chart refusé par l'ancien critère. Sans ce
+    # T6 NEGATIVE CONTROL: a mutation taking `strong = native` alone
+    #      would accept a chart refused by the earlier criterion. Without this
     #      contre-exemple, T5 serait satisfait par n'importe quoi.
     def strong_broken(prev, native):
         return bool(native)
