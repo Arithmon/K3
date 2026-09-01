@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "k3-atlas"
+version = "2.0.0"
+description = "Certified analytic geometry on an explicit K3 surface"
+readme = "README.md"
+requires-python = "==3.14.4"
+license = { text = "MIT" }
+dependencies = [
+    "numpy==2.5.1",
+    "mpmath==1.3.0",
+    "sympy==1.14.0",
+    "scipy==1.18.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+k3_atlas = ["data/*.json", "data/*.npz", "data/retracted/*"]

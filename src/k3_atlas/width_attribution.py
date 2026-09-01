@@ -661,19 +661,19 @@ def build():
     # verdict de routage (GPT A4, trois branches)
     if cong_gain_cells and cong_gain_cells >= 10:
         route = ("CONGRUENCE : gain ≥ ×10 en cellules — première route "
-                 "de production, T4-TM différé")
+                 "production, models deferred")
     elif float_pos_where_iv_fails and shares and \
             shares["hess_enclosure_excess"] >= 0.5:
-        route = ("T4-TM/AFFINE JUSTIFIÉ : le float reste > 0 là où "
-                 "l'enclosure échoue ET l'excès d'enclosure Hessienne "
-                 "domine la largeur — la représentation du reste est le "
-                 "problème ; discriminant synthétique Kimi OBLIGATOIRE")
+        route = ("TAYLOR MODELS OR AFFINE FORMS JUSTIFIED: the float stays positive where "
+                 "the enclosure fails AND the Hessian enclosure excess "
+                 "dominates the width, so the remainder representation is the "
+                 "problem; a synthetic discriminant is REQUIRED")
     elif shares and (shares["lin_real"] + shares["quad_real_center"]) > 0.5:
-        route = ("VARIATION RÉELLE dominante : un ordre supérieur ne "
-                 "certifiera pas sans subdivision — décomposition "
-                 "géométrique / borne analytique régionale à concevoir")
+        route = ("REAL VARIATION dominant: a higher order will not "
+                 "certify without subdivision; a geometric decomposition "
+                 "or a regional analytic bound remains to be designed")
     else:
-        route = "AMBIGU : aucune branche ne domine — publier et arbitrer"
+        route = "AMBIGUOUS: no branch dominates; publish and arbitrate"
     a4["route"] = route
     log(f"A4 : {route}")
 

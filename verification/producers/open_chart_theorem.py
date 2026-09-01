@@ -215,7 +215,7 @@ def build(m=M_PREREG, mutate=None):
     if "n_types" in mutate:
         types = types[:mutate["n_types"]]
     domains = {
-        "U_S": {"def": "{Z ∈ K : q_S(Z) = |det M_S(Z)|/‖Z‖³ > m}  (invariant projectif : |det| est homogène de degré 3, donc le seuil se pose sur le représentant normalisé)", "role": "pivot_open", "open": True, "m": str(m), "m_lt_4p8": m < Fraction(48, 10)},
+        "U_S": {"def": "{Z ∈ K : q_S(Z) = |det M_S(Z)|/‖Z‖³ > m}  (projectively invariant: |det| is homogeneous of degree 3, so the threshold is set on the normalised representative)", "role": "pivot_open", "open": True, "m": str(m), "m_lt_4p8": m < Fraction(48, 10)},
         "C_S_g": {"def": "{Z ∈ U_S : |z_g| = max_{t∈T} |z_t|}", "role": "selector_only", "open": False if "sector_open" not in mutate else True,
                   "note": "CLOSED sector used to select the centres — never an open set of the atlas; it guarantees |u|,|v| ≤ 1 at the centre"},
         "A_g": {"def": "{z_g ≠ 0}", "role": "affine_open", "open": True},

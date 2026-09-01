@@ -890,18 +890,18 @@ def selftest():
         inter([(F(0), F(1))] * 4, [(F(1), F(2))] * 4) is None
         and inter([(F(0), F(2))] * 4, [(F(1), F(3))] * 4)
         == [(F(1), F(2))] * 4)
-    chk("mirror_bounds ne touche que les directions Im",
+    chk("mirror_bounds touches only the imaginary directions",
         mirror_bounds([(F(-2), F(0))] * 4)[0] == (F(-2), F(0))
         and mirror_bounds([(F(-2), F(0))] * 4)[1] == (F(0), F(2)))
-    chk("pont ∩ halo inférieur est OUVERT dans les 4 coordonnées",
+    chk("bridge intersected with the lower halo is OPEN in all 4 coordinates",
         inter([(F(-2), F(2))] * 4, [(F(-2), F(0))] * 4) is not None)
-    chk("halo inférieur ∩ halo supérieur n'est PAS ouvert (le coin)",
+    chk("lower halo intersected with upper halo is NOT open (the corner)",
         inter([(F(-2), F(0))] * 4, [(F(0), F(2))] * 4) is None)
 
     # reframe : identité, translation, dilatation anisotrope
     b = [(F(-1), F(1)), (F(-2), F(2)), (F(-1), F(1)), (F(-2), F(2))]
     off, sc = reframe(b, b)
-    chk("reframe d'une boîte sur elle-même est l'identité",
+    chk("reframing a box onto itself is the identity",
         off == [F(0)] * 4 and sc == [F(1)] * 4)
     w = [(F(-1), F(0)), (F(-2), F(0)), (F(-1), F(1)), (F(-2), F(2))]
     off, sc = reframe(b, w)
@@ -910,7 +910,7 @@ def selftest():
         and sc == [F(1, 2), F(1, 2), F(1), F(1)])
     chk("frame_admissible accepte une sous-boîte",
         frame_admissible(off, sc))
-    chk("frame_admissible REFUSE une boîte qui déborde",
+    chk("frame_admissible REFUSES a box that overflows",
         not frame_admissible([F(1), F(0), F(0), F(0)], [F(1)] * 4))
 
     # The anisotropic recentring, on a polynomial whose value is known
@@ -930,7 +930,7 @@ def selftest():
         abs(float(mp.mpf(q[e[0]].re.a)) - 5 * 0.5) < 1e-30)
     chk("recentrage anisotrope : pente en ε'₁ mise à l'échelle",
         abs(float(mp.mpf(q[e[1]].re.a)) - 7 * 0.25) < 1e-30)
-    chk("recentrage sur soi-même laisse le polynôme INCHANGÉ",
+    chk("recentring onto itself leaves the polynomial UNCHANGED",
         all(abs(float(mp.mpf(x.re.a)) - float(mp.mpf(y.re.a))) < 1e-30
             for x, y in zip(
                 apply_recenter(
@@ -938,9 +938,9 @@ def selftest():
 
     # sep_phase, on constructed values
     th, _ = sep_phase(CIV(iv.mpf(0), IV0), CIV(iv.mpf(4), IV0))
-    chk("sep_phase lit θ = +1 quand la différence est nulle", th == 1)
+    chk("sep_phase reads theta = +1 when the difference vanishes", th == 1)
     th, _ = sep_phase(CIV(iv.mpf(4), IV0), CIV(iv.mpf(0), IV0))
-    chk("sep_phase lit θ = −1 quand c'est la somme qui s'annule",
+    chk("sep_phase reads theta = -1 when it is the sum that vanishes",
         th == -1)
     th, _ = sep_phase(CIV(iv.mpf([-1, 1]), IV0), CIV(iv.mpf([-1, 1]), IV0))
     chk("sep_phase REFUSE l'ambigu", th is None)
@@ -956,17 +956,17 @@ def selftest():
     cb, hb = center_hw(Wb)
     Z, _dz, rows = build_section_bilateral(
         S, g, eps, [float(x) for x in cb], [float(x) for x in hb])
-    chk("build_section_bilateral assigne les 3 régimes sans essai",
+    chk("build_section_bilateral assigns the 3 regimes without trial",
         all(r["regime"] is not None for r in rows))
-    chk("les régimes concordent avec le scout (deux arithmétiques)",
+    chk("the regimes agree with the scouting bound (two arithmetics)",
         [r["regime"] for r in rows] == t0["regimes"])
     _z2, _d2, rows_f = build_section_bilateral(
         S, g, eps, [float(x) for x in cb], [float(x) for x in hb],
         force_sigma=True)
-    chk("la MUTATION σ de composante est REFUSÉE sur le pont",
+    chk("the component-rule MUTATION is REFUSED on the bridge",
         any(r.get("refused") == "component_sigma_undetermined_on_bridge"
             for r in rows_f))
-    chk("Im R straddle sur les lignes où σ est refusé",
+    chk("Im R straddles on the rows where the component is refused",
         all(r["im_R_straddles"] for r in rows_f
             if r.get("refused") == "component_sigma_undetermined_on_bridge"))
     # NÉGATIF (iii) : une boîte élargie où Re R straddle doit REFUSER
@@ -974,7 +974,7 @@ def selftest():
     cbg, hbg = center_hw(big)
     _z3, _d3, rows_big = build_section_bilateral(
         S, g, eps, [float(x) for x in cbg], [float(x) for x in hbg])
-    chk("une boîte où Re R straddle est REFUSÉE, pas repliée",
+    chk("a box where Re R straddles is REFUSED, not fallen back on",
         any(r.get("refused") == "re_R_straddles_zero_no_regime"
             for r in rows_big))
     print(f"\nself-test {ok}/{tot}")
@@ -1001,8 +1001,8 @@ def build():
     clipped = sorted(i for i, r in halos.items()
                      if r["rule"] == "clipped")
     log(f"cellule S={S} g={g} ; {len(clipped)} tuiles clippées")
-    log(f"    F1a a REFUSÉ l'identification canonique — l'atlas "
-        f"supérieur est DÉRIVÉ, pas énuméré "
+    log(f"    the canonical identification REFUSED; the upper atlas "
+        f"is DERIVED, not enumerated "
         f"(claim_level={f1['claim_level']})")
 
     # --- R4c: THE UPSTREAM CHAIN IS CHECKED, NOT MERELY IMPORTED ------
@@ -1080,7 +1080,7 @@ def build():
     log(f"F2c : régimes assignés sans essai : {f2c} — {dict(reg_census)}")
     log(f"F2d : section complète + jauge cible > 0 (min {gmin:.3e}) : {f2d}")
     log(f"F2e : (i) faux pont H refusé {f2e_i} ; (ii) σ de composante "
-        f"refusé sur le pont {f2e_ii}")
+        f"refused on the bridge {f2e_ii}")
     log(f"F2f : {len(rows)}/{len(clipped)} sans filtrage : {f2f}")
 
     # --- F3a/F3b : les deux transitions ------------------------------
@@ -1121,11 +1121,11 @@ def build():
     log(f"F2d(bis) : ledger du pont DÉRIVÉ du côté inférieur — "
         f"{dict(ledger_census)} (défaut {list(eps)})")
     log(f"F3b⁻ : le pont se recolle EXACTEMENT au côté inférieur, θ = +1 "
-        f"sur toutes les lignes : {f3b_lo} ; marge min {marg_min:.3e} ; "
+        f"on every row: {f3b_lo}; minimum margin {marg_min:.3e}; "
         f"sup de la différence recentrée {diff_max:.3e}")
     log(f"F3b⁺(diag) : côté supérieur CONJUGUÉ — motif de θ "
-        f"{dict(pat_census)} = la transformation de deck D. Ce n'est PAS "
-        f"une transition d'atlas : voir R2 pour la feuille continuée.")
+        f"{dict(pat_census)} = the deck transformation D. This is NOT "
+        f"an atlas transition: see R2 for the continued sheet.")
 
     # --- R3 : LE GRAPHE DE DOMAINES ET LE VRAI NERF -------------------
     # v1 confused the two: it added a bridge-to-side edge as soon
@@ -1149,7 +1149,7 @@ def build():
     bb_marg = min((m for x in bb_ok for m in x["margins"]
                    if m is not None), default=None)
     log(f"     pont↔pont CERTIFIÉES {len(bb_ok)}/{len(bb_geo)} "
-        f"(θ = +1 sur les 6 coordonnées) ; marge min "
+        f"(theta = +1 on all 6 coordinates); minimum margin "
         f"{bb_marg if bb_marg is None else round(bb_marg, 4)} ; "
         f"sup diff {bb_diff:.3e} ; non certifiées {len(bb_bad)}")
 
@@ -1222,7 +1222,7 @@ def build():
         f"arêtes B↔L, {len(bb_ok)} arêtes B↔B, "
         f"{len(new_triples)} triples NEUFS ; connexe={connected}")
     log(f"     (le graphe de DOMAINES, lui, compte {dom_edges} arêtes "
-        f"géométriques — il est publié sous ce nom, pas comme nerf)")
+        f"geometric ones; it is published under that name, not as a nerve)")
     f3c = bool(connected and n_bl == len(clipped)
                and len(bb_ok) == len(bb_geo))
 
@@ -1233,7 +1233,7 @@ def build():
         re_flush[sum(1 for k in (0, 2) if fl[k] != 0)] += 1
     fully_ambient = re_flush[0]
     log(f"R4a : portée — {len(clipped)}/{len(clipped)} ponts bilatéraux "
-        f"dans les DEUX directions Im ; ouverts dans les QUATRE "
+        f"in BOTH imaginary directions; open in ALL FOUR "
         f"coordonnées : {fully_ambient}/{len(clipped)} ; encore "
         f"relatifs à 1 face Re : {re_flush[1]} ; à 2 faces : "
         f"{re_flush[2]}")
@@ -1243,11 +1243,11 @@ def build():
     glob_same = all(r.get("F3d_global_negation_is_same_projective_point")
                     for r in rows)
     r1e = all(r.get("R1e_wrong_deck_breaks") for r in rows)
-    log(f"F3d : mutation NON SCALAIRE D_bad = diag(1,−1,1,1,1,1) ⟹ le "
+    log(f"F3d: NON SCALAR mutation D_bad = diag(1,-1,1,1,1,1) gives "
         f"raccord tombe : {f3d}  (et la négation GLOBALE, elle, reste "
-        f"le MÊME point projectif : {glob_same} — c'est pourquoi la v1 "
+        f"the SAME projective point: {glob_same}, which is why v1 "
         f"ne discriminait rien)")
-    log(f"R1e : un seul signe changé dans D ⟹ l'identité de deck "
+    log(f"R1e: a single sign changed in D makes the deck identity "
         f"CASSE : {r1e}")
 
     # --- R1 : le théorème de deck ------------------------------------
@@ -1258,7 +1258,7 @@ def build():
               and alg["preserves_the_three_quadrics"] and deck_meas
               and r1e)
     log(f"R1 : D = {list(DECK_D)} — involution {alg['involution']}, "
-        f"non scalaire {alg['non_scalar_in_pgl6']}, préserve les 3 "
+        f"non scalar {alg['non_scalar_in_pgl6']}, preserves the 3 "
         f"quadriques {alg['preserves_the_three_quadrics']} (TRIVIAL "
         f"pour tout diagonal de signes) ; D MESURÉ == pré-enregistré "
         f"sur {len(rows)} ponts : {deck_meas} ⟹ {r1}")
@@ -1269,8 +1269,8 @@ def build():
     conj_fail = all(not r["sides"].get("upper_conj", {}).get(
         "glued_exactly", False) for r in rows)
     log(f"R2 : le pont se recolle EXACTEMENT à D·Z_conj (feuille "
-        f"CONTINUÉE) sur {n_bu_cont}/{len(rows)} : {r2} — et PAS à "
-        f"Z_conj seule ({conj_fail}), qui reste un diagnostic")
+        f"CONTINUED) on {n_bu_cont}/{len(rows)}: {r2}, and NOT to "
+        f"Z_conj alone ({conj_fail}), which stays a diagnostic")
 
     gates = {
         "F2a_bridge_geometry_2H_matches_scout": bool(f2a),
@@ -1309,28 +1309,28 @@ def build():
         "mode": "full",
         "claim_level": f1["claim_level"],
         "claim": (
-            "Les 64 CARTES-PONTS bilatérales sont construites sur la "
-            "géométrie 2H corrigée ; leur régime est assigné PAR LIGNE "
-            "au signe certifié de Re R sans essai ; leur ledger est "
-            "DÉRIVÉ du côté inférieur puis re-vérifié. Chacune se "
-            "recolle EXACTEMENT au côté INFÉRIEUR et à la FEUILLE "
-            "CONTINUÉE `D·Z_conj` sur des overlaps OUVERTS, ancres "
-            "strictement intérieures. `D = diag(+1,−1,+1,+1,+1,−1)` est "
-            "une TRANSFORMATION DE DECK : c'est elle, et non un simple "
-            "« le conjugué n'est pas le continué », qui sépare les deux "
-            "feuilles — et l'atlas CONJUGUÉ SEUL ne se recolle PAS "
-            "(64/64), il reste un diagnostic. PORTÉE STRATIFIÉE : 64/64 "
-            "ponts sont bilatéraux dans les deux directions Im, mais "
-            "seuls 36/64 sont ouverts dans les QUATRE coordonnées — 24 "
-            "restent relatifs à une face Re, 4 à deux faces, et ces "
-            "faces appartiennent aux voisines de codimension 1. Le NERF "
-            "ne compte que des arêtes CERTIFIÉES (380 nœuds : 316 "
-            "inférieurs + 64 ponts ; 5396 arêtes L↔L importées de "
-            "C127-D, 64 B↔L, 210/210 B↔B) ; le graphe géométrique est "
-            "publié séparément sous le nom `domain_intersection_graph`. "
-            "Le lot reste une CONTINUATION ANALYTIQUE LOCALE VERS UNE "
-            "BOÎTE MIROIR DÉRIVÉE (F1a a refusé l'identification "
-            "canonique). Aucune métrique n'est certifiée ici."),
+            "The 64 bilateral BRIDGE CHARTS are built on the "
+            "corrected 2H geometry; their regime is assigned PER ROW "
+            "from the certified sign of Re R without trial; their record is "
+            "DERIVED from the lower side then re-checked. Each glues "
+            "EXACTLY to the LOWER side and to the CONTINUED "
+            "SHEET `D.Z_conj` on OPEN overlaps, with anchors "
+            "strictly interior. `D = diag(+1,-1,+1,+1,+1,-1)` is "
+            "a DECK TRANSFORMATION: it is what separates the two "
+            "sheets, rather than a bare statement that the conjugate is not "
+            "the continued sheet, and the CONJUGATE atlas ALONE does NOT glue "
+            "(64 of 64); it stays a diagnostic. STRATIFIED SCOPE: 64 of 64 "
+            "bridges are bilateral in both imaginary directions, but "
+            "only 36 of 64 are open in ALL FOUR coordinates; 24 "
+            "stay relative to one real face, 4 to two faces, and those "
+            "faces belong to the codimension-1 neighbours. The NERVE "
+            "counts only CERTIFIED edges (380 nodes: 316 "
+            "lower plus 64 bridges; 5396 lower-to-lower edges imported "
+            "from the atlas step, 64 bridge-to-lower, 210 of 210 bridge-to-bridge); the geometric graph is "
+            "published separately as `domain_intersection_graph`. "
+            "The result stays a LOCAL ANALYTIC CONTINUATION TOWARDS A "
+            "DERIVED MIRROR BOX (canonical identification having been "
+            "refused). No metric is certified here."),
         "cell": {"S": list(S), "g": g, "eps": list(eps)},
         "n_bridges": len(clipped),
         "theta_required_preregistered": THETA_REQUIRED,
@@ -1342,49 +1342,49 @@ def build():
         "bridge_ledger_census": {str(k): v
                                  for k, v in ledger_census.items()},
         "real_structure_finding": (
-            "SUR LE COIN, L'INVOLUTION ANTIHOLOMORPHE AGIT AVEC DES "
-            "SIGNES MIXTES. R y est RÉEL : positif sur la ligne "
-            "principale (racine RÉELLE, fixée par conjugaison) et "
-            "négatif sur les deux lignes canoniques (racine i√(−R) "
-            "PUREMENT IMAGINAIRE, donc NIÉE). Le point conjugué et le "
-            "point continué analytiquement à travers le coin sont donc "
-            "DEUX POINTS DISTINCTS de P⁵ au-dessus du même (ū, v̄) — la "
-            "jauge étant normalisée Z_g = 1, des signes indépendants par "
-            "ligne ne sont PAS une renormalisation projective. "
-            "CONSÉQUENCE POUR LE LEVIER N° 1 DU CADRAGE : la voisine "
-            "conjuguée est un atlas légitime, mais ce n'est PAS celui "
-            "que la continuation analytique atteint. Le motif de θ est "
-            "PRÉDIT ligne par ligne depuis le régime, et la prédiction "
-            "est vérifiée sur 64/64 — c'est un résultat, pas une "
-            "surprise résiduelle."),
+            "ON THE CORNER, THE ANTIHOLOMORPHIC INVOLUTION ACTS WITH "
+            "MIXED SIGNS. R is REAL there: positive on the principal "
+            "row (REAL root, fixed by conjugation) and "
+            "negative on the two canonical rows (root i.sqrt(-R) "
+            "PURELY IMAGINARY, hence NEGATED). The conjugate point and the "
+            "point continued analytically across the corner are therefore "
+            "TWO DISTINCT POINTS of projective space above the same base point; the "
+            "gauge being normalised to Z_g = 1, independent signs per "
+            "row are NOT a projective renormalisation. "
+            "CONSEQUENCE FOR THE FIRST LEVER OF THE SCOPING NOTE: the "
+            "conjugate neighbour is a legitimate atlas, but it is NOT the one "
+            "that analytic continuation reaches. The theta pattern is "
+            "PREDICTED row by row from the regime, and the prediction "
+            "is verified on 64 of 64: a result, not a "
+            "residual surprise."),
         "min_theta_margin": marg_min,
         "max_recentred_difference_sup": diff_max,
         "min_overlap_width": wid_min,
         "min_target_gauge_absmin": gmin,
         "upstream_chain": up,
         "deck": {**deck_algebra(DECK_D),
-                 "identity": "Z_upper_conj = D · Z_bridge sur l'overlap "
-                             "supérieur, certifiée AU COEFFICIENT",
+                 "identity": "Z_upper_conj = D . Z_bridge on the upper "
+                             "overlap, certified AT THE COEFFICIENT level",
                  "measured_on_bridges": len(rows),
                  "why_the_algebra_is_not_the_content": (
-                     "tout diagonal de signes préserve les quadriques "
-                     "Σ μ^m Z² ; ce qui distingue CE D est qu'il est "
-                     "celui, et le seul, qui relie la section conjuguée "
-                     "à la section du pont — c'est le négatif R1e qui "
-                     "porte la discriminance, pas l'algèbre")},
+                     "any diagonal of signs preserves the quadrics; "
+                     "what singles out THIS D is that it is "
+                     "the one, and the only one, linking the conjugate section "
+                     "to the bridge section; the R1e negative control "
+                     "carries the discriminating power, not the algebra")},
         "domain_intersection_graph": {
-            "note": ("GRAPHE DE DOMAINES, PAS un nerf d'atlas : une "
-                     "arête n'y est qu'une intersection de boîtes de "
-                     "largeur > 0. Publié sous ce nom depuis que la "
-                     "revue a montré que la v1 comptait comme arêtes "
+            "note": ("A GRAPH OF DOMAINS, NOT an atlas nerve: an "
+                     "edge here is only an intersection of boxes of "
+                     "positive width. Published under that name since a "
+                     "review showed that v1 counted as edges "
                      "des raccords explicitement en échec."),
             "n_bridge_side_geometric": 2 * len(clipped),
             "n_bridge_bridge_geometric": len(bb_geo),
             "n_edges": dom_edges},
         "nerve": {
-            "note": ("NERF : uniquement les arêtes dont la TRANSITION "
-                     "est certifiée. Les arêtes inférieur↔inférieur "
-                     "sont IMPORTÉES de C127-D (vérifié vert), pas "
+            "note": ("NERVE: only the edges whose TRANSITION "
+                     "is certified. The lower-to-lower edges "
+                     "are IMPORTED from the atlas step (verified green), not "
                      "recalculées."),
             "n_nodes": len(nodes),
             "n_lower_nodes": n_lower,
@@ -1402,50 +1402,50 @@ def build():
         "bridge_bridge_transitions": bb,
         "ambient_scope": {
             "note": ("STRATIFIÉ, corrigé après revue : « les 64 cartes "
-                     "deviennent ambiantes » était une sur-portée."),
+                     "become ambient was an overreach."),
             "bilateral_in_both_im_directions": len(clipped),
             "fully_open_in_all_four_coordinates": fully_ambient,
             "still_relative_to_one_re_face": re_flush[1],
             "still_relative_to_two_re_faces": re_flush[2]},
         "negatives": {
             "F2e_i": "faux pont de demi-largeur H : inclusion refusée",
-            "F2e_ii": ("σ de composante sur le pont : REFUS "
+            "F2e_ii": ("component rule on the bridge: REFUSAL "
                        "`component_sigma_undetermined_on_bridge` — c'est "
-                       "la raison structurelle du régime canonique"),
+                       "the structural reason for the canonical regime"),
             "F2e_iii": ("boîte élargie où Re R straddle : REFUS "
                         "`re_R_straddles_zero_no_regime` (self-test)"),
             "F3d": ("mutation NON SCALAIRE D_bad = diag(1,−1,1,1,1,1) "
                     "(jauge et coordonnées affines INCHANGÉES, une seule "
-                    "ligne canonique niée) ⟹ le raccord tombe. La v1 "
-                    "niait TOUTES les coordonnées, or Z et −Z sont LE "
-                    "MÊME point de P⁵ : elle ne testait que la "
+                    "canonical row negated) makes the gluing fall. v1 "
+                    "negated ALL coordinates, yet Z and -Z are THE "
+                    "SAME point of projective space: it tested only the "
                     "sensibilité de la normalisation Z_g = 1 au "
-                    "changement de représentant, pas la détection d'un "
+                    "change of representative, not the detection of a "
                     "mauvais POINT. Dette de discriminance, relevée par "
                     "la revue et payée ici."),
             "F3d_global_negation_control": (
-                "la négation globale reste le MÊME point projectif sur "
-                "64/64 — publié pour dire pourquoi la v1 ne valait rien"),
-            "R1e": ("un seul signe changé dans D ⟹ l'identité de deck "
-                    "CASSE : c'est ce négatif, et non l'algèbre des "
-                    "quadriques, qui porte la discriminance du théorème")},
+                "the global negation stays the SAME projective point on "
+                "64 of 64; published to say why v1 was worthless"),
+            "R1e": ("a single sign changed in D makes the deck identity "
+                    "BREAK: it is this negative control, and not the algebra of "
+                    "the quadrics, that carries the discriminating power of the theorem")},
         "triple_cocycle_note": (
-            "Les 588 triples NEUFS sont énumérés depuis les seules "
-            "arêtes CERTIFIÉES. Leur cocycle θ_ij·θ_jk·θ_ki = +1 est "
-            "IMPLIQUÉ : chaque θ vaut +1 sur un domaine qui CONTIENT la "
-            "boîte triple, et θ est discret. Ce n'est donc PAS un test "
-            "indépendant et il n'est pas gaté comme tel — même "
-            "honnêteté qu'en C127-D sur son propre cocycle. Ce qui "
-            "resterait à payer au triple est la congruence MÉTRIQUE, "
+            "The 588 NEW triples are enumerated from the certified "
+            "edges alone. Their cocycle theta_ij.theta_jk.theta_ki = +1 is "
+            "IMPLIED: each theta equals +1 on a domain CONTAINING the "
+            "triple box, and theta is discrete. It is therefore NOT an independent "
+            "test and is not checked as one, with the same "
+            "honesty as the atlas step on its own cocycle. What "
+            "would remain to pay at the triple is METRIC congruence, "
             "qui appartient à F4."),
         "per_bridge": rows,
         "not_paid_here": [
-            "la MÉTRIQUE du pont (F4) : Qmat, Weyl, congruences "
+            "the METRIC of the bridge: Qmat, Weyl, lateral "
             "latérales — le chemin C129-E exige le constructeur "
-            "bilatéral, qui existe maintenant, mais le run ne l'utilise pas",
-            "l'identification canonique de la voisine : F1a a REFUSÉ, "
-            "l'atlas supérieur est DÉRIVÉ par conjugaison, pas énuméré",
-            "le raccord à travers les faces Re : les ponts y restent des "
+            "bilateral, which now exists, but the run does not use it",
+            "the canonical identification of the neighbour, which REFUSED; "
+            "the upper atlas is DERIVED by conjugation, not enumerated",
+            "gluing across the real faces, where the bridges stay "
             "cartes RELATIVES (marge 0 contre la face de la cellule)",
             "les voisines de codimension 1, les 895 autres paires, R12-C"],
         "gates": gates, "gates_passed": npass, "gates_total": len(gates),
@@ -1454,8 +1454,8 @@ def build():
             "EXACTEMENT au côté inférieur (64) ET à la feuille "
             "CONTINUÉE D·Z_conj (64), 210/210 transitions pont↔pont "
             "certifiées, nerf de 380 nœuds connexe sur arêtes "
-            "certifiées SEULEMENT. D = diag(+,−,+,+,+,−) est la "
-            "transformation de deck qui sépare le conjugué du continué."
+            "certified ONLY. D = diag(+,-,+,+,+,-) is the "
+            "deck transformation separating the conjugate from the continued sheet."
             if npass == len(gates) else
             f"ROUGE — {len(gates) - npass} gate(s) en échec"),
         "provenance": {

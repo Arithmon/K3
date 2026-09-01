@@ -1,0 +1,9 @@
+# Reference environment, DERIVED from the libraries the
+# chain actually imports, not a statement of intent.
+# python == 3.14.4  (CPython)
+# BLAS/LAPACK : scipy-openblas 0.3.33.112.0 / scipy-openblas
+
+numpy==2.5.1
+mpmath==1.3.0
+sympy==1.14.0
+scipy==1.18.0
