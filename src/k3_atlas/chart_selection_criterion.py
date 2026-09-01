@@ -440,13 +440,13 @@ def build():
                                      for c in cells),
            "rows_built": len(built), "rows_total": len(all_rows)}
     verdict = (
-        "**%d charts** passaient l'ancien critère (domaine + Jacobien + "
-        "disjonction) sur %d cellules ; **%d** passent le critère "
-        "RENFORCÉ qui exige en plus que la section NATIVE du chart cible "
-        "soit constructible avec des composantes CERTIFIÉES sur la boîte "
-        "entière. %d charts sont perdus. Sur %d lignes bloquantes, **%d "
-        "portent une coordonnée ambiante que la source devait déjà "
-        "tourner** — l'obstruction est HÉRITÉE dans %s des cas."
+        "**%d charts** passed the earlier criterion (domain, Jacobian and "
+        "disjointness) on %d cells; **%d** pass the STRENGTHENED "
+        "criterion, which further requires the NATIVE section of the target chart "
+        "to be constructible with CERTIFIED components on the whole "
+        "box. %d charts are lost. Of %d blocking rows, **%d "
+        "carry an ambient coordinate that the source already had to "
+        "rotate**, so the obstruction is INHERITED in %s of cases."
         % (tot["prev"], len(cells), tot["strong"], tot["lost"],
            tot["blocking_total"], tot["blocking_inherited"],
            ("%.0f%%" % (100.0 * tot["blocking_inherited"]
@@ -454,9 +454,9 @@ def build():
            if tot["blocking_total"] else "n/a"))
 
     art = {"artifact": "k3_cap_b1e2iii_c126_chart_criterion",
-           "claim": "Le critère de sélection des charts, RENFORCÉ par la "
-                    "constructibilité de la section NATIVE du chart "
-                    "cible, et rebalayé sur les 59 charts.",
+           "claim": "The chart selection criterion, STRENGTHENED by the "
+                    "constructibility of the NATIVE section of the target "
+                    "chart, and swept again over the 59 charts.",
            "totals": tot, "verdict": verdict,
            "cross_check_d5_fullcell": cross,
            "subdivision_probe": sub,
@@ -544,14 +544,14 @@ def _selftest():
     #      contre-exemple, T5 serait satisfait par n'importe quoi.
     def strong_broken(prev, native):
         return bool(native)
-    chk("T6 négatif : la mutation `strong = native` VIOLE le raffinement",
+    chk("T6 negative control: the mutation `strong = native` VIOLATES the refinement",
         strong_broken(False, True) and not False)
 
     # T7 : `native_section_constructible` REFUSE quand `σ'` est
     #      indéterminé — pas d'essai silencieux
     class _FakeUV:
         pass
-    chk("T7 rotated_sigma_from_coeffs rend 0 sur un straddle",
+    chk("T7 rotated_sigma_from_coeffs returns 0 on a straddle",
         rotated_sigma_from_coeffs(Fraction(1), Fraction(1),
                                   (-1.0, 1.0), (-1.0, 1.0),
                                   (-1.0, 1.0), (-1.0, 1.0)) in (0, None))

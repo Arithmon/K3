@@ -245,13 +245,13 @@ def selftest():
     ok_mi, _ = contains(w, m, strict_dirs=())
     chk("le pont-Re contient le côté ET son miroir", ok_in and ok_mi)
     narrow = widen_across(bx, f, Fraction(1, 1024))
-    chk("NÉGATIF : la boîte étroite échoue DES DEUX CÔTÉS",
+    chk("NEGATIVE CONTROL: the narrow box fails ON BOTH SIDES",
         not contains(narrow, bx, strict_dirs=())[0]
         and not contains(narrow, m, strict_dirs=())[0])
-    chk("classify : une seule ferme",
+    chk("classify: exactly one closes",
         classify_candidates({"0": True, "1": False})
         == "exactly_one_closes")
-    chk("classify : les deux ⟹ refus non discriminé",
+    chk("classify: both close, so the refusal is not discriminating",
         classify_candidates({"0": True, "1": True})
         == "both_close_not_discriminated")
     chk("classify : aucune ⟹ résultat structurel",
@@ -507,7 +507,7 @@ def build():
         f"aux lignes rotated→canonique du core : {b1f2}) ; converties "
         f"{ {c: list(v) for c, v in eps_conv.items()} } ; EXACTEMENT "
         f"UNE ferme : classe {winner} ({b1f4}, == ledger dérivé : "
-        f"{winner_is_derived}) ; la perdante casse UNIQUEMENT sur "
+        f"{winner_is_derived}); the loser breaks ONLY on "
         f"{PREDICTED_DIFF_COORD} : {b1f5} ; gate naïf = {outcome} "
         f"(diagnostic conservé) ⟹ {b1f}")
 
@@ -527,7 +527,7 @@ def build():
             b1g = bool(not s_bad["closed"]
                        and s_bad.get("pattern", {}).get(str(mut_coord))
                        == -1)
-    log(f"B1g : mutation d'une ligne du ledger ⟹ {neg_mut} ⟹ {b1g}")
+    log(f"B1g: mutation of one record row gives {neg_mut} ⟹ {b1g}")
 
     b1h = bool(Zw is not None and Zf0 is not None and W is not None
                and len(closed) == len(cands) == 2)
@@ -559,28 +559,28 @@ def build():
                      "amendée 14ᵉ revue §1/§4/§5 ; témoin unique "
                      "w_one_neighbor"),
         "claim": (
-            "Sur le témoin 295 (flush face Re u haute), la section du "
-            "pont-Re 2H — construite avec le ledger F0 certifié, régimes "
-            "identiques, chart re-validé sur la boîte élargie — se "
-            "restreint EXACTEMENT à la section F0 certifiée (θ=+1, 6/6) "
-            "et TRAVERSE la face : sur le cube W_cell = pont ∩ cellule "
-            "voisine, le ledger dérivé ligne à ligne se reconstruit et "
-            "referme (6/6). AUCUNE étiquette enregistrée ne ferme "
-            "naïvement (`none_closes`, y compris la NÔTRE sur notre "
-            "côté : le contrôle le mesure) — l'identification est donc "
-            "PAR CONVERSION EXPLICITE (B1f′, 15ᵉ revue §3) : "
-            "κ = ε_canonique ⊙ ε_registre est dérivé du contrôle "
-            "source, confiné aux lignes rotated→canonique du core, les "
-            "DEUX étiquettes sont converties et RECONSTRUITES — "
-            "exactement UNE ferme (classe 0, == ledger dérivé), la "
-            "classe 1 convertie casse uniquement sur la coordonnée 5 "
-            "prédite. Après conversion, AUCUNE transformation de deck "
-            "SUPPLÉMENTAIRE n'est observée à cette face. Ceci est une "
-            "PREMIÈRE CONTINUATION ANALYTIQUE LOCALE entre deux "
-            "cellules canoniquement adressées — pas un atlas de la "
-            "voisine : ni transition d'atlas (C), ni métrique (E), ni "
-            "315/B3 ne sont payés ici ; le gate naïf `none_closes` "
-            "reste publié comme diagnostic séparé."),
+            "On the witness tile, flush with the high Re u face, the section of the "
+            "2H Re bridge, built with the certified base record, identical regimes "
+            "and the chart revalidated on the enlarged box, restricts "
+            "EXACTLY to the certified base section (theta = +1, 6 of 6) "
+            "and CROSSES the face: on the cube W_cell, the bridge intersected with the "
+            "neighbouring cell, the record derived row by row is rebuilt and "
+            "closes again (6 of 6). NO registry label closes "
+            "naively (`none_closes`, including OUR OWN on our "
+            "side: the control measures it), so identification is "
+            "BY EXPLICIT CONVERSION: "
+            "kappa = eps_canonical times eps_registry is derived from the source "
+            "control, confined to the rows the core turned from rotated to canonical, both "
+            "labels are converted and RECONSTRUCTED, and "
+            "exactly ONE closes (class 0, equal to the derived record), while "
+            "the converted class 1 breaks only on the predicted "
+            "coordinate 5. After conversion, NO ADDITIONAL deck "
+            "transformation is observed at this face. This is a "
+            "FIRST LOCAL ANALYTIC CONTINUATION between two "
+            "canonically addressed cells, not an atlas of the "
+            "neighbour: neither atlas transitions, nor the metric, nor "
+            "the second witness are paid here; the naive `none_closes` check "
+            "stays published as a separate diagnostic."),
         "witness": {"tile": tile, "face_re_u": _q(face),
                     "chart_target": {"S": list(S2), "g": g2}},
         "cell": {"S": list(S), "g": g, "eps": list(cell["eps"])},
@@ -601,14 +601,14 @@ def build():
         "candidates": cand_out,
         "naive_closure_outcome": outcome,
         "naive_closure_note": (
-            "AUCUNE étiquette enregistrée ne ferme naïvement — Y "
-            "COMPRIS la nôtre sur notre propre côté (voir `control`) : "
-            "la fermeture naïve d'étiquette n'est pas un critère "
-            "d'identification, c'est le contrôle qui le prouve. "
-            "L'étiquette registre vit dans la convention du registre ; "
-            "le ledger du pont dans celle des régimes signe-certifiés "
-            "(rotated→canonique absorbe σ). Le motif du contrôle "
-            "MESURE la conversion, et l'identification est RELATIVE."),
+            "NO registry label closes naively, INCLUDING "
+            "our own on our own side (see `control`): "
+            "naive label closure is not an identification "
+            "criterion, and the control is what proves it. "
+            "The registry label lives in the registry convention; "
+            "the bridge record in that of the sign-certified regimes "
+            "(rotated to canonical absorbs the component). The control pattern "
+            "MEASURES the conversion, and identification is RELATIVE."),
         "control": control,
         "conversion": {
             "kappa": list(kappa),
@@ -618,52 +618,52 @@ def build():
             "eps_converted_by_class": {str(c): list(v)
                                        for c, v in eps_conv.items()},
             "note": (
-                "κ = ε_canonique_source ⊙ ε_registre_source, ligne à "
-                "ligne (15ᵉ revue §3). La conversion est CONFINÉE aux "
-                "lignes dont la détermination a changé (rotated au "
-                "core → canonique sur le pont) ; κ = +1 sur la ligne "
-                "restée principale.")},
+                "kappa = eps_canonical_source times eps_registry_source, row "
+                "by row. The conversion is CONFINED to the "
+                "rows whose determination changed (rotated at the "
+                "core, canonical on the bridge); kappa = +1 on the row "
+                "that stayed principal.")},
         "candidates_converted": conv_out,
         "identified_class": int(winner) if winner is not None else None,
         "winner_converted_equals_derived_ledger": bool(winner_is_derived),
         "deck_statement": (
-            "Après conversion explicite de l'étiquette de registre "
-            "vers le ledger canonique, la continuation conserve la "
-            "classe 0 et AUCUNE transformation de deck SUPPLÉMENTAIRE "
-            "n'est observée à cette face. Le motif BRUT du contrôle, "
-            "étendu aux six coordonnées, est (+1,−1,+1,+1,+1,−1) — le "
-            "même diagonal que D de C129-F0 : ici il corrige "
-            "l'injection naïve d'une étiquette d'une autre convention, "
-            "il n'est PAS un changement de feuille après conversion. "
-            "La phrase non qualifiée « pas de deck à cette face » "
-            "était trop forte (15ᵉ revue §4)."),
+            "After explicit conversion of the registry label "
+            "into the canonical record, the continuation keeps "
+            "class 0 and NO ADDITIONAL deck transformation "
+            "is observed at this face. The RAW pattern of the control, "
+            "extended to the six coordinates, is (+1,-1,+1,+1,+1,-1), the "
+            "same diagonal as D: here it corrects "
+            "the naive injection of a label from another convention, "
+            "and it is NOT a sheet change after conversion. "
+            "The unqualified sentence about no deck at this face "
+            "was too strong."),
         "predicted_diff_coord": PREDICTED_DIFF_COORD,
         "negative_mutation": neg_mut,
         "conventions_note": (
-            "Les ε enregistrés (C118) sont des étiquettes de classe "
-            "dans la convention du registre ; les candidates sont "
-            "construites sous la règle de régime signe-certifié "
-            "(convention C127-E des régions clippées, celle de l'arc "
-            "F0). L'identification (B1f) et la dérivation (B1e) sont "
-            "publiées côte à côte ; toute discordance serait un "
-            "résultat, pas une correction."),
+            "The recorded sheet labels are class labels "
+            "in the registry convention; the candidates are "
+            "built under the sign-certified regime rule "
+            "(the convention of the clipped regions, that of the base "
+            "arc). Identification and derivation are "
+            "published side by side; any discordance would be a "
+            "result, not a correction."),
         "not_paid_here": [
-            "B3 : témoin 315, deux ordres, commutation",
-            "C : transitions d'atlas et nerf étendu",
-            "E : métrique (transport_hardened, δ = 1e-5)",
-            "l'atlas de la cellule voisine",
-            "les faces basses (frontière d'énumération)",
-            "les 895 autres paires"],
+            "the second witness, two orders, commutation",
+            "atlas transitions and the extended nerve",
+            "the metric (hardened transport, delta = 1e-5)",
+            "the atlas of the neighbouring cell",
+            "the low faces (enumeration boundary)",
+            "the 895 other pairs"],
         "gates": gates, "gates_passed": npass, "gates_total": len(gates),
         "verdict": (
-            f"B1 v2 LIVRÉ — première continuation analytique locale "
-            f"entre deux cellules canoniquement adressées : la feuille "
-            f"atteinte est la classe {winner}, identifiée PAR "
-            f"CONVERSION EXPLICITE (κ dérivé, candidates converties "
-            f"reconstruites, une seule ferme) ; aucune deck "
-            f"SUPPLÉMENTAIRE après conversion."
+            f"B1 v2 DELIVERED: a first local analytic continuation "
+            f"between two canonically addressed cells. The sheet "
+            f"reached is class {winner}, identified BY "
+            f"EXPLICIT CONVERSION (kappa derived, candidates converted "
+            f"and rebuilt, exactly one closing); no ADDITIONAL deck "
+            f"after conversion."
             if npass == len(gates) else
-            f"ROUGE — {len(gates) - npass} gate(s) en échec"),
+            f"RED: {len(gates) - npass} check(s) failed"),
         "provenance": {
             "git_head": head, "python": sys.version.split()[0],
             "platform": platform.platform(), "mp_prec": int(mp.prec),
