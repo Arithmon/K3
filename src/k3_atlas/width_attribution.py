@@ -2,7 +2,7 @@
 """
 k3_cap_b1e2iii_p0a2_attrib.py — P0a2-A : ATTRIBUTION de largeur +
 congruence fixe préconditionnée (contrat GPT `gpt_b1e2iii_p0a2_direct_review`
-§2-§6 : C42-C46, A0-A4 ; demandes Kimi `kimi_p0a2_direct_review` V3/V7).
+§2-§6 : the width contract, A0-A4 ; demandes a reviewer `kimi_p0a2_direct_review` V3/V7).
 
 The wall measured by the direct probe (C = width(detQ)/h^2 around 2e3-2e4) does not
 encore de CAUSE établie (GPT C43-C45 : la largeur mélange variation
@@ -16,7 +16,7 @@ the tool that will reduce it:
           checks derived from the counts, "executed" rather than "all"; pricing
           serialised in the JSON, not only in the note.
   A1 décomposition de largeur (GPT §5-A1 + C44) : boîte B TÉMOIN
-     D'ABORD (Kimi), puis A et C — grille h FIXE {4e-3, 2e-3, 1e-3,
+     D'ABORD (a reviewer), puis A et C — grille h FIXE {4e-3, 2e-3, 1e-3,
      5e-4, 2.5e-4} (≥ 4 valeurs, pentes successives publiées, jamais
           a "law" on 2 points). At each h, POST-PROCESSING of the two jets
      (centre + boîte) : largeur par FORME (Taylor-2 / valeur-moyenne /
@@ -29,7 +29,7 @@ the tool that will reduce it:
      = w(H boîte) − w(H centre), ISOLÉ. Normes ∇/H publiées. Sample
           float min/max of det Q on the box (NOT a certificate: it separates the
      variation physique apparente de l'excès d'enclosure, GPT A1).
-  A2 ablation (GPT §5-A2 + Kimi V7) : (i) congruence fixe R₀ (C46) —
+  A2 ablation (GPT §5-A2 + a reviewer V7) : (i) congruence fixe R₀ (C46) —
      R₀ = inv(chol(G_ρ(t₀))†) gelé float par boîte (variante R₀ depuis
      Q_γ(t₀)) ; Q'_γ = R₀†Q_γR₀ assemblé AU NIVEAU DU JET (T2CIV,
      post-processing, aucune inversion d'intervalle), certificat
@@ -37,7 +37,7 @@ the tool that will reduce it:
      det' = det Q/det G_ρ = déterminant NORMALISÉ dimensionless (A3) ;
           h_pass_raw against h_pass_cong on the same grid; the negative witness
      t_bad DOIT rester certifié non-PD sous congruence. (ii) split φ
-     par élément (Kimi V7) : top-5 |c| individuels + groupe reste +
+     par élément (a reviewer V7) : top-5 |c| individuels + groupe reste +
           phi-combined: the width of the Hessian term of q00 (linear in c)
      se décompose ADDITIVEMENT par élément (exact) ⟹ part du top-5
           in C, measured. (218 individual jets are out of budget: the
@@ -46,17 +46,17 @@ the tool that will reduce it:
   A3 pricing dimensionless (GPT §5-A3) : λ_min(Q_γ, G_ρ) généralisé
      float (centre + min échantillonné), det normalisé certifié après
      congruence, proxy de sur-enclosure = det_norm_min_float − det'.lo.
-  A4 décision T4 (GPT §5-A4, seuils Kimi) : publiée depuis les mesures —
+  A4 décision T4 (GPT §5-A4, seuils a reviewer) : publiée depuis les mesures —
           (1) if float stays positive where the enclosure fails AND the Hessian excess
           dominates, then the remainder representation is the problem and Taylor models are justified
-     (discriminant synthétique Kimi OBLIGATOIRE) ; (2) si la variation
+     (discriminant synthétique a reviewer OBLIGATOIRE) ; (2) si la variation
      réelle (lin + quad centre + span float) domine ⟹ un ordre supérieur
           will not certify without subdivision; (3) if congruence already wins
      ≥ ×10 en cellules d'atlas ⟹ première route de production.
   +  table de couverture commune (GPT §6) : 60 couples = 22 owner O1 +
      17 vacuités + 21 ambigus ; join avec C39 (26 échantillonnés) ;
           the 17 ambiguous ones WITHOUT named points.
-  +  erratum d'atlas (Kimi V3) : fourchette recalculée depuis les
+  +  erratum d'atlas (a reviewer V3) : fourchette recalculée depuis les
           measured anchors (the equation in the direct-probe note gave 8.7e11
      cellules/3e5 ans, pas 9e14/3e8 — corrigé, mur intact).
 
@@ -69,7 +69,7 @@ Self-test (gates DISCRIMINANTS, négatifs inclus) :
   T6 C42 : M_H bit-hermitien + dégénéré h=0 mid ≡ float M_H (< 5e-12)
   T7 split φ : w_quad(φ-combiné) ≤ w_quad(top5) + w_quad(reste)
      (sous-additivité garantie ; l'écart = gain de cancellation combiné,
-     LA mesure Kimi V7) + NÉGATIF : w_quad(top5) < w_quad(φ) strictement
+     LA mesure a reviewer V7) + NÉGATIF : w_quad(top5) < w_quad(φ) strictement
 
 Sorties : results/k3_cap_b1e2iii_p0a2_attrib.json
 Usage   : k3_cap_b1e2iii_p0a2_attrib.py [--selftest]
@@ -367,7 +367,7 @@ def slopes(records, key_path):
 # ===========================================================================
 def load_boxes_from_direct(direct):
     """Reprend EXACTEMENT les 3 boîtes de P0a2-direct (u0/v0 sérialisés),
-    pire classe = min det.lo à h_pass. Ordre : B témoin D'ABORD (Kimi)."""
+    pire classe = min det.lo à h_pass. Ordre : B témoin D'ABORD (a reviewer)."""
     boxes = []
     for r in direct["s1_three_boxes"]:
         cands = [pc for pc in r["per_class"]
@@ -432,7 +432,7 @@ def coverage_table(tiling, probe):
                                "; 34 absents = 17 vacuités + 16 ambigus "
                                "without points plus 1 OWNER not sampled "
                                "(précision au « 17+17 » de la review "
-                               "Kimi §3)"),
+                               "a reviewer §3)"),
             "note": ("V_owner = 5.38 concerns the certified owner part "
                      "(22 pairs), not the cost of a global "
                      "certificate: the ambiguous residual (21 pairs) stays a "
@@ -440,7 +440,7 @@ def coverage_table(tiling, probe):
 
 
 def atlas_erratum(direct):
-    """Kimi V3 : fourchette recalculée depuis les ancres mesurées.
+    """a reviewer V3 : fourchette recalculée depuis les ancres mesurées.
         (The equation in the direct-probe note, "9e14 cells, about 3e8 years", holds
     en fait 8.7e11/3e5 ans ; on republie depuis h_pass = √(marge/C).)"""
     margin = direct["s1_three_boxes"][1]["per_class"][0]["steps"][-1][
@@ -467,8 +467,8 @@ def atlas_erratum(direct):
 
 def build():
     print("=" * 78)
-    print("P0a2-A — ATTRIBUTION de largeur + congruence fixe (GPT C42-C46 "
-          "A0-A4, Kimi V3/V7)")
+    print("P0a2-A — ATTRIBUTION de largeur + congruence fixe (GPT the width contract "
+          "A0-A4, a reviewer V3/V7)")
     print("=" * 78)
     rng = np.random.default_rng(SEED)
     w = load_active_witness()
@@ -572,11 +572,11 @@ def build():
             "slopes_w_quad_box": slopes(
                 recs, ("raw", "decompose_det", "w_quad_box"))})
 
-    # --- A2(ii) : split φ par élément (Kimi V7) — boîte B, h = 1e-3 -----------------
+    # --- A2(ii) : split φ par élément (a reviewer V7) — boîte B, h = 1e-3 -----------------
     bB = boxes[0]
     h_split = 1e-3
     top_idx = np.argsort(-np.abs(c218))[:TOP_K]
-    log(f"A2 split φ (Kimi V7) : top-{TOP_K} |c| = "
+    log(f"A2 split φ (a reviewer V7) : top-{TOP_K} |c| = "
         f"{[f'{c218[i]:.3g}' for i in top_idx]} @ boîte B h={h_split:g}")
 
     def phi_quad(coeffs):
@@ -725,8 +725,8 @@ def build():
 
     out = {
         "phase": ("B1.e.2.iii P0a2-A — attribution de largeur + "
-                  "congruence fixe préconditionnée (GPT C42-C46/A0-A4, "
-                  "Kimi V3/V7)"),
+                  "congruence fixe préconditionnée (GPT the width contract/A0-A4, "
+                  "a reviewer V3/V7)"),
         "witness_sha256": str(w["artifact_sha256"].item()),
         "M_H_c42": {"sha256": sha_MH, "antiherm_residual_max": resid,
                     "bit_hermitian": bit_herm,

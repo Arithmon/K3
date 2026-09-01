@@ -5,7 +5,7 @@ contract of a review.
 
 The cover built 252 charted tiles (63/64 of the volume of a residual
 cell) but transported only 3, with four named gaps
-par la revue (`gpt_b1e2iii_c125_c126_d56_review_2026_07_29.md`) :
+par la review (`gpt_b1e2iii_c125_c126_d56_review_2026_07_29.md`) :
 
   . a claim of "partition" rested on a record carrying NO
     tree address (a volume sum plus uniqueness detects neither a
@@ -58,7 +58,7 @@ WHAT THIS SCRIPT PAYS:
   complete transport (about the cost of one tile) and the mutation tests the
   DISCRIMINATING POWER OF THE TEST, not each tile. The indices are published.
 
-  STRATIFICATION (§13 de la revue) : représentant de chaque signature
+  STRATIFICATION (§13 de la review) : représentant de chaque signature
   (profondeur, chart, déterminations source/cible, σ cible) + tuile de
   jauge minimale + tuile de `det J` minimal + 3 tuiles ADJACENTES AU
   RÉSIDU (distance de Tchebychev nulle). Publiée intégralement.
@@ -67,14 +67,14 @@ WHAT THIS SCRIPT DOES NOT PAY: halos, open overlaps, the nerve
 cocycle (the partition stays a partition, not a glued atlas);
 the residual 1/64 (neither covered nor excluded); the EXACT contract of
 congruence (the identity stays "certified approximate congruence" with bounds);
-la globalisation ; R12-C.
+la globalisation ; the later scaling.
 
-DURCISSEMENTS C128 (7ᵉ revue GPT, 2026-07-30) — appliqués puis TOUS les
+DURCISSEMENTS C128 (a review GPT, 2026-07-30) — appliqués puis TOUS les
 regenerated artefacts (lesson: a modified script without a rerun gives
 the appearance of verification):
   A  the sheet anchor includes the model REMAINDER (`p[0] +- rem` per part):
           the constant coefficient alone is not the value at the centre;
-  C128-B  λmin_lo et ‖D‖_F en arithmétique d'intervalle mpmath de bout
+  the directed-float amendment  λmin_lo et ‖D‖_F en arithmétique d'intervalle mpmath de bout
           en bout, conversion float DIRIGÉE à la sérialisation seule,
           chaînes exactes publiées, gate d'HERMITICITÉ de C, slack
           exact λ − ‖D‖ par tuile ;
@@ -82,7 +82,7 @@ the appearance of verification):
           q00_lo rounded down (the earlier max-endpoint denominator was a
           SUPÉRIEURE — un quotient majorant exige un dénominateur
           inférieur) ; l'ancien ratio publié en `_legacy` ;
-  C128-D  le scaling fige le LEDGER (ε', σ', déterminations refusées si
+  the autonomy probe  le scaling fige le LEDGER (ε', σ', déterminations refusées si
           they change), PREREGISTERED ratio window [16, 64]
           (order 5 plus or minus 1), one level deeper, one chart more;
   E  full SHA-256, dyadic addresses explicitly
@@ -143,7 +143,7 @@ ART = RES / ("k3_cap_b1e2iii_c127_transport_all.json" if MODE == "full"
 DELTA_REL = 1e-5          # plafond du résidu relatif CERTIFIÉ
 N_RESIDUAL_ADJACENT = 3   # tiles adjacent to the residual in the pilot
 SCALING_LEVELS = 4        # h, h/2, h/4, h/8 à chart ET ledger figés
-# C128-D : fenêtre pré-enregistrée du ratio de scaling — ordre observé
+# the autonomy probe : fenêtre pré-enregistrée du ratio de scaling — ordre observé
 # 5 ± 1 (2⁴ à 2⁶), déclarée AVANT le rerun, jamais ajustée dessus.
 SCALING_RATIO_WINDOW = (16.0, 64.0)
 
@@ -155,7 +155,7 @@ def log(msg):
 
 
 def _sha(p):
-    # C128-E : SHA-256 COMPLETS (les 16 premiers caractères suffisaient
+    # the provenance amendment : SHA-256 COMPLETS (les 16 premiers caractères suffisaient
     # to practical identity, not to publishable provenance)
     try:
         return hashlib.sha256(Path(p).read_bytes()).hexdigest()
@@ -186,7 +186,7 @@ def provenance(src, t_wall):
 
 
 # ===========================================================================
-#  C127-A — le ledger dyadique AUTONOME
+#  the address ledger step — le ledger dyadique AUTONOME
 # ===========================================================================
 def address_of(root_c, root_h, c, h):
     """Adresse dyadique d'une feuille, reconstruite ARITHMÉTIQUEMENT en
@@ -257,10 +257,10 @@ def frontier_fractions(addresses):
 
 
 # ===========================================================================
-#  C127-B / C127-C — le transport durci
+#  the transport step / the stability step — le transport durci
 # ===========================================================================
 def _f_down(x):
-    """Conversion mpf → float DIRIGÉE vers le bas (C128-B : `float()`
+    """Conversion mpf → float DIRIGÉE vers le bas (the directed-float amendment : `float()`
     rounds to nearest, which can raise a lower bound)."""
     f = float(x)
     return math.nextafter(f, -math.inf) if f > x else f
@@ -275,7 +275,7 @@ def _anchor(Z):
     """The enclosure of the value AT THE CENTRE of a complex model: `p[0] +-
     rem`, per part. The constant coefficient ALONE is NOT the value
     at the centre once `rem > 0`: the model remainder belongs to the anchor
-    (défaut nommé par la 7ᵉ revue §4.2)."""
+    (défaut nommé par la a review §4.2)."""
     rtm, itm = Z.re_tm(), Z.im_tm()
     return (rtm.p[0] + IVPM * rtm.rem, itm.p[0] + IVPM * itm.rem)
 
@@ -328,7 +328,7 @@ def lam_min_lo(Q):
     """Borne inférieure de λ_min d'une hermitienne 2×2 PD :
     λ_min = det/λ_max ≥ det_lo/trace_hi.
 
-    C128-B : intégralement en arithmétique d'intervalle mpmath
+    the directed-float amendment : intégralement en arithmétique d'intervalle mpmath
     (rounded outwards at working precision), and the interval division
     gives det_lo/trace_hi as a lower bound without an intermediate
     conversion to the nearest float. Returns (mpf, a serialisable
@@ -348,7 +348,7 @@ def lam_min_lo(Q):
 
 def fro_up(D):
     """Upper bound on ||D||_F from the MATRIX of complex models (rather than from
-    bornes déjà converties en float) — C128-B : sommation et racine en
+    bornes déjà converties en float) — the directed-float amendment : sommation et racine en
     iv, conversion float dirigée à la sérialisation seulement.
     Retourne (mpf, dict)."""
     s = iv.mpf(0)
@@ -379,7 +379,7 @@ def _conj_tmc(x):
 
 
 def hermitian_contains_zero(C):
-    """Gate d'hermiticité (C128-B) : `C[0][1] − conj(C[1][0]) ∋ 0` et
+    """Gate d'hermiticité (the directed-float amendment) : `C[0][1] − conj(C[1][0]) ∋ 0` et
     the diagonal imaginary parts contain 0, without which
     `lambda_min(C)` lacks the spectral meaning Weyl requires."""
     off = C[0][1] + _conj_tmc(C[1][0]).mul_real(riv(-1.0))
@@ -395,7 +395,7 @@ def transport_hardened(S, g, eps, center, hw, S2, g2, M, c218, rw,
     si ambigu), mode À ENTRÉES FIGÉES (recheck d'autonomie — aucune
     dérivation), et bornes spectrales du transport par Weyl.
 
-    `section` (C129-F0/F4, 2026-07-31) — POINT D'INJECTION ADDITIF.
+    `section` (the bridge step/F4, 2026-07-31) — POINT D'INJECTION ADDITIF.
     `center` et `hw` ne servent QU'À `build_section` : tout l'aval
     (Qmat, transport, congruence, Weyl, ratio certifié) est
     BOX-AGNOSTIC. Passing an already built section therefore allows
@@ -483,7 +483,7 @@ def transport_hardened(S, g, eps, center, hw, S2, g2, M, c218, rw,
     if lam_mpf is not None:
         sm = lam_mpf - fro_mpf
         slack = {"float": _f_down(sm), "exact": mp.nstr(sm, 40)}
-    # C128-C : ratio CERTIFIÉ — numérateur sup_entry(D) (mpf),
+    # the certified-ratio amendment : ratio CERTIFIÉ — numérateur sup_entry(D) (mpf),
     # dénominateur q00_lo(Q_src) INFÉRIEUR certifié, quotient iv
     # arrondi vers le haut. max_entry(Q) ≥ q00 ≥ q00_lo ⟹ majorant.
     sup_mpf = sup_entry_up(Dm)
@@ -544,7 +544,7 @@ def _run_tile(job):
     if kind == "mutation":
         kw["perturb_J"] = complex(0.3, 0.2)
     elif kind in ("autonomy", "scaling"):
-        # C128-D : le scaling fige aussi le LEDGER (ε', σ') — réduire h
+        # the autonomy probe : le scaling fige aussi le LEDGER (ε', σ') — réduire h
         # without freezing the branch would measure something other than the model remainder
         kw["fixed_eps2"] = extra["eps_target"]
         kw["fixed_sigma2"] = extra["sigma_target"]
@@ -557,7 +557,7 @@ def _run_tile(job):
 
 
 # ===========================================================================
-#  Stratification (§13 de la revue)
+#  Stratification (§13 de la review)
 # ===========================================================================
 def stratify(tiles, residual):
     sig_of = {}
@@ -605,7 +605,7 @@ def stratify(tiles, residual):
 # ===========================================================================
 def build():
     print("=" * 78)
-    print(f"C127 TRANSPORT {'UNIVERSEL (252)' if MODE == 'full' else 'PILOTE STRATIFIÉ'}"
+    print(f"the transport step TRANSPORT {'UNIVERSEL (252)' if MODE == 'full' else 'PILOTE STRATIFIÉ'}"
           f" : TM ({TM_ORDER},{UNARY_SERIES_DEG}), {N_WORKERS} workers, "
           f"δ_rel pré-enregistré = {DELTA_REL:.0e}")
     print("=" * 78)
@@ -622,7 +622,7 @@ def build():
     log(f"cover chargé : {len(tiles)} tuiles, {len(residual)} boîtes "
         f"résiduelles · cellule S={list(S)} g={g} eps={list(eps)}")
 
-    # --- C127-A : le ledger dyadique autonome --------------------------------
+    # --- the address ledger step : le ledger dyadique autonome --------------------------------
     leaves = [(t, "tile") for t in tiles] + [(r, "residual")
                                              for r in residual]
     addresses, addr_fail, leaf_addr = [], 0, []
@@ -634,7 +634,7 @@ def build():
             addr_fail += 1
         else:
             addresses.append(a)
-            # C128-E : adresses explicitement SÉRIALISÉES (elles
+            # the provenance amendment : adresses explicitement SÉRIALISÉES (elles
             # were only reconstructed: autonomous but less
             # auditable de l'extérieur)
             leaf_addr.append({"kind": kind, "depth": len(a),
@@ -643,7 +643,7 @@ def build():
     fr = frontier_fractions(addresses)
     residual_final = sum(Fraction(1, 16 ** r["depth"])
                          for r in residual)
-    log(f"C127-A : {len(addresses)}/{len(leaves)} adresses exactes, "
+    log(f"the address ledger step : {len(addresses)}/{len(leaves)} adresses exactes, "
         f"prefix-free={tg['prefix_free']}, clos={tg['tree_closed']}, "
         f"Kraft={tg['kraft_sum'][0]}/{tg['kraft_sum'][1]} · frontière "
         f"{[x['fraction_float'] for x in fr]}")
@@ -680,7 +680,7 @@ def build():
         probe_jobs.append((i, tiles[i], "autonomy",
                            {"eps_target": r0["eps_target"],
                             "sigma_target": r0["sigma_target"]}))
-    # scaling à chart ET ledger figés (C128-D) : une tuile par chart
+    # scaling à chart ET ledger figés (the autonomy probe) : une tuile par chart
     # distinct du cover (3), niveaux h/2 … h/2^(SCALING_LEVELS−1)
     seen_ch, scale_base = set(), []
     for i in probe_idx:
@@ -725,7 +725,7 @@ def build():
         ratios = [seq[k] / seq[k + 1] if seq[k + 1] else None
                   for k in range(len(seq) - 1)]
         dec = all(seq[k + 1] < seq[k] for k in range(len(seq) - 1))
-        # C128-D : fenêtre pré-enregistrée + ledger analytique FIGÉ —
+        # the autonomy probe : fenêtre pré-enregistrée + ledger analytique FIGÉ —
         # a determination that changed when reducing h would invalidate the
         # mesure (on comparerait deux branches, pas deux restes)
         in_window = all(r is not None
@@ -854,11 +854,11 @@ def build():
                                    len(wall_tiles) // 2]
                                if wall_tiles else None,
                                "max": max(wall_tiles, default=None)},
-           "not_paid_here": ["C127-D halos/overlaps/cocycle",
-                             "C127-E résidu 1/64",
+           "not_paid_here": ["the atlas step halos/overlaps/cocycle",
+                             "the residual closure résidu 1/64",
                              "contrat exact de l'identité (E3 reste "
                              "« congruence approchée certifiée »)",
-                             "globalisation", "R12-C"],
+                             "globalisation", "the later scaling"],
            "verdict": verdict, "gates": gates,
            "gates_passed": n_pass, "gates_total": len(gates),
            "provenance": provenance([COVER_JSON], time.time() - T0)}

@@ -233,7 +233,7 @@ def target_uv(Z, S2, g2):
 # ===========================================================================
 def build():
     print("=" * 78)
-    print(f"C126 CRITÈRE DE CHART RENFORCÉ : TM ({TM_ORDER},"
+    print(f"the chart criterion CRITÈRE DE CHART RENFORCÉ : TM ({TM_ORDER},"
           f"{UNARY_SERIES_DEG}), {N_CELLS} cellules × 59 charts")
     print("=" * 78)
     load_canonical_MH()
@@ -387,7 +387,7 @@ def build():
                    levels[-1]["n_refused"] > 0
                    and all(3.0 <= r <= 5.0 for r in ratios))}
 
-    # --- cross-check INDÉPENDANT contre l'artefact D5.1/D5.2 ----------------
+    # --- cross-check INDÉPENDANT contre l'artefact the chart criterion/the Jacobian criterion ----------------
     # `n_prev_criterion` DOIT reproduire `payoff_per_cell` de
     # `d5_fullcell` : deux scripts, même sélection de cellules, même
     # earlier criterion. A disagreement would signal drift in one or

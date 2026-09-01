@@ -5,8 +5,8 @@ k3_cap_b1e2iii_owner_tiling.py — B1.e.2.iii-owner : le noyau O0
 pilote O1 (tuilage par branch-and-bound depuis les 60 couples candidats).
 Runs the O0 and O1 checks of the contract.
 `gpt_b1e3c3_global_owner_pilot_review_2026_07_24.md` §3.1-3.2, en réponse
-aux corrections C17 (owner certifié au centre seulement), C18 (disjonction
-intra-chart seulement) et C19 (28 charts = échantillonnage, pas preuve).
+aux corrections C17 (owner certifié au centre seulement), the disjointness answer (disjonction
+intra-chart seulement) et the candidate pairs (28 charts = échantillonnage, pas preuve).
 
 -------------------------------------------------------------------------
 O0: classification of a box (u_0 +- h) x (v_0 +- h) for a pair (S, g).
@@ -122,7 +122,7 @@ def classify_box(S, g_col, box, setup=None, with_flags=False):
     m2[g_col] = _iv(1, 1)
     m2[o1], m2[o2] = m2u, m2v
     branch = False
-    radicands = []                                   # C101
+    radicands = []                                   # the range-aware guard
     for si, s in enumerate(S):
         Rr = A[si, 0] + A[si, 1] * u2r + A[si, 2] * v2r
         Ri = A[si, 1] * u2i + A[si, 2] * v2i
@@ -172,7 +172,7 @@ def classify_box(S, g_col, box, setup=None, with_flags=False):
                          "pivot_out": bool(pivot_out),
                          "gauge_owner": bool(gauge_owner),
                          "gauge_out": bool(gauge_out),
-                         "radicands": radicands,          # C101
+                         "radicands": radicands,          # the range-aware guard
                          "rad_floor2": RAD_FLOOR2}
     return verdict
 
@@ -379,7 +379,7 @@ def build():
         "B1.e.2.iii-owner O0+O1 LIVRÉS : classification OWNER par BOÎTE "
         "en intervalle (miroir exact du critère du moteur — scores 20 "
         "triples + jauge + radicands ; répond C17), tuilage "
-        "branch-and-bound depuis les 60 couples candidats (répond C19). "
+        "branch-and-bound depuis les 60 couples candidats (répond the candidate pairs). "
         "At D_MAX=%d: %d pairs have a CERTIFIED OWNER volume; the %d "
         "autres se répartissent en %d VACUITÉS CERTIFIÉES (épuisement "
         "OUTSIDE) plus %d with an ambiguous residual undecided at this depth "
@@ -397,7 +397,7 @@ def build():
     out = {
         "phase": ("B1.e.2.iii-owner — O0 classification owner par boîte "
                   "(intervalle) + O1 tuilage 60 couples (contrat GPT "
-                  "e.3c.4 §3.1-3.2, corrections C17/C18/C19)"),
+                  "e.3c.4 §3.1-3.2, corrections C17/the disjointness answer/the candidate pairs)"),
         "n0": N0, "d_max": D_MAX, "rad_floor2": RAD_FLOOR2,
         "max_frontier": MAX_FRONTIER, "n_couples_capped": n_capped,
         "fast_kernel": ("numpy + arrondi dirigé émulé nextafter "

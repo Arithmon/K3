@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
-k3_cap_b1e2iii_c129f_f4_bridge_metric.py — C129-F0 / F4 : LA MÉTRIQUE
+k3_cap_b1e2iii_c129f_f4_bridge_metric.py — the bridge step / F4 : LA MÉTRIQUE
 REJOINT LES CARTES-PONTS.
 
 WHAT THIS SCRIPT PAYS: the contract that put the metric step on
 (`gpt_b1e2iii_c129f0_scout_f1_f2f3_review_2026_07_31.md`), qui met F4 en
 HOLD until the atlas architecture was repaired. It now is,
-(F2/F3 v2, 17/17 : nerf sur arêtes certifiées, feuille continuée `D·Z`,
+(the bridge step, 17/17 : nerf sur arêtes certifiées, feuille continuée `D·Z`,
 portée stratifiée), donc F4 peut tourner.
 
 THE PATH IS THE ESTABLISHED ONE, NOT A NEW ONE. `transport_hardened`
-(C127 durci C128-A/B/C : quatre `Qmat` source/mid/cible/congruence,
+(the transport step durci the anchor amendment/B/C : quatre `Qmat` source/mid/cible/congruence,
 hermiticité gatée, Weyl en arithmétique dirigée, ratio relatif certifié)
 is called on the BRIDGE BOX, in FROZEN-RECORD mode: sheet and component come from the
 core certified earlier and are NEVER re-derived, exactly the mode
@@ -46,9 +46,9 @@ GATES
       replayed on a regularly spaced panel of the full run, giving ratio,
       slack Weyl, ledger et déterminations IDENTIQUES à l'artefact full
       sérialisé ;
-  G2  amont gaté et complet : C127-D 14/14, C129-D 9/9, C129-E 8/8,
-      F2/F3 v2 17/17 — et `mode == "full"` EXIGÉ de CHACUN des quatre
-      (durci, 12ᵉ revue D2 : avant, seul C127-D le devait) ;
+  G2  amont gaté et complet : the atlas step 14/14, the exact-identity step 9/9, the full run 8/8,
+      the bridge step 17/17 — et `mode == "full"` EXIGÉ de CHACUN des quatre
+      (durci, a review D2 : avant, seul the atlas step le devait) ;
   G3  FROZEN RECORD: sheet and component from the core, never re-derived; and the target
       kinds obtained on the bridge are those of the core, otherwise REFUSAL (the
       régime de certification ne doit pas changer en silence) ;
@@ -56,7 +56,7 @@ GATES
       slack Weyl `> 0`, PD source et cible, invariance de jauge, même
       point projectif ;
   G5  METRIC CERTIFICATE ON THE CERTIFIED EDGE DOMAINS
-      (`metric_certificate_on_certified_edge_domains`, 12ᵉ revue D1) :
+      (`metric_certificate_on_certified_edge_domains`, a review D1) :
       les 64 overlaps pont↔inférieur et les 210 overlaps pont↔pont
       receive their transport on their exact box, same thresholds,
       FROM ONE REPRESENTATIVE (the bridge section). Compatibility of the
@@ -176,7 +176,7 @@ def load_leaves(cov, c127, c127e):
 
 
 # ===========================================================================
-#  Verdict par boîte — le contrat E de C129-E, repris VERBATIM
+#  Verdict par boîte — le contrat E de the full run, repris VERBATIM
 # ===========================================================================
 def box_ok(r, kinds_expected):
     if r.get("failed"):
@@ -257,7 +257,7 @@ def _edge_metric_job(arg):
     the other representative describes the SAME analytic section
     (exact identity), hence the same metric pullback; the implication is
     declared in the artefact (`edge_certificate_contract`), not left
-    implicite (12ᵉ revue D1)."""
+    implicite (a review D1)."""
     tag, a, b = arg
     S, g, _eps = _G["cell"]
     if tag == "BL":
@@ -366,8 +366,8 @@ def build():
     leaves = load_leaves(cov, c127, c127e)
     halos = {h["index"]: h["record"] for h in atl["halos"] if h["ok"]}
 
-    # --- G2 : amont — mode == "full" EXIGÉ des QUATRE (12ᵉ revue D2 ;
-    # avant, seul C127-D le devait, et F2/F3 sérialisait mode=null) -----
+    # --- G2 : amont — mode == "full" EXIGÉ des QUATRE (a review D2 ;
+    # avant, seul the atlas step le devait, et the bridge step sérialisait mode=null) -----
     up = {}
     for name, blob in (("c127d", atl), ("c129d", c129d),
                        ("c129e", c129e), ("f2f3_v2", f23)):
@@ -388,7 +388,7 @@ def build():
     ledgers = {r["tile"]: tuple(r["F2d_ledger_derived"])
                for r in f23["per_bridge"]}
     clipped = sorted(bridges)
-    log(f"    {len(clipped)} ponts, ledgers dérivés importés de F2/F3 v2")
+    log(f"    {len(clipped)} ponts, ledgers dérivés importés de the bridge step")
 
     reg = load_canonical_MH()
     M = build_M_civ(reg["M_H_canonical"])
@@ -425,7 +425,7 @@ def build():
                         "ratio_now": r.get("residual_relative"),
                         "ratio_serialized": a.get("residual_relative")})
     log(f"G1 (NON-REGRESSION): default path replayed on "
-        f"{len(probe)} tuiles du full C129-E ⟹ ratio, ledger, "
+        f"{len(probe)} tuiles du full the full run ⟹ ratio, ledger, "
         f"déterminations et slack IDENTIQUES : {g1}")
 
     # --- G3/G4: the metric on the bridges -----------------------------

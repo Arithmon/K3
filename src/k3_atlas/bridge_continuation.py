@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-k3_cap_b1e2iii_c129f_f2f3_bridge_atlas.py — C129-F0 : F2 + F3, LES
+k3_cap_b1e2iii_c129f_f2f3_bridge_atlas.py — the bridge step : F2 + F3, LES
 CARTES-PONTS ET LEURS DEUX TRANSITIONS.
 
 WHAT THIS SCRIPT PAYS (v2): the contract of a review
 (`gpt_b1e2iii_c129f_cadrage_review_2026_07_31.md`), corrigé du facteur 2
-établi par le scout et sous le nom honnête fixé par F1a, ET le contrat
-de réparation de la 11ᵉ revue
+établi par le preliminary computation et sous le nom honnête fixé par the mirror identification, ET le contrat
+de réparation de la a review
 The v1 of this
 SCRIPT AVAIT DEUX DÉFAUTS LOAD-BEARING, CASSÉS EN REVUE ET RÉPARÉS
 HERE: (i) it read the theta pattern on the upper side as a
@@ -44,8 +44,8 @@ sans aucun essai :
     Re R bounded below by 0 on the whole box  ->  principal branch
     Re R bounded above by 0 on the whole box  ->  canonical `w = i.sqrt_p(-R)`
                                            (component PINNED to +1: this is the
-                                            définition du régime C127-E,
-                                            garde C103 verbatim sur −R)
+                                            définition du régime the residual closure,
+                                            garde the cut guard verbatim sur −R)
     sinon                               →  REFUS
 
 The sign is read on the model ENCLOSURE of `Re R` (remainder included), not on the
@@ -109,7 +109,7 @@ the bridges stay RELATIVE charts; the 895 other pairs.
 GATES
   F2a  geometry: half-width 2H in the two reflected imaginary
        directions, H in the real ones, re-derived here in
-       Fraction, et IDENTIQUE à celle du scout (import vérifié) ;
+       Fraction, et IDENTIQUE à celle du preliminary computation (import vérifié) ;
   F2b  the union of the two cores is inside the bridge, STRICTLY in the imaginary directions;
   F2c  regime by CERTIFIED sign of `Re R` on the model enclosure, without
        trial, on 64 x 3 rows, and agreement with the exact rational
@@ -143,7 +143,7 @@ GATES
        upper transition; the conjugate ALONE does NOT glue
        (R2b) et reste publié comme diagnostic d'une autre feuille ;
   R3   the NERVE counts only edges whose transition is
-       CERTIFIÉE (380 nœuds ; 5396 L↔L importées de C127-D, 64 B↔L,
+       CERTIFIÉE (380 nœuds ; 5396 L↔L importées de the atlas step, 64 B↔L,
        210 of 210 bridge-to-bridge; connected). The box intersection graph
        is published separately as `domain_intersection_graph`, which
        is NOT a nerve;
@@ -153,7 +153,7 @@ GATES
        publiée comme MÊME point de `P⁵` — elle ne discriminait rien,
        that was the defect of v1;
   R1e  a single sign changed in `D` breaks the deck identity;
-  R4   chaîne amont vérifiée (scout, F1, C127-D, C127-E).
+  R4   chaîne amont vérifiée (preliminary computation, F1, the atlas step, the residual closure).
 
 Sortie : results/k3_cap_b1e2iii_c129f_f2f3_bridge_atlas.json
 Usage  : k3_cap_b1e2iii_c129f_f2f3_bridge_atlas.py [--selftest]
@@ -727,7 +727,7 @@ def _bridge_job(i):
         r["theta"] = (list(ths)[0] if len(ths) == 1 else None)
         r["theta_consistent_across_lines"] = bool(len(ths) == 1)
         r["theta_margins"] = [th[k].get("margin") for k in S]
-        # séparation AU POINT d'ancre (contrat §7 de la revue)
+        # séparation AU POINT d'ancre (contrat §7 de la review)
         va = eval_at_point(Zb, Wb, anc, list(S))
         vb = eval_at_point(Zs_map, box_side, anc, list(S))
         anc_th, anc_ok = [], True
@@ -1038,7 +1038,7 @@ def build():
         f"{k} {v.get('gates', '?')}" for k, v in up.items())
         + f" ⟹ {upstream_ok}")
 
-    # --- F2a : la géométrie, RE-DÉRIVÉE puis confrontée au scout ------
+    # --- F2a : la géométrie, RE-DÉRIVÉE puis confrontée au preliminary computation ------
     bridges, f2a = {}, True
     for i in clipped:
         r = halos[i]
@@ -1158,7 +1158,7 @@ def build():
 
     # NERVE: only the edges whose transition is CERTIFIED.
     # Nodes: the 316 charts of the lower atlas plus the 64 bridges. The
-    # arêtes inférieur↔inférieur sont IMPORTÉES de C127-D et vérifiées
+    # arêtes inférieur↔inférieur sont IMPORTÉES de the atlas step et vérifiées
     # vertes, pas recalculées.
     lower_pairs = [tuple(sorted((p["i"], p["j"]))) for p in atl["pairs"]
                    if p.get("ok", True)] if "pairs" in atl else []
@@ -1401,7 +1401,7 @@ def build():
             "new_triples": new_triples[:200]},
         "bridge_bridge_transitions": bb,
         "ambient_scope": {
-            "note": ("STRATIFIÉ, corrigé après revue : « les 64 cartes "
+            "note": ("STRATIFIÉ, corrigé après review : « les 64 cartes "
                      "become ambient was an overreach."),
             "bilateral_in_both_im_directions": len(clipped),
             "fully_open_in_all_four_coordinates": fully_ambient,
@@ -1422,7 +1422,7 @@ def build():
                     "sensibilité de la normalisation Z_g = 1 au "
                     "change of representative, not the detection of a "
                     "mauvais POINT. Dette de discriminance, relevée par "
-                    "la revue et payée ici."),
+                    "la review et payée ici."),
             "F3d_global_negation_control": (
                 "the global negation stays the SAME projective point on "
                 "64 of 64; published to say why v1 was worthless"),
@@ -1441,13 +1441,13 @@ def build():
         "per_bridge": rows,
         "not_paid_here": [
             "the METRIC of the bridge: Qmat, Weyl, lateral "
-            "latérales — le chemin C129-E exige le constructeur "
+            "latérales — le chemin the full run exige le constructeur "
             "bilateral, which now exists, but the run does not use it",
             "the canonical identification of the neighbour, which REFUSED; "
             "the upper atlas is DERIVED by conjugation, not enumerated",
             "gluing across the real faces, where the bridges stay "
             "cartes RELATIVES (marge 0 contre la face de la cellule)",
-            "les voisines de codimension 1, les 895 autres paires, R12-C"],
+            "les voisines de codimension 1, les 895 autres paires, the later scaling"],
         "gates": gates, "gates_passed": npass, "gates_total": len(gates),
         "verdict": (
             "F2 + F3 + R1-R4 LIVRÉS — 64 ponts bilatéraux, recollés "

@@ -6,10 +6,10 @@ TROISIÈME DÉTERMINATION.
 The dyadic cover leaves 64 boxes (1/64 of the volume) without a chart: on each,
 every candidate chart has at least one section row whose radicand `R'`
 a `Re R' < 0` strict et `Im R'` qui straddle 0 (mécanisme mesuré par
-C126, 29/29 lignes sondées). Pour ces lignes :
+the chart criterion, 29/29 lignes sondées). Pour ces lignes :
 
   . the PRINCIPAL branch is refused, `R'` meeting the cut on the non-positive reals;
-  · la branche TOURNÉE de C122 a sa garde SATISFAITE — `R'` évite
+  · la branche TOURNÉE de the rotated continuation a sa garde SATISFAITE — `R'` évite
     [0,+∞) puisque `Re R' < 0` — mais son LABEL `σ' = signe(Im R')`
     is UNDETERMINED (the enclosure of `Im R'` contains 0). The component rule
     forbids choosing it by trial, so the row was REFUSED.
@@ -20,12 +20,12 @@ only through their PRODUCT, `Z_s = sheet.component.i.sqrt_p(-R')`. One can there
 the component to +1 (canonical): `w = i.sqrt_p(-R')` is a legitimate continuous branch
 on the plane cut along the non-negative reals (the guard applied to `-R'`, verbatim), and
 the SHEET choice (`w` or `-w`) is carried by the sheet label, derived at the ANCHOR
-par la SÉPARATION STRICTE de C127 (marge > 0 sérialisée, refus si
+par la SÉPARATION STRICTE de the transport step (marge > 0 sérialisée, refus si
 ambiguous) then verified with the SAME sign on the whole box. The sheet
 certificate is the MARGIN: not a trial, not the component.
 
 What is requalified and what is not:
-  · le σ-par-composante de C122/C125 reste NÉCESSAIRE quand on doit
+  · le σ-par-composante de the rotated continuation/the component step reste NÉCESSAIRE quand on doit
     coincide with the principal branch on an overlap; here the principal
     one DOES NOT EXIST on the row, so there is nothing to glue
     locally. Gluing BETWEEN tiles is the business of the cocycle,
@@ -49,11 +49,11 @@ Gates pré-enregistrés :
      used ONLY if both the principal and the certified-component rotated ones are refused
      (ordre strict, compté).
   R5 THE COVER CLOSES EXACTLY: dyadic addresses of the 252 tiles
-     C127 + nouvelles tuiles + résidu restant : prefix-free, clos,
+     the transport step + nouvelles tuiles + résidu restant : prefix-free, clos,
      Kraft equal to 1 (imported machinery). The number of boxes NOT
      closed is NOT pre-committed: it is published.
   R6 UNIVERSAL TRANSPORT ON THE NEW TILES: the same checks as
-     C127 : congruence, même point projectif, δ_rel ≤ 1e-5
+     the transport step : congruence, même point projectif, δ_rel ≤ 1e-5
      (pré-enregistré, inchangé), PD par WEYL, zéro échec filtré.
   R7 SHEET NEGATIVE CONTROL: flipping the sheet on a row with a third
      détermination CASSE la compatibilité projective (probes).
@@ -116,7 +116,7 @@ ART = RES / ("k3_cap_b1e2iii_c127e_residual.json" if MODE == "full"
              else "k3_cap_b1e2iii_c127e_residual_pilot.json")
 
 # --- PRÉ-ENREGISTRÉ ---------------------------------------------------------
-DELTA_REL = 1e-5        # même plafond que C127, inchangé
+DELTA_REL = 1e-5        # même plafond que the transport step, inchangé
 N_PILOT_BOXES = 8       # boîtes résiduelles en mode pilot
 N_PROBE_NEG = 4         # tuiles sondées par les négatifs R7/R8
 
@@ -237,7 +237,7 @@ def native_rows_ext(S2, g2, up, vp):
             else:
                 rec["rotated_refused"] = "rotated_component_undetermined"
                 # (3) la TROISIÈME détermination : σ canonique, feuille
-                # déléguée à ε'. Garde inchangée (C103 sur −R').
+                # déléguée à ε'. Garde inchangée (the cut guard sur −R').
                 try:
                     Zp = tm_sqrt_rotated(R, 1)
                     rec["determination"] = "rotated_canonical"
@@ -341,7 +341,7 @@ def _transport_tile(job):
 # ===========================================================================
 def build():
     print("=" * 78)
-    print(f"C127-E RÉSIDU PAR TROISIÈME DÉTERMINATION ({MODE}) : "
+    print(f"the residual closure RÉSIDU PAR TROISIÈME DÉTERMINATION ({MODE}) : "
           f"TM ({TM_ORDER},{UNARY_SERIES_DEG}), {N_WORKERS} workers, "
           f"δ_rel = {DELTA_REL:.0e}")
     print("=" * 78)
@@ -508,7 +508,7 @@ def build():
 
     n_pass = sum(1 for v in gates.values() if v)
     verdict = (
-        "C127-E (%s) — la TROISIÈME DÉTERMINATION ferme %d/%d boîtes "
+        "the residual closure (%s) — la TROISIÈME DÉTERMINATION ferme %d/%d boîtes "
         "résiduelles examinées (%d lignes en σ canonique, feuille "
         "pinned by the sheet margin, minimum %.3e). Non-tautology: the "
         "plain criterion refuses and the extended one accepts on EACH new "
@@ -517,10 +517,10 @@ def build():
         "résidu relatif max %.3e ≤ δ = %.0e, Weyl partout. Le cover "
         "couvre désormais %.4f %% (résidu %.4f %%, %d boîtes non "
         "fermées publiées). Négatifs : ε' inversé casse %d/%d, "
-        "w(+1)+w(−1) ≡ 0 exactement %d/%d. NON PAYÉ : C127-D "
+        "w(+1)+w(−1) ≡ 0 exactement %d/%d. NON PAYÉ : the atlas step "
         "(halos/overlaps/cocycle), le raccord ENTRE déterminations de "
         "tuiles voisines (cocycle), contrat exact, globalisation, "
-        "R12-C." % (
+        "the later scaling." % (
             MODE, len(new_tiles), len(boxes), n_canon,
             min((m["margin"] for m in eps_m), default=float("nan")),
             len(tr_ok), len(new_tiles),
@@ -529,9 +529,9 @@ def build():
             sum(neg_breaks), len(neg_breaks), sum(r8_ok), len(r8_ok)))
 
     art = {"artifact": ART.stem, "mode": MODE,
-           "claim": ("C127-E — fermeture du résidu du cover D5.6 par "
+           "claim": ("the residual closure — fermeture du résidu du cover the dyadic cover par "
                      "troisième détermination (σ canonique, feuille "
-                     "par marge ε'), avec transport C127 complet."),
+                     "par marge ε'), avec transport the transport step complet."),
            "cell": cell,
            "n_boxes_examined": len(boxes),
            "new_tiles": new_tiles, "unclosed": unclosed,
@@ -549,10 +549,10 @@ def build():
                "determination; only the NATIVE section of the target chart "
                "of the residual tiles is concerned, and the class labelling of "
                "the source arc is unchanged"),
-           "not_paid_here": ["C127-D halos/overlaps/cocycle",
+           "not_paid_here": ["the atlas step halos/overlaps/cocycle",
                              "raccord entre déterminations de tuiles "
                              "voisines (cocycle du nerf)",
-                             "contrat exact", "globalisation", "R12-C"],
+                             "contrat exact", "globalisation", "the later scaling"],
            "verdict": verdict, "gates": gates,
            "gates_passed": n_pass, "gates_total": len(gates),
            "provenance": provenance([COVER_JSON, C127_JSON],

@@ -36,9 +36,9 @@ Gates pré-enregistrés :
     D3 `det J` enclosure excluding 0 on the whole box, and
           the identity `dZ_s/du = a_1 u/Z_s` holds for BOTH determinations
     D4 THE POINT OF THE EXERCISE: at least one chart is both
-     ADMISSIBLE (D5.1 + D5.2) et certifié DISJOINT de sa propre tranche
+     ADMISSIBLE (the chart criterion + the Jacobian criterion) et certifié DISJOINT de sa propre tranche
      réelle. Sous la branche principale, cet ensemble était VIDE.
-    D5 COMPONENT NEGATIVE CONTROL: a box whose `sigma` is determined AT THE CENTRE
+    the pilot COMPONENT NEGATIVE CONTROL: a box whose `sigma` is determined AT THE CENTRE
           but UNDETERMINED on the box must be REFUSED, and the mutation
      « centre seulement » doit l'accepter à tort
     D6 GAUGE NEGATIVE CONTROL: a chart whose gauge can vanish on the
@@ -134,7 +134,7 @@ def _abs(tm):
 def build_section(S, g, eps, center, hw, centre_only=False):
     """The six `Z_a` and their derivatives on the whole box.
 
-    `centre_only` is the MUTATION of check D5: it determines `sigma` on the
+    `centre_only` is the MUTATION of check the pilot: it determines `sigma` on the
     centre alone instead of the box. Code doing that would accept
     cells where the component is not certifiable, which is what the
     négatif doit exhiber.
@@ -262,7 +262,7 @@ def chart_certificate(Z, dZ, S2, g2):
 # ===========================================================================
 def build():
     print("=" * 78)
-    print(f"D5.1/D5.2 SUR CELLULE ENTIÈRE : TM ({TM_ORDER},"
+    print(f"the chart criterion/the Jacobian criterion SUR CELLULE ENTIÈRE : TM ({TM_ORDER},"
           f"{UNARY_SERIES_DEG}), {N_CELLS} cellules")
     print("=" * 78)
     reg = load_canonical_MH()
@@ -309,7 +309,7 @@ def build():
             f"(chart criterion and Jacobian on the whole box) of which "
             f"**{len(payoff)} DISJOINTS de leur tranche**")
 
-    # --- D5 : négatif de composante (avec sa mutation) ------------------------------
+    # --- the pilot : négatif de composante (avec sa mutation) ------------------------------
     r0 = residual[0]
     S0, g0, eps0 = tuple(r0["S"]), r0["g"], tuple(r0["eps"])
     hw0 = float.fromhex(r0["hw_hex"])
@@ -333,7 +333,7 @@ def build():
         "box_refuses": bool(box_refused),
         "centre_only_mutation_accepts_all": len(ctr_accepted) == 3,
         "discriminating": bool(box_refused) and len(ctr_accepted) == 3}
-    log(f"D5 négatif de composante : σ boîte "
+    log(f"the pilot négatif de composante : σ boîte "
         f"{comp_neg['sigma_on_box']} → refus {comp_neg['box_refuses']} ; "
         f"σ centre-seul {comp_neg['sigma_centre_only']} → mutation "
         f"accepte tout {comp_neg['centre_only_mutation_accepts_all']}")
@@ -425,8 +425,8 @@ def build():
             len(cells)))
 
     out = {
-        "phase": ("B1.e.2.iii D5.1/D5.2 sur cellule entière, "
-                  "détermination par ligne (contrat C124 §8)"),
+        "phase": ("B1.e.2.iii the chart criterion/the Jacobian criterion sur cellule entière, "
+                  "détermination par ligne (contrat the holonomy step §8)"),
         "witness_sha256": reg["witness_sha256"],
         "tm_config": {"poly_deg": TM_ORDER,
                       "unary_series_deg": UNARY_SERIES_DEG},
@@ -437,7 +437,7 @@ def build():
         "cells": cells,
         "D5_component_negative": comp_neg,
         "D6_gauge_negative": gauge_neg,
-        "not_tested": ["D5.4 congruence", "D5.5 transport de PD",
+        "not_tested": ["congruence congruence", "positivity transport transport de PD",
                        "cover multi-chart"],
         "aggregate": aggregate,
         "gates_prereg": gates,

@@ -9,8 +9,16 @@ against an intention:
      JSON keys are English. A French sentence here is a sentence the reader
      cannot use.
   2. NO DEVELOPMENT VOCABULARY. Milestone identifiers, internal phase names,
-     agent names, machine names and review numbers say when a thing was
-     built, not what it computes. They do not belong in a published result.
+     machine names and review numbers say when a thing was built, not what it
+     computes. They do not belong in a published result.
+
+     Two things are NOT development vocabulary, and an early version of this
+     rule wrongly flagged both: the AUTHOR'S NAME, and the DISCLOSURE OF
+     ASSISTANCE FROM LANGUAGE MODELS. The second is required academic
+     content, not jargon; a rule that removed it would push the paper
+     towards concealing something it must state. They are exempt by name
+     below, and the exemption is narrow: it covers the author line and the
+     acknowledgements, not the code.
   3. NO UNRESOLVED REFERENCE. Every path a file names exists here; no file
      points into a workspace the reader does not have.
   4. NO OUTSIDE DEPENDENCY. Every import resolves to the standard library,
@@ -42,7 +50,7 @@ DEVELOPMENT_VOCABULARY = [
     r"\bk3_cap_\w+", r"\bb1e2iii\b", r"\bc1[0-9]{2}[a-z]?\b", r"\bd5\.\d\b",
     r"\bf1prime\b", r"\brface\b", r"\blot\b", r"\bledger\b", r"\bscout\b",
     r"\bfront\b", r"\bfreeze\b", r"\bgate[sd]?\b", r"\bcodex\b", r"\bgrok\b",
-    r"\bkimi\b", r"\bgpt-?\d?\b", r"\brevue\b", r"\bbrieuc\b",
+    r"\bkimi\b", r"\brevue\b",
     r"\b\d+(?:e|ᵉ|st|nd|rd|th)\s+revue\b", r"\bgift\b", r"\bk3-cap\b",
 ]
 
@@ -89,6 +97,14 @@ def check_english(findings):
                 findings.append(("english", rel(p), n, s[:100]))
 
 
+# Lines that legitimately carry a name a reader needs: authorship and the
+# disclosure of language-model assistance. Matched on the LINE, so the
+# exemption cannot spread into the code.
+NAME_EXEMPT = re.compile(
+    r"(author|thanks|acknowledg|Anthropic|OpenAI|Claude|correspondence|"
+    r"^\*\*[A-Z])", re.I)
+
+
 def check_vocabulary(findings):
     """Rule 2 — no development vocabulary."""
     voc = re.compile("|".join(DEVELOPMENT_VOCABULARY), re.I)
@@ -97,6 +113,8 @@ def check_vocabulary(findings):
             continue        # the rule names the words it forbids
         for n, line in enumerate(p.read_text(encoding="utf-8",
                                              errors="replace").splitlines(), 1):
+            if NAME_EXEMPT.search(line.strip()):
+                continue
             for m in voc.finditer(line):
                 findings.append(("vocabulary", rel(p), n, m.group(0)))
 

@@ -5,13 +5,13 @@ CROSSES THE Re FACE, AND THE SHEET REACHED IS DERIVED, NOT ASSUMED.
 
 WHAT THIS SCRIPT PAYS: phase B1 of the face contract
 on the deterministic witness.
-`w_one_neighbor` (tuile 295, flush face Re u HAUTE, où le scout v2 a
+`w_one_neighbor` (tuile 295, flush face Re u HAUTE, où le preliminary computation v2 a
 adressé une cellule voisine canonique portant DEUX classes candidates).
 
 THE ARCHITECTURE IS THE CONTRACTED ONE, IN ORDER:
   1. the Re bridge is built on the 2H geometry: the Re u face is
      crossed with half-width `w_0 = 2H` on each side, the others
-     coordonnées héritées du pont F0 (déjà bilatéral en Im) ;
+     coordonnées héritées du pont the base bridge (déjà bilatéral en Im) ;
   2. the chart is NOT inherited: the gauge of the target chart is lower-bounded again
      on the WHOLE enlarged box, and the radicands on the whole box;
   3. the section of the Re bridge is built DIRECTLY (constructor
@@ -57,7 +57,7 @@ CONVENTIONS, DECLARED AND NOT OVERWRITTEN: the naive check and its
 `none_closes` restent sérialisés (`naive_closure_outcome`) À CÔTÉ de
 relative identification and the derived record. Should the relative
 identification and the derivation designate incompatible labels, that
-serait une DISCORDANCE PUBLIÉE (13ᵉ revue §B : « toute discordance
+serait une DISCORDANCE PUBLIÉE (a review §B : « toute discordance
 becomes a result, not an automatic correction").
 
 WHAT THIS SCRIPT DOES NOT PAY: gluing the second witness (two
@@ -68,15 +68,15 @@ addressed cell, not its atlas); the low faces (enumeration boundary);
 les 895 autres paires.
 
 GATES
-  B1a  amont vert et modes full là où le champ existe (scout v2 8/8,
-       F0 scout 7/7, F2/F3 v2 17/17 full, atlas C127-D 14/14 full) —
+  B1a  amont vert et modes full là où le champ existe (preliminary computation v2 8/8,
+       the base bridge preliminary computation 7/7, the bridge step 17/17 full, atlas the atlas step 14/14 full) —
        et témoin/face/boîtes IMPORTÉS des artefacts, jamais recodés ;
   B1b  geometry: `w_0 = 2H` exactly (the base face is flush), the
-       pont-Re contient le pont F0 ET son miroir-Re, bornes ATTEINTES ;
+       pont-Re contient le pont the base bridge ET son miroir-Re, bornes ATTEINTES ;
        tous les coins dyadiques (float(x) exact, gaté) ;
        NEGATIVE CONTROL: the box of half-width `w_0/2` fails ON BOTH SIDES;
   B1c  section on the ENLARGED box: 3 regimes assigned, IDENTICAL to the
-       régimes F0 sérialisés, radicandes minorés > 0, jauge du chart
+       régimes the base bridge sérialisés, radicandes minorés > 0, jauge du chart
        target gauge bounded below > 0 on the WHOLE box (chart revalidated);
   B1d  restriction: `theta = +1` on 6 of 6 coordinates against the certified section
        (elle-même re-construite et confrontée aux régimes sérialisés),
@@ -84,11 +84,11 @@ GATES
   B1e  ledger voisin DÉRIVÉ puis RECONSTRUIT : `θ = +1` sur 6/6 après
        reconstruction, and W_cell is the expected CUBE (4 widths
        égales, ancre centrale STRICTEMENT intérieure, Re u > face) ;
-  B1f′ identification PAR CONVERSION EXPLICITE (v2, 15ᵉ revue §3) :
+  B1f′ identification PAR CONVERSION EXPLICITE (v2, a review §3) :
        B1f1 κ = ε_canonique_source ⊙ ε_registre_source, dérivé et
             confirmed by the MEASURED pattern of the control (6 coordinates);
        B1f2 kappa agrees with the determination laws: conversion
-            CONFINÉE aux lignes rotated (core C127-E) → canonique
+            CONFINÉE aux lignes rotated (core the residual closure) → canonique
             (bridge), kappa = +1 on the principal row;
        B1f3 les DEUX étiquettes converties `κ ⊙ ε_reg` sérialisées ;
        B1f4 les deux sections converties RECONSTRUITES : EXACTEMENT
@@ -278,7 +278,7 @@ def build():
     f23 = json.loads(F2F3_JSON.read_text(encoding="utf-8"))
     rs = json.loads(RSCOUT_JSON.read_text(encoding="utf-8"))
 
-    # --- B1a : amont — C127-E inclus (15ᵉ revue §5 : il fournit le
+    # --- B1a : amont — the residual closure inclus (a review §5 : il fournit le
     # chart cible S₂/g₂, dépendance load-bearing, donc GATÉE) ----------
     up = {}
     for name, blob in (("rface_scout_v2", rs), ("f0_scout", scout0),
@@ -313,8 +313,8 @@ def build():
     regimes_f0 = [r["regime"] for r in pb["bridge_rows"]]
     chart = c127e["new_tiles"][tile - 252]["chart"]
     S2, g2 = tuple(chart["S"]), chart["g"]
-    log(f"témoin {tile} (importé du scout v2), face Re u = {face} "
-        f"({float(face):+.9f}), ledger F0 {eps_f0}, chart cible "
+    log(f"témoin {tile} (importé du preliminary computation v2), face Re u = {face} "
+        f"({float(face):+.9f}), ledger the base bridge {eps_f0}, chart cible "
         f"S₂={S2} g₂={g2}")
 
     # --- B1b : géométrie 2H ------------------------------------------
@@ -339,7 +339,7 @@ def build():
     b1b = bool(flush and inc_f0 and inc_mi and attained and neg_narrow
                and dyadic and w0 > 0 and w0_is_2H)
     log(f"B1b : w₀ = {w0} == 2·H sérialisé ({w0_is_2H}, H = {H_halo}), "
-        f"pont-Re ⊇ F0 ∪ miroir (bornes atteintes {attained}), négatif "
+        f"pont-Re ⊇ the base bridge ∪ miroir (bornes atteintes {attained}), négatif "
         f"étroit {neg_narrow}, dyadique {dyadic} ⟹ {b1b}")
 
     # --- B1c: section on the enlarged box -----------------------------
@@ -356,7 +356,7 @@ def build():
     b1c = bool(Zw is not None and regimes_w == regimes_f0
                and rad_min is not None and rad_min > 0
                and gmin is not None and gmin > 0)
-    log(f"B1c : régimes élargis {regimes_w} == F0 sérialisés "
+    log(f"B1c : régimes élargis {regimes_w} == the base bridge sérialisés "
         f"{regimes_f0} ; radicande min {rad_min} ; jauge cible min "
         f"{gmin} ⟹ {b1c}")
 
@@ -370,7 +370,7 @@ def build():
         th_src = theta_summary(res, keys)
         b1d = bool(th_src["closed"]
                    and regimes_f0_re == regimes_f0)
-    log(f"B1d : restriction au pont F0 — {th_src} ⟹ {b1d}")
+    log(f"B1d : restriction au pont the base bridge — {th_src} ⟹ {b1d}")
 
     # --- B1e : W_cell et ledger dérivé -------------------------------
     W = inter(bridge, nb_box)
@@ -453,7 +453,7 @@ def build():
         and all(ctrl_pattern.get(str(k)) == 1
                 for k in keys if k not in [int(s) for s in S]))
     # B1f2: kappa AGREES with the determination laws, and the check
-    # PORTE la loi qu'il nomme (durci, 16ᵉ revue B3-D1) :
+    # PORTE la loi qu'il nomme (durci, a review B3-D1) :
     #     principal → principal : κ = +1
     #     rotated   → canonique : κ = −1
     # The core determinations are imported, not recited.
@@ -555,8 +555,8 @@ def build():
     out = {
         "artifact": "k3_cap_b1e2iii_rface_p0_b1_leaf",
         "mode": "full",
-        "contract": ("phase B1 du contrat RFace-P0 — 13ᵉ revue §7.3-B, "
-                     "amendée 14ᵉ revue §1/§4/§5 ; témoin unique "
+        "contract": ("phase B1 du contrat RFace-P0 — a review §7.3-B, "
+                     "amendée a review §1/§4/§5 ; témoin unique "
                      "w_one_neighbor"),
         "claim": (
             "On the witness tile, flush with the high Re u face, the section of the "

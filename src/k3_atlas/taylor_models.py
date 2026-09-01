@@ -86,7 +86,7 @@ IVPM = iv.mpf([-1, 1])
 IV01 = iv.mpf([0, 1])
 
 TM_ORDER = int(os.environ.get("K3_TM_ORDER", "3"))
-# C74 / Kimi §4 (les DEUX reviews, indépendamment) : `TM_ORDER` ne fixait
+# C74 / a reviewer §4 (les DEUX reviews, indépendamment) : `TM_ORDER` ne fixait
 # than the polynomial BASE: inverse and root were truncated at z^3 IN HARD CODE, hence
 # N-independent, and their tail q^4/(1-q) CAPPED the remainder (about 2.6e-3 at
 # h = 1.7e-2: a naive N=6 would have gained nothing). Both parameters are
@@ -150,7 +150,7 @@ def _hi(x):
 
 
 # ===========================================================================
-#  C101 — sérialisation des diagnostics de branche
+#  the range-aware guard — sérialisation des diagnostics de branche
 #  A guard refusal must be reconstructible from the artefact ALONE.
 #  Floats serve the JSON, 25-digit strings serve the audit: a
 #  float rounded TO NEAREST can lie about an inclusion, and
@@ -176,7 +176,7 @@ def _civ_diag(c: CIV):
 STATS = {}
 UNARY_TAIL_SCALE = 1.0
 
-# C103 : quelle branche de la garde √ a autorisé chaque appel. Compté
+# the cut guard : quelle branche de la garde √ a autorisé chaque appel. Compté
 # separately, so that "the range-aware branch helps or does not help" is
 # a measurement and not an impression.
 GUARD_STATS = {"sqrt_disc": 0, "sqrt_range": 0}
@@ -199,7 +199,7 @@ reset_stats()
 
 
 def _mid_iv(x):
-    """POINT (intervalle dégénéré) au milieu de x — ancrage C82."""
+    """POINT (intervalle dégénéré) au milieu de x — ancrage the pointwise anchoring."""
     return iv.mpf(mp.mpf((mp.mpf(x.a) + mp.mpf(x.b)) / 2))
 
 
@@ -427,7 +427,7 @@ class TMC:
                 "TM inv (C) : p₀ peut contenir 0",
                 {"guard": "inv_p0_contains_zero", "kernel": "mpmath",
                  "p0": _civ_diag(p0)})
-        c = _mid_civ(p0)                              # C82 : ancrage POINT
+        c = _mid_civ(p0)                              # the pointwise anchoring : ancrage POINT
         if not (mp.mpf(civ_absmin(c).a) > 0):
             raise BranchCutError(
                 "TM inv (C) : ancre nulle",
@@ -470,7 +470,7 @@ class TMC:
         """Principal root: a containment guard on p_0 plus a RANGE guard (the range
         entière évite (−∞, 0]) ; série binomiale tronquée + queue."""
         p0 = a.p[0]
-        # C82 : ancrage POINT — a = c(1+z), q = norm(z) borne |z|
+        # the pointwise anchoring : ancrage POINT — a = c(1+z), q = norm(z) borne |z|
         c = _mid_civ(p0)
         if not (mp.mpf(civ_absmin(c).a) > 0):
             raise BranchCutError(
@@ -495,7 +495,7 @@ class TMC:
         re_ok = mp.mpf(c.re.a) > rh
         im_ok = (mp.mpf(c.im.a) > rh) or (mp.mpf(c.im.b) < -rh)
         disc_ok = re_ok or im_ok
-        # C103 — branche RANGE-AWARE. Le lemme de convexité (note
+        # the cut guard — branche RANGE-AWARE. Le lemme de convexité (note
         # `k3_cap_r12b_c103_range_guard_proof_2026_07_28.md` §2) autorise
         # any CONVEX K containing the anchor, avoiding the cut and inside
         # the closed disc of radius rho|c| with rho < 1. The isotropic disc is only ONE choice of
@@ -626,7 +626,7 @@ def rotated_sigma_from_coeffs(a1, a2, ur, ui, vr, vi):
 
 
 def tm_sqrt_rotated(a: TMC, sigma: int) -> TMC:
-    """C122 — la DÉTERMINATION TOURNÉE : `√_rot(R) = σ·i·√_principal(−R)`.
+    """the rotated continuation — la DÉTERMINATION TOURNÉE : `√_rot(R) = σ·i·√_principal(−R)`.
 
     `R` avoids the non-negative reals exactly when `-R` avoids the non-positive ones, so **the guard
     existante s'applique verbatim à `−R`** : il n'y a aucune nouvelle
@@ -739,7 +739,7 @@ def tm_chart_cell_section(S, g_col, eps, u0: complex, v0: complex,
         # refuses. The radicand is the EXPLICIT quadratic
         # R_r = a₀ + a₁·u² + a₂·v² (coefficients rationnels exacts) —
         # it is attached to the diagnostic, which makes the refusal reconstructible
-        # depuis l'artefact seul, et donne à C103 son objet de travail.
+        # depuis l'artefact seul, et donne à the cut guard son objet de travail.
         try:
             Zs = R.sqrt_principal().mul_real(riv(int(eps[r])))
         except BranchCutError as exc:
@@ -921,7 +921,7 @@ def tm_qfield_certificate(S, g_col, eps, u0, v0, h, M_civ, coeffs,
         q = tm_chart_metric(Z, W, M_civ, coeffs, rho_weight=rho_w)
     except BranchCutError as exc:
         return {"h": h, "status": "BRANCH", "error": str(exc)[:120],
-                "branch_diag": exc.diag,          # C101
+                "branch_diag": exc.diag,          # the range-aware guard
                 "t_call_s": _time.time() - t1}
     det = det_packed_tm(q)
     q00_lo, q00_hi = iv_bounds(q[0].to_iv())

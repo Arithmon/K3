@@ -207,7 +207,7 @@ def native_target_section(S2, g2, up, vp, eps2, sigma2):
     cible. L'ancienne boucle `for sg in (-1, 1): … break` prenait
     always -1, the guard of the rotated root depending only on `-R`
     and not on the sign, so it certified NOTHING. The same defect as
-    celui corrigé dans C124, réintroduit ici.
+    celui corrigé dans the holonomy step, réintroduit ici.
     """
     T2 = tuple(j for j in range(6) if j not in S2)
     others = [c for c in T2 if c != g2]
@@ -290,7 +290,7 @@ def target_component(S2, g2, up, vp):
 
 
 def derive_eps_target(S2, g2, up, vp, sigma2, Zp):
-    """C125-B : `ε'` **DÉRIVÉ**, pas ajusté par E3.
+    """the sheet-derivation step : `ε'` **DÉRIVÉ**, pas ajusté par E3.
 
     At the CENTRE of the cell, the target root computed with the
     sheet +1 is compared to the normalised coordinate: the sign that makes
@@ -349,7 +349,7 @@ def transport(S, g, eps, center, hw, S2, g2, M, c218, rw,
 
     # component CERTIFIED from the target radicand component
     sigma2 = target_component(S2, g2, up, vp)
-    # C125-B : ε' DÉRIVÉ au centre, puis FIGÉ
+    # the sheet-derivation step : ε' DÉRIVÉ au centre, puis FIGÉ
     eps2d = derive_eps_target(S2, g2, up, vp, sigma2, Zp)
     if eps2d is None:
         return {"native_failed": True, "sigma_target": sigma2}
@@ -363,7 +363,7 @@ def transport(S, g, eps, center, hw, S2, g2, M, c218, rw,
     cong = congruence(J, Q_tgt)
     # compatibilité des deux sections : Z_native vs Z/Z_{g'} (au signe
     # of each section coordinate: this is the record of the sheets)
-    # C125-B : compatibilité PROJECTIVE — MÊME signe, coordonnée par
+    # the sheet-derivation step : compatibilité PROJECTIVE — MÊME signe, coordonnée par
     # coordinate, on the whole box. The two descriptions are already
     # normalised by the SAME gauge (Z_{g'} = 1): they can no longer
     # differ by a global sign, and an INDEPENDENT sign per coordinate
@@ -392,7 +392,7 @@ def transport(S, g, eps, center, hw, S2, g2, M, c218, rw,
 # ===========================================================================
 def build():
     print("=" * 78)
-    print(f"D5.4 / D5.5 — CONGRUENCE ET TRANSPORT DE PD : TM "
+    print(f"congruence / positivity transport — CONGRUENCE ET TRANSPORT DE PD : TM "
           f"({TM_ORDER},{UNARY_SERIES_DEG})")
     print("=" * 78)
     reg = load_canonical_MH()
@@ -533,10 +533,10 @@ def build():
             x["pd_target"]["is_PD"] and x["pd_source"]["is_PD"]
             for x in cells),
         "E6_jacobian_mutation_breaks": not j_ok,
-        # C125-B : toute paire retenue décrit le MÊME point projectif
+        # the sheet-derivation step : toute paire retenue décrit le MÊME point projectif
         "C125B_same_projective_point": bool(cells) and all(
             x["same_projective_point"] for x in cells),
-        # C125-C : σ' est certifié, jamais 0 (indéterminé)
+        # the component-certification step : σ' est certifié, jamais 0 (indéterminé)
         "C125C_target_component_certified": bool(cells) and all(
             all(s in (-1, 1, None) for s in x["sigma_target_certified"])
             for x in cells)}
@@ -574,7 +574,7 @@ def build():
             "oui" if not j_ok else "NON", len(cells)))
 
     out = {
-        "phase": ("B1.e.2.iii D5.4/D5.5 — congruence des Gram et "
+        "phase": ("B1.e.2.iii congruence/positivity transport — congruence des Gram et "
                   "transport de positivité sur cellule entière"),
         "witness_sha256": reg["witness_sha256"],
         "tm_config": {"poly_deg": TM_ORDER,
@@ -604,7 +604,7 @@ def build():
             "perturbation cancelled and the check could not fail; "
             "E6 revealed it."),
         "E6_jacobian_mutation_congruence_still_holds": j_ok,
-        "not_established": ["D5.6 cover multi-chart", "globalisation"],
+        "not_established": ["the dyadic cover cover multi-chart", "globalisation"],
         "gates_prereg": gates,
         "verdict": verdict}
     ART.write_text(json.dumps(out, indent=2, ensure_ascii=False,

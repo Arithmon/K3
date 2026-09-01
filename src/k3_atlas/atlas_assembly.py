@@ -78,9 +78,9 @@ extending them to the halos costs four `Qmat` per tile (about 244 s, the whole
 budget of the transport step); it is measured here on the stratified
 subset only, and that is DECLARED. It also does not pay: the EXACT contract
 of the congruence identity, the full scaling, the 895
-autres paires cellule/classe, R12-C.
+autres paires cellule/classe, the later scaling.
 
-C129-A/B/C (8ᵉ revue GPT, 2026-07-31) — trois dettes theorem-grade
+the rational-box step/B/C (a review GPT, 2026-07-31) — trois dettes theorem-grade
 payées SANS changer aucun contrat :
   A. les boîtes d'overlap (paires, triples, négatif N5) passaient par
      `iv.mpf([float(lo), float(hi)])` TO NEAREST, whereas the symbols
@@ -277,8 +277,8 @@ def frac_to_iv(q):
 
 def fraction_box_to_iv(lo, hi):
     """(lo, hi) en Fractions → UN intervalle mpmath ENCLOSANT [lo, hi] :
-    borne basse arrondie VERS LE BAS, borne haute VERS LE HAUT (C129-A,
-    8ᵉ revue). L'ancien chemin `iv.mpf([float(lo), float(hi)])`
+    borne basse arrondie VERS LE BAS, borne haute VERS LE HAUT (the rational-box step,
+    a review). L'ancien chemin `iv.mpf([float(lo), float(hi)])`
     rounded both endpoints TO NEAREST, whereas the boxes
     d'overlap héritent des demi-largeurs de halo `65h/64` et leurs
     coordinates carry denominators in 65, not representable in
@@ -368,7 +368,7 @@ def enclose(p, rem, E):
 def sep_phase(dm, dp):
     """Sheet `theta` by STRICT SEPARATION of the squared distances, on the
     enclosures of the DIFFERENCE and of the SUM (hence correlated, hence
-    décisives). Miroir exact de la logique `_eps_sep` de C127, appliquée
+    décisives). Miroir exact de la logique `_eps_sep` de the transport step, appliquée
     à des polynômes déjà soustraits. Ambigu ⟹ REFUS."""
     d2m = dm.re ** 2 + dm.im ** 2
     d2p = dp.re ** 2 + dp.im ** 2
@@ -793,7 +793,7 @@ def triple_certificate(i, j, k, lam):
         out["lambda_note"] = ("identité algébrique — largeur de "
                               "décorrélation publiée, non gatée")
     # the transition identity on the THREE edges, on the TRIPLE box.
-    # Sup en mp jusqu'au gate (C129-B), _f_up à la sérialisation.
+    # Sup en mp jusqu'au gate (the directed-rounding step), _f_up à la sérialisation.
     idsup, idok = mp.mpf(0), True
     for (a, b) in ((i, j), (j, k), (i, k)):
         ga, gb = _G["geom"][a], _G["geom"][b]
@@ -843,7 +843,7 @@ def load_leaves():
     for i, t in enumerate(cov["tiles"]):
         r = tr127.get(i)
         if r is None:
-            raise SystemExit(f"tuile C127 {i} sans transport certifié")
+            raise SystemExit(f"tuile the transport step {i} sans transport certifié")
         leaves.append({
             "src": "c127", "orig_index": i, "depth": t["depth"],
             "center_hex": t["center_hex"], "hw_hex": t["hw_hex"],
@@ -856,7 +856,7 @@ def load_leaves():
         r = tr127e.get(t["box_index"])
         if r is None:
             raise SystemExit(
-                f"tuile C127-E {t['box_index']} sans transport certifié")
+                f"tuile the residual closure {t['box_index']} sans transport certifié")
         leaves.append({
             "src": "c127e", "orig_index": t["box_index"],
             "depth": t["depth"], "center_hex": t["center_hex"],
@@ -914,7 +914,7 @@ def pilot_patch(leaves, n_max):
 # ===========================================================================
 def build():
     print("=" * 78)
-    print(f"C127-D ATLAS {'COMPLET (316)' if MODE == 'full' else 'PILOTE'}"
+    print(f"the atlas step ATLAS {'COMPLET (316)' if MODE == 'full' else 'PILOTE'}"
           f" : TM ({TM_ORDER},{UNARY_SERIES_DEG}), {N_WORKERS} workers, "
           f"δ_trans = {DELTA_TRANS:.0e}")
     print("=" * 78)
@@ -923,8 +923,8 @@ def build():
     root_c = [float.fromhex(x) for x in cell_d["center_hex"]]
     root_h = float.fromhex(cell_d["hw_hex"])
     log(f"{len(leaves)} feuilles chargées "
-        f"({sum(1 for t in leaves if t['src'] == 'c127')} C127 + "
-        f"{sum(1 for t in leaves if t['src'] == 'c127e')} C127-E)")
+        f"({sum(1 for t in leaves if t['src'] == 'c127')} the transport step + "
+        f"{sum(1 for t in leaves if t['src'] == 'c127e')} the residual closure)")
 
     # --- D1: the partition, reasserted from the addresses --------------
     addresses, addr_fail = [], 0
@@ -1170,12 +1170,12 @@ def build():
         "(congruence of Q, Weyl) on the halos, established on the cores "
         "earlier, whose extension costs four Qmat per tile; the "
         "EXACT contract of the identity; the full scaling; the 895 "
-        "autres paires cellule/classe ; R12-C. C129-A/B/C (8ᵉ revue) "
+        "autres paires cellule/classe ; the later scaling. the rational-box step/B/C (a review) "
         "PAYÉS : endpoints d'overlap en arrondi EXTÉRIEUR "
         "(fraction_box_to_iv — l'ancien float-nearest pouvait tronquer "
         "les boîtes à dénominateur 65), défauts gatés comparés à δ en mp "
         "AVANT toute conversion float (sérialisation _f_up seulement), "
-        "et égalité d'ENSEMBLES {clippées} = {résidu C127-E} gatée (D2c, "
+        "et égalité d'ENSEMBLES {clippées} = {résidu the residual closure} gatée (D2c, "
         "SHA-256 publiés)." % (
             MODE, len(leaves),
             [f"{r.numerator}/{r.denominator}" for r in RHO_LADDER],
@@ -1190,7 +1190,7 @@ def build():
 
     art = {
         "artifact": ART.stem, "mode": MODE,
-        "claim": ("C127-D — cores + halos, overlaps ouverts certifiés, "
+        "claim": ("the atlas step — cores + halos, overlaps ouverts certifiés, "
                   "transitions (feuillet, carte, identité) et cocycle "
                 "on the nerve: the closed cover becomes "
                   "un atlas multi-chart."),
@@ -1213,7 +1213,7 @@ def build():
             "clipped_sha256": _set_sha(clipped_idx),
             "c127e_sha256": _set_sha(c127e_idx),
             "equal": bool(clipped_idx == c127e_idx),
-            "note": ("C129-C : égalité d'ensembles gatée (D2c), pas "
+            "note": ("the set-equality step : égalité d'ensembles gatée (D2c), pas "
                 "only the cardinality: 64 = 64 does not exclude a "
                      "permutation 63+1")},
         "nerve": {
@@ -1239,10 +1239,10 @@ def build():
         "delta_cocycle_preregistered": DELTA_COCYCLE,
         "not_paid_here": [
             "metric transport (Qmat and Weyl) on the halos, established on "
-            "les cores par C127",
+            "les cores par the transport step",
             "contrat exact de l'identité de congruence",
-            "scaling complet (C125-A)",
-            "les 895 autres paires cellule/classe", "R12-C"],
+            "scaling complet (the scaling step)",
+            "les 895 autres paires cellule/classe", "the later scaling"],
         "verdict": verdict, "gates": gates,
         "gates_passed": n_pass, "gates_total": len(gates),
         "provenance": provenance([COVER_JSON, C127_JSON, C127E_JSON],
@@ -1503,7 +1503,7 @@ def _selftest():
     chk("T15 division complexe : 1/2 enclos",
         mp.mpf(d.re.a) <= 0.5 <= mp.mpf(d.re.b))
 
-    # T16/T17 : C129-A — les endpoints Fraction → iv en arrondi
+    # T16/T17 : the rational-box step — les endpoints Fraction → iv en arrondi
     #   OUTSIDE. Witness: 1/65 (the denominator that halos of 65h/64
     #   really inject into the overlap boxes), not representable
     #   in binary. The criterion "B encloses q" is tested WITHOUT floats: 65.B
