@@ -1,25 +1,25 @@
 #!/usr/bin/env python3
 """
 k3_cap_b1e2iii_owner_tiling.py — B1.e.2.iii-owner : le noyau O0
-(classification OWNER d'une BOÎTE par arithmétique d'intervalle) et le
+(OWNER classification of a BOX by interval arithmetic) and the
 pilote O1 (tuilage par branch-and-bound depuis les 60 couples candidats).
-Exécute les gates O0/O1 du contrat GPT
+Runs the O0 and O1 checks of the contract.
 `gpt_b1e3c3_global_owner_pilot_review_2026_07_24.md` §3.1-3.2, en réponse
 aux corrections C17 (owner certifié au centre seulement), C18 (disjonction
 intra-chart seulement) et C19 (28 charts = échantillonnage, pas preuve).
 
 -------------------------------------------------------------------------
-O0 — classification d'une boîte (u₀±h)×(v₀±h) pour un couple (S, g)
+O0: classification of a box (u_0 +- h) x (v_0 +- h) for a pair (S, g).
 -------------------------------------------------------------------------
 Critère propriétaire du moteur (miroir EXACT de sample_chart) :
   (1) argmax_t sc_t = S,  sc_t = Π_{i∈t}|Z_i|²·V2[t]  (20 triples) ;
   (2) argmax_{c∈T} |Z_c| = g  (3 jauges du complément) ;
   (3) min_s |R_s| > 1e-12  (radicands, robustesse branche).
-Sur la boîte, |Z_g|² = 1, |Z_o1|² = |u|², |Z_o2|² = |v|², |Z_s|² = |R_s|
-avec R_s = a_s + b_s·u² + c_s·v² — tout est calculable en intervalle
-RÉEL (modules de complexes par re²+im²), SANS évaluer la métrique, et la
-classification est INDÉPENDANTE de la feuille ε (les 8 feuilles d'un
-(u,v) propriétaire le sont ensemble).
+On the box |Z_g|^2 = 1, |Z_o1|^2 = |u|^2, |Z_o2|^2 = |v|^2, |Z_s|^2 = |R_s|
+with R_s = a_s + b_s.u^2 + c_s.v^2, all computable in REAL interval
+arithmetic (moduli of complex numbers as re^2+im^2), WITHOUT evaluating the metric, and the
+classification is INDEPENDENT of the sheet: the 8 sheets of one
+owning (u,v) are owned together.
 
 Verdicts (stricts, déterministes) :
   OWNER     sc_S.lo > max_{t≠S} sc_t.hi  ET  |Z_g|².lo > |Z_o|².hi (×2)
@@ -31,21 +31,21 @@ Verdicts (stricts, déterministes) :
 -------------------------------------------------------------------------
 O1 — pilote de tuilage (branch-and-bound, budget publié)
 -------------------------------------------------------------------------
-Pour CHAQUE couple des 60 (S, g) candidats (C19) : grille initiale
-N0⁴ sur [-1,1]⁴, subdivision 2⁴ des AMBIGUOUS/BRANCH jusqu'à D_MAX.
+For EACH of the 60 candidate pairs (S, g): an initial grid
+N0^4 on [-1,1]^4, with 2^4 subdivision of the AMBIGUOUS and BRANCH boxes down to D_MAX.
 Sorties par couple : volumes paramétriques OWNER / OUTSIDE / résiduel
-ambigu (Σ = 16), comptes par profondeur. Le volume est PARAMÉTRIQUE
-(coordonnées (u,v) du couple) — la masse (∫detg, fermeture 4π², gate O2)
-est l'étage suivant, qui ne consommera que des boîtes OWNER certifiées.
+ambiguous (sum 16), counts by depth. The volume is PARAMETRIC
+(the (u,v) coordinates of the pair); the mass (integral of det g, closure 4 pi^2, check O2)
+is the next stage, and it will consume only certified OWNER boxes.
 
 Self-test (gates DISCRIMINANTS, dont les tests négatifs obligatoires O0) :
   S1 point possédé (MC) ⟹ boîte dégénérée OWNER ; même (u,v) sous une
      JAUGE fausse ⟹ OUTSIDE ; sous un TRIPLE faux ⟹ OUTSIDE
   S2 boîte volontairement à cheval (domaine entier) ⟹ ni OWNER ni
      OUTSIDE (AMBIGUOUS/BRANCH)
-  S3 radicand nul construit (v=0, u² = −a/b) ⟹ BRANCH sur un voisinage
-  S4 partition ponctuelle : un point possédé est OWNER pour EXACTEMENT
-     un couple sur les 60 (unicité = disjonction, réponse C18)
+    S3 a constructed vanishing radicand (v=0, u^2 = -a/b) gives BRANCH on a neighbourhood
+    S4 pointwise partition: an owned point is OWNER for EXACTLY
+          one of the 60 pairs (uniqueness is disjointness)
   S5 validation MC : la fraction possédée mesurée par sample_chart tombe
      dans [V_owner, V_owner + V_ambigu]/16 (couple témoin, profondeur 2)
 
@@ -78,7 +78,7 @@ RES = Path(os.environ.get(
 
 N0 = 4                            # grille initiale N0⁴ par couple
 D_MAX = 4                         # profondeur de subdivision du pilote
-RAD_FLOOR2 = 1e-24                # (1e-12)² — même seuil que le moteur
+RAD_FLOOR2 = 1e-24                # (1e-12)^2, the same threshold as the engine
 T0 = time.time()
 
 
@@ -105,7 +105,7 @@ def couple_setup(S, g_col):
 def classify_box(S, g_col, box, setup=None, with_flags=False):
     """box = (ur_lo, ur_hi, ui_lo, ui_hi, vr_lo, vr_hi, vi_lo, vi_hi).
     Retourne 'OWNER' | 'OUTSIDE' | 'BRANCH' | 'AMBIGUOUS'.
-    OUTSIDE prime sur BRANCH (sound : une boîte certifiée hors du
+        OUTSIDE takes precedence over BRANCH (sound: a box certified outside the
     propriétaire n'a pas besoin de traitement de branche) ; with_flags
     expose le drapeau branch interne (gate S3)."""
     T, o1, o2, A = setup if setup is not None else couple_setup(S, g_col)
@@ -116,7 +116,7 @@ def classify_box(S, g_col, box, setup=None, with_flags=False):
     v2r, v2i = vr2 - vi2, 2 * vr * vi
     m2u = ur2 + ui2                                  # |u|², |v|²
     m2v = vr2 + vi2
-    # modules² des 6 coordonnées ; pour s ∈ S : |Z_s|⁴ = |R_s|², on
+    # squared moduli of the 6 coordinates; for s in S, |Z_s|^4 = |R_s|^2, so
     # travaille en m2 via sqrt(|R_s|²) — iv.sqrt est enclosure-valide
     m2 = [None] * 6
     m2[g_col] = _iv(1, 1)
@@ -129,11 +129,11 @@ def classify_box(S, g_col, box, setup=None, with_flags=False):
         R2 = Rr ** 2 + Ri ** 2                       # |R_s|² ≥ 0
         if float(R2.a) <= RAD_FLOOR2:
             branch = True
-        # C101 : l'enclosure du radicande de la racine de section est
-        # calculée ICI, par O0, sur la boîte ENTIÈRE. C'est la seule
-        # mesure « range-aware » déjà versionnée de l'arc, et c'est
-        # l'objet que la garde √ du TM remplace par un disque
-        # isotrope — donc ce qu'un artefact de branche doit publier.
+        # the enclosure of the radicand of the section root is
+                # computed HERE, by O0, on the WHOLE box. It is the only
+                # range-aware measurement already versioned in this line of work, and it is
+                # the object that the square-root guard of the Taylor model replaces by an
+                # isotropic disc, hence what a branch artefact must publish.
         radicands.append({
             "s_coord": int(s), "row": int(si),
             "Rr": [float(Rr.a), float(Rr.b)],
@@ -180,7 +180,7 @@ def classify_box(S, g_col, box, setup=None, with_flags=False):
 # ===========================================================================
 #  O0-fast — même classification, intervalle numpy VECTORISÉ, arrondi
 #  dirigé émulé par nextafter (précédent B1.a ; statut : design-grade,
-#  l'oracle mpmath ci-dessus reste la référence — gate S6 croise les deux)
+#  the mpmath oracle above stays the reference: check S6 crosses the two)
 # ===========================================================================
 NEG, POS = -np.inf, np.inf
 
@@ -296,7 +296,7 @@ MAX_FRONTIER = 400_000            # budget par profondeur (PUBLIÉ si atteint)
 def tile_couple(S, g_col, n0=N0, d_max=D_MAX):
     """Branch-and-bound vectorisé. Retourne (stats volumes, counts par
     profondeur, capped). Aucune coupe silencieuse : si le budget de
-    frontière est atteint, l'excédent part en résiduel et capped=True."""
+    boundary is reached, the excess goes to the residual and capped is True."""
     setup = couple_setup(S, g_col)
     edges = np.linspace(-1.0, 1.0, n0 + 1)
     g = np.arange(n0)
@@ -467,7 +467,7 @@ def _selftest():
                     a_, b_ = A[si, 0], A[si, col]
                     if b_ == 0:
                         continue
-                    # zéro sur l'axe réel (x² = −a/b) ou imaginaire
+                    # zero on the real axis (x^2 = -a/b) or the imaginary one
                     # pur (x = i·t, x² = −t² ⟹ t² = a/b)
                     for ratio, imag in ((-a_ / b_, False),
                                         (a_ / b_, True)):
@@ -507,9 +507,9 @@ def _selftest():
     print(f"[{'PASS' if s3 else 'FAIL'}] S3 radicand ~0 : {msg3}")
 
     # --- S4 : unicité du propriétaire au POINT PROJECTIF (60 couples) ---------------
-    # même point de K3 transporté dans les coordonnées de chaque couple :
+    # the same surface point transported into the coordinates of each pair:
     # u' = Z_{o1'}/Z_{g'}, v' = Z_{o2'}/Z_{g'} (ownership projectivement
-    # invariant — les scores scalent en |λ|⁶, l'argmax est inchangé)
+    # invariant, since the scores scale as |lambda|^6 and the argmax is unchanged
     Z0 = Z[0]
     owners = []
     for S in TRIPLES:
@@ -555,7 +555,7 @@ def _selftest():
         ref = classify_box(S0, g0, tuple(bx[i]))
         fast = names[int(codes_np[i])]
         # le rapide ne doit JAMAIS certifier (OWNER/OUTSIDE) contre
-        # l'oracle ; un déclassement certifié→AMBIGUOUS serait toléré
+        # the oracle; a certified-to-AMBIGUOUS demotion would be tolerated
         if fast != ref and (fast in ("OWNER", "OUTSIDE")
                             or ref in ("OWNER", "OUTSIDE")):
             n_mismatch += 1

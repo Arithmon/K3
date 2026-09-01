@@ -1,29 +1,29 @@
 #!/usr/bin/env python3
 """
-k3_cap_r4_interval_kernel.py — R4 : noyau d'arithmétique d'intervalle pour le
+Interval arithmetic kernel for the certified witness, on the radical charts.
 witness v2 (datum R3, coeffs218 natifs, moteur Kähler convention holomorphe).
 
 Transcription intervalle FIDÈLE de `k3_cap_kahler_engine.chart_metric_kahler`
 (bloc CONVENTION LOCK — chain rule holomorphe Wᵀ, potentiel
-K̃ = log(Z†MZ) + Σ coeffs218·q̃_e, q̃_e ∈ B₃), sur les charts radicaux
+The potential is log(Z-dagger M Z) plus a combination of the 218 basis functions,
 explicites : Z_S = ε·√(A₀ + A₁u² + A₂v²), A = −V_S⁻¹V_T EXACTE en rationnels
 (Vandermonde entière, μ = 1,2,3,5,7,11).
 
-Garanties d'enclosure (chaque étape est une extension d'intervalle valide) :
+Enclosure guarantees, each step being a valid interval extension:
  - entrées float64 convergées EXACTEMENT en mpf (53 bits ⊂ prec bits) ;
  - A rationnelle exacte (pivot de Gauss sur Fractions) ;
  - √ complexe rectangulaire par module/argument (iv.atan2), avec GARDE DE
-   BRANCHE : le rectangle du radicande doit éviter la coupure (−∞, 0]
-   (sinon BranchCutError — la feuille ε n'est pas continue sur la cellule) ;
+      BRANCH: the radicand rectangle must avoid the cut on the non-positive reals
+      (otherwise BranchCutError: the sheet is not continuous on the cell);
  - division complexe par conj/|·|² (dénominateur > 0 exigé) ;
- - hermitisation (G+G†)/2 : enclosure valide (les deux enclosent le même G).
+  - hermitisation (G + G-dagger)/2 is a valid enclosure: both enclose the same G.
 
-Le selftest (--selftest) contient les tests que la mauvaise réponse échoue :
+The self-test contains the checks that a wrong answer fails:
  K2 box dégénérée (h=0) ≡ moteur float à 5e-12 relatif (multi-charts, incl.
     charts boostés des loci radicaux) — toute erreur de transcription ou de
     convention casse cette égalité ;
- K3 containment Monte-Carlo : G_float(point) ∈ G_intervalle(boîte) pour des
-    points tirés DANS la boîte (toute enclosure invalide casse l'inclusion).
+  Monte-Carlo containment: G_float(point) is inside G_interval(box) for
+        points drawn INSIDE the box (any invalid enclosure breaks the inclusion).
 
 Consommé par : k3_cap_r4a_cell_probe.py (cellules témoins, h*, scaling h→h/2).
 Witness chargé UNIQUEMENT via k3_cap_witness_registry.load_active_witness().
@@ -53,14 +53,14 @@ MU_INT = (1, 2, 3, 5, 7, 11)          # entiers EXACTS (LAMBDA float ailleurs)
 
 
 class BranchCutError(RuntimeError):
-    """Radicande dont le rectangle touche la coupure (−∞, 0] ou 0.
+    """Radicand whose rectangle meets the cut on the non-positive reals, or zero.
 
-    C101 : l'exception porte un diagnostic STRUCTURÉ optionnel (`diag`,
-    toujours un dict, vide par défaut) — site de la garde, ancre, q,
+        The exception carries an optional STRUCTURED diagnostic (`diag`,
+        always a dict, empty by default): guard site, anchor, q,
     rayon de garde, enclosure du radicande, coefficients du quadratique
-    de section. Sans lui, un refus de branche n'est reconstructible que
-    par un probe externe non versionné : le message seul ne dit ni QUELLE
-    garde a levé ni SUR QUELS NOMBRES. Les appelants historiques
+        of the section. Without it a branch refusal is reconstructible only
+        by an unversioned external probe: the message alone says neither WHICH
+        guard fired nor ON WHAT NUMBERS. The historical callers
     (`raise BranchCutError("...")`, `except BranchCutError`) sont
     inchangés ; `str(exc)` reste le message.
     """
@@ -95,7 +95,7 @@ class CIV:
     @staticmethod
     def box(c: complex, h: float):
         """Boîte c ± h : bornes par addition d'intervalle (arrondi extérieur
-        garanti — JAMAIS c.real ± h en float, qui peut rétrécir la boîte)."""
+                guaranteed, and NEVER c.real +- h in floating point, which can shrink the box)."""
         radius = iv.mpf([-h, h])
         return CIV(iv.mpf(c.real) + radius, iv.mpf(c.imag) + radius)
 
@@ -137,10 +137,10 @@ CONE = CIV(iv.mpf(1), iv.mpf(0))
 
 
 def civ_sqrt_principal(R: CIV) -> CIV:
-    """√ principale d'un rectangle complexe ÉVITANT la coupure (−∞, 0].
+    """Principal square root of a complex rectangle AVOIDING the cut on the non-positive reals.
 
     Garde de branche : le rectangle doit satisfaire re > 0 OU im > 0 OU
-    im < 0 (strictement, sur toute la boîte). L'argument y est continu et
+        im < 0 strictly on the whole box. The argument is continuous there and
     iv.atan2 en donne une enclosure ; √ = |R|^{1/4}·(cos θ/2 + i sin θ/2)."""
     re_pos = mp.mpf(R.re.a) > 0
     im_pos = mp.mpf(R.im.a) > 0
@@ -161,7 +161,7 @@ def minor_inv_times_T_exact(S, T) -> list[list[Fraction]]:
     """A[s, t] rationnelle exacte : solve V_S·A = −V_T (Vandermonde entière)."""
     VS = [[Fraction(MU_INT[a]) ** m for a in S] for m in range(3)]
     VT = [[-Fraction(MU_INT[a]) ** m for a in T] for m in range(3)]
-    # Gauss-Jordan exact sur la matrice augmentée [VS | VT]
+    # Exact Gauss-Jordan on the augmented matrix [VS | VT]
     aug = [VS[r] + VT[r] for r in range(3)]
     for col in range(3):
         piv = next(r for r in range(col, 3) if aug[r][col] != 0)
@@ -176,8 +176,8 @@ def minor_inv_times_T_exact(S, T) -> list[list[Fraction]]:
 
 
 def chart_cell_section(S, g_col, eps, u0: complex, v0: complex, h: float):
-    """Section holomorphe intervalle du chart (S, g_col), feuille ε, sur la
-    cellule (u, v) ∈ (u0 ± h) × (v0 ± h) (boîte sur les 4 dims réelles).
+    """Interval holomorphic section of the chart (S, g_col), sheet epsilon, on the
+        cell (u, v) in (u0 +- h) x (v0 +- h), a box over the 4 real dimensions.
 
     Retourne Z (6 CIV), W (6×2 CIV), det_MS (CIV). Convention IDENTIQUE à
     sample_chart : Z_g = 1, Z_{o1} = u, Z_{o2} = v, Z_S = ε·√(A₀+A₁u²+A₂v²),
@@ -395,7 +395,7 @@ def residual_iv(g_packed, det_MS):
 
 
 def sylvester_positive(g_packed) -> bool:
-    """PD certifiée sur la boîte : g00 > 0 ET det G > 0 (bornes inf)."""
+    """Certified positive definiteness on the box: g00 > 0 AND det G > 0 (lower bounds)."""
     detG = det_packed_iv(g_packed)
     return (mp.mpf(g_packed[0].a) > 0) and (mp.mpf(detG.a) > 0)
 
@@ -599,7 +599,7 @@ def dual_interval_monomials(Z, W, multis):
 def dual_chart_metric(Z, W, M_civ, coeffs218, basis=B3, midx=B3_IDX,
                       multis=B3_MULTIS):
     """G packé DUAL [g00, g11, Re g01, Im g01] (4 DIV) — miroir strict de
-    interval_chart_metric avec propagation des 4 dérivées."""
+        interval_chart_metric with propagation of the four derivatives."""
     s = DIV.const(iv.mpf(0))
     for a in range(6):
         s = s + Z[a].abs2_dual()
@@ -719,17 +719,17 @@ def mean_value_enclose(center_iv, dual: DIV, h: float):
 
 def mean_value_metric(S, g_col, eps, u0, v0, h, M_civ, coeffs218):
     """G packé (4 iv réels) + det_MS (CIV) par forme valeur-moyenne,
-    INTERSECTÉE avec l'évaluation naïve (les deux enclosent G ⟹ ∩ valide).
+        INTERSECTED with the naive evaluation: both enclose G, so the intersection is valid.
 
-    Retourne (g_packed, det_MS, diag) — diag contient les largeurs des
-    deux formes pour le probe."""
+        Returns (g_packed, det_MS, diag); diag carries the widths of the
+        two forms for the probe."""
     # centre : boîte dégénérée (naïf, largeur ~ arrondi seulement)
     Zc, Wc, dMSc = chart_cell_section(S, g_col, eps, u0, v0, 0.0)
     g_center, *_ = interval_chart_metric(Zc, Wc, M_civ, coeffs218)
-    # duals sur la boîte pleine
+    # duals on the full box
     ZD, WD, dMS_dual = dual_chart_cell_section(S, g_col, eps, u0, v0, h)
     g_dual = dual_chart_metric(ZD, WD, M_civ, coeffs218)
-    # naïf sur la boîte pleine (pour intersection + comparaison)
+    # naive on the full box, for intersection and comparison
     Zb, Wb, dMS_box = chart_cell_section(S, g_col, eps, u0, v0, h)
     g_naive, *_ = interval_chart_metric(Zb, Wb, M_civ, coeffs218)
 
@@ -752,8 +752,8 @@ def mean_value_metric(S, g_col, eps, u0, v0, h, M_civ, coeffs218):
 
 
 def _iv_intersect(a, b):
-    """Intersection de deux enclosures du même réel (toujours non vide si
-    les deux sont valides ; sinon on le SAURA — erreur du kernel)."""
+    """Intersection of two enclosures of the same real number (never empty if
+        both are valid; otherwise we WILL know, through a kernel error)."""
     lo = max(mp.mpf(a.a), mp.mpf(b.a))
     hi = min(mp.mpf(a.b), mp.mpf(b.b))
     if lo > hi:
@@ -767,8 +767,8 @@ def _iv_intersect(a, b):
 #  — R4-A passe 2. Forme de Taylor ordre 2 :
 #     F(t₀+δ) = F(t₀) + ∇F(t₀)·δ + ½ δᵀ·H(ξ)·δ,  ξ ∈ boîte (Lagrange)
 #  Le terme linéaire prend le gradient EXACT au centre (largeur ~arrondi) ;
-#  seule la Hessienne est enclosée naïvement sur la boîte ⟹ la cancellation
-#  ‖coeffs218‖ est reléguée au terme h² (avec constante vraie |∇²F|) + h³.
+#  only the Hessian is enclosed naively on the box, so the cancellation
+#  of the coefficient norm is relegated to the h^2 term (with a true constant) plus h^3.
 # ===========================================================================
 HPAIRS = [(0, 0), (0, 1), (0, 2), (0, 3), (1, 1),
           (1, 2), (1, 3), (2, 2), (2, 3), (3, 3)]
@@ -908,7 +908,7 @@ class T2IV:
 
 def t2_chart_cell_section(S, g_col, eps, u0: complex, v0: complex, h: float):
     """Section jet ordre 2 : Z (6 T2CIV), W (6×2), det_MS (T2CIV).
-    u, v sont LINÉAIRES dans les 4 params ⟹ leurs hessiennes sont nulles."""
+        u and v are LINEAR in the four parameters, so their Hessians vanish."""
     T = tuple(j for j in range(6) if j not in S)
     others = [c for c in T if c != g_col]
     o1, o2 = others
@@ -953,14 +953,14 @@ def t2_chart_metric(Z, W, M_civ, coeffs218, basis=B3, midx=B3_IDX,
                     multis=B3_MULTIS, want_fs=False, rho_weight=None):
     """G packé jet ordre 2 [g00, g11, Re g01, Im g01] (4 T2IV) — miroir
     strict de dual_chart_metric. want_fs=True : retourne (G, G_FS) packés
-    jets — G_FS réutilise s/zW/WᵀW̄ des MÊMES jets, donc le pinceau
+        jets: G_FS reuses s, zW and the frame product from the SAME jets, so the pencil
     H_α = G − α·G_FS (R4-B0) garde les corrélations entre les deux.
 
-    rho_weight (P0a-2, review GPT p0a_probe §5) : si non-None, le bloc ρ
-    (pullback G_ρ = ∂∂̄ log ρ) est multiplié par ce scalaire AVANT l'ajout
-    du bloc φ — l'assemblage retourne alors le champ COMBINÉ
+        rho_weight: when not None, the rho block
+        (pullback of the Hessian of log rho) is multiplied by this scalar BEFORE adding
+        the phi block, and the assembly then returns the COMBINED field
     Q = rho_weight·G_ρ + H_Φ en un seul jet (cancellations préservées ;
-    avec rho_weight = 1−γ c'est le certificat Loewner direct
+        with rho_weight = 1 - gamma this is the direct Loewner certificate
     G ⪰ γ·G_ρ ⟺ Q ≻ 0, sans inverse ni racine matricielle).
     None (défaut) : comportement STRICTEMENT identique à avant."""
     s = T2IV.const(iv.mpf(0))
@@ -1109,8 +1109,8 @@ def taylor2_enclose(center: T2IV, box: T2IV, h: float):
     """Enclosure ordre 2 : val(t₀) + ∇(t₀)·δ + ½δᵀH(boîte)δ, ∩ MV, ∩ naïf.
 
     center : jet évalué en boîte DÉGÉNÉRÉE (val/grads serrés) ;
-    box    : jet évalué sur la boîte pleine (val naïve, grads MV, hess).
-    Les trois formes enclosent F(boîte) ⟹ l'intersection est valide."""
+        box    : jet evaluated on the full box (naive value, mean-value grads, Hessian).
+        All three forms enclose F(box), so the intersection is valid."""
     rad = iv.mpf([-h, h])
     sq_diag = iv.mpf([0, h * h])
     sq_off = iv.mpf([-h * h, h * h])
@@ -1124,7 +1124,7 @@ def taylor2_enclose(center: T2IV, box: T2IV, h: float):
             t2 = t2 + box.h[i] * sq_diag * half
         else:
             t2 = t2 + box.h[i] * sq_off
-    # forme valeur-moyenne (grads sur la boîte)
+    # mean-value form, gradients on the box
     mv = center.val
     for a in range(NG):
         mv = mv + box.g[a] * rad
@@ -1134,9 +1134,9 @@ def taylor2_enclose(center: T2IV, box: T2IV, h: float):
 def taylor2_metric(S, g_col, eps, u0, v0, h, M_civ, coeffs218):
     """G packé (4 iv), det G (iv), det_MS (CIV), |det_MS|² (iv) par forme de
     Taylor ordre 2 (∩ MV ∩ naïf, composante par composante ET sur det G
-    directement — le jet de det G garde les corrélations entre composantes).
+        directly: the jet of det G keeps the correlations between components).
 
-    diag : largeurs des 3 formes pour g00 et det G."""
+        diag: widths of the three forms for g00 and det G."""
     Zc, Wc, dMSc = t2_chart_cell_section(S, g_col, eps, u0, v0, 0.0)
     g_c = t2_chart_metric(Zc, Wc, M_civ, coeffs218)
     det_c = det_packed_t2(g_c)
@@ -1156,7 +1156,7 @@ def taylor2_metric(S, g_col, eps, u0, v0, h, M_civ, coeffs218):
     diag = {
         "w_t2_g00": float(mp.mpf(g_packed[0].delta)),
         "w_naive_g00": iv_width(g_b[0].val),
-        "w_mv_g00": None,   # inclus dans l'intersection ; suivi via passes 1
+        "w_mv_g00": None,   # included in the intersection; tracked by the passes
         "w_t2_detG": float(mp.mpf(detG.delta)),
         "w_naive_detG": iv_width(det_b.val),
     }
@@ -1171,7 +1171,7 @@ def residual_t2(detG, ms2):
 
 
 # ===========================================================================
-#  Récupération de la feuille ε d'un point float du sampler
+#  Recovering the sheet of a float point of the sampler
 # ===========================================================================
 def leaf_of_float_point(S, g_col, Z_float: np.ndarray) -> tuple[int, ...]:
     """Retrouve ε ∈ {±1}³ : Z_S = ε·√(R) branche principale (float)."""
@@ -1312,7 +1312,7 @@ def _selftest() -> int:
           f"width(h)={widths[0]:.3e} → width(h/2)={widths[1]:.3e} "
           f"(ratio {widths[0] / widths[1]:.2f})")
 
-    # K5 — adverse : coefficients altérés ⟹ K2 échoue (le test a des dents)
+    # K5 adversarial: altered coefficients make K2 fail (the test has teeth)
     bad = coeffs218.copy()
     bad[7] += 1e-6 * np.linalg.norm(coeffs218)
     S, g_col, eps, u0, v0 = samples[0]
@@ -1368,7 +1368,7 @@ def _selftest() -> int:
           f"{n_ok}/{n_tot} points contenus dans l'enclosure valeur-moyenne "
           f"(h = {h:g})")
 
-    # D3 — la forme valeur-moyenne gagne sur la forme naïve
+    # D3: the mean-value form beats the naive form
     S, g_col, eps, u0, v0 = samples[0]
     _, _, diag = mean_value_metric(S, g_col, eps, u0, v0, h, M_civ, coeffs218)
     gain = min(n / m for n, m in zip(diag["w_naive"], diag["w_mv"]))
@@ -1389,8 +1389,8 @@ def _selftest() -> int:
             lo_d, hi_d = iv_bounds(g_dual[c].grads[a])
             lo_t, hi_t = iv_bounds(g_t2[c].g[a])
             worst_g = max(worst_g, abs((lo_t + hi_t) / 2 - (lo_d + hi_d) / 2))
-    # Hessiennes vs FD des GRADIENTS DUAUX (prec 200 — la référence float
-    # est plafonnée par le bruit de cancellation ‖c‖·ε/h² ≈ 4e-4)
+    # Hessians against finite differences of the DUAL GRADIENTS (precision 200: the float reference
+        # is capped by cancellation noise of order 4e-4)
     worst_h = 0.0
     deltas = {0: (1, 0), 1: (1j, 0), 2: (0, 1), 3: (0, 1j)}
 
@@ -1444,7 +1444,7 @@ def _selftest() -> int:
     check("T2_taylor2_containment_MC", n_tot > 0 and n_ok == n_tot,
           f"{n_ok}/{n_tot} points contenus (G packé + det G, h = {h:g})")
 
-    # T3 — l'ordre 2 gagne sur la valeur-moyenne
+    # T3: second order beats the mean-value form
     S, g_col, eps, u0, v0 = samples[0]
     _, _, diag_mv = mean_value_metric(S, g_col, eps, u0, v0, h,
                                       M_civ, coeffs218)
@@ -1470,7 +1470,7 @@ def _float_packed(S, g_col, eps, u, v, M, coeffs218):
 
 
 def _float_section(S, g_col, eps, u: complex, v: complex):
-    """Section float exacte du sampler pour (u, v) donnés (feuille ε)."""
+    """Exact float section of the sampler for given (u, v) and sheet."""
     T = tuple(j for j in range(6) if j not in S)
     others = [c for c in T if c != g_col]
     o1, o2 = others

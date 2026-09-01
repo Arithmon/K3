@@ -1,54 +1,54 @@
 #!/usr/bin/env python3
 """
-k3_cap_b1e2iii_d5_fullcell.py — D5.1/D5.2 sur une CELLULE ENTIÈRE, avec
+Chart construction on a WHOLE CELL, with the determination chosen PER ROW.
 la détermination choisie PAR LIGNE.
 
-Le pilote D5 avait montré que sous la branche principale aucun chart
-échappant n'est atteignable. C122 a livré la continuation tournée et
-C124 a établi l'holonomie. Le payoff de C122 restait toutefois
-**pointwise** (`h = 0`) : la revue a raison de refuser qu'on l'appelle
-D5.1. Ce script le fait sur **toute la boîte**.
+The pilot had shown that under the principal branch no escaping chart is
+reachable. Rotated continuation was delivered next, and holonomy
+established after it. That payoff remained, however,
+pointwise (`h = 0`), and a review was right to refuse to call it
+a full result. This script does it on the **whole box**.
 
-LA CONSTRUCTION. Sur une cellule résiduelle, la section se construit avec
+THE CONSTRUCTION. On a residual cell the section is built with
 un **choix de détermination par ligne** :
 
-    ligne dont R évite (−∞,0]  →  √_principal
-    ligne dont R évite [0,+∞)  →  √_rot(R, σ) avec σ de la COMPOSANTE
+    a row whose R avoids the non-negative reals  ->  rotated root of (R, sigma), sigma from the COMPONENT
+    a row whose R avoids the non-negative reals  ->  rotated root of (R, sigma), sigma from the COMPONENT
 
-Les deux sont complémentaires (C122), donc les trois lignes sont
-couvertes et les six coordonnées ambiantes existent sur la boîte entière.
+The two are complementary, so the three rows are
+covered and the six ambient coordinates exist on the whole box.
 
-LE JACOBIEN NE DÉPEND PAS DE LA DÉTERMINATION. De `Z_s² = R_s`, valable
-pour les deux, on tire `2 Z_s dZ_s = ∂R_s`, donc
+THE JACOBIAN DOES NOT DEPEND ON THE DETERMINATION. From `Z_s^2 = R_s`, valid
+for both, one gets `2 Z_s dZ_s = dR_s`, hence
 
     ∂Z_s/∂u = ∂_u R_s / (2 Z_s) = a₁·u / Z_s
 
-identique au cas principal — la formule du pilote D5 se transporte
+identical to the principal case: the pilot formula carries over
 verbatim, et c'est vérifié (gate D3).
 
 Gates pré-enregistrés :
-  D1 SECTION COMPLÈTE — les six coordonnées ambiantes sont construites
-     sur la boîte ENTIÈRE, avec la détermination employée par ligne
+    D1 COMPLETE SECTION: the six ambient coordinates are built
+          on the WHOLE box, with the determination used per row
      SÉRIALISÉE (principale / tournée + σ)
-  D2 D5.1 SUR LA BOÎTE ENTIÈRE — pour chaque chart admissible : jauge
+    D2 CHART CRITERION ON THE WHOLE BOX: for each admissible chart, gauge
      `|Z_{g'}|` bornée loin de 0, `|u'| ≤ 1`, `|v'| ≤ 1`, certifiés sur
      toute la boîte et jamais au seul centre
-  D3 D5.2 — `det J` d'enclosure excluant 0 sur toute la boîte, et
-     l'identité `∂Z_s/∂u = a₁u/Z_s` vaut pour les DEUX déterminations
-  D4 LE POINT DE L'EXERCICE — au moins un chart est à la fois
+    D3 `det J` enclosure excluding 0 on the whole box, and
+          the identity `dZ_s/du = a_1 u/Z_s` holds for BOTH determinations
+    D4 THE POINT OF THE EXERCISE: at least one chart is both
      ADMISSIBLE (D5.1 + D5.2) et certifié DISJOINT de sa propre tranche
      réelle. Sous la branche principale, cet ensemble était VIDE.
-  D5 NÉGATIF DE COMPOSANTE — une boîte dont `σ` est déterminé AU CENTRE
-     mais INDÉTERMINÉ sur la boîte doit être REFUSÉE, et la mutation
+    D5 COMPONENT NEGATIVE CONTROL: a box whose `sigma` is determined AT THE CENTRE
+          but UNDETERMINED on the box must be REFUSED, and the mutation
      « centre seulement » doit l'accepter à tort
-  D6 NÉGATIF DE JAUGE — un chart dont la jauge peut s'annuler sur la
+    D6 GAUGE NEGATIVE CONTROL: a chart whose gauge can vanish on the
      boîte est refusé même si son centre va bien
-  D7 TOUS LES CHARTS ADMISSIBLES SONT SAINS — gate universel, pas
+    D7 EVERY ADMISSIBLE CHART IS SOUND: a universal check, not
      d'existence
 
-Ce que ce script NE fait PAS : D5.4 (congruence `Q_source = J* Q_target J`)
-et D5.5 (transport de PD). Ils restent NON TESTÉS, et le succès de D5.1/
-D5.2 ne les préjuge pas.
+What this script does NOT do: congruence (`Q_source = J* Q_target J`)
+and positivity transport. They stay UNTESTED, and the success of the
+checks above does not prejudge them.
 
 Sorties : results/k3_cap_b1e2iii_d5_fullcell.json
 Usage   : k3_cap_b1e2iii_d5_fullcell.py [--selftest]
@@ -129,14 +129,14 @@ def _abs(tm):
 
 
 # ===========================================================================
-#  La section sur la boîte ENTIÈRE, détermination PAR LIGNE
+#  The section on the WHOLE box, determination PER ROW
 # ===========================================================================
 def build_section(S, g, eps, center, hw, centre_only=False):
-    """Les six `Z_a` et leurs dérivées sur la boîte entière.
+    """The six `Z_a` and their derivatives on the whole box.
 
-    `centre_only` est la MUTATION du gate D5 : elle détermine `σ` sur le
-    seul CENTRE au lieu de la boîte. Un code qui ferait cela accepterait
-    des cellules où la composante n'est pas certifiable — c'est ce que le
+    `centre_only` is the MUTATION of check D5: it determines `sigma` on the
+    centre alone instead of the box. Code doing that would accept
+    cells where the component is not certifiable, which is what the
     négatif doit exhiber.
     """
     u0 = complex(center[0], center[1])
@@ -200,7 +200,7 @@ def build_section(S, g, eps, center, hw, centre_only=False):
         if Zs is not None:
             Z[s] = Zs
             # `dZ_s = ∂R_s/(2 Z_s)` — INDÉPENDANT de la détermination,
-            # car Z_s² = R_s vaut pour les deux (gate D3).
+            # since Z_s^2 = R_s holds for both (check D3).
             iZ = Zs.inv()
             dZ[s] = (u.mul_real(A[r][1]) * iZ, v.mul_real(A[r][2]) * iZ)
         rows.append(rec)
@@ -208,7 +208,7 @@ def build_section(S, g, eps, center, hw, centre_only=False):
 
 
 def chart_certificate(Z, dZ, S2, g2):
-    """D5.1 + D5.2 sur la boîte ENTIÈRE, plus la disjonction d'avec la
+    """Chart criterion and Jacobian on the WHOLE box, plus disjointness from the
     tranche réelle du chart cible."""
     T2 = [j for j in range(6) if j not in S2]
     o = [x for x in T2 if x != g2]
@@ -233,7 +233,7 @@ def chart_certificate(Z, dZ, S2, g2):
     _, va = _abs(vp)
     out["u_absmax"], out["v_absmax"] = ua, va
     out["domain_ok"] = bool(ua <= 1 and va <= 1)
-    # disjonction d'avec la tranche réelle du chart CIBLE, sur la boîte
+    # disjointness from the real slice of the TARGET chart, on the box
     iu, iv = up.im_tm().to_iv(), vp.im_tm().to_iv()
     iul, iuh = float(mp.mpf(iu.a)), float(mp.mpf(iu.b))
     ivl, ivh = float(mp.mpf(iv.a)), float(mp.mpf(iv.b))
@@ -314,9 +314,9 @@ def build():
     S0, g0, eps0 = tuple(r0["S"]), r0["g"], tuple(r0["eps"])
     hw0 = float.fromhex(r0["hw_hex"])
     c0 = [float.fromhex(x) for x in r0["center_hex"]]
-    # boîte translatée pour que Im u ET Im v STRADDLENT 0, tout en ayant
+    # box translated so that Im u AND Im v STRADDLE 0, while having
     # un centre strictement négatif : σ déterminé au centre, INDÉTERMINÉ
-    # sur la boîte.
+    # on the box.
     cbad = [c0[0], -hw0 / 2, c0[2], -hw0 / 2]
     _Zb, _dZb, rows_box = build_section(S0, g0, eps0, cbad, hw0)
     _Zc, _dZc, rows_ctr = build_section(S0, g0, eps0, cbad, hw0,
@@ -455,7 +455,7 @@ def build():
 def _selftest():
     fails = []
 
-    # F-S1 : l'identité du Jacobien vaut pour les DEUX déterminations
+    # F-S1: the Jacobian identity holds for BOTH determinations
     import cmath
     a0, a1 = Fraction(-16, 9), Fraction(-8, 3)
     u0 = complex(0.3, -0.4)
@@ -475,7 +475,7 @@ def _selftest():
               f"a₁u/Z = {formula:.6f} vs contrôle {fd:.6f}")
 
     # F-S2 : NÉGATIF de composante — σ déterminé au centre, indéterminé
-    # sur la boîte. C'est la mutation demandée par la revue.
+    # on the box. This is the mutation the review asked for.
     A = Fraction(-8, 3)
     h = 0.001953125
     sig_box = rotated_sigma_from_coeffs(
@@ -490,7 +490,7 @@ def _selftest():
           f"sur la boîte = {sig_box} (indéterminé) mais σ au centre seul "
           f"= {sig_ctr} — la mutation accepterait à tort")
 
-    # F-S3 : la disjonction d'avec la tranche cible se lit sur les
+    # F-S3: disjointness from the target slice is read on the
     # enclosures de Im u' et Im v', et un intervalle contenant 0 ne
     # suffit PAS à conclure « disjoint »
     def disj(iul, iuh, ivl, ivh):
