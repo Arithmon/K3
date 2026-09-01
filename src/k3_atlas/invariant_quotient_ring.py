@@ -4,19 +4,19 @@ k3_cap_quotient_engine.py — base standard C[Z]/⟨Q_0,Q_1,Q_2⟩ Hermitiens
                              invariants Z_2^3.
 
 Design (GPT 5.6 + Brieuc 07-12) : la route quotient devient obligatoire
-après les findings du sampler_sweep (r_eff = 216 strictement constant vs
+after the sampler sweep found r_eff = 216 strictly constant against
 N ∈ {500,1000,2000} × 3 seeds, tol 1e-10) et le freeze test V_≤3→V_≤4
-(rien de gelé, min-max attendu mais sur espaces mal définis).
+(nothing frozen; the min-max was expected, but on ill-defined spaces).
 
-Ce module produit une base d'analyse quotientée COMPATIBLE avec la
+This module produces a quotient analysis basis COMPATIBLE with
 signature {"ij", "kl", "type"} du moteur spectral (basis_values,
-basis_chart_derivs) — seule la liste des monômes de départ change (on
+basis_chart_derivs: only the starting list of monomials changes
 retient uniquement les holomorphiques STANDARD hors ⟨Z_p²⟩_{p∈PIVOT}).
 
 Base standard :
   monome Z^I holo de degré d avec I = (i_1, ..., i_d) trié
   ↔ multiplicité α_i = # {k : i_k = i} ∈ {0, 1} pour i ∈ PIVOT.
-  Autrement dit chaque pivot apparaît au plus une fois dans I.
+    In other words each pivot appears at most once in I.
 
 Prédiction : dim quotient invariant Hermitien (Z_2^3, bidegré (d,d))
   d=0: 1  d=1: 10  d=2: 58  d=3: 218  d=4: 610  d=5: 1402
@@ -66,7 +66,7 @@ def is_standard_holo(I: Tuple[int, ...], pivot=PIVOT) -> bool:
 
 
 def enumerate_standard_holo(d: int, pivot=PIVOT) -> List[Tuple[int, ...]]:
-    """Liste des multi-index triés I de longueur d avec α_p ∈ {0, 1} pour p ∈ pivot.
+    """List of sorted multi-indices I of length d with alpha_p in {0, 1} for p in pivot.
 
     Format identique à combinations_with_replacement(range(6), d), filtré."""
     return [I for I in combinations_with_replacement(range(6), d)
@@ -82,12 +82,12 @@ def char_of(I: Tuple[int, ...]) -> Tuple[int, int, int]:
 
 
 def enumerate_sector_quotient(d: int, pivot=PIVOT) -> List[dict]:
-    """Énumération des Hermitiens invariants Z_2^3 (bidegré (d,d)) sur la
+    """Enumerate the Z_2^3 invariant Hermitian elements of bidegree (d,d) on the
     base STANDARD hors ⟨Z_p²⟩. Format identique à enumerate_sector du moteur.
 
-    Chaque élément est {"type": ..., "ij": I, "kl": K} avec type ∈
+    Each element is {"type": ..., "ij": I, "kl": K} with type in
     {"self", "real_pair", "imag_pair"} et char(I) == char(K) (invariance).
-    Convention d'ordre I < K pour éviter la double-comptabilité, et paire
+    Ordering convention I < K to avoid double counting, and a pair
     (real_pair, imag_pair) chacune contribuant à la dim réelle."""
     holo = enumerate_standard_holo(d, pivot)
     out = []
@@ -105,9 +105,9 @@ def enumerate_sector_quotient(d: int, pivot=PIVOT) -> List[dict]:
 
 def basis_upto_quotient(d_max: int, pivot=PIVOT) -> List[dict]:
     """DEPRECATED — voir basis_at_deg_quotient. Cumul (direct sum) : conserve
-    la sémantique de basis_upto (raw), mais RÉDONDANT sur K3 quand V_e est
-    inclus via ×s^{d-e} dans V_d. À utiliser uniquement pour comparaison
-    avec le raw."""
+    the semantics of basis_upto (raw), but REDUNDANT on the surface when V_e is
+    included through multiplication by s^{d-e} in V_d. To be used only for
+    comparison with the raw basis."""
     b = []
     for dg in range(1, d_max + 1):
         b += enumerate_sector_quotient(dg, pivot)
@@ -118,8 +118,8 @@ def basis_at_deg_quotient(d: int, pivot=PIVOT) -> List[dict]:
     """Base réelle Hermitienne invariante Z_2^3 au SEUL bidegré (d, d), mod
     ⟨Q_0, Q_1, Q_2⟩. Dim = Σ_χ m²_{d,χ} = 10, 58, 218, 610, 1402 pour d=1..5.
 
-    Fait pour V_≤d ≡ V_d (les fonctions sur K3 de bidegré ≤ d sont
-    naturellement incluses dans le bidegré (d, d) via multiplication par s^k
+    Holds because V_{<=d} is V_d: functions of bidegree at most d are
+    naturally included in bidegree (d, d) through multiplication by s^k
     au numérateur ET dénominateur ; s > 0 partout). Élimine la redondance
     de basis_upto_quotient (68 fn superflues à V_≤3, 286 à V_≤4)."""
     return enumerate_sector_quotient(d, pivot)
@@ -133,7 +133,7 @@ class ExactSparseMatrix:
     """Matrice rationnelle creuse, stockee par colonnes.
 
     ``entries_by_column[j]`` contient les couples ``(i, a_ij)`` tries par
-    ligne, avec ``a_ij`` un :class:`fractions.Fraction` non nul.  Cette
+    row, with ``a_ij`` a non-zero :class:`fractions.Fraction`.  This
     representation est volontairement independante de SciPy : elle reste
     exacte lors de la construction et de la serialisation, tout en offrant
     une conversion CSC explicite au consommateur numerique.

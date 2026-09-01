@@ -4,60 +4,60 @@ k3_cap_b1e2iii_p0a2_attrib.py — P0a2-A : ATTRIBUTION de largeur +
 congruence fixe préconditionnée (contrat GPT `gpt_b1e2iii_p0a2_direct_review`
 §2-§6 : C42-C46, A0-A4 ; demandes Kimi `kimi_p0a2_direct_review` V3/V7).
 
-Le mur mesuré par P0a2-direct (C = width(detQ)/h² ~ 2e3-2e4) n'a pas
+The wall measured by the direct probe (C = width(detQ)/h^2 around 2e3-2e4) does not
 encore de CAUSE établie (GPT C43-C45 : la largeur mélange variation
 réelle linéaire/quadratique, excès d'enclosure de la Hessienne,
-dépendances du déterminant). Ce probe la mesure AVANT de choisir
-l'outil qui la réduira (décision T4 = A4) :
+dependencies of the determinant). This probe measures it BEFORE choosing
+the tool that will reduce it:
 
   A0 provenance : M_H = (M+M†)/2 canonisé UNE fois au chargement (C42),
      hash publié, moteur float ET noyau intervalle consomment exactement
      M_H ; contrôle dégénéré h=0 rejoué (mid(Q_γ) ≡ float, rel < 5e-12) ;
-     gates dérivés des comptes, « exécutés » (pas « tous ») ; pricing
-     sérialisé dans le JSON (pas seulement la note).
+          checks derived from the counts, "executed" rather than "all"; pricing
+          serialised in the JSON, not only in the note.
   A1 décomposition de largeur (GPT §5-A1 + C44) : boîte B TÉMOIN
      D'ABORD (Kimi), puis A et C — grille h FIXE {4e-3, 2e-3, 1e-3,
      5e-4, 2.5e-4} (≥ 4 valeurs, pentes successives publiées, jamais
-     « loi » sur 2 points). À chaque h, POST-PROCESSING des deux jets
+          a "law" on 2 points). At each h, POST-PROCESSING of the two jets
      (centre + boîte) : largeur par FORME (Taylor-2 / valeur-moyenne /
      naïve / det-des-composantes / intersection finale, forme active),
-     et DÉCOMPOSITION EXACTE de la forme t2 (les largeurs d'intervalle
+          and EXACT DECOMPOSITION of the t2 form (the interval widths
      s'additionnent exactement) : w = w(val centre) + w(∇F(t₀)·δ)
      [variation réelle ordre 1] + w(½δᵀH(boîte)δ) [terme reste], avec
      w(½δᵀH(t₀)δ) [Hessienne EXACTE au centre, jet dégénéré] comme
-     échelle réelle du quadratique ⟹ excès d'enclosure de la Hessienne
+          true scale of the quadratic, isolating the enclosure excess of the Hessian
      = w(H boîte) − w(H centre), ISOLÉ. Normes ∇/H publiées. Sample
-     float min/max de det Q sur la boîte (PAS un certificat — sépare la
+          float min/max of det Q on the box (NOT a certificate: it separates the
      variation physique apparente de l'excès d'enclosure, GPT A1).
   A2 ablation (GPT §5-A2 + Kimi V7) : (i) congruence fixe R₀ (C46) —
      R₀ = inv(chol(G_ρ(t₀))†) gelé float par boîte (variante R₀ depuis
      Q_γ(t₀)) ; Q'_γ = R₀†Q_γR₀ assemblé AU NIVEAU DU JET (T2CIV,
      post-processing, aucune inversion d'intervalle), certificat
-     pivot+det sur l'objet normalisé — PD conservé exactement,
+          pivot and determinant on the normalised object, positive definiteness kept exactly,
      det' = det Q/det G_ρ = déterminant NORMALISÉ dimensionless (A3) ;
-     h_pass_raw vs h_pass_cong sur la même grille ; le témoin négatif
+          h_pass_raw against h_pass_cong on the same grid; the negative witness
      t_bad DOIT rester certifié non-PD sous congruence. (ii) split φ
      par élément (Kimi V7) : top-5 |c| individuels + groupe reste +
-     φ-combiné — la largeur du terme Hessienne de q00 (linéaire en c)
+          phi-combined: the width of the Hessian term of q00 (linear in c)
      se décompose ADDITIVEMENT par élément (exact) ⟹ part du top-5
-     dans C, mesurée. (218 jets individuels : hors budget — le
-     précalcul des monômes domine le coût, ~11 s/jet quel que soit le
+          in C, measured. (218 individual jets are out of budget: the
+          monomial precomputation dominates the cost, about 11 s per jet whatever
      nombre de coeffs non nuls ; consigné.)
   A3 pricing dimensionless (GPT §5-A3) : λ_min(Q_γ, G_ρ) généralisé
      float (centre + min échantillonné), det normalisé certifié après
      congruence, proxy de sur-enclosure = det_norm_min_float − det'.lo.
   A4 décision T4 (GPT §5-A4, seuils Kimi) : publiée depuis les mesures —
-     (1) si float reste > 0 là où l'enclosure échoue ET l'excès Hessienne
-     domine ⟹ représentation du reste = le problème, TM/affine justifié
+          (1) if float stays positive where the enclosure fails AND the Hessian excess
+          dominates, then the remainder representation is the problem and Taylor models are justified
      (discriminant synthétique Kimi OBLIGATOIRE) ; (2) si la variation
      réelle (lin + quad centre + span float) domine ⟹ un ordre supérieur
-     ne certifiera pas sans subdivision ; (3) si la congruence gagne déjà
+          will not certify without subdivision; (3) if congruence already wins
      ≥ ×10 en cellules d'atlas ⟹ première route de production.
   +  table de couverture commune (GPT §6) : 60 couples = 22 owner O1 +
      17 vacuités + 21 ambigus ; join avec C39 (26 échantillonnés) ;
-     les 17 ambigus SANS points nommés (demande Kimi §3).
+          the 17 ambiguous ones WITHOUT named points.
   +  erratum d'atlas (Kimi V3) : fourchette recalculée depuis les
-     ancres mesurées (l'équation de la note P0a2-direct donnait 8.7e11
+          measured anchors (the equation in the direct-probe note gave 8.7e11
      cellules/3e5 ans, pas 9e14/3e8 — corrigé, mur intact).
 
 Self-test (gates DISCRIMINANTS, négatifs inclus) :
@@ -150,11 +150,11 @@ def q_jets(S, g_col, eps, u0, v0, h, M_civ, coeffs, rho_w):
 
 def enclose_decompose(center, box, h):
     """Miroir EXACT de taylor2_enclose (T1 : bornes bit-identiques) +
-    décomposition additive de la forme t2 : les largeurs d'intervalle
+        additive decomposition of the t2 form: the interval widths
     s'additionnent exactement sous +, donc
       w_t2 = w(val centre) + w(Σ ∇·δ) + w(Σ ½H(boîte)δ²)
     et w(Σ ½H(t₀)δ²) (jet dégénéré = Hessienne EXACTE au centre) donne
-    l'échelle RÉELLE du quadratique ⟹ excès d'enclosure isolé."""
+        the TRUE scale of the quadratic, so the enclosure excess is isolated."""
     rad = iv.mpf([-h, h])
     sq_diag = iv.mpf([0, h * h])
     sq_off = iv.mpf([-h * h, h * h])
@@ -268,7 +268,7 @@ def r0_from_chol(Gmid):
 
 
 # ===========================================================================
-#  Float : G, Q, λ_min généralisé, sampling de boîte (PAS un certificat)
+#  Float: G, Q, generalised lambda_min, box sampling (NOT a certificate)
 # ===========================================================================
 def float_G_pair(S, g_col, eps, u, v, M_H, c218):
     Z, W = _float_section(S, g_col, eps, u, v)
@@ -282,7 +282,7 @@ def float_G_pair(S, g_col, eps, u, v, M_H, c218):
 
 
 def float_box_samples(S, g_col, eps, u0, v0, h, M_H, c218, rng, n=N_SAMPLES):
-    """min/max échantillonnés sur la boîte : det Q_γ, λ_min(Q, G_ρ)
+    """Sampled min/max on the box: det Q_gamma, generalised lambda_min(Q, G_rho)
     généralisé, det normalisé det Q/det G_ρ. Centre inclus."""
     pts = [(u0, v0)]
     du = rng.uniform(-h, h, (n, 4))
@@ -441,7 +441,7 @@ def coverage_table(tiling, probe):
 
 def atlas_erratum(direct):
     """Kimi V3 : fourchette recalculée depuis les ancres mesurées.
-    (L'équation de la note P0a2-direct « 9e14 cellules ~ 3e8 ans » vaut
+        (The equation in the direct-probe note, "9e14 cells, about 3e8 years", holds
     en fait 8.7e11/3e5 ans ; on republie depuis h_pass = √(marge/C).)"""
     margin = direct["s1_three_boxes"][1]["per_class"][0]["steps"][-1][
         "det"][0]                       # B_interior det.lo à h_pass
@@ -601,9 +601,9 @@ def build():
                          "w_quad_box_q00": d_e["w_quad_box"]})
         log(f"   élément {i} (c={c218[i]:.4g}) : w_quad(q00) = "
             f"{d_e['w_quad_box']:.3e}")
-    # sous-additivité GARANTIE (max-abs dans h_i·[−h²,h²]) : l'écart
-    # mesure le gain de CANCELLATION de l'assemblage combiné au niveau
-    # de la Hessienne — c'est LA mesure Kimi V7
+        # GUARANTEED sub-additivity (max-abs in h_i.[-h^2, h^2]): the gap
+        # measures the CANCELLATION gain of the combined assembly at the level
+        # of the Hessian, which is the measurement this probe exists for
     subadd_ok = (d_phi["w_quad_box"] <= (d_top["w_quad_box"]
                  + d_rest["w_quad_box"]) * (1 + 1e-12))
     cancel_gain = ((d_top["w_quad_box"] + d_rest["w_quad_box"])
@@ -861,7 +861,7 @@ def _selftest():
 
     w_phi, w_top, w_rest = (quad_q00(c218), quad_q00(mask),
                             quad_q00(c218 - mask))
-    # la largeur du terme Hessienne est SOUS-additive (max-abs dans
+        # the width of the Hessian term is SUB-additive (max-abs in
     # h_i·[−h²,h²]) — l'écart = gain de cancellation combiné (mesure V7)
     gain7 = (w_top + w_rest) / w_phi
     t7 = w_phi <= (w_top + w_rest) * (1 + 1e-12) and w_top < w_phi

@@ -5,9 +5,9 @@ identifiable gelée. MODULE importable (R1/R2 consomment design_on_sample,
 m_from_params9, params9_from_witness) + script de génération des artefacts.
 
 Cadrage : k3_cap_refit_cadrage_2026_07_15.md §3 (+ §6b résultats).
-L'ancien fit travaillait dans la base raw `basis_upto(3)[10:]` = 657 params
-pour un espace de fonctions identifiable de 208 (440 directions plates
-mesurées). Ce module construit et GÈLE la paramétrisation v2 :
+The earlier fit worked in the raw basis `basis_upto(3)[10:]` = 657 parameters
+for an identifiable function space of dimension 208 (440 flat directions
+measured). This module builds and FREEZES the v2 parametrisation:
 
   potentiel v2 :  K̃(Z) = log(Z†MZ) + Σ_j c_j · ψ_j(Z)
 
@@ -18,7 +18,7 @@ mesurées). Ce module construit et GÈLE la paramétrisation v2 :
   - C (218 × 208) : base ORTHONORMÉE L²(dV_FS, sample gelé seed=11) d'un
     complément de span(const, V₁) dans V₃, HIÉRARCHIQUE par blocs :
     48 colonnes = V₂⊖V₁ puis 160 colonnes = V₃⊖V₂.
-    (V₁ est porté par M ; la constante est tuée par le centrage — NB la
+    (V_1 is carried by M; the constant is killed by centring. Note that the
     constante vit DANS V₁ : Σ_i |z_i|²/s = 1, d'où rang(V₁ centré) = 9.)
 
 Construction (route équilibrée — jamais le Gram) : matrice de design
@@ -26,17 +26,17 @@ A = √w·(Q₃ − ⟨Q₃⟩_w), w = det G_FS·(16/N) (mesure de fit dV_FS, qu
 légère — tail study), CGS2 + passe de raffinement, représentations en
 coefficients exactes conservées.
 
-Artefacts (GELÉS — données du witness v2, pas des recalculables) :
+Artefacts (FROZEN: witness data, not recomputables):
   canonical/results/k3_cap_refit_param_C.npz   (C, C1, E13, mean, spec)
   canonical/results/k3_cap_refit_param.json    (selftests + diagnostics)
 
 Selftests bloquants (résultats du run gelé : note cadrage §6b, 8/8) :
   S1 rangs hiérarchiques exacts (9 / 48 / 160) ;
-  S2 orthonormalité sur le sample gelé ;
+    S2 orthonormality on the frozen sample;
   S3 complément : (A·C) ⊥ (A·C1), fuite constante < 1e-8 (∂∂̄const = 0) ;
   S4 G est AFFINE en c ;
   S5 invariance de rejauge du résidu Ricci r = log det G + 2 log|det M_S| ;
-  S6 généralisation : cond(Gram) sur un sample FRAIS (mesuré : 5.9) ;
+    S6 generalisation: cond(Gram) on a FRESH sample (measured: 5.9);
   S7 contraste : design raw 657 cond 1.88e19, rang(1e-8) = 217 = 208 + 9.
 
 Usage : k3_cap_refit_param.py [N_DRAW=1000] [SEED_FROZEN=11]
@@ -102,8 +102,8 @@ def m_from_params9(p9):
 
 
 def params9_from_witness():
-    """Projette le M du witness v1 sur la jauge det M = 1 (M → M/det^{1/6}
-    = rescale global de L par exp(−ū) ; le potentiel ne change que d'une
+    """Project the M of the v1 witness onto the gauge det M = 1 (M -> M/det^{1/6}),
+    a global rescaling of L by exp(-u); the potential changes only by an
     constante, invisible pour ∂∂̄ et pour var(r))."""
     d = load_witness()["npz"]
     rho10 = d["params_full"][:10]
@@ -176,7 +176,7 @@ def orth_block(A, cols, prev_C_list, tol=RANK_TOL):
 
 
 def load_param_artifact():
-    """Charge l'artefact gelé (C, C1, mean, p9_v1, spec). Pour R1/R2."""
+    """Load the frozen artefact (C, C1, mean, p9_v1, spec)."""
     d = np.load(RES / "k3_cap_refit_param_C.npz")
     return {k: d[k] for k in d.files}
 
@@ -249,8 +249,8 @@ def main():
     const_leak = float(np.abs((np.sqrt(w_frozen) @ AC)).max()
                        / np.sqrt(w_frozen.sum()))
     # seuil fuite constante : 1e-8 — bruit float de centrage amplifié par
-    # ‖C‖ (petits sv ~2e-4 du bloc V3), et direction NULLE de la métrique
-    # (∂∂̄ const = 0 : une composante constante de c ne change pas G)
+        # norm of C (small singular values around 2e-4 of the V3 block), and the NULL
+        # direction of the metric (the Hessian of a constant vanishes: a constant
     check("S3_complement", cross < 1e-10 and const_leak < 1e-8,
           f"max|⟨V1, ψ⟩| = {cross:.2e}, fuite constante = {const_leak:.2e} "
           f"(inoffensive : ∂∂̄const = 0)")

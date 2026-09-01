@@ -2,39 +2,39 @@
 """
 k3_cap_kahler_engine.py — primitives Kähler COHÉRENTES (convention holomorphe).
 
-Chantier refit post-mur-Ritz, acté dans la note
+Rebuilt after the Ritz wall, and recorded in the design note
 k3_cap_ritz_wall_reviews_confrontation_2026_07_15.md §7 : le moteur
 historique `k3_cap_spectral_engine` assemble ses blocs avec W†
-(convention refit_polish) ⟹ G_code n'est PAS ∂∂̄K̃ (E1 med 0.39-0.57),
+(polish convention), so G_code is NOT the complex Hessian of K (E1 median 0.39-0.57),
 dω̃ ≠ 0 (E2 med 0.187), congruence K violée ×31.7 (B), volume 71.76 vs
-4π² (E3). Ce module réécrit TOUTES les primitives dans la convention
+4 pi^2 (E3). This module rewrites EVERY primitive in the single
 chain-rule holomorphe (GPT §Route : « primitive séparée, orientation
-unique ») ; il ne modifie PAS l'ancien moteur, qui reste l'artefact
+convention; it does NOT touch the older engine, which stays the artefact
 contre lequel le witness v1 a été certifié.
 
 === CONVENTION LOCK ============================================================
-Bloc unique de conventions — les notes de design CITENT ce bloc au lieu
+One block of conventions: the design notes CITE this block instead of
 de redériver (reco R2, friction_report_2026-07-15).
 
  1. Entrée : section HOLOMORPHE brute du chart radical (Z, W), jauge
     Z_g = 1, W[a,α] = ∂Z_a/∂w^α (w = (u,v)). JAMAIS la frame sphère
-    (z, U) de sphere_horizontal_frame : z = Z/√s n'est pas holomorphe
-    en w, la chain rule pure ne s'y applique pas.
+    (z, U) from sphere_horizontal_frame: z = Z/sqrt(s) is not holomorphic
+    in w, so the plain chain rule does not apply there.
  2. Potentiel : K̃(Z) = log(Z†MZ) + Σ_e c_e φ_e(Z)/s^{d_e},
     s = |Z|², M = LL† hermitienne. Invariance projective : Z → λ(w)·Z
     (λ holomorphe sans zéro) ajoute log|λ|² pluriharmonique ⟹ G inchangé
     (testé : gate G5, transition de charts).
  3. Gradient holomorphe : p_I = Wᵀ·∇z^I — SANS conjugaison
-    (l'ex-convention W† est le bug racine du mur Ritz).
- 4. ∂_α s = zW_α = Σ_a Z̄_a·W[a,α]   (s n'est pas holomorphe : terme réel).
+    (the former W-dagger convention is the root cause of the Ritz wall).
+ 4. d_alpha s = zW_alpha = sum_a conj(Z_a).W[a,alpha]  (s is not holomorphic: a real term).
  5. Métrique : G_αβ̄ = ∂²(K̃∘Z)/∂w^α∂w̄^β
              = Σ_{a,b} W[a,α]·conj(W[b,β])·(∂²K̃/∂Z_a∂Z̄_b)
     — chain rule pure, AUCUN terme du premier ordre (Z(w) holomorphe).
  6. Mesure : dV = det G · d⁴(Re u, Im u, Re v, Im v).
-    ∫_{K3} dV = 4π² pour TOUT vecteur c (les φ/s^d sont des fonctions
+    the volume integral equals 4 pi^2 for EVERY vector c (the phi/s^d are functions
     globales ⟹ ∂∂̄-exactes ; log(ρ/s) global lisse ⟹ [ω̃] = [ω_FS]
-    rigide). C'est un GATE (G7), pas un datum ajustable — la « scale
-    libre » de l'ancienne note T2 était un artefact.
+    rigid). This is a verification check (G7), not an adjustable datum: the free
+    scale of the older note was an artefact.
 ================================================================================
 
 Dérivation des blocs (Wirtinger, ∂̄_b s = Z_b, ∂̄_b Z̄_a = δ_ab) :
@@ -49,15 +49,15 @@ Dérivation des blocs (Wirtinger, ∂̄_b s = Z_b, ∂̄_b Z̄_a = δ_ab) :
                     + m_J·conj(m_L)·( d(d+1)·s^{-d-2}·zW⊗z̄W
                                       − d·s^{-d-1}·WᵀW̄ ) ]
    Les éléments réels (self / real_pair / imag_pair) regroupent leurs
-   paires ; le terme croisé se factorise en g1⊗z̄W + zW⊗conj(g1) avec
+   pairs; the cross term factors as g1 (x) conj(z)W + zW (x) conj(g1) with
    g1 = ∂φ (gradient holomorphe de l'élément réel).
 
  dérivée premières (forme faible) : q̃ = φ/s^d ⟹
    ∂_α q̃ = s^{-d}·( g1_α − d·φ·zW_α/s )
 
 Contrôle FS (M = I, c = 0) : G_FS = (WᵀW̄)/s − zW⊗z̄W/s² = ∂∂̄ log s.
-NB : conj(G_FS) = U†U de l'ancien moteur en frame sphère — cohérent avec
-le contrôle E0 du diagnostic (conj matche à 5.6e-08).
+Note: conj(G_FS) equals U-dagger U of the older engine in the sphere frame, consistent with
+the E0 diagnostic check (conj matches to 5.6e-08).
 """
 from __future__ import annotations
 
@@ -87,8 +87,8 @@ def holomorphic_grads(Z, W, multis):
 
         p[k, I, α] = Σ_a W[k, a, α] · (∂z^I/∂Z_a)(Z[k])  =  (Wᵀ·∇z^I)[k, α]
 
-    C'est la règle de chaîne scalaire pour un chart holomorphe Z(w) —
-    ∂_α(z^I∘Z) = p[·, I, α] EXACTEMENT (pas une convention parmi
+    This is the scalar chain rule for a holomorphic chart Z(w):
+    d_alpha(z^I of Z) = p[., I, alpha] EXACTLY (not one convention among
     d'autres). Remplace multi_values_and_projected_grads (W†) dont les
     « gradients » n'étaient les dérivées d'aucune fonction (congruence K
     violée ×31.7, diagnostic 07-15 §B)."""
@@ -128,7 +128,7 @@ def fs_pullback(Z, W):
 
 
 # ===========================================================================
-#  Potentiel (LA définition — les FD du gate dérivent exactement ceci)
+#  Potential (THE definition: the finite differences of the check derive exactly this)
 # ===========================================================================
 def potential_value(Z, M, coeffs, basis, multis, midx):
     """K̃(Z) = log(Z†MZ) + Σ_e c_e φ_e(Z)/s^{d_e}  (K,) réel."""
@@ -149,13 +149,13 @@ def potential_value(Z, M, coeffs, basis, multis, midx):
 # ===========================================================================
 def chart_metric_kahler(Z, W, M, coeffs, basis, multis, midx,
                         want_element_data=False):
-    """g_chart (K,2,2) = Wᵀ·(∂²K̃/∂Z∂Z̄)·W̄ dans les coords (u,v).
+    """g_chart (K,2,2) = W^T . (second derivative of K in Z, conj(Z)) . conj(W) in the (u,v) coordinates.
 
     ENTRÉE : (Z, W) section holomorphe BRUTE du chart (jauge Z_g = 1),
-    telle que produite par sample_chart / reconstruct. Pas de frame
+    as produced by sample_chart or reconstruct. No frame is assumed: any
     sphère. Formule GÉNÉRALE (termes zW inclus) : valide pour toute
-    section holomorphe, pas seulement horizontale — la covariance de
-    jauge est testée par la gate G5."""
+    holomorphic section, not only a horizontal one; gauge covariance is
+    tested by check G5."""
     K = Z.shape[0]
     s = (np.abs(Z) ** 2).sum(axis=1)
     zW = dlog_s(Z, W)
@@ -223,9 +223,9 @@ def basis_chart_grads(basis, m, p, s, midx, zW):
 
         ∂_α q̃ = s^{-d}·( ∂_α φ − d·φ·zW_α/s )
 
-    avec ∂_α φ assemblé des p holomorphes (mêmes regroupements
+    with d_alpha phi assembled from the holomorphic p (same groupings
     self/real/imag que chart_metric_kahler). p DOIT venir de
-    holomorphic_grads sur la même section (Z, W) que zW."""
+    holomorphic_grads on the same section (Z, W) as zW."""
     K = m.shape[0]
     nb = len(basis)
     dQ = np.empty((K, nb, 2), dtype=complex)
@@ -253,9 +253,9 @@ def basis_chart_grads(basis, m, p, s, midx, zW):
 
 def dirichlet_pairing(G, dQa, dQb=None):
     """E(a,b) pointwise = 2 Re[g^{αβ̄} ∂_α a · conj(∂_β b)] ; (K,na,nb).
-    Identique en forme à l'ancien moteur — mais G et dQ doivent venir
-    des primitives de CE module (le mélange des conventions est le bug
-    que ce module supprime)."""
+    Same shape as the older engine, but G and dQ must come
+    from the primitives of THIS module (mixing conventions is the bug
+    that this module removes)."""
     Ginv = np.linalg.inv(G)
     if dQb is None:
         dQb = dQa

@@ -10,23 +10,23 @@ Cadrage : k3_cap_refit_cadrage_2026_07_15.md §4-5 ; paramétrisation R0
   Mesure de fit  :  w = det G_FS · 16/n_c  (dV_FS, queue légère — tail study)
 
 Structure exploitée : G(p9, c) = G_ρ(M(p9)) + Σ_e (C·c)_e T_e(x) est AFFINE
-en c ⟹ les 218 champs tensoriels T_e sont PRÉCOMPUTÉS une fois (packés
+in c, so the 218 tensor fields T_e are PRECOMPUTED once (packed
 hermitiens 4-réels [g00, g11, Re g01, Im g01]) et
 
   ∂r/∂c_j = tr(G⁻¹ T̃_j),  T̃ = T·C   (analytique exact, un GEMM)
   ∂F/∂c = 2·⟨ŵ (r − r̄), ∂r/∂c⟩ ;    ∂F/∂p9 : FD central (9 params, ρ-bloc seul)
 
-Sample de fit STRATIFIÉ gelé : budget uniforme par chart + boost ×4 sur les
+Frozen STRATIFIED fit sample: a uniform budget per chart, boosted by 4 on the
 2 charts porteurs de queue (tail study : S=(0,2,5) g=1 ~40 %, S=(1,3,5) g=2
-~25 %) — exact car les charts sont des strates indépendantes (poids 16/n_c
-par chart). La strate min|R| du cadrage §5 est REPORTÉE à R2-si-besoin : la
-mesure de fit dV_FS est à queue légère (Hill 7-9), le boost de bande ne
-s'impose que pour les diagnostics dV₀ (les monitors le diront).
+(about 25 percent), exact because the charts are independent strata (weight 16/n_c
+per chart). The min|R| stratum is DEFERRED to a later revision if needed: the
+fit measure has a light tail (Hill 7-9), so the band boost is only
+required for the diagnostics (the monitors will say so).
 
 Baselines (script __main__) :
   B0  FS pur (p9 = 0, c = 0) ;
   B1  v1 projeté : M(p9_v1) + projection L²(dV_FS, sample R0) du potentiel
-      raw 657 de v1 sur les 208 ψ (départ continuation R2) + décomposition
+      raw 657 of v1 onto the 208 psi (starting point for the continuation) and decomposition
       (part V₁ absorbée par M, part const, résidu).
 
 Sortie : canonical/results/k3_cap_refit_functional.json
@@ -119,7 +119,7 @@ def stratified_fit_sample(seed, n_base, boost=BOOST):
 # ===========================================================================
 def element_tensors_packed(Z, W):
     """(K, 218, 4) : T_e = ∂∂̄(q̃_e) pullback, par élément B₃ (d = 3).
-    Miroir EXACT du bloc φ de chart_metric_kahler — vérifié par le
+    EXACT mirror of the phi block of chart_metric_kahler, verified by the
     selftest T1 (contraction vs moteur à ~1e-14)."""
     K = Z.shape[0]
     s = (np.abs(Z) ** 2).sum(axis=1)
@@ -250,11 +250,11 @@ class FitProblem:
 
 
 # ===========================================================================
-#  Projection du potentiel v1 sur les 208 ψ (départ continuation R2)
+#  Projection of the v1 potential onto the 208 psi (start of the continuation)
 # ===========================================================================
 def project_v1(log=print):
-    """Projette f_v1 = Σ coeffs_raw q̃_raw sur (ψ_j) via le design R0
-    (seed 11 — MÊME sample que l'orthonormalisation de C). Retourne
+    """Project f_v1 = sum coeffs_raw onto (psi_j) through the design
+    (seed 11: the SAME sample as the orthonormalisation of C). Returns
     c208_v1 + décomposition en normes²."""
     art = load_param_artifact()
     C, C1 = art["C"], art["C1"]
@@ -317,7 +317,7 @@ def main():
     p9_v1 = prob.p9_v1
     rng = np.random.default_rng(123)
 
-    # T1 — contraction T·c vs moteur (le miroir est-il exact ?)
+    # T1: contraction T.c against the engine (is the mirror exact?)
     c_test = 1e-2 * rng.standard_normal(208)
     rho_p = prob.rho_packed(p9_v1)
     gp = prob.G_packed(rho_p, c_test)
