@@ -16536,7 +16536,7 @@
     "métrique du pont : Qmat, Weyl, congruences latérales (F4)",
     "les voisines de codimension 1 (un seul signe Im change) : la conjugaison simultanée ne les atteint pas"
   ],
-  "gates": {
+  "checks": {
     "S1_geometry_matches_c127d": true,
     "S2_all_clipped_flush_both_im_faces": true,
     "S3_corrected_bridge_contains_core_and_mirror": true,
@@ -16545,8 +16545,8 @@
     "S6_universal_regime_assignment_64": true,
     "S7_refusal_channel_fires_on_straddle_and_on_contact": true
   },
-  "gates_passed": 7,
-  "gates_total": 7,
+  "checks_passed": 7,
+  "checks_total": 7,
   "verdict": "SCOUT VERT — le pont corrigé 2H porte un régime analytique global par ligne sur les 64 tuiles, et le facteur 2 de la note est confirmé comme une erreur réelle, pas une question de convention.",
   "provenance": {
     "git_head": "3df8856b52f4becbef3557ec40a5e6dc09462f95",

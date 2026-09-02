@@ -848,7 +848,7 @@ def _bb_job(arg):
     if W is None:
         rec["refused"] = "overlap_not_open"
         return rec
-    ei, ej = _G["sheet records"][i], _G["sheet records"][j]
+    ei, ej = _G["sheet_records"][i], _G["sheet_records"][j]
     ci, hi_ = center_hw(Wi)
     cj, hj_ = center_hw(Wj)
     Zi, _di, ri = build_section_bilateral(
@@ -1133,7 +1133,7 @@ def build():
     # had explicitly FAILED, and bridge-to-bridge edges without any
     # computed transition, then enumerated triples from that graph.
     # A NERVE edge is a CERTIFIED transition. Nothing else.
-    _G["sheet records"] = {r["tile"]: tuple(r["F2d_ledger_derived"])
+    _G["sheet_records"] = {r["tile"]: tuple(r["F2d_ledger_derived"])
                      for r in rows}
     bb_geo = [(a, b) for a, b in itertools.combinations(clipped, 2)
               if inter(bridges[a], bridges[b]) is not None]
@@ -1141,7 +1141,7 @@ def build():
         f"transitions en cours de certification…")
     with mpctx.Pool(N_WORKERS, initializer=_init,
                     initargs=((S, g, eps), leaves, halos, bridges,
-                              _G["sheet records"])) as pool:
+                              _G["sheet_records"])) as pool:
         bb = pool.map(_bb_job, bb_geo)
     bb_ok = [x for x in bb if x.get("certified")]
     bb_bad = [x for x in bb if not x.get("certified")]

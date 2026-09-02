@@ -414,7 +414,7 @@
     "width_det": 0.014598076230053072,
     "t_call_s": 10.813379049301147
   },
-  "gates": {
+  "checks": {
     "D1_identity": true,
     "D2_witness_3boxes": true,
     "D3_negative_certified": true,

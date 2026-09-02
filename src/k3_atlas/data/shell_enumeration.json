@@ -91877,7 +91877,7 @@
       "note": "le volume GÉOMÉTRIQUE ne se somme pas sur les classes ; les deux comptes sont publiés séparément"
     }
   },
-  "gates_prereg": {
+  "checks_prereg": {
     "E1_exhaustive_no_silent_drop": true,
     "E2_ledger_closes": true,
     "E3_recomputed_prediction_matches_status": true,

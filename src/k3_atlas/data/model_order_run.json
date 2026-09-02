@@ -606,7 +606,7 @@
       "caveat": "diagnostic échantillonné ; le certificat est D⁴(boîte) dans la forme E4"
     }
   ],
-  "gates_executed": {
+  "checks_executed": {
     "R2min_B8em3_and_C4em3_PASS": true,
     "R2cible_all_classes_BAC_at_1p7em2": false,
     "K1_Ct4_at_4em3_le_29": true,

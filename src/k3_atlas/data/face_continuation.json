@@ -1,0 +1,473 @@
+{
+  "artifact": "face_continuation",
+  "mode": "full",
+  "contract": "phase B1 du contrat RFace-P0 — a review §7.3-B, amendée a review §1/§4/§5 ; témoin unique w_one_neighbor",
+  "claim": "On the witness tile, flush with the high Re u face, the section of the 2H Re bridge, built with the certified base record, identical regimes and the chart revalidated on the enlarged box, restricts EXACTLY to the certified base section (theta = +1, 6 of 6) and CROSSES the face: on the cube W_cell, the bridge intersected with the neighbouring cell, the record derived row by row is rebuilt and closes again (6 of 6). NO registry label closes naively (`none_closes`, including OUR OWN on our side: the control measures it), so identification is BY EXPLICIT CONVERSION: kappa = eps_canonical times eps_registry is derived from the source control, confined to the rows the core turned from rotated to canonical, both labels are converted and RECONSTRUCTED, and exactly ONE closes (class 0, equal to the derived record), while the converted class 1 breaks only on the predicted coordinate 5. After conversion, NO ADDITIONAL deck transformation is observed at this face. This is a FIRST LOCAL ANALYTIC CONTINUATION between two canonically addressed cells, not an atlas of the neighbour: neither atlas transitions, nor the metric, nor the second witness are paid here; the naive `none_closes` check stays published as a separate diagnostic.",
+  "witness": {
+    "tile": 295,
+    "face_re_u": [
+      -183,
+      256
+    ],
+    "chart_target": {
+      "S": [
+        0,
+        1,
+        3
+      ],
+      "g": 2
+    }
+  },
+  "cell": {
+    "S": [
+      0,
+      1,
+      5
+    ],
+    "g": 2,
+    "eps": [
+      1,
+      1,
+      1
+    ]
+  },
+  "geometry": {
+    "w0": [
+      9,
+      16384
+    ],
+    "bridge_re": [
+      [
+        [
+          -11721,
+          16384
+        ],
+        [
+          -11703,
+          16384
+        ]
+      ],
+      [
+        [
+          -9,
+          16384
+        ],
+        [
+          9,
+          16384
+        ]
+      ],
+      [
+        [
+          -23537,
+          32768
+        ],
+        [
+          -23519,
+          32768
+        ]
+      ],
+      [
+        [
+          -9,
+          16384
+        ],
+        [
+          9,
+          16384
+        ]
+      ]
+    ],
+    "f0_bridge": [
+      [
+        [
+          -11721,
+          16384
+        ],
+        [
+          -183,
+          256
+        ]
+      ],
+      [
+        [
+          -9,
+          16384
+        ],
+        [
+          9,
+          16384
+        ]
+      ],
+      [
+        [
+          -23537,
+          32768
+        ],
+        [
+          -23519,
+          32768
+        ]
+      ],
+      [
+        [
+          -9,
+          16384
+        ],
+        [
+          9,
+          16384
+        ]
+      ]
+    ],
+    "mirror_re_f0": [
+      [
+        [
+          -183,
+          256
+        ],
+        [
+          -11703,
+          16384
+        ]
+      ],
+      [
+        [
+          -9,
+          16384
+        ],
+        [
+          9,
+          16384
+        ]
+      ],
+      [
+        [
+          -23537,
+          32768
+        ],
+        [
+          -23519,
+          32768
+        ]
+      ],
+      [
+        [
+          -9,
+          16384
+        ],
+        [
+          9,
+          16384
+        ]
+      ]
+    ],
+    "W_cell": [
+      [
+        [
+          -183,
+          256
+        ],
+        [
+          -11703,
+          16384
+        ]
+      ],
+      [
+        [
+          -9,
+          16384
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      [
+        [
+          -23537,
+          32768
+        ],
+        [
+          -23519,
+          32768
+        ]
+      ],
+      [
+        [
+          -9,
+          16384
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "W_cell_widths": [
+      [
+        9,
+        16384
+      ],
+      [
+        9,
+        16384
+      ],
+      [
+        9,
+        16384
+      ],
+      [
+        9,
+        16384
+      ]
+    ],
+    "W_cell_is_cube": true
+  },
+  "ledger_f0": [
+    1,
+    -1,
+    -1
+  ],
+  "regimes_widened": [
+    "principal",
+    "canonical",
+    "canonical"
+  ],
+  "restriction_to_f0": {
+    "closed": true,
+    "pattern": {
+      "0": 1,
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1
+    },
+    "min_margin": 1.0482956705354063
+  },
+  "neighbor_ledger": {
+    "derivation_probe_eps_plus": {
+      "closed": false,
+      "pattern": {
+        "0": 1,
+        "1": -1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": -1
+      },
+      "min_margin": 1.0478772928458435
+    },
+    "eps_derived": [
+      1,
+      -1,
+      -1
+    ],
+    "rebuilt": {
+      "closed": true,
+      "pattern": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "min_margin": 1.0478772928458435
+    }
+  },
+  "candidates": {
+    "0": {
+      "eps_registered": [
+        1,
+        1,
+        1
+      ],
+      "regimes": [
+        "principal",
+        "canonical",
+        "canonical"
+      ],
+      "closed": false,
+      "pattern": {
+        "0": 1,
+        "1": -1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": -1
+      },
+      "min_margin": 1.0478772928458435
+    },
+    "1": {
+      "eps_registered": [
+        1,
+        1,
+        -1
+      ],
+      "regimes": [
+        "principal",
+        "canonical",
+        "canonical"
+      ],
+      "closed": false,
+      "pattern": {
+        "0": 1,
+        "1": -1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "min_margin": 1.0478772928458435
+    }
+  },
+  "naive_closure_outcome": "none_closes",
+  "naive_closure_note": "NO registry label closes naively, INCLUDING our own on our own side (see `control`): naive label closure is not an identification criterion, and the control is what proves it. The registry label lives in the registry convention; the bridge record in that of the sign-certified regimes (rotated to canonical absorbs the component). The control pattern MEASURES the conversion, and identification is RELATIVE.",
+  "control": {
+    "closed": false,
+    "pattern": {
+      "0": 1,
+      "1": -1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": -1
+    },
+    "min_margin": 1.048295985625245,
+    "eps_registered_ours": [
+      1,
+      1,
+      1
+    ],
+    "regimes": [
+      "principal",
+      "canonical",
+      "canonical"
+    ]
+  },
+  "conversion": {
+    "kappa": [
+      1,
+      -1,
+      -1
+    ],
+    "kappa_derived_from_control_pattern": true,
+    "kappa_confined_to_regime_changed_lines": true,
+    "core_source_determinations": [
+      "principal",
+      "rotated",
+      "rotated"
+    ],
+    "eps_converted_by_class": {
+      "0": [
+        1,
+        -1,
+        -1
+      ],
+      "1": [
+        1,
+        -1,
+        1
+      ]
+    },
+    "note": "kappa = eps_canonical_source times eps_registry_source, row by row. The conversion is CONFINED to the rows whose determination changed (rotated at the core, canonical on the bridge); kappa = +1 on the row that stayed principal."
+  },
+  "candidates_converted": {
+    "0": {
+      "eps_converted": [
+        1,
+        -1,
+        -1
+      ],
+      "closed": true,
+      "pattern": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "min_margin": 1.0478772928458435
+    },
+    "1": {
+      "eps_converted": [
+        1,
+        -1,
+        1
+      ],
+      "closed": false,
+      "pattern": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": -1
+      },
+      "min_margin": 1.0478772928458435
+    }
+  },
+  "identified_class": 0,
+  "winner_converted_equals_derived_ledger": true,
+  "deck_statement": "After explicit conversion of the registry label into the canonical record, the continuation keeps class 0 and NO ADDITIONAL deck transformation is observed at this face. The RAW pattern of the control, extended to the six coordinates, is (+1,-1,+1,+1,+1,-1), the same diagonal as D: here it corrects the naive injection of a label from another convention, and it is NOT a sheet change after conversion. The unqualified sentence about no deck at this face was too strong.",
+  "predicted_diff_coord": 5,
+  "negative_mutation": {
+    "mutated_line_s": 1,
+    "eps_mutated": [
+      1,
+      1,
+      -1
+    ],
+    "closed": false,
+    "pattern": {
+      "0": 1,
+      "1": -1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1
+    },
+    "min_margin": 1.0478772928458435
+  },
+  "conventions_note": "The recorded sheet labels are class labels in the registry convention; the candidates are built under the sign-certified regime rule (the convention of the clipped regions, that of the base arc). Identification and derivation are published side by side; any discordance would be a result, not a correction.",
+  "not_paid_here": [
+    "the second witness, two orders, commutation",
+    "atlas transitions and the extended nerve",
+    "the metric (hardened transport, delta = 1e-5)",
+    "the atlas of the neighbouring cell",
+    "the low faces (enumeration boundary)",
+    "the 895 other pairs"
+  ],
+  "checks": {
+    "B1a_upstream_green_full_modes": true,
+    "B1b_geometry_2H_exact_negative_narrow": true,
+    "B1c_section_on_widened_box_chart_revalidated": true,
+    "B1d_restriction_equals_certified_f0_section": true,
+    "B1e_neighbor_ledger_derived_and_rebuilt": true,
+    "B1f_explicit_label_to_ledger_conversion_identifies": true,
+    "B1g_single_line_mutation_breaks": true,
+    "B1h_no_silent_filtering": true
+  },
+  "checks_passed": 8,
+  "checks_total": 8,
+  "verdict": "B1 v2 DELIVERED: a first local analytic continuation between two canonically addressed cells. The sheet reached is class 0, identified BY EXPLICIT CONVERSION (kappa derived, candidates converted and rebuilt, exactly one closing); no ADDITIONAL deck after conversion.",
+  "provenance": {
+    "git_head": "8f9e7d3886396eb8bc2d60b2c9de6c35dedd95c1",
+    "python": "3.14.4",
+    "platform": "Linux-7.0.0-30-generic-x86_64-inconnu-with-glibc2.43",
+    "mp_prec": 200,
+    "wall_s": 3.0,
+    "inputs": {
+      "dyadic_cover.json": "83f30f0e78cb9746b8c181a4a4ecc99d1587c481d53d6e713a1d293d859e7f8d",
+      "atlas_assembly.json": "ab99f76619e045b6ed357e8eb8ab4cb22daf3389cd378f13bc3777c95fcf92a7",
+      "residual_closure.json": "e1a5985f799dfa489dde1640a2a65b493390ce7c161b9e7b65c8144c7014d9cd",
+      "bridge_preliminary.json": "fd04dacbd7f5da29f351b7de81ce8683a7c9e89b7940c0bf1e10d408a538a154",
+      "bridge_continuation.json": "e425fa1c28659a38609972651b7dc33e0bfdae50c06b98598a7234ad0e163609",
+      "face_preliminary.json": "d10a8f397dff1ff5c39bd6ad3e054ffcc5d5f4b8b6895adbcf7c23f61bb34f32"
+    },
+    "self_sha256": "6c6535a8972f68dd56904d37a73337176ff113b44bc9f2cbdffed27119f3291b"
+  }
+}

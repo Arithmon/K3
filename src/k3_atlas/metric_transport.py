@@ -228,7 +228,7 @@ def _bridge_metric_job(arg):
     S, g, _eps = _G["cell"]
     leaf = _G["leaves"][i]
     S2, g2 = tuple(leaf["chart"]["S"]), leaf["chart"]["g"]
-    eps_src = _G["sheet records"][i]           # sheet record du PONT, dérivé en F2
+    eps_src = _G["sheet_records"][i]           # sheet record du PONT, dérivé en F2
     kw = {"fixed_eps2": tuple(leaf["eps_target"]),
           "fixed_sigma2": list(leaf["sigma_target"])}
     if kind == "mutation_J":
@@ -276,7 +276,7 @@ def _edge_metric_job(arg):
     S2, g2 = tuple(leaf["chart"]["S"]), leaf["chart"]["g"]
     kw = {"fixed_eps2": tuple(leaf["eps_target"]),
           "fixed_sigma2": list(leaf["sigma_target"])}
-    r = _metric_on_box(S, g, _G["sheet records"][a], W, S2, g2, kw)
+    r = _metric_on_box(S, g, _G["sheet_records"][a], W, S2, g2, kw)
     out.update(r)
     return out
 

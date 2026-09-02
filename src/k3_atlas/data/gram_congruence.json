@@ -1,0 +1,45 @@
+{
+  "phase": "B1.e.2.iii congruence/positivity transport — congruence des Gram et transport de positivité sur cellule entière",
+  "witness_sha256": "738006ef56238f0496b228c06ce33596011a5e316e4fa174a37b58500ac29b4c",
+  "tm_config": {
+    "poly_deg": 4,
+    "unary_series_deg": 4
+  },
+  "provenance": {
+    "git_head": "8f9e7d3886396eb8bc2d60b2c9de6c35dedd95c1",
+    "sha256_source": "4c9861fc17ceb99f6e355a866dcffecbf8b4fe5c822c1032d4730f5678a9f0b5",
+    "sha256_script": "479d6242437374be2930ca90e1135bb29c6677dbc2ad9eba3373069ea6029040",
+    "sha256_kernel": "9dbff485e807c567f3530a9b494bfba19b8e9a670e932bb7f0885f0bb39004af",
+    "python": "3.14.4",
+    "platform": "Linux-7.0.0-30-generic-x86_64-inconnu-with-glibc2.43",
+    "wall_s": 404.9146933555603
+  },
+  "convention": {
+    "established": "Q(Z, W·A) = A^T · Q · conj(A)",
+    "rejected_mutation": "A* Q A (does not work)",
+    "note": "the same statement as `Q_source = J* Q_target J` of the review contract, up to convention (which argument is conjugate-linear, and J against J*)"
+  },
+  "cells": [],
+  "E2_quadratic": {
+    "A^T Q conj(A)": true,
+    "A* Q A": false
+  },
+  "E5_phase_mutation_congruence_still_holds": true,
+  "note_E5": "EXPECTED true: congruence is BRANCH AGNOSTIC; it relates two descriptions of the same configuration, whatever the branch choice, provided it is COHERENT, and it is, since (u',v') derives from the source Z. E5 is therefore NOT a discriminating negative control for congruence; E6 (perturbing the Jacobian) is, and it breaks.",
+  "note_E3_non_tautological": "Q_target is built from the NATIVE section of the target chart (its own rational coefficients, its own sheet), NOT pushed from the source. The first version computed it by pushing W through the inverse Jacobian then pulling back: the perturbation cancelled and the check could not fail; E6 revealed it.",
+  "E6_jacobian_mutation_congruence_still_holds": true,
+  "not_established": [
+    "the dyadic cover cover multi-chart",
+    "globalisation"
+  ],
+  "checks_prereg": {
+    "E1_gauge_invariance": false,
+    "E2_quadratic_in_W": true,
+    "E3_congruence_D54": false,
+    "E4_PD_transport_D55": false,
+    "E6_jacobian_mutation_breaks": false,
+    "C125B_same_projective_point": false,
+    "C125C_target_component_certified": false
+  },
+  "verdict": "CONGRUENCE AND POSITIVITY TRANSPORT (checks 1/7). The structure: `Q` is computed from `(Z, W)` with `W[a][A] = dZ_a/d(u,v)_A`, and two properties suffice: (a) `Q` is QUADRATIC in W, `Q(Z, W.A) = A^T Q conj(A)`; (b) `Q` is GAUGE INVARIANT, of degree 0 in `Z`. Setting `Z' = Z/Z_{g'}` and `W_{Z'} = W'.J`, they compose into `Q_source = Jᵀ Q_target conj(J)`. **THE CONVENTION IS VERIFIED, NOT ASSUMED**: check E2 measures BOTH forms and shows that `A^T Q conj(A)` works (True) where `A* Q A` does NOT (False); the mutation is what makes E2 discriminating, and it is the same statement as the review contract up to convention. RESULT on 0 cell(s), each with a named ADMISSIBLE chart (criterion and Jacobian already certified on the whole box): gauge invariance **True**, congruence **True**; the difference `Q_source - J^T Q_target conj(J)` contains 0 on all four components. POSITIVITY: `Q_target` is certified positive definite on the box (pivot > 0 and det > 0) and so is `Q_source`, the two agreeing by congruence: `det(J^T Q_t conj(J)) = |det J|^2.det Q_t`, and `det J` is bounded away from 0. MUTATION: perturbing `J` BREAKS the congruence (NON). SCOPE: established on 0 cell(s) and ONE chart each, not a multi-chart cover, not a globalisation. No atlas figure moves."
+}

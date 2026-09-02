@@ -63898,7 +63898,7 @@
     "c129d_gates": "9/9"
   },
   "verdict": "C129-E (full) — LE CERTIFICAT MÉTRIQUE REJOINT L'ATLAS. Sur 316/316 halos (règles symétrique ET clippée, toute l'échelle ρ employée, 2 strates couvertes), le transport C127 durci C128 tient SUR LA BOÎTE DU HALO à ledger FIGÉ : régime de certification inchangé (E2 — kinds et déterminations identiques aux registres du core), congruence 0 ∈ D avec ratio relatif certifié max 7.743e-06 ≤ 1e-5 (E3), hermiticité + Weyl λmin_lo(C) − ‖D‖_F^up > 0 partout (E4, slack min 2.969e-02) : la PD de Q_source est prouvée PAR TRANSPORT sur chaque halo, invariance de jauge comprise (E5). Les 3 négatifs cassent (J perturbé, ε' faux, σ' faux — canal R8). Avec C127-D (atlas 316 charts) et C129-D (transitions = égalités analytiques), le SEUL élément du dossier atlas qui restait sur les cores est désormais sur les halos : l'atlas quantitatif relatif de la cellule est complet — coordonnées, transitions exactes, et métrique. NON PAYÉ : le raccord à travers la face {Im u = Im v = 0} (C129-F), les 895 autres paires, R12-C.",
-  "gates": {
+  "checks": {
     "E1_all_halo_transports_certified": true,
     "E2_ledger_frozen_regime_unchanged": true,
     "E3_relative_residual_below_delta": true,
@@ -63908,8 +63908,8 @@
     "E7_no_silent_cap": true,
     "E8_upstream_green": true
   },
-  "gates_passed": 8,
-  "gates_total": 8,
+  "checks_passed": 8,
+  "checks_total": 8,
   "provenance": {
     "git_head": "c98fb8e11d37f8d21e2a1cfd7346346022f2a4d9",
     "python": "3.14.4",
@@ -63920,7 +63920,7 @@
     "n_workers": 4,
     "preregistered": {
       "delta_rel": 1e-05,
-      "ledger": "FIGÉ (core), jamais re-dérivé"
+      "sheet_record": "FIGÉ (core), jamais re-dérivé"
     },
     "inputs": {
       "k3_cap_b1e2iii_c127d_atlas.json": "9dc56bf7c6db61596ee7b9f6249d220a19e3e821fcca9f4bb5f4cf923fcbab07",

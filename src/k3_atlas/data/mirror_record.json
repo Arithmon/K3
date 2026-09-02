@@ -978,28 +978,28 @@
         "regime": "principal",
         "sigma": "non utilisé",
         "theta": 1,
-        "ledger": "ε⁺ = ε⁻",
+        "sheet_record": "ε⁺ = ε⁻",
         "identity": "conj(√_p(conj R)) = √_p(R), coupure (−∞,0] invariante par conjugaison"
       },
       {
         "regime": "rotated",
         "sigma": "RE-DÉRIVÉ (σ⁺ = −σ⁻)",
         "theta": 1,
-        "ledger": "ε⁺ = ε⁻",
+        "sheet_record": "ε⁺ = ε⁻",
         "identity": "√_rot(R,σ) = σ·i·√_p(−R) et w(−σ) = −w(σ) : le flip de σ absorbe le signe"
       },
       {
         "regime": "rotated",
         "sigma": "FIGÉ (σ⁺ = σ⁻)",
         "theta": -1,
-        "ledger": "ε⁺ = −ε⁻",
+        "sheet_record": "ε⁺ = −ε⁻",
         "identity": "même identité, σ ne bougeant pas c'est ε qui absorbe le signe"
       },
       {
         "regime": "canonical",
         "sigma": "≡ +1 PAR DÉFINITION",
         "theta": -1,
-        "ledger": "ε⁺ = −ε⁻",
+        "sheet_record": "ε⁺ = −ε⁻",
         "identity": "w = i√_p(−R) et conj(w(conj R)) = −w(R) ; σ étant épinglé, le régime canonique est NÉCESSAIREMENT en convention figée"
       }
     ],
@@ -1012,7 +1012,7 @@
     },
     "failures_source": [],
     "failures_target": [],
-    "ledgers": [
+    "sheet_records": [
       {
         "index": 0,
         "rule": "symmetric",
@@ -28351,7 +28351,7 @@
     "les voisines de codimension 1 (un seul signe Im change) : la conjugaison simultanée ne les atteint pas",
     "la bijection d'adresses et le Kraft du cover conjugué (F1c) : sans cellule canonique cible, l'objet n'existe pas encore"
   ],
-  "gates": {
+  "checks": {
     "A1_mirror_geometry_and_bridge_selfconjugate": true,
     "A2_no_canonical_cell_matches_mirror_box": true,
     "A3_our_couple_stops_exactly_at_im_zero": true,
@@ -28362,8 +28362,8 @@
     "D4_canonical_law_on_all_bridges": true,
     "D5_uninverted_ledger_breaks_by_O1": true
   },
-  "gates_passed": 9,
-  "gates_total": 9,
+  "checks_passed": 9,
+  "checks_total": 9,
   "verdict": "F1 LIVRÉ AVEC UN REFUS ASSUMÉ — l'identification canonique échoue (et c'est le résultat), les lois de ledger sont établies ligne par ligne et par régime sur tout l'atlas.",
   "provenance": {
     "git_head": "6105a9f92a05504b135d2d3e2511399c638336b5",

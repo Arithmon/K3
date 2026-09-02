@@ -1,8 +1,8 @@
 {
-  "artifact": "k3_cap_b1e2iii_c129f_f2f3_bridge_atlas",
+  "artifact": "bridge_continuation",
   "mode": "full",
   "claim_level": "local_analytic_continuation_to_derived_mirror_box",
-  "claim": "Les 64 CARTES-PONTS bilatérales sont construites sur la géométrie 2H corrigée ; leur régime est assigné PAR LIGNE au signe certifié de Re R sans essai ; leur ledger est DÉRIVÉ du côté inférieur puis re-vérifié. Chacune se recolle EXACTEMENT au côté INFÉRIEUR et à la FEUILLE CONTINUÉE `D·Z_conj` sur des overlaps OUVERTS, ancres strictement intérieures. `D = diag(+1,−1,+1,+1,+1,−1)` est une TRANSFORMATION DE DECK : c'est elle, et non un simple « le conjugué n'est pas le continué », qui sépare les deux feuilles — et l'atlas CONJUGUÉ SEUL ne se recolle PAS (64/64), il reste un diagnostic. PORTÉE STRATIFIÉE : 64/64 ponts sont bilatéraux dans les deux directions Im, mais seuls 36/64 sont ouverts dans les QUATRE coordonnées — 24 restent relatifs à une face Re, 4 à deux faces, et ces faces appartiennent aux voisines de codimension 1. Le NERF ne compte que des arêtes CERTIFIÉES (380 nœuds : 316 inférieurs + 64 ponts ; 5396 arêtes L↔L importées de C127-D, 64 B↔L, 210/210 B↔B) ; le graphe géométrique est publié séparément sous le nom `domain_intersection_graph`. Le lot reste une CONTINUATION ANALYTIQUE LOCALE VERS UNE BOÎTE MIROIR DÉRIVÉE (F1a a refusé l'identification canonique). Aucune métrique n'est certifiée ici.",
+  "claim": "The 64 bilateral BRIDGE CHARTS are built on the corrected 2H geometry; their regime is assigned PER ROW from the certified sign of Re R without trial; their record is DERIVED from the lower side then re-checked. Each glues EXACTLY to the LOWER side and to the CONTINUED SHEET `D.Z_conj` on OPEN overlaps, with anchors strictly interior. `D = diag(+1,-1,+1,+1,+1,-1)` is a DECK TRANSFORMATION: it is what separates the two sheets, rather than a bare statement that the conjugate is not the continued sheet, and the CONJUGATE atlas ALONE does NOT glue (64 of 64); it stays a diagnostic. STRATIFIED SCOPE: 64 of 64 bridges are bilateral in both imaginary directions, but only 36 of 64 are open in ALL FOUR coordinates; 24 stay relative to one real face, 4 to two faces, and those faces belong to the codimension-1 neighbours. The NERVE counts only CERTIFIED edges (380 nodes: 316 lower plus 64 bridges; 5396 lower-to-lower edges imported from the atlas step, 64 bridge-to-lower, 210 of 210 bridge-to-bridge); the geometric graph is published separately as `domain_intersection_graph`. The result stays a LOCAL ANALYTIC CONTINUATION TOWARDS A DERIVED MIRROR BOX (canonical identification having been refused). No metric is certified here.",
   "cell": {
     "S": [
       0,
@@ -32,7 +32,7 @@
   "bridge_ledger_census": {
     "(1, -1, -1)": 64
   },
-  "real_structure_finding": "SUR LE COIN, L'INVOLUTION ANTIHOLOMORPHE AGIT AVEC DES SIGNES MIXTES. R y est RÉEL : positif sur la ligne principale (racine RÉELLE, fixée par conjugaison) et négatif sur les deux lignes canoniques (racine i√(−R) PUREMENT IMAGINAIRE, donc NIÉE). Le point conjugué et le point continué analytiquement à travers le coin sont donc DEUX POINTS DISTINCTS de P⁵ au-dessus du même (ū, v̄) — la jauge étant normalisée Z_g = 1, des signes indépendants par ligne ne sont PAS une renormalisation projective. CONSÉQUENCE POUR LE LEVIER N° 1 DU CADRAGE : la voisine conjuguée est un atlas légitime, mais ce n'est PAS celui que la continuation analytique atteint. Le motif de θ est PRÉDIT ligne par ligne depuis le régime, et la prédiction est vérifiée sur 64/64 — c'est un résultat, pas une surprise résiduelle.",
+  "real_structure_finding": "ON THE CORNER, THE ANTIHOLOMORPHIC INVOLUTION ACTS WITH MIXED SIGNS. R is REAL there: positive on the principal row (REAL root, fixed by conjugation) and negative on the two canonical rows (root i.sqrt(-R) PURELY IMAGINARY, hence NEGATED). The conjugate point and the point continued analytically across the corner are therefore TWO DISTINCT POINTS of projective space above the same base point; the gauge being normalised to Z_g = 1, independent signs per row are NOT a projective renormalisation. CONSEQUENCE FOR THE FIRST LEVER OF THE SCOPING NOTE: the conjugate neighbour is a legitimate atlas, but it is NOT the one that analytic continuation reaches. The theta pattern is PREDICTED row by row from the regime, and the prediction is verified on 64 of 64: a result, not a residual surprise.",
   "min_theta_margin": 1.0427582354064293,
   "max_recentred_difference_sup": 4.476263794097943e-15,
   "min_overlap_width": 0.00054931640625,
@@ -78,18 +78,18 @@
       1,
       -1
     ],
-    "identity": "Z_upper_conj = D · Z_bridge sur l'overlap supérieur, certifiée AU COEFFICIENT",
+    "identity": "Z_upper_conj = D . Z_bridge on the upper overlap, certified AT THE COEFFICIENT level",
     "measured_on_bridges": 64,
-    "why_the_algebra_is_not_the_content": "tout diagonal de signes préserve les quadriques Σ μ^m Z² ; ce qui distingue CE D est qu'il est celui, et le seul, qui relie la section conjuguée à la section du pont — c'est le négatif R1e qui porte la discriminance, pas l'algèbre"
+    "why_the_algebra_is_not_the_content": "any diagonal of signs preserves the quadrics; what singles out THIS D is that it is the one, and the only one, linking the conjugate section to the bridge section; the R1e negative control carries the discriminating power, not the algebra"
   },
   "domain_intersection_graph": {
-    "note": "GRAPHE DE DOMAINES, PAS un nerf d'atlas : une arête n'y est qu'une intersection de boîtes de largeur > 0. Publié sous ce nom depuis que la revue a montré que la v1 comptait comme arêtes des raccords explicitement en échec.",
+    "note": "A GRAPH OF DOMAINS, NOT an atlas nerve: an edge here is only an intersection of boxes of positive width. Published under that name since a review showed that v1 counted as edges des raccords explicitement en échec.",
     "n_bridge_side_geometric": 128,
     "n_bridge_bridge_geometric": 210,
     "n_edges": 338
   },
   "nerve": {
-    "note": "NERF : uniquement les arêtes dont la TRANSITION est certifiée. Les arêtes inférieur↔inférieur sont IMPORTÉES de C127-D (vérifié vert), pas recalculées.",
+    "note": "NERVE: only the edges whose TRANSITION is certified. The lower-to-lower edges are IMPORTED from the atlas step (verified green), not recalculées.",
     "n_nodes": 380,
     "n_lower_nodes": 316,
     "n_bridge_nodes": 64,
@@ -9208,7 +9208,7 @@
     }
   ],
   "ambient_scope": {
-    "note": "STRATIFIÉ, corrigé après revue : « les 64 cartes deviennent ambiantes » était une sur-portée.",
+    "note": "STRATIFIÉ, corrigé après review : « les 64 cartes become ambient was an overreach.",
     "bilateral_in_both_im_directions": 64,
     "fully_open_in_all_four_coordinates": 36,
     "still_relative_to_one_re_face": 24,
@@ -9216,13 +9216,13 @@
   },
   "negatives": {
     "F2e_i": "faux pont de demi-largeur H : inclusion refusée",
-    "F2e_ii": "σ de composante sur le pont : REFUS `component_sigma_undetermined_on_bridge` — c'est la raison structurelle du régime canonique",
+    "F2e_ii": "component rule on the bridge: REFUSAL `component_sigma_undetermined_on_bridge` — c'est the structural reason for the canonical regime",
     "F2e_iii": "boîte élargie où Re R straddle : REFUS `re_R_straddles_zero_no_regime` (self-test)",
-    "F3d": "mutation NON SCALAIRE D_bad = diag(1,−1,1,1,1,1) (jauge et coordonnées affines INCHANGÉES, une seule ligne canonique niée) ⟹ le raccord tombe. La v1 niait TOUTES les coordonnées, or Z et −Z sont LE MÊME point de P⁵ : elle ne testait que la sensibilité de la normalisation Z_g = 1 au changement de représentant, pas la détection d'un mauvais POINT. Dette de discriminance, relevée par la revue et payée ici.",
-    "F3d_global_negation_control": "la négation globale reste le MÊME point projectif sur 64/64 — publié pour dire pourquoi la v1 ne valait rien",
-    "R1e": "un seul signe changé dans D ⟹ l'identité de deck CASSE : c'est ce négatif, et non l'algèbre des quadriques, qui porte la discriminance du théorème"
+    "F3d": "mutation NON SCALAIRE D_bad = diag(1,−1,1,1,1,1) (jauge et coordonnées affines INCHANGÉES, une seule canonical row negated) makes the gluing fall. v1 negated ALL coordinates, yet Z and -Z are THE SAME point of projective space: it tested only the sensibilité de la normalisation Z_g = 1 au change of representative, not the detection of a mauvais POINT. Dette de discriminance, relevée par la review et payée ici.",
+    "F3d_global_negation_control": "the global negation stays the SAME projective point on 64 of 64; published to say why v1 was worthless",
+    "R1e": "a single sign changed in D makes the deck identity BREAK: it is this negative control, and not the algebra of the quadrics, that carries the discriminating power of the theorem"
   },
-  "triple_cocycle_note": "Les 588 triples NEUFS sont énumérés depuis les seules arêtes CERTIFIÉES. Leur cocycle θ_ij·θ_jk·θ_ki = +1 est IMPLIQUÉ : chaque θ vaut +1 sur un domaine qui CONTIENT la boîte triple, et θ est discret. Ce n'est donc PAS un test indépendant et il n'est pas gaté comme tel — même honnêteté qu'en C127-D sur son propre cocycle. Ce qui resterait à payer au triple est la congruence MÉTRIQUE, qui appartient à F4.",
+  "triple_cocycle_note": "The 588 NEW triples are enumerated from the certified edges alone. Their cocycle theta_ij.theta_jk.theta_ki = +1 is IMPLIED: each theta equals +1 on a domain CONTAINING the triple box, and theta is discrete. It is therefore NOT an independent test and is not checked as one, with the same honesty as the atlas step on its own cocycle. What would remain to pay at the triple is METRIC congruence, qui appartient à F4.",
   "per_bridge": [
     {
       "tile": 252,
@@ -55370,10 +55370,10 @@
     }
   ],
   "not_paid_here": [
-    "la MÉTRIQUE du pont (F4) : Qmat, Weyl, congruences latérales — le chemin C129-E exige le constructeur bilatéral, qui existe maintenant, mais le run ne l'utilise pas",
-    "l'identification canonique de la voisine : F1a a REFUSÉ, l'atlas supérieur est DÉRIVÉ par conjugaison, pas énuméré",
-    "le raccord à travers les faces Re : les ponts y restent des cartes RELATIVES (marge 0 contre la face de la cellule)",
-    "les voisines de codimension 1, les 895 autres paires, R12-C"
+    "the METRIC of the bridge: Qmat, Weyl, lateral latérales — le chemin the full run exige le constructeur bilateral, which now exists, but the run does not use it",
+    "the canonical identification of the neighbour, which REFUSED; the upper atlas is DERIVED by conjugation, not enumerated",
+    "gluing across the real faces, where the bridges stay cartes RELATIVES (marge 0 contre la face de la cellule)",
+    "les voisines de codimension 1, les 895 autres paires, the later scaling"
   ],
   "checks": {
     "F2a_bridge_geometry_2H_matches_scout": true,
@@ -55396,16 +55396,16 @@
   },
   "checks_passed": 17,
   "checks_total": 17,
-  "verdict": "F2 + F3 + R1-R4 LIVRÉS — 64 ponts bilatéraux, recollés EXACTEMENT au côté inférieur (64) ET à la feuille CONTINUÉE D·Z_conj (64), 210/210 transitions pont↔pont certifiées, nerf de 380 nœuds connexe sur arêtes certifiées SEULEMENT. D = diag(+,−,+,+,+,−) est la transformation de deck qui sépare le conjugué du continué.",
+  "verdict": "F2 + F3 + R1-R4 LIVRÉS — 64 ponts bilatéraux, recollés EXACTEMENT au côté inférieur (64) ET à la feuille CONTINUÉE D·Z_conj (64), 210/210 transitions pont↔pont certifiées, nerf de 380 nœuds connexe sur arêtes certified ONLY. D = diag(+,-,+,+,+,-) is the deck transformation separating the conjugate from the continued sheet.",
   "provenance": {
-    "git_head": "117aa037273af2e05b8e7e55d3410b5d16cdc60b",
+    "git_head": "8f9e7d3886396eb8bc2d60b2c9de6c35dedd95c1",
     "python": "3.14.4",
-    "platform": "Linux-7.0.0-28-generic-x86_64-inconnu-with-glibc2.43",
+    "platform": "Linux-7.0.0-30-generic-x86_64-inconnu-with-glibc2.43",
     "mp_prec": 200,
     "tm_order": 4,
     "unary_series_deg": 4,
-    "wall_s": 86.4,
-    "n_workers": 4,
+    "wall_s": 43.6,
+    "n_workers": 6,
     "preregistered": {
       "im_dirs": [
         1,
@@ -55414,12 +55414,12 @@
       "theta_required": 1
     },
     "inputs": {
-      "k3_cap_b1e2iii_d5_6_dyadic_cover.json": "576fc7c20f11163206e0e55ad7fdde94844ed8601fa37cb8a2494fc74611ea0a",
-      "k3_cap_b1e2iii_c127d_atlas.json": "9dc56bf7c6db61596ee7b9f6249d220a19e3e821fcca9f4bb5f4cf923fcbab07",
-      "k3_cap_b1e2iii_c127e_residual.json": "55563aa0dcbe102c1852136010aca03001bacea5591eec2940f1a029e6d352d3",
-      "k3_cap_b1e2iii_c129f_bridge_scout.json": "57d1e7c92fad05fbf27fabdc47d07a325f69f3e749677323575703e459af6287",
-      "k3_cap_b1e2iii_c129f_f1_mirror_ledger.json": "a2204eb531803e40bcb952b486acc559397c849fc8565b66db3112a8ce46a2ea"
+      "dyadic_cover.json": "83f30f0e78cb9746b8c181a4a4ecc99d1587c481d53d6e713a1d293d859e7f8d",
+      "atlas_assembly.json": "ab99f76619e045b6ed357e8eb8ab4cb22daf3389cd378f13bc3777c95fcf92a7",
+      "residual_closure.json": "e1a5985f799dfa489dde1640a2a65b493390ce7c161b9e7b65c8144c7014d9cd",
+      "bridge_preliminary.json": "fd04dacbd7f5da29f351b7de81ce8683a7c9e89b7940c0bf1e10d408a538a154",
+      "mirror_record.json": "de1f41a1856ff119fe2a9bd0973683a9f31ddd82011049e7890a87526365cc82"
     },
-    "self_sha256": "c3ef86c99301f462bc1bb7fff00ba669266b9512089f6968b889022c2c47107e"
+    "self_sha256": "583a7c8c5238c5039a116d6c1e2a989d3d26b28ce797c941f238e2a7055b62f7"
   }
 }

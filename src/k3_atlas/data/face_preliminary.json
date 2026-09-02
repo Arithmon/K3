@@ -1203,7 +1203,7 @@
     "l'ouverture du cover au-delà des faces basses (frontière d'énumération : chantier d'ÉNUMÉRATION, pas de raccord)",
     "les 895 autres paires"
   ],
-  "gates": {
+  "checks": {
     "A1_geometry_and_strata_match_frozen_atlas_and_f2f3": true,
     "A2_registry_universe_equals_f1a_counts_and_shas": true,
     "A3_face_verdicts_preregistered_no_cover_gap": true,
@@ -1213,8 +1213,8 @@
     "A7_no_silent_filtering": true,
     "A8_address_square_closed_including_diagonal": true
   },
-  "gates_passed": 8,
-  "gates_total": 8,
+  "checks_passed": 8,
+  "checks_total": 8,
   "verdict": "SCOUT VERT (v2, amendé 14ᵉ revue) — la cellule voisine est ADRESSÉE sur les deux faces hautes avec DEUX classes candidates (la feuille atteinte se décide en B1), le carré du témoin 315 est fermé diagonale comprise (B3 déverrouillé à l'adresse), et les faces basses sont une FRONTIÈRE D'ÉNUMÉRATION déclarée, pas un trou.",
   "provenance": {
     "git_head": "8284db412253ffe09f2672b931020df332d7fdc1",

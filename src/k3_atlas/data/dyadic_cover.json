@@ -12606,7 +12606,7 @@
   ],
   "not_globalised": "Ce cover porte sur UNE cellule résiduelle. Ni la globalisation de l'holonomie ni R12-C ne sont touchées.",
   "verdict": "Cover dyadique d'UNE cellule résiduelle : **252 tuiles**, chacune avec **son propre chart** certifié sur toute la tuile, et **64 boîtes résiduelles** à la profondeur 3. **98.4375 % du volume de la cellule est couvert** ; le résidu vaut **1.5625 %**. Sur 3 tuiles transportées, la congruence D5.4 et le transport de positivité D5.5 passent, avec un résidu relatif maximal de **3.923e-07**, et la mutation du Jacobien casse sur chacune.",
-  "gates": {
+  "checks": {
     "H1_exact_dyadic_partition": true,
     "H2_every_tile_reverified": true,
     "H3_residual_shrinks_and_is_localised": true,
@@ -12617,8 +12617,8 @@
     "H8_jacobian_mutation_breaks": true,
     "H9_no_silent_cap": true
   },
-  "gates_passed": 9,
-  "gates_total": 9,
+  "checks_passed": 9,
+  "checks_total": 9,
   "provenance": {
     "git_head": "9c679568494a831ed2c8f4e28ec4fc3ee4646c16",
     "python": "3.13.7",

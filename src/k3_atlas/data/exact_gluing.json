@@ -30726,7 +30726,7 @@
   "min_target_radicand_absmin": 0.5108163260444334,
   "min_anchor_margin": 2.0454030036926154,
   "verdict": "C129-D (full) — L'IDENTITÉ DE TRANSITION EST EXACTE. Sur 316/316 halos, les hypothèses du lemme d'unicité de la racine analytique sont TOUTES certifiées : déterminations et ledger inchangés (G1), jauge minorée 7.158e-01 > 0 (G2), radicandes source et cible minorés 2.606e-01 / 5.108e-01 > 0 sur le halo entier (G3 — la garde de coupure impliquait déjà F ≠ 0, le gate le rend explicite), transfert de quadriques vérifié EXACTEMENT sur Q (G4 : V_S·A = −V_T, Vandermonde entier à nœuds distincts, aucun intervalle), ancre dans le halo (G5b, Fraction) et séparation stricte à l'ancre AVEC reste TM qui choisit la racine + sur chaque ligne (G5, marge min 2.045e+00, refus si ambigu). CONCLUSION (lemme, note jointe) : Zt_{s'} = Z_{s'}/Z[g'] sur TOUT le halo, donc P = Z EXACTEMENT — et sur chaque overlap les sections sources coïncident ponctuellement (θ = +1 de C127-D, marge min 1.042e+00), donc P_i = P_j est une ÉGALITÉ ANALYTIQUE, pas une congruence sous δ. Les défauts ~1e-12 de C127-D deviennent des CROSS-CHECKS (C129-D3). Les 6 négatifs cassent tous — chaque hypothèse du lemme est falsifiable séparément (ε', σ', algèbre exacte, F = 0, ancre hors domaine, registre forgé). NON PAYÉ : transport métrique sur les halos (C129-E), raccord à travers la face (C129-F), 895 autres paires, R12-C.",
-  "gates": {
+  "checks": {
     "G1_ledger_and_determinations_unchanged": true,
     "G2_gauge_bounded_from_zero": true,
     "G3_radicands_nonvanishing": true,
@@ -30737,8 +30737,8 @@
     "G7_negatives_all_break": true,
     "G8_no_silent_cap": true
   },
-  "gates_passed": 9,
-  "gates_total": 9,
+  "checks_passed": 9,
+  "checks_total": 9,
   "provenance": {
     "git_head": "d5b5f4e0689f31c41cb5540ee3f1936995c71371",
     "python": "3.14.4",
