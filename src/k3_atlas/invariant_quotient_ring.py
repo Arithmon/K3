@@ -1,21 +1,24 @@
 #!/usr/bin/env python3
 """
-invariant_quotient_ring.py — base standard C[Z]/⟨Q_0,Q_1,Q_2⟩ Hermitiens
-                             invariants Z_2^3.
+invariant_quotient_ring.py — standard basis of the Hermitian
+Z_2^3-invariants of C[Z]/<Q_0, Q_1, Q_2>.
 
-Design (GPT 5.6 + Brieuc 07-12) : la route quotient devient obligatoire
-after the sampler sweep found r_eff = 216 strictly constant against
-N ∈ {500,1000,2000} × 3 seeds, tol 1e-10) et le frozen manifest test V_≤3→V_≤4
-(nothing frozen; the min-max was expected, but on ill-defined spaces).
+The quotient route became mandatory after the sampler sweep found
+r_eff = 216 strictly constant against N in {500, 1000, 2000} times 3
+seeds at tolerance 1e-10, and after the frozen manifest test from
+V_{<=3} to V_{<=4} froze nothing; the min-max was expected, but on
+ill-defined spaces.
 
-This module produces a quotient analysis basis COMPATIBLE with
-signature {"ij", "kl", "type"} du moteur spectral (basis_values,
-basis_chart_derivs: only the starting list of monomials changes
-retient uniquement les holomorphiques STANDARD hors ⟨Z_p²⟩_{p∈PIVOT}).
+This module produces a quotient analysis basis COMPATIBLE with the
+signature {"ij", "kl", "type"} of the spectral engine (basis_values,
+basis_chart_derivs): only the starting list of monomials changes, since
+it retains only the STANDARD holomorphic ones outside <Z_p^2> for p a
+pivot.
 
-Base standard :
-  monome Z^I holo de degré d avec I = (i_1, ..., i_d) trié
-  ↔ multiplicité α_i = # {k : i_k = i} ∈ {0, 1} pour i ∈ PIVOT.
+Standard basis:
+  a holomorphic monomial Z^I of degree d with I = (i_1, ..., i_d) sorted
+  corresponds to multiplicities alpha_i = #{k : i_k = i} in {0, 1} for
+  i a pivot.
     In other words each pivot appears at most once in I.
 
 Prédiction : dim quotient invariant Hermitien (Z_2^3, bidegré (d,d))
@@ -55,10 +58,11 @@ NONPIVOT = tuple(i for i in range(6) if i not in PIVOT)
 
 
 def is_standard_holo(I: Tuple[int, ...], pivot=PIVOT) -> bool:
-    """True ssi le monôme Z^I (I trié) a chaque pivot ≤ 1 fois.
+    """True if and only if the monomial Z^I (I sorted) has each pivot at
+    most once.
 
-    Équivalent : pour tout p ∈ PIVOT, I.count(p) ≤ 1.
-    Complète Z^I = Π Z_{I[k]} pour I ∈ combinations_with_replacement."""
+    Equivalently: for every pivot p, I.count(p) <= 1. It completes
+    Z^I = product of Z_{I[k]} for I in combinations_with_replacement."""
     for p in pivot:
         if I.count(p) > 1:
             return False
@@ -74,7 +78,8 @@ def enumerate_standard_holo(d: int, pivot=PIVOT) -> List[Tuple[int, ...]]:
 
 
 def char_of(I: Tuple[int, ...]) -> Tuple[int, int, int]:
-    """Caractère Z_2^3 du monôme Z^I (I trié) : Σ COORD_CHARS[i] mod 2."""
+    """Z_2^3 character of the monomial Z^I (I sorted): the sum of
+    COORD_CHARS[i] modulo 2."""
     c = np.zeros(3, dtype=int)
     for i in I:
         c += COORD_CHARS[i]
@@ -82,13 +87,15 @@ def char_of(I: Tuple[int, ...]) -> Tuple[int, int, int]:
 
 
 def enumerate_sector_quotient(d: int, pivot=PIVOT) -> List[dict]:
-    """Enumerate the Z_2^3 invariant Hermitian elements of bidegree (d,d) on the
-    base STANDARD hors ⟨Z_p²⟩. Format identique à enumerate_sector du moteur.
+    """Enumerate the Z_2^3 invariant Hermitian elements of bidegree (d,d)
+    on the STANDARD basis outside <Z_p^2>. The format is identical to
+    enumerate_sector in the engine.
 
     Each element is {"type": ..., "ij": I, "kl": K} with type in
-    {"self", "real_pair", "imag_pair"} et char(I) == char(K) (invariance).
-    Ordering convention I < K to avoid double counting, and a pair
-    (real_pair, imag_pair) chacune contribuant à la dim réelle."""
+    {"self", "real_pair", "imag_pair"} and char(I) == char(K)
+    (invariance). The ordering convention I < K avoids double counting,
+    and a pair contributes both a real_pair and an imag_pair, each
+    counting towards the real dimension."""
     holo = enumerate_standard_holo(d, pivot)
     out = []
     for I in holo:
@@ -115,28 +122,30 @@ def basis_upto_quotient(d_max: int, pivot=PIVOT) -> List[dict]:
 
 
 def basis_at_deg_quotient(d: int, pivot=PIVOT) -> List[dict]:
-    """Base réelle Hermitienne invariante Z_2^3 au SEUL bidegré (d, d), mod
-    ⟨Q_0, Q_1, Q_2⟩. Dim = Σ_χ m²_{d,χ} = 10, 58, 218, 610, 1402 pour d=1..5.
+    """Real Hermitian Z_2^3-invariant basis at the SINGLE bidegree (d, d),
+    modulo <Q_0, Q_1, Q_2>. The dimension is 10, 58, 218, 610, 1402 for
+    d = 1 to 5.
 
-    Holds because V_{<=d} is V_d: functions of bidegree at most d are
-    naturally included in bidegree (d, d) through multiplication by s^k
-    au numérateur ET dénominateur ; s > 0 partout). Élimine la redondance
-    de basis_upto_quotient (68 fn superflues à V_≤3, 286 à V_≤4)."""
+    This holds because V_{<=d} is V_d: functions of bidegree at most d
+    are naturally included in bidegree (d, d) through multiplication by
+    s^k in the numerator AND the denominator, s being positive
+    everywhere. It removes the redundancy of basis_upto_quotient (68
+    superfluous functions at V_{<=3}, 286 at V_{<=4})."""
     return enumerate_sector_quotient(d, pivot)
 
 
 # ================================================================
-#  Inclusions exactes V_d -> V_{d+1} par multiplication par s
+#  Exact inclusions V_d -> V_{d+1} by multiplication by s
 # ================================================================
 @dataclass(frozen=True)
 class ExactSparseMatrix:
-    """Matrice rationnelle creuse, stockee par colonnes.
+    """Sparse rational matrix, stored by columns.
 
-    ``entries_by_column[j]`` contient les couples ``(i, a_ij)`` tries par
-    row, with ``a_ij`` a non-zero :class:`fractions.Fraction`.  This
-    representation est volontairement independante de SciPy : elle reste
-    exacte lors de la construction et de la serialisation, tout en offrant
-    une conversion CSC explicite au consommateur numerique.
+    ``entries_by_column[j]`` holds the pairs ``(i, a_ij)`` sorted by row,
+    with ``a_ij`` a non-zero :class:`fractions.Fraction`.  This
+    representation is deliberately independent of SciPy: it stays exact
+    through construction and serialisation, while offering an explicit
+    CSC conversion to the numerical consumer.
     """
 
     nrows: int
@@ -760,11 +769,11 @@ def validate_exact_inclusions(degrees: Iterable[int] = (3, 4),
 
 
 # ================================================================
-#  Vérifs auto-consistantes (invocable en script)
+#  Self-consistent checks (invocable as a script)
 # ================================================================
 if __name__ == "__main__":
-    # counts prédits par quotient_basis (Σ m² avec m = # std monoms
-    # of char χ à degré d, PIVOT = (0,1,2)) :
+    # counts predicted by the quotient basis (sum of m^2 with m the
+    # number of standard monomials of character chi at degree d):
     expected_H = {1: 10, 2: 58, 3: 218, 4: 610, 5: 1402}
     expected_cumul = {1: 10, 2: 68, 3: 286, 4: 896, 5: 2298}
     print("=" * 68)
@@ -781,7 +790,7 @@ if __name__ == "__main__":
         ok_c = "✓" if cumul == expected_cumul[d] else "✗"
         print(f"{d:>2} {len(holo):>10} {len(sec):>16} {expected_H[d]:>10} "
               f"{cumul:>10} {expected_cumul[d]:>10}   {ok_H}{ok_c}")
-    # Total à V_≤3 : 286  (sans constante)
+    # Total at V_{<=3}: 286 (without the constant)
     base = basis_upto_quotient(3)
     print(f"\nbasis_upto_quotient(3)  →  {len(base)} fn  "
           f"({'✓' if len(base) == 286 else '✗ attendu 286'})")

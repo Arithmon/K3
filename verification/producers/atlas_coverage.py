@@ -62,7 +62,7 @@ TRIPLES = list(combinations(range(6), 3))
 V2 = [float(((MU[j] - MU[i]) * (MU[k] - MU[i]) * (MU[k] - MU[j])) ** 2)
       for i, j, k in TRIPLES]                                # exact en float64
 CHUNK = 120_000          # boxes per vectorised batch
-PRESPLIT_DIMS = 5        # 2^5 = 32 sous-racines par jauge
+PRESPLIT_DIMS = 5        # 2^5 = 32 subroots per gauge
 
 NEG, POS = -np.inf, np.inf
 
@@ -318,7 +318,7 @@ def main():
                 np_ = sum(x['n_proc'] for x in results)
                 nu = sum(len(x['unresolved']) for x in results)
                 print(f"  [{i+1}/{len(tasks)}] boxes processed {np_:.3e}  "
-                      f"non-résolues {nu}  ({time.time()-t0:.0f}s)")
+                      f"unresolved {nu}  ({time.time()-t0:.0f}s)")
     per_gauge = {}
     for g in range(6):
         rs = [r for r in results if r['g'] == g]

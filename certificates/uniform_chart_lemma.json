@@ -31,11 +31,11 @@
     "exact_facts": [
       "M̃_S(w) = 2 Ṽ_S diag(w) (Hessienne constante) ⇒ L_S = 2 σ_max(Ṽ_S) exact",
       "σ_min(M̃_S(w)) ≥ 2 σ_min(Ṽ_S) min_s|w_s|",
-      "D3 ⇒ min_s|z_s| ≥ τ/|V_S| sur la sphère pour le triple maximisant ; la jauge z_g = 1 ne peut qu'augmenter σ_min"
+      "the coverage step gives a lower bound on the smallest coordinate on the sphere for the maximising triple; normalising the gauge can only increase the smallest singular value"
     ],
-    "statement": "(w₀,b₀) ∈ K, chart (S,g), σ = σ_min(M̃_S(w₀)) : pour |b−b₀|₂ < ρ(σ) = −1 + √(1 + σ²/(2 L_S a_{S,g})) il existe un unique w(b) proche (Kantorovich h ≤ 1/2), holomorphe en b — inverse locale de π_{S,g}",
-    "uniform_corollary": "σ ≥ σ_floor(S) = 2 σ_min(Ṽ_S)·m/(8|V_S|) sur U_S ⇒ ρ_uniform(S,g) > 0 ⇒ atlas FINI par compacité, non énuméré",
-    "what_is_not_uniform_and_why": "ρ ∝ σ² : près d'un lieu où le meilleur pivot dégénère (un |z_s| petit) le rayon est légitimement petit — c'est la géométrie, pas le lemme ; l'atlas EXPLICITE (T1) est adaptatif : sa taille ~ ∫ ρ(σ(Z))⁻⁴ ; le lemme donne le rayon en fonction du σ local que chaque boîte D3/TM porte"
+    "statement": "for a point of K, a chart (S,g) and sigma the smallest singular value at that point: for base displacements below the radius rho(sigma) = -1 + sqrt(1 + sigma^2/(2 L a)) there is a unique nearby solution (Kantorovich with h at most 1/2), holomorphic in the base, giving a local inverse of the projection",
+    "uniform_corollary": "a floor on sigma over the pivot open set gives a uniform positive radius, hence a FINITE atlas by compactness, not an enumerated one",
+    "what_is_not_uniform_and_why": "rho is proportional to sigma^2: near a locus where the best pivot degenerates (a small |z_s|) the radius is legitimately small; that is the geometry, not the lemma. The EXPLICIT atlas is adaptive, its size going like the integral of rho(sigma(Z))^{-4}; the lemma gives the radius as a function of the local sigma that each box of the covering carries."
   },
   "table_60_types": [
     {
@@ -1480,9 +1480,9 @@
   "perturbation_tests_passed": 2,
   "perturbation_tests_total": 2,
   "n_atteste_pas": [
-    "le lemme n'est pas une certification d'atlas : il donne ρ(σ) ; l'atlas explicite de T1 reste à produire et son budget est celui de C68",
-    "ρ(σ) est un rayon d'EXISTENCE/UNICITÉ holomorphe (Kantorovich), pas le rayon TM de la chaîne métrique — la comparaison au pilote est un ordre de grandeur",
-    "les constantes sont dérivées à mp.dps = 30 en flottant : les floors sont des valeurs de design, à re-dériver en intervalle avant tout usage theorem-grade"
+    "the lemma is not an atlas certification: it gives rho(sigma). The explicit atlas remains to be produced, and its budget is the one estimated earlier.",
+    "rho(sigma) is a radius of holomorphic EXISTENCE and UNIQUENESS (Kantorovich), not the Taylor-model radius of the metric chain; the comparison with the pilot is an order of magnitude.",
+    "the constants are derived at mp.dps = 30 in floating point: the floors are design values, to be re-derived in interval arithmetic before any theorem-grade use."
   ],
   "issue": "uniform_chart_lemma_derived_rho_of_sigma_explicit_uniform_floor_positive_atlas_finite_by_compactness",
   "seconds": 0.24,

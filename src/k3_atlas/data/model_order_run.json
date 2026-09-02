@@ -426,7 +426,7 @@
     "part_quartic_B8em3": 0.8743639800453081,
     "cost_median_s": 90.9044007062912,
     "K2_saturation_triggered": false,
-    "note_K2": "informationnel, pas un gate pass/fail : True ⟹ affine-D³ devient la ligne principale"
+    "note_K2": "informational, not a pass/fail check: True means the affine third-order route becomes the main line"
   },
   "s4_synth_order4": [
     {
@@ -541,7 +541,7 @@
       "d3c_margin": 0.003597354581276279,
       "beachhead_consumed_det": 3.2460039087215142e-06,
       "c62_entrywise_bounds_containment": true,
-      "caveat": "diagnostic échantillonné ; le certificat est D⁴(boîte) dans la forme E4"
+      "caveat": "sampled diagnostic; the certificate is the fourth-order form on the box"
     },
     {
       "tag": "C_near_residual",
@@ -572,7 +572,7 @@
       "d3c_margin": 0.0037708951974791214,
       "beachhead_consumed_det": 4.2636563359317195e-07,
       "c62_entrywise_bounds_containment": true,
-      "caveat": "diagnostic échantillonné ; le certificat est D⁴(boîte) dans la forme E4"
+      "caveat": "sampled diagnostic; the certificate is the fourth-order form on the box"
     },
     {
       "tag": "B_interior",
@@ -603,7 +603,7 @@
       "d3c_margin": 0.003376732149275911,
       "beachhead_consumed_det": 7.357673117104731e-05,
       "c62_entrywise_bounds_containment": true,
-      "caveat": "diagnostic échantillonné ; le certificat est D⁴(boîte) dans la forme E4"
+      "caveat": "sampled diagnostic; the certificate is the fourth-order form on the box"
     }
   ],
   "checks_executed": {
@@ -618,5 +618,5 @@
     "C63_branch_adverse_refused": true,
     "C60_C62_bounds_containment_zero_skip": true
   },
-  "verdict": "T4O EXÉCUTÉ (ordre 4, gates 8/10) : R2min True (B@8e-3 PASS, C@4e-3 PASS) ; LE DUEL : B@1.7e-2 → FAIL_PIVOT (prédiction T4b vs contre-prédiction Kimi — le chiffre tranche) ; R2cible toutes classes : non exécuté (sélection FAIL). K1 : C_t4@4e-3 = 17.4 (≤29 True / ≤45 True) ; part quartique B@8e-3 = 0.874 ; SATURATION : False ; coût médian 91 s (gate 78 s : False). SYNTH ordre 4 : gains vs t2 ['118', '1801', '2264'], hull contenu True. R4 : t_bad True, containment 2000/2000, adverse branche C63 True. C60 : tête de pont consommée par ΔD³ (det) = ['0.0', '0.0', '0.0'] %."
+  "verdict": "FOURTH-ORDER RUN EXECUTED (checks 8/10): R2min True (B at 8e-3 PASS, C at 4e-3 PASS); THE DUEL: B at 1.7e-2 gives FAIL_PIVOT (one prediction against a reviewer's counter-prediction, and the number decides); R2 target over all classes: not executed (selection FAIL). K1: C at 4e-3 is 17.4 (at most 29 True, at most 45 True); quartic share of B at 8e-3 is 0.874; SATURATION: False; median cost 91 s (78 s threshold: False). Fourth-order synthesis: gains against the second order ['118', '1801', '2264'], hull contained True. R4: t_bad True, containment 2000/2000, adversarial branch True. Bridgehead consumed by the third-order determinant change: ['0.0', '0.0', '0.0'] %."
 }

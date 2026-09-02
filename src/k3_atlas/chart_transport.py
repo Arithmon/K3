@@ -1,98 +1,102 @@
 #!/usr/bin/env python3
 """
-TRANSPORT ON EVERY TILE of the dyadic cover, under the hardened
-contract of a review.
+TRANSPORT ON EVERY TILE of the dyadic cover, under the hardened contract
+of a review.
 
-The cover built 252 charted tiles (63/64 of the volume of a residual
-cell) but transported only 3, with four named gaps
-par la review (`gpt_b1e2iii_c125_c126_d56_review_2026_07_29.md`) :
+The cover built 252 charted tiles (63/64 of the volume of a residual cell)
+but transported only 3, with four gaps named by the review:
 
-  . a claim of "partition" rested on a record carrying NO
-    tree address (a volume sum plus uniqueness detects neither a
-    feuille ET sa descendante, ni une branche omise compensée) ;
+  . a claim of "partition" rested on a record carrying NO tree address
+    (a volume sum plus uniqueness detects neither a leaf AND its
+    descendant, nor an omitted branch compensated elsewhere);
   . the sheet was serialised only on the 3 transported tiles, and its
     derivation compared interval LOWER BOUNDS without margin;
-  · H6–H8 filtraient silencieusement les `native_failed` ;
-  · aucun seuil pré-enregistré, aucun scaling à chart fixé, et le
+  . three checks silently filtered out the `native_failed` rows;
+  . no preregistered threshold, no scaling at fixed chart, and the
     "positivity transport" was a DOUBLE certification, not a transport.
 
 WHAT THIS SCRIPT PAYS:
 
-  A. SIGN PATTERN DYADIQUE AUTONOME — chaque feuille (tuile OU résidu) reçoit
-     its ADDRESS reconstructed arithmetically from the root, with
-     EXACT float equality; the set of addresses is checked UNIQUE,
-     PREFIX-FREE (donc intérieurs disjoints), CLOS (chaque nœud subdivisé
-     a ses 16 enfants couverts, récursivement), et d'égalité de Kraft
-     `sum 16^{-d} = 1` in rationals. The unresolved BOUNDARY fraction
-     after each level is derived from the addresses and checked strictly
-     décroissante.
+  A. A SELF-CONTAINED DYADIC ADDRESS: every leaf (tile OR residual)
+     receives its ADDRESS reconstructed arithmetically from the root,
+     with EXACT float equality; the set of addresses is checked UNIQUE,
+     PREFIX-FREE (hence with disjoint interiors), CLOSED (every
+     subdivided node has its 16 children covered, recursively), and
+     satisfying the Kraft equality `sum 16^{-d} = 1` in rationals. The
+     unresolved BOUNDARY fraction after each level is derived from the
+     addresses and checked strictly decreasing.
 
   B. UNIVERSAL TRANSPORT: congruence and positive definiteness on the
-     252 tiles (full mode) with, PER TILE: the sheet derived at the anchor
-     (constant coefficient of the model = enclosure of the value at the centre) by
-     SÉPARATION STRICTE des deux branches — marge > 0 sérialisée, refus
-     si ambigu — puis figé ; `σ'` certifié par la composante ;
-     compatibilité projective au même signe avec ses bornes ; AUCUN
-     échec filtré : le check exige `n_ok == n_selectionnés == n_attendu`.
+     252 tiles (full mode) with, PER TILE: the sheet derived at the
+     anchor (constant coefficient of the model = enclosure of the value
+     at the centre) by STRICT SEPARATION of the two branches, with a
+     serialised margin > 0 and refusal if ambiguous, then frozen;
+     `sigma'` certified by the component; projective compatibility at the
+     same sign with its bounds; NO failure filtered out: the check
+     requires `n_ok == n_selected == n_expected`.
 
   C. STABILITY: the REAL positivity transport, by Weyl. With
-     `C = Jᵀ Q_target conj(J)` et `D = Q_source − C`,
-         λ_min(Q_source) ≥ λ_min(C) − ‖D‖₂ ≥ λmin_lo(C) − ‖D‖_F^up,
-     so the check `||D||_F^up < lambda_min_lo(C)` (with C certified positive definite from its
-     own enclosure) proves positive definiteness of `Q_source` BY TRANSPORT, without
-     certifier directement — la certification directe reste publiée en
-     CROSS-CHECK. λmin_lo(C) = det_lo/trace_hi (arrondi vers le bas),
-     valid since lambda_max is at most the trace for a positive definite Hermitian matrix.
-     Seuil PRÉ-ENREGISTRÉ : résidu relatif ≤ DELTA_REL = 1e-5 sur toute
-     tile (the 3 pilot tiles were at most 3.93e-7; the threshold is fixed
-     BEFORE the run and will not be adjusted).
-     Scaling AT FIXED CHART (first slice): on tiles
-     sondes, même centre, même chart, demi-largeurs h, h/2, h/4 — le
-     résidu sup doit DÉCROÎTRE STRICTEMENT à chaque division ; les
-     ratios are published without a threshold (no extrapolation).
+     `C = J^T Q_target conj(J)` and `D = Q_source - C`,
+         lambda_min(Q_source) >= lambda_min(C) - ||D||_2
+                              >= lambda_min_lo(C) - ||D||_F^up,
+     so the check `||D||_F^up < lambda_min_lo(C)` (with C certified
+     positive definite from its own enclosure) proves positive
+     definiteness of `Q_source` BY TRANSPORT, without certifying it
+     directly; the direct certification stays published as a CROSS-CHECK.
+     lambda_min_lo(C) = det_lo/trace_hi (rounded down), valid since
+     lambda_max is at most the trace for a positive definite Hermitian
+     matrix. PREREGISTERED threshold: relative residual at most
+     DELTA_REL = 1e-5 on every tile (the 3 pilot tiles were at most
+     3.93e-7; the threshold is fixed BEFORE the run and will not be
+     adjusted). Scaling AT FIXED CHART (first slice): on the probe tiles,
+     same centre, same chart, half-widths h, h/2, h/4, the supremum
+     residual must DECREASE STRICTLY at each division, and the ratios are
+     published without a threshold (no extrapolation).
 
-  PROBES (DECLARED scope, not silent): the Jacobian mutation
-  (doit casser) et le recheck d'AUTONOMIE (retransport à `ε'`/`σ'` FIGÉS
-     from the record, bit-identical congruence bounds) run on the
-  STRATIFIED SUBSET, not on all 252: each probe is a
-  complete transport (about the cost of one tile) and the mutation tests the
-  DISCRIMINATING POWER OF THE TEST, not each tile. The indices are published.
+  PROBES (DECLARED scope, not silent): the Jacobian mutation (which must
+  break) and the AUTONOMY recheck (retransport at FROZEN `eps'`/`sigma'`
+  from the record, bit-identical congruence bounds) run on the STRATIFIED
+  SUBSET, not on all 252: each probe is a complete transport (about the
+  cost of one tile) and the mutation tests the DISCRIMINATING POWER OF
+  THE TEST, not each tile. The indices are published.
 
-  STRATIFICATION (§13 de la review) : représentant de chaque signature
-  (profondeur, chart, déterminations source/cible, σ cible) + tuile de
-  jauge minimale + tuile de `det J` minimal + 3 tuiles ADJACENTES AU
-  RÉSIDU (distance de Tchebychev nulle). Publiée intégralement.
+  STRATIFICATION (asked for by the review): one representative of every
+  signature (depth, chart, source and target determinations, target
+  sigma), plus the tile of minimal gauge, the tile of minimal `det J`,
+  and 3 tiles ADJACENT TO THE RESIDUAL (Chebyshev distance zero).
+  Published in full.
 
-WHAT THIS SCRIPT DOES NOT PAY: halos, open overlaps, the nerve
-cocycle (the partition stays a partition, not a glued atlas);
-the residual 1/64 (neither covered nor excluded); the EXACT contract of
-congruence (the identity stays "certified approximate congruence" with bounds);
-la globalisation ; the later scaling.
+WHAT THIS SCRIPT DOES NOT PAY: halos, open overlaps, the nerve cocycle
+(the partition stays a partition, not a glued atlas); the residual 1/64
+(neither covered nor excluded); the EXACT contract of congruence (the
+identity stays "certified approximate congruence" with bounds);
+globalisation; the later scaling.
 
-DURCISSEMENTS the hardening (a review GPT, 2026-07-30) — appliqués puis TOUS les
-regenerated artefacts (lesson: a modified script without a rerun gives
-the appearance of verification):
-  A  the sheet anchor includes the model REMAINDER (`p[0] +- rem` per part):
-          the constant coefficient alone is not the value at the centre;
-  the directed-float amendment  λmin_lo et ‖D‖_F en arithmétique d'intervalle mpmath de bout
-          en bout, conversion float DIRIGÉE à la sérialisation seule,
-          chaînes exactes publiées, check d'HERMITICITÉ de C, slack
-          exact λ − ‖D‖ par tuile ;
-  C  the ratio checked against delta is CERTIFIED: sup_entry(D) rounded up over
-          q00_lo rounded down (the earlier max-endpoint denominator was a
-          SUPÉRIEURE — un quotient majorant exige un dénominateur
-          inférieur) ; l'ancien ratio publié en `_legacy` ;
-  the autonomy probe  le scaling fige le SIGN PATTERN (ε', σ', déterminations refusées si
-          they change), PREREGISTERED ratio window [16, 64]
-          (order 5 plus or minus 1), one level deeper, one chart more;
-  E  full SHA-256, dyadic addresses explicitly
-          sérialisées.
+HARDENINGS asked for by a review, applied and followed by regeneration of
+ALL the artefacts (the lesson being that a modified script without a
+rerun gives the appearance of verification):
+  A  the sheet anchor includes the model REMAINDER (`p[0] +- rem` per
+     part): the constant coefficient alone is not the value at the
+     centre;
+  B  the directed-float amendment: lambda_min_lo and ||D||_F in mpmath
+     interval arithmetic throughout, with a DIRECTED float conversion at
+     serialisation only, exact chains published, a HERMITICITY check on
+     C, and the exact slack lambda - ||D|| per tile;
+  C  the ratio checked against delta is CERTIFIED: sup_entry(D) rounded
+     up over q00_lo rounded down (the earlier max-endpoint denominator
+     was an UPPER bound, and a bounding quotient requires a LOWER
+     denominator); the earlier ratio is published as `_legacy`;
+  D  the autonomy probe: the scaling freezes the SIGN PATTERN (eps',
+     sigma', with determinations refused if they change), a PREREGISTERED
+     ratio window [16, 64] (order 5 plus or minus 1), one level deeper,
+     one chart more;
+  E  full SHA-256, and dyadic addresses explicitly serialised.
 
-Sorties : results/chart_transport_pilot.json  (mode pilot)
-          results/chart_transport.json    (mode full)
-Usage   : chart_transport.py [--selftest]
-Env     : K3_C127_MODE    pilot (défaut) | full
-          K3_C127_WORKERS processus parallèles (défaut 3)
+Outputs: results/chart_transport_pilot.json  (pilot mode)
+         results/chart_transport.json        (full mode)
+Usage  : chart_transport.py [--selftest]
+Env    : K3_C127_MODE    pilot (default) | full
+         K3_C127_WORKERS parallel processes (default 3)
 """
 from __future__ import annotations
 
@@ -140,11 +144,11 @@ ART = RES / ("chart_transport.json" if MODE == "full"
 # The checked ratio is now CERTIFIED: sup_entry(D) rounded
 # UP over a certified LOWER denominator q00_lo(Q_src)
 # (max_entry(Q) >= q00 >= q00_lo, so the quotient bounds the true ratio).
-DELTA_REL = 1e-5          # plafond du résidu relatif CERTIFIÉ
+DELTA_REL = 1e-5          # ceiling of the CERTIFIED relative residual
 N_RESIDUAL_ADJACENT = 3   # tiles adjacent to the residual in the pilot
-SCALING_LEVELS = 4        # h, h/2, h/4, h/8 à chart ET sheet record figés
-# the autonomy probe : fenêtre pré-enregistrée du ratio de scaling — ordre observé
-# 5 ± 1 (2⁴ à 2⁶), déclarée AVANT le rerun, jamais ajustée dessus.
+SCALING_LEVELS = 4        # h, h/2, h/4, h/8 at frozen chart AND sheet record
+# The autonomy probe: preregistered window of the scaling ratio; order
+# observed 5 +/- 1 (2^4 to 2^6), declared BEFORE the rerun, never tuned on it.
 SCALING_RATIO_WINDOW = (16.0, 64.0)
 
 T0 = time.time()
@@ -155,7 +159,7 @@ def log(msg):
 
 
 def _sha(p):
-    # the provenance amendment : SHA-256 COMPLETS (les 16 premiers caractères suffisaient
+    # the provenance amendment: FULL SHA-256 (the first 16 characters sufficed
     # to practical identity, not to publishable provenance)
     try:
         return hashlib.sha256(Path(p).read_bytes()).hexdigest()
@@ -189,10 +193,10 @@ def provenance(src, t_wall):
 #  the address sheet record step — le sheet record dyadique AUTONOME
 # ===========================================================================
 def address_of(root_c, root_h, c, h):
-    """Adresse dyadique d'une feuille, reconstruite ARITHMÉTIQUEMENT en
-    rejouant la récursion de `subboxes` (mêmes opérations float, même
-    order): the reconstruction must land back on `(c, h)` in exact
-    float EXACTE, sinon None."""
+    """Dyadic address of a leaf, reconstructed ARITHMETICALLY by replaying
+    the recursion of `subboxes` (the same float operations, in the same
+    order): the reconstruction must land back on `(c, h)` in EXACT float
+    equality, otherwise None."""
     d, hh = 0, root_h
     while hh > h and d <= 60:
         hh /= 2.0
@@ -212,8 +216,8 @@ def address_of(root_c, root_h, c, h):
 
 
 def tree_gates(addresses):
-    """Unicité, prefix-free, clôture récursive, Kraft — depuis les
-    SEULES adresses."""
+    """Uniqueness, prefix-freeness, recursive closure and Kraft, from the
+    ADDRESSES ALONE."""
     n = len(addresses)
     unique = len(set(addresses)) == n
     aset = set(addresses)
@@ -238,7 +242,7 @@ def tree_gates(addresses):
             "kraft_is_one": bool(kraft == 1),
             "note": ("prefix-free on closed dyadic boxes gives "
                      "pairwise disjoint interiors; the boundaries "
-                     "se touchent, et c'est attendu")}
+                     "do touch, and that is expected")}
 
 
 def frontier_fractions(addresses):
@@ -260,8 +264,9 @@ def frontier_fractions(addresses):
 #  the transport step / the stability step — le transport durci
 # ===========================================================================
 def _f_down(x):
-    """Conversion mpf → float DIRIGÉE vers le bas (the directed-float amendment : `float()`
-    rounds to nearest, which can raise a lower bound)."""
+    """Conversion from mpf to float DIRECTED downwards (the
+    directed-float amendment: `float()` rounds to nearest, which can
+    raise a lower bound)."""
     f = float(x)
     return math.nextafter(f, -math.inf) if f > x else f
 
@@ -275,15 +280,15 @@ def _anchor(Z):
     """The enclosure of the value AT THE CENTRE of a complex model: `p[0] +-
     rem`, per part. The constant coefficient ALONE is NOT the value
     at the centre once `rem > 0`: the model remainder belongs to the anchor
-    (défaut nommé par la a review §4.2)."""
+    (a defect named by the review)."""
     rtm, itm = Z.re_tm(), Z.im_tm()
     return (rtm.p[0] + IVPM * rtm.rem, itm.p[0] + IVPM * itm.rem)
 
 
 def _eps_sep(aE, bE):
-    """Choix de signe par séparation stricte des distances au carré,
-    on ANCHOR ENCLOSURES (remainder included). Comparisons in mpf, not
-    en float. Retourne (eps, rec) ou (None, diagnostic)."""
+    """Sign chosen by strict separation of the squared distances, on
+    ANCHOR ENCLOSURES (remainder included). Comparisons in mpf, not in
+    float. Returns (eps, rec) or (None, diagnostic)."""
     (are, aim), (bre, bim) = aE, bE
     d2p = (are - bre) ** 2 + (aim - bim) ** 2
     d2m = (are + bre) ** 2 + (aim + bim) ** 2
@@ -302,7 +307,7 @@ def _eps_sep(aE, bE):
 
 
 def derive_eps_target_margined(S2, g2, up, vp, sigma2, Zp):
-    """`ε'` dérivé à l'ancre par SÉPARATION STRICTE, marge sérialisée.
+    """`eps'` derived at the anchor by STRICT SEPARATION, margin serialised.
 
     The anchor of each row is the COMPLETE enclosure of the
     value at the centre, `p[0] +- rem` per part, and no longer the sole
@@ -325,10 +330,10 @@ def derive_eps_target_margined(S2, g2, up, vp, sigma2, Zp):
 
 
 def lam_min_lo(Q):
-    """Borne inférieure de λ_min d'une hermitienne 2×2 PD :
-    λ_min = det/λ_max ≥ det_lo/trace_hi.
+    """Lower bound on lambda_min of a positive definite 2x2 Hermitian
+    matrix: lambda_min = det/lambda_max >= det_lo/trace_hi.
 
-    the directed-float amendment : intégralement en arithmétique d'intervalle mpmath
+    The directed-float amendment: entirely in mpmath interval arithmetic
     (rounded outwards at working precision), and the interval division
     gives det_lo/trace_hi as a lower bound without an intermediate
     conversion to the nearest float. Returns (mpf, a serialisable
@@ -348,9 +353,9 @@ def lam_min_lo(Q):
 
 def fro_up(D):
     """Upper bound on ||D||_F from the MATRIX of complex models (rather than from
-    bornes déjà converties en float) — the directed-float amendment : sommation et racine en
-    iv, conversion float dirigée à la sérialisation seulement.
-    Retourne (mpf, dict)."""
+    bounds already converted to float). The directed-float amendment:
+    summation and root in interval arithmetic, with a directed float
+    conversion at serialisation only. Returns (mpf, dict)."""
     s = iv.mpf(0)
     for i in range(2):
         for k in range(2):
@@ -379,7 +384,7 @@ def _conj_tmc(x):
 
 
 def hermitian_contains_zero(C):
-    """Check d'hermiticité (the directed-float amendment) : `C[0][1] − conj(C[1][0]) ∋ 0` et
+    """Hermiticity check (the directed-float amendment): `C[0][1] - conj(C[1][0])` contains 0 and
     the diagonal imaginary parts contain 0, without which
     `lambda_min(C)` lacks the spectral meaning Weyl requires."""
     off = C[0][1] + _conj_tmc(C[1][0]).mul_real(riv(-1.0))
@@ -391,13 +396,13 @@ def hermitian_contains_zero(C):
 def transport_hardened(S, g, eps, center, hw, S2, g2, M, c218, rw,
                        fixed_eps2=None, fixed_sigma2=None,
                        perturb_J=None, section=None):
-    """Miroir de `transport` (d5_congruence) avec : `ε'` À MARGE (refus
-    si ambigu), mode À ENTRÉES FIGÉES (recheck d'autonomie — aucune
-    dérivation), et bornes spectrales du transport par Weyl.
+    """Mirror of `transport` with: `eps'` derived WITH A MARGIN (refusal if
+    ambiguous), a FROZEN-INPUT mode (an autonomy recheck, with no
+    derivation), and spectral bounds of the transport by Weyl.
 
-    `section` (the bridge step/F4, 2026-07-31) — POINT D'INJECTION ADDITIF.
-    `center` et `hw` ne servent QU'À `build_section` : tout l'aval
-    (Qmat, transport, congruence, Weyl, ratio certifié) est
+    `section` is an ADDITIVE INJECTION POINT. `center` and `hw` serve
+    ONLY `build_section`: everything downstream (Qmat, transport,
+    congruence, Weyl, certified ratio) is
     BOX-AGNOSTIC. Passing an already built section therefore allows
     replaying the hardened path VERBATIM on a box that `build_section`
     cannot describe: the bilateral bridge box, which is
@@ -483,9 +488,10 @@ def transport_hardened(S, g, eps, center, hw, S2, g2, M, c218, rw,
     if lam_mpf is not None:
         sm = lam_mpf - fro_mpf
         slack = {"float": _f_down(sm), "exact": mp.nstr(sm, 40)}
-    # the certified-ratio amendment : ratio CERTIFIÉ — numérateur sup_entry(D) (mpf),
-    # dénominateur q00_lo(Q_src) INFÉRIEUR certifié, quotient iv
-    # arrondi vers le haut. max_entry(Q) ≥ q00 ≥ q00_lo ⟹ majorant.
+    # the certified-ratio amendment: a CERTIFIED ratio, numerator
+    # sup_entry(D) (mpf), denominator q00_lo(Q_src) a certified LOWER
+    # bound, quotient in interval arithmetic rounded up. Since
+    # max_entry(Q) >= q00 >= q00_lo, the quotient is an upper bound.
     sup_mpf = sup_entry_up(Dm)
     q00_lo_mpf = mp.mpf(Q_src[0][0].re_tm().to_iv().a)
     rel_cert = None
@@ -523,7 +529,7 @@ def transport_hardened(S, g, eps, center, hw, S2, g2, M, c218, rw,
 
 
 # ===========================================================================
-#  Worker (multiprocessing — fork : M/c218 hérités du parent)
+#  Worker (multiprocessing by fork: M and c218 inherited from the parent)
 # ===========================================================================
 _G = {}
 
@@ -544,7 +550,7 @@ def _run_tile(job):
     if kind == "mutation":
         kw["perturb_J"] = complex(0.3, 0.2)
     elif kind in ("autonomy", "scaling"):
-        # the autonomy probe : le scaling fige aussi le SIGN PATTERN (ε', σ') — réduire h
+        # the autonomy probe: the scaling also freezes the SIGN PATTERN (eps', sigma'); reducing h
         # without freezing the branch would measure something other than the model remainder
         kw["fixed_eps2"] = extra["eps_target"]
         kw["fixed_sigma2"] = extra["sigma_target"]
@@ -680,8 +686,9 @@ def build():
         probe_jobs.append((i, tiles[i], "autonomy",
                            {"eps_target": r0["eps_target"],
                             "sigma_target": r0["sigma_target"]}))
-    # scaling à chart ET sheet record figés (the autonomy probe) : une tuile par chart
-    # distinct du cover (3), niveaux h/2 … h/2^(SCALING_LEVELS−1)
+    # scaling at frozen chart AND sheet record (the autonomy probe): one
+    # tile per distinct chart of the cover (3), levels h/2 to
+    # h/2^(SCALING_LEVELS-1)
     seen_ch, scale_base = set(), []
     for i in probe_idx:
         ch = (tuple(tiles[i]["chart"]["S"]), tiles[i]["chart"]["g"])
@@ -725,9 +732,9 @@ def build():
         ratios = [seq[k] / seq[k + 1] if seq[k + 1] else None
                   for k in range(len(seq) - 1)]
         dec = all(seq[k + 1] < seq[k] for k in range(len(seq) - 1))
-        # the autonomy probe : fenêtre pré-enregistrée + sheet record analytique FIGÉ —
+        # the autonomy probe: a preregistered window plus a FROZEN analytic sheet record;
         # a determination that changed when reducing h would invalidate the
-        # mesure (on comparerait deux branches, pas deux restes)
+        # measurement (we would compare two branches, not two remainders)
         in_window = all(r is not None
                         and SCALING_RATIO_WINDOW[0] <= r
                         <= SCALING_RATIO_WINDOW[1] for r in ratios)
@@ -893,7 +900,7 @@ def _selftest():
                 for dg in product((-1, 1), repeat=4)]
 
     # T1: EXACT address reconstruction on a synthetic tree
-    #      (feuille de profondeur 2, mêmes opérations float que subboxes)
+    #      (a leaf of depth 2, with the same float operations as subboxes)
     (c1, h1, d1) = children(root_c, root_h)[5]
     (c2, h2, d2) = children(c1, h1)[10]
     a = address_of(root_c, root_h, c2, h2)
@@ -906,7 +913,7 @@ def _selftest():
     chk("T2 négatif : centre perturbé d'un ulp → adresse REFUSÉE",
         address_of(root_c, root_h, c_bad, h2) is None)
 
-    # T3 : arbre complet à profondeur mixte — clôture et Kraft
+    # T3: a complete tree at mixed depth, closure and Kraft
     addrs = [(dg,) for dg in product((-1, 1), repeat=4)
              if dg != (1, 1, 1, 1)]
     addrs += [((1, 1, 1, 1), dg) for dg in product((-1, 1), repeat=4)]
@@ -949,7 +956,7 @@ def _selftest():
 
     # T9: the anchor includes the REMAINDER; two anchors whose p[0]
     # SEPARATE the signs but whose remainders overlap must
-    # être REFUSÉES (l'ancien code au seul p[0] aurait tranché)
+    # be REFUSED (the earlier code, on p[0] alone, would have decided)
     a_clean = TMC.const(CIV(riv(1.0), riv(0.0)))
     a_fat = TMC(a_clean.p, iv.mpf(3.0))
     b = TMC.const(CIV(riv(1.0), riv(0.0)))

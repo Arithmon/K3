@@ -10,7 +10,7 @@
     "a_M_lower": 0.0953783509718729,
     "kappa_M_upper": 10.484559544281703,
     "skew_residual_max_C37": 2.8998069239306284e-23,
-    "method": "Cholesky intervalle (CIV/mpmath) + bisection 60 iter ; pivots > 0 certifiés — certificat de H = (M+M†)/2 encadrée en iv (C37 : le witness sérialisé n'est pas bit-hermitien, résidu publié ; H est l'objet que le moteur consomme, ρ = Re(Z†MZ) = Z†HZ)"
+    "method": "interval Cholesky (mpmath interval arithmetic) plus 60 bisection iterations; pivots > 0 certified. This certifies H = (M+M^dagger)/2 enclosed in interval arithmetic: the serialised witness is not bit-hermitian and the residual is published; H is the object the engine consumes, rho = Re(Z^dagger M Z) = Z^dagger H Z."
   },
   "b_r_sampled": {
     "n_points": 15552,
@@ -55,7 +55,7 @@
       "n_sheet_rows": 15552,
       "n_requested": 36000,
       "n_nonempty_couples": 26,
-      "note": "lignes = points (u,v) de base × feuilles retenues (mêmes tirages sur les 8 feuilles) — C39 : ne PAS lire comme des localisations indépendantes",
+      "note": "rows = base points (u,v) times retained sheets (the same draws on the 8 sheets); do NOT read them as independent locations",
       "by_couple_class": [
         {
           "S": [
@@ -735,7 +735,7 @@
         "1.0": 0.8850362501757936
       }
     },
-    "caveat": "MESURE float sur échantillon — pas un certificat"
+    "caveat": "float MEASUREMENT on a sample, not a certificate"
   },
   "c_triangle_p0a1": {
     "n_points_subsample": 1488,
@@ -1033,7 +1033,7 @@
             "spearman": -0.0979020979020979
           }
         },
-        "caveat": "pooled confond profondeur et distance (les strates profondes sont près de la frontière) — lire les valeurs par strate"
+        "caveat": "pooling confounds depth with distance (the deep strata are near the boundary): read the values stratum by stratum"
       },
       {
         "S": [
@@ -1066,9 +1066,9 @@
             "spearman": -0.3426573426573427
           }
         },
-        "caveat": "pooled confond profondeur et distance (les strates profondes sont près de la frontière) — lire les valeurs par strate"
+        "caveat": "pooling confounds depth with distance (the deep strata are near the boundary): read the values stratum by stratum"
       }
     ]
   },
-  "verdict": "P0a-PROBE EXÉCUTÉ : (A) spectre de M CERTIFIÉ (Cholesky intervalle + bisection, witness sérialisé) — λ_min > 0.456269, λ_max < 4.78378, a_M ≥ 0.09538, κ(M) ≤ 10.48 : la comparaison intrinsèque a_M·ω_FS ≤ ω_ρ ≤ ω_FS/a_M est GRATUITE et theorem-grade côté M. (B) r(x) MESURÉ sur 15552 lignes-feuilles (C39 : 1944 points (u,v) de base, 26 couples non vides, min r par classe sérialisé — pire classe -0.3453) : inf r̂ = -0.3453, 0 point(s) sous −1 — P0a global est VIVANT : marge 0.655 vers −1, la certification a un objectif atteignable. C40 : r_lo borne la partie NÉGATIVE (ce dont P0 dépend) ; sup r_hi = 0.885, sup |gen eig| = 0.885 — ‖H_Φ‖ n'est PAS bornée par |inf r|. (C) triangle P0a-1 : T = Σ|c_e|·ŝ_e = 2.11e+03 ≥ 1 : le triangle NE PEUT PAS conclure seul, les cancellations entre éléments sont essentielles ⟹ P0a-2 (champ combiné) est la route (le triangle paie 218 termes, leurs cancellations ET les directions positives ; P0 ne dépend que de la partie négative du champ combiné). (D) cible P0a-3 : t_crit = 2.896, le certificat devra accepter t=1 et rejeter t_bad = 3.620. Mesures float étiquetées : le certificat (P0a-1/2) reste à construire — ce probe lui donne son objectif chiffré et son contrôle négatif."
+  "verdict": "PROBE EXECUTED: (A) the spectrum of M is CERTIFIED (interval Cholesky with bisection, serialised witness): lambda_min > 0.456269, lambda_max < 4.78378, a_M >= 0.09538, kappa(M) <= 10.48, so the intrinsic comparison a_M.omega_FS <= omega_rho <= omega_FS/a_M is FREE and theorem-grade on the M side. (B) r(x) MEASURED on 15552 sheet rows (1944 base points (u,v), 26 pairs that are not empty, minimum r per class serialised, worst class -0.3453): inf r_hat = -0.3453, 0 point(s) below -1, so the global positivity target is ALIVE, with a margin of 0.655 towards -1: the certification has a reachable objective. r_lo bounds the NEGATIVE part (which is what positivity depends on); sup r_hi = 0.885, sup |gen eig| = 0.885, so the norm of H_Phi is NOT bounded by |inf r|. (C) triangle bound: T = sum |c_e|.s_hat_e = 2.11e+03 >= 1, so the triangle inequality CANNOT conclude alone, the cancellations between elements being essential; hence the combined-field route is the way (the triangle pays 218 terms, their cancellations AND the positive directions, whereas positivity depends only on the negative part of the combined field). (D) target: t_crit = 2.896, and the certificate will have to accept t = 1 and reject t_bad = 3.620. The float measurements are labelled as such: the certificate remains to be built, and this probe gives it its numerical objective and its negative control."
 }

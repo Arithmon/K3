@@ -6,32 +6,32 @@ Gram CONGRUENCE and POSITIVITY TRANSPORT, on a whole cell.
 The chart criterion and Jacobian certified, on the whole box, that target
 charts are reachable, in the domain, and of invertible Jacobian. What remained
 was the question the pilot had explicitly left open, and which the
-success of those checks **did not prejudge**: positivity
-transporte-t-elle ?
+success of those checks **did not prejudge**: does positivity
+transport?
 
-LA STRUCTURE. `Q` se calcule à partir de `(Z, W)` où `W[a][A] =
-∂Z_a/∂(u,v)_A`. Deux propriétés suffisent :
+THE STRUCTURE. `Q` is computed from `(Z, W)` where
+`W[a][A] = dZ_a/d(u,v)_A`. Two properties suffice:
 
-  (a) **quadratique en W** — `Q(Z, W·A) = Aᵀ · Q(Z, W) · conj(A)` ;
+  (a) **quadratic in W**: `Q(Z, W.A) = A^T . Q(Z, W) . conj(A)`;
   (b) **gauge invariance**: `Q` has degree 0 in `Z`, so the projective
       renormalisation does not change it.
 
-Elles se composent : en posant `Z' = Z/Z_{g'}` et `W_{Z'} = ∂Z'/∂(u,v)`,
-on a `W_{Z'} = W' · J` où `J[A'][A] = ∂(u',v')_{A'}/∂(u,v)_A`, donc
+They compose: setting `Z' = Z/Z_{g'}` and `W_{Z'} = dZ'/d(u,v)`, one has
+`W_{Z'} = W' . J` where `J[A'][A] = d(u',v')_{A'}/d(u,v)_A`, hence
 
     Q_source  =(b)=  Q(Z', W_{Z'})  =(a)=  Jᵀ · Q_target · conj(J)
 
 **This is the convention, and it is verified rather than assumed**: the
 review contract writes `Q_source = J* Q_target J`, which is the same
 statement up to convention (in which argument `Q` is conjugate-linear,
-and whether `J` is the Jacobian or its conjugate transpose). The self-test
-measures both forms and shows that they DIFFER, so the check
-discrimine.
+and whether `J` is the Jacobian or its conjugate transpose). The
+self-test measures both forms and shows that they DIFFER, so the check
+discriminates.
 
-Checks pré-enregistrés :
-  E1 INVARIANCE DE JAUGE — `Q(Z', W_{Z'})` et `Q(Z, W)` ont des
-     enclosures whose difference contains 0, on the WHOLE box
-  E1b MUTATION DE JAUGE — renormaliser `Z` SANS renormaliser `W` casse
+Preregistered checks:
+  E1 GAUGE INVARIANCE: `Q(Z', W_{Z'})` and `Q(Z, W)` have enclosures
+     whose difference contains 0, on the WHOLE box
+  E1b GAUGE MUTATION: renormalising `Z` WITHOUT renormalising `W` breaks
      the identity. Without it, E1 would be satisfied by a formula that
      ignore `Z`.
   E2 QUADRATICITY IN W: `Q(Z, W.A) = A^T Q conj(A)` for a constant
@@ -40,11 +40,11 @@ Checks pré-enregistrés :
   E3 CONGRUENCE: on the cell and a named ADMISSIBLE chart,
      `Q_source - J^T Q_target conj(J)` contains 0 on all four components
   E4 POSITIVITY TRANSPORT: `Q_target` is certified positive definite (pivot > 0 and
-     det > 0), et `det(Jᵀ Q_t conj(J)) = |det J|²·det Q_t > 0` transporte
+     det > 0), and `det(J^T Q_t conj(J)) = |det J|^2.det Q_t > 0` transports
      positivity; `Q_source` is positive definite directly, and the two agree
   E5 PHASE MUTATION: flipping the sign of a section row does NOT
      break E3, and that is correct: congruence is **agnostic to
-     la branche**. Elle relie deux descriptions de la MÊME configuration,
+     **the branch**. It relates two descriptions of the SAME configuration,
      whatever the branch choice, PROVIDED it is coherent, and
      it is here, since `(u', v')` derives from the source `Z`. The
      discriminating negative control is therefore E6, not E5. This is published
@@ -169,8 +169,8 @@ def contains_zero(Mx):
 
 
 def congruence(J, Q, conj_left=False):
-    """`Jᵀ Q conj(J)` (défaut) ou `J* Q J` (la convention concurrente,
-    utilisée comme mutation)."""
+    """`J^T Q conj(J)` (the default) or `J* Q J` (the competing
+    convention, used as a mutation)."""
     def cj(x):
         return TMC([CIV(c.re, -c.im) for c in x.p], x.rem)
     out = [[None, None], [None, None]]
@@ -200,14 +200,14 @@ def pd_bounds(Q):
 # ===========================================================================
 def native_target_section(S2, g2, up, vp, eps2, sigma2):
     """NATIVE section of the target chart, with the sheet and component FIXED
-    ENTRÉE** — jamais choisis par essai ni ajustés par le check qu'ils
-    doivent passer.
+    AS INPUTS**, never chosen by trial nor tuned by the check they must
+    pass.
 
-    The component comes from the certified COMPONENT of the radicand
-    cible. L'ancienne boucle `for sg in (-1, 1): … break` prenait
-    always -1, the guard of the rotated root depending only on `-R`
-    and not on the sign, so it certified NOTHING. The same defect as
-    celui corrigé dans the holonomy step, réintroduit ici.
+    The component comes from the certified COMPONENT of the target
+    radicand. The former loop `for sg in (-1, 1): ... break` always took
+    -1, the guard of the rotated root depending only on `-R` and not on
+    the sign, so it certified NOTHING. This is the same defect as the one
+    corrected in the holonomy step, reintroduced here.
     """
     T2 = tuple(j for j in range(6) if j not in S2)
     others = [c for c in T2 if c != g2]
@@ -282,7 +282,7 @@ def target_component(S2, g2, up, vp):
         elif hi < 0:
             out.append(-1)
         else:
-            # (ii) sinon, la règle par SIGNES DE COEFFICIENTS
+            # (ii) failing that, the rule by COEFFICIENT SIGNS
             out.append(rotated_sigma_from_coeffs(
                 Fraction(Ae[r][perm[1]]), Fraction(Ae[r][perm[2]]),
                 ur, ui, vr, vi))
@@ -290,14 +290,14 @@ def target_component(S2, g2, up, vp):
 
 
 def derive_eps_target(S2, g2, up, vp, sigma2, Zp):
-    """the sheet-derivation step : `ε'` **DÉRIVÉ**, pas ajusté par E3.
+    """The sheet-derivation step: `eps'` is **DERIVED**, not tuned by E3.
 
     At the CENTRE of the cell, the target root computed with the
     sheet +1 is compared to the normalised coordinate: the sign that makes
     them coincide IS the sheet. It is then FROZEN, and compatibility
-    is required on the WHOLE BOX, coordinate by coordinate,
-    MÊME signe** — « au signe près » accepterait un changement de
-    a SHEET change for a gauge, which is wrong as soon as the two
+    is required on the WHOLE BOX, coordinate by coordinate, with the
+    **SAME sign**; accepting equality "up to sign" would take a SHEET
+    change for a gauge change, which is wrong as soon as the two
     descriptions are already normalised by the same gauge.
     """
     Zt1, _d, _k = native_target_section(S2, g2, up, vp, (1, 1, 1),
@@ -316,7 +316,7 @@ def derive_eps_target(S2, g2, up, vp, sigma2, Zp):
 
 def transport(S, g, eps, center, hw, S2, g2, M, c218, rw,
               flip_row=None, perturb_J=None):
-    """Q_source, Q_mid (jauge cible / dérivées source) et Q_target
+    """Q_source, Q_mid (target gauge with source derivatives) and Q_target
     NATIVE section, plus the Jacobian."""
     Z, dZ, rows = build_section(S, g, eps, center, hw)
     if flip_row is not None:
@@ -349,7 +349,7 @@ def transport(S, g, eps, center, hw, S2, g2, M, c218, rw,
 
     # component CERTIFIED from the target radicand component
     sigma2 = target_component(S2, g2, up, vp)
-    # the sheet-derivation step : ε' DÉRIVÉ au centre, puis FIGÉ
+    # the sheet-derivation step: eps' DERIVED at the centre, then FROZEN
     eps2d = derive_eps_target(S2, g2, up, vp, sigma2, Zp)
     if eps2d is None:
         return {"native_failed": True, "sigma_target": sigma2}
@@ -361,9 +361,9 @@ def transport(S, g, eps, center, hw, S2, g2, M, c218, rw,
     Wt = [[dZt[a][0], dZt[a][1]] for a in range(6)]
     Q_tgt = Qmat(Zt, Wt, M, c218, rw)
     cong = congruence(J, Q_tgt)
-    # compatibilité des deux sections : Z_native vs Z/Z_{g'} (au signe
+    # compatibility of the two sections: Z_native against Z/Z_{g'} (at the sign
     # of each section coordinate: this is the record of the sheets)
-    # the sheet-derivation step : compatibilité PROJECTIVE — MÊME signe, coordonnée par
+    # the sheet-derivation step: PROJECTIVE compatibility, the SAME sign, coordinate by
     # coordinate, on the whole box. The two descriptions are already
     # normalised by the SAME gauge (Z_{g'} = 1): they can no longer
     # differ by a global sign, and an INDEPENDENT sign per coordinate
@@ -413,16 +413,16 @@ def build():
         tgt = adm[0]
         S2, g2 = tuple(tgt["S"]), tgt["g"]
         # no search on the sheet any more: it is DERIVED in
-        # `transport`, puis E3 le teste en aveugle.
+        # `transport`, and E3 then tests it blind.
         tr = transport(S, g, eps, c, hw, S2, g2, M, c218, rw)
         if tr is None or tr.get("native_failed"):
-            log(f"  cellule ignorée : section cible non calculable "
-                f"(σ' = {tr.get('sigma_target') if tr else None})")
+            log(f"  cell skipped: target section not computable "
+                f"(sigma' = {tr.get('sigma_target') if tr else None})")
             continue
         eps2_used = tuple(tr["eps_target"])
         if not tr["same_projective_point"]:
             log(f"  cell REFUSED: the two descriptions are NOT "
-                f"le même point projectif (chart S={list(S2)} g={g2})")
+                f"the same projective point (chart S={list(S2)} g={g2})")
             continue
         gauge_ok, gauge_d = contains_zero(
             mat_sub(tr["Q_src"], tr["Q_mid"]))
@@ -430,7 +430,7 @@ def build():
             mat_sub(tr["Q_src"], tr["cong"]))
         # the residual, QUANTITATIVE: `contains_zero` bounds a
         # defect, it does not prove an identity. We therefore publish
-        # sup |résidu| et sa taille RELATIVE à ‖Q_source‖.
+        # the supremum of |residual| and its size RELATIVE to ||Q_source||.
         qs_norm = max(abs(x) for i in range(2) for k in range(2)
                       for x in iv_bounds(tr["Q_src"][i][k].re_tm()
                                          .to_iv()))
@@ -439,10 +439,10 @@ def build():
                       for x in cong_d)
         residual = {"sup_abs": sup_abs, "Q_source_norm": qs_norm,
                     "relative": sup_abs / max(qs_norm, 1e-300),
-                    "note": ("`0 ∈ enclosure` borne le défaut, il ne "
-                             "does NOT prove the identity; the retained contract "
-                             "est « congruence APPROCHÉE certifiée » "
-                             "avec cette borne")}
+                    "note": ("0 in the enclosure bounds the defect, it "
+                             "does NOT prove the identity; the retained "
+                             "contract is a certified APPROXIMATE "
+                             "congruence with that bound")}
         (p_s, d_s) = pd_bounds(tr["Q_src"])
         (p_t, d_t) = pd_bounds(tr["Q_tgt"])
         dJ = iv_bounds((tr["detJ"] * TMC([CIV(x, -y) for x, y in
@@ -533,7 +533,7 @@ def build():
             x["pd_target"]["is_PD"] and x["pd_source"]["is_PD"]
             for x in cells),
         "E6_jacobian_mutation_breaks": not j_ok,
-        # the sheet-derivation step : toute paire retenue décrit le MÊME point projectif
+        # the sheet-derivation step: every retained pair describes the SAME projective point
         "C125B_same_projective_point": bool(cells) and all(
             x["same_projective_point"] for x in cells),
         # the component-certification step : σ' est certifié, jamais 0 (indéterminé)
@@ -574,8 +574,8 @@ def build():
             "oui" if not j_ok else "NON", len(cells)))
 
     out = {
-        "phase": ("B1.e.2.iii congruence/positivity transport — congruence des Gram et "
-                  "transport de positivité sur cellule entière"),
+        "phase": ("Gram congruence and positivity transport "
+                  "on a whole cell"),
         "witness_sha256": reg["witness_sha256"],
         "tm_config": {"poly_deg": TM_ORDER,
                       "unary_series_deg": UNARY_SERIES_DEG},
@@ -632,7 +632,7 @@ def _selftest():
     Z, W, _ = tm_chart_cell_section(S, g, eps, u0, v0, 0.0)
     Q0 = Qmat(Z, W, M, c218, rw)
 
-    # S1 : quadraticité — la BONNE convention convient
+    # S1: quadraticity, the RIGHT convention works
     A = [[complex(2.0, 0.3), complex(0.1, -0.4)],
          [complex(-0.2, 0.5), complex(1.5, 0.1)]]
     Atm = [[TMC.const(_c(A[i][k])) for k in range(2)] for i in range(2)]

@@ -1161,7 +1161,7 @@ $b \mapsto (w(b), b)$ is a holomorphic section.
 rationals: $\sigma_{\max}(\tilde V_S) \le \lVert \tilde V_S \rVert_F$
 (upper), $\sigma_{\min}(\tilde V_S) \ge |\det \tilde V_S| /
 \lVert \tilde V_S \rVert_F^2$ (lower), square roots bracketed by integer
-square roots to $10^{-40}$. The checks check $h < 1/2$, the contraction
+square roots to $10^{-40}$. The checks verify $h < 1/2$, the contraction
 factor, $r^* \le 2\eta$ and $r^* < \sigma/L$ on all $60$ types, and a
 negative control multiplying $\rho$ by $100$ drives $h$ above $1/2$. The
 resulting uniform radius is

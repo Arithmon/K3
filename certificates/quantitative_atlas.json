@@ -6,10 +6,10 @@
  "nothing_is_rewritten": true,
  "upstream": {
   "d3_coverage_legacy": "bbfd61db610fd6822b699b6b2d28264a1ddf6541633b55a1a43084ec37cd74fa",
-  "amendment_b": "9ec2411cf8f78ba1fad085c3d4207eedbbad32dd47274b2a90e128ea7fa41724",
+  "amendment_b": "57aa3253b5e811c74446f91f37ecb8db2df5bdbe8ce31c8ef4823be29dca199d",
   "u1_certificate": "05c442a2894dbb0025bf0387a457e0489b5e46357fd0fa8350e21411417624bc",
-  "f9_p0": "e29616f99427c3c637e93790c29c818d99b774c2a213618a2370f47ed23ee15b",
-  "closeout_k_regional": "9665ec36c1ddc03eff670865f1f0560cb8786946b32093c1bc2c5cd66b7d0419"
+  "f9_p0": "992d6b692626b548b3cb5524556eb00f50518f009b4771a434e44a1e616c2ac8",
+  "closeout_k_regional": "df48f585acc1443bdeda3dce5b52381c97b1dd06b3745cb502910782b4fa6028"
  },
  "T2_statement": "For the fixed CI(2,2,2) surface K (μ = 1,2,3,5,7,11): there exists a FINITE holomorphic atlas of K by local charts (S,g; centre Z0), each radius of which is bounded below by an explicit rational constant ρ_uniform(S,g) > 0 (U1), whose chart transitions are the exact projective coordinate changes (F9-P0), and whose quotient is canonically K",
  "level": "quantitative existence of a finite holomorphic atlas with a guaranteed explicit radius",
@@ -19,7 +19,7 @@
    "minor_floor": 4.8,
    "verdict": "CERTIFIED",
    "n_unresolved": 0,
-   "cover_definition": "pour m < 4,8 préinscrit : U_S = {Z ∈ K : |det M_S(Z)| > m}, S parmi les 20 triples ; {U_S} couvre K par D3",
+   "cover_definition": "for m below the preregistered 4.8: U_S is the set of Z in K with determinant above m, S among the 20 triples; these sets cover K by the coverage step",
    "ok": true
   },
   "2_each_point_chooses_template": {
@@ -54,8 +54,8 @@
    "ok": true
   },
   "6_quotient_is_K": {
-   "reduction": "découle de 1 (couverture, F1) + 2 (F1′) + 3–7 identités : Φ est bijective, holomorphe locale, donc iso",
-   "biconditional": "(i,p) ~ (j,q) ⇔ s_i(p) = s_j(q) ⇔ q = π_j(t_ij(s_i(p))) — identité, pas une mesure",
+   "reduction": "follows from 1 (covering) and 2 (the chart lemma) together with identities 3 to 7: the map is bijective and locally holomorphic, hence an isomorphism",
+   "biconditional": "equivalence of two points holds exactly when their sections agree, which holds exactly when one is the image of the other under the transition: an identity, not a measurement",
    "ok": true
   },
   "7_no_regional_dependency": {
@@ -109,7 +109,7 @@
  },
  "perturbation_tests_passed": 2,
  "perturbation_tests_total": 2,
- "seconds": 0.0,
- "built_from_head": "17170d9596ae6b1e9578db99200a6da175100287",
+ "seconds": 0.01,
+ "built_from_head": "394f6b22a0f792a53d19ede1f222fb5da486ff68",
  "self_sha256": "420b9505773f24940a57e152cddf60bb88a355fb2687bfdaf1ae41c8ce1af067"
 }

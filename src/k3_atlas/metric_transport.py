@@ -1,87 +1,84 @@
 #!/usr/bin/env python3
 """
-metric_transport.py — the bridge step / F4 : LA MÉTRIQUE
-REJOINT LES CARTES-PONTS.
+metric_transport.py — the metric step: THE METRIC REJOINS THE BRIDGE
+CHARTS.
 
-WHAT THIS SCRIPT PAYS: the contract that put the metric step on
-(`gpt_b1e2iii_c129f0_scout_f1_f2f3_review_2026_07_31.md`), qui met F4 en
-HOLD until the atlas architecture was repaired. It now is,
-(the bridge step, 17/17 : nerf sur arêtes certifiées, feuille continuée `D·Z`,
-portée stratifiée), donc F4 peut tourner.
+WHAT THIS SCRIPT PAYS: the contract that put the metric step on HOLD
+until the atlas architecture was repaired. It now is (the bridge step,
+17/17: a nerve on certified edges, the continued sheet `D.Z`, a
+stratified scope), so this step can run.
 
-THE PATH IS THE ESTABLISHED ONE, NOT A NEW ONE. `transport_hardened`
-(the transport step durci the anchor amendment/B/C : quatre `Qmat` source/mid/cible/congruence,
-hermiticité gatée, Weyl en arithmétique dirigée, ratio relatif certifié)
-is called on the BRIDGE BOX, in FROZEN-RECORD mode: sheet and component come from the
-core certified earlier and are NEVER re-derived, exactly the mode
-proven by the autonomy probes and the full run.
+THE PATH IS THE ESTABLISHED ONE, NOT A NEW ONE. `transport_hardened` (the
+transport step, hardened by the anchor amendment: four `Qmat` for source,
+middle, target and congruence, checked hermiticity, Weyl in directed
+arithmetic, and a certified relative ratio) is imported AS IT IS.
 
 THE ONLY ADDITION, AND IT IS MINIMAL. `transport_hardened` built its
 section through `build_section`, which (i) takes a SCALAR half-width and
-(ii) falls back on the component rule, whereas the bridge is ANISOTROPIC (`2H` in
-Im, `H` en Re) et `σ` y est indéterminé, puisque `Im R` change de signe.
-An ADDITIVE `section=` parameter was therefore added to `transport_hardened`
-(`center` and `hw` served ONLY `build_section`; everything downstream is
-box-agnostic). When it is `None` the behaviour is unchanged,
-and check **G1** PROVES it by replaying the default path on a
-REGULARLY SPACED panel of the full run (a constant step over the tile
-indices, NOT a stratified panel) and requiring the SAME numbers as
-indices, NOT a stratified panel) and requiring the SAME numbers as
-the serialised artefact. An injection that moved a digit of the full
-run would be a silent disaster; it is therefore checked, not
-supposée.
+(ii) falls back on the component rule, whereas the bridge is ANISOTROPIC
+(`2H` in Im, `H` in Re) and `sigma` is undetermined there, since `Im R`
+changes sign. An ADDITIVE `section=` parameter was therefore added to
+`transport_hardened` (`center` and `hw` served ONLY `build_section`;
+everything downstream is box-agnostic). When it is `None` the behaviour
+is unchanged, and check **G1** PROVES it by replaying the default path on
+a REGULARLY SPACED panel of the full run (a constant step over the tile
+indices, NOT a stratified panel) and requiring the SAME numbers as the
+serialised artefact. An injection that moved a digit of the full run
+would be a silent disaster; it is therefore checked, not assumed.
 
 WHAT THIS STEP CERTIFIES
-  . the metric on each of the 64 bridge boxes (source and target positive definite,
-    invariance de jauge, congruence, Weyl) ;
-  . the certified relative ratio against the SAME `delta = 1e-5` as before:
-    the threshold is NOT relaxed to accommodate a larger box;
-    were it to fail, that would be a REFUSAL to take to review, not a delta
-    à ajuster ;
+  . the metric on each of the 64 bridge boxes (source and target positive
+    definite, gauge invariance, congruence, Weyl);
+  . the certified relative ratio against the SAME `delta = 1e-5` as
+    before: the threshold is NOT relaxed to accommodate a larger box;
+    were it to fail, that would be a REFUSAL to take to review, not a
+    delta to adjust;
   . congruence on the bridge-to-lower and bridge-to-bridge overlaps, that
     is, on the edges that really carry the nerve.
 
 CHECKS
   G1  NON-REGRESSION OF THE INJECTION: the default path (`section=None`)
       replayed on a regularly spaced panel of the full run, giving ratio,
-      slack Weyl, sheet record et déterminations IDENTIQUES à l'artefact full
-      sérialisé ;
-  G2  amont gaté et complet : the atlas step 14/14, the exact-identity step 9/9, the full run 8/8,
-      the bridge step 17/17 — et `mode == "full"` EXIGÉ de CHACUN des quatre
-      (durci, a review D2 : avant, seul the atlas step le devait) ;
-  G3  FROZEN RECORD: sheet and component from the core, never re-derived; and the target
-      kinds obtained on the bridge are those of the core, otherwise REFUSAL (the
-      régime de certification ne doit pas changer en silence) ;
-  G4  METRIC ON THE 64 BRIDGES: certified relative ratio `<= delta = 1e-5`,
-      slack Weyl `> 0`, PD source et cible, invariance de jauge, même
-      point projectif ;
+      Weyl slack, sheet record and determinations IDENTICAL to the
+      serialised full artefact;
+  G2  upstream checked and complete: the atlas step 14/14, the
+      exact-identity step 9/9, the full run 8/8, the bridge step 17/17,
+      with `mode == "full"` REQUIRED of EACH of the four (hardened after
+      a review: before, only the atlas step had to);
+  G3  FROZEN RECORD: sheet and component from the core, never re-derived;
+      and the target kinds obtained on the bridge are those of the core,
+      otherwise REFUSAL (the certification regime must not change in
+      silence);
+  G4  METRIC ON THE 64 BRIDGES: certified relative ratio at most
+      `delta = 1e-5`, Weyl slack `> 0`, source and target positive
+      definite, gauge invariance, same projective point;
   G5  METRIC CERTIFICATE ON THE CERTIFIED EDGE DOMAINS
-      (`metric_certificate_on_certified_edge_domains`, a review D1) :
-      les 64 overlaps pont↔inférieur et les 210 overlaps pont↔pont
-      receive their transport on their exact box, same thresholds,
-      FROM ONE REPRESENTATIVE (the bridge section). Compatibility of the
-      TWO endpoints is transported by the EXACT analytic identity
-      of the sections and by the chart certificates,
-      G4) — AUCUNE comparaison métrique bilatérale indépendante n'est
-      executed, and it is not required for the local theorem; the
-      basis of the implication is SERIALISED
-      (`edge_certificate_contract`) ;
-  G6  NEGATIVE CONTROLS on the bridge: a perturbed `J` makes the congruence exclude 0;
-      `ε'` figé FAUX ⟹ refus ; `σ'` figé FAUX ⟹ refus ;
-  G7  NO SILENT FILTERING: 64 = 64, 274 = 274 on the edges, and
-      every refusal is published with its cause.
+      (`metric_certificate_on_certified_edge_domains`, asked for by a
+      review): the 64 bridge-to-lower and the 210 bridge-to-bridge
+      overlaps receive their transport on their exact box, with the same
+      thresholds, FROM ONE REPRESENTATIVE (the bridge section).
+      Compatibility of the TWO endpoints is transported by the EXACT
+      analytic identity of the sections and by the chart certificates
+      (G4); NO independent bilateral metric comparison is executed, and
+      it is not required for the local theorem; the basis of the
+      implication is SERIALISED (`edge_certificate_contract`);
+  G6  NEGATIVE CONTROLS on the bridge: a perturbed `J` makes the
+      congruence exclude 0; a FALSE frozen `eps'` gives refusal; a FALSE
+      frozen `sigma'` gives refusal;
+  G7  NO SILENT FILTERING: 64 = 64, 274 = 274 on the edges, and every
+      refusal is published with its cause.
 
-WHAT THIS SCRIPT DOES NOT PAY: the canonical identification of the neighbour
-(REFUSED: the upper atlas stays DERIVED); the Re faces, where
+WHAT THIS SCRIPT DOES NOT PAY: the canonical identification of the
+neighbour (REFUSED: the upper atlas stays DERIVED); the Re faces, where
 28 of the 64 bridges remain RELATIVE charts; the EXACT contract of the
-metric congruence, which stays certified UNDER delta rather than exact (the
-exactness promotion concerns the SECTION identity, not
-the triple); the full scaling; the 895 other pairs.
+metric congruence, which stays certified UNDER delta rather than exact
+(the exactness promotion concerns the SECTION identity, not the triple);
+the full scaling; the 895 other pairs.
 
-Sortie : results/metric_transport.json
+Output : results/metric_transport.json
 Usage  : metric_transport.py [--selftest]
-Env    : K3_F4_MODE     panel (défaut) | full
-         K3_F4_WORKERS  (défaut 4)
+Env    : K3_F4_MODE     panel (default) | full
+         K3_F4_WORKERS  (default 4)
 """
 from __future__ import annotations
 
@@ -176,7 +173,7 @@ def load_leaves(cov, transport, residual):
 
 
 # ===========================================================================
-#  Verdict par boîte — le contrat E de the full run, repris VERBATIM
+#  Verdict per box — the contract of the full run, taken VERBATIM
 # ===========================================================================
 def box_ok(r, kinds_expected):
     if r.get("failed"):
@@ -228,7 +225,7 @@ def _bridge_metric_job(arg):
     S, g, _eps = _G["cell"]
     leaf = _G["leaves"][i]
     S2, g2 = tuple(leaf["chart"]["S"]), leaf["chart"]["g"]
-    eps_src = _G["sheet_records"][i]           # sheet record du PONT, dérivé en F2
+    eps_src = _G["sheet_records"][i]           # BRIDGE sheet record, derived earlier
     kw = {"fixed_eps2": tuple(leaf["eps_target"]),
           "fixed_sigma2": list(leaf["sigma_target"])}
     if kind == "mutation_J":
@@ -310,21 +307,21 @@ def selftest():
 
     import inspect
     sig = inspect.signature(transport_hardened)
-    chk("transport_hardened expose le point d'injection `section`",
+    chk("transport_hardened exposes the `section` injection point",
         "section" in sig.parameters)
-    chk("`section` est OPTIONNEL et vaut None par défaut",
+    chk("`section` is OPTIONAL and defaults to None",
         sig.parameters["section"].default is None)
     src = inspect.getsource(transport_hardened)
-    chk("le chemin par défaut appelle TOUJOURS build_section",
+    chk("the default path ALWAYS calls build_section",
         "if section is None:" in src and "build_section(" in src)
-    chk("center/hw ne servent plus qu'à build_section",
+    chk("center and hw now serve build_section only",
         src.count("center") == 1 + src.count("center)")
         or "build_section(S, g, eps, center, hw)" in src)
     chk("delta is the established one, not relaxed", DELTA_REL == 1e-5)
     chk("D is the deck transformation imported from the bridge step",
         tuple(DECK_D) == (1, -1, 1, 1, 1, -1))
-    chk("IM_DIRS importées cohérentes", tuple(IM_DIRS) == (1, 3))
-    # box_ok doit REFUSER un ratio au-dessus de δ et un Weyl négatif
+    chk("the imported IM_DIRS are consistent", tuple(IM_DIRS) == (1, 3))
+    # box_ok must REFUSE a ratio above delta and a negative Weyl slack
     good = {"kinds_target": ["a"], "gauge_invariance_ok": True,
             "congruence_contains_zero": True,
             "same_projective_point": True, "residual_relative": 1e-6,
@@ -337,9 +334,9 @@ def selftest():
         not box_ok({**good, "spectral": {"hermitian_ok": True,
                                          "weyl_transport_ok": False}},
                    ["a"]))
-    chk("box_ok REFUSE des kinds cible CHANGÉS",
+    chk("box_ok REFUSES CHANGED target kinds",
         not box_ok(good, ["b"]))
-    chk("box_ok REFUSE un échec déclaré",
+    chk("box_ok REFUSES a declared failure",
         not box_ok({**good, "failed": "x"}, ["a"]))
     print(f"\nself-test {ok}/{tot}")
     return ok == tot
@@ -366,8 +363,9 @@ def build():
     leaves = load_leaves(cov, transport, residual)
     halos = {h["index"]: h["record"] for h in atl["halos"] if h["ok"]}
 
-    # --- G2 : amont — mode == "full" EXIGÉ des QUATRE (a review D2 ;
-    # avant, seul the atlas step le devait, et the bridge step sérialisait mode=null) -----
+    # --- G2: upstream, mode == "full" REQUIRED of ALL FOUR (a review
+    # asked for it; before, only the atlas step had to, and the bridge
+    # step serialised mode=null) --------------------------------------
     up = {}
     for name, blob in (("atlas", atl), ("exact_gluing", exact_gluing),
                        ("halo", halo), ("f2f3_v2", f23)):
@@ -426,7 +424,7 @@ def build():
                         "ratio_serialized": a.get("residual_relative")})
     log(f"G1 (NON-REGRESSION): default path replayed on "
         f"{len(probe)} tiles of the full run, giving ratio, sign pattern, "
-        f"déterminations et slack IDENTIQUES : {g1}")
+        f"determinations and slack IDENTICAL: {g1}")
 
     # --- G3/G4: the metric on the bridges -----------------------------
     sel = clipped if MODE == "full" else clipped[::max(
@@ -480,20 +478,20 @@ def build():
                 if r.get("spectral", {}).get("slack")]
     log(f"     {len(e_ok)}/{len(edg)} — ratio max "
         f"{max(e_ratios):.3e} ; slack min {min(e_slacks):.3e}"
-        if e_ok else "     aucune arête certifiée")
+        if e_ok else "     no certified edge")
     for r in e_bad:
-        log(f"     REFUS arête {r['edge']} : {r.get('failed')} "
+        log(f"     REFUSED edge {r['edge']}: {r.get('failed')} "
             f"ratio={r.get('residual_relative')}")
 
     # --- G6: the negative controls on the BRIDGE ----------------------
     # The expected CHANNELS are PREREGISTERED, carried over: a
     # negative control that breaks through another channel than announced is not
-    # le négatif qu'on croit avoir écrit.
+    # the negative control one believes one has written.
     NEG_CHANNEL = {
-        "mutation_J": "congruence exclut 0",
-        "mutation_eps": "même point projectif refusé",
-        "mutation_sigma": ("racine tournée niée (R8) ⟹ même point "
-                           "projectif refusé ou kinds changés")}
+        "mutation_J": "the congruence excludes 0",
+        "mutation_eps": "the same projective point is refused",
+        "mutation_sigma": ("the rotated root negated, so the same "
+                           "projective point is refused or the kinds change")}
     negs = [(sel[0], k) for k in
             ("mutation_J", "mutation_eps", "mutation_sigma")]
     with mpctx.Pool(min(N_WORKERS, 3), initializer=_init,
@@ -598,7 +596,7 @@ def build():
         "edges": edg,
         "not_paid_here": [
             "the canonical identification of the neighbour, which REFUSED, "
-            "l'atlas supérieur reste DÉRIVÉ par conjugaison",
+            "the upper atlas staying DERIVED by conjugation",
             "the Re faces, where 28 of 64 bridges stay RELATIVE charts",
             "the EXACT contract of metric congruence, which stays "
             "certified UNDER delta rather than exact; the exactness promotion "
@@ -607,7 +605,7 @@ def build():
             "the full scaling, and the 895 other pairs"],
         "checks": checks, "checks_passed": npass, "checks_total": len(checks),
         "verdict": (
-            f"F4 {'FULL' if MODE == 'full' else 'PANEL'} LIVRÉ — la "
+            f"metric step {'FULL' if MODE == 'full' else 'PANEL'} DELIVERED: the "
             f"metric joins the bridge charts and the nerve edges."
             if npass == len(checks) else
             f"RED: {len(checks) - npass} check(s) failed"),

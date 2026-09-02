@@ -1,7 +1,7 @@
 {
   "artifact": "k3_cap_b1e2iii_c129d_exact_gluing",
   "mode": "full",
-  "claim": "C129-D — preuve d'exactitude du recollement : P = Z sur chaque halo par le lemme d'unicité de la racine analytique, hypothèses toutes gatées ; l'identité de transition de C127-D devient une égalité analytique.",
+  "claim": "the exact gluing step: proof that the gluing is exact. P = Z on each halo by the analytic-root uniqueness lemma, with every hypothesis checked; the transition identity of the atlas step becomes an analytic equality.",
   "cell": {
     "S": [
       0,
@@ -30691,7 +30691,7 @@
       "breaks": true,
       "anchor_theta_rotated_row": -1,
       "refused": null,
-      "note": "σ' nié sur la ligne tournée : la racine native est niée bit à bit, l'ancre doit rendre −1 (ou la construction refuser)"
+      "note": "sigma' negated on the rotated row: the native root is negated bit for bit, and the anchor must return -1 (or the construction must refuse)"
     },
     "N3_exact_algebra_corrupted": {
       "breaks": true,
@@ -30708,13 +30708,13 @@
     },
     "N6_determination_record_forged": {
       "breaks": true,
-      "note": "le registre prétend une autre détermination que celle employée : G1 doit refuser"
+      "note": "the record claims a determination other than the one used: G1 must refuse"
     }
   },
   "theorem": {
-    "statement": "Sur chacun des 316 halos certifiés, P_a = Zt_a·Z[g'] et Z_a sont ÉGALES comme fonctions analytiques (topologie relative de la cellule pour les 64 halos clippés). Preuve : lemme d'unicité de la racine analytique (note C129-D), dont chaque hypothèse est un gate de ce run — analyticité (G1, gardes de coupure), jauge non nulle (G2), F ≠ 0 (G3), même équation quadratique par algèbre rationnelle exacte (G4), ancre dans le domaine (G5b), même racine à l'ancre par séparation stricte avec reste TM (G5), connexité du pavé (structurelle).",
-    "pair_consequence": "Sur chaque overlap, Z_i et Z_j sont deux racines analytiques du même R ≠ 0 (G3s) et la séparation θ = +1 de C127-D est PONCTUELLE : les sections sources coïncident exactement, donc P_i = Z = P_j — l'identité de transition et le cocycle des triples sont des égalités analytiques.",
-    "delta_defects_role": "cross-check reproductible (C129-D3) : les défauts ~1e-12 de C127-D ne portent plus l'identité, ils la recoupent.",
+    "statement": "On each of the 316 certified halos, P_a = Zt_a.Z[g'] and Z_a are EQUAL as analytic functions (relative topology of the cell for the 64 clipped halos). Proof: the analytic-root uniqueness lemma, each hypothesis of which is a check of this run: analyticity (G1, branch-cut guards), non-zero gauge (G2), F != 0 (G3), the same quadratic equation by exact rational algebra (G4), anchor inside the domain (G5b), the same root at the anchor by strict separation with the Taylor-model remainder (G5), and connectedness of the box (structural).",
+    "pair_consequence": "On each overlap, Z_i and Z_j are two analytic roots of the same R != 0 (G3s) and the separation theta = +1 of the atlas step is POINTWISE: the source sections coincide exactly, hence P_i = Z = P_j, so the transition identity and the cocycle over triples are analytic equalities.",
+    "delta_defects_role": "a reproducible cross-check: the ~1e-12 defects of the atlas step no longer carry the identity, they corroborate it.",
     "c127d_theta_source": {
       "n_pairs": 5396,
       "min_theta_margin": 1.0424326616611046,
@@ -30725,7 +30725,7 @@
   "min_source_radicand_absmin": 0.26060290851660606,
   "min_target_radicand_absmin": 0.5108163260444334,
   "min_anchor_margin": 2.0454030036926154,
-  "verdict": "C129-D (full) — L'IDENTITÉ DE TRANSITION EST EXACTE. Sur 316/316 halos, les hypothèses du lemme d'unicité de la racine analytique sont TOUTES certifiées : déterminations et ledger inchangés (G1), jauge minorée 7.158e-01 > 0 (G2), radicandes source et cible minorés 2.606e-01 / 5.108e-01 > 0 sur le halo entier (G3 — la garde de coupure impliquait déjà F ≠ 0, le gate le rend explicite), transfert de quadriques vérifié EXACTEMENT sur Q (G4 : V_S·A = −V_T, Vandermonde entier à nœuds distincts, aucun intervalle), ancre dans le halo (G5b, Fraction) et séparation stricte à l'ancre AVEC reste TM qui choisit la racine + sur chaque ligne (G5, marge min 2.045e+00, refus si ambigu). CONCLUSION (lemme, note jointe) : Zt_{s'} = Z_{s'}/Z[g'] sur TOUT le halo, donc P = Z EXACTEMENT — et sur chaque overlap les sections sources coïncident ponctuellement (θ = +1 de C127-D, marge min 1.042e+00), donc P_i = P_j est une ÉGALITÉ ANALYTIQUE, pas une congruence sous δ. Les défauts ~1e-12 de C127-D deviennent des CROSS-CHECKS (C129-D3). Les 6 négatifs cassent tous — chaque hypothèse du lemme est falsifiable séparément (ε', σ', algèbre exacte, F = 0, ancre hors domaine, registre forgé). NON PAYÉ : transport métrique sur les halos (C129-E), raccord à travers la face (C129-F), 895 autres paires, R12-C.",
+  "verdict": "the exact gluing step (full): THE TRANSITION IDENTITY IS EXACT. On 316/316 halos, the hypotheses of the analytic-root uniqueness lemma are ALL certified: determinations and sheet record unchanged (G1), gauge bounded below by 7.158e-01 > 0 (G2), source and target radicands bounded below by 2.606e-01 / 5.108e-01 > 0 over the whole halo (G3, the branch-cut guard already implied F != 0 and the check makes it explicit), quadric transfer verified EXACTLY over Q (G4: V_S.A = -V_T, an integer Vandermonde with distinct nodes, no interval), anchor inside the halo (G5b, Fraction) and strict separation at the anchor WITH the Taylor-model remainder selecting the + root on each row (G5, minimum margin 2.045e+00, refusal if ambiguous). CONCLUSION (lemma, attached note): Zt_{s'} = Z_{s'}/Z[g'] on the WHOLE halo, hence P = Z EXACTLY; and on each overlap the source sections coincide pointwise (theta = +1 from the atlas step, minimum margin 1.042e+00), so P_i = P_j is an ANALYTIC EQUALITY, not a congruence under delta. The ~1e-12 defects of the atlas step become CROSS-CHECKS. The 6 negative controls all break: every hypothesis of the lemma is separately falsifiable (epsilon', sigma', exact algebra, F = 0, anchor outside the domain, forged record). NOT PAID: metric transport on the halos, the join across the face, the 895 other pairs, the full scaling.",
   "checks": {
     "G1_ledger_and_determinations_unchanged": true,
     "G2_gauge_bounded_from_zero": true,

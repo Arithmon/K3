@@ -1,6 +1,6 @@
 {
   "artifact": "k3_cap_b1e2iii_c129f_bridge_scout",
-  "claim": "SCOUT, PAS CERTIFICAT. Sur le pont bilatéral CORRIGÉ (demi-largeur 2H dans les deux directions Im réfléchies, halo de tuile inchangé dans les directions Re), les 3 lignes de chacune des 64 tuiles clippées reçoivent un régime analytique par SIGNE STRICT de Re R, en Fractions exactes et sans essai : 192/192. Le pont de demi-largeur H proposé par le contrat F2a de la note de cadrage est REFUSÉ par son propre gate F2b sur les 64 tuiles — il ne contient pas le core inférieur. Ce script ne construit AUCUNE section et ne certifie NI jauge, NI transport, NI transition.",
+  "claim": "AN EXPLORATION, NOT A CERTIFICATE. On the CORRECTED bilateral bridge (half-width 2H in both reflected Im directions, tile halo unchanged in the Re directions), the 3 rows of each of the 64 clipped tiles receive an analytic regime by STRICT SIGN of Re R, in exact Fractions and without trial: 192/192. The bridge of half-width H proposed by the contract of the framing note is REFUSED by its own check on the 64 tiles: it does not contain the lower core. This script builds NO section and certifies NEITHER gauge, NOR transport, NOR transition.",
   "cell": {
     "S": [
       0,
@@ -16448,7 +16448,7 @@
   "diagnostics_not_gated": {
     "im_R_straddles_zero_count": 192,
     "im_R_straddle_is_tautological": true,
-    "im_R_straddle_reason": "le pont contient la tranche y1=y2=0 où Im R = 2a1x1y1 + 2a2x2y2 s'annule identiquement ; la conséquence RÉELLE est que σ = sign(Im R) n'existe pas sur le pont, donc la détermination `rotated` par composante y est inutilisable et le régime canonique de C127-E est la seule option — pas une commodité",
+    "im_R_straddle_reason": "the bridge contains the slice y1 = y2 = 0 where Im R = 2 a1 x1 y1 + 2 a2 x2 y2 vanishes identically; the REAL consequence is that sigma = sign(Im R) does not exist on the bridge, so the `rotated` determination by y component is unusable and the canonical regime is the only option, not a convenience",
     "full_cell_lines": [
       {
         "row": 0,
@@ -16527,14 +16527,14 @@
       }
     ],
     "regime_stable_on_full_cell": true,
-    "full_cell_note": "Re R garde son signe sur la CELLULE ENTIÈRE, très au-delà du pont : la marge est large. Mesure informative, PAS un négatif — première version de S7, retirée des gates parce qu'elle ne peut jamais casser"
+    "full_cell_note": "Re R keeps its sign over the WHOLE CELL, far beyond the bridge: the margin is wide. An informative measurement, NOT a negative control: it was the first version of S7, withdrawn from the checks because it can never break."
   },
   "not_paid_here": [
     "aucune section construite : ni jauge, ni gardes de coupure, ni ledger — F2c/F2d du contrat révisé",
     "identification canonique de la cellule voisine (F1a) et ledger dérivé ligne par ligne (F1d)",
     "overlaps ouverts pont/inférieur et pont/supérieur, ancres intérieures, phases θ∓ (F3)",
     "métrique du pont : Qmat, Weyl, congruences latérales (F4)",
-    "les voisines de codimension 1 (un seul signe Im change) : la conjugaison simultanée ne les atteint pas"
+    "the codimension-1 neighbours (a single Im sign changes): simultaneous conjugation does not reach them"
   ],
   "checks": {
     "S1_geometry_matches_c127d": true,
@@ -16547,7 +16547,7 @@
   },
   "checks_passed": 7,
   "checks_total": 7,
-  "verdict": "SCOUT VERT — le pont corrigé 2H porte un régime analytique global par ligne sur les 64 tuiles, et le facteur 2 de la note est confirmé comme une erreur réelle, pas une question de convention.",
+  "verdict": "GREEN EXPLORATION: the corrected 2H bridge carries a global analytic regime per row over the 64 tiles, and the factor 2 of the note is confirmed as a real error, not a matter of convention.",
   "provenance": {
     "git_head": "3df8856b52f4becbef3557ec40a5e6dc09462f95",
     "python": "3.13.7",

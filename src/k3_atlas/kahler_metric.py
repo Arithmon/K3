@@ -1,56 +1,59 @@
 #!/usr/bin/env python3
 """
-kahler_metric.py — primitives Kähler COHÉRENTES (convention holomorphe).
+kahler_metric.py — COHERENT Kaehler primitives (holomorphic convention).
 
-Rebuilt after the Ritz wall, and recorded in the design note
-the wall review.md §7 : le moteur
-historique `spectral_basis` assemble ses blocs avec W†
-(polish convention), so G_code is NOT the complex Hessian of K (E1 median 0.39-0.57),
-dω̃ ≠ 0 (E2 med 0.187), congruence K violée ×31.7 (B), volume 71.76 vs
-4 pi^2 (E3). This module rewrites EVERY primitive in the single
-chain-rule holomorphe (GPT §Route : « primitive séparée, orientation
-convention; it does NOT touch the older engine, which stays the artefact
-contre lequel le witness v1 a été certifié.
+Rebuilt after the Ritz wall, and recorded in the design note of the wall
+review: the historical engine `spectral_basis` assembles its blocks with
+W-dagger (the polish convention), so G_code is NOT the complex Hessian of
+K (E1 median 0.39-0.57), the form is not closed (E2 median 0.187), the
+congruence of K is violated by a factor 31.7 (B), and the volume is 71.76
+against 4 pi^2 (E3). This module rewrites EVERY primitive in the single
+holomorphic chain-rule convention; it does NOT touch the older engine,
+which stays the artefact against which the witness v1 was certified.
 
 === CONVENTION LOCK ============================================================
 One block of conventions: the design notes CITE this block instead of
-de redériver (reco R2, friction_report_2026-07-15).
+of re-deriving them.
 
- 1. Entrée : section HOLOMORPHE brute du chart radical (Z, W), jauge
-    Z_g = 1, W[a,α] = ∂Z_a/∂w^α (w = (u,v)). JAMAIS la frame sphère
+ 1. Input: the RAW HOLOMORPHIC section of the radical chart (Z, W),
+    gauge Z_g = 1, W[a,alpha] = dZ_a/dw^alpha (w = (u,v)). NEVER the
+    sphere frame
     (z, U) from sphere_horizontal_frame: z = Z/sqrt(s) is not holomorphic
     in w, so the plain chain rule does not apply there.
- 2. Potentiel : K̃(Z) = log(Z†MZ) + Σ_e c_e φ_e(Z)/s^{d_e},
-    s = |Z|², M = LL† hermitienne. Invariance projective : Z → λ(w)·Z
-    (λ holomorphe sans zéro) ajoute log|λ|² pluriharmonique ⟹ G inchangé
-    (testé : check G5, transition de charts).
- 3. Gradient holomorphe : p_I = Wᵀ·∇z^I — SANS conjugaison
+ 2. Potential: K(Z) = log(Z-dagger M Z) + sum_e c_e phi_e(Z)/s^{d_e},
+    with s = |Z|^2 and M = L L-dagger Hermitian. Projective invariance:
+    Z becoming lambda(w).Z (lambda holomorphic without zeros) adds a
+    pluriharmonic log|lambda|^2, so G is unchanged (tested: check G5,
+    chart transition).
+ 3. Holomorphic gradient: p_I = W^T . grad z^I, WITHOUT conjugation
     (the former W-dagger convention is the root cause of the Ritz wall).
  4. d_alpha s = zW_alpha = sum_a conj(Z_a).W[a,alpha]  (s is not holomorphic: a real term).
- 5. Métrique : G_αβ̄ = ∂²(K̃∘Z)/∂w^α∂w̄^β
-             = Σ_{a,b} W[a,α]·conj(W[b,β])·(∂²K̃/∂Z_a∂Z̄_b)
-    — chain rule pure, AUCUN terme du premier ordre (Z(w) holomorphe).
- 6. Mesure : dV = det G · d⁴(Re u, Im u, Re v, Im v).
+ 5. Metric: G_{alpha, beta-bar} = the second derivative of K composed
+    with Z, equal to the sum over a, b of
+    W[a,alpha].conj(W[b,beta]).(second derivative of K in Z_a, Z_b-bar):
+    a pure chain rule, with NO first-order term (Z(w) being holomorphic).
+ 6. Measure: dV = det G . d^4(Re u, Im u, Re v, Im v).
     the volume integral equals 4 pi^2 for EVERY vector c (the phi/s^d are functions
-    globales ⟹ ∂∂̄-exactes ; log(ρ/s) global lisse ⟹ [ω̃] = [ω_FS]
+    global, hence exact; log(rho/s) is globally smooth, so the class is
+    that of the Fubini-Study form and is
     rigid). This is a verification check (G7), not an adjustable datum: the free
     scale of the older note was an artefact.
 ================================================================================
 
-Dérivation des blocs (Wirtinger, ∂̄_b s = Z_b, ∂̄_b Z̄_a = δ_ab) :
+Derivation of the blocks (Wirtinger calculus):
 
- bloc ρ : r_a = ∂ρ/∂Z_a = (Z†M)_a ;
+ rho block: r_a = drho/dZ_a = (Z-dagger M)_a;
    H_ρ[a,b] = M_ba/ρ − r_a·conj(r_b)/ρ²
    G_ρ = (WᵀMᵀW̄)/ρ − (Wᵀr)(Wᵀr)†/ρ²
 
- bloc φ (paire hermitienne c·z^J·conj(z^L)·s^{-d}) :
+ phi block (Hermitian pair c.z^J.conj(z^L).s^{-d}):
    H contracté = c·[ s^{-d}·pJ⊗p̄L
                     − d·s^{-d-1}·( conj(m_L)·pJ ⊗ z̄W + m_J·zW ⊗ p̄L )
                     + m_J·conj(m_L)·( d(d+1)·s^{-d-2}·zW⊗z̄W
                                       − d·s^{-d-1}·WᵀW̄ ) ]
-   Les éléments réels (self / real_pair / imag_pair) regroupent leurs
+   The real elements (self / real_pair / imag_pair) group their
    pairs; the cross term factors as g1 (x) conj(z)W + zW (x) conj(g1) with
-   g1 = ∂φ (gradient holomorphe de l'élément réel).
+   g1 the holomorphic gradient of the real element.
 
  dérivée premières (forme faible) : q̃ = φ/s^d ⟹
    ∂_α q̃ = s^{-d}·( g1_α − d·φ·zW_α/s )
@@ -80,18 +83,19 @@ from .spectral_basis import (  # noqa: F401  (ré-exports volontaires)
 
 
 # ===========================================================================
-#  Primitive racine : gradients holomorphes projetés (Wᵀ, SANS conjugaison)
+#  Root primitive: projected holomorphic gradients (W^T, NO conjugation)
 # ===========================================================================
 def holomorphic_grads(Z, W, multis):
-    """m (K,nm) valeurs z^I ; p (K,nm,2) gradients de chart HOLOMORPHES :
+    """m (K,nm) holds the values z^I; p (K,nm,2) the HOLOMORPHIC chart
+    gradients:
 
         p[k, I, α] = Σ_a W[k, a, α] · (∂z^I/∂Z_a)(Z[k])  =  (Wᵀ·∇z^I)[k, α]
 
     This is the scalar chain rule for a holomorphic chart Z(w):
     d_alpha(z^I of Z) = p[., I, alpha] EXACTLY (not one convention among
-    d'autres). Remplace multi_values_and_projected_grads (W†) dont les
-    « gradients » n'étaient les dérivées d'aucune fonction (congruence K
-    violée ×31.7, diagnostic 07-15 §B)."""
+    among others). It replaces multi_values_and_projected_grads
+    (W-dagger), whose "gradients" were the derivatives of no function at
+    all (congruence violated by a factor 31.7)."""
     K = Z.shape[0]
     nm = len(multis)
     m = np.ones((K, nm), dtype=complex)
@@ -151,17 +155,17 @@ def chart_metric_kahler(Z, W, M, coeffs, basis, multis, midx,
                         want_element_data=False):
     """g_chart (K,2,2) = W^T . (second derivative of K in Z, conj(Z)) . conj(W) in the (u,v) coordinates.
 
-    ENTRÉE : (Z, W) section holomorphe BRUTE du chart (jauge Z_g = 1),
-    as produced by sample_chart or reconstruct. No frame is assumed: any
-    sphère. Formule GÉNÉRALE (termes zW inclus) : valide pour toute
-    holomorphic section, not only a horizontal one; gauge covariance is
-    tested by check G5."""
+    INPUT: (Z, W), the RAW holomorphic section of the chart (gauge
+    Z_g = 1), as produced by sample_chart or reconstruct. No frame is
+    assumed, and no normalisation to the sphere. The formula is GENERAL
+    (zW terms included): valid for any holomorphic section, not only a
+    horizontal one; gauge covariance is tested by check G5."""
     K = Z.shape[0]
     s = (np.abs(Z) ** 2).sum(axis=1)
     zW = dlog_s(Z, W)
     WtWb = np.einsum("kaA,kaB->kAB", W, W.conj())
     m, p = holomorphic_grads(Z, W, multis)
-    # --- bloc rho -----------------------------------------------------
+    # --- rho block ----------------------------------------------------
     rho = np.einsum("ki,ij,kj->k", Z.conj(), M, Z).real
     r = Z.conj() @ M                                   # r_a = (Z†M)_a
     T1 = np.einsum("kaA,ba,kbB->kAB", W, M, W.conj())  # WᵀMᵀW̄

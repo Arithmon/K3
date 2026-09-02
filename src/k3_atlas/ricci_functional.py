@@ -1,35 +1,39 @@
 #!/usr/bin/env python3
 """
-ricci_functional.py — R1 du chantier refit witness v2 : fonctionnelle
-Ricci + gradients analytiques + baselines. MODULE importable (R2 = optimiseur).
+ricci_functional.py — stage R1 of the witness v2 refit: Ricci functional,
+analytic gradients and baselines. An importable MODULE (R2 is the
+optimiser).
 
-Cadrage : the fit scoping note.md §4-5 ; paramétrisation R0
-(`witness_parameters_C.npz`, 9 + 208 params).
+Framing: the fit scoping note; parametrisation from stage R0
+(`witness_parameters_C.npz`, 9 + 208 parameters).
 
-  Fonctionnelle :  F(p9, c) = Var_w[ r ],   r = log det G + 2 log|det M_S|
-  Mesure de fit  :  w = det G_FS · 16/n_c  (dV_FS, queue légère — tail study)
+  Functional  :  F(p9, c) = Var_w[r],   r = log det G + 2 log|det M_S|
+  Fit measure :  w = det G_FS . 16/n_c  (dV_FS, a light tail; see the
+                 tail study)
 
-Structure exploitée : G(p9, c) = G_ρ(M(p9)) + Σ_e (C·c)_e T_e(x) est AFFINE
-in c, so the 218 tensor fields T_e are PRECOMPUTED once (packed
-hermitiens 4-réels [g00, g11, Re g01, Im g01]) et
+Structure exploited: G(p9, c) = G_rho(M(p9)) + sum_e (C.c)_e T_e(x) is
+AFFINE in c, so the 218 tensor fields T_e are PRECOMPUTED once (packed as
+4 real Hermitian components [g00, g11, Re g01, Im g01]), and
 
-  ∂r/∂c_j = tr(G⁻¹ T̃_j),  T̃ = T·C   (analytique exact, un GEMM)
-  ∂F/∂c = 2·⟨ŵ (r − r̄), ∂r/∂c⟩ ;    ∂F/∂p9 : FD central (9 params, ρ-bloc seul)
+  dr/dc_j = tr(G^{-1} T~_j),  T~ = T.C   (exactly analytic, one GEMM)
+  dF/dc = 2.<w_hat (r - r_bar), dr/dc>;  dF/dp9 by central finite
+  differences (9 parameters, rho block only)
 
 Frozen STRATIFIED fit sample: a uniform budget per chart, boosted by 4 on the
-2 charts porteurs de queue (tail study : S=(0,2,5) g=1 ~40 %, S=(1,3,5) g=2
+2 tail-carrying charts (tail study: S=(0,2,5) g=1 about 40%, S=(1,3,5) g=2
 (about 25 percent), exact because the charts are independent strata (weight 16/n_c
 per chart). The min|R| stratum is DEFERRED to a later revision if needed: the
 fit measure has a light tail (Hill 7-9), so the band boost is only
 required for the diagnostics (the monitors will say so).
 
-Baselines (script __main__) :
-  B0  FS pur (p9 = 0, c = 0) ;
-  B1  v1 projeté : M(p9_v1) + projection L²(dV_FS, sample R0) du potentiel
-      raw 657 of v1 onto the 208 psi (starting point for the continuation) and decomposition
-      (part V₁ absorbée par M, part const, résidu).
+Baselines (as a __main__ script):
+  B0  pure Fubini-Study (p9 = 0, c = 0);
+  B1  v1 projected: M(p9_v1) plus the L^2 projection (dV_FS, sample from
+      stage R0) of the raw 657-parameter potential of v1 onto the 208 psi
+      (the starting point for the continuation), with its decomposition
+      (the part absorbed by M, the constant part, the residual).
 
-Sortie : canonical/results/ricci_functional.json
+Output: canonical/results/ricci_functional.json
 Usage : ricci_functional.py [N_BASE=500] [SEED_FIT=21]
 """
 from __future__ import annotations
@@ -75,7 +79,7 @@ def det_packed(g):
 
 
 def tr_inv_packed(g, t, det):
-    """tr(G⁻¹T) pour G (K,4), T (K,4) ou (K,E,4) hermitiens packés."""
+    """tr(G^{-1} T) for G (K,4) and T (K,4) or (K,E,4), packed Hermitian."""
     sh = (slice(None),) + (None,) * (t.ndim - 2)
     g0, g1, g2, g3 = (g[:, i][sh] for i in range(4))
     return (g1 * t[..., 0] + g0 * t[..., 1]
@@ -115,12 +119,13 @@ def stratified_fit_sample(seed, n_base, boost=BOOST):
 
 
 # ===========================================================================
-#  Tenseurs par élément T_e (packés) — miroir du bloc φ du moteur
+#  Per-element tensors T_e (packed): a mirror of the phi block of the engine
 # ===========================================================================
 def element_tensors_packed(Z, W):
-    """(K, 218, 4) : T_e = ∂∂̄(q̃_e) pullback, par élément B₃ (d = 3).
-    EXACT mirror of the phi block of chart_metric_kahler, verified by the
-    selftest T1 (contraction vs moteur à ~1e-14)."""
+    """(K, 218, 4): T_e is the pullback of the complex Hessian of q_e,
+    per element of the degree-3 basis. An EXACT mirror of the phi block of
+    chart_metric_kahler, verified by the self-test T1 (contraction against
+    the engine to about 1e-14)."""
     K = Z.shape[0]
     s = (np.abs(Z) ** 2).sum(axis=1)
     zW = dlog_s(Z, W)
@@ -209,7 +214,7 @@ class FitProblem:
     def G_packed(self, rho_p, c208):
         return rho_p + np.einsum("keq,e->kq", self.Tp, self.C @ c208)
 
-    # --- résidu et fonctionnelle ------------------------------------------
+    # --- residual and functional --------------------------------------
     def r_of(self, gp):
         det = det_packed(gp)
         pd_mask = (det > 0) & (gp[:, 0] > 0)
@@ -311,7 +316,7 @@ def main():
         checks[name] = bool(ok)
         log(f"  [{'PASS' if ok else 'FAIL'}] {name} — {detail}")
 
-    log("construction du problème de fit...")
+    log("building the fit problem...")
     prob = FitProblem(seed=seed_fit, n_base=n_base, log=log)
     results["K_pts"] = prob.K
     p9_v1 = prob.p9_v1
@@ -373,8 +378,9 @@ def main():
         f"{d_v1['pd_frac']:.4f}, ‖∇c‖ = {np.linalg.norm(g_v1):.3f}, "
         f"‖∇p9‖ = {np.linalg.norm(gp9_v1):.3f}")
 
-    # contrôle de cohérence : var(r) v1 plein (coeffs raw, moteur) ≈ 0.84
-    # mesurée au cadrage sur seed 7 — ici v1 PROJETÉ (V₁ tronquée) diffère
+    # consistency control: var(r) for the full v1 (raw coefficients,
+    # engine) is about 0.84 as measured at the framing stage on seed 7;
+    # here the PROJECTED v1 (truncated) differs
     check("B_baselines_finite",
           np.isfinite(F_fs) and np.isfinite(F_v1),
           f"var_FS = {F_fs:.4f}, var_v1proj = {F_v1:.4f}")

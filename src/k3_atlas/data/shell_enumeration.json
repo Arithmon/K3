@@ -20,7 +20,7 @@
   },
   "prereg": {
     "limit": 0,
-    "prediction": "RECALCULÉE par section_radicands(), jamais relue dans un artefact"
+    "prediction": "RECOMPUTED by section_radicands(), never read back from an artefact"
   },
   "cells": [
     {
@@ -91874,7 +91874,7 @@
       "vol_certified_summed_over_classes": 3.394670784473419e-07,
       "vol_residual_summed_over_classes": 2.086162567138672e-07,
       "geometric_fraction_of_owning_couples": 0.015123869243421052,
-      "note": "le volume GÉOMÉTRIQUE ne se somme pas sur les classes ; les deux comptes sont publiés séparément"
+      "note": "the GEOMETRIC volume does not add up across classes; the two counts are published separately"
     }
   },
   "checks_prereg": {
@@ -91887,5 +91887,5 @@
     "E7_negative_certified_avoid_slice": true,
     "E8_no_unknown_status": true
   },
-  "verdict": "C118 — LA COQUILLE ENTIÈRE, PAS UN PANEL (gates 8/8). Les 2354 paires (cellule, classe) de la coquille, sur 1177 géométries distinctes, ont été rejouées sous la garde range-aware : **1458 certifiées (PASS), 896 encore BRANCH, 0 FAIL_***. La portée « 400 géométries déterministes » de C101/C103 est donc levée : le résultat vaut sur la coquille complète. LA MÉTHODE QUI COMPTE : la prédiction n'est pas RELUE dans l'artefact C101 — elle est **RECALCULÉE** cellule par cellule par `section_radicands()`, qui évalue le prédicat « les trois radicandes évitent (−∞,0] » sans passer par la racine. C'était nécessaire (une cellule qui passe ne lève plus aucun diagnostic à lire) et c'est plus fort : prédiction ⟺ statut sur **2354/2354**. CARACTÉRISATION SUR LA TOTALITÉ : 896/896 des BRANCH rencontrent la tranche réelle {Im u = 0} ∩ {Im v = 0} et 0/1458 des certifiées la rencontrent. ALIGNEMENT : {'Im_u:upper_endpoint': 896, 'Im_v:upper_endpoint': 896} — c'est l'hypothèse qui donne le 4/16 de la route A, vérifiée sur tout le résidu. CLASSES H : 1177 géométries, 0 divergence(s) de statut entre classes — indice, PAS théorème, l'invariance H reste interdite d'usage dans un budget. Volume : la coquille vaut 2.7404e-07 en géométrique (1.512 % du volume énuméré des couples porteurs) et 5.4808e-07 sommé sur les classes."
+  "verdict": "THE WHOLE SHELL, NOT A PANEL (checks 8/8). The 2354 (cell, class) pairs of the shell, over 1177 distinct geometries, were replayed under the range-aware guard: **1458 certified (PASS), 896 still BRANCH, 0 FAIL_***. The earlier scope of 400 deterministic geometries is therefore lifted: the result holds on the complete shell. THE METHOD THAT MATTERS: the prediction is not READ BACK from the earlier artefact, it is **RECOMPUTED** cell by cell by `section_radicands()`, which evaluates the predicate 'the three radicands avoid the cut' without going through the root. This was necessary (a cell that passes raises no diagnostic left to read) and it is stronger: prediction matches status on **2354 of 2354**. CHARACTERISATION OVER THE WHOLE: 896 of 896 BRANCH cells meet the real slice {Im u = 0} and {Im v = 0}, and 0 of 1458 certified ones meet it. ALIGNMENT: {'Im_u:upper_endpoint': 896, 'Im_v:upper_endpoint': 896}, the hypothesis behind the 4/16 of route A, verified on the whole residual. CLASSES: 1177 geometries, 0 status divergence between classes, an indication and NOT a theorem; class invariance stays forbidden inside a budget. Volume: the shell is 2.7404e-07 geometrically (1.512 % of the enumerated volume of the carrying pairs) and 5.4808e-07 summed over classes."
 }

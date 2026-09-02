@@ -2,7 +2,7 @@
   "artifact": "k3_cap_b1e2iii_c129f_f1_mirror_ledger",
   "claim_level": "local_analytic_continuation_to_derived_mirror_box",
   "canonical_cell_gluing_claimed": false,
-  "claim": "F1a REFUSE l'identification : la boîte miroir n'est une cellule d'AUCUN registre canonique existant (0 correspondance exacte et 0 intersection sur 78061 cellules balayées), parce que le cover énuméré de notre couple s'arrête EXACTEMENT à Im u = Im v = 0. Le lot est donc une CONTINUATION ANALYTIQUE LOCALE VERS UNE BOÎTE MIROIR DÉRIVÉE, pas un raccord entre cellules canoniques. F1d ÉTABLIT les lois de ledger, dérivées ligne par ligne et par régime au niveau des COEFFICIENTS du Taylor-modèle, sur les 316 halos (source et cible) et les 64 ponts : la formule compacte « ε′ → −ε′, σ → −σ » de la note de cadrage est JUSTE pour le régime canonique et FAUSSE comme règle globale.",
+  "claim": "The identification is REFUSED: the mirror box is a cell of NO existing canonical register (0 exact matches and 0 intersections over 78061 cells swept), because the enumerated cover of our pair stops EXACTLY at Im u = Im v = 0. This work is therefore a LOCAL ANALYTIC CONTINUATION TOWARDS A DERIVED MIRROR BOX, not a join between canonical cells. The sheet-record laws are ESTABLISHED, derived row by row and regime by regime at the level of the Taylor-model COEFFICIENTS, over the 316 halos (source and target) and the 64 bridges: the compact formula 'epsilon' becomes -epsilon', sigma becomes -sigma' of the framing note is CORRECT for the canonical regime and FALSE as a global rule.",
   "cell": {
     "S": [
       0,
@@ -171,7 +171,7 @@
         "verdict": "AMBIGUOUS",
         "baseline": "OWNER"
       },
-      "why": "le critère O0 ne dépend de (u,v) que par |u|², |v|², Re(u²), Re(v²) et |R_s| ; les coefficients étant RÉELS, R_s → conj(R_s) sous conjugaison, donc |R_s| est inchangé et Im(u²) n'intervient que par un carré — le verdict est invariant"
+      "why": "the O0 criterion depends on (u,v) only through |u|^2, |v|^2, Re(u^2), Re(v^2) and |R_s|; the coefficients being REAL, R_s becomes conj(R_s) under conjugation, so |R_s| is unchanged and Im(u^2) enters only through a square: the verdict is invariant"
     },
     "rows": [
       {
@@ -951,7 +951,7 @@
     ]
   },
   "f1d": {
-    "identity": "Z⁺.p[m] = θ·(−1)^(m₁+m₃)·conj(Z⁻.p[m]) pour TOUT multi-indice m — au COEFFICIENT, jamais sur une enclosure (leçon C127-D)",
+    "identity": "Z^+.p[m] = theta.(-1)^(m1+m3).conj(Z^-.p[m]) for EVERY multi-index m, at the level of the COEFFICIENT, never on an enclosure (a lesson of the atlas step)",
     "theta_discrimination_min_preregistered": 0.001,
     "source_determination_census": {
       "('principal', 'principal', 'principal')": 252,
@@ -993,22 +993,22 @@
         "sigma": "FIGÉ (σ⁺ = σ⁻)",
         "theta": -1,
         "sheet_record": "ε⁺ = −ε⁻",
-        "identity": "même identité, σ ne bougeant pas c'est ε qui absorbe le signe"
+        "identity": "the same identity; sigma not moving, it is epsilon that absorbs the sign"
       },
       {
         "regime": "canonical",
         "sigma": "≡ +1 PAR DÉFINITION",
         "theta": -1,
         "sheet_record": "ε⁺ = −ε⁻",
-        "identity": "w = i√_p(−R) et conj(w(conj R)) = −w(R) ; σ étant épinglé, le régime canonique est NÉCESSAIREMENT en convention figée"
+        "identity": "w = i.sqrt_p(-R) and conj(w(conj R)) = -w(R); sigma being pinned, the canonical regime is NECESSARILY in the frozen convention"
       }
     ],
-    "convention_warning": "θ d'une ligne TOURNÉE dépend de la CONVENTION sur σ. Le ledger SOURCE re-dérive σ sur chaque boîte (σ suivi) ; le ledger CIBLE est FIGÉ par contrat depuis C127 (σ figé). Les deux sont publiés : ils ne sont pas interchangeables, et c'est exactement ce que la formule compacte de la note de cadrage écrasait.",
+    "convention_warning": "theta on a ROTATED row depends on the CONVENTION for sigma. The SOURCE record re-derives sigma on each box (sigma tracked); the TARGET record is FROZEN by contract (sigma frozen). Both are published: they are not interchangeable, and that is exactly what the compact formula of the framing note flattened.",
     "negative": {
       "min_defect_wrong_theta_canonical": 1.021514391817708,
       "min_defect_wrong_theta_principal": 3.312581158826869,
       "max_defect_correct_theta": 2.4892061111444567e-59,
-      "note": "le BON θ ferme au bruit du TM, le MAUVAIS rate de O(1) : ~55 ordres de grandeur séparent les deux, la dérivation de θ n'est pas un choix serré"
+      "note": "the RIGHT theta closes at the noise level of the Taylor model, the WRONG one misses by O(1): about 55 orders of magnitude separate them, so deriving theta is not a tight choice"
     },
     "failures_source": [],
     "failures_target": [],
@@ -28347,9 +28347,9 @@
   },
   "not_paid_here": [
     "aucun overlap ouvert, aucune transition, aucune phase θ∓, aucune métrique — F3 et F4 du contrat révisé",
-    "l'énumération de la moitié Im > 0 : c'est le VRAI F1a et il demande un cover, pas une dérivation",
-    "les voisines de codimension 1 (un seul signe Im change) : la conjugaison simultanée ne les atteint pas",
-    "la bijection d'adresses et le Kraft du cover conjugué (F1c) : sans cellule canonique cible, l'objet n'existe pas encore"
+    "the enumeration of the Im > 0 half: this is the real identification task, and it demands a cover, not a derivation",
+    "the codimension-1 neighbours (a single Im sign changes): simultaneous conjugation does not reach them",
+    "the address bijection and the Kraft inequality of the conjugate cover: without a target canonical cell, the object does not exist yet"
   ],
   "checks": {
     "A1_mirror_geometry_and_bridge_selfconjugate": true,
@@ -28364,7 +28364,7 @@
   },
   "checks_passed": 9,
   "checks_total": 9,
-  "verdict": "F1 LIVRÉ AVEC UN REFUS ASSUMÉ — l'identification canonique échoue (et c'est le résultat), les lois de ledger sont établies ligne par ligne et par régime sur tout l'atlas.",
+  "verdict": "Delivered WITH AN ACKNOWLEDGED REFUSAL: the canonical identification fails (and that is the result), while the sheet-record laws are established row by row and regime by regime over the whole atlas.",
   "provenance": {
     "git_head": "6105a9f92a05504b135d2d3e2511399c638336b5",
     "python": "3.13.7",

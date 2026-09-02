@@ -1,56 +1,58 @@
 #!/usr/bin/env python3
 """
-owner_tiling.py — B1.e.2.iii-owner : le noyau O0
-(OWNER classification of a BOX by interval arithmetic) and the
-pilote O1 (tuilage par branch-and-bound depuis les 60 couples candidats).
-Runs the O0 and O1 checks of the contract.
-`gpt_b1e3c3_global_owner_pilot_review_2026_07_24.md` §3.1-3.2, en réponse
-aux corrections C17 (owner certifié au centre seulement), the disjointness answer (disjonction
-intra-chart seulement) et the candidate pairs (28 charts = échantillonnage, pas preuve).
+owner_tiling.py — the OWNER kernel O0 (OWNER classification of a BOX by
+interval arithmetic) and the pilot O1 (branch-and-bound tiling from the 60
+candidate pairs). It runs the O0 and O1 checks of the contract, in answer
+to three review corrections: an owner certified at the centre only, a
+disjointness answer covering intra-chart disjunction only, and candidate
+pairs where 28 charts were sampling rather than proof.
 
 -------------------------------------------------------------------------
 O0: classification of a box (u_0 +- h) x (v_0 +- h) for a pair (S, g).
 -------------------------------------------------------------------------
-Critère propriétaire du moteur (miroir EXACT de sample_chart) :
-  (1) argmax_t sc_t = S,  sc_t = Π_{i∈t}|Z_i|²·V2[t]  (20 triples) ;
-  (2) argmax_{c∈T} |Z_c| = g  (3 jauges du complément) ;
-  (3) min_s |R_s| > 1e-12  (radicands, robustesse branche).
+The ownership criterion of the engine (an EXACT mirror of sample_chart):
+  (1) argmax_t sc_t = S,  sc_t = prod_{i in t}|Z_i|^2 . V2[t]  (20 triples);
+  (2) argmax_{c in T} |Z_c| = g  (3 gauges of the complement);
+  (3) min_s |R_s| > 1e-12  (radicands, branch robustness).
 On the box |Z_g|^2 = 1, |Z_o1|^2 = |u|^2, |Z_o2|^2 = |v|^2, |Z_s|^2 = |R_s|
 with R_s = a_s + b_s.u^2 + c_s.v^2, all computable in REAL interval
 arithmetic (moduli of complex numbers as re^2+im^2), WITHOUT evaluating the metric, and the
 classification is INDEPENDENT of the sheet: the 8 sheets of one
 owning (u,v) are owned together.
 
-Verdicts (stricts, déterministes) :
-  OWNER     sc_S.lo > max_{t≠S} sc_t.hi  ET  |Z_g|².lo > |Z_o|².hi (×2)
-            ET  |R_s|².lo > (1e-12)²  ∀s ;
-  OUTSIDE   ∃t≠S : sc_t.lo > sc_S.hi  OU  ∃o : |Z_o|².lo > |Z_g|².hi ;
-  BRANCH    ∃s : |R_s|² rencontre [0, (1e-12)²]  (et pas OUTSIDE) ;
-  AMBIGUOUS sinon — subdivisée par le tuilage, JAMAIS intégrée.
+Verdicts (strict, deterministic):
+  OWNER     sc_S.lo > max_{t != S} sc_t.hi  AND  |Z_g|^2.lo > |Z_o|^2.hi (twice)
+            AND  |R_s|^2.lo > (1e-12)^2 for every s;
+  OUTSIDE   some t != S has sc_t.lo > sc_S.hi, OR some o has
+            |Z_o|^2.lo > |Z_g|^2.hi;
+  BRANCH    some s has |R_s|^2 meeting [0, (1e-12)^2] (and not OUTSIDE);
+  AMBIGUOUS otherwise: subdivided by the tiling, NEVER integrated.
 
 -------------------------------------------------------------------------
-O1 — pilote de tuilage (branch-and-bound, budget publié)
+O1 — the tiling pilot (branch-and-bound, published budget)
 -------------------------------------------------------------------------
 For EACH of the 60 candidate pairs (S, g): an initial grid
 N0^4 on [-1,1]^4, with 2^4 subdivision of the AMBIGUOUS and BRANCH boxes down to D_MAX.
-Sorties par couple : volumes paramétriques OWNER / OUTSIDE / résiduel
-ambiguous (sum 16), counts by depth. The volume is PARAMETRIC
+Output per pair: parametric volumes OWNER / OUTSIDE / ambiguous
+residual (sum 16), counts by depth. The volume is PARAMETRIC
 (the (u,v) coordinates of the pair); the mass (integral of det g, closure 4 pi^2, check O2)
 is the next stage, and it will consume only certified OWNER boxes.
 
-Self-test (checks DISCRIMINANTS, dont les tests négatifs obligatoires O0) :
-  S1 point possédé (MC) ⟹ boîte dégénérée OWNER ; même (u,v) sous une
-     JAUGE fausse ⟹ OUTSIDE ; sous un TRIPLE faux ⟹ OUTSIDE
-  S2 boîte volontairement à cheval (domaine entier) ⟹ ni OWNER ni
-     OUTSIDE (AMBIGUOUS/BRANCH)
+Self-test (DISCRIMINATING checks, including the mandatory negative
+controls of O0):
+  S1 an owned point (Monte Carlo) gives a degenerate OWNER box; the same
+     (u,v) under a false GAUGE gives OUTSIDE; under a false TRIPLE it
+     gives OUTSIDE;
+  S2 a box deliberately straddling (the whole domain) gives neither OWNER
+     nor OUTSIDE (AMBIGUOUS/BRANCH);
     S3 a constructed vanishing radicand (v=0, u^2 = -a/b) gives BRANCH on a neighbourhood
     S4 pointwise partition: an owned point is OWNER for EXACTLY
           one of the 60 pairs (uniqueness is disjointness)
-  S5 validation MC : la fraction possédée mesurée par sample_chart tombe
-     dans [V_owner, V_owner + V_ambigu]/16 (couple témoin, profondeur 2)
+  S5 Monte Carlo validation: the owned fraction measured by sample_chart
+     falls in [V_owner, V_owner + V_ambiguous]/16 (witness pair, depth 2)
 
-Sorties : results/owner_tiling.json
-Usage   : owner_tiling.py [--selftest]
+Output : results/owner_tiling.json
+Usage  : owner_tiling.py [--selftest]
 """
 from __future__ import annotations
 
@@ -178,8 +180,8 @@ def classify_box(S, g_col, box, setup=None, with_flags=False):
 
 
 # ===========================================================================
-#  O0-fast — même classification, intervalle numpy VECTORISÉ, arrondi
-#  dirigé émulé par nextafter (précédent B1.a ; statut : design-grade,
+#  O0-fast: the same classification, with VECTORISED numpy intervals and
+#  directed rounding emulated by nextafter (status: design-grade,
 #  the mpmath oracle above stays the reference: check S6 crosses the two)
 # ===========================================================================
 NEG, POS = -np.inf, np.inf
@@ -290,12 +292,12 @@ def split_boxes_np(boxes):
     return out.reshape(16 * N, 8)
 
 
-MAX_FRONTIER = 400_000            # budget par profondeur (PUBLIÉ si atteint)
+MAX_FRONTIER = 400_000            # budget per depth (PUBLISHED if reached)
 
 
 def tile_couple(S, g_col, n0=N0, d_max=D_MAX):
-    """Branch-and-bound vectorisé. Retourne (stats volumes, counts par
-    profondeur, capped). Aucune coupe silencieuse : si le budget de
+    """Vectorised branch-and-bound. Returns (volume statistics, counts per
+    depth, capped). No silent truncation: if the budget of the
     boundary is reached, the excess goes to the residual and capped is True."""
     setup = couple_setup(S, g_col)
     edges = np.linspace(-1.0, 1.0, n0 + 1)
@@ -338,8 +340,8 @@ def tile_couple(S, g_col, n0=N0, d_max=D_MAX):
 # ===========================================================================
 def build():
     print("=" * 78)
-    print("B1.e.2.iii-owner — O0 (owner par boîte, intervalle) + O1 "
-          "(tuilage 60 couples)")
+    print("OWNER classification — O0 (owner per box, in interval "
+          "arithmetic) plus O1 (tiling of the 60 pairs)")
     print("=" * 78)
     log(f"grille N0={N0}⁴, D_MAX={D_MAX} (branch-and-bound, "
         f"AMBIGUOUS/BRANCH subdivisées, résiduel publié)")
@@ -376,28 +378,28 @@ def build():
                       if r["vol_owner"] == 0 and r["vol_residual"] > 0)
     v_tot = 16.0 * len(rows)
     verdict = (
-        "B1.e.2.iii-owner O0+O1 LIVRÉS : classification OWNER par BOÎTE "
-        "en intervalle (miroir exact du critère du moteur — scores 20 "
-        "triples + jauge + radicands ; répond C17), tuilage "
-        "branch-and-bound depuis les 60 couples candidats (répond the candidate pairs). "
+        "DELIVERED: OWNER classification per BOX in interval "
+        "arithmetic (an exact mirror of the engine criterion: scores on 20 "
+        "triples, gauge and radicands), and branch-and-bound tiling "
+        "from the 60 candidate pairs. "
         "At D_MAX=%d: %d pairs have a CERTIFIED OWNER volume; the %d "
-        "autres se répartissent en %d VACUITÉS CERTIFIÉES (épuisement "
+        "others split into %d CERTIFIED VACUITIES (exhaustion by "
         "OUTSIDE) plus %d with an ambiguous residual undecided at this depth "
-        "; volumes paramétriques globaux : owner %.2f%%, "
-        "outside %.2f%%, résiduel ambigu %.2f%% (%d boîtes classées). Le "
+        "; global parametric volumes: owner %.2f%%, "
+        "outside %.2f%%, ambiguous residual %.2f%% (%d boxes classified). The "
         "ambiguous residual is the subdivision budget of the next stages; no "
         "ambiguous box ever enters a moment. Next stage: scalar "
         "mass closure (Z on OWNER boxes plus an upper bound on the "
-        "résiduel, cible 4π² ∈ [Z], tolérance fixée avant run)." % (
+        "residual, target 4 pi^2 inside [Z], tolerance fixed before the run)." % (
             D_MAX, n_owner_couples,
             60 - n_owner_couples, n_empty_cert, n_empty_amb,
             100 * tot["OWNER"] / v_tot, 100 * tot["OUTSIDE"] / v_tot,
             100 * tot["residual"] / v_tot, n_boxes))
 
     out = {
-        "phase": ("B1.e.2.iii-owner — O0 classification owner par boîte "
-                  "(intervalle) + O1 tuilage 60 couples (contrat GPT "
-                  "e.3c.4 §3.1-3.2, corrections C17/the disjointness answer/the candidate pairs)"),
+        "phase": ("OWNER classification: O0, owner classification per box "
+                  "in interval arithmetic, plus O1, tiling of the 60 "
+                  "candidate pairs, with the three review corrections"),
         "n0": N0, "d_max": D_MAX, "rad_floor2": RAD_FLOOR2,
         "max_frontier": MAX_FRONTIER, "n_couples_capped": n_capped,
         "fast_kernel": ("numpy + arrondi dirigé émulé nextafter "
@@ -456,8 +458,8 @@ def _selftest():
     print(f"[{'PASS' if s2 else 'FAIL'}] S2 boîte domaine entier "
           f"(frontières incluses) → {v_big} (ni OWNER ni OUTSIDE)")
 
-    # --- S3 : radicand nul construit -----------------------------------------------
-    s3, msg3 = False, "aucun zéro de radicand trouvé (60 couples, 2 axes)"
+    # --- S3: a constructed vanishing radicand -------------------------
+    s3, msg3 = False, "no radicand zero found (60 pairs, 2 axes)"
     h3 = 1e-6
     for S in TRIPLES:
         for g_col in (j for j in range(6) if j not in S):
@@ -484,13 +486,13 @@ def _selftest():
                                 re_lo, re_hi, im_lo, im_hi))
                         v_rad, fl = classify_box(S, g_col, box,
                                                  with_flags=True)
-                        # au zéro de R_s : |Z_s| = 0 ⟹ score du triple
-                        # s'effondre ⟹ OUTSIDE prime légitimement sur
-                        # BRANCH ; le check exige (a) drapeau branch levé
-                        # (b) JAMAIS OWNER
+                        # at the zero of R_s: |Z_s| = 0, so the score of
+                        # the triple collapses and OUTSIDE legitimately
+                        # takes precedence over BRANCH; the check requires
+                        # (a) the branch flag raised (b) NEVER OWNER
                         if fl["branch"] and v_rad != "OWNER":
                             s3 = True
-                            msg3 = (f"S={S} g={g_col} : R_{si} = 0 à "
+                            msg3 = (f"S={S} g={g_col}: R_{si} = 0 at "
                                     f"{name} = "
                                     f"{'i·' if imag else ''}{r:.4f} "
                                     f"→ {v_rad}, branch flag levé")
@@ -504,11 +506,11 @@ def _selftest():
         if s3:
             break
     fails.append(not s3)
-    print(f"[{'PASS' if s3 else 'FAIL'}] S3 radicand ~0 : {msg3}")
+    print(f"[{'PASS' if s3 else 'FAIL'}] S3 radicand about 0: {msg3}")
 
-    # --- S4 : unicité du propriétaire au POINT PROJECTIF (60 couples) ---------------
+    # --- S4: uniqueness of the owner at the PROJECTIVE POINT (60 pairs)
     # the same surface point transported into the coordinates of each pair:
-    # u' = Z_{o1'}/Z_{g'}, v' = Z_{o2'}/Z_{g'} (ownership projectivement
+    # u' = Z_{o1'}/Z_{g'}, v' = Z_{o2'}/Z_{g'} (ownership being
     # invariant, since the scores scale as |lambda|^6 and the argmax is unchanged
     Z0 = Z[0]
     owners = []
@@ -554,7 +556,7 @@ def _selftest():
     for i in range(n6):
         ref = classify_box(S0, g0, tuple(bx[i]))
         fast = names[int(codes_np[i])]
-        # le rapide ne doit JAMAIS certifier (OWNER/OUTSIDE) contre
+        # the fast path must NEVER certify (OWNER/OUTSIDE) against
         # the oracle; a certified-to-AMBIGUOUS demotion would be tolerated
         if fast != ref and (fast in ("OWNER", "OUTSIDE")
                             or ref in ("OWNER", "OUTSIDE")):

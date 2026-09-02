@@ -1,43 +1,51 @@
 #!/usr/bin/env python3
 """
-witness_parametrisation.py — R0 du chantier refit witness v2 : paramétrisation
-identifiable gelée. MODULE importable (R1/R2 consomment design_on_sample,
-m_from_params9, params9_from_witness) + script de génération des artefacts.
+witness_parametrisation.py — stage R0 of the witness v2 refit: the frozen
+identifiable parametrisation. An importable MODULE (R1 and R2 consume
+design_on_sample, m_from_params9, params9_from_witness) and a script that
+generates the artefacts.
 
-Cadrage : the fit scoping note.md §3 (+ §6b résultats).
-The earlier fit worked in the raw basis `basis_upto(3)[10:]` = 657 parameters
-for an identifiable function space of dimension 208 (440 flat directions
-measured). This module builds and FREEZES the v2 parametrisation:
+Framing: the fit scoping note. The earlier fit worked in the raw basis
+`basis_upto(3)[10:]` = 657 parameters for an identifiable function space
+of dimension 208 (440 flat directions measured). This module builds and
+FREEZES the v2 parametrisation:
 
-  potentiel v2 :  K̃(Z) = log(Z†MZ) + Σ_j c_j · ψ_j(Z)
+  potential v2:  K(Z) = log(Z-dagger M Z) + sum_j c_j . psi_j(Z)
 
-  - M = LL†, L Cholesky structurée par caractères Z₂³, JAUGE det M = 1
-    (Σ u_i = 0) ⟹ 9 paramètres réels libres (pack/unpack ici) ;
-  - ψ_j = Σ_e C[e,j]·q̃_e, q̃_e ∈ B₃ (base quotient degré 3, 218 éléments,
-    d ≡ 3 homogène — consommable telle quelle par chart_metric_kahler) ;
-  - C (218 × 208) : base ORTHONORMÉE L²(dV_FS, sample gelé seed=11) d'un
-    complément de span(const, V₁) dans V₃, HIÉRARCHIQUE par blocs :
-    48 colonnes = V₂⊖V₁ puis 160 colonnes = V₃⊖V₂.
-    (V_1 is carried by M; the constant is killed by centring. Note that the
-    constante vit DANS V₁ : Σ_i |z_i|²/s = 1, d'où rang(V₁ centré) = 9.)
+  - M = L L-dagger, with L a Cholesky factor structured by the Z_2^3
+    characters, under the GAUGE det M = 1 (sum u_i = 0), giving 9 free
+    real parameters (packed and unpacked here);
+  - psi_j = sum_e C[e,j].q_e, with q_e in the degree-3 quotient basis (218
+    elements,
+    homogeneous of degree 3, consumable as such by
+    chart_metric_kahler);
+  - C (218 x 208): an L^2-ORTHONORMAL basis (dV_FS, frozen sample with
+    seed 11) of a complement of span(const, V_1) inside V_3, HIERARCHICAL
+    by blocks: 48 columns for V_2 minus V_1, then 160 columns for V_3
+    minus V_2. (V_1 is carried by M; the constant is killed by centring.
+    Note that the constant lives IN V_1, since the sum of |z_i|^2/s is 1,
+    so the centred V_1 has rank 9.)
 
-Construction (route équilibrée — jamais le Gram) : matrice de design
-A = √w·(Q₃ − ⟨Q₃⟩_w), w = det G_FS·(16/N) (mesure de fit dV_FS, queue
-légère — tail study), CGS2 + passe de raffinement, représentations en
-coefficients exactes conservées.
+Construction (a balanced route that never forms the Gram matrix): the
+design matrix A = sqrt(w).(Q_3 - <Q_3>_w) with w = det G_FS.(16/N) (the
+fit measure dV_FS, a light tail; see the tail study), CGS2 plus a
+refinement pass, with exact coefficient representations preserved.
 
 Artefacts (FROZEN: witness data, not recomputables):
   canonical/results/witness_parameters_C.npz   (C, C1, E13, mean, spec)
   canonical/results/witness_parametrisation.json    (selftests + diagnostics)
 
-Selftests bloquants (résultats du run gelé : note cadrage §6b, 8/8) :
-  S1 rangs hiérarchiques exacts (9 / 48 / 160) ;
-    S2 orthonormality on the frozen sample;
-  S3 complément : (A·C) ⊥ (A·C1), fuite constante < 1e-8 (∂∂̄const = 0) ;
-  S4 G est AFFINE en c ;
-  S5 invariance de rejauge du résidu Ricci r = log det G + 2 log|det M_S| ;
-    S6 generalisation: cond(Gram) on a FRESH sample (measured: 5.9);
-  S7 contraste : design raw 657 cond 1.88e19, rang(1e-8) = 217 = 208 + 9.
+Blocking self-tests (results of the frozen run, 8/8):
+  S1 exact hierarchical ranks (9 / 48 / 160);
+  S2 orthonormality on the frozen sample;
+  S3 complement: (A.C) orthogonal to (A.C1), constant leak below 1e-8
+     (the complex Hessian of a constant vanishes);
+  S4 G is AFFINE in c;
+  S5 regauging invariance of the Ricci residual
+     r = log det G + 2 log|det M_S|;
+  S6 generalisation: cond(Gram) on a FRESH sample (measured: 5.9);
+  S7 contrast: the raw 657 design has cond 1.88e19 and rank(1e-8) = 217 =
+     208 + 9.
 
 Usage : witness_parametrisation.py [N_DRAW=1000] [SEED_FROZEN=11]
 """
@@ -71,7 +79,7 @@ DEFAULT_SEED_FROZEN = 11
 DEFAULT_N_DRAW = 1000
 
 # ===========================================================================
-#  Base quotient V3 (module-level : consommée par R1/R2)
+#  Degree-3 quotient basis (module level: consumed by stages R1 and R2)
 # ===========================================================================
 B1 = basis_at_deg_quotient(1)
 B2 = basis_at_deg_quotient(2)
@@ -81,15 +89,17 @@ B3_MULTIS, B3_IDX = multis_of(B3)
 
 
 # ===========================================================================
-#  M-bloc : L structurée, jauge det M = 1 (9 params libres)
+#  M block: structured L, gauge det M = 1 (9 free parameters)
 # ===========================================================================
-# Structure héritée du witness v1 (load_witness) : diag exp(u_0..u_5) +
-# 2 sous-diagonales complexes (blocs de caractères A et B). Jauge :
-# Σ u_i = 0 ⟺ det L réel = 1 ⟺ det M = 1 ; on paramètre les 6 u par
-# 5 différences + les 4 réels off-diag ⟹ 9.
+# Structure inherited from the witness v1 (load_witness): diagonal
+# exp(u_0..u_5) plus 2 complex subdiagonals (character blocks A and B).
+# Gauge: sum u_i = 0, equivalently det L real equal to 1, equivalently
+# det M = 1; the 6 values u are parametrised by 5 differences plus the 4
+# real off-diagonal entries, giving 9.
 def m_from_params9(p9):
-    """p9 = (du_1..du_5, bAr, bAi, bBr, bBi) → M = LL†, det M = 1.
-    u_0 = −(du_1+..+du_5), u_i = du_i pour i ≥ 1 ⟹ Σ u = 0."""
+    """p9 = (du_1..du_5, bAr, bAi, bBr, bBi) gives M = L L-dagger with
+    det M = 1, where u_0 = -(du_1 + ... + du_5) and u_i = du_i for
+    i >= 1, so that sum u = 0."""
     du = np.asarray(p9[:5], float)
     u = np.concatenate([[-du.sum()], du])
     bAr, bAi, bBr, bBi = p9[5:]
@@ -104,7 +114,7 @@ def m_from_params9(p9):
 def params9_from_witness():
     """Project the M of the v1 witness onto the gauge det M = 1 (M -> M/det^{1/6}),
     a global rescaling of L by exp(-u); the potential changes only by an
-    constante, invisible pour ∂∂̄ et pour var(r))."""
+    additive constant, invisible to the complex Hessian and to var(r))."""
     d = load_witness()["npz"]
     rho10 = d["params_full"][:10]
     u1, ut, uA1, bAr, bAi, uA2, uB1, bBr, bBi, uB2 = rho10
@@ -116,10 +126,10 @@ def params9_from_witness():
 
 
 # ===========================================================================
-#  Design A = √w (Q3 − mean) sous dV_FS (réutilisé par la projection v1)
+#  Design A = sqrt(w).(Q3 - mean) under dV_FS (reused by the v1 projection)
 # ===========================================================================
 def q3_values(Zs):
-    """Valeurs des 218 éléments B₃ (K, 218)."""
+    """Values of the 218 elements of the degree-3 basis (K, 218)."""
     s_sl = (np.abs(Zs) ** 2).sum(axis=1)
     m = np.ones((Zs.shape[0], len(B3_MULTIS)), dtype=complex)
     for i, I in enumerate(B3_MULTIS):
@@ -149,13 +159,13 @@ def design_on_sample(seed, n_draw):
 
 
 def orth_block(A, cols, prev_C_list, tol=RANK_TOL):
-    """Orthonormalise A·cols contre les blocs précédents (A·C_prev déjà
-    orthonormés) puis en interne (SVD). CGS2 + raffinement. Toutes les
-    opérations restent des combinaisons de colonnes ⟹ représentation
-    coefficient EXACTE conservée. Retourne (C_blk, sv)."""
+    """Orthonormalise A.cols against the previous blocks (A.C_prev
+    already orthonormal), then internally (SVD). CGS2 plus refinement.
+    Every operation stays a combination of columns, so the EXACT
+    coefficient representation is preserved. Returns (C_blk, sv)."""
     cols = cols.copy()
     B = A @ cols
-    for _ in range(2):                        # CGS2 : « twice is enough »
+    for _ in range(2):                        # CGS2: "twice is enough"
         for Cp in prev_C_list:
             Qp = A @ Cp
             coef = Qp.T @ B
@@ -248,7 +258,7 @@ def main():
     cross = float(np.abs(AC1.T @ AC).max())
     const_leak = float(np.abs((np.sqrt(w_frozen) @ AC)).max()
                        / np.sqrt(w_frozen.sum()))
-    # seuil fuite constante : 1e-8 — bruit float de centrage amplifié par
+    # constant-leak threshold 1e-8: the float noise of centring amplified by
         # norm of C (small singular values around 2e-4 of the V3 block), and the NULL
         # direction of the metric (the Hessian of a constant vanishes: a constant
     check("S3_complement", cross < 1e-10 and const_leak < 1e-8,
@@ -271,9 +281,9 @@ def main():
     Gab = G_of(ca + cb)
     aff = float(np.abs(Gab - Ga - Gb + G0).max() / np.abs(Gab).max())
     check("S4_affine_in_c", aff < 1e-12,
-          f"‖G(a+b) − G(a) − G(b) + G(0)‖/‖G‖ = {aff:.2e}")
+          f"||G(a+b) - G(a) - G(b) + G(0)||/||G|| = {aff:.2e}")
 
-    # S5 — invariance de rejauge du résidu Ricci (c aléatoire)
+    # S5: regauging invariance of the Ricci residual (random c)
     def residual_r(Z, W, M, coeffs, det_MS):
         G = chart_metric_kahler(Z, W, M, coeffs, B3, B3_MULTIS, B3_IDX)
         return (np.log(np.abs(det2_herm(G)))
@@ -348,9 +358,9 @@ def main():
         "n_flat_raw": len(RAW) - rank_raw,
         "cond_C_design": 1.0}
     check("S7_raw_contrast", rank_raw <= C.shape[1] + k1,
-          f"raw 657 : cond = {Sraw[0] / Sraw[-1]:.2e}, rang(1e-8) = "
-          f"{rank_raw} ⟹ {len(RAW) - rank_raw} directions plates ; "
-          f"design C : cond = 1 (orthonormée par construction)")
+          f"raw 657: cond = {Sraw[0] / Sraw[-1]:.2e}, rank(1e-8) = "
+          f"{rank_raw}, so {len(RAW) - rank_raw} flat directions; "
+          f"design C: cond = 1 (orthonormal by construction)")
 
     all_pass = all(checks.values())
     np.savez_compressed(

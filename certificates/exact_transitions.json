@@ -27,7 +27,7 @@
         "g_in_S2": true,
         "same_g": false,
         "count": 180,
-        "reading": "la nouvelle jauge z_{g′} est une RACINE source : lue dans w — une détermination source devient un paramètre de la cible (base-moving de C7)"
+        "reading": "the new gauge is a source ROOT, read inside w: a source determination becomes a parameter of the target (base-moving)"
       },
       {
         "S_cap_S2": 1,
@@ -35,7 +35,7 @@
         "g_in_S2": false,
         "same_g": true,
         "count": 180,
-        "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
+        "reading": "the new gauge is a source parameter (or the same gauge): rescaling by a base coordinate"
       },
       {
         "S_cap_S2": 1,
@@ -43,7 +43,7 @@
         "g_in_S2": true,
         "same_g": false,
         "count": 360,
-        "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
+        "reading": "the new gauge is a source parameter (or the same gauge): rescaling by a base coordinate"
       },
       {
         "S_cap_S2": 1,
@@ -51,7 +51,7 @@
         "g_in_S2": false,
         "same_g": false,
         "count": 360,
-        "reading": "la nouvelle jauge z_{g′} est une RACINE source : lue dans w — une détermination source devient un paramètre de la cible (base-moving de C7)"
+        "reading": "the new gauge is a source ROOT, read inside w: a source determination becomes a parameter of the target (base-moving)"
       },
       {
         "S_cap_S2": 1,
@@ -59,7 +59,7 @@
         "g_in_S2": true,
         "same_g": false,
         "count": 720,
-        "reading": "la nouvelle jauge z_{g′} est une RACINE source : lue dans w — une détermination source devient un paramètre de la cible (base-moving de C7)"
+        "reading": "the new gauge is a source ROOT, read inside w: a source determination becomes a parameter of the target (base-moving)"
       },
       {
         "S_cap_S2": 2,
@@ -67,7 +67,7 @@
         "g_in_S2": false,
         "same_g": false,
         "count": 360,
-        "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
+        "reading": "the new gauge is a source parameter (or the same gauge): rescaling by a base coordinate"
       },
       {
         "S_cap_S2": 2,
@@ -75,7 +75,7 @@
         "g_in_S2": false,
         "same_g": true,
         "count": 360,
-        "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
+        "reading": "the new gauge is a source parameter (or the same gauge): rescaling by a base coordinate"
       },
       {
         "S_cap_S2": 2,
@@ -83,7 +83,7 @@
         "g_in_S2": true,
         "same_g": false,
         "count": 360,
-        "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
+        "reading": "the new gauge is a source parameter (or the same gauge): rescaling by a base coordinate"
       },
       {
         "S_cap_S2": 2,
@@ -91,7 +91,7 @@
         "g_in_S2": false,
         "same_g": false,
         "count": 360,
-        "reading": "la nouvelle jauge z_{g′} est une RACINE source : lue dans w — une détermination source devient un paramètre de la cible (base-moving de C7)"
+        "reading": "the new gauge is a source ROOT, read inside w: a source determination becomes a parameter of the target (base-moving)"
       },
       {
         "S_cap_S2": 2,
@@ -99,7 +99,7 @@
         "g_in_S2": true,
         "same_g": false,
         "count": 180,
-        "reading": "la nouvelle jauge z_{g′} est une RACINE source : lue dans w — une détermination source devient un paramètre de la cible (base-moving de C7)"
+        "reading": "the new gauge is a source ROOT, read inside w: a source determination becomes a parameter of the target (base-moving)"
       },
       {
         "S_cap_S2": 3,
@@ -107,7 +107,7 @@
         "g_in_S2": false,
         "same_g": false,
         "count": 120,
-        "reading": "la nouvelle jauge est un paramètre source (ou la même jauge) : rescaling par une coordonnée de base"
+        "reading": "the new gauge is a source parameter (or the same gauge): rescaling by a base coordinate"
       }
     ],
     "n_pairs": 3540,
@@ -127,19 +127,19 @@
   "F9_reduction": {
     "obligation_3_t_ij_algebraic_independent_of_K": "t_ij = rescaling par z_{g′} + permutation ; défini sur {z_{g′} ≠ 0} ⊇ U_{S′,g′} (B5)",
     "obligation_4_s_j_t_ij_equals_s_i": "identité si s_i est ambient-valued (Krawczyk enclôt w ⇒ Z)",
-    "obligation_5_domain_is_real_overlap": "t_ij(U_i ∩ U_j) ; à certifier seulement pour un atlas EXPLICITE (inclusion dans le domaine certifié cible)",
+    "obligation_5_domain_is_real_overlap": "the transition on the overlap; to be certified only for an EXPLICIT atlas (inclusion in the certified target domain)",
     "obligation_6_cocycle": "identité de rescalings (testée exactement ci-dessus)",
-    "obligation_7_biconditional": "(i,p) ~ (j,q) ⇔ s_i(p) = s_j(q) ⇔ q = π_j(t_ij(s_i(p))) — identité, pas une mesure",
-    "obligation_8_quotient_is_K": "découle de 1 (couverture, F1) + 2 (F1′) + 3–7 identités : Φ est bijective, holomorphe locale, donc iso",
-    "reading": "T2 (GLOBAL_ATLAS_FIXED_K3) est un théorème de STRUCTURE : son contenu non classique est QUANTITATIF (ρ(σ), planchers, constantes) et vit entièrement dans F1 + F1′. Le « cocycle de feuilles », le « groupoïde de transitions » et le « typage A/B/C » du contrat régional n'y apparaissent plus ; ils redeviennent des instruments de VALIDATION",
+    "obligation_7_biconditional": "equivalence of two points holds exactly when their sections agree, which holds exactly when one is the image of the other under the transition: an identity, not a measurement",
+    "obligation_8_quotient_is_K": "follows from 1 (covering) and 2 (the chart lemma) together with identities 3 to 7: the map is bijective and locally holomorphic, hence an isomorphism",
+    "reading": "the atlas theorem is a theorem of STRUCTURE: its non-classical content is QUANTITATIVE (the radius, the floors, the constants) and lives entirely in the covering and the chart lemma. The sheet cocycle, the transition groupoid and the A/B/C typing of the regional contract no longer appear in it; they become instruments of VALIDATION again",
     "what_still_needs_interval": [
-      "F1′ par chart : existence/unicité/holomorphie de s_i sur un OUVERT, rayon ρ(σ) (Kantorovich/Krawczyk)",
+      "the chart lemma per chart: existence, uniqueness and holomorphy of the local inverse on an OPEN set, with radius rho(sigma) (Kantorovich/Krawczyk)",
       "atlas explicite (T1) : t_ij(U_i ∩ U_j) ⊆ domaine certifié cible ; sinon rien"
     ],
     "what_the_regional_arc_becomes": [
-      "C7 (loi de transport) = la classe « g′ ∈ S » de la table : la détermination source est un paramètre cible",
-      "T = flip(5), D = flip(1,5) : éléments du deck (Z/2)³_S, réalisation lue dans la classe",
-      "RFace / C5 / C6 : négatifs et validations du lemme F1′ et des inclusions"
+      "the transport law is the class where the new gauge lies in S: the source determination becomes a target parameter",
+      "T and D are sign flips: elements of the deck group, whose realisation is read in the class",
+      "the face arc and the support lots: negative controls and validations of the chart lemma and of the inclusions"
     ]
   },
   "checks": {
@@ -151,9 +151,9 @@
   "checks_passed": 4,
   "checks_total": 4,
   "n_atteste_pas": [
-    "rien n'est prouvé sur les sections : F1′ reste le seul contenu certifié de T2",
-    "la classification est combinatoire (μ distincts) ; aucune orbite sous permutation n'est revendiquée",
-    "l'inclusion t_ij(U_i ∩ U_j) ⊆ domaine cible n'est pas certifiée ici (atlas explicite = T1)"
+    "nothing is proved about the sections: the chart lemma remains the only certified content of the atlas theorem",
+    "the classification is combinatorial (the parameters are distinct); no orbit under permutation is claimed",
+    "the inclusion of the transition image in the target domain is not certified here (an explicit atlas is the next theorem)"
   ],
   "issue": "exact_transitions_are_rescalings_cocycle_identity_biconditional_identity_T2_reduces_to_F1_and_F1prime",
   "perturbation_tests": {

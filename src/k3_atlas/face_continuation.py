@@ -1,107 +1,112 @@
 #!/usr/bin/env python3
 """
-face_continuation.py — the face arc-P0 / B1 : LA CONTINUATION
-CROSSES THE Re FACE, AND THE SHEET REACHED IS DERIVED, NOT ASSUMED.
+face_continuation.py — the face arc, phase B1: THE CONTINUATION CROSSES
+THE Re FACE, AND THE SHEET REACHED IS DERIVED, NOT ASSUMED.
 
-WHAT THIS SCRIPT PAYS: phase B1 of the face contract
-on the deterministic witness.
-`w_one_neighbor` (tuile 295, flush face Re u HAUTE, où le preliminary computation v2 a
-adressé une cellule voisine canonique portant DEUX classes candidates).
+WHAT THIS SCRIPT PAYS: phase B1 of the face contract on the
+deterministic witness `w_one_neighbor` (tile 295, flush against the UPPER
+Re u face, where the v2 preliminary computation addressed a canonical
+neighbouring cell carrying TWO candidate classes).
 
 THE ARCHITECTURE IS THE CONTRACTED ONE, IN ORDER:
-  1. the Re bridge is built on the 2H geometry: the Re u face is
-     crossed with half-width `w_0 = 2H` on each side, the others
-     coordonnées héritées du pont the base bridge (déjà bilatéral en Im) ;
-  2. the chart is NOT inherited: the gauge of the target chart is lower-bounded again
-     on the WHOLE enlarged box, and the radicands on the whole box;
-  3. the section of the Re bridge is built DIRECTLY (constructor
-     bilatéral : régime par signe CERTIFIÉ de `Re R`, refus si
-     straddle), with the CERTIFIED record `(1,-1,-1)` of the witness;
-  4. its RESTRICTION to the base bridge is compared with the certified section:
-     recentrage anisotrope exact, soustraction coefficient par
-     coefficient, with `theta = +1` required on all SIX coordinates;
-  5. on the neighbouring overlap `W_cell` (which is
-     a CUBE of half-width H: the anisotropy disappears, measured and
-     checked), the record on the neighbour side is DERIVED row by row against the
-     section continuée, puis RECONSTRUIT et re-vérifié (le motif
-     F2d-bis) ;
-  6. les DEUX candidates enregistrées (classe 0, ε=(1,1,1) ; classe 1,
-     are built on `W_cell` and each compared with the
-     continuation, under the THREE PREREGISTERED BRANCHES of the
-     contract, AND THE MEASURED RESULT IS THE THIRD BRANCH:
-     **AUCUNE étiquette enregistrée ne ferme naïvement** (`none_closes`,
-     sérialisé tel quel, PAS corrigé en douce) ;
-  7. this result is ELUCIDATED BY A CONTROL, not by an argument: the
-     SAME experiment on OUR OWN SIDE (the registry label of
-     OUR cell, (1,1,1), built on the symmetric cube
-     `W_ours`) does NOT close either, with the SAME
-     theta pattern. Naive label closure therefore identifies NO
-     pair, not even our own: the registry label lives in the
-     registry convention, the bridge record in the convention of the
-     régimes signe-certifiés (rotated→canonique absorbe σ), et la
-     conversion `c` per row is MEASURED by the control;
+  1. the Re bridge is built on the 2H geometry: the Re u face is crossed
+     with half-width `w_0 = 2H` on each side, the other coordinates
+     inherited from the base bridge (already bilateral in Im);
+  2. the chart is NOT inherited: the gauge of the target chart is
+     lower-bounded again on the WHOLE enlarged box, and so are the
+     radicands;
+  3. the section of the Re bridge is built DIRECTLY (bilateral
+     constructor: regime by CERTIFIED sign of `Re R`, refusal if it
+     straddles), with the CERTIFIED record `(1,-1,-1)` of the witness;
+  4. its RESTRICTION to the base bridge is compared with the certified
+     section: exact anisotropic recentring, coefficient-by-coefficient
+     subtraction, with `theta = +1` required on all SIX coordinates;
+  5. on the neighbouring overlap `W_cell` (which is a CUBE of half-width
+     H: the anisotropy disappears, measured and checked), the record on
+     the neighbour side is DERIVED row by row against the continued
+     section, then RECONSTRUCTED and re-verified (the pattern of the
+     bridge step);
+  6. the TWO registered candidates (class 0 with eps = (1,1,1); class 1)
+     are built on `W_cell` and each compared with the continuation, under
+     the THREE PREREGISTERED BRANCHES of the contract, AND THE MEASURED
+     RESULT IS THE THIRD BRANCH: **NO registered label closes naively**
+     (`none_closes`, serialised as such, NOT quietly corrected);
+  7. this result is ELUCIDATED BY A CONTROL, not by an argument: the SAME
+     experiment on OUR OWN SIDE (the registry label of OUR cell, (1,1,1),
+     built on the symmetric cube `W_ours`) does NOT close either, with
+     the SAME theta pattern. Naive label closure therefore identifies NO
+     pair, not even our own: the registry label lives in the registry
+     convention, the bridge record in the convention of the sign-certified
+     regimes (rotated to canonical absorbs sigma), and the conversion `c`
+     per row is MEASURED by the control;
   8. IDENTIFICATION is therefore RELATIVE TO THE CONTROL (check B1f): the
-     sheet reached is the class whose theta pattern on the neighbour side is
-     IDENTIQUE au motif du contrôle côté source — même étiquette, même
-     behaviour across the face. The loser must differ from the
-     control EXACTLY on the predicted coordinate 5, with margin of order 1.
+     sheet reached is the class whose theta pattern on the neighbour side
+     is IDENTICAL to the pattern of the control on the source side, the
+     same label behaving the same way across the face. The loser must
+     differ from the control EXACTLY on the predicted coordinate 5, with
+     a margin of order 1.
 
-PRÉDICTIONS PRÉ-ENREGISTRÉES (falsifiables) : (i) les deux candidates
-differ only by the sign of row 2 (`s = 5`), so if the regimes
-sur `W_cell` restent `(principal, canonical, canonical)`, leurs motifs
-theta patterns can differ ONLY on coordinate 5; (ii) the pattern of the
-contrôle doit relier étiquette et sheet record dérivé par
-`motif[s] = ε_dérivé[s]·étiquette[s]` ligne à ligne.
+PREREGISTERED PREDICTIONS (falsifiable): (i) the two candidates differ
+only by the sign of row 2 (`s = 5`), so if the regimes on `W_cell` stay
+`(principal, canonical, canonical)`, their theta patterns can differ ONLY
+on coordinate 5; (ii) the pattern of the control must relate the label
+and the derived sheet record by `pattern[s] = eps_derived[s].label[s]`,
+row by row.
 
 CONVENTIONS, DECLARED AND NOT OVERWRITTEN: the naive check and its
-`none_closes` restent sérialisés (`naive_closure_outcome`) À CÔTÉ de
+`none_closes` stay serialised (`naive_closure_outcome`) BESIDE the
 relative identification and the derived record. Should the relative
 identification and the derivation designate incompatible labels, that
-serait une DISCORDANCE PUBLIÉE (a review §B : « toute discordance
-becomes a result, not an automatic correction").
+would be a PUBLISHED DISCREPANCY (as a review put it: any discrepancy
+becomes a result, not an automatic correction).
 
-WHAT THIS SCRIPT DOES NOT PAY: gluing the second witness (two
-orders, commutation: the diagonal is addressed ONLY AT THE ADDRESS); the
-atlas transitions and the extended nerve; the metric; the atlas of
-the neighbouring cell (the pilot certifies a LOCAL gluing to one
-addressed cell, not its atlas); the low faces (enumeration boundary);
-les 895 autres paires.
+WHAT THIS SCRIPT DOES NOT PAY: gluing the second witness (two orders,
+commutation: the diagonal is addressed ONLY AT THE ADDRESS); the atlas
+transitions and the extended nerve; the metric; the atlas of the
+neighbouring cell (the pilot certifies a LOCAL gluing to one addressed
+cell, not its atlas); the low faces (enumeration boundary); the 895 other
+pairs.
 
 CHECKS
-  B1a  amont vert et modes full là où le champ existe (preliminary computation v2 8/8,
-       the base bridge preliminary computation 7/7, the bridge step 17/17 full, atlas the atlas step 14/14 full) —
-       et témoin/face/boîtes IMPORTÉS des artefacts, jamais recodés ;
-  B1b  geometry: `w_0 = 2H` exactly (the base face is flush), the
-       pont-Re contient le pont the base bridge ET son miroir-Re, bornes ATTEINTES ;
-       tous les coins dyadiques (float(x) exact, gaté) ;
-       NEGATIVE CONTROL: the box of half-width `w_0/2` fails ON BOTH SIDES;
+  B1a  upstream green and in full mode wherever the field exists (the v2
+       preliminary computation 8/8, the base bridge preliminary
+       computation 7/7, the bridge step 17/17 full, the atlas step 14/14
+       full), with witness, face and boxes IMPORTED from the artefacts and
+       never recoded;
+  B1b  geometry: `w_0 = 2H` exactly (the base face is flush), the Re
+       bridge contains the base bridge AND its Re mirror, with the bounds
+       ATTAINED; all corners dyadic (float(x) exact, checked); NEGATIVE
+       CONTROL: the box of half-width `w_0/2` fails ON BOTH SIDES;
   B1c  section on the ENLARGED box: 3 regimes assigned, IDENTICAL to the
-       régimes the base bridge sérialisés, radicandes minorés > 0, jauge du chart
-       target gauge bounded below > 0 on the WHOLE box (chart revalidated);
-  B1d  restriction: `theta = +1` on 6 of 6 coordinates against the certified section
-       (elle-même re-construite et confrontée aux régimes sérialisés),
-       marges de séparation publiées ;
-  B1e  sheet record voisin DÉRIVÉ puis RECONSTRUIT : `θ = +1` sur 6/6 après
-       reconstruction, and W_cell is the expected CUBE (4 widths
-       égales, ancre centrale STRICTEMENT intérieure, Re u > face) ;
-  B1f′ identification PAR CONVERSION EXPLICITE (v2, a review §3) :
-       B1f1 κ = ε_canonique_source ⊙ ε_registre_source, dérivé et
-            confirmed by the MEASURED pattern of the control (6 coordinates);
-       B1f2 kappa agrees with the determination laws: conversion
-            CONFINÉE aux lignes rotated (core the residual closure) → canonique
-            (bridge), kappa = +1 on the principal row;
-       B1f3 les DEUX étiquettes converties `κ ⊙ ε_reg` sérialisées ;
-       B1f4 les deux sections converties RECONSTRUITES : EXACTEMENT
-            ONE closes (and it equals the record derived in B1e);
-       B1f5 the converted loser breaks ONLY on coordinate 5
-            prédite, marge O(1) ;
-       B1f6 le check naïf `none_closes` reste publié en diagnostic ;
-  B1g  NEGATIVE CONTROL: mutating ONE row of the derived record makes the gluing fall
-       on that row (theta = -1), with margin of order 1;
-  B1h  aucun filtrage silencieux : 6 coordonnées partout, tout refus
-       publié.
+       serialised base-bridge regimes, radicands bounded below > 0, and
+       the target chart gauge bounded below > 0 on the WHOLE box (chart
+       revalidated);
+  B1d  restriction: `theta = +1` on 6 of 6 coordinates against the
+       certified section (itself rebuilt and confronted with the
+       serialised regimes), with the separation margins published;
+  B1e  the neighbour sheet record is DERIVED then RECONSTRUCTED:
+       `theta = +1` on 6/6 after reconstruction, and W_cell is the
+       expected CUBE (4 equal widths, central anchor STRICTLY interior,
+       Re u beyond the face);
+  B1f  identification BY EXPLICIT CONVERSION (v2, after a review):
+       B1f1 kappa = source canonical eps times source registry eps,
+            derived and confirmed by the MEASURED pattern of the control
+            (6 coordinates);
+       B1f2 kappa agrees with the determination laws: conversion CONFINED
+            to the rotated rows (core of the residual closure) becoming
+            canonical (bridge), with kappa = +1 on the principal row;
+       B1f3 the TWO converted labels `kappa . eps_registry` serialised;
+       B1f4 the two converted sections RECONSTRUCTED: EXACTLY ONE closes
+            (and it equals the record derived in B1e);
+       B1f5 the converted loser breaks ONLY on the predicted coordinate
+            5, with a margin of order 1;
+       B1f6 the naive check `none_closes` stays published as a diagnostic;
+  B1g  NEGATIVE CONTROL: mutating ONE row of the derived record makes the
+       gluing fall on that row (theta = -1), with margin of order 1;
+  B1h  no silent filtering: 6 coordinates everywhere, every refusal
+       published.
 
-Sortie : results/face_continuation.json
+Output : results/face_continuation.json
 Usage  : face_continuation.py [--selftest]
 """
 from __future__ import annotations
@@ -143,7 +148,7 @@ RSCOUT_JSON = RES / "face_preliminary.json"
 ART = RES / "face_continuation.json"
 
 # --- PRÉ-ENREGISTRÉ -------------------------------------------------------
-RE_DIR = 0                     # la direction traversée : Re u
+RE_DIR = 0                     # the direction crossed: Re u
 PREDICTED_DIFF_COORD = 5       # the candidates differ only on s=5
 THETA_REQUIRED = 1
 T0 = time.time()
@@ -207,7 +212,8 @@ def section_or_none(S, g, eps, box):
 
 
 def theta_summary(res, keys):
-    """Résumé d'un theta_lines : tout +1 ?, marge min, motif par coord."""
+    """Summary of a theta_lines: all +1?, minimum margin, pattern per
+    coordinate."""
     if "refused" in res:
         return {"closed": False, "refused": res["refused"]}
     pattern = {str(k): res[k].get("theta") for k in keys}
@@ -235,15 +241,15 @@ def selftest():
     bx = [(f - Fraction(1, 512), f)] + [(Fraction(-1, 512),
                                          Fraction(1, 512))] * 3
     m = mirror_re(bx, f)
-    chk("mirror_re réfléchit la seule direction Re u",
+    chk("mirror_re reflects the Re u direction only",
         m[0] == (f, f + Fraction(1, 512)) and m[1:] == bx[1:])
-    chk("mirror_re est involutif", mirror_re(m, f) == bx)
+    chk("mirror_re is involutive", mirror_re(m, f) == bx)
     w = widen_across(bx, f, Fraction(1, 512))
     chk("widen_across pose [face−w, face+w]",
         w[0] == (f - Fraction(1, 512), f + Fraction(1, 512)))
     ok_in, _ = contains(w, bx, strict_dirs=())
     ok_mi, _ = contains(w, m, strict_dirs=())
-    chk("le pont-Re contient le côté ET son miroir", ok_in and ok_mi)
+    chk("the Re bridge contains the side AND its mirror", ok_in and ok_mi)
     narrow = widen_across(bx, f, Fraction(1, 1024))
     chk("NEGATIVE CONTROL: the narrow box fails ON BOTH SIDES",
         not contains(narrow, bx, strict_dirs=())[0]
@@ -254,9 +260,9 @@ def selftest():
     chk("classify: both close, so the refusal is not discriminating",
         classify_candidates({"0": True, "1": True})
         == "both_close_not_discriminated")
-    chk("classify : aucune ⟹ résultat structurel",
+    chk("classify: none closing is a structural result",
         classify_candidates({"0": False, "1": False}) == "none_closes")
-    chk("all_dyadic_floats accepte le dyadique, refuse 1/3",
+    chk("all_dyadic_floats accepts dyadics and refuses 1/3",
         all_dyadic_floats(bx)
         and not all_dyadic_floats([(Fraction(1, 3), Fraction(1, 2))] * 4))
     print(f"\nself-test {ok}/{tot}")
@@ -268,8 +274,8 @@ def selftest():
 # ===========================================================================
 def build():
     print("=" * 78)
-    print("the face arc-P0 / B1 — la feuille atteinte à travers la face Re u "
-          "haute, DÉRIVÉE")
+    print("the face arc, phase B1 — the sheet reached across the upper "
+          "Re u face, DERIVED")
     print("=" * 78)
     cov = json.loads(COVER_JSON.read_text(encoding="utf-8"))
     atl = json.loads(ATLAS_JSON.read_text(encoding="utf-8"))
@@ -278,8 +284,9 @@ def build():
     f23 = json.loads(F2F3_JSON.read_text(encoding="utf-8"))
     rs = json.loads(RSCOUT_JSON.read_text(encoding="utf-8"))
 
-    # --- B1a : amont — the residual closure inclus (a review §5 : il fournit le
-    # chart cible S₂/g₂, dépendance load-bearing, donc GATÉE) ----------
+    # --- B1a: upstream, the residual closure included (a review asked for
+    # it: it supplies the target chart S2/g2, a load-bearing dependency,
+    # hence CHECKED) ---------------------------------------------------
     up = {}
     for name, blob in (("rface_scout_v2", rs), ("f0_scout", scout0),
                        ("f2f3_v2", f23), ("atlas", atl),
@@ -313,11 +320,11 @@ def build():
     regimes_f0 = [r["regime"] for r in pb["bridge_rows"]]
     chart = residual["new_tiles"][tile - 252]["chart"]
     S2, g2 = tuple(chart["S"]), chart["g"]
-    log(f"témoin {tile} (importé du preliminary computation v2), face Re u = {face} "
-        f"({float(face):+.9f}), sheet record the base bridge {eps_f0}, chart cible "
-        f"S₂={S2} g₂={g2}")
+    log(f"witness {tile} (imported from the v2 preliminary computation), face Re u = {face} "
+        f"({float(face):+.9f}), base-bridge sheet record {eps_f0}, target chart "
+        f"S2={S2} g2={g2}")
 
-    # --- B1b : géométrie 2H ------------------------------------------
+    # --- B1b: the 2H geometry ----------------------------------------
     w0 = face - f0_box[RE_DIR][0]
     flush = f0_box[RE_DIR][1] == face
     # If the text calls the width "2H", the symbol
@@ -360,7 +367,7 @@ def build():
         f"{regimes_f0} ; radicande min {rad_min} ; jauge cible min "
         f"{gmin} ⟹ {b1c}")
 
-    # --- B1d : restriction au côté source ----------------------------
+    # --- B1d: restriction to the source side -------------------------
     Zf0, rows_f0 = section_or_none(S, g, eps_f0, f0_box)
     b1d = False
     th_src = None
@@ -372,7 +379,7 @@ def build():
                    and regimes_f0_re == regimes_f0)
     log(f"B1d : restriction au pont the base bridge — {th_src} ⟹ {b1d}")
 
-    # --- B1e : W_cell et sheet record dérivé -------------------------------
+    # --- B1e: W_cell and the derived sheet record --------------------
     W = inter(bridge, nb_box)
     b1e = False
     eps_der = None
@@ -402,7 +409,7 @@ def build():
         f"(cube), sheet record DÉRIVÉ {eps_der}, reconstruit ⟹ "
         f"{th_der} ⟹ {b1e}")
 
-    # --- B1f : les deux candidates -----------------------------------
+    # --- B1f: the two candidates -------------------------------------
     cand_out = {}
     closed = {}
     if W is not None and Zw is not None:
@@ -453,9 +460,9 @@ def build():
         and all(ctrl_pattern.get(str(k)) == 1
                 for k in keys if k not in [int(s) for s in S]))
     # B1f2: kappa AGREES with the determination laws, and the check
-    # PORTE la loi qu'il nomme (durci, a review B3-D1) :
-    #     principal → principal : κ = +1
-    #     rotated   → canonique : κ = −1
+    # CARRIES the law it names (hardened after a review):
+    #     principal to principal: kappa = +1
+    #     rotated to canonical:   kappa = -1
     # The core determinations are imported, not recited.
     core_dets = [t for t in residual["transports"]
                  if t.get("box_index") == tile - 252]
@@ -468,7 +475,7 @@ def build():
                 or (regimes_w[r] == "canonical" and kappa[r] == -1
                     and core_src[r] == "rotated")
                 for r in range(3)))
-    # B1f3 — les DEUX étiquettes CONVERTIES explicitement -------------
+    # B1f3: the TWO labels CONVERTED explicitly -----------------------
     eps_conv = {c: tuple(kappa[r] * int(e[r]) for r in range(3))
                 for c, e in cands.items()}
     # B1f4/B1f5: the converted candidates are RECONSTRUCTED ------------
@@ -503,13 +510,13 @@ def build():
         winner is not None and eps_der is not None
         and eps_conv[int(winner)] == eps_der)
     b1f = bool(b1f1 and b1f2 and b1f4 and b1f5 and winner_is_derived)
-    log(f"B1f′ : κ = {kappa} (dérivé du contrôle : {b1f1} ; confiné "
-        f"aux lignes rotated→canonique du core : {b1f2}) ; converties "
-        f"{ {c: list(v) for c, v in eps_conv.items()} } ; EXACTEMENT "
-        f"UNE ferme : classe {winner} ({b1f4}, == sheet record dérivé : "
+    log(f"B1f: kappa = {kappa} (derived from the control: {b1f1}; confined "
+        f"to the rotated-to-canonical rows of the core: {b1f2}); converted "
+        f"{ {c: list(v) for c, v in eps_conv.items()} }; EXACTLY "
+        f"ONE closes: class {winner} ({b1f4}, equal to the derived sheet record: "
         f"{winner_is_derived}); the loser breaks ONLY on "
-        f"{PREDICTED_DIFF_COORD} : {b1f5} ; check naïf = {outcome} "
-        f"(diagnostic conservé) ⟹ {b1f}")
+        f"{PREDICTED_DIFF_COORD}: {b1f5}; naive check = {outcome} "
+        f"(diagnostic kept) => {b1f}")
 
     # --- B1g: NEGATIVE CONTROL, mutate ONE row of the derived record --
     b1g = False

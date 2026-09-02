@@ -18,14 +18,14 @@
   "review": {
     "file": "gpt_global_closure_amendment_a_second_review_f8_f1prime_next_2026_08_18.md",
     "sha256": "90feb392852fc65587baf95fe7d1a4c3785be2b66324a696115a6b0e32dd94f0",
-    "verdict": "GO STRONG recentrage + Φ/audit ; HOLD-SHORT avant F8/F1′ sur la sémantique globale et le niveau de théorème"
+    "verdict": "GO STRONG on the recentring and the audit; SHORT HOLD before the next steps on global semantics and on the theorem level"
   },
   "B1_notation_frozen": {
-    "K": "le K3 algébrique CI(2,2,2) ⊂ P⁵ (alias X_CI) — le seul référent des énoncés globaux",
+    "K": "the algebraic K3 complete intersection of three quadrics in projective 5-space, the only referent of the global statements",
     "X_reg": "le complexe régional historique de certification (contrat C1–C7, D3/H1/H2/B1-M, 380 → 444 sommets) et ses Betti instrumentaux",
     "N(U)": "un nerf de recouvrement, seulement quand il existe réellement comme tel (bon recouvrement déclaré)",
-    "K_S_degree, B_S": "pour une projection π_S FIXÉE : B_S ⊂ P²_T le lieu de branchement (3 coniques dans la présentation (S,g)), K_S° = K ∖ π_S⁻¹(B_S), deck (Z/2)³_S ; les présentations S ≠ S′ se relient par transitions, pas par un local system global sur une base qui n'existe pas canoniquement",
-    "rule": "aucun gate n'accepte un énoncé global avec « X » non qualifié",
+    "K_S_degree, B_S": "for a FIXED projection: the branch locus is three conics in the presentation (S,g), the punctured chart is K minus the preimage of that locus, with deck group (Z/2)^3; presentations with different S are related by transitions, not by a global local system over a base that does not exist canonically",
+    "rule": "no check accepts a global statement with an unqualified 'X'",
     "sources_where_X_means_X_reg": [
       "k3_cap_global_gluing_contract_prereg.json (C1 : recouvrement autoritatif X)",
       "k3_cap_h1_top_region_topology.json (b₁(X) = 63)",
@@ -35,39 +35,39 @@
   },
   "B2_theorem_stack": {
     "T1_NK_fixed_K": {
-      "statement": "si le polynôme des rayons p(r) = Z₂(r) r² − (1 − Z₀ − Z₁) r + Y a p(r₀) < 0 dans le domaine de positivité de g₀ + i∂∂̄φ, alors F a un zéro unique dans B̄(x₀, r₀) : une métrique Ricci-plate Kähler Z₂³-invariante à distance ≤ r₀ de la métrique explicite",
+      "statement": "if the radius polynomial p(r) = Z_2(r) r^2 - (1 - Z_0 - Z_1) r + Y satisfies p(r_0) < 0 inside the positivity domain of the perturbed metric, then F has a unique zero in the closed ball of radius r_0: a Ricci-flat Kahler metric invariant under the sign group, at distance at most r_0 from the explicit metric",
       "status": "ouvert par D2 / D1b / D1e / production — résultat analytique autonome"
     },
     "T2_GLOBAL_ATLAS_FIXED_K3": {
-      "statement": "Pour le CI(2,2,2) fixé K : (i) un recouvrement fini par ouverts de pivot/gauge U_{S,g} (F1, pivot-cover abstrait) ; (ii) un lemme de chart uniforme (F1′, IFT quantitatif) donnant des inverses locales holomorphes s_i : U_i → K ; (iii) des transitions algébriques exactes t_ij entre présentations (S,g) ↔ (S′,g′) ; (iv) le quotient analytique (⊔ U_i)/~_alg est canoniquement ≅ K (F9). Résultat autonome ; modèle de fibre ; validation de l'instrument.",
-      "status": "peut être beaucoup plus petit que l'arc régional ne le laissait croire : structure d'abord, calcul en repli"
+      "statement": "For the fixed complete intersection K: (i) a finite cover by pivot/gauge open sets (an abstract pivot cover); (ii) a uniform chart lemma (a quantitative inverse function theorem) giving local holomorphic inverses from each open set into K; (iii) exact algebraic transitions between presentations (S,g) and (S',g'); (iv) the analytic quotient of the disjoint union by the algebraic relation is canonically isomorphic to K. A self-contained result: a fibre model, and a validation of the instrument.",
+      "status": "may be far smaller than the regional arc suggested: structure first, computation as a fallback"
     },
     "T3_K3_FAMILY_TO_L4": {
-      "statement": "Sur le recouvrement autoritatif de K7 : famille locale {K_b}_{b∈B} / données de déformation ; uniformité en b des constantes de T1/T2 là où nécessaire ; transitions de familles ; Picard–Lefschetz / périodes / structure HK exigées par L4 ; cocycle sur les vrais recouvrements de la base K7.",
-      "status": "OUVERT — c'est ce que L4 consomme (B3) ; T1/T2 en sont des ingrédients"
+      "statement": "On the authoritative cover of the seven-manifold: a local family over a base together with deformation data; uniformity in the base of the constants of the earlier theorems where needed; transitions between families; Picard-Lefschetz monodromy, periods and hyperkahler structure as required downstream; a cocycle on the genuine covers of the base.",
+      "status": "OPEN: this is what the later stage consumes; the earlier theorems are its ingredients"
     }
   },
   "B3_F8_derived": {
-    "l4_problem_v1": "réalisation d'une famille K3 hyperkählérienne GLOBALE sur le K7 topologique, avec la monodromie de Picard-Lefschetz de rang un prescrite et les données de périodes affines au collier",
-    "l4_minimal_target_v3": "À partir des familles locales K3 et des transitions certifiées par K3-CAP, construire un système global de feuilles/transitions sur le recouvrement autoritatif de K7. Les transformations inter-domaines et inter-branches doivent être compatibles aux changements de chart, satisfaire les lois de cocycle sur les vrais overlaps multiples, et porter les contrôles analytiques de voisinage requis. La disparition de la composante scalaire C124 est une condition NÉCESSAIRE dans les secteurs où elle est définie, mais elle n'est plus présumée suffisante à elle seule.",
+    "l4_problem_v1": "realisation of a GLOBAL hyperkahler K3 family over the topological seven-manifold, with the prescribed rank-one Picard-Lefschetz monodromy and the affine period data at the collar",
+    "l4_minimal_target_v3": "From the local K3 families and the transitions certified here, build a global system of sheets and transitions over the authoritative cover of the seven-manifold. The transformations between domains and between branches must be compatible with chart changes, satisfy the cocycle laws on the genuine multiple overlaps, and carry the required analytic neighbourhood controls. The vanishing of the scalar component is a NECESSARY condition in the sectors where it is defined, but it is no longer presumed sufficient on its own.",
     "v1_names_family_on_K7": true,
     "v3_names_family_on_K7": true,
-    "derivation": "les deux sources L4 autoritatives disponibles nomment une FAMILLE K3 sur le K7 (recouvrement autoritatif de K7, monodromie de Picard-Lefschetz prescrite, périodes au collier) : L4 consomme T3 ; la fermeture d'un K3 fixe (T2) est un résultat autonome / modèle de fibre / validation d'instrument, pas le closeout consommé par L4",
-    "consequence": "ne plus baptiser « K3_GLOBAL_FAMILY_CLOSEOUT » un théorème qui reconstruit une fibre fixe",
-    "open": "aucune source L4 plus autoritative n'a été trouvée qui contredise cette lecture ; si elle existe, F8 se re-dérive"
+    "derivation": "both available authoritative downstream sources name a K3 FAMILY over the seven-manifold (authoritative cover, prescribed Picard-Lefschetz monodromy, periods at the collar): the downstream stage consumes the family theorem; closing a fixed K3 is a self-contained result, a fibre model and an instrument validation, not the closeout consumed downstream",
+    "consequence": "stop calling a theorem that reconstructs a fixed fibre a global family closeout",
+    "open": "no more authoritative source was found that contradicts this reading; should one exist, the derivation is redone"
   },
   "B4_reclassification": {
     "F5_windings_monodromy": {
-      "level": "T3 (utile), non nécessaire pour T2",
-      "why": "description du revêtement d'une projection donnée ; T2 se ferme par transitions algébriques exactes"
+      "level": "useful, but not necessary for the atlas theorem",
+      "why": "description of the covering of a given projection; the atlas theorem closes through exact algebraic transitions"
     },
     "F6_interface_handoff": {
-      "level": "T2 : théorème UNIFORME de changement de chart entre les 60 types d'abord ; RFace/C7/C5 = validations/négatifs ; interfaces particulières seulement si T3 l'exige",
-      "why": "ne doit pas redevenir un tunnel"
+      "level": "a UNIFORM chart-change theorem between the 60 types first; the face arc and the support lots are validations and negative controls; particular interfaces only if the later stage requires them",
+      "why": "must not become a tunnel again"
     },
     "F7_nerve_homology": {
       "level": "audit indépendant, hors chemin critique",
-      "why": "pas de gros nerf pour obtenir (1,0,22) d'un K déjà connu ; theorem-grade seulement avec bon recouvrement gratuit"
+      "why": "no large nerve is needed to obtain (1,0,22) for an already known K; theorem-grade only with a good free cover"
     },
     "freeze_confirmed": [
       "anneaux",
@@ -83,9 +83,9 @@
       "verdict": "CERTIFIED",
       "total_boxes_processed": 71807792,
       "keys_that_are_large_lists": [],
-      "reading": "D3 sérialise un THÉORÈME de plancher (inf_K max_S |det M_S| ≥ 4,8) et des comptes de B&B ; aucun tableau de cellules : les 71,8 M boîtes ne sont pas un atlas"
+      "reading": "the coverage step serialises a FLOOR theorem (the infimum over K of the maximum over S of the determinant is at least 4.8) and branch-and-bound counts; no table of cells: the 71.8 million boxes are not an atlas"
     },
-    "cover_definition": "pour m < 4,8 préinscrit : U_S = {Z ∈ K : |det M_S(Z)| > m}, S parmi les 20 triples ; {U_S} couvre K par D3",
+    "cover_definition": "for m below the preregistered 4.8: U_S is the set of Z in K with determinant above m, S among the 20 triples; these sets cover K by the coverage step",
     "complementary_T_never_all_zero": {
       "argument": "si z_t = 0 ∀ t ∈ T = Sᶜ alors Σ_{s∈S} μ_s^k z_s² = 0 (k = 0,1,2) avec V_S inversible ⇒ z_s = 0 ∀ s ⇒ Z = 0 ∉ P⁵",
       "det_V_S_exact_20": {
@@ -126,11 +126,11 @@
       "aucune dépendance à une liste de cellules",
       "négatifs : m ≥ 4,8 rougit ; point synthétique sans (S,g) admissible rougit"
     ],
-    "old_phrase_retired": "« un recouvrement fini de K3 par (boîte ambiante, triple) existe déjà » — plus fort que l'artefact"
+    "old_phrase_retired": "'a finite cover of the K3 by (ambient box, triple) already exists', which is stronger than the artefact"
   },
   "B6_F1prime_uniform_IFT": {
-    "statement_target": "Uniform chart lemma : il existe σ₀ > 0, L < ∞, ρ > 0 explicites, dérivés de m, des μ et de la normalisation, tels que pour tout Z ∈ U_{S,g} la projection π_{S,g} possède sur la base de rayon ρ une inverse locale unique holomorphe avec les bornes quantitatives requises par la chaîne de certification",
-    "hessian_is_constant": "les trois quadriques ont une Hessienne CONSTANTE 2 μ_j^k δ_jl : la constante de Lipschitz du Jacobien est exacte et globale",
+    "statement_target": "Uniform chart lemma: there exist explicit sigma_0 > 0, L finite and rho > 0, derived from m, from the parameters and from the normalisation, such that for every Z in the pivot/gauge open set the projection admits, on the base ball of radius rho, a unique local holomorphic inverse with the quantitative bounds the certification chain requires",
+    "hessian_is_constant": "the three quadrics have a CONSTANT Hessian: the Lipschitz constant of the Jacobian is exact and global",
     "crude_bound_derivation": [
       "σ_max(M_S) ≤ ‖M_S‖_F ≤ 2 √(Σ_{s∈S,k} μ_s^{2k}) sur |Z|_∞ ≤ 1",
       "σ_min(M_S) ≥ m / σ_max(M_S)² (3×3, |det| ≥ m)",
@@ -380,7 +380,7 @@
     ],
     "rho_crude_min": 5.985070509918585e-14,
     "rho_crude_max": 4.747843534185955e-09,
-    "reading": "le bound crude est POSITIF (le lemme uniforme existe) mais de l'ordre de 1e-14…1e-9 : inutilisable tel quel. Ce qui est DÉRIVÉ, c'est que le lemme doit consommer des planchers LOCAUX de σ_min(M_S) par région (S,g) (le facteur perdu est σ_min ≥ m/σ_max², catastrophique quand un seul |z_s| est petit) — précisément l'information que le B&B ambiant porte boîte par boîte. F1′-U0 = dériver un σ_min(S,g) régional (par ex. min_{s∈S}|z_s| ≥ … sur U_{S,g}) et le rayon qui en sort ; le batch n'est que le repli",
+    "reading": "the crude bound is POSITIVE (the uniform lemma exists) but of the order of 1e-14 to 1e-9, hence unusable as it stands. What is DERIVED is that the lemma must consume LOCAL floors of the smallest singular value, region by region (the factor lost is sigma_min at least m over sigma_max squared, which is catastrophic as soon as a single coordinate is small), precisely the information the ambient branch-and-bound carries box by box. The next step is to derive a regional floor on each pivot/gauge open set and the radius that follows from it; the batch computation is only the fallback",
     "hold_short_honoured": "aucun sample/batch F1′ lancé"
   },
   "B7_F9_refined": {
@@ -397,29 +397,29 @@
       "4 s_j ∘ t_ij = s_i",
       "5 domaine exact des t_ij = recouvrement réel",
       "6 cocycle sur recouvrements triples",
-      "7 la relation ~_alg engendrée par les t_ij est EXACTEMENT l'égalité de points dans K (biconditionnelle : ni identification manquante, ni spurious)",
+      "the algebraic relation generated by the transitions is EXACTLY equality of points in K (a biconditional: neither a missing identification nor a spurious one)",
       "8 conclusion : quotient analytique (⊔ U_i)/~_alg ≅ K"
     ],
     "tautologies_avoided": [
       "ne pas définir ~ par s_i(p) = s_j(q) (Φ bijectif deviendrait tautologique)",
-      "ne pas prendre des boîtes fermées comme cartes (atlas complexe = ouverts)"
+      "do not take closed boxes as charts (a complex atlas is made of open sets)"
     ],
     "reading": "peut devenir presque entièrement une preuve de STRUCTURE"
   },
   "NEXT": [
     "NEXT-1 F1′-U0 : uniform chart lemma design (symbolique) — σ_min régional par (S,g), Hessienne constante, marge de gauge, rayon IFT/Krawczyk uniforme ou critère qui peut rougir",
-    "NEXT-2 F9-P0 : exact algebraic transition theorem — énumérer les types (S,g)↔(S′,g′), écrire les t_ij exacts, déterminer ce qui reste à certifier en intervalle",
-    "puis seulement : décider s'il reste un calcul massif sur le chemin critique"
+    "exact algebraic transition theorem: enumerate the type pairs, write the exact transitions, and determine what remains to be certified in interval arithmetic",
+    "and only then: decide whether a massive computation remains on the critical path"
   ],
   "what_the_regional_detour_bought": [
-    "validation sévère de l'implémentation contre des structures dérivables",
-    "bibliothèque de transitions/recadrages/négatifs réutilisable pour le théorème uniforme",
-    "preuve empirique que « étendre cellule par cellule jusqu'à K3 » est la mauvaise complexité"
+    "severe validation of the implementation against derivable structures",
+    "a reusable library of transitions, reframings and negative controls for the uniform theorem",
+    "empirical proof that extending cell by cell up to the whole K3 is the wrong complexity"
   ],
   "B1_bare_X_hits": [],
   "n_atteste_pas": [
-    "rien n'est prouvé ; T2/T3 sont des cibles ; F1′ uniforme n'est PAS obtenu (le crude est publié pour ce qu'il montre)",
-    "F8 est dérivé de deux sources ; une source L4 plus autoritative pourrait le re-dériver",
+    "nothing is proved; the later theorems are targets; the uniform lemma is NOT obtained (the crude bound is published for what it shows)",
+    "this item is derived from two sources; a more authoritative source could redo the derivation",
     "K3 globale (T2) et famille (T3) restent NOT_CLOSED"
   ],
   "checks": {

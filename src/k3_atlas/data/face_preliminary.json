@@ -1,8 +1,8 @@
 {
   "artifact": "k3_cap_b1e2iii_rface_p0_scout",
   "mode": "full",
-  "contract": "phase A du contrat RFace-P0, 13ᵉ revue GPT §7.3 — adresse et géométrie SEULEMENT ; aucune quantité analytique n'est lue ici",
-  "claim": "Pour la paire cellule/classe de l'atlas C127/C129, la cellule voisine de codimension 1 à travers chacune des DEUX faces Re HAUTES est CANONIQUEMENT ADRESSÉE : même couple, boîte identique entre C118 et C92, coïncidence de face TOTALE — et DEUX classes candidates (0 et 1, ε registrés (1,1,1) et (1,1,−1)) COHABITENT sur cette boîte. LA CLASSE ATTEINTE PAR LA CONTINUATION EST UNE QUESTION DE PHASE B, PAS UNE HYPOTHÈSE : ce scout n'identifie AUCUNE feuille (amendement B1, 14ᵉ revue). La cellule DIAGONALE du témoin 315 est ADRESSÉE elle aussi et le carré est géométriquement fermé (A8) — la composition/commutation reste à PROUVER en B3. À travers les DEUX faces BASSES, AUCUNE cellule d'aucun registre : l'étendue énumérée du couple s'arrête EXACTEMENT là (égalité rationnelle) — FRONTIÈRE D'ÉNUMÉRATION (de la base de données, PAS du domaine mathématique), pré-enregistrée comme distincte d'un trou de cover, et PAS remplacée par une boîte dérivée. Les statuts de registre (voisines == la nôtre avant son atlas) sont un DIAGNOSTIC sérialisé, pas un invariant d'adresse. Les phases B–F ne sont PAS payées ici.",
+  "contract": "phase A of the face contract: address and geometry ONLY; no analytic quantity is read here",
+  "claim": "For the cell/class pair of the atlas, the codimension-1 neighbouring cell across each of the TWO HIGH real faces is CANONICALLY ADDRESSED: same pair, identical box between the shell enumeration and the cover pilot, TOTAL face coincidence, and TWO candidate classes (0 and 1, registered sheets (1,1,1) and (1,1,-1)) COEXIST on that box. WHICH CLASS THE CONTINUATION REACHES IS A QUESTION FOR PHASE B, NOT A HYPOTHESIS: this preliminary computation identifies NO sheet. The DIAGONAL cell of the second witness is ADDRESSED as well and the square is geometrically closed; composition and commutation remain to be PROVED in phase B3. Across the TWO LOW faces there is NO cell in any registry: the enumerated extent of the pair stops EXACTLY there (rational equality), an ENUMERATION BOUNDARY (of the database, NOT of the mathematical domain), preregistered as distinct from a hole in the cover, and NOT replaced by a derived box. The registry statuses (neighbours identical to ours before its atlas) are a serialised DIAGNOSTIC, not an address invariant. Phases B to F are NOT paid here.",
   "cell": {
     "S": [
       0,
@@ -1200,7 +1200,7 @@
     "D — nerf étendu (graphe de domaines ≠ nerf certifié)",
     "E — métrique (transport_hardened section=, δ = 1e-5)",
     "F — négatifs analytiques",
-    "l'ouverture du cover au-delà des faces basses (frontière d'énumération : chantier d'ÉNUMÉRATION, pas de raccord)",
+    "opening the cover beyond the low faces (an enumeration boundary: a matter of ENUMERATION, not of gluing)",
     "les 895 autres paires"
   ],
   "checks": {
@@ -1215,7 +1215,7 @@
   },
   "checks_passed": 8,
   "checks_total": 8,
-  "verdict": "SCOUT VERT (v2, amendé 14ᵉ revue) — la cellule voisine est ADRESSÉE sur les deux faces hautes avec DEUX classes candidates (la feuille atteinte se décide en B1), le carré du témoin 315 est fermé diagonale comprise (B3 déverrouillé à l'adresse), et les faces basses sont une FRONTIÈRE D'ÉNUMÉRATION déclarée, pas un trou.",
+  "verdict": "PRELIMINARY COMPUTATION GREEN (v2, amended): the neighbouring cell is ADDRESSED on both high faces with TWO candidate classes (the sheet reached is decided in phase B1), the square of the second witness is closed including the diagonal (phase B3 unlocked at the address), and the low faces are a declared ENUMERATION BOUNDARY, not a hole.",
   "provenance": {
     "git_head": "8284db412253ffe09f2672b931020df332d7fdc1",
     "python": "3.14.4",

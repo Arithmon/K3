@@ -1,32 +1,34 @@
 #!/usr/bin/env python3
 """
-Interval arithmetic kernel for the certified witness, on the radical charts.
-witness v2 (datum R3, coeffs218 natifs, moteur Kähler convention holomorphe).
+Interval arithmetic kernel for the certified witness, on the radical
+charts: witness v2 (active datum, native 218 coefficients, Kaehler engine
+in the holomorphic convention).
 
-Transcription intervalle FIDÈLE de `kahler_metric.chart_metric_kahler`
-(bloc CONVENTION LOCK — chain rule holomorphe Wᵀ, potentiel
-The potential is log(Z-dagger M Z) plus a combination of the 218 basis functions,
-explicites : Z_S = ε·√(A₀ + A₁u² + A₂v²), A = −V_S⁻¹V_T EXACTE en rationnels
-(Vandermonde entière, μ = 1,2,3,5,7,11).
+A FAITHFUL interval transcription of `kahler_metric.chart_metric_kahler`
+(the CONVENTION LOCK block: holomorphic chain rule W^T). The potential is
+log(Z-dagger M Z) plus a combination of the 218 basis functions, with the
+charts explicit: Z_S = eps.sqrt(A_0 + A_1 u^2 + A_2 v^2), and
+A = -V_S^{-1} V_T EXACT in rationals (integer Vandermonde,
+mu = 1,2,3,5,7,11).
 
 Enclosure guarantees, each step being a valid interval extension:
- - entrées float64 convergées EXACTEMENT en mpf (53 bits ⊂ prec bits) ;
- - A rationnelle exacte (pivot de Gauss sur Fractions) ;
- - √ complexe rectangulaire par module/argument (iv.atan2), avec GARDE DE
+ - float64 inputs converted EXACTLY to mpf (53 bits inside prec bits);
+ - A exactly rational (Gaussian elimination over Fractions);
+ - complex square root by modulus and argument (iv.atan2), with a
       BRANCH: the radicand rectangle must avoid the cut on the non-positive reals
       (otherwise BranchCutError: the sheet is not continuous on the cell);
- - division complexe par conj/|·|² (dénominateur > 0 exigé) ;
+ - complex division by conj/|.|^2 (a denominator > 0 is required);
   - hermitisation (G + G-dagger)/2 is a valid enclosure: both enclose the same G.
 
 The self-test contains the checks that a wrong answer fails:
- K2 box dégénérée (h=0) ≡ moteur float à 5e-12 relatif (multi-charts, incl.
-    charts boostés des loci radicaux) — toute erreur de transcription ou de
-    convention casse cette égalité ;
+ K2 a degenerate box (h=0) matches the float engine to 5e-12 relative
+    (several charts, including the charts boosted on the radical loci);
+    any transcription or convention error breaks that equality;
   Monte-Carlo containment: G_float(point) is inside G_interval(box) for
         points drawn INSIDE the box (any invalid enclosure breaks the inclusion).
 
-Consommé par : cell_probe.py (cellules témoins, h*, scaling h→h/2).
-Witness chargé UNIQUEMENT via witness_registry.load_active_witness().
+Consumed by: cell_probe.py (witness cells, h*, scaling h to h/2).
+The witness is loaded ONLY through witness_registry.load_active_witness().
 """
 from __future__ import annotations
 
@@ -56,13 +58,13 @@ class BranchCutError(RuntimeError):
     """Radicand whose rectangle meets the cut on the non-positive reals, or zero.
 
         The exception carries an optional STRUCTURED diagnostic (`diag`,
-        always a dict, empty by default): guard site, anchor, q,
-    rayon de garde, enclosure du radicande, coefficients du quadratique
+        always a dict, empty by default): guard site, anchor, q, guard
+        radius, enclosure of the radicand, coefficients of the quadratic
         of the section. Without it a branch refusal is reconstructible only
-        by an unversioned external probe: the message alone says neither WHICH
-        guard fired nor ON WHAT NUMBERS. The historical callers
-    (`raise BranchCutError("...")`, `except BranchCutError`) sont
-    inchangés ; `str(exc)` reste le message.
+        by an unversioned external probe: the message alone says neither
+        WHICH guard fired nor ON WHAT NUMBERS. The historical callers
+        (`raise BranchCutError("...")`, `except BranchCutError`) are
+        unchanged, and `str(exc)` stays the message.
     """
 
     def __init__(self, message, diag=None):
@@ -94,7 +96,7 @@ class CIV:
 
     @staticmethod
     def box(c: complex, h: float):
-        """Boîte c ± h : bornes par addition d'intervalle (arrondi extérieur
+        """Box c +- h: endpoints by interval addition (outward rounding
                 guaranteed, and NEVER c.real +- h in floating point, which can shrink the box)."""
         radius = iv.mpf([-h, h])
         return CIV(iv.mpf(c.real) + radius, iv.mpf(c.imag) + radius)
@@ -139,9 +141,10 @@ CONE = CIV(iv.mpf(1), iv.mpf(0))
 def civ_sqrt_principal(R: CIV) -> CIV:
     """Principal square root of a complex rectangle AVOIDING the cut on the non-positive reals.
 
-    Garde de branche : le rectangle doit satisfaire re > 0 OU im > 0 OU
-        im < 0 strictly on the whole box. The argument is continuous there and
-    iv.atan2 en donne une enclosure ; √ = |R|^{1/4}·(cos θ/2 + i sin θ/2)."""
+    Branch guard: the rectangle must satisfy re > 0 OR im > 0 OR im < 0
+    strictly on the whole box. The argument is continuous there and
+    iv.atan2 gives an enclosure of it; the root is
+    |R|^{1/4}.(cos(theta/2) + i sin(theta/2))."""
     re_pos = mp.mpf(R.re.a) > 0
     im_pos = mp.mpf(R.im.a) > 0
     im_neg = mp.mpf(R.im.b) < 0
@@ -251,10 +254,11 @@ def _civ_pow(z: CIV, k: int) -> CIV:
 # ===========================================================================
 def interval_chart_metric(Z, W, M_civ, coeffs218, basis=B3, midx=B3_IDX,
                           multis=B3_MULTIS):
-    """G packé intervalle [g00, g11, Re g01, Im g01] (4 iv réels) + s, zW.
+    """G packed in interval arithmetic [g00, g11, Re g01, Im g01] (4 real
+    intervals) plus s and zW.
 
-    Miroir terme à terme de chart_metric_kahler (bloc ρ, blocs φ, termes
-    croisés, hermitisation) — voir CONVENTION LOCK du moteur."""
+    A term-by-term mirror of chart_metric_kahler (rho block, phi blocks,
+    cross terms, hermitisation): see the CONVENTION LOCK of the engine."""
     s = iv.mpf(0)
     for a in range(6):
         s = s + Z[a].abs2()
@@ -417,18 +421,18 @@ def iv_width(x) -> float:
 
 
 # ===========================================================================
-#  Couche duale (AD forward, 4 directions réelles u_re, u_im, v_re, v_im)
-#  — transposition du certificateur valeur-moyenne DualCIV du mini-cover
-#  (dual_containment, C+) au moteur Kähler v2. Forme valeur-moyenne :
-#     F(t) ∈ F(t₀) + Σ_a ∂F/∂t_a(boîte)·[−h, h]   (F réel, boîte convexe)
-#  ⟹ le terme linéaire coûte |∇F|·h (vrai gradient O(1)) au lieu de
-#  ‖coeffs218‖·h ≈ 3.6e4·h en évaluation naïve.
+#  Dual layer (forward AD, 4 real directions u_re, u_im, v_re, v_im): a
+#  transposition of the mean-value DualCIV certifier of the mini-cover to
+#  the Kaehler engine v2. Mean-value form:
+#     F(t) in F(t_0) + sum_a dF/dt_a(box).[-h, h]   (F real, box convex)
+#  so the linear term costs |grad F|.h (a true O(1) gradient) instead of
+#  ||coeffs218||.h, about 3.6e4.h in a naive evaluation.
 # ===========================================================================
-NG = 4                                     # directions de dérivation
+NG = 4                                     # differentiation directions
 
 
 class DCIV:
-    """DualCIV du kernel : (val CIV, grads[4] CIV), ε_a·ε_b = 0."""
+    """The kernel DualCIV: (value CIV, grads[4] CIV), with eps_a.eps_b = 0."""
     __slots__ = ("val", "grads")
 
     def __init__(self, val, grads):
@@ -486,7 +490,7 @@ class DCIV:
 
 
 class DIV:
-    """DualIV du kernel : (val iv réel, grads[4] iv réels)."""
+    """The kernel DualIV: (real interval value, grads[4] real intervals)."""
     __slots__ = ("val", "grads")
 
     def __init__(self, val, grads):
@@ -708,8 +712,9 @@ def dual_chart_metric(Z, W, M_civ, coeffs218, basis=B3, midx=B3_IDX,
 
 
 def mean_value_enclose(center_iv, dual: DIV, h: float):
-    """Forme valeur-moyenne : F(boîte) ⊆ F(centre) + Σ_a ∂F(boîte)·[−h,h].
-    center_iv : enclosure de F au CENTRE (boîte dégénérée). Retourne iv."""
+    """Mean-value form: F(box) is inside F(centre) + sum_a dF(box).[-h,h].
+    center_iv is the enclosure of F at the CENTRE (degenerate box).
+    Returns an interval."""
     rad = iv.mpf([-h, h])
     acc = center_iv
     for g in dual.grads:
@@ -718,12 +723,12 @@ def mean_value_enclose(center_iv, dual: DIV, h: float):
 
 
 def mean_value_metric(S, g_col, eps, u0, v0, h, M_civ, coeffs218):
-    """G packé (4 iv réels) + det_MS (CIV) par forme valeur-moyenne,
+    """G packed (4 real intervals) plus det_MS (CIV) by the mean-value form,
         INTERSECTED with the naive evaluation: both enclose G, so the intersection is valid.
 
         Returns (g_packed, det_MS, diag); diag carries the widths of the
         two forms for the probe."""
-    # centre : boîte dégénérée (naïf, largeur ~ arrondi seulement)
+    # centre: degenerate box (naive, width of the order of rounding only)
     Zc, Wc, dMSc = chart_cell_section(S, g_col, eps, u0, v0, 0.0)
     g_center, *_ = interval_chart_metric(Zc, Wc, M_civ, coeffs218)
     # duals on the full box
@@ -740,7 +745,7 @@ def mean_value_metric(S, g_col, eps, u0, v0, h, M_civ, coeffs218):
         w_naive.append(iv_width(g_naive[c]))
         inter = _iv_intersect(mv, g_naive[c])
         g_mv.append(inter)
-    # det_MS : valeur-moyenne composante par composante, ∩ naïf
+    # det_MS: mean value component by component, intersected with the naive form
     dMS_center_re, dMS_center_im = dMSc.re, dMSc.im
     ms_re = _iv_intersect(
         mean_value_enclose(dMS_center_re, dMS_dual.re_dual(), h), dMS_box.re)
@@ -763,10 +768,12 @@ def _iv_intersect(a, b):
 
 
 # ===========================================================================
-#  Couche ordre 2 (jets tronqués : val + 4 gradients + 10 hessiennes)
-#  — R4-A passe 2. Forme de Taylor ordre 2 :
-#     F(t₀+δ) = F(t₀) + ∇F(t₀)·δ + ½ δᵀ·H(ξ)·δ,  ξ ∈ boîte (Lagrange)
-#  Le terme linéaire prend le gradient EXACT au centre (largeur ~arrondi) ;
+#  Order-2 layer (truncated jets: value + 4 gradients + 10 Hessians).
+#  Order-2 Taylor form:
+#     F(t_0 + delta) = F(t_0) + grad F(t_0).delta
+#                    + half delta^T H(xi) delta,  xi in the box (Lagrange)
+#  The linear term uses the EXACT gradient at the centre (width of the
+#  order of rounding);
 #  only the Hessian is enclosed naively on the box, so the cancellation
 #  of the coefficient norm is relegated to the h^2 term (with a true constant) plus h^3.
 # ===========================================================================
@@ -951,18 +958,20 @@ def _t2_pow(z: T2CIV, k: int) -> T2CIV:
 
 def t2_chart_metric(Z, W, M_civ, coeffs218, basis=B3, midx=B3_IDX,
                     multis=B3_MULTIS, want_fs=False, rho_weight=None):
-    """G packé jet ordre 2 [g00, g11, Re g01, Im g01] (4 T2IV) — miroir
-    strict de dual_chart_metric. want_fs=True : retourne (G, G_FS) packés
-        jets: G_FS reuses s, zW and the frame product from the SAME jets, so the pencil
-    H_α = G − α·G_FS (R4-B0) garde les corrélations entre les deux.
+    """G packed as an order-2 jet [g00, g11, Re g01, Im g01] (4 T2IV), a
+    strict mirror of dual_chart_metric. With want_fs=True it returns
+    (G, G_FS) as packed jets: G_FS reuses s, zW and the frame product from
+    the SAME jets, so the pencil H_alpha = G - alpha.G_FS keeps the
+    correlations between the two.
 
         rho_weight: when not None, the rho block
         (pullback of the Hessian of log rho) is multiplied by this scalar BEFORE adding
         the phi block, and the assembly then returns the COMBINED field
-    Q = rho_weight·G_ρ + H_Φ en un seul jet (cancellations préservées ;
-        with rho_weight = 1 - gamma this is the direct Loewner certificate
-    G ⪰ γ·G_ρ ⟺ Q ≻ 0, sans inverse ni racine matricielle).
-    None (défaut) : comportement STRICTEMENT identique à avant."""
+        Q = rho_weight.G_rho + H_Phi as a single jet (cancellations
+        preserved; with rho_weight = 1 - gamma this is the direct Loewner
+        certificate G >= gamma.G_rho if and only if Q > 0, with no inverse
+        and no matrix root). None (the default) gives behaviour STRICTLY
+        identical to before."""
     s = T2IV.const(iv.mpf(0))
     for a in range(6):
         s = s + Z[a].abs2_t2()
@@ -1021,8 +1030,8 @@ def t2_chart_metric(Z, W, M_civ, coeffs218, basis=B3, midx=B3_IDX,
     rho2_inv = rho_inv * rho_inv
     if rho_weight is not None:
         w_rt2 = T2IV.const(riv(rho_weight))
-        rho_inv = rho_inv * w_rt2          # poids appliqué UNE fois
-        rho2_inv = rho2_inv * w_rt2        # (pas au carré)
+        rho_inv = rho_inv * w_rt2          # weight applied ONCE
+        rho2_inv = rho2_inv * w_rt2        # (not squared)
     G = [[None, None], [None, None]]
     for A_ in range(2):
         for B_ in range(2):
@@ -1132,8 +1141,9 @@ def taylor2_enclose(center: T2IV, box: T2IV, h: float):
 
 
 def taylor2_metric(S, g_col, eps, u0, v0, h, M_civ, coeffs218):
-    """G packé (4 iv), det G (iv), det_MS (CIV), |det_MS|² (iv) par forme de
-    Taylor ordre 2 (∩ MV ∩ naïf, composante par composante ET sur det G
+    """G packed (4 intervals), det G, det_MS (CIV) and |det_MS|^2 by the
+    order-2 Taylor form (intersected with the mean-value and naive forms,
+    component by component AND on det G
         directly: the jet of det G keeps the correlations between components).
 
         diag: widths of the three forms for g00 and det G."""
@@ -1223,7 +1233,7 @@ def _selftest() -> int:
         worst = max(worst, diff)
     check("K1_exact_A_vs_float", worst < 1e-11, f"max|ΔA| = {worst:.2e}")
 
-    # charts témoins : 1 générique + les 2 boostés (loci radicaux)
+    # witness charts: 1 generic plus the 2 boosted ones (radical loci)
     cases = [((0, 1, 2), 3), ((1, 3, 5), 2), ((0, 2, 5), 1)]
     rng = np.random.default_rng(2026)
     t0 = time.time()
@@ -1297,8 +1307,8 @@ def _selftest() -> int:
             n_contained += ok
             n_tested += 1
     check("K3_containment_MC", n_tested > 0 and n_contained == n_tested,
-          f"{n_contained}/{n_tested} points contenus (h = {h:g}, "
-          f"{n_branch} cellules rejetées par garde de branche, "
+          f"{n_contained}/{n_tested} points contained (h = {h:g}, "
+          f"{n_branch} cells rejected by the branch guard, "
           f"{time.time() - t0:.0f}s)")
 
     # K4 — largeur décroissante h → h/2
@@ -1324,9 +1334,9 @@ def _selftest() -> int:
     mids = np.array([(a + b) / 2 for a, b in map(iv_bounds, g_bad)])
     rel_bad = float(np.abs(mids - g_ref).max() / np.abs(g_ref).max())
     check("K5_adverse_tamper_detected", rel_bad > 1e-10,
-          f"coeffs altérés ⟹ rel = {rel_bad:.2e} ≫ tolérance K2")
+          f"altered coefficients give rel = {rel_bad:.2e}, far above the K2 tolerance")
 
-    # D1 — dérivées duales (h=0) vs différences finies du moteur float
+    # D1: dual derivatives (h=0) against finite differences of the float engine
     S, g_col, eps, u0, v0 = samples[0]
     ZD, WD, _ = dual_chart_cell_section(S, g_col, eps, u0, v0, 0.0)
     g_dual = dual_chart_metric(ZD, WD, M_civ, coeffs218)

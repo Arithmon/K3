@@ -10,9 +10,10 @@ criterion in its own right and sweeps it again over EVERY cell.
 
 THE GAP THIS SCRIPT REPAIRS. The earlier criterion bore on:
 
-    (i)  le DOMAINE     — jauge `|Z_{g'}|` loin de 0, `|u'| ≤ 1`, `|v'| ≤ 1`
-    (ii) le JACOBIEN    — `det J` d'enclosure excluant 0
-    (iii) la DISJONCTION — `Im u'` ou `Im v'` de signe constant
+    (i)   the DOMAIN     — gauge `|Z_{g'}|` away from 0, `|u'| <= 1`,
+                            `|v'| <= 1`
+    (ii)  the JACOBIAN   — `det J` with an enclosure excluding 0
+    (iii) the DISJUNCTION — `Im u'` or `Im v'` of constant sign
 
 Those three bear on the **coordinates** `(u', v')` of the target chart.
 None says anything about the **radicands** of the chart's OWN section.
@@ -22,10 +23,10 @@ happened. The strengthened criterion adds:
 
     (iv) NATIVE SECTION: the three rows of the TARGET chart's section
          admit a CERTIFIED determination on the whole box
-         (principale si `R'` évite (−∞,0], sinon tournée avec `σ'`
-         déterminé — jamais au seul centre)
+         (plain if `R'` avoids (-inf,0], otherwise rotated with a
+         determined `sigma'`, and never at the centre alone)
 
-Checks pré-enregistrés :
+Preregistered checks:
   F1 REFINEMENT: the strengthened criterion is a SUBSET of the earlier
      one, chart by chart. A UNIVERSAL check: a criterion that
      accepted a chart refused before would not be a
@@ -51,25 +52,25 @@ Checks pré-enregistrés :
      the one that blocked the source. This check MEASURES the proportion; it does not
      impose it. It fails only if the measurement is missing.
   F9 SUBDIVISION DOES NOT ERASE THE OBSTRUCTION: on a lost chart,
-     on subdivise la cellule source en 16^d sous-cellules et on
+     the source cell is subdivided into 16^d subcells and we
      recounts the refusals. Were the obstruction an ARTEFACT
-     D'ENCLOSURE (surestimation de `Im R'`), les refus DISPARAÎTRAIENT
+     ENCLOSURE ARTEFACT (an overestimate of `Im R'`), the refusals WOULD DISAPPEAR
      at increasing depth. The check requires instead that the number
      of refusals GROW like `4^d`, the signature of a branch locus
      of CODIMENSION 2, hence of a REAL GEOMETRIC obstruction. The
-     check échoue si les refus disparaissent OU s'ils croissent en
+     check fails if the refusals disappear OR if they grow like
      `16^d` (codimension 0).
   F7 PUBLISHED VERDICT: the final count `n_strong` is published for
-     EVERY cell, including when it is 0. A sweep that did not
-     publierait que ses succès mentirait par omission.
+     EVERY cell, including when it is 0. A sweep that published
+     only its successes would lie by omission.
 
 This script certifies NEITHER congruence NOR positivity transport: it selects the
 (cell, chart) pairs on which those questions make sense.
 
-Sorties : results/chart_selection_criterion.json
-Usage   : chart_selection_criterion.py [--selftest]
-Env     : K3_C126_CELLS (cellules, défaut 4)
-          K3_C126_SUBDEPTH (profondeur de la sonde F9, défaut 3)
+Output : results/chart_selection_criterion.json
+Usage  : chart_selection_criterion.py [--selftest]
+Env    : K3_C126_CELLS (cells, default 4)
+         K3_C126_SUBDEPTH (depth of the F9 probe, default 3)
 """
 from __future__ import annotations
 
@@ -153,14 +154,14 @@ def native_section_constructible(S2, g2, up, vp):
     """The three rows of the target chart's OWN section, with their
     determination certified on the WHOLE BOX.
 
-    Retourne (rows, ok). Chaque ligne porte sa détermination, son `σ'`,
+    Returns (rows, ok). Each row carries its determination, its `sigma'`,
     the enclosures of `Re R'` and `Im R'`, and, if it is constructible,
     the enclosure of `Z'^2 - R'`, which must contain 0 (check F5).
 
     The component is certified in TWO steps:
       (i) DIRECT enclosure of `Im R'`: on the target chart it is
           not constrained to contain 0, so it is often sharper;
-     (ii) à défaut, la règle par SIGNES DE COEFFICIENTS.
+     (ii) failing that, the rule by COEFFICIENT SIGNS.
     If both are undetermined, the row is REFUSED. Never by trial.
     """
     T2 = tuple(j for j in range(6) if j not in S2)
@@ -216,7 +217,7 @@ def native_section_constructible(S2, g2, up, vp):
 
 
 def target_uv(Z, S2, g2):
-    """`(u', v')` du chart cible, ou None si inatteignable."""
+    """`(u', v')` of the target chart, or None if unreachable."""
     T2 = [j for j in range(6) if j not in S2]
     o = [x for x in T2 if x != g2]
     if any(Z[a] is None for a in (g2, o[0], o[1])):
@@ -328,22 +329,22 @@ def build():
             "strong_examples": [{k: x[k] for k in ("S", "g")}
                                 for x in strong[:5]],
             "charts": charts})
-        log(f"  cellule {i + 1} : source {src_rotated} tournées · "
-            f"{len(prevs)} charts sous l'ANCIEN critère → "
-            f"**{len(strong)} sous le RENFORCÉ** "
-            f"(−{len(lost)}) · centre-seul en accepterait "
-            f"{len(ctr_only)} de plus")
+        log(f"  cell {i + 1}: source {src_rotated} rotated · "
+            f"{len(prevs)} charts under the EARLIER criterion -> "
+            f"**{len(strong)} under the STRENGTHENED one** "
+            f"(-{len(lost)}) · centre-only would accept "
+            f"{len(ctr_only)} more")
 
     # --- F9: does subdivision erase the obstruction? -------------------------
     # This is THE question that 62 -> 0 raises. Two competing explanations:
-    #   (a) ARTEFACT D'ENCLOSURE — `Im R'` est surestimé et straddle 0 par
-    #       excès de largeur. Alors subdiviser doit FAIRE DISPARAÎTRE les
-    #       refusals, and the resweep need only go one level down.
-    #   (b) OBSTRUCTION GÉOMÉTRIQUE — le lieu `{Im R' = 0} ∩ {Re R' < 0}`
+    #   (a) AN ENCLOSURE ARTEFACT: `Im R'` is overestimated and straddles
+    #       0 by excess width. Then subdividing must MAKE THE REFUSALS
+    #       DISAPPEAR, and the resweep need only go one level down.
+    #   (b) A GEOMETRIC OBSTRUCTION: the locus `{Im R' = 0} ∩ {Re R' < 0}`
     #       really crosses the cell. Then the refusals PERSIST, and
     #       their number grows like the measure of the locus: `4^d` for
-    #       codimension 2 in a real box of dimension 4, against
-    #       `16^d` sous-cellules au total.
+    #       codimension 2 in a real box of dimension 4, against `16^d`
+    #       subcells in total.
     # The two predictions are DISJOINT and the count decides.
     sub = {"tested": False}
     c0 = cells[0]
@@ -387,12 +388,12 @@ def build():
                    levels[-1]["n_refused"] > 0
                    and all(3.0 <= r <= 5.0 for r in ratios))}
 
-    # --- cross-check INDÉPENDANT contre l'artefact the chart criterion/the Jacobian criterion ----------------
-    # `n_prev_criterion` DOIT reproduire `payoff_per_cell` de
-    # `d5_fullcell` : deux scripts, même sélection de cellules, même
-    # earlier criterion. A disagreement would signal drift in one or
-    # the other, which is what a review calls a cross-check that
-    # n'existait dans aucun script.
+    # --- INDEPENDENT cross-check against the chart/Jacobian criterion --
+    # `n_prev_criterion` MUST reproduce `payoff_per_cell` of the
+    # full-cell artefact: two scripts, the same selection of cells, the
+    # same earlier criterion. A disagreement would signal drift in one or
+    # the other, which is what a review calls a cross-check that existed
+    # in no script.
     cross = {"checked": False}
     fc = RES / "full_cell_charts.json"
     try:
@@ -508,7 +509,7 @@ def _selftest():
         tm_sqrt_rotated(Rn, 0)
     except BranchCutError:
         r_ref = True
-    chk("T2 réel négatif : principale ET tournée refusées",
+    chk("T2 negative real: plain AND rotated both refused",
         p_ref and r_ref)
 
     # T3: a radicand on the POSITIVE ray: the principal branch accepts it,
@@ -519,7 +520,7 @@ def _selftest():
         got = tm_sqrt_rotated(Rr, 1)
     except BranchCutError:
         got = None
-    chk("T3 Im > 0 : la tournée σ=+1 construit", got is not None)
+    chk("T3 Im > 0: the rotated sigma=+1 constructs", got is not None)
 
     # T4: soundness, Z^2 - R contains 0 for the rotated branch of T3
     if got is not None:
@@ -534,7 +535,7 @@ def _selftest():
     #      that the earlier one refused. This is checked on the logic itself.
     def strong(prev, native):
         return bool(prev and native)
-    chk("T5 négatif : strong ⊆ prev (les 4 combinaisons)",
+    chk("T5 negative control: strong is a subset of prev (all 4 combinations)",
         all(not strong(p, n) or p
             for p in (False, True) for n in (False, True))
         and not strong(False, True))

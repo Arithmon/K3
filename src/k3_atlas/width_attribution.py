@@ -1,78 +1,91 @@
 #!/usr/bin/env python3
 """
-width_attribution.py — P0a2-A : ATTRIBUTION de largeur +
-congruence fixe préconditionnée (contrat GPT `gpt_b1e2iii_p0a2_direct_review`
-§2-§6 : the width contract, A0-A4 ; demandes a reviewer `kimi_p0a2_direct_review` V3/V7).
+width_attribution.py — WIDTH ATTRIBUTION plus preconditioned fixed
+congruence (the width contract, items A0 to A4, with two reviewer requests
+folded in).
 
-The wall measured by the direct probe (C = width(detQ)/h^2 around 2e3-2e4) does not
-encore de CAUSE établie (GPT C43-C45 : la largeur mélange variation
-réelle linéaire/quadratique, excès d'enclosure de la Hessienne,
-dependencies of the determinant). This probe measures it BEFORE choosing
-the tool that will reduce it:
+The wall measured by the direct probe (C = width(detQ)/h^2 around 2e3-2e4)
+has no established CAUSE yet: the width mixes real linear and quadratic
+variation, the enclosure excess of the Hessian, and dependencies of the
+determinant. This probe measures it BEFORE choosing the tool that will
+reduce it:
 
-  A0 provenance : M_H = (M+M†)/2 canonisé UNE fois au chargement (C42),
-     hash publié, moteur float ET noyau intervalle consomment exactement
-     M_H ; contrôle dégénéré h=0 rejoué (mid(Q_γ) ≡ float, rel < 5e-12) ;
+  A0 provenance: M_H = (M + M-dagger)/2 canonicalised ONCE at load time,
+     hash published, the float engine AND the interval kernel consuming
+     exactly M_H; degenerate control h = 0 replayed (mid(Q_gamma) equal to
+     the float value, relative error below 5e-12);
           checks derived from the counts, "executed" rather than "all"; pricing
           serialised in the JSON, not only in the note.
-  A1 décomposition de largeur (GPT §5-A1 + C44) : boîte B TÉMOIN
-     D'ABORD (a reviewer), puis A et C — grille h FIXE {4e-3, 2e-3, 1e-3,
-     5e-4, 2.5e-4} (≥ 4 valeurs, pentes successives publiées, jamais
-          a "law" on 2 points). At each h, POST-PROCESSING of the two jets
-     (centre + boîte) : largeur par FORME (Taylor-2 / valeur-moyenne /
-     naïve / det-des-composantes / intersection finale, forme active),
-          and EXACT DECOMPOSITION of the t2 form (the interval widths
-     s'additionnent exactement) : w = w(val centre) + w(∇F(t₀)·δ)
-     [variation réelle ordre 1] + w(½δᵀH(boîte)δ) [terme reste], avec
-     w(½δᵀH(t₀)δ) [Hessienne EXACTE au centre, jet dégénéré] comme
-          true scale of the quadratic, isolating the enclosure excess of the Hessian
-     = w(H boîte) − w(H centre), ISOLÉ. Normes ∇/H publiées. Sample
-          float min/max of det Q on the box (NOT a certificate: it separates the
-     variation physique apparente de l'excès d'enclosure, GPT A1).
-  A2 ablation (GPT §5-A2 + a reviewer V7) : (i) congruence fixe R₀ (C46) —
-     R₀ = inv(chol(G_ρ(t₀))†) gelé float par boîte (variante R₀ depuis
-     Q_γ(t₀)) ; Q'_γ = R₀†Q_γR₀ assemblé AU NIVEAU DU JET (T2CIV,
-     post-processing, aucune inversion d'intervalle), certificat
-          pivot and determinant on the normalised object, positive definiteness kept exactly,
-     det' = det Q/det G_ρ = déterminant NORMALISÉ dimensionless (A3) ;
-          h_pass_raw against h_pass_cong on the same grid; the negative witness
-     t_bad DOIT rester certifié non-PD sous congruence. (ii) split φ
-     par élément (a reviewer V7) : top-5 |c| individuels + groupe reste +
-          phi-combined: the width of the Hessian term of q00 (linear in c)
-     se décompose ADDITIVEMENT par élément (exact) ⟹ part du top-5
-          in C, measured. (218 individual jets are out of budget: the
-          monomial precomputation dominates the cost, about 11 s per jet whatever
-     nombre de coeffs non nuls ; consigné.)
-  A3 pricing dimensionless (GPT §5-A3) : λ_min(Q_γ, G_ρ) généralisé
-     float (centre + min échantillonné), det normalisé certifié après
-     congruence, proxy de sur-enclosure = det_norm_min_float − det'.lo.
-  A4 décision T4 (GPT §5-A4, seuils a reviewer) : publiée depuis les mesures —
-          (1) if float stays positive where the enclosure fails AND the Hessian excess
-          dominates, then the remainder representation is the problem and Taylor models are justified
-     (discriminant synthétique a reviewer OBLIGATOIRE) ; (2) si la variation
-     réelle (lin + quad centre + span float) domine ⟹ un ordre supérieur
-          will not certify without subdivision; (3) if congruence already wins
-     ≥ ×10 en cellules d'atlas ⟹ première route de production.
-  +  table de couverture commune (GPT §6) : 60 couples = 22 owner O1 +
-     17 vacuités + 21 ambigus ; join avec C39 (26 échantillonnés) ;
-          the 17 ambiguous ones WITHOUT named points.
-  +  erratum d'atlas (a reviewer V3) : fourchette recalculée depuis les
-          measured anchors (the equation in the direct-probe note gave 8.7e11
-     cellules/3e5 ans, pas 9e14/3e8 — corrigé, mur intact).
+  A1 width decomposition: the WITNESS box B FIRST (at a reviewer's
+     request), then A and C, on a FIXED h grid {4e-3, 2e-3, 1e-3, 5e-4,
+     2.5e-4} (at least 4 values, successive slopes published, never a
+     "law" on 2 points). At each h, POST-PROCESSING of the two jets
+     (centre and box): width per FORM (Taylor-2, mean-value, naive,
+     determinant-of-components, final intersection, and the active form),
+     and EXACT DECOMPOSITION of the t2 form (the interval widths add
+     exactly): w = w(centre value) + w(grad F(t_0).delta) [real
+     first-order variation] + w(half delta^T H(box) delta) [remainder
+     term], with w(half delta^T H(t_0) delta) [EXACT Hessian at the
+     centre, degenerate jet] as the true scale of the quadratic, isolating
+     the enclosure excess of the Hessian = w(H box) - w(H centre). The
+     gradient and Hessian norms are published. Sample
+          float min/max of det Q on the box (NOT a certificate: it separates
+     the apparent physical variation from the enclosure excess).
+  A2 ablation: (i) fixed congruence R_0, with
+     R_0 = inv(chol(G_rho(t_0))-dagger) frozen in float per box (a
+     variant takes R_0 from Q_gamma(t_0)); Q'_gamma = R_0-dagger Q_gamma
+     R_0 assembled AT THE JET LEVEL (post-processing, with no interval
+     inversion), a pivot and determinant certificate on the normalised
+     object, positive definiteness kept exactly, and
+     det' = det Q/det G_rho, the dimensionless NORMALISED determinant
+     (A3); h_pass_raw against h_pass_cong on the same grid; the negative
+     witness t_bad MUST stay certified non-positive-definite under
+     congruence. (ii) phi split per element (asked for by a reviewer):
+     the top 5 individual |c| plus a remainder group plus phi-combined:
+     the width of the Hessian term of q00 (linear in c) decomposes
+     ADDITIVELY per element (exactly), giving the share of the top 5 in C,
+     measured. (218 individual jets are out of budget: the monomial
+     precomputation dominates the cost, about 11 s per jet whatever the
+     number of non-zero coefficients; recorded.)
+  A3 dimensionless pricing: generalised float lambda_min(Q_gamma, G_rho)
+     (centre plus sampled minimum), the certified normalised determinant
+     after congruence, and an over-enclosure proxy
+     det_norm_min_float - det'.lo.
+  A4 decision, published from the measurements: (1) if float stays
+     positive where the enclosure fails AND the Hessian excess dominates,
+     then the remainder representation is the problem and Taylor models
+     are justified (a synthetic discriminant a reviewer made MANDATORY);
+     (2) if the real variation (linear plus quadratic at the centre plus
+     the float span) dominates, a higher order will not certify without
+     subdivision; (3) if congruence already wins a factor 10 or more in
+     atlas cells, it is the first production route.
+  +  a shared coverage table: 60 pairs = 22 owner from O1 + 17 vacuities
+     + 21 ambiguous; joined with the sampled set (26 sampled); the 17
+     ambiguous ones WITHOUT named points.
+  +  an atlas erratum (asked for by a reviewer): the range recomputed
+     from the measured anchors (the equation in the direct-probe note
+     gave 8.7e11 cells and 3e5 years, not 9e14 and 3e8; corrected, with
+     the wall intact).
 
-Self-test (checks DISCRIMINANTS, négatifs inclus) :
-  T1 enclose_decompose ≡ taylor2_enclose kernel (bornes bit-identiques)
-  T2 additivité des largeurs : w_t2 = w_val + w_lin + w_quad (exact)
-  T3 congruence R₀ = I ≡ brut (bornes bit-identiques, 4 comp + det)
-  T4 scaling : mid(det') ≡ |det R₀|²·mid(det) (rel < 1e-10, h=0)
-  T5 NÉGATIF : t_bad sous congruence ⟹ det'.hi < 0 (non-PD certifié)
-  T6 C42 : M_H bit-hermitien + dégénéré h=0 mid ≡ float M_H (< 5e-12)
-  T7 split φ : w_quad(φ-combiné) ≤ w_quad(top5) + w_quad(reste)
-     (sous-additivité garantie ; l'écart = gain de cancellation combiné,
-     LA mesure a reviewer V7) + NÉGATIF : w_quad(top5) < w_quad(φ) strictement
+Self-test (DISCRIMINATING checks, negative controls included):
+  T1 enclose_decompose matches taylor2_enclose in the kernel (bounds
+     bit-identical)
+  T2 additivity of the widths: w_t2 = w_val + w_lin + w_quad (exact)
+  T3 congruence with R_0 = I matches the raw form (bounds bit-identical,
+     4 components plus the determinant)
+  T4 scaling: mid(det') equals |det R_0|^2.mid(det) (relative < 1e-10,
+     h = 0)
+  T5 NEGATIVE CONTROL: t_bad under congruence gives det'.hi < 0
+     (certified non-positive-definite)
+  T6 M_H is bit-hermitian and the degenerate h = 0 midpoint matches the
+     float M_H (< 5e-12)
+  T7 phi split: w_quad(phi-combined) <= w_quad(top 5) + w_quad(rest)
+     (subadditivity is guaranteed; the gap is the combined cancellation
+     gain, which is THE measurement the reviewer asked for) plus a
+     NEGATIVE CONTROL: w_quad(top 5) < w_quad(phi) strictly
 
-Sorties : results/width_attribution.json
-Usage   : width_attribution.py [--selftest]
+Output : results/width_attribution.json
+Usage  : width_attribution.py [--selftest]
 """
 from __future__ import annotations
 
@@ -127,7 +140,7 @@ def wid(x) -> float:
 
 
 # ===========================================================================
-#  C42 — canonisation M_H (une fois, hash publié)
+#  Canonicalisation of M_H (once, with a published hash)
 # ===========================================================================
 def canonical_MH(Mnp):
     M_H = 0.5 * (Mnp + Mnp.conj().T)
@@ -138,7 +151,8 @@ def canonical_MH(Mnp):
 
 
 # ===========================================================================
-#  Jets Q_γ (une évaluation chère centre + boîte) + certificat
+#  Q_gamma jets (one expensive evaluation at the centre and on the box)
+#  plus the certificate
 # ===========================================================================
 def q_jets(S, g_col, eps, u0, v0, h, M_civ, coeffs, rho_w):
     Zc, Wc, _ = t2_chart_cell_section(S, g_col, eps, u0, v0, 0.0)
@@ -149,11 +163,12 @@ def q_jets(S, g_col, eps, u0, v0, h, M_civ, coeffs, rho_w):
 
 
 def enclose_decompose(center, box, h):
-    """Miroir EXACT de taylor2_enclose (T1 : bornes bit-identiques) +
-        additive decomposition of the t2 form: the interval widths
-    s'additionnent exactement sous +, donc
-      w_t2 = w(val centre) + w(Σ ∇·δ) + w(Σ ½H(boîte)δ²)
-    et w(Σ ½H(t₀)δ²) (jet dégénéré = Hessienne EXACTE au centre) donne
+    """An EXACT mirror of taylor2_enclose (T1: bounds bit-identical) plus
+    the additive decomposition of the t2 form: the interval widths add
+    exactly under +, so
+      w_t2 = w(centre value) + w(sum grad.delta) + w(sum half H(box) delta^2)
+    and w(sum half H(t_0) delta^2) (degenerate jet = EXACT Hessian at the
+    centre) gives
         the TRUE scale of the quadratic, so the enclosure excess is isolated."""
     rad = iv.mpf([-h, h])
     sq_diag = iv.mpf([0, h * h])
@@ -204,8 +219,9 @@ def enclose_decompose(center, box, h):
 
 
 def certify_from_jets(q_c, q_b, h):
-    """Certificat pivot+det + largeurs par forme (det direct vs det des
-    composantes vs intersection) — tout en post-processing des jets."""
+    """Pivot and determinant certificate plus widths per form (direct
+    determinant against determinant of the components against their
+    intersection), entirely as post-processing of the jets."""
     det_c, det_b = det_packed_t2(q_c), det_packed_t2(q_b)
     q_packed = [taylor2_enclose(q_c[c], q_b[c], h) for c in range(4)]
     det_comp = det_packed_iv(q_packed)
@@ -228,7 +244,7 @@ def certify_from_jets(q_c, q_b, h):
 
 
 # ===========================================================================
-#  C46 — congruence fixe R₀ au niveau du jet (post-processing)
+#  Fixed congruence R_0 at the jet level (post-processing)
 # ===========================================================================
 def _cplx_jet(re_j: T2IV, im_j: T2IV) -> T2CIV:
     return T2CIV(CIV(re_j.val, im_j.val),
@@ -237,8 +253,9 @@ def _cplx_jet(re_j: T2IV, im_j: T2IV) -> T2CIV:
 
 
 def congruent_packed(q4, R0):
-    """[g00, g11, Re g01, Im g01] → même packing pour R₀†QR₀, R₀ float
-    2×2 gelé (constantes dégénérées exactes — aucune inversion iv)."""
+    """[g00, g11, Re g01, Im g01] with the same packing for
+    R_0-dagger Q R_0, with R_0 a frozen 2x2 float (exact degenerate
+    constants, no interval inversion)."""
     zero = T2IV.const(iv.mpf(0))
     Q01 = _cplx_jet(q4[2], q4[3])
     Q = [[_cplx_jet(q4[0], zero), Q01],
@@ -309,7 +326,7 @@ def float_box_samples(S, g_col, eps, u0, v0, h, M_H, c218, rng, n=N_SAMPLES):
 
 
 # ===========================================================================
-#  A1/A2 — analyse d'une cellule (boîte, h) : brut + 2 congruences + float
+#  A1/A2: analysis of one cell (box, h): raw, two congruences, and float
 # ===========================================================================
 def analyze_cell(S, g_col, eps, u0, v0, h, M_civ, M_H, c218, R0s, rng):
     t1 = time.time()
@@ -366,8 +383,9 @@ def slopes(records, key_path):
 #  Build
 # ===========================================================================
 def load_boxes_from_direct(direct):
-    """Reprend EXACTEMENT les 3 boîtes de P0a2-direct (u0/v0 sérialisés),
-    pire classe = min det.lo à h_pass. Ordre : B témoin D'ABORD (a reviewer)."""
+    """Takes EXACTLY the 3 boxes of the direct probe (u0/v0 serialised),
+    the worst class being the minimum det.lo at h_pass. Order: the
+    witness box B FIRST, as a reviewer asked."""
     boxes = []
     for r in direct["s1_three_boxes"]:
         cands = [pc for pc in r["per_class"]
@@ -428,23 +446,23 @@ def coverage_table(tiling, probe):
                            and r["o1_status"] == "AMBIGUOUS")},
             "ambiguous_no_points_named": amb_no_points,
             "owner_no_points_named": owner_no_points,
-            "reconciliation": ("26 échantillonnés = 21 owner + 5 ambigus "
-                               "; 34 absents = 17 vacuités + 16 ambigus "
+            "reconciliation": ("26 sampled = 21 owner + 5 ambiguous; "
+                               "34 absent = 17 vacuities + 16 ambiguous "
                                "without points plus 1 OWNER not sampled "
-                               "(précision au « 17+17 » de la review "
-                               "a reviewer §3)"),
+                               "(this refines the 17+17 of the review)"),
             "note": ("V_owner = 5.38 concerns the certified owner part "
                      "(22 pairs), not the cost of a global "
                      "certificate: the ambiguous residual (21 pairs) stays a "
-                     "budget de subdivision O1 (GPT §6)")}
+                     "subdivision budget for the tiling stage")}
 
 
 def atlas_erratum(direct):
-    """a reviewer V3 : fourchette recalculée depuis les ancres mesurées.
-        (The equation in the direct-probe note, "9e14 cells, about 3e8 years", holds
-    en fait 8.7e11/3e5 ans ; on republie depuis h_pass = √(marge/C).)"""
+    """The range recomputed from the measured anchors, as a reviewer
+    asked. (The equation in the direct-probe note, "9e14 cells, about 3e8
+    years", in fact gives 8.7e11 cells and 3e5 years; we republish it
+    from h_pass = sqrt(margin/C).)"""
     margin = direct["s1_three_boxes"][1]["per_class"][0]["steps"][-1][
-        "det"][0]                       # B_interior det.lo à h_pass
+        "det"][0]                       # B_interior det.lo at h_pass
     t_call = direct["t2_seconds_per_call_mean"]
     v_eff = 5.38 * 2.6
     anchors = []
@@ -455,14 +473,14 @@ def atlas_erratum(direct):
                         "cpu_years": cells * t_call / YEAR_S})
     return {"margin_det_B": margin, "t_call_s": t_call,
             "V_eff_owner_x_classes": v_eff, "anchors": anchors,
-            "corrected_range": ("3e11-6e13 cellules, 1.1e5-2e7 ans CPU "
-                                "(uniforme, scénario) — l'uniforme t2 "
-                                "est mort aux deux lectures ; T4 et sa "
-                                "cible inchangés"),
-            "erratum": ("la note P0a2-direct écrivait 9e14 cellules ~ "
-                        "3e8 ans ; son équation vaut 8.7e11 / 3e5 ans "
-                        "the wall figure is that of the inputs "
-                        "mesurés ci-dessus")}
+            "corrected_range": ("3e11-6e13 cells, 1.1e5-2e7 CPU years "
+                                "(uniform, as a scenario): the uniform t2 "
+                                "route is dead under both readings; the "
+                                "target of the next stage is unchanged"),
+            "erratum": ("the direct-probe note wrote 9e14 cells, about "
+                        "3e8 years; its own equation gives 8.7e11 cells "
+                        "and 3e5 years, and the wall figure is that of "
+                        "the inputs measured above")}
 
 
 def build():
@@ -486,7 +504,7 @@ def build():
     tiling = json.loads(TILING_JSON.read_text(encoding="utf-8"))
     boxes = load_boxes_from_direct(direct)
 
-    # --- A0 : contrôle dégénéré h=0 rejoué sous M_H ---------------------------------
+    # --- A0: degenerate control h=0 replayed under M_H ----------------
     b0 = boxes[0]
     q0_c, _ = q_jets(b0["S"], b0["g"], b0["eps"], b0["u0"], b0["v0"],
                      0.0, M_civ, c218, 1.0 - GAMMA)
@@ -497,9 +515,9 @@ def build():
     mids = [sum(iv_bounds(q0_c[c].val)) / 2 for c in range(4)]
     rel_h0 = max(abs(m - r) / max(abs(r), 1e-30)
                  for m, r in zip(mids, ref))
-    log(f"A0 : dégénéré h=0 sous M_H — rel {rel_h0:.2e} (check < 5e-12)")
+    log(f"A0: degenerate h=0 under M_H, relative {rel_h0:.2e} (check < 5e-12)")
 
-    # --- W : témoin négatif sous M_H, brut + congruent ------------------------------
+    # --- W: negative witness under M_H, raw and congruent -------------
     bw = probe["b_r_sampled"]["argmin"]
     S_w, g_w = tuple(bw["S"]), int(bw["g"])
     Z_w = np.array([re + 1j * im
@@ -572,7 +590,7 @@ def build():
             "slopes_w_quad_box": slopes(
                 recs, ("raw", "decompose_det", "w_quad_box"))})
 
-    # --- A2(ii) : split φ par élément (a reviewer V7) — boîte B, h = 1e-3 -----------------
+    # --- A2(ii): phi split per element (a reviewer), box B, h = 1e-3 --
     bB = boxes[0]
     h_split = 1e-3
     top_idx = np.argsort(-np.abs(c218))[:TOP_K]
@@ -624,10 +642,11 @@ def build():
         "det_w_t2_phi_only": ddet_phi["w_t2"],
         "det_w_t2_top5": ddet_top["w_t2"],
         "det_w_t2_rest": ddet_rest["w_t2"],
-        "note_218": ("218 jets individuels hors budget : le précalcul "
-                     "of the monomials dominates (about the same cost whatever the "
-                     "nombre de coeffs non nuls) ⟹ top-5 + groupes, "
-                     "additivité exacte vérifiée sur q00 (linéaire en c)")}
+        "note_218": ("218 individual jets are out of budget: the "
+                     "precomputation of the monomials dominates (about the "
+                     "same cost whatever the number of non-zero "
+                     "coefficients), hence the top 5 plus groups, with "
+                     "exact additivity verified on q00 (linear in c)")}
 
     # --- A4 : décision (mesurée, pas décrétée) --------------------------------------
     recB = a1[0]["records"]
@@ -680,7 +699,7 @@ def build():
     cov = coverage_table(tiling, probe)
     err = atlas_erratum(direct)
 
-    # --- checks (dérivés des comptes — GPT A0.3) -------------------------------------
+    # --- checks (derived from the counts) -----------------------------
     all_cells = [r for a in a1 for r in a["records"]]
     checks = {
         "G0_MH_bit_hermitian": bit_herm,
@@ -708,14 +727,15 @@ def build():
     log(f"checks exécutés : {n_pass}/{len(checks)} PASS")
 
     verdict = (
-        "P0a2-A EXÉCUTÉ (checks exécutés %d/%d PASS) : attribution de la "
-        "largeur mesurée AVANT décision T4 (contrat GPT A0-A4). C42 : "
-        "M_H canonisé (sha %s…), dégénéré h=0 rejoué (rel %.1e). "
-        "Témoin t_bad certifié non-PD brut ET sous congruence. Boîte B "
-        "témoin à h_pass : parts de largeur (det, forme t2) = lin réel "
-        "%.3f / quad réel centre %.3f / EXCÈS d'enclosure Hessienne "
-        "%.3f. Float > 0 là où l'enclosure échoue : %s. Congruence "
-        "fixe R₀ (Gρ) : h_pass %s vs raw %s. Route A4 : %s" % (
+        "WIDTH ATTRIBUTION EXECUTED (checks executed %d/%d PASS): the "
+        "width is measured BEFORE the next decision (contract A0-A4). "
+        "M_H canonicalised (sha %s...), degenerate h=0 replayed "
+        "(relative %.1e). The witness t_bad is certified non-positive "
+        "definite raw AND under congruence. Witness box B at h_pass: "
+        "width shares (determinant, t2 form) = real linear %.3f / real "
+        "quadratic at the centre %.3f / Hessian enclosure EXCESS %.3f. "
+        "Float > 0 where the enclosure fails: %s. Fixed congruence on the "
+        "rho block: h_pass %s against raw %s. Route: %s" % (
             n_pass, len(checks), sha_MH[:12], rel_h0,
             shares["lin_real"] if shares else float("nan"),
             shares["quad_real_center"] if shares else float("nan"),
@@ -724,13 +744,13 @@ def build():
             hp.get("cong_rho"), hp["raw"], route))
 
     out = {
-        "phase": ("B1.e.2.iii P0a2-A — attribution de largeur + "
-                  "congruence fixe préconditionnée (GPT the width contract/A0-A4, "
-                  "a reviewer V3/V7)"),
+        "phase": ("width attribution plus preconditioned fixed "
+                  "congruence (the width contract, A0-A4, with two "
+                  "reviewer requests folded in)"),
         "witness_sha256": str(w["artifact_sha256"].item()),
         "M_H_c42": {"sha256": sha_MH, "antiherm_residual_max": resid,
                     "bit_hermitian": bit_herm,
-                    "consumers": "moteur float + build_M_civ + probes"},
+                    "consumers": "float engine + build_M_civ + probes"},
         "gamma_prefixed": GAMMA, "seed": SEED, "h_grid": H_GRID,
         "a0_h0_degenerate_rel": rel_h0,
         "w_negative_witness": neg,
@@ -780,7 +800,7 @@ def _selftest():
     print(f"[{'PASS' if t1 else 'FAIL'}] T1 enclose_decompose ≡ kernel "
           f"(dev max {max(devs):g})")
 
-    # --- T2 : additivité des largeurs ---------------------------------------------
+    # --- T2: additivity of the widths ---------------------------------
     dd, _ = enclose_decompose(det_c, det_b, h)
     dev = abs(dd["w_t2"] - (dd["w_center_val"] + dd["w_lin"]
                             + dd["w_quad_box"])) / dd["w_t2"]
@@ -817,7 +837,8 @@ def _selftest():
     print(f"[{'PASS' if t4 else 'FAIL'}] T4 det' ≡ |det R0|²·det "
           f"(rel {rel:.2e})")
 
-    # --- T5 : NÉGATIF — t_bad sous congruence doit rester non-PD certifié -----------
+    # --- T5: NEGATIVE CONTROL, t_bad under congruence must stay
+    #         certified non-positive-definite ------------------------
     probe = json.loads(PROBE_JSON.read_text(encoding="utf-8"))
     bw = probe["b_r_sampled"]["argmin"]
     S_w, g_w = tuple(bw["S"]), int(bw["g"])

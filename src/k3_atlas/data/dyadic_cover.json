@@ -1,6 +1,6 @@
 {
   "artifact": "k3_cap_b1e2iii_d5_6_dyadic_cover",
-  "claim": "D5.6 — cover dyadique à chart-par-sous-cellule d'une cellule résiduelle, avec congruence et transport de positivité sur les tuiles.",
+  "claim": "Dyadic cover with one chart per sub-cell of a residual cell, with congruence and positivity transport on the tiles.",
   "cell": {
     "S": [
       0,
@@ -12604,8 +12604,8 @@
     0.0,
     0.015625
   ],
-  "not_globalised": "Ce cover porte sur UNE cellule résiduelle. Ni la globalisation de l'holonomie ni R12-C ne sont touchées.",
-  "verdict": "Cover dyadique d'UNE cellule résiduelle : **252 tuiles**, chacune avec **son propre chart** certifié sur toute la tuile, et **64 boîtes résiduelles** à la profondeur 3. **98.4375 % du volume de la cellule est couvert** ; le résidu vaut **1.5625 %**. Sur 3 tuiles transportées, la congruence D5.4 et le transport de positivité D5.5 passent, avec un résidu relatif maximal de **3.923e-07**, et la mutation du Jacobien casse sur chacune.",
+  "not_globalised": "This cover concerns ONE residual cell. Neither the globalisation of holonomy nor the later scaling is touched.",
+  "verdict": "Dyadic cover of ONE residual cell: **252 tiles**, each with **its own chart** certified on the whole tile, and **64 residual boxes** at depth 3. **98.4375 % of the volume of the cell is covered**; the residual is **1.5625 %**. On 3 transported tiles, congruence and positivity transport pass, with a maximum relative residual of **3.923e-07**, and the Jacobian mutation breaks on each.",
   "checks": {
     "H1_exact_dyadic_partition": true,
     "H2_every_tile_reverified": true,

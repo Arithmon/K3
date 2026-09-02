@@ -1,6 +1,6 @@
 {
   "artifact": "k3_cap_global_gluing_contract_closeout_k",
-  "lot": "CONTRAT GLOBAL — CLOSEOUT K (régional) : 6 CLOSED / 0 OPEN sur la région courante",
+  "lot": "GLOBAL CONTRACT, regional closeout: 6 CLOSED and 0 OPEN on the current region",
   "kind": "contract_closeout_read_only",
   "amends": "k3_cap_global_gluing_contract_amendment_j.json",
   "amends_sha256": "198c0d606947168c0fe2cd022a67211427dc0f08e175f20309e642843e6e704b",
@@ -100,27 +100,27 @@
   "K3_governance_record": [
     {
       "id": "protocol_deviation_staged_review_stop_skipped",
-      "what": "B1-M : les pas 2–26 exécutés avant la revue prescrite après le palier 1 ; séquence gelée, aucune adaptation ; résultat conservé, run non « strictement conforme »",
+      "what": "steps 2 to 26 were executed before the review prescribed after the first level; the sequence was frozen with no adaptation; the result is kept, but the run was not strictly conformant",
       "normalised": false
     },
     {
       "id": "immutable_artifact_replay_incident",
-      "what": "B0 / B0.5 / P0 rejoués en place après un correctif stdout ; diff limité à I/O-provenance-timing-SHA ; HARD HOLD sur la pratique ; ne plus réécrire ces chemins",
+      "what": "three lots were replayed in place after a fix to standard output; the diff is limited to input/output, provenance, timing and hashes; a HARD HOLD on the practice: never rewrite those paths again",
       "normalised": false
     },
     {
       "id": "preregistered_negative_N3_invalid_by_construction",
-      "what": "C4-A-M : « required_set amputé → refused » est logiquement inversé (retirer une exigence détend l'obligation) ; N3 ne compte pas parmi les négatifs validant l'instrument",
+      "what": "'an amputated required set means refusal' is logically inverted (removing a requirement relaxes the obligation); this negative control does not count among those validating the instrument",
       "normalised": false
     },
     {
       "id": "N3_posthoc_success_criterion_changed_and_not_gated",
-      "what": "C4-A-M : le critère de N3 a été assoupli en « verdict dans le vocabulaire » et n'entre dans aucun gate M1–M6 ; enregistré, pas normalisé",
+      "what": "the criterion of that negative control was relaxed to 'the verdict is in the vocabulary' and enters no check; recorded, not normalised",
       "normalised": false
     },
     {
       "id": "M6_gate_name_stronger_than_predicate",
-      "what": "C4-A-M : `M6_issue_matches_census` ne vérifie que `issue ∈ ISSUES` ; l'issue est re-dérivée ici depuis n = 24 et census.certified = 24",
+      "what": "the census check only verifies that the issue belongs to the known set; the issue is re-derived here from n = 24 and a certified census of 24",
       "normalised": false
     }
   ],
@@ -128,7 +128,7 @@
     "before_is_the_state_after_J": true,
     "before": [
       {
-        "obligation": "POINT triangle sur la strate des cartes-ponts",
+        "obligation": "a triangle POINT on the stratum of bridge charts",
         "state": "CLOSED"
       },
       {
@@ -136,7 +136,7 @@
         "state": "CLOSED"
       },
       {
-        "obligation": "les 24 ponts anisotropes du pilote, à l'échelle",
+        "obligation": "the 24 anisotropic bridges of the pilot, at scale",
         "state": "OPEN"
       },
       {
@@ -148,16 +148,16 @@
         "state": "CLOSED"
       },
       {
-        "obligation": "relations globales sur les générateurs",
+        "obligation": "global relations on the generators",
         "state": "CLOSED"
       }
     ],
     "open_before": [
-      "les 24 ponts anisotropes du pilote, à l'échelle"
+      "the 24 anisotropic bridges of the pilot, at scale"
     ],
     "after": [
       {
-        "obligation": "POINT triangle sur la strate des cartes-ponts",
+        "obligation": "a triangle POINT on the stratum of bridge charts",
         "state": "CLOSED"
       },
       {
@@ -165,7 +165,7 @@
         "state": "CLOSED"
       },
       {
-        "obligation": "les 24 ponts anisotropes du pilote, à l'échelle",
+        "obligation": "the 24 anisotropic bridges of the pilot, at scale",
         "state": "CLOSED",
         "scope": "RÉGION COURANTE — A CLOSED (24/24 anisotropes, prédicat gelé) ; B SCOPE-CLOSED (16/16 hauts, 15 basses = frontière, 27/27 saturé)",
         "evidence": {
@@ -187,7 +187,7 @@
         "state": "CLOSED"
       },
       {
-        "obligation": "relations globales sur les générateurs",
+        "obligation": "global relations on the generators",
         "state": "CLOSED"
       }
     ],
@@ -196,38 +196,38 @@
     "regional_contract_C1_C6": "6_CLOSED_0_OPEN",
     "C4": "SCOPE_CLOSED_CURRENT_REGION",
     "global_K3": "NOT_CLOSED",
-    "unit_of_account": "les six lignes du grand livre du contrat (F1_ledger, amendement H), état après J"
+    "unit_of_account": "the six rows of the contract record (amendment H), state after J"
   },
   "K5_scope_firewall": {
     "forbidden_phrases": [
       "K3 globale fermée",
       "b₁(K3) = 36",
       "b1(K3)=36",
-      "les 36 survivantes sont globales",
-      "les frontières basses n'existent pas",
+      "the 36 survivors are global",
+      "the low boundaries do not exist",
       "X-interne est déjà payé",
       "X_INTERNAL déjà payé"
     ],
     "statements": [
-      "b₁ = 36 est celui du complexe RÉGIONAL payé (X_Re⁺ + 215 2-cellules mixtes certifiées)",
-      "les 36 dimensions survivantes sont des classes de la région, pas de K3",
+      "b_1 = 36 is that of the REGIONAL complex actually paid (the real part plus 215 certified mixed 2-cells)",
+      "the 36 surviving dimensions are classes of the region, not of the K3",
       "15 tuiles restent relatives à une face basse : frontière d'énumération, hors région",
-      "les 1452 candidats requires_X_reopen ne sont pas payés : lot séparé",
+      "the 1452 candidates requiring a reopening are not paid: a separate lot",
       "K3 globale : NOT_CLOSED"
     ]
   },
   "K6_next_frozen": {
     "order": [
       "LOW_BOUNDARY_EXTENSION-P0 — scout read-only : quelles cellules voisines manquent aux 16 directions basses, croissance de cover nécessaire, impact topologique potentiel AVANT tout calcul analytique",
-      "X_INTERNAL_EDGE_RECONCILIATION-P0 — parallèle, conceptuellement distinct : rouvre la présentation finie X/D3 dans la géométrie disponible ; ne sert pas à résoudre la frontière du cover",
+      "internal edge reconciliation, parallel and conceptually distinct: it reopens the finite presentation in the available geometry; it does not serve to resolve the boundary of the cover",
       "SNF seulement si la torsion devient décisionnelle"
     ],
-    "do_not_mix": "les deux extensions ne se mélangent pas ; aucune ne promeut la région en K3"
+    "do_not_mix": "the two extensions do not mix; neither promotes the region to the whole K3"
   },
   "n_atteste_pas": [
-    "rien sur K3 : le grand livre est RÉGIONAL",
-    "les frontières basses restent une frontière de portée",
-    "les X-internes ne sont pas payés",
+    "nothing about the K3: the record is REGIONAL",
+    "the low boundaries remain a scope boundary",
+    "the internal edges are not paid",
     "aucune torsion calculée",
     "aucun artefact réécrit"
   ],

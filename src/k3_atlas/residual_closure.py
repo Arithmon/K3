@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 """
 Closing the residual 1/64 of the volume by the THIRD determination.
-TROISIÈME DÉTERMINATION.
 
-The dyadic cover leaves 64 boxes (1/64 of the volume) without a chart: on each,
-every candidate chart has at least one section row whose radicand `R'`
-a `Re R' < 0` strict et `Im R'` qui straddle 0 (mécanisme mesuré par
-the chart criterion, 29/29 lignes sondées). Pour ces lignes :
+The dyadic cover leaves 64 boxes (1/64 of the volume) without a chart: on
+each, every candidate chart has at least one section row whose radicand
+`R'` has `Re R' < 0` strictly and `Im R'` straddling 0 (a mechanism
+measured by the chart criterion, on 29/29 probed rows). For those rows:
 
-  . the PRINCIPAL branch is refused, `R'` meeting the cut on the non-positive reals;
-  · la branche TOURNÉE de the rotated continuation a sa garde SATISFAITE — `R'` évite
-    [0,+∞) puisque `Re R' < 0` — mais son LABEL `σ' = signe(Im R')`
-    is UNDETERMINED (the enclosure of `Im R'` contains 0). The component rule
-    forbids choosing it by trial, so the row was REFUSED.
+  . the PRINCIPAL branch is refused, `R'` meeting the cut on the
+    non-positive reals;
+  . the ROTATED branch of the rotated continuation has its guard
+    SATISFIED, `R'` avoiding [0,+inf) since `Re R' < 0`, but its LABEL
+    `sigma' = sign(Im R')` is UNDETERMINED (the enclosure of `Im R'`
+    contains 0). The component rule forbids choosing it by trial, so the
+    row was REFUSED.
 
 THE THIRD DETERMINATION lifts this lock WITHOUT a new guard and WITHOUT
 trial. Algebraic observation: in the section, the component and the sheet enter
@@ -20,12 +21,13 @@ only through their PRODUCT, `Z_s = sheet.component.i.sqrt_p(-R')`. One can there
 the component to +1 (canonical): `w = i.sqrt_p(-R')` is a legitimate continuous branch
 on the plane cut along the non-negative reals (the guard applied to `-R'`, verbatim), and
 the SHEET choice (`w` or `-w`) is carried by the sheet label, derived at the ANCHOR
-par la SÉPARATION STRICTE de the transport step (marge > 0 sérialisée, refus si
-ambiguous) then verified with the SAME sign on the whole box. The sheet
-certificate is the MARGIN: not a trial, not the component.
+by the STRICT SEPARATION of the transport step (margin > 0 serialised,
+refusal if ambiguous) then verified with the SAME sign on the whole box.
+The sheet certificate is the MARGIN: not a trial, not the component.
 
 What is requalified and what is not:
-  · le σ-par-composante de the rotated continuation/the component step reste NÉCESSAIRE quand on doit
+  . the component-based sigma of the rotated continuation stays
+    NECESSARY when one must
     coincide with the principal branch on an overlap; here the principal
     one DOES NOT EXIST on the row, so there is nothing to glue
     locally. Gluing BETWEEN tiles is the business of the cocycle,
@@ -34,38 +36,41 @@ What is requalified and what is not:
     and not relabelling the classes unilaterally
     concerns the source; here only the NATIVE section of the target chart
     of the residual tiles uses the third determination, and
-    chaque emploi est sérialisé).
+    every such use is serialised).
 
-Checks pré-enregistrés :
-  R1 MÉCANISME SÉRIALISÉ — chaque nouvelle tuile publie, par ligne :
-     détermination, provenance du label, enclosures `Re R'`/`Im R'`,
-     et le résidu `w² − R'`.
-  R2 IDENTITÉ UNIVERSELLE — `w² − R'` contient 0 sur TOUTE ligne de
-     TOUTE nouvelle tuile (largeurs publiées).
+Preregistered checks:
+  R1 SERIALISED MECHANISM: every new tile publishes, per row, the
+     determination, the provenance of the label, the enclosures of
+     `Re R'` and `Im R'`, and the residual `w^2 - R'`.
+  R2 UNIVERSAL IDENTITY: `w^2 - R'` contains 0 on EVERY row of EVERY new
+     tile (widths published).
   R3 UNIVERSAL SHEET MARGIN: margin > 0 on every row.
   R4 NON-TAUTOLOGY: for each new tile, the chart criterion
      (imported, not reimplemented) REFUSES the same chart on the same box
      and the extended criterion ACCEPTS it; the third determination is
      used ONLY if both the principal and the certified-component rotated ones are refused
-     (ordre strict, compté).
+     (strict order, counted).
   R5 THE COVER CLOSES EXACTLY: dyadic addresses of the 252 tiles
-     the transport step + nouvelles tuiles + résidu restant : prefix-free, clos,
+     the transport step, the new tiles and the remaining residual:
+     prefix-free, closed,
      Kraft equal to 1 (imported machinery). The number of boxes NOT
      closed is NOT pre-committed: it is published.
   R6 UNIVERSAL TRANSPORT ON THE NEW TILES: the same checks as
-     the transport step : congruence, même point projectif, δ_rel ≤ 1e-5
-     (pré-enregistré, inchangé), PD par WEYL, zéro échec filtré.
+     the transport step: congruence, same projective point, relative
+     residual at most 1e-5 (preregistered, unchanged), positive
+     definiteness BY WEYL, zero failure filtered out.
   R7 SHEET NEGATIVE CONTROL: flipping the sheet on a row with a third
-     détermination CASSE la compatibilité projective (probes).
+     determination BREAKS projective compatibility (probes).
   R8 CANONICAL COMPONENT NEGATIVE CONTROL: the rotated root at -1 is the EXACT NEGATION
-     bit-à-bit de `tm_sqrt_rotated(R, +1)` : (ε', σ') n'entrent que par
-     leur produit, σ canonique ne cache aucun degré de liberté.
-  R9 PAS DE PLAFOND SILENCIEUX — comptes publiés et cohérents.
+     of `tm_sqrt_rotated(R, +1)`, bit for bit: (eps', sigma') enter only
+     through their product, so a canonical sigma hides no degree of
+     freedom.
+  R9 NO SILENT CEILING: counts published and consistent.
 
-Sorties : results/residual_closure{_pilot}.json
-Usage   : residual_closure.py [--selftest]
-Env     : K3_C127E_MODE    pilot (8 boîtes, défaut) | full (64)
-          K3_C127E_WORKERS processus (défaut 4)
+Outputs: results/residual_closure{_pilot}.json
+Usage  : residual_closure.py [--selftest]
+Env    : K3_C127E_MODE    pilot (8 boxes, the default) | full (64)
+         K3_C127E_WORKERS processes (default 4)
 """
 from __future__ import annotations
 
@@ -116,9 +121,9 @@ ART = RES / ("residual_closure.json" if MODE == "full"
              else "residual_closure_pilot.json")
 
 # --- PRÉ-ENREGISTRÉ ---------------------------------------------------------
-DELTA_REL = 1e-5        # même plafond que the transport step, inchangé
+DELTA_REL = 1e-5        # the same ceiling as the transport step, unchanged
 N_PILOT_BOXES = 8       # boîtes résiduelles en mode pilot
-N_PROBE_NEG = 4         # tuiles sondées par les négatifs R7/R8
+N_PROBE_NEG = 4         # tiles probed by the negative controls R7/R8
 
 T0 = time.time()
 ALL_CHARTS = [(tuple(S2), g2) for S2 in TRIPLES
@@ -165,7 +170,7 @@ def _exact_negation(wp, wm):
     """Is `wm` the EXACT NEGATION of `wp`? Checked coefficient by
     coefficient (the negated interval of [a,b] is [-b,-a]) and on the
     remainder, NOT on the enclosure of the sum, whose remainder adds
-    `rem(wp) + rem(wm) > 0` et ne peut jamais être exactement {0} sur
+    `rem(wp) + rem(wm) > 0` and can never be exactly {0} on
     a true Taylor model (lesson from the pilot: check R8 v1 failed for that
     reason, on correct code)."""
     if len(wp.p) != len(wm.p):
@@ -182,15 +187,15 @@ def _exact_negation(wp, wm):
 
 
 # ===========================================================================
-#  Le critère ÉTENDU — trois étapes, ordre strict
+#  The EXTENDED criterion, three steps in strict order
 # ===========================================================================
 def native_rows_ext(S2, g2, up, vp):
     """Mirror of `native_section_constructible` with the THIRD
-    étape. Ordre STRICT par ligne :
-      (1) principale ;
-      (2) tournée à σ CERTIFIÉ (enclosure de Im R', puis signes des
-          coefficients) — jamais d'essai ;
-      (3) tournée CANONIQUE σ = +1 — uniquement si (1) ET (2) refusées ;
+    step. STRICT order per row:
+      (1) plain;
+      (2) rotated with a CERTIFIED sigma (enclosure of Im R', then the
+          signs of the coefficients), never by trial;
+      (3) CANONICAL rotated, sigma = +1, only if (1) AND (2) refused;
           the guard is that of the rotated root (applied to -R'),
           the sheet label is delegated to the sheet variable (margin).
     """
@@ -236,7 +241,7 @@ def native_rows_ext(S2, g2, up, vp):
                     rec["rotated_refused"] = exc2.diag.get("guard")
             else:
                 rec["rotated_refused"] = "rotated_component_undetermined"
-                # (3) la TROISIÈME détermination : σ canonique, feuille
+                # (3) the THIRD determination: canonical sigma, sheet
                 # déléguée à ε'. Garde inchangée (the cut guard sur −R').
                 try:
                     Zp = tm_sqrt_rotated(R, 1)
@@ -269,7 +274,7 @@ def strong_chart_ok_ext(Z, dZ, S2, g2):
 
 
 # ===========================================================================
-#  Worker : recherche de chart, puis transport (fork, état hérité)
+#  Worker: chart search, then transport (fork, inherited state)
 # ===========================================================================
 _G = {}
 
@@ -341,9 +346,9 @@ def _transport_tile(job):
 # ===========================================================================
 def build():
     print("=" * 78)
-    print(f"the residual closure RÉSIDU PAR TROISIÈME DÉTERMINATION ({MODE}) : "
+    print(f"residual closure BY THE THIRD DETERMINATION ({MODE}): "
           f"TM ({TM_ORDER},{UNARY_SERIES_DEG}), {N_WORKERS} workers, "
-          f"δ_rel = {DELTA_REL:.0e}")
+          f"relative delta = {DELTA_REL:.0e}")
     print("=" * 78)
     reg = load_canonical_MH()
     M = build_M_civ(reg["M_H_canonical"])
@@ -410,10 +415,10 @@ def build():
         negs = pool.map(_transport_tile, pjobs) if pjobs else []
     neg_breaks = [bool(n.get("failed"))
                   or not n["same_projective_point"] for n in negs]
-    log(f"R7 : ε' inversé casse la compatibilité {sum(neg_breaks)}"
+    log(f"R7: a flipped eps' breaks compatibility {sum(neg_breaks)}"
         f"/{len(neg_breaks)}")
 
-    # --- R8 : σ canonique ne cache aucun degré de liberté ---------------------
+    # --- R8: a canonical sigma hides no degree of freedom -------------
     r8_ok = []
     for t in probe:
         c = [float.fromhex(x) for x in t["center_hex"]]
@@ -434,10 +439,10 @@ def build():
         wp = tm_sqrt_rotated(R, 1)
         wm = tm_sqrt_rotated(R, -1)
         r8_ok.append(_exact_negation(wp, wm))
-    log(f"R8 : w(σ=−1) = négation EXACTE de w(σ=+1), coefficient par "
-        f"coefficient : {sum(r8_ok)}/{len(r8_ok)}")
+    log(f"R8: w(sigma=-1) is the EXACT negation of w(sigma=+1), "
+        f"coefficient by coefficient: {sum(r8_ok)}/{len(r8_ok)}")
 
-    # --- R5 : le cover, recompté par adresses ---------------------------------
+    # --- R5: the cover, recounted from the addresses ------------------
     leaves = tiles_old + new_tiles + unclosed
     addresses, addr_fail = [], 0
     residual_addr = []
@@ -508,18 +513,18 @@ def build():
 
     n_pass = sum(1 for v in checks.values() if v)
     verdict = (
-        "the residual closure (%s) — la TROISIÈME DÉTERMINATION ferme %d/%d boîtes "
-        "résiduelles examinées (%d lignes en σ canonique, feuille "
+        "Residual closure (%s): the THIRD DETERMINATION closes %d of %d residual "
+        "boxes examined (%d rows on the canonical component, sheet "
         "pinned by the sheet margin, minimum %.3e). Non-tautology: the "
         "plain criterion refuses and the extended one accepts on EACH new "
         "tile. The identity w^2 = R' is certified on every row. "
         "Complete transport on the new tiles: %d of %d, "
-        "résidu relatif max %.3e ≤ δ = %.0e, Weyl partout. Le cover "
-        "couvre désormais %.4f %% (résidu %.4f %%, %d boîtes non "
-        "fermées publiées). Négatifs : ε' inversé casse %d/%d, "
-        "w(+1)+w(−1) ≡ 0 exactement %d/%d. NON PAYÉ : the atlas step "
-        "(halos/overlaps/cocycle), le raccord ENTRE déterminations de "
-        "tuiles voisines (cocycle), contrat exact, globalisation, "
+        "maximum relative residual %.3e at most delta = %.0e, Weyl everywhere. The cover "
+        "now covers %.4f %% (residual %.4f %%, %d boxes left "
+        "unclosed and published). Negative controls: a flipped sheet breaks %d of %d, "
+        "w(+1)+w(-1) vanishes exactly %d of %d. NOT PAID: the atlas step "
+        "(halos/overlaps/cocycle), the join BETWEEN determinations of "
+        "neighbouring tiles (cocycle), the exact contract, globalisation, "
         "the later scaling." % (
             MODE, len(new_tiles), len(boxes), n_canon,
             min((m["margin"] for m in eps_m), default=float("nan")),
@@ -529,9 +534,9 @@ def build():
             sum(neg_breaks), len(neg_breaks), sum(r8_ok), len(r8_ok)))
 
     art = {"artifact": ART.stem, "mode": MODE,
-           "claim": ("the residual closure — fermeture du résidu du cover the dyadic cover par "
-                     "troisième détermination (σ canonique, feuille "
-                     "par marge ε'), avec transport the transport step complet."),
+           "claim": ("Closing the residual of the dyadic cover by the "
+                     "third determination (canonical component, sheet "
+                     "by margin), with the complete transport."),
            "cell": cell,
            "n_boxes_examined": len(boxes),
            "new_tiles": new_tiles, "unclosed": unclosed,
@@ -545,14 +550,14 @@ def build():
            "max_residual_relative": max_rel,
            "delta_rel_preregistered": DELTA_REL,
            "source_section_untouched": (
-               "la section SOURCE n'emploie jamais la troisième "
+               "the SOURCE section never uses the third "
                "determination; only the NATIVE section of the target chart "
                "of the residual tiles is concerned, and the class labelling of "
                "the source arc is unchanged"),
            "not_paid_here": ["the atlas step halos/overlaps/cocycle",
-                             "raccord entre déterminations de tuiles "
-                             "voisines (cocycle du nerf)",
-                             "contrat exact", "globalisation", "the later scaling"],
+                             "the join between determinations of "
+                             "neighbouring tiles (nerve cocycle)",
+                             "the exact contract", "globalisation", "the later scaling"],
            "verdict": verdict, "checks": checks,
            "checks_passed": n_pass, "checks_total": len(checks),
            "provenance": provenance([COVER_JSON, C127_JSON],
@@ -620,7 +625,7 @@ def _selftest():
 
     # T4 NEGATIVE CONTROL: R = +4, the principal branch passes, so the strict order
     #      must NEVER invoke the canonical one (no substitution
-    #      silencieux d'une détermination valide)
+    #      silent substitution for a valid determination)
     R4 = const_tmc(4.0)
     p_ok = True
     try:
@@ -631,7 +636,7 @@ def _selftest():
         p_ok)
 
     # T5 NEGATIVE CONTROL: R whose enclosure CONTAINS 0: all three
-    #      déterminations doivent refuser (aucune branche n'existe)
+    #      determinations must refuse (no branch exists)
     R0 = TMC.const(CIV(riv([-1.0, 1.0]), riv([-1.0, 1.0])))
     refuse = 0
     try:
@@ -643,7 +648,7 @@ def _selftest():
             tm_sqrt_rotated(R0, sg)
         except BranchCutError:
             refuse += 1
-    chk("T5 négatif : R ∋ 0 → les trois déterminations refusent",
+    chk("T5 negative control: R containing 0 makes all three determinations refuse",
         refuse == 3)
 
     # T6: R = 4i (Im > 0 strictly): the component is CERTIFIABLE, so

@@ -8,7 +8,7 @@ evaluated in interval arithmetic on the box.
 Why this layer exists (measured, not assumed):
 
   * the earlier layers are "exact jets at the centre plus a remainder
-    D^{n}(BOÎTE) enclos en intervalle ». Quatre ablations (C48, T4b,
+    D^{n}(BOX) enclosed in interval arithmetic". Four ablations
     showed that the central jet always passes and that 100 percent of the
     wall is the remainder: the interval evaluation of the derivative on the
     box adds the moduli of the 218 elements where the true derivative
@@ -25,13 +25,14 @@ Why this layer exists (measured, not assumed):
   remainder by the tail of the truncated product, whose scale is that
   of the local COEFFICIENTS (tame), not that of an enclosed derivative.
 
-Algèbre (standard TM, toutes les bornes extérieures) :
-  x = P(ε) + I,  P = Σ_{|α| ≤ N} p_α ε^α,  |I| ≤ rem
-  · produit : P·Q tronqué au degré N ; queue = Σ_{i+j>N} A_i B_j
-    (A_i/B_j = normes par degré) ; + ‖P‖·rem_Q + ‖Q‖·rem_P + rem·rem
-  · inverse : z = (x − p₀)/p₀ (constante nulle) ⟹ 1/x =
-    (1/p₀)(1 − z + z² − z³) + queue, |queue| ≤ |1/p₀|·q⁴/(1−q)
-  · racine : √x = √p₀·(1 + z/2 − z²/8 + z³/16) + queue,
+Algebra (standard Taylor models, all bounds rounded outwards):
+  x = P(eps) + I,  P = sum_{|alpha| <= N} p_alpha eps^alpha,  |I| <= rem
+  . product: P.Q truncated at degree N; tail = sum_{i+j>N} A_i B_j
+    (A_i, B_j being the norms per degree); plus ||P||.rem_Q +
+    ||Q||.rem_P + rem.rem
+  . inverse: z = (x - p_0)/p_0 (zero constant term), so 1/x =
+    (1/p_0)(1 - z + z^2 - z^3) + tail, |tail| <= |1/p_0|.q^4/(1-q)
+  . root: sqrt(x) = sqrt(p_0).(1 + z/2 - z^2/8 + z^3/16) + tail,
     |queue| ≤ |√p₀|·q⁴/(8(1−q))   (|C(½,k)| ≤ ⅛ pour k ≥ 2)
   · enclosure : p₀ + Σ_{|α|≥1} p_α·rng(α) ± rem, avec rng(α) = [0,1]
     if every exponent is EVEN (a free lesson here and
@@ -86,16 +87,16 @@ IVPM = iv.mpf([-1, 1])
 IV01 = iv.mpf([0, 1])
 
 TM_ORDER = int(os.environ.get("K3_TM_ORDER", "3"))
-# C74 / a reviewer §4 (les DEUX reviews, indépendamment) : `TM_ORDER` ne fixait
-# than the polynomial BASE: inverse and root were truncated at z^3 IN HARD CODE, hence
-# N-independent, and their tail q^4/(1-q) CAPPED the remainder (about 2.6e-3 at
-# h = 1.7e-2: a naive N=6 would have gained nothing). Both parameters are
-# désormais séparés et sérialisables :
-#   POLY_DEG = degré de la base monomiale (convolution tronquée)
-#   UNARY_SERIES_DEG = profondeur des séries analytiques inv/√
+# Raised by BOTH reviews independently: `TM_ORDER` fixed no more than the
+# polynomial BASE: inverse and root were truncated at z^3 IN HARD CODE,
+# hence N-independent, and their tail q^4/(1-q) CAPPED the remainder
+# (about 2.6e-3 at h = 1.7e-2: a naive N=6 would have gained nothing).
+# Both parameters are now separate and serialisable:
+#   POLY_DEG = degree of the monomial basis (truncated convolution)
+#   UNARY_SERIES_DEG = depth of the analytic series for inverse and root
 UNARY_SERIES_DEG = int(os.environ.get("K3_TM_SERIES", str(TM_ORDER)))
 if UNARY_SERIES_DEG < 1:
-    raise ValueError("K3_TM_SERIES ≥ 1")
+    raise ValueError("K3_TM_SERIES must be at least 1")
 
 # EXACT binomial coefficients C(1/2, k) in rational arithmetic for the root
 _BINOM_HALF = [Fraction(1)]
@@ -150,7 +151,7 @@ def _hi(x):
 
 
 # ===========================================================================
-#  the range-aware guard — sérialisation des diagnostics de branche
+#  the range-aware guard: serialisation of the branch diagnostics
 #  A guard refusal must be reconstructible from the artefact ALONE.
 #  Floats serve the JSON, 25-digit strings serve the audit: a
 #  float rounded TO NEAREST can lie about an inclusion, and
@@ -169,14 +170,14 @@ def _civ_diag(c: CIV):
             "absmax": _iv_diag(civ_absmax(c))}
 
 
-# C85 : instrumentation SÉPARÉE des queues (produits vs séries unaires)
-# + `UNARY_TAIL_SCALE` : diviseur de test des SEULES queues unaires —
-# the targeted negative control (the truth MUST come out if the disc is
-# uniquement cette borne-là). Jamais ≠ 1 en production.
+# SEPARATE instrumentation of the tails (products against unary series)
+# plus `UNARY_TAIL_SCALE`, a test divisor of the unary tails ONLY: the
+# targeted negative control (the truth MUST come out if the discrepancy is
+# only that bound). Never different from 1 in production.
 STATS = {}
 UNARY_TAIL_SCALE = 1.0
 
-# the cut guard : quelle branche de la garde √ a autorisé chaque appel. Compté
+# The cut guard: which branch of the root guard allowed each call. Counted
 # separately, so that "the range-aware branch helps or does not help" is
 # a measurement and not an impression.
 GUARD_STATS = {"sqrt_disc": 0, "sqrt_range": 0}
@@ -199,7 +200,7 @@ reset_stats()
 
 
 def _mid_iv(x):
-    """POINT (intervalle dégénéré) au milieu de x — ancrage the pointwise anchoring."""
+    """A POINT (degenerate interval) at the middle of x, for pointwise anchoring."""
     return iv.mpf(mp.mpf((mp.mpf(x.a) + mp.mpf(x.b)) / 2))
 
 
@@ -226,7 +227,7 @@ class TMR:
         return TMR(p)
 
     def grades(self):
-        """normes par degré A_k = Σ_{|α|=k} |p_α| (cachées)."""
+        """Norms per degree A_k = sum_{|alpha|=k} |p_alpha| (cached)."""
         if self._gr is None:
             self._gr = [sum((iv_absmax(self.p[i]) for i in GRADE[k]),
                             IV0) for k in range(TM_ORDER + 1)]
@@ -236,7 +237,7 @@ class TMR:
         return sum(self.grades(), IV0) + self.rem
 
     def dev(self):
-        """borne de |x − p₀| (déviation autour du terme constant)."""
+        """Bound on |x - p_0| (deviation around the constant term)."""
         g = self.grades()
         return sum(g[1:], IV0) + self.rem
 
@@ -289,10 +290,10 @@ class TMR:
     def inv(a):
         p0 = a.p[0]
         m = _dist0(p0)
-        # C83 : borne INFÉRIEURE certifiée de la distance à 0 (.a),
+        # A certified LOWER bound on the distance to 0 (.a),
         # not the upper one: an enclosure [0, eps] is not "nonzero"
         if not (mp.mpf(m.a) > 0):
-            raise BranchCutError("TM inv : terme constant contenant 0")
+            raise BranchCutError("Taylor-model inverse: constant term contains 0")
         # POINTWISE ANCHORING. p_0 is an INTERVAL, so p_0 - p_0 is not {0}
         # and q = |1/p_0|.dev(a) did NOT bound the z actually built.
         # We anchor on a POINT c (a = c(1+z) is then an explicit
@@ -384,7 +385,7 @@ class TMC:
         return TMC([x.mul_real(r) for x in a.p], a.rem * iv_absmax(r))
 
     def mul_rtm(a, r: TMR):
-        """produit par un TM RÉEL (miroir de mul_rt2)."""
+        """Product by a REAL Taylor model (mirror of mul_rt2)."""
         p = []
         for g in range(NM):
             acc = CZERO
@@ -495,30 +496,30 @@ class TMC:
         re_ok = mp.mpf(c.re.a) > rh
         im_ok = (mp.mpf(c.im.a) > rh) or (mp.mpf(c.im.b) < -rh)
         disc_ok = re_ok or im_ok
-        # the cut guard — branche RANGE-AWARE. Le lemme de convexité (note
-        # `the range guard proof.md` §2) autorise
-        # any CONVEX K containing the anchor, avoiding the cut and inside
-        # the closed disc of radius rho|c| with rho < 1. The isotropic disc is only ONE choice of
-        # K; here K = R intersected with that disc, where R is the rectangular enclosure
-        # of the model. The two branches do not imply each other (measured:
-        # 240 of 400 shell cells pass by range and not by
-        # disc), hence the DISJUNCTION, and therefore monotone safety:
-        # aucune cellule qui passait ne peut se mettre à échouer, et
-        # aucune borne en aval ne change.
+        # The cut guard, RANGE-AWARE branch. The convexity lemma (see
+        # the range guard proof) allows any CONVEX K containing the
+        # anchor, avoiding the cut and inside the closed disc of radius
+        # rho|c| with rho < 1. The isotropic disc is only ONE choice of K;
+        # here K = R intersected with that disc, where R is the
+        # rectangular enclosure of the model. The two branches do not
+        # imply each other (measured: 240 of 400 shell cells pass by range
+        # and not by disc), hence the DISJUNCTION, and therefore monotone
+        # safety: no cell that used to pass can start failing, and no
+        # downstream bound changes.
         range_diag = None
         if not disc_ok:
             Rre, Rim = a.re_tm().to_iv(), a.im_tm().to_iv()
             r_lo, r_hi = mp.mpf(Rre.a), mp.mpf(Rre.b)
             i_lo, i_hi = mp.mpf(Rim.a), mp.mpf(Rim.b)
             cr, ci = mp.mpf(c.re.a), mp.mpf(c.im.a)
-            # (G2b) le rectangle rencontre (−∞,0] ssi im ∋ 0 ET re_lo ≤ 0
+            # (G2b) the rectangle meets (-inf,0] exactly when im contains 0 AND re_lo <= 0
             cut_free = (i_lo > 0) or (i_hi < 0) or (r_lo > 0)
             # (G1) the anchor is in R, exactly, since c is a POINT. It carries
             # hypothesis (1) of the lemma AND, with (G2b), forbids an anchor
             # on the cut (which the disc test excluded as a side
             # effect and which this branch would no longer receive).
             anchor_in = (r_lo <= cr <= r_hi) and (i_lo <= ci <= i_hi)
-            # (G1b) hypothèse (3) : ρ = rad/|c| < 1. NON impliquée par
+            # (G1b) hypothesis (3): rho = rad/|c| < 1. NOT implied by
             # q < 1, because rad is rounded UPWARDS.
             rho_ok = rh < mp.mpf(civ_absmin(c).a)
             range_ok = bool(cut_free and anchor_in and rho_ok)
@@ -533,7 +534,7 @@ class TMC:
             # This is THE guard that produces the branch shell.
             # Everything that makes it reproducible starts here, including
             # the three signed slacks that say BY HOW MUCH the disc
-            # générique déborde, et désormais POURQUOI la branche
+            # generic disc overflows, and now WHY the range-aware
             # range-aware form could not save it either.
             raise BranchCutError(
                 "TM √ : la plage touche la coupure (−∞, 0]",
@@ -579,7 +580,7 @@ def _pow(z: TMC, k: int) -> TMC:
 
 
 # ===========================================================================
-#  Section et métrique — miroir strict de t2_chart_metric
+#  Section and metric: a strict mirror of t2_chart_metric
 # ===========================================================================
 def rotated_sigma_from_coeffs(a1, a2, ur, ui, vr, vi):
     """The COMPONENT of `Im R`, determined from the SIGNS
@@ -596,8 +597,8 @@ def rotated_sigma_from_coeffs(a1, a2, ur, ui, vr, vi):
     radicand is real on the whole box and the component does not exist,
     so **refusal**, not a default sign.
 
-    Retourne +1 (composante supérieure), −1 (inférieure), ou 0 =
-    INDÉTERMINÉ — auquel cas la continuation doit être REFUSÉE.
+    Returns +1 (upper component), -1 (lower), or 0 for UNDETERMINED, in
+    which case the continuation must be REFUSED.
     """
     def factor_sign(lo, hi):
         """-1 / +1 / 0 (signe non déterminé) / None (IDENTIQUEMENT nul)."""
@@ -626,39 +627,40 @@ def rotated_sigma_from_coeffs(a1, a2, ur, ui, vr, vi):
 
 
 def tm_sqrt_rotated(a: TMC, sigma: int) -> TMC:
-    """the rotated continuation — la DÉTERMINATION TOURNÉE : `√_rot(R) = σ·i·√_principal(−R)`.
+    """The rotated continuation, that is, the ROTATED DETERMINATION:
+    `sqrt_rot(R) = sigma.i.sqrt_principal(-R)`.
 
-    `R` avoids the non-negative reals exactly when `-R` avoids the non-positive ones, so **the guard
-    existante s'applique verbatim à `−R`** : il n'y a aucune nouvelle
-    guard to prove, and the convexity lemma carries over without
-    change (it does not depend on the orientation of the ray).
+    `R` avoids the non-negative reals exactly when `-R` avoids the
+    non-positive ones, so **the existing guard applies verbatim to `-R`**:
+    there is no new guard to prove, and the convexity lemma carries over
+    without change (it does not depend on the orientation of the ray).
 
     The sign is NOT free: the argument computation gives
-    `i·√_p(−R) = √_p(R)` si `Im R > 0` et `= −√_p(R)` si `Im R < 0`,
-    so **it is the sign of `Im R`**, the component. That is why
-    `rotated_sigma_from_coeffs` refuse de deviner quand elle est
-    indéterminée.
+    `i.sqrt_p(-R) = sqrt_p(R)` if `Im R > 0` and `= -sqrt_p(R)` if
+    `Im R < 0`, so **it is the sign of `Im R`**, the component. That is
+    why `rotated_sigma_from_coeffs` refuses to guess when it is
+    undetermined.
 
-    On a cell whose interior lies in the lower component and
-    whose boundary meets the slice, the rotated root is CONTINUOUS on the closed
+    On a cell whose interior lies in the lower component and whose
+    boundary meets the slice, the rotated root is CONTINUOUS on the closed
     cell and agrees with the principal root on the interior, which is
-    exactement la continuation analytique cherchée, là où la
-    détermination principale saute.
+    exactly the analytic continuation sought, where the principal
+    determination jumps.
     """
     if sigma not in (-1, 1):
         raise BranchCutError(
-            "TM √_rot : composante INDÉTERMINÉE (σ ∉ {−1, +1}) — la "
-            "continuation ne doit pas être devinée",
+            "rotated Taylor-model root: UNDETERMINED component "
+            "(sigma not in {-1, +1}); the continuation must not be guessed",
             {"guard": "rotated_component_undetermined",
              "kernel": "mpmath", "sigma": sigma})
     w = a.mul_real(riv(-1.0)).sqrt_principal()
-    return w.mul_civ(CIV(IV0, riv(float(sigma))))       # × (σ·i)
+    return w.mul_civ(CIV(IV0, riv(float(sigma))))       # times (sigma.i)
 
 
 def section_radicands(S, g_col, u0: complex, v0: complex, h: float):
     """The enclosures of the THREE section radicands, computed
     WITHOUT going through the root, hence available even when the guard
-    accepte et ne lève aucun diagnostic.
+    accepts and raises no diagnostic.
 
     This is what makes the range-aware prediction **recomputable** instead
     of being read back from an artefact produced under an earlier guard: the
@@ -696,7 +698,7 @@ def section_radicands(S, g_col, u0: complex, v0: complex, h: float):
             "row": r,
             "re": [float(re_lo), float(re_hi)],
             "im": [float(im_lo), float(im_hi)],
-            # le prédicat (G2b) : le rectangle évite (−∞, 0]
+            # the (G2b) predicate: the rectangle avoids (-inf, 0]
             "cut_free": bool(im_lo > 0 or im_hi < 0 or re_lo > 0),
             "quadratic_coeffs_exact": [
                 str(Fraction(A_exact[r][perm[j]])) for j in range(3)]})
@@ -739,7 +741,7 @@ def tm_chart_cell_section(S, g_col, eps, u0: complex, v0: complex,
         # refuses. The radicand is the EXPLICIT quadratic
         # R_r = a₀ + a₁·u² + a₂·v² (coefficients rationnels exacts) —
         # it is attached to the diagnostic, which makes the refusal reconstructible
-        # depuis l'artefact seul, et donne à the cut guard son objet de travail.
+        # from the artefact alone, and gives the cut guard its working object.
         try:
             Zs = R.sqrt_principal().mul_real(riv(int(eps[r])))
         except BranchCutError as exc:
@@ -908,7 +910,7 @@ def tm_chart_metric(Z, W, M_civ, coeffs218, basis=B3, midx=B3_IDX,
 
 def det_packed_tm(g):
     """Determinant INSIDE the model algebra (correlations between components AND
-    les annulations jusqu'au degré N survivent)."""
+    the cancellations up to degree N survive)."""
     return g[0] * g[1] - g[2] * g[2] - g[3] * g[3]
 
 
@@ -1105,8 +1107,8 @@ def _selftest():
 
     # --- M7: order monotonicity (diagnostic on the determinant at hard h) ---------------
     r17 = reps[1.7e-2]
-    print(f"      M7 (info) : det @1.7e-2 largeur "
-          f"{r17['w_det_final']:.3e}, normes par degré "
+    print(f"      M7 (info): det at 1.7e-2, width "
+          f"{r17['w_det_final']:.3e}, norms per degree "
           f"{['%.2e' % x for x in r17['det_grade_norms']]}, reste "
           f"{r17['det_remainder']:.2e}")
 

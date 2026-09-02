@@ -2,105 +2,103 @@
 """
 FROM THE PARTITION TO THE ATLAS.
 
-The transport step (252 tiles) and the residual closure (the 64 remaining) closed the cover
-of one cell/class pair: 316 tiles, Kraft equal to 1, no residual. But that
-cover stayed a PARTITION INTO CLOSED BOXES, as the notes said
-elles-mêmes : « aucun halo, aucun overlap ouvert, aucune transition
-certified between neighbouring tiles, no cocycle on the nerve of the 316 charts."
-And closing the residual made gluing MANDATORY: tiles
-adjacentes emploient des DÉTERMINATIONS DIFFÉRENTES (principale,
-tournée, tournée canonique), donc rien ne garantissait a priori
-that they describe the same sheet of the source.
+The transport step (252 tiles) and the residual closure (the 64 remaining)
+closed the cover of one cell/class pair: 316 tiles, Kraft equal to 1, no
+residual. But that cover stayed a PARTITION INTO CLOSED BOXES, as the notes
+said themselves: no halo, no open overlap, no certified transition between
+neighbouring tiles, no cocycle on the nerve of the 316 charts. And closing
+the residual made gluing MANDATORY: adjacent tiles use DIFFERENT
+DETERMINATIONS (plain, rotated, canonical rotated), so nothing guaranteed a
+priori that they describe the same sheet of the source.
 
 WHAT THIS SCRIPT PAYS (the four points of the contract):
 
-  D-a. CORES + HALOS — chaque tuile reçoit un halo `box(c, (1+ρ)h)`,
-     rho taken from a PREREGISTERED SCALE (1/8, 1/16, 1/32, 1/64):
-     the first rho that passes is kept, and "no rho passes" is a
-     REFUSAL, not a fallback. On the halo we require: a source section
-     complète, DÉTERMINATIONS SOURCE INCHANGÉES, critère de chart (celui
-     that certified the core: the chart criterion for the 252, extended for the 64,
-     and for those 64 the plain criterion must STILL REFUSE, non-tautology
-     survit au halo), section cible native à SIGN PATTERN FIGÉ (`ε'`, `σ'`)
-     with the same kinds, and projective congruence under delta.
-     A chart valid on an OPEN NEIGHBOURHOOD of the core: that is what
-     transforme un certificat de boîte fermée en carte d'atlas.
+  D-a. CORES + HALOS. Each tile receives a halo `box(c, (1+rho)h)`, with rho
+     taken from a PREREGISTERED SCALE (1/8, 1/16, 1/32, 1/64): the first rho
+     that passes is kept, and "no rho passes" is a REFUSAL, not a fallback.
+     On the halo we require: a complete source section, UNCHANGED SOURCE
+     DETERMINATIONS, the chart criterion (the one that certified the core:
+     the plain criterion for the 252, the extended one for the 64, and for
+     those 64 the plain criterion must STILL REFUSE, so non-tautology
+     survives the halo), a native target section with a FROZEN SIGN PATTERN
+     (`eps'`, `sigma'`) of the same kinds, and projective congruence under
+     delta. A chart valid on an OPEN NEIGHBOURHOOD of the core: that is what
+     turns a closed-box certificate into an atlas chart.
 
-  D-b. OPEN OVERLAPS: the nerve is computed in DYADIC RATIONALS
-     EXACTS (`Fraction`, jamais de float) : deux cores qui se touchent
-     have halos meeting in a box of STRICTLY POSITIVE
-     width in all four coordinates. Published: the overlap box
-     of each pair, the connectivity of the nerve, the triple intersections
-     triple non vide.
+  D-b. OPEN OVERLAPS: the nerve is computed in EXACT DYADIC RATIONALS
+     (`Fraction`, never a float): two cores that touch have halos meeting in
+     a box of STRICTLY POSITIVE width in all four coordinates. Published:
+     the overlap box of each pair, the connectivity of the nerve, and the
+     non-empty triple intersections.
 
-  D-c. TRANSITIONS — sur chaque overlap :
-     . THE SHEET: the two source sections are compared not
-       through their enclosures (which lose the correlation: width
-       about 1e-3, a verdict without content) but by EXACT RECENTRING of the two
-       polynomials in a common frame followed by COEFFICIENT BY COEFFICIENT
-       COEFFICIENT — la différence tombe à ~1e-12 et la séparation
-       ±  devient décisive. `θ_ij ∈ {±1}` est DÉRIVÉ à marge stricte
-       (refus si ambigu, jamais d'essai) et doit valoir +1 : les tuiles
-       neighbours are on the SAME SHEET. This test COULD have failed,
-       c'est là tout son intérêt.
+  D-c. TRANSITIONS, on each overlap:
+     . THE SHEET: the two source sections are compared not through their
+       enclosures (which lose the correlation: width about 1e-3, a verdict
+       without content) but by EXACT RECENTRING of the two polynomials in a
+       common frame followed by COEFFICIENT BY COEFFICIENT subtraction; the
+       difference falls to about 1e-12 and the +/- separation becomes
+       decisive. `theta_ij` in {+1,-1} is DERIVED with a strict margin
+       (refusal if ambiguous, never a trial) and must equal +1: neighbouring
+       tiles are on the SAME SHEET. This test COULD have failed, and that is
+       the whole point of it.
      . THE CHART: `lambda_ij = Z[g'_i]/Z[g'_j]`, with `|Z[g'_i]|` and
-       `|Z[g'_j]|` certified BOUNDED BELOW by 0 on the overlap, so the transition
-       is a biholomorphism, not merely a formula.
-     . THE TRANSITION IDENTITY, without division: `Zt_a.Z[g']` contains `Z_a` per
-       tile, and from one tile to the next `Zt^(j)_a.Z[g'_j] -
-       Zt^(i)_a.Z[g'_i]` contains 0: this is the gluing that brings the
-       deux sheet records `ε'` dérivés indépendamment.
+       `|Z[g'_j]|` certified BOUNDED BELOW by 0 on the overlap, so the
+       transition is a biholomorphism, not merely a formula.
+     . THE TRANSITION IDENTITY, without division: `Zt_a.Z[g']` contains `Z_a`
+       per tile, and from one tile to the next `Zt^(j)_a.Z[g'_j] -
+       Zt^(i)_a.Z[g'_i]` contains 0: this is the gluing that brings together
+       two sheet records `eps'` derived independently.
 
-  D-d. COCYCLE ON THE NERVE: on each non-empty triple intersection
-     vide : `θ_ij·θ_jk·θ_ki = +1` (exact, discret), `λ_ij·λ_jk·λ_ki ∋ 1`
-     (enclosure) and the transition identity on the three edges. The
-     sheet cochain is a cocycle of TRIVIAL class: the choice
-     of sheet glues globally on the cell.
+  D-d. COCYCLE ON THE NERVE: on each non-empty triple intersection,
+     `theta_ij.theta_jk.theta_ki = +1` (exact, discrete),
+     `lambda_ij.lambda_jk.lambda_ki` contains 1 (enclosure), and the
+     transition identity on the three edges. The sheet cochain is a cocycle
+     of TRIVIAL class: the choice of sheet glues globally on the cell.
 
 HONESTY ABOUT WHAT IS TAUTOLOGICAL AND WHAT IS NOT:
-  . `theta = +1` is NOT tautological: the source determinations vary
-    from tile to tile and nothing forced the same sheet;
-  . the transition identity is NOT tautological: it brings into
-    présence deux sheet records `ε'` dérivés séparément ;
+  . `theta = +1` is NOT tautological: the source determinations vary from
+    tile to tile and nothing forced the same sheet;
+  . the transition identity is NOT tautological: it brings face to face two
+    sheet records `eps'` derived separately;
   . at the level of TRIPLES, the cocycle condition is IMPLIED by the
-    pairwise identities (all charts are affine charts of the
-    same projective space and all sections descend from ONE source section),
-    and what stays non-trivial is that the inclusion of 0 on the edge i to k
-    is NOT an interval consequence of i to j and j to k: the three
-    are checked separately. This is stated, not disguised.
-  . the NEGATIVE CONTROLS carry the discriminating power: a corrupted sheet record,
-    feuillet inversé, ρ = 0, paire non adjacente, recentrage neutralisé,
-    geometry shifted by one ulp; all six must BREAK.
+    pairwise identities (all charts are affine charts of the same projective
+    space and all sections descend from ONE source section), and what stays
+    non-trivial is that the inclusion of 0 on the edge i to k is NOT an
+    interval consequence of i to j and j to k: the three are checked
+    separately. This is stated, not disguised.
+  . the NEGATIVE CONTROLS carry the discriminating power: a corrupted sheet
+    record, an inverted sheet, rho = 0, a non-adjacent pair, a neutralised
+    recentring, a geometry shifted by one ulp; all six must BREAK.
 
-WHAT THIS SCRIPT DOES NOT PAY: metric transport (congruence of Q,
-Weyl) ON THE HALO. Those checks stay established on the cores, and
-extending them to the halos costs four `Qmat` per tile (about 244 s, the whole
-budget of the transport step); it is measured here on the stratified
-subset only, and that is DECLARED. It also does not pay: the EXACT contract
-of the congruence identity, the full scaling, the 895
-autres paires cellule/classe, the later scaling.
+WHAT THIS SCRIPT DOES NOT PAY: metric transport (congruence of Q, Weyl) ON
+THE HALO. Those checks stay established on the cores, and extending them to
+the halos costs four `Qmat` per tile (about 244 s, the whole budget of the
+transport step); it is measured here on the stratified subset only, and that
+is DECLARED. It also does not pay: the EXACT contract of the congruence
+identity, the full scaling, the 895 other cell/class pairs, the later
+scaling.
 
-the rational-box step/B/C (a review GPT, 2026-07-31) — trois dettes theorem-grade
-payées SANS changer aucun contrat :
-  A. les boîtes d'overlap (paires, triples, négatif N5) passaient par
-     `iv.mpf([float(lo), float(hi)])` TO NEAREST, whereas the symbols
-     intersections carry denominators in 65 (halos of 65h/64), not
-     représentables en binaire : l'intervalle pouvait être STRICTEMENT
-     smaller than the rational box. Hence `fraction_box_to_iv`:
-     borne basse VERS LE BAS, haute VERS LE HAUT, jamais optimiste.
-  B. les défauts gatés (congruence de halo, identité de paire, arêtes
-     de triple) restent en mp jusqu'à la comparaison à δ ; la
-     float conversion is DIRECTED (`_f_up`) and happens only at the
-     sérialisation — la borne publiée MAJORE la borne comparée.
-  C. check D2c : l'ÉGALITÉ D'ENSEMBLES {tuiles clippées} = {tuiles nées
-     of the residual}, published with both sorted sets and their
-     SHA-256: "64 = 64" does not exclude a permutation 63+1.
+THE RATIONAL-BOX STEP (A/B/C), three theorem-grade debts raised by review
+and paid WITHOUT changing any contract:
+  A. the overlap boxes (pairs, triples, negative control N5) went through
+     `iv.mpf([float(lo), float(hi)])` TO NEAREST, whereas the symbolic
+     intersections carry denominators in 65 (halos of 65h/64), which are not
+     representable in binary: the interval could be STRICTLY smaller than
+     the rational box. Hence `fraction_box_to_iv`: lower endpoint rounded
+     DOWNWARDS, upper endpoint UPWARDS, never optimistic.
+  B. the checked defects (halo congruence, pair identity, triple edges) stay
+     in multiprecision until the comparison to delta; the float conversion
+     is DIRECTED (`_f_up`) and happens only at serialisation, so the
+     published bound is an upper bound on the bound compared.
+  C. check D2c: the EQUALITY OF SETS {clipped tiles} = {tiles born of the
+     residual}, published with both sorted sets and their SHA-256: "64 = 64"
+     does not exclude a permutation 63+1.
 
-Sorties : results/atlas_assembly_pilot.json   (mode pilot)
-          results/atlas_assembly.json         (mode full)
-Usage   : atlas_assembly.py [--selftest]
-Env     : K3_C127D_MODE     pilot (défaut) | full
-          K3_C127D_WORKERS  processus parallèles (défaut 6)
+Outputs: results/atlas_assembly_pilot.json   (pilot mode)
+         results/atlas_assembly.json         (full mode)
+Usage  : atlas_assembly.py [--selftest]
+Env    : K3_C127D_MODE     pilot (default) | full
+         K3_C127D_WORKERS  parallel processes (default 6)
 """
 from __future__ import annotations
 
@@ -164,7 +162,7 @@ RHO_LADDER = (Fraction(1, 8), Fraction(1, 16),
 DELTA_TRANS = 1e-5
 # Ceiling on the defect of the cocycle `lambda_ij.lambda_jk.lambda_ki - 1` on triples.
 DELTA_COCYCLE = 1e-5
-N_PILOT_TILES = 40      # tuiles du patch stratifié en mode pilot
+N_PILOT_TILES = 40      # tiles of the stratified patch in pilot mode
 N_HALO_METRIC = 8       # tiles where the METRIC transport is redone
                         # on the halo (declared scope, not silent)
 
@@ -226,12 +224,12 @@ def halo_hw(h, rho):
 
 
 def _inter_generic(loA, hiA, loB, hiB):
-    """Boîte d'intersection de deux pavés donnés par leurs bornes, ou
+    """Intersection box of two boxes given by their endpoints, or
     None if the width is not STRICTLY positive in all four
     coordinates. Everything in rationals: "open" is a rational
     comparison, never a float test. The returned box is not a cube
-    (demi-largeurs par coordonnée), d'où le passage systématique par
-    (lo, hi) plutôt que par (centre, demi-largeur)."""
+    (the half-widths differ per coordinate), hence the systematic use
+    of (lo, hi) rather than (centre, half-width)."""
     lo, hi = [], []
     for k in range(4):
         a, b = max(loA[k], loB[k]), min(hiA[k], hiB[k])
@@ -249,7 +247,7 @@ def cube_bounds(c, H):
 
 
 def touching(ci, hi, cj, hj):
-    """Les cores FERMÉS se touchent (distance de Tchebychev ≤ 0)."""
+    """The CLOSED cores touch (Chebyshev distance at most 0)."""
     return max(abs(ci[k] - cj[k]) - (hi + hj) for k in range(4)) <= 0
 
 
@@ -270,44 +268,45 @@ def eps_box_in_range(E):
 
 
 def frac_to_iv(q):
-    """Fraction → intervalle mpmath ENCLOSANT (arrondi extérieur par la
-    division intervalle : aucune conversion float au plus proche)."""
+    """Fraction to an ENCLOSING mpmath interval (outward rounding through
+    interval division: no nearest-float conversion anywhere)."""
     return iv.mpf(int(q.numerator)) / iv.mpf(int(q.denominator))
 
 
 def fraction_box_to_iv(lo, hi):
-    """(lo, hi) en Fractions → UN intervalle mpmath ENCLOSANT [lo, hi] :
-    borne basse arrondie VERS LE BAS, borne haute VERS LE HAUT (the rational-box step,
-    a review). L'ancien chemin `iv.mpf([float(lo), float(hi)])`
-    rounded both endpoints TO NEAREST, whereas the boxes
-    d'overlap héritent des demi-largeurs de halo `65h/64` et leurs
-    coordinates carry denominators in 65, not representable in
-    binary: the built interval could be STRICTLY SMALLER
-    than the exact rational box, and a certified containment of 0 on a truncated
-    domain does not certify the domain. The widening is at most 1 ulp at
-    mp.prec par borne : conservateur, jamais optimiste."""
+    """(lo, hi) as Fractions to ONE ENCLOSING mpmath interval [lo, hi]:
+    lower endpoint rounded DOWNWARDS, upper endpoint UPWARDS (the
+    rational-box step, from a review). The former path
+    `iv.mpf([float(lo), float(hi)])` rounded both endpoints TO NEAREST,
+    whereas the overlap boxes inherit the halo half-widths `65h/64` and
+    their coordinates carry denominators in 65, not representable in
+    binary: the built interval could be STRICTLY SMALLER than the exact
+    rational box, and a certified containment of 0 on a truncated
+    domain does not certify the domain. The widening is at most 1 ulp
+    at mp.prec per endpoint: conservative, never optimistic."""
     return iv.mpf([mp.mpf(frac_to_iv(lo).a), mp.mpf(frac_to_iv(hi).b)])
 
 
 # ===========================================================================
 #  EXACT recentring of a Taylor model: the heart of this step
 # ===========================================================================
-#  Deux tuiles voisines portent leurs polynômes dans DEUX cadres ε
-#  different. Comparing their ENCLOSURES on the overlap loses the
-#  corrélation : chaque enclosure a la largeur de la VARIATION de la
-#  function on the overlap (about 1e-3 here), so their difference does too, and the
-#  verdict has no content. We therefore recentre the polynomial of j in the
-#  cadre de i — substitution AFFINE ε_j = off + scale·ε_i, exacte en
-#  rationnels — puis on soustrait COEFFICIENT PAR COEFFICIENT. Mesuré sur
-#  une paire réelle : largeur 7,2e-3 (naïf) → 2,3e-12 (recentré).
+#  Two neighbouring tiles carry their polynomials in TWO different eps
+#  frames. Comparing their ENCLOSURES on the overlap loses the
+#  correlation: each enclosure has the width of the VARIATION of the
+#  function on the overlap (about 1e-3 here), so their difference does
+#  too, and the verdict has no content. We therefore recentre the
+#  polynomial of j in the frame of i, an AFFINE substitution
+#  eps_j = off + scale.eps_i, exact in rationals, and then subtract
+#  COEFFICIENT BY COEFFICIENT. Measured on a real pair: width 7.2e-3
+#  (naive) against 2.3e-12 (recentred).
 #
 #  The substitution creates NO remainder: composing a polynomial of degree
-#  at most N with an affine map gives a polynomial of degree at most N, and the
-#  matrice ci-dessous est exacte (Fractions) avant conversion intervalle.
+#  at most N with an affine map gives a polynomial of degree at most N, and
+#  the matrix below is exact (Fractions) before interval conversion.
 # ===========================================================================
 def recenter_matrix(off, scale):
     """T such that (p composed with phi)[beta] = sum_{alpha >= beta} T[beta][alpha] . p[alpha], for
-    φ(ε)_k = off_k + scale·ε_k. Rendue en intervalles ENCLOSANTS."""
+    phi(eps)_k = off_k + scale.eps_k. Returned as ENCLOSING intervals."""
     acc = {}
     for ai, am in enumerate(MONO):
         for bm in itertools.product(*[range(e + 1) for e in am]):
@@ -324,7 +323,7 @@ def recenter_matrix(off, scale):
 
 
 def apply_recenter(T, p):
-    """Applique T aux coefficients CIV d'un TM."""
+    """Apply T to the interval coefficients of a Taylor model."""
     out = [CIV(IV0, IV0)] * NM
     for b, row in T.items():
         ar, ai_ = IV0, IV0
@@ -368,8 +367,9 @@ def enclose(p, rem, E):
 def sep_phase(dm, dp):
     """Sheet `theta` by STRICT SEPARATION of the squared distances, on the
     enclosures of the DIFFERENCE and of the SUM (hence correlated, hence
-    décisives). Miroir exact de la logique `_eps_sep` de the transport step, appliquée
-    à des polynômes déjà soustraits. Ambigu ⟹ REFUS."""
+    decisive). An exact mirror of the `_eps_sep` logic of the transport
+    step, applied to polynomials already subtracted. Ambiguous means
+    REFUSAL."""
     d2m = dm.re ** 2 + dm.im ** 2
     d2p = dp.re ** 2 + dp.im ** 2
     m_lo, m_hi = mp.mpf(d2m.a), mp.mpf(d2m.b)
@@ -398,8 +398,8 @@ def civ_contains_zero(c):
 
 
 def civ_div(a, b):
-    """a/b en intervalles, exige |b| minoré > 0 (certifié par
-    l'appelant)."""
+    """a/b in interval arithmetic; requires |b| bounded below by 0
+    (certified by the caller)."""
     d = b.re ** 2 + b.im ** 2
     return CIV((a.re * b.re + a.im * b.im) / d,
                (a.im * b.re - a.re * b.im) / d)
@@ -407,8 +407,8 @@ def civ_div(a, b):
 
 # ===========================================================================
 #  EXACT serialisation of the Taylor models (mpmath interval objects do not
-#  pickle: we transport the exact `_mpf_` tuples between
-#  workers et le parent — aucune conversion, aucun arrondi)
+#  pickle: we transport the exact `_mpf_` tuples between the workers and
+#  the parent, with no conversion and no rounding)
 # ===========================================================================
 def ser_tmc(t):
     return ([(mp.mpf(x.re.a)._mpf_, mp.mpf(x.re.b)._mpf_,
@@ -457,14 +457,15 @@ def halo_certify(cell, tile, rho, rule, root_c, root_h):
 
     . `symmetric`: `box(c, (1+rho)h)`, a two-sided halo in all four
       directions. This is the preregistered rule, tried first.
-    · `clipped` — même demi-largeur `(1+ρ)h`, mais CENTRE DÉCALÉ de ∓ρh
-      in each direction where the core sits astride a face of the
-      CELL: the halo then extends inwards and stays FLUSH
-      with the face, so the core is inside the halo inside the cell. This is the notion of an atlas
-      of a manifold WITH BOUNDARY: the charts are open in the
-      RELATIVE topology of the cell. The rule is legitimate ONLY on a
-      flush direction; check D2b requires it, without which it
-      would become an escape hatch for an interior failure.
+    . `clipped`: the same half-width `(1+rho)h`, but with the CENTRE
+      SHIFTED by rho.h inwards in each direction where the core sits
+      astride a face of the CELL: the halo then extends inwards and
+      stays FLUSH with the face, so the core is inside the halo inside
+      the cell. This is the notion of an atlas of a manifold WITH
+      BOUNDARY: the charts are open in the RELATIVE topology of the
+      cell. The rule is legitimate ONLY on a flush direction; check D2b
+      requires it, without which it would become an escape hatch for an
+      interior failure.
 
     Returns (record, Z, P) where `P[a] = Zt[a].Z[g']` (the division-free
     product that carries the transition identity), or (record, None, None)."""
@@ -556,7 +557,7 @@ def halo_certify(cell, tile, rho, rule, root_c, root_h):
         return rec, None, None
     # projective congruence on the HALO, with a frozen record. The supremum stays in
     # multiprecision until the check: the comparison to delta is made on the
-    # exacte, la conversion float (dirigée, _f_up) n'arrive qu'à la
+    # exact, and the float conversion (directed, _f_up) happens only at
     # sérialisation.
     sup = mp.mpf(0)
     okz = True
@@ -623,9 +624,9 @@ def get_T(off, scale):
 
 
 def pair_certificate(i, j, corrupt=None):
-    """Certificat d'overlap entre les tuiles i et j. `corrupt` permet aux
-    negative controls to substitute falsified data WITHOUT touching the path
-    nominal."""
+    """Overlap certificate between tiles i and j. `corrupt` lets the
+    negative controls substitute falsified data WITHOUT touching the
+    nominal path."""
     gi, gj = _G["geom"][i], _G["geom"][j]
     w = _inter_generic(gi["lo"], gi["hi"], gj["lo"], gj["hi"])
     out = {"i": i, "j": j}
@@ -654,7 +655,7 @@ def pair_certificate(i, j, corrupt=None):
         Zi, Pi = corrupt["Z"], corrupt["P"]
     S = _G["cell"][0]
 
-    # --- (1) le FEUILLET : θ par recentrage + soustraction exacte -------
+    # --- (1) the SHEET: theta by recentring plus exact subtraction -----
     thetas, tmargins, amb = [], [], False
     for s in S:
         pa, ra = Zi[s]
@@ -708,10 +709,11 @@ def pair_certificate(i, j, corrupt=None):
         out["charts_equal"] = bool(g_i == g_j)
 
     # --- (4) the transition IDENTITY, without division ------------------
-    #  Zt^(j)_a·Z[g'_j] − Zt^(i)_a·Z[g'_i] ∋ 0 : les deux sheet records ε'
-    #  derived SEPARATELY are brought together on the overlap.
-    # The supremum stays in multiprecision until the check; _f_up only for
-    # la sérialisation — la borne publiée MAJORE la borne comparée.
+    #  Zt^(j)_a.Z[g'_j] - Zt^(i)_a.Z[g'_i] contains 0: the two sheet
+    #  records eps' derived SEPARATELY are brought together on the overlap.
+    # The supremum stays in multiprecision until the check; _f_up is used
+    # only at serialisation, so the published bound is an upper bound on
+    # the bound compared.
     idsup, idok = mp.mpf(0), True
     for a in range(6):
         pa, ra = Pi[a]
@@ -790,10 +792,11 @@ def triple_certificate(i, j, k, lam):
         d = CIV(prod.re - IV1, prod.im)
         out["lambda_product_contains_one"] = bool(civ_contains_zero(d))
         out["lambda_decorrelation_width"] = _f_up(civ_sup(d))
-        out["lambda_note"] = ("identité algébrique — largeur de "
-                              "décorrélation publiée, non gatée")
+        out["lambda_note"] = ("an algebraic identity: the decorrelation "
+                              "width is published, never checked")
     # the transition identity on the THREE edges, on the TRIPLE box.
-    # Sup en mp jusqu'au check (the directed-rounding step), _f_up à la sérialisation.
+    # The supremum stays in multiprecision until the check (the
+    # directed-rounding step); _f_up is used only at serialisation.
     idsup, idok = mp.mpf(0), True
     for (a, b) in ((i, j), (j, k), (i, k)):
         ga, gb = _G["geom"][a], _G["geom"][b]
@@ -828,7 +831,7 @@ def _triple_job(job):
 
 
 # ===========================================================================
-#  Chargement des feuilles et de leurs sheet records
+#  Loading the leaves and their sheet records
 # ===========================================================================
 def load_leaves():
     cov = json.loads(COVER_JSON.read_text(encoding="utf-8"))
@@ -843,7 +846,7 @@ def load_leaves():
     for i, t in enumerate(cov["tiles"]):
         r = tr127.get(i)
         if r is None:
-            raise SystemExit(f"tuile the transport step {i} sans transport certifié")
+            raise SystemExit(f"tile {i} of the transport step without certified transport")
         leaves.append({
             "src": "transport", "orig_index": i, "depth": t["depth"],
             "center_hex": t["center_hex"], "hw_hex": t["hw_hex"],
@@ -856,7 +859,7 @@ def load_leaves():
         r = tr_residual.get(t["box_index"])
         if r is None:
             raise SystemExit(
-                f"tuile the residual closure {t['box_index']} sans transport certifié")
+                f"tile {t['box_index']} of the residual closure without certified transport")
         leaves.append({
             "src": "residual", "orig_index": t["box_index"],
             "depth": t["depth"], "center_hex": t["center_hex"],
@@ -871,10 +874,11 @@ def load_leaves():
 
 def pilot_patch(leaves, n_max):
     """Stratified patch: we start from the tile born of the RESIDUAL that has the most
-    neighbours from the transport step (the most discriminating interface:
-    déterminations différentes s'y touchent), on prend tout son
-    voisinage, puis on complète par un représentant de chaque signature
-    (chart, déterminations source, kinds cible) non encore couverte."""
+    neighbours from the transport step (the most discriminating
+    interface: different determinations touch there), we take its whole
+    neighbourhood, and complete it with one representative of every
+    signature (chart, source determinations, target kinds) not yet
+    covered."""
     bx = [box_of(t) for t in leaves]
     nb = {i: set() for i in range(len(leaves))}
     for i in range(len(leaves)):
@@ -904,9 +908,9 @@ def pilot_patch(leaves, n_max):
     sel = sorted(set(sel))[:n_max]
     return sel, {"seed": seed, "seed_c127_neighbours": best,
                  "n_selected": len(sel), "selected": sel,
-                 "note": ("patch = one tile born of the residual plus all its "
-                          "voisinage + un représentant par signature "
-                          "non couverte")}
+                 "note": ("patch = one tile born of the residual plus its whole "
+                          "neighbourhood plus one representative per "
+                          "uncovered signature")}
 
 
 # ===========================================================================
@@ -965,7 +969,7 @@ def build():
                 log(f"  REFUS tuile {h['index']} : "
                     f"{[a.get('refused') for a in h['attempts']]}")
 
-    # --- géométrie des halos (exacte) ----------------------------------
+    # --- halo geometry (exact) -----------------------------------------
     geom, tm = {}, {}
     for h in halo_ok:
         i = h["index"]
@@ -1037,7 +1041,7 @@ def build():
     log(f"D10 : triples d'intersection triple non vide {len(tres)}, "
         f"cocycle certifié {len(tok)}/{len(tres)}")
 
-    # --- D11 : les négatifs --------------------------------------------
+    # --- D11: the negative controls ------------------------------------
     negs = run_negatives(leaves, geom, tm, pairs, pmap)
     log("D11 : négatifs — "
         + " · ".join(f"{k}={'CASSE' if v['breaks'] else 'NE CASSE PAS'}"
@@ -1058,7 +1062,7 @@ def build():
     # D2b: clipping is legitimate ONLY against a face of the cell,
     # and ONLY if the symmetric rule was first refused over the WHOLE
     # rho scale. Without this check, "clipped" would be an escape hatch
-    # pour n'importe quel échec intérieur.
+    # for any interior failure whatsoever.
     clip_legit = True
     for h in halo_ok:
         if h["rule_used"] != "clipped":
@@ -1068,7 +1072,7 @@ def build():
             (Fraction(*sh[k]) == 0) or (fl[k] != 0) for k in range(4)) \
             and h["n_symmetric_refusals"] == len(RHO_LADDER)
     # D2c: EQUALITY OF SETS, not of counts. The
-    # prose affirme {tuiles clippées} = {64 tuiles nées du résidu
+    # the prose asserts {clipped tiles} = {the 64 tiles born of the
     # residual step, and "64 = 64" does not exclude a permutation 63+1. Both
     # sets are published, sorted, with their SHA-256.
     clipped_idx = sorted(h["index"] for h in halo_ok
@@ -1126,26 +1130,26 @@ def build():
         "including at rho = 1/64. Diagnosis: they sit astride a "
         "face of the CELL, and the 64 tiles born of the residual "
         "are EXACTLY those flush with the face {Im u = Im v = "
-        "0}, là où σ de la détermination tournée devient indéterminé "
+        "0}, where the sigma of the rotated determination becomes undefined "
         "as soon as one steps outside. The residual 1/64 was therefore "
         "geometrically A FACE, not a scattering. These tiles "
-        "reçoivent un halo CLIPPÉ (même demi-largeur, centre décalé vers "
+        "receive a CLIPPED halo (same half-width, centre shifted "
         "inwards, halo flush: core inside halo inside cell), the "
         "notion of an atlas of a manifold WITH BOUNDARY, charts open in the "
         "RELATIVE topology. Check D2b forbids clipping from serving "
         "elsewhere: it requires a flush face in each shifted "
         "direction AND the prior refusal of the whole symmetric scale. "
-        "The nerve is computed in RATIONALS "
-        "DYADIQUES EXACTS : %d paires de cores se touchent et %d/%d ont "
+        "The nerve is computed in EXACT DYADIC "
+        "RATIONALS: %d pairs of cores touch and %d/%d have "
         "an overlap of STRICTLY POSITIVE width in all four "
         "coordinates; the nerve is %s. On each overlap the two "
         "source sections are compared by EXACT RECENTRING in a "
-        "cadre commun puis soustraction coefficient par coefficient "
+        "common frame followed by coefficient-by-coefficient subtraction "
         "(the naive, decorrelated enclosure would have width about 1e-3 and "
         "no content): the sheet theta is DERIVED with a strict margin, equals "
         "+1 on %d of %d pairs (minimum margin %.3e), and the affine control "
         "defect of the recentring is %.3e. The transition is a "
-        "BIHOLOMORPHISME certifié (|Z[g']| minoré > 0 des deux côtés) et "
+        "CERTIFIED BIHOLOMORPHISM (|Z[g']| bounded below by 0 on both sides) and "
         "the identity `Zt^(j).Z[g'_j] - Zt^(i).Z[g'_i]` containing 0, which brings "
         "together two records derived SEPARATELY, holds with a "
         "maximum defect %.3e at most delta. On the %d non-empty triple "
@@ -1153,7 +1157,7 @@ def build():
         "COCYCLE: `lambda_ij.lambda_jk.lambda_ki = 1` is an ALGEBRAIC IDENTITY of "
         "the construction (the same affine charts of one projective space, three "
         "ratios of the same three evaluations), so checking it in "
-        "intervalles ne vérifie rien, chaque jauge y apparaît deux fois "
+        "interval arithmetic verifies nothing, each gauge appearing twice, "
         "and the measured defect (%.3e) IS ONLY the decorrelation "
         "width, exactly the phenomenon that forced the "
         "recentring elsewhere; it is therefore published as a DIAGNOSTIC and "
@@ -1163,37 +1167,37 @@ def build():
         "recentred on the TRIPLE box, since containment of 0 is not "
         "transitive and i to k is no interval consequence of i to j "
         "and j to k. What is NOT tautological either is theta = +1 "
-        "(rien n'imposait aux voisines le même feuillet, leurs "
-        "déterminations source DIFFÈRENT) et l'identité de transition, "
+        "(nothing forced neighbours onto the same sheet, and their "
+        "source determinations DIFFER), nor the transition identity, "
         "which brings together two records derived separately. The %d "
         "negative controls all break. NOT PAID HERE: METRIC transport "
         "(congruence of Q, Weyl) on the halos, established on the cores "
         "earlier, whose extension costs four Qmat per tile; the "
         "EXACT contract of the identity; the full scaling; the 895 "
-        "autres paires cellule/classe ; the later scaling. the rational-box step/B/C (a review) "
-        "PAYÉS : endpoints d'overlap en arrondi EXTÉRIEUR "
-        "(fraction_box_to_iv — l'ancien float-nearest pouvait tronquer "
-        "les boîtes à dénominateur 65), défauts gatés comparés à δ en mp "
-        "AVANT toute conversion float (sérialisation _f_up seulement), "
-        "et égalité d'ENSEMBLES {clippées} = {résidu the residual closure} gatée (D2c, "
-        "SHA-256 publiés)." % (
+        "other cell/class pairs; the later scaling. The rational-box step (A/B/C, from a review) "
+        "PAID: overlap endpoints rounded OUTWARDS "
+        "(fraction_box_to_iv: the older nearest-float could truncate "
+        "boxes with denominator 65), checked defects compared to delta in "
+        "multiprecision BEFORE any float conversion (serialisation only), "
+        "and SET equality {clipped} = {residual} checked (D2c, "
+        "SHA-256 published)." % (
             MODE, len(leaves),
             [f"{r.numerator}/{r.denominator}" for r in RHO_LADDER],
             max_halo,
             sum(1 for h in halo_ok if h["rule_used"] == "clipped"),
             len(touch_pairs),
             sum(1 for x in touch_pairs if x[2]), len(touch_pairs),
-            "connexe" if connected else "NON CONNEXE",
+            "connected" if connected else "NOT CONNECTED",
             sum(1 for r in pres if r.get("same_sheet")), len(pres),
             min_theta, max_aff, max_id, len(tres), len(tok), len(tres),
             max_cocy, len(negs)))
 
     art = {
         "artifact": ART.stem, "mode": MODE,
-        "claim": ("the atlas step — cores + halos, overlaps ouverts certifiés, "
-                  "transitions (feuillet, carte, identité) et cocycle "
-                "on the nerve: the closed cover becomes "
-                  "un atlas multi-chart."),
+        "claim": ("the atlas step: cores and halos, certified open overlaps, "
+                  "transitions (sheet, chart, identity) and the cocycle "
+                  "on the nerve: the closed cover becomes "
+                  "a multi-chart atlas."),
         "cell": cell_d,
         "n_leaves": len(leaves),
         "tree_gates": tg, "n_address_failures": addr_fail,
@@ -1239,7 +1243,7 @@ def build():
         "delta_cocycle_preregistered": DELTA_COCYCLE,
         "not_paid_here": [
             "metric transport (Qmat and Weyl) on the halos, established on "
-            "les cores par the transport step",
+            "the cores by the transport step",
             "contrat exact de l'identité de congruence",
             "scaling complet (the scaling step)",
             "les 895 autres paires cellule/classe", "the later scaling"],
@@ -1273,8 +1277,8 @@ def run_negatives(leaves, geom, tm, pairs, pmap):
     i, j = ref
 
     # N1: a corrupted sheet record on one tile makes the transition identity
-    #      doit cesser de contenir 0 (elle met en présence les DEUX
-    #      sheet records ; si elle ne voyait pas ε', elle serait décorative)
+    #      stop containing 0 (it brings the TWO sheet records face to
+    #      face; if it did not see eps' it would be decorative)
     Zj, Pj = tm[j]
     Pbad = [([CIV(-c.re, -c.im) for c in Pj[a][0]], Pj[a][1])
             if a == leaves[j]["chart"]["S"][0] else Pj[a]
@@ -1285,11 +1289,11 @@ def run_negatives(leaves, geom, tm, pairs, pmap):
         "breaks": bool(not r1.get("transition_identity_contains_zero")),
         "defect": r1.get("transition_identity_defect"),
         "note": ("one row of Zt.Z[g'] negated on tile j: "
-                 "l'identité de transition doit exclure 0")}
+                 "the transition identity must exclude 0")}
 
     # N2: sheet flipped; theta must come out at -1 (the test DETECTS a
-    #      raccord inter-feuillets, c'est toute sa raison d'être)
-    s0 = _G["cell"][0][0]          # première ligne √ de la SOURCE
+    #      join between sheets, which is its whole reason for being)
+    s0 = _G["cell"][0][0]          # first square-root row of the SOURCE
     Zbad = [([CIV(-c.re, -c.im) for c in Zj[a][0]], Zj[a][1])
             if a == s0 else Zj[a] for a in range(6)]
     r2 = pair_certificate(i, j, corrupt={"tile": j, "Z": Zbad,
@@ -1299,10 +1303,10 @@ def run_negatives(leaves, geom, tm, pairs, pmap):
                        and not r2.get("same_sheet")),
         "theta": r2.get("theta"),
         "note": ("Z_s negated on tile j: theta must equal -1 on that "
-                 "ligne et le check de feuillet doit tomber")}
+                 "row, and the sheet check must fall")}
 
     # N3: rho = 0; the halos become the cores again and the overlap loses its
-    #      largeur ; « ouvert » doit cesser d'être vrai
+    #      width; "open" must stop being true
     n3 = 0
     for (a, b) in pairs[:200]:
         ga, gb = geom[a], geom[b]
@@ -1313,7 +1317,7 @@ def run_negatives(leaves, geom, tm, pairs, pmap):
     out["N3_rho_zero_kills_openness"] = {
         "breaks": bool(n3 > 0), "n_pairs_losing_openness": n3,
         "n_tested": min(200, len(pairs)),
-        "note": ("à ρ = 0 les boîtes fermées adjacentes ne se coupent "
+        "note": ("at rho = 0 the adjacent closed boxes no longer meet "
                      "no longer in positive width: the openness of the overlaps "
                      "is indeed CARRIED by rho, not by the partition")}
 
@@ -1333,11 +1337,11 @@ def run_negatives(leaves, geom, tm, pairs, pmap):
             "pair": list(far), "refused": r4.get("refused")}
     else:
         out["N4_non_adjacent_refused"] = {
-            "breaks": False, "note": "aucune paire non adjacente"}
+            "breaks": False, "note": "no non-adjacent pair"}
 
     # N5: recentring neutralised. Comparing the polynomials WITHOUT
     #      recentring (T = identity), the difference must explode as soon as
-    #      les deux cadres diffèrent réellement
+    #      the two frames really differ
     gi, gj = geom[i], geom[j]
     w = _inter_generic(gi["lo"], gi["hi"], gj["lo"], gj["hi"])
     Eiv = [fraction_box_to_iv(lo, hi)
@@ -1357,13 +1361,14 @@ def run_negatives(leaves, geom, tm, pairs, pmap):
         "note": ("without recentring the comparison has no content; "
                      "the ratio measures what the recentring carries")}
 
-    # N6 — géométrie décalée : le test doit voir le décalage À SA TAILLE
-    #      PREDICTED. A plain "it is larger" is settled by a threshold
-    #      chosen afterwards; here the expected effect of a shift delta of
-    #      the affine map is delta times |df/deps_0|, and |df/deps_0| is READ off the
-    #      degree-one coefficient of the Taylor model. The negative control therefore requires
-    #      the measured defect to fall in [predicted/4, 4.predicted] AND that
-    #      plancher nominal soit deux ordres SOUS le prédit.
+    # N6: a shifted geometry. The test must see the shift AT ITS
+    #      PREDICTED SIZE. A plain "it is larger" is settled by a
+    #      threshold chosen afterwards; here the expected effect of a
+    #      shift delta of the affine map is delta times |df/deps_0|, and
+    #      |df/deps_0| is READ off the degree-one coefficient of the
+    #      Taylor model. The negative control therefore requires the
+    #      measured defect to fall in [predicted/4, 4.predicted] AND the
+    #      nominal floor to be two orders BELOW the prediction.
     delta = Fraction(1, 2 ** 20)
     off_bad = [(gi["c"][k] - gj["c"][k]) / gj["H"] for k in range(4)]
     off_bad[0] = off_bad[0] + delta
@@ -1410,10 +1415,10 @@ def _selftest():
     lo3, hi3 = cube_bounds([Fraction(2)] + [Fraction(0)] * 3,
                            Fraction(1))
     chk("T2 NEGATIVE CONTROL: two boxes that TOUCH without overlapping "
-        "ne donnent aucun overlap ouvert",
+        "give no open overlap",
         _inter_generic(lo1, hi1, lo3, hi3) is None)
 
-    # T3 : la carte ε et son check de domaine
+    # T3: the eps chart and its domain check
     E = eps_box({"lo": [Fraction(-1, 2)] * 4,
                  "hi": [Fraction(1, 2)] * 4},
                 [Fraction(0)] * 4, Fraction(1))
@@ -1455,7 +1460,7 @@ def _selftest():
         near(q2[0], 0.25) and near(q2[MIDX[(1, 0, 0, 0)]], 0.25)
         and near(q2[MIDX[(2, 0, 0, 0)]], 0.0625))
 
-    # T8 : recentrage puis évaluation = évaluation directe (le même
+    # T8: recentring then evaluation equals direct evaluation (the same
     #      point, two frames), the invariant that carries this whole step
     Efull = [iv.mpf([-1, 1])] * 4
     v_direct = enclose(p2, IV0, [iv.mpf([0.25, 0.75])]
@@ -1465,20 +1470,20 @@ def _selftest():
         mp.mpf(v_recent.re.a) <= mp.mpf(v_direct.re.a)
         and mp.mpf(v_direct.re.b) <= mp.mpf(v_recent.re.b))
 
-    # T9 : la séparation de feuillet, et son REFUS
+    # T9: sheet separation, and its REFUSAL
     dm = CIV(iv.mpf([-1e-9, 1e-9]), iv.mpf([-1e-9, 1e-9]))
     dp = CIV(iv.mpf([1.9, 2.1]), iv.mpf([-0.1, 0.1]))
     th, rec = sep_phase(dm, dp)
-    chk("T9 feuillet : différence ~0 et somme ~2 ⟹ θ = +1 à marge > 0",
+    chk("T9 sheet: difference about 0 and sum about 2, so theta = +1 with margin > 0",
         th == 1 and rec["margin"] > 0)
     th2, _ = sep_phase(dp, dm)
-    chk("T10 feuillet inversé ⟹ θ = −1", th2 == -1)
+    chk("T10 flipped sheet, so theta = -1", th2 == -1)
     amb = CIV(iv.mpf([-1, 1]), iv.mpf([-1, 1]))
     th3, _ = sep_phase(amb, amb)
-    chk("T11 NÉGATIF : séparation ambiguë ⟹ REFUS (jamais d'essai)",
+    chk("T11 NEGATIVE CONTROL: ambiguous separation, so REFUSAL (never a trial)",
         th3 is None)
 
-    # T12 : sérialisation exacte des TM (aller-retour bit à bit)
+    # T12: exact serialisation of the Taylor models (bit-for-bit round trip)
     t = TMC([CIV(iv.mpf([0.1, 0.2]), iv.mpf([-0.3, 0.4]))] * NM,
             iv.mpf([0, 1e-9]))
     p3, r3 = de_tmc(ser_tmc(t))

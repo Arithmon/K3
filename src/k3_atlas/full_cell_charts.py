@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Chart construction on a WHOLE CELL, with the determination chosen PER ROW.
-la détermination choisie PAR LIGNE.
 
 The pilot had shown that under the principal branch no escaping chart is
 reachable. Rotated continuation was delivered next, and holonomy
@@ -9,8 +8,8 @@ established after it. That payoff remained, however,
 pointwise (`h = 0`), and a review was right to refuse to call it
 a full result. This script does it on the **whole box**.
 
-THE CONSTRUCTION. On a residual cell the section is built with
-un **choix de détermination par ligne** :
+THE CONSTRUCTION. On a residual cell the section is built with a
+**choice of determination per row**:
 
     a row whose R avoids the non-negative reals  ->  rotated root of (R, sigma), sigma from the COMPONENT
     a row whose R avoids the non-negative reals  ->  rotated root of (R, sigma), sigma from the COMPONENT
@@ -24,27 +23,27 @@ for both, one gets `2 Z_s dZ_s = dR_s`, hence
     ∂Z_s/∂u = ∂_u R_s / (2 Z_s) = a₁·u / Z_s
 
 identical to the principal case: the pilot formula carries over
-verbatim, et c'est vérifié (check D3).
+verbatim, and this is verified (check D3).
 
-Checks pré-enregistrés :
+Preregistered checks:
     D1 COMPLETE SECTION: the six ambient coordinates are built
           on the WHOLE box, with the determination used per row
-     SÉRIALISÉE (principale / tournée + σ)
+     SERIALISED (plain / rotated plus sigma)
     D2 CHART CRITERION ON THE WHOLE BOX: for each admissible chart, gauge
-     `|Z_{g'}|` bornée loin de 0, `|u'| ≤ 1`, `|v'| ≤ 1`, certifiés sur
-     toute la boîte et jamais au seul centre
+     `|Z_{g'}|` bounded away from 0, `|u'| <= 1`, `|v'| <= 1`, certified
+     on the whole box and never at the centre alone
     D3 `det J` enclosure excluding 0 on the whole box, and
           the identity `dZ_s/du = a_1 u/Z_s` holds for BOTH determinations
     D4 THE POINT OF THE EXERCISE: at least one chart is both
-     ADMISSIBLE (the chart criterion + the Jacobian criterion) et certifié DISJOINT de sa propre tranche
-     réelle. Sous la branche principale, cet ensemble était VIDE.
+     ADMISSIBLE (chart and Jacobian criteria) and certified DISJOINT
+     from its own real slice. Under the principal branch that set was EMPTY.
     the pilot COMPONENT NEGATIVE CONTROL: a box whose `sigma` is determined AT THE CENTRE
           but UNDETERMINED on the box must be REFUSED, and the mutation
-     « centre seulement » doit l'accepter à tort
+     "centre only" must wrongly accept it
     D6 GAUGE NEGATIVE CONTROL: a chart whose gauge can vanish on the
-     boîte est refusé même si son centre va bien
+     box is refused even if its centre is fine
     D7 EVERY ADMISSIBLE CHART IS SOUND: a universal check, not
-     d'existence
+     an existence one
 
 What this script does NOT do: congruence (`Q_source = J* Q_target J`)
 and positivity transport. They stay UNTESTED, and the success of the
@@ -173,7 +172,7 @@ def build_section(S, g, eps, center, hw, centre_only=False):
             + v2.mul_real(A[r][2])
         a1, a2 = Fraction(Ae[r][perm[1]]), Fraction(Ae[r][perm[2]])
         if centre_only:
-            # MUTATION : σ lu au seul centre (boîte de demi-largeur 0)
+            # MUTATION: sigma read at the centre alone (box of half-width 0)
             sg = rotated_sigma_from_coeffs(
                 a1, a2, (center[0], center[0]), (center[1], center[1]),
                 (center[2], center[2]), (center[3], center[3]))
@@ -199,7 +198,7 @@ def build_section(S, g, eps, center, hw, centre_only=False):
                 rec["refused"] = exc.diag.get("guard")
         if Zs is not None:
             Z[s] = Zs
-            # `dZ_s = ∂R_s/(2 Z_s)` — INDÉPENDANT de la détermination,
+            # `dZ_s = dR_s/(2 Z_s)`, INDEPENDENT of the determination,
             # since Z_s^2 = R_s holds for both (check D3).
             iZ = Zs.inv()
             dZ[s] = (u.mul_real(A[r][1]) * iZ, v.mul_real(A[r][2]) * iZ)
@@ -209,7 +208,7 @@ def build_section(S, g, eps, center, hw, centre_only=False):
 
 def chart_certificate(Z, dZ, S2, g2):
     """Chart criterion and Jacobian on the WHOLE box, plus disjointness from the
-    tranche réelle du chart cible."""
+    real slice of the target chart."""
     T2 = [j for j in range(6) if j not in S2]
     o = [x for x in T2 if x != g2]
     need = [g2, o[0], o[1]]
@@ -307,15 +306,15 @@ def build():
             f"{[x['determination'] for x in rows]} · section complète "
             f"{all(z is not None for z in Z)} · {len(adm)} admissibles "
             f"(chart criterion and Jacobian on the whole box) of which "
-            f"**{len(payoff)} DISJOINTS de leur tranche**")
+            f"**{len(payoff)} DISJOINT from their slice**")
 
-    # --- the pilot : négatif de composante (avec sa mutation) ------------------------------
+    # --- the pilot: the component negative control (with its mutation) -
     r0 = residual[0]
     S0, g0, eps0 = tuple(r0["S"]), r0["g"], tuple(r0["eps"])
     hw0 = float.fromhex(r0["hw_hex"])
     c0 = [float.fromhex(x) for x in r0["center_hex"]]
     # box translated so that Im u AND Im v STRADDLE 0, while having
-    # un centre strictement négatif : σ déterminé au centre, INDÉTERMINÉ
+    # a strictly negative centre: sigma determined at the centre, UNDETERMINED
     # on the box.
     cbad = [c0[0], -hw0 / 2, c0[2], -hw0 / 2]
     _Zb, _dZb, rows_box = build_section(S0, g0, eps0, cbad, hw0)
@@ -425,8 +424,8 @@ def build():
             len(cells)))
 
     out = {
-        "phase": ("B1.e.2.iii the chart criterion/the Jacobian criterion sur cellule entière, "
-                  "détermination par ligne (contrat the holonomy step §8)"),
+        "phase": ("chart and Jacobian criteria on a whole cell, with the "
+                  "determination chosen per row"),
         "witness_sha256": reg["witness_sha256"],
         "tm_config": {"poly_deg": TM_ORDER,
                       "unary_series_deg": UNARY_SERIES_DEG},
@@ -471,10 +470,10 @@ def _selftest():
         formula = float(a1) * u0 / Zs
         ok = abs(fd - formula) < 1e-6 * max(1.0, abs(formula))
         fails.append(not ok)
-        print(f"[{'PASS' if ok else 'FAIL'}] F-S1 Jacobien ({name}) : "
-              f"a₁u/Z = {formula:.6f} vs contrôle {fd:.6f}")
+        print(f"[{'PASS' if ok else 'FAIL'}] F-S1 Jacobian ({name}): "
+              f"a_1 u/Z = {formula:.6f} against control {fd:.6f}")
 
-    # F-S2 : NÉGATIF de composante — σ déterminé au centre, indéterminé
+    # F-S2: component NEGATIVE CONTROL, sigma determined at the centre, undetermined
     # on the box. This is the mutation the review asked for.
     A = Fraction(-8, 3)
     h = 0.001953125
@@ -491,16 +490,16 @@ def _selftest():
           f"= {sig_ctr}; the mutation would wrongly accept")
 
     # F-S3: disjointness from the target slice is read on the
-    # enclosures de Im u' et Im v', et un intervalle contenant 0 ne
-    # suffit PAS à conclure « disjoint »
+    # enclosures of Im u' and Im v', and an interval containing 0 is NOT
+    # enough to conclude disjointness
     def disj(iul, iuh, ivl, ivh):
         return bool(iul > 0 or iuh < 0 or ivl > 0 or ivh < 0)
     ok = (disj(0.1, 0.2, -0.1, 0.1) and disj(-0.2, -0.1, -0.1, 0.1)
           and not disj(-0.1, 0.1, -0.1, 0.1))
     fails.append(not ok)
-    print(f"[{'PASS' if ok else 'FAIL'}] F-S3 disjonction : une seule "
-          f"coordonnée strictement d'un côté suffit ; deux intervalles "
-          f"contenant 0 ne concluent PAS")
+    print(f"[{'PASS' if ok else 'FAIL'}] F-S3 disjunction: a single "
+          f"coordinate strictly on one side suffices; two intervals "
+          f"containing 0 do NOT conclude")
 
     print("-" * 78)
     print("SELF-TEST:", "FAIL" if any(fails) else "ALL PASS")

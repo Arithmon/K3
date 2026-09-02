@@ -1,25 +1,29 @@
 #!/usr/bin/env python3
 """
-spectral_basis.py — moteur float du dry run spectral (étape C).
+spectral_basis.py — the float engine of the spectral dry run.
 
-Design : note the spectral dry-run design.md
-Post-mortem convention : note the convention fix note.md
+Design: see the spectral dry-run design note.
+Convention post-mortem: see the convention fix note.
 
-Charts radicaux (jauge Z_g = 1, coords holomorphes w = (u,v), feuille
-holomorphe). Pont chart ↔ witness ambiant (option 5 GPT) :
+Radical charts (gauge Z_g = 1, holomorphic coordinates w = (u,v),
+holomorphic sheet). Bridge between the chart and the ambient witness:
 
-    z = Z/√s          (repr. sphère, |z|² = 1)
-    U = (I − zz†)W/√s (frame chart horizontale, z̄ᵀU = 0)
-    U = V·A            (V = SVD ortho horiz du witness ; A = V†U inversible)
-    g_chart = A†·g_V·A ⟹ positivité équivalente
+    z = Z/sqrt(s)                (sphere representative, |z|^2 = 1)
+    U = (I - z z-dagger) W/sqrt(s)   (horizontal chart frame,
+                                      z_bar^T U = 0)
+    U = V.A     (V the orthonormal horizontal SVD frame of the witness;
+                 A = V-dagger U invertible)
+    g_chart = A-dagger . g_V . A, so positivity is equivalent
 
 RETRACTED 2026-07-13: the metric-dependent path in this module uses the
 historical convention below. It is retained for audit only. ``load_witness``
 refuses the archived v1 artifact unless the caller explicitly opts in.
 
-Convention métrique HISTORIQUE (héritée de refit_polish / mini-cover) :
-    g_αβ̄ = Σ_{i,j} conj(W[i,α]) · W[j,β] · gI[i] · conj(gK[j])
-         = A[α] · B[β],  A = W†·gI,  B = Σ conj(gK)·W
+HISTORICAL metric convention (inherited from the polish route):
+    g_{alpha, beta-bar} = sum_{i,j} conj(W[i,alpha]) . W[j,beta] . gI[i]
+                          . conj(gK[j])
+                        = A[alpha] . B[beta],  A = W-dagger . gI,
+                          B = sum conj(gK) . W
 
   This is NOT the standard holomorphic chain-rule pullback (which would give
   W^T.gI rather than W-dagger.gI), but the convention against which the witness
@@ -27,14 +31,17 @@ Convention métrique HISTORIQUE (héritée de refit_polish / mini-cover) :
   only the polish convention is consistent with epsilon = 2.824e-4 and the
   mini-cover 2048/2048.
 
-Résidu scalaire projectif (invariant de frame U vs V) :
-    r_0 = log det g − log det(U†U) + log jjh,  jjh = det(J_Q · J_Q†)
+Projective scalar residual (invariant under the frame U against V):
+    r_0 = log det g - log det(U-dagger U) + log jjh,
+    with jjh = det(J_Q . J_Q-dagger)
 
-Volume : dV_0 = det g_chart · d⁴(u,v) uniforme, calibré ∫ = 4π².
+Volume: dV_0 = det g_chart . d^4(u,v) uniform, calibrated so that the
+integral is 4 pi^2.
 
-Échantillonnage propriétaire : (u,v) ~ U([−1,1]⁴) par chart (S, jauge),
-8 reconstructed sheets; a point is kept exactly when THIS (S, g) owns it
-canonique (argmax pivot |Z_iZ_jZ_k|²·V_S, argmax jauge |Z_g|).
+Ownership sampling: (u,v) drawn uniformly on [-1,1]^4 per chart (S,
+gauge), 8 reconstructed sheets; a point is kept exactly when THIS (S, g)
+owns it canonically (argmax pivot |Z_i Z_j Z_k|^2 . V_S, argmax gauge
+|Z_g|).
 """
 from __future__ import annotations
 
@@ -133,7 +140,7 @@ def multis_of(basis):
 
 
 # ===========================================================================
-#  Échantillonnage propriétaire par charts radicaux
+#  Ownership sampling by radical charts
 # ===========================================================================
 def minor_inv_times_T_float(S, T):
     VS = LAMBDA[:, list(S)]
@@ -152,15 +159,16 @@ def owner_scores(Z):
 
 def sample_chart(rng, S, g_col, n_draw, uv_offset=(0., 0., 0., 0.)):
     """Draw n_draw points (u,v) uniformly on [-1,1]^4 in the chart (S, g_col),
-    reconstruit les 8 feuilles, garde les points possédés par (S, g_col).
-    Retourne Z (K,6), W (K,6,2), uv (K,2).
+    reconstruct the 8 sheets, and keep the points owned by (S, g_col).
+    Returns Z (K,6), W (K,6,2), uv (K,2).
 
-    uv_offset = (δ_ur, δ_ui, δ_vr, δ_vi) : décalage optionnel du centre du
-    box (u, v). Défaut (0, 0, 0, 0) rétrocompatible ⟹ box centré [-1,1]^4
-    so the Z_2 symmetries u -> -u and v -> -v hold. Choosing a NON-symmetric
-    offset (non-zero, unequal components) breaks these Z_2 in the sample,
-    exposant à la base d'analyse la totalité de la dim quotient prédite
-    (cf. finding 07-12 : à décalage zéro, 103/611 dim invisible à V_4)."""
+    uv_offset is an optional shift of the centre of the (u, v) box. The
+    default (0, 0, 0, 0) is backward compatible and gives a box centred on
+    [-1,1]^4, so the Z_2 symmetries u -> -u and v -> -v hold. Choosing a
+    NON-symmetric offset (non-zero, unequal components) breaks these Z_2
+    in the sample, exposing to the analysis basis the whole predicted
+    quotient dimension (at zero shift, 103 of 611 dimensions are
+    invisible at V_4)."""
     T = tuple(j for j in range(6) if j not in S)
     others = [c for c in T if c != g_col]
     o1, o2 = others
@@ -183,7 +191,7 @@ def sample_chart(rng, S, g_col, n_draw, uv_offset=(0., 0., 0., 0.)):
         Z[:, o1] = u
         Z[:, o2] = v
         Z[:, list(S)] = eps[None, :] * w0
-        # propriétaire : argmax pivot = S ET argmax jauge = g_col
+        # ownership: argmax pivot = S AND argmax gauge = g_col
         sc = owner_scores(Z)
         own_S = np.array(TRIPLES)[np.argmax(sc, axis=1)]
         ok_S = (own_S == np.array(S)[None, :]).all(axis=1)
@@ -236,11 +244,11 @@ def detMS_on_block(b):
 
 
 # ===========================================================================
-#  Primitives par point : monômes, gradients projetés, métrique de chart
+#  Per-point primitives: monomials, projected gradients, chart metric
 # ===========================================================================
 def multi_values_and_projected_grads(Z, W, multis):
-    """m (K,nm) valeurs z^I ; p (K,nm,2) gradients ambient contractés par W†
-    (convention refit_polish / mini-cover) :
+    """m (K,nm) holds the values z^I; p (K,nm,2) holds the ambient
+    gradients contracted with W-dagger (the polish convention):
         p[k, I, α] = Σ_a conj(W[k, a, α]) · (∂z^I/∂Z_a)(Z[k])
                    = (W†·∂z^I)[k, α]
     This convention is NOT the standard pullback (W^T.dz^I through the pure
@@ -271,27 +279,30 @@ def multi_values_and_projected_grads(Z, W, multis):
 
 
 def sphere_horizontal_frame(Z, W):
-    """Pont chart radical ↔ witness sphère/SVD (option 5 GPT 2026-07-11).
+    """Bridge between the radical chart and the sphere/SVD witness.
 
-    The witness was fitted on the unit sphere (Z_sph with |Z| = 1) with
-    V orthonormé + horizontal (SVD de [J_Q ; Z̄]) et correction −f·I_2.
-    This format is THE convention in which c_a is meaningful.
+    The witness was fitted on the unit sphere (Z_sph with |Z| = 1) with V
+    orthonormal and horizontal (SVD of [J_Q ; Z_bar]) and a correction
+    -f.I_2. This format is THE convention in which c_a is meaningful.
 
-    In the radical chart one has (Z, W) with |Z|^2 = s and gauge Z_g = 1; W = dZ/dw
-    is neither horizontal nor orthonormal. Frame covariance gives
-    directement le représentant équivalent :
+    In the radical chart one has (Z, W) with |Z|^2 = s and gauge Z_g = 1;
+    W = dZ/dw is neither horizontal nor orthonormal. Frame covariance
+    gives the equivalent representative directly:
 
-        z = Z/√s              (repr. sphère du même point projectif)
-        P_z = I − z·z†        (projecteur horizontal en z)
-        U = P_z · W / √s      (frame horizontale non-ortho de (u,v))
+        z = Z/sqrt(s)          (sphere representative of the same
+                                projective point)
+        P_z = I - z.z-dagger   (horizontal projector at z)
+        U = P_z . W / sqrt(s)  (non-orthonormal horizontal frame of (u,v))
 
-    Propriétés vérifiées :
-      z̄ᵀU = 0  (horizontal)
-      J_Q(z)·U = 0  (tangent K3, hérité de J_Q(Z)·W = 0 et Q(Z)=0)
+    Properties verified:
+      z_bar^T U = 0  (horizontal)
+      J_Q(z).U = 0   (tangent to the K3, inherited from J_Q(Z).W = 0 and
+                      Q(Z) = 0)
         U spans the SAME horizontal plane as V, so there is an invertible A = V-dagger U with
       que U = V·A  ⟹  g_chart = A† · g_V · A (covariance).
 
-    La correction homogénéisée devient exactement −f·U†U (au lieu de −f·I_2
+    The homogenised correction becomes exactly -f.U-dagger U (instead of
+    -f.I_2
     which assumes an orthonormal frame). Returns (z, U)."""
     s = (np.abs(Z) ** 2).sum(axis=1)
     sqrt_s = np.sqrt(s)
@@ -302,17 +313,18 @@ def sphere_horizontal_frame(Z, W):
 
 
 def chart_metric(Z, W, M, coeffs, basis, multis, midx, want_element_data=False):
-    """g_chart (K,2,2) = pullback ∂∂̄K̃ dans coords (u,v) via option 5.
-    ATTENDU en entrée : (Z, W) = (z, U) déjà passés par
-    sphere_horizontal_frame; the caller converts once.
-    Formule ambiante (comme metric_interval_kahler / refit_polish) :
-    bloc ρ + Σ c·T_raw − f·U†U. Positivité garantie (witness certifie
-    4000/4000 on this frame by covariance U = V.A). Volume convention
-    dV_0 = det(g_chart)·d(Re u,Im u,Re v,Im v) hérite du chart."""
+    """g_chart (K,2,2) is the pullback of the complex Hessian of K in the
+    (u,v) coordinates. EXPECTED as input: (Z, W) = (z, U) already passed
+    through sphere_horizontal_frame; the caller converts once. Ambient
+    formula: the rho block plus sum c.T_raw minus f.U-dagger U.
+    Positivity is guaranteed (the witness certifies 4000/4000 on this
+    frame by covariance U = V.A). The volume convention
+    dV_0 = det(g_chart).d(Re u, Im u, Re v, Im v) is inherited from the
+    chart."""
     K = Z.shape[0]
-    s = (np.abs(Z) ** 2).sum(axis=1)                  # ≡ 1 par construction
+    s = (np.abs(Z) ** 2).sum(axis=1)                  # 1 by construction
     m, p = multi_values_and_projected_grads(Z, W, multis)
-    # bloc rho : W†(M/rho)W − (W†MZ̄)(W†MZ̄)†/rho²
+    # rho block: W-dagger (M/rho) W - (W-dagger M Z_bar)(...)-dagger/rho^2
     MZc = Z.conj() @ M.T
     rho = np.einsum("ki,ki->k", Z, MZc).real
     WHM = np.einsum("kaA,ab->kAb", W.conj(), M)     # (K,2,6)
@@ -362,11 +374,13 @@ def F0_pointwise(G, jjh, GFS):
 
     G_U and G_FS_U = U-dagger U pulled back in a frame U = V.A that is not orthonormal
     (chart radical horizontal). Sous changement V → U : det G_U = |det A|²·
-    det G_V et det(U†U) = |det A|². Le facteur |Ω|²(U₁,U₂) = |det A|²·
+    det G_V and det(U-dagger U) = |det A|^2. The factor
+    |Omega|^2(U_1,U_2) = |det A|^2 .
     |Omega|^2(V_1,V_2) is absorbed by the volume form dV_0 = det G_U.d^4(u,v).
     so r_0 is frame-invariant: r_U = r_V to machine precision.
-    Convention refit_polish (V ortho) : r_V = log det G_V + log jjh
-    (det(V†V) = 1 disparaît). Ici on doit garder −log det(U†U) explicite."""
+    In the polish convention (V orthonormal), r_V = log det G_V + log jjh
+    (det(V-dagger V) = 1 disappears). Here -log det(U-dagger U) must be
+    kept explicit."""
     return np.log(det2_herm(G)) - np.log(det2_herm(GFS)) + np.log(jjh)
 
 
@@ -401,18 +415,20 @@ def basis_values(basis, m, s, midx):
 
 
 def basis_chart_derivs(basis, m, p, s, midx, Z, W):
-    """∂_α q̃_e (K,nb,2) et Hess_chart[α,β̄] q̃_e (K,nb,2,2).
+    """First derivatives (K,nb,2) and chart Hessian (K,nb,2,2) of the
+    basis functions.
 
-        Warning, 2026-07-11: DIAGNOSTIC ONLY. This routine builds the
-    Laplacien en FORME FORTE (∂∂̄q via chain rule + corrections) et n'est
-    used only for the self-adjointness test. The core spectral pivot
-    passe désormais par la forme faible (matrices M, K) — cf. GPT 07-11 :
-    the ownership partition creates artificial fluxes that the weak form
-    élimine.
+    Warning: DIAGNOSTIC ONLY. This routine builds the Laplacian in STRONG
+    FORM (the complex Hessian by chain rule plus corrections) and is used
+    only for the self-adjointness test. The core spectral pivot now goes
+    through the weak form (matrices M, K): the ownership partition creates
+    artificial fluxes that the weak form eliminates.
 
-    Convention : p attendu = W†·gI (cohérent avec multi_values_and_projected_grads
-    post-fix). Les corrections d'homogénéisation s^{-d} × brut −
-    d.phi.s^{-(d+1)}.(W-dagger W) are written for the ambient polish convention."""
+    Convention: p is expected to be W-dagger times the ambient gradient
+    (consistent with multi_values_and_projected_grads after the fix). The
+    homogenisation corrections s^{-d} times raw minus
+    d.phi.s^{-(d+1)}.(W-dagger W) are written for the ambient polish
+    convention."""
     K = m.shape[0]
     nb = len(basis)
     dQ = np.empty((K, nb, 2), dtype=complex)
