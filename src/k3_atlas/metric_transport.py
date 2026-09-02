@@ -41,7 +41,7 @@ WHAT THIS STEP CERTIFIES
   . congruence on the bridge-to-lower and bridge-to-bridge overlaps, that
     is, on the edges that really carry the nerve.
 
-GATES
+CHECKS
   G1  NON-REGRESSION OF THE INJECTION: the default path (`section=None`)
       replayed on a regularly spaced panel of the full run, giving ratio,
       slack Weyl, sheet record et déterminations IDENTIQUES à l'artefact full
@@ -150,23 +150,23 @@ def _sha(p):
 # ===========================================================================
 #  Chargement
 # ===========================================================================
-def load_leaves(cov, c127, c127e):
-    tr = {r["tile_index"]: r for r in c127["transports"]
+def load_leaves(cov, transport, residual):
+    tr = {r["tile_index"]: r for r in transport["transports"]
           if not r.get("failed")}
-    tre = {r["box_index"]: r for r in c127e["transports"]
+    tre = {r["box_index"]: r for r in residual["transports"]
            if not r.get("failed")}
     out = []
     for i, t in enumerate(cov["tiles"]):
         r = tr[i]
-        out.append({"src": "c127", "center_hex": t["center_hex"],
+        out.append({"src": "transport", "center_hex": t["center_hex"],
                     "hw_hex": t["hw_hex"], "chart": t["chart"],
                     "eps_target": r["eps_target"],
                     "sigma_target": r["sigma_target"],
                     "core_kinds_target": r["kinds_target"],
                     "core_src_det": r["source_determinations"]})
-    for t in c127e["new_tiles"]:
+    for t in residual["new_tiles"]:
         r = tre[t["box_index"]]
-        out.append({"src": "c127e", "center_hex": t["center_hex"],
+        out.append({"src": "residual", "center_hex": t["center_hex"],
                     "hw_hex": t["hw_hex"], "chart": t["chart"],
                     "eps_target": r["eps_target"],
                     "sigma_target": r["sigma_target"],
@@ -352,25 +352,25 @@ def build():
     print("=" * 78)
     print(f"METRIC ON THE BRIDGE CHARTS "
           f"({'FULL 64' if MODE == 'full' else f'PANEL {N_PANEL}'}), "
-          f"{N_WORKERS} workers, δ = {DELTA_REL:.0e}, ledger FIGÉ")
+          f"{N_WORKERS} workers, delta = {DELTA_REL:.0e}, FROZEN sign pattern")
     print("=" * 78)
     cov = json.loads(COVER_JSON.read_text(encoding="utf-8"))
     atl = json.loads(ATLAS_JSON.read_text(encoding="utf-8"))
-    c127 = json.loads(C127_JSON.read_text(encoding="utf-8"))
-    c127e = json.loads(C127E_JSON.read_text(encoding="utf-8"))
-    c129d = json.loads(C129D_JSON.read_text(encoding="utf-8"))
-    c129e = json.loads(C129E_JSON.read_text(encoding="utf-8"))
+    transport = json.loads(C127_JSON.read_text(encoding="utf-8"))
+    residual = json.loads(C127E_JSON.read_text(encoding="utf-8"))
+    exact_gluing = json.loads(C129D_JSON.read_text(encoding="utf-8"))
+    halo = json.loads(C129E_JSON.read_text(encoding="utf-8"))
     f23 = json.loads(F2F3_JSON.read_text(encoding="utf-8"))
     cell_d = cov["cell"]
     S, g, eps = (tuple(cell_d["S"]), cell_d["g"], tuple(cell_d["eps"]))
-    leaves = load_leaves(cov, c127, c127e)
+    leaves = load_leaves(cov, transport, residual)
     halos = {h["index"]: h["record"] for h in atl["halos"] if h["ok"]}
 
     # --- G2 : amont — mode == "full" EXIGÉ des QUATRE (a review D2 ;
     # avant, seul the atlas step le devait, et the bridge step sérialisait mode=null) -----
     up = {}
-    for name, blob in (("c127d", atl), ("c129d", c129d),
-                       ("c129e", c129e), ("f2f3_v2", f23)):
+    for name, blob in (("atlas", atl), ("exact_gluing", exact_gluing),
+                       ("halo", halo), ("f2f3_v2", f23)):
         gp, gt = blob.get("checks_passed"), blob.get("checks_total")
         up[name] = {"checks": f"{gp}/{gt}", "mode": blob.get("mode"),
                     "green": bool(gp == gt and gt
@@ -404,7 +404,7 @@ def build():
     # path. The numbers must be
     # IDENTICAL to those SERIALISED: an injection moving a digit
     # of the full run would be a silent disaster.
-    ref = {r["tile_index"]: r for r in c129e["transports"]
+    ref = {r["tile_index"]: r for r in halo["transports"]
            if r.get("kind") == "transport" and not r.get("failed")}
     probe = sorted(ref)[::max(1, len(ref) // 6)][:6]
     jobs = [(i, halos[i]["center_hex"], halos[i]["H_hex"]) for i in probe]
@@ -425,7 +425,7 @@ def build():
                         "ratio_now": r.get("residual_relative"),
                         "ratio_serialized": a.get("residual_relative")})
     log(f"G1 (NON-REGRESSION): default path replayed on "
-        f"{len(probe)} tuiles du full the full run ⟹ ratio, ledger, "
+        f"{len(probe)} tiles of the full run, giving ratio, sign pattern, "
         f"déterminations et slack IDENTIQUES : {g1}")
 
     # --- G3/G4: the metric on the bridges -----------------------------
@@ -610,7 +610,7 @@ def build():
             f"F4 {'FULL' if MODE == 'full' else 'PANEL'} LIVRÉ — la "
             f"metric joins the bridge charts and the nerve edges."
             if npass == len(checks) else
-            f"ROUGE — {len(checks) - npass} gate(s) en échec"),
+            f"RED: {len(checks) - npass} check(s) failed"),
         "provenance": {
             "git_head": head, "python": sys.version.split()[0],
             "platform": platform.platform(), "mp_prec": int(mp.prec),
@@ -629,7 +629,7 @@ def build():
     for k, v in checks.items():
         print(f"  {'OK  ' if v else 'FAIL'} {k}")
     print(f"\n{out['verdict']}")
-    print(f"gates {npass}/{len(checks)} — artefact : {ART.name}")
+    print(f"checks {npass}/{len(checks)} - artefact: {ART.name}")
     print("=" * 78)
     return npass == len(checks)
 

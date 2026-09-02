@@ -88,7 +88,7 @@ sys.argv = _argv
 
 RES = Path(os.environ.get(
     "K3_RES_DIR", Path(__file__).resolve().parent / "data"))
-C118_JSON = RES / "shell_enumeration.json"
+SHELL_JSON = RES / "shell_enumeration.json"
 ART = RES / "full_cell_charts.json"
 
 N_CELLS = int(os.environ.get("K3_D5FC_CELLS", "4"))
@@ -266,8 +266,8 @@ def build():
           f"{UNARY_SERIES_DEG}), {N_CELLS} cellules")
     print("=" * 78)
     reg = load_canonical_MH()
-    c118 = json.loads(C118_JSON.read_text(encoding="utf-8"))
-    residual = [x for x in c118["cells"] if x["still_branch"]]
+    shell = json.loads(SHELL_JSON.read_text(encoding="utf-8"))
+    residual = [x for x in shell["cells"] if x["still_branch"]]
     log(f"résidu : {len(residual)} paires")
 
     cells = []
@@ -430,7 +430,7 @@ def build():
         "witness_sha256": reg["witness_sha256"],
         "tm_config": {"poly_deg": TM_ORDER,
                       "unary_series_deg": UNARY_SERIES_DEG},
-        "provenance": provenance(C118_JSON, time.time() - T0),
+        "provenance": provenance(SHELL_JSON, time.time() - T0),
         "jacobian_identity": ("dZ_s/du = d_u R_s/(2 Z_s) = a_1.u/Z_s, "
                               "INDEPENDENT of the determination because "
                               "Z_s^2 = R_s holds for both"),

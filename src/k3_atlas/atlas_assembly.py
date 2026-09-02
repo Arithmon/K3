@@ -21,7 +21,7 @@ WHAT THIS SCRIPT PAYS (the four points of the contract):
      complète, DÉTERMINATIONS SOURCE INCHANGÉES, critère de chart (celui
      that certified the core: the chart criterion for the 252, extended for the 64,
      and for those 64 the plain criterion must STILL REFUSE, non-tautology
-     survit au halo), section cible native à LEDGER FIGÉ (`ε'`, `σ'`)
+     survit au halo), section cible native à SIGN PATTERN FIGÉ (`ε'`, `σ'`)
      with the same kinds, and projective congruence under delta.
      A chart valid on an OPEN NEIGHBOURHOOD of the core: that is what
      transforme un certificat de boîte fermée en carte d'atlas.
@@ -531,7 +531,7 @@ def halo_certify(cell, tile, rho, rule, root_c, root_h):
     rec["criterion_c126_on_halo"] = bool(ok126)
     rec["criterion_ext_on_halo"] = bool(okext)
     need = tile["criterion"]
-    if need == "c126" and not ok126:
+    if need == "criterion" and not ok126:
         rec["refused"] = "c126_fails_on_halo"
         return rec, None, None
     if need == "extended":
@@ -832,12 +832,12 @@ def _triple_job(job):
 # ===========================================================================
 def load_leaves():
     cov = json.loads(COVER_JSON.read_text(encoding="utf-8"))
-    c127 = json.loads(C127_JSON.read_text(encoding="utf-8"))
-    c127e = json.loads(C127E_JSON.read_text(encoding="utf-8"))
+    transport = json.loads(C127_JSON.read_text(encoding="utf-8"))
+    residual = json.loads(C127E_JSON.read_text(encoding="utf-8"))
     cell = cov["cell"]
-    tr127 = {r["tile_index"]: r for r in c127["transports"]
+    tr127 = {r["tile_index"]: r for r in transport["transports"]
              if not r.get("failed")}
-    tr127e = {r["box_index"]: r for r in c127e["transports"]
+    tr_residual = {r["box_index"]: r for r in residual["transports"]
               if not r.get("failed")}
     leaves = []
     for i, t in enumerate(cov["tiles"]):
@@ -845,20 +845,20 @@ def load_leaves():
         if r is None:
             raise SystemExit(f"tuile the transport step {i} sans transport certifié")
         leaves.append({
-            "src": "c127", "orig_index": i, "depth": t["depth"],
+            "src": "transport", "orig_index": i, "depth": t["depth"],
             "center_hex": t["center_hex"], "hw_hex": t["hw_hex"],
-            "chart": t["chart"], "criterion": "c126",
+            "chart": t["chart"], "criterion": "criterion",
             "core_src_det": r["source_determinations"],
             "core_kinds_target": r["kinds_target"],
             "eps_target": r["eps_target"],
             "sigma_target": r["sigma_target"]})
-    for t in c127e["new_tiles"]:
-        r = tr127e.get(t["box_index"])
+    for t in residual["new_tiles"]:
+        r = tr_residual.get(t["box_index"])
         if r is None:
             raise SystemExit(
                 f"tuile the residual closure {t['box_index']} sans transport certifié")
         leaves.append({
-            "src": "c127e", "orig_index": t["box_index"],
+            "src": "residual", "orig_index": t["box_index"],
             "depth": t["depth"], "center_hex": t["center_hex"],
             "hw_hex": t["hw_hex"], "chart": t["chart"],
             "criterion": "extended",
@@ -884,9 +884,9 @@ def pilot_patch(leaves, n_max):
                 nb[j].add(i)
     seed, best = 0, -1
     for i, t in enumerate(leaves):
-        if t["src"] != "c127e":
+        if t["src"] != "residual":
             continue
-        n = sum(1 for j in nb[i] if leaves[j]["src"] == "c127")
+        n = sum(1 for j in nb[i] if leaves[j]["src"] == "transport")
         if n > best:
             seed, best = i, n
     sel = [seed] + sorted(nb[seed])
@@ -923,8 +923,8 @@ def build():
     root_c = [float.fromhex(x) for x in cell_d["center_hex"]]
     root_h = float.fromhex(cell_d["hw_hex"])
     log(f"{len(leaves)} feuilles chargées "
-        f"({sum(1 for t in leaves if t['src'] == 'c127')} the transport step + "
-        f"{sum(1 for t in leaves if t['src'] == 'c127e')} the residual closure)")
+        f"({sum(1 for t in leaves if t['src'] == 'transport')} the transport step + "
+        f"{sum(1 for t in leaves if t['src'] == 'residual')} the residual closure)")
 
     # --- D1: the partition, reasserted from the addresses --------------
     addresses, addr_fail = [], 0
@@ -1073,7 +1073,7 @@ def build():
     # sets are published, sorted, with their SHA-256.
     clipped_idx = sorted(h["index"] for h in halo_ok
                          if h["rule_used"] == "clipped")
-    c127e_idx = sorted(i for i in sel if leaves[i]["src"] == "c127e")
+    residual_idx = sorted(i for i in sel if leaves[i]["src"] == "residual")
 
     def _set_sha(idx):
         return hashlib.sha256(
@@ -1087,7 +1087,7 @@ def build():
             and all(Fraction(*h["rho_used"]) > 0 for h in halo_ok)),
         "D2b_clipping_only_at_cell_boundary": bool(clip_legit),
         "D2c_clipped_set_is_exactly_c127e_residual": bool(
-            clipped_idx == c127e_idx),
+            clipped_idx == residual_idx),
         "D3_halo_congruence_below_delta": bool(
             halo_ok and max_halo <= DELTA_TRANS),
         "D4_overlaps_open": bool(touch_pairs and open_all
@@ -1209,10 +1209,10 @@ def build():
                   for h in halos],
         "clipped_set": {
             "clipped_indices": clipped_idx,
-            "c127e_selected_indices": c127e_idx,
+            "c127e_selected_indices": residual_idx,
             "clipped_sha256": _set_sha(clipped_idx),
-            "c127e_sha256": _set_sha(c127e_idx),
-            "equal": bool(clipped_idx == c127e_idx),
+            "c127e_sha256": _set_sha(residual_idx),
+            "equal": bool(clipped_idx == residual_idx),
             "note": ("the set-equality step : égalité d'ensembles gatée (D2c), pas "
                 "only the cardinality: 64 = 64 does not exclude a "
                      "permutation 63+1")},

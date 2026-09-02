@@ -2,7 +2,7 @@
 
 This repository exists so that the quantitative claims of the paper can be
 checked rather than believed. The most valuable contribution is therefore the
-one that makes a certificate fail: a gate that passes when it should not, a
+one that makes a certificate fail: a check that passes when it should not, a
 bound that does not hold, a replay that does not reproduce. Adversarial input
 is welcome by design.
 
@@ -47,7 +47,7 @@ report is most useful when it separates these three cases.
 
 1. Say which the claim is: an error in a proof, a constant that is not sharp,
    or a hypothesis that is asserted rather than certified.
-2. Point to the specific certificate and gate, or to the section of the paper.
+2. Point to the specific certificate and check, or to the section of the paper.
 3. An error in a proof is a correction. A loose constant is an improvement. A
    hypothesis found to be asserted rather than certified is the most serious
    of the three, and is treated as such.
@@ -62,17 +62,17 @@ substitution itself and not merely a floor set too high.
 
 ## Improve the negative controls
 
-Each producer carries gates and, separately, negative controls: the
-computation is deliberately perturbed and the gate that should catch the
-perturbation is required to fail. A gate that passes on correct input tells
-you little. A gate that also fails on wrong input is the one worth reading.
+Each producer carries checks and, separately, negative controls: the
+computation is deliberately perturbed and the check that should catch the
+perturbation is required to fail. A check that passes on correct input tells
+you little. A check that also fails on wrong input is the one worth reading.
 
-1. A proposed negative control should name the perturbation and the gate it
+1. A proposed negative control should name the perturbation and the check it
    targets.
 2. It is accepted when it fails on the perturbed input and passes on the
    real one, and when it is not already covered by an existing control.
-3. A control that no existing gate can catch is the most useful of all: it
-   means a gate is missing, not that the control is wrong.
+3. A control that no existing check can catch is the most useful of all: it
+   means a check is missing, not that the control is wrong.
 
 ---
 
@@ -82,6 +82,6 @@ Siblings: [K7](https://github.com/arithmon/K7) ·
 [Atlas](https://github.com/arithmon/atlas) ·
 [Lean](https://github.com/arithmon/lean)
 
-<sub>K₇ (formerly GIFT) is the founding framework of the Arithmon program.
+<sub>K₇ (formerly the programme) is the founding framework of the Arithmon program.
 Program: [arithmon.com](https://arithmon.com) ·
 [github.com/arithmon](https://github.com/arithmon)</sub>

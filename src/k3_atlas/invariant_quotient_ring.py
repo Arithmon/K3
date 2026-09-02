@@ -5,7 +5,7 @@ invariant_quotient_ring.py — base standard C[Z]/⟨Q_0,Q_1,Q_2⟩ Hermitiens
 
 Design (GPT 5.6 + Brieuc 07-12) : la route quotient devient obligatoire
 after the sampler sweep found r_eff = 216 strictly constant against
-N ∈ {500,1000,2000} × 3 seeds, tol 1e-10) et le freeze test V_≤3→V_≤4
+N ∈ {500,1000,2000} × 3 seeds, tol 1e-10) et le frozen manifest test V_≤3→V_≤4
 (nothing frozen; the min-max was expected, but on ill-defined spaces).
 
 This module produces a quotient analysis basis COMPATIBLE with

@@ -18,7 +18,7 @@ par la review (`gpt_b1e2iii_c125_c126_d56_review_2026_07_29.md`) :
 
 WHAT THIS SCRIPT PAYS:
 
-  A. LEDGER DYADIQUE AUTONOME — chaque feuille (tuile OU résidu) reçoit
+  A. SIGN PATTERN DYADIQUE AUTONOME — chaque feuille (tuile OU résidu) reçoit
      its ADDRESS reconstructed arithmetically from the root, with
      EXACT float equality; the set of addresses is checked UNIQUE,
      PREFIX-FREE (donc intérieurs disjoints), CLOS (chaque nœud subdivisé
@@ -69,7 +69,7 @@ the residual 1/64 (neither covered nor excluded); the EXACT contract of
 congruence (the identity stays "certified approximate congruence" with bounds);
 la globalisation ; the later scaling.
 
-DURCISSEMENTS C128 (a review GPT, 2026-07-30) — appliqués puis TOUS les
+DURCISSEMENTS the hardening (a review GPT, 2026-07-30) — appliqués puis TOUS les
 regenerated artefacts (lesson: a modified script without a rerun gives
 the appearance of verification):
   A  the sheet anchor includes the model REMAINDER (`p[0] +- rem` per part):
@@ -82,7 +82,7 @@ the appearance of verification):
           q00_lo rounded down (the earlier max-endpoint denominator was a
           SUPÉRIEURE — un quotient majorant exige un dénominateur
           inférieur) ; l'ancien ratio publié en `_legacy` ;
-  the autonomy probe  le scaling fige le LEDGER (ε', σ', déterminations refusées si
+  the autonomy probe  le scaling fige le SIGN PATTERN (ε', σ', déterminations refusées si
           they change), PREREGISTERED ratio window [16, 64]
           (order 5 plus or minus 1), one level deeper, one chart more;
   E  full SHA-256, dyadic addresses explicitly
@@ -544,7 +544,7 @@ def _run_tile(job):
     if kind == "mutation":
         kw["perturb_J"] = complex(0.3, 0.2)
     elif kind in ("autonomy", "scaling"):
-        # the autonomy probe : le scaling fige aussi le LEDGER (ε', σ') — réduire h
+        # the autonomy probe : le scaling fige aussi le SIGN PATTERN (ε', σ') — réduire h
         # without freezing the branch would measure something other than the model remainder
         kw["fixed_eps2"] = extra["eps_target"]
         kw["fixed_sigma2"] = extra["sigma_target"]

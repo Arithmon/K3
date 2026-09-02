@@ -966,7 +966,7 @@ criticism and revision between the author and the two models; the models also
 assisted in checking references and code outputs against their sources. Two
 defects in the certificates were found in exactly this way, while writing
 the argument out in continuous prose for an outside reader, and both are
-recorded in the paper: an invariance gated under one group generator instead of
+recorded in the paper: an invariance checked under one group generator instead of
 the whole group, and a bound on a product used where a bound on a minimum was
 required. Neither model is an author: authorship carries accountability, and
 every condition, every run and every sentence of this paper was reviewed, verified

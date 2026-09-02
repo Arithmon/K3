@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-face_continuation.py — RFace-P0 / B1 : LA CONTINUATION
+face_continuation.py — the face arc-P0 / B1 : LA CONTINUATION
 CROSSES THE Re FACE, AND THE SHEET REACHED IS DERIVED, NOT ASSUMED.
 
 WHAT THIS SCRIPT PAYS: phase B1 of the face contract
@@ -67,7 +67,7 @@ the neighbouring cell (the pilot certifies a LOCAL gluing to one
 addressed cell, not its atlas); the low faces (enumeration boundary);
 les 895 autres paires.
 
-GATES
+CHECKS
   B1a  amont vert et modes full là où le champ existe (preliminary computation v2 8/8,
        the base bridge preliminary computation 7/7, the bridge step 17/17 full, atlas the atlas step 14/14 full) —
        et témoin/face/boîtes IMPORTÉS des artefacts, jamais recodés ;
@@ -268,12 +268,12 @@ def selftest():
 # ===========================================================================
 def build():
     print("=" * 78)
-    print("RFace-P0 / B1 — la feuille atteinte à travers la face Re u "
+    print("the face arc-P0 / B1 — la feuille atteinte à travers la face Re u "
           "haute, DÉRIVÉE")
     print("=" * 78)
     cov = json.loads(COVER_JSON.read_text(encoding="utf-8"))
     atl = json.loads(ATLAS_JSON.read_text(encoding="utf-8"))
-    c127e = json.loads(C127E_JSON.read_text(encoding="utf-8"))
+    residual = json.loads(C127E_JSON.read_text(encoding="utf-8"))
     scout0 = json.loads(SCOUT0_JSON.read_text(encoding="utf-8"))
     f23 = json.loads(F2F3_JSON.read_text(encoding="utf-8"))
     rs = json.loads(RSCOUT_JSON.read_text(encoding="utf-8"))
@@ -282,8 +282,8 @@ def build():
     # chart cible S₂/g₂, dépendance load-bearing, donc GATÉE) ----------
     up = {}
     for name, blob in (("rface_scout_v2", rs), ("f0_scout", scout0),
-                       ("f2f3_v2", f23), ("c127d", atl),
-                       ("c127e_residual", c127e)):
+                       ("f2f3_v2", f23), ("atlas", atl),
+                       ("c127e_residual", residual)):
         gp, gt = blob.get("checks_passed"), blob.get("checks_total")
         mode = blob.get("mode")
         up[name] = {"checks": f"{gp}/{gt}", "mode": mode,
@@ -292,7 +292,7 @@ def build():
                                        if mode is not None else True))}
     up["c127e_residual"]["green"] = bool(
         up["c127e_residual"]["green"]
-        and len(c127e.get("new_tiles", [])) == 64)
+        and len(residual.get("new_tiles", [])) == 64)
     b1a = all(v["green"] for v in up.values())
     log("B1a : amont — " + " ; ".join(
         f"{k} {v['checks']}" for k, v in up.items()) + f" ⟹ {b1a}")
@@ -311,7 +311,7 @@ def build():
     pb = [x for x in f23["per_bridge"] if x["tile"] == tile][0]
     eps_f0 = tuple(pb["F2d_ledger_derived"])
     regimes_f0 = [r["regime"] for r in pb["bridge_rows"]]
-    chart = c127e["new_tiles"][tile - 252]["chart"]
+    chart = residual["new_tiles"][tile - 252]["chart"]
     S2, g2 = tuple(chart["S"]), chart["g"]
     log(f"témoin {tile} (importé du preliminary computation v2), face Re u = {face} "
         f"({float(face):+.9f}), sheet record the base bridge {eps_f0}, chart cible "
@@ -457,7 +457,7 @@ def build():
     #     principal → principal : κ = +1
     #     rotated   → canonique : κ = −1
     # The core determinations are imported, not recited.
-    core_dets = [t for t in c127e["transports"]
+    core_dets = [t for t in residual["transports"]
                  if t.get("box_index") == tile - 252]
     core_src = (core_dets[0].get("source_determinations")
                 if core_dets else None)
@@ -555,7 +555,7 @@ def build():
     out = {
         "artifact": "face_continuation",
         "mode": "full",
-        "contract": ("phase B1 du contrat RFace-P0 — a review §7.3-B, "
+        "contract": ("phase B1 du contrat the face arc-P0 — a review §7.3-B, "
                      "amendée a review §1/§4/§5 ; témoin unique "
                      "w_one_neighbor"),
         "claim": (

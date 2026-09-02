@@ -8,7 +8,7 @@ WHAT THIS SCRIPT PAYS (v2): the contract of a review
 établi par le preliminary computation et sous le nom honnête fixé par the mirror identification, ET le contrat
 de réparation de la a review
 The v1 of this
-SCRIPT AVAIT DEUX DÉFAUTS LOAD-BEARING, CASSÉS EN REVUE ET RÉPARÉS
+SCRIPT AVAIT DEUX DÉFAUTS LOAD-BEARING, CASSÉS EN REVIEW ET RÉPARÉS
 HERE: (i) it read the theta pattern on the upper side as a
 "verified prediction", that is, it renamed a gluing FAILURE
 as a green check; v2 turns it into a DECK THEOREM
@@ -106,7 +106,7 @@ DERIVED by conjugation, not enumerated, and this script inherits that status;
 the codimension-1 neighbours; gluing across the Re faces, where
 the bridges stay RELATIVE charts; the 895 other pairs.
 
-GATES
+CHECKS
   F2a  geometry: half-width 2H in the two reflected imaginary
        directions, H in the real ones, re-derived here in
        Fraction, et IDENTIQUE à celle du preliminary computation (import vérifié) ;
@@ -199,7 +199,7 @@ RES = Path(os.environ.get(
 COVER_JSON = RES / "dyadic_cover.json"
 ATLAS_JSON = RES / "atlas_assembly.json"
 C127E_JSON = RES / "residual_closure.json"
-SCOUT_JSON = RES / "bridge_preliminary.json"
+PRELIMINARY_JSON = RES / "bridge_preliminary.json"
 F1_JSON = RES / "mirror_record.json"
 ART = RES / "bridge_continuation.json"
 N_WORKERS = int(os.environ.get("K3_F2F3_WORKERS", "6"))
@@ -950,7 +950,7 @@ def selftest():
     cov = json.loads(COVER_JSON.read_text(encoding="utf-8"))
     cell = cov["cell"]
     S, g, eps = tuple(cell["S"]), cell["g"], tuple(cell["eps"])
-    sc_j = json.loads(SCOUT_JSON.read_text(encoding="utf-8"))
+    sc_j = json.loads(PRELIMINARY_JSON.read_text(encoding="utf-8"))
     t0 = sc_j["per_tile"][0]
     Wb = [(F(*b[0]), F(*b[1])) for b in t0["bridge_corrected_bounds"]]
     cb, hb = center_hw(Wb)
@@ -986,17 +986,17 @@ def selftest():
 # ===========================================================================
 def build():
     print("=" * 78)
-    print(f"C129-F0 — F2 + F3 : CARTES-PONTS ET DEUX TRANSITIONS "
+    print(f"BRIDGE CHARTS AND THEIR TWO TRANSITIONS "
           f"({N_WORKERS} workers)")
     print("=" * 78)
     cov = json.loads(COVER_JSON.read_text(encoding="utf-8"))
     atl = json.loads(ATLAS_JSON.read_text(encoding="utf-8"))
-    c127e = json.loads(C127E_JSON.read_text(encoding="utf-8"))
-    scout = json.loads(SCOUT_JSON.read_text(encoding="utf-8"))
+    residual = json.loads(C127E_JSON.read_text(encoding="utf-8"))
+    preliminary = json.loads(PRELIMINARY_JSON.read_text(encoding="utf-8"))
     f1 = json.loads(F1_JSON.read_text(encoding="utf-8"))
     cell = cov["cell"]
     S, g, eps = tuple(cell["S"]), cell["g"], tuple(cell["eps"])
-    leaves = list(cov["tiles"]) + list(c127e["new_tiles"])
+    leaves = list(cov["tiles"]) + list(residual["new_tiles"])
     halos = {h["index"]: h["record"] for h in atl["halos"] if h["ok"]}
     clipped = sorted(i for i, r in halos.items()
                      if r["rule"] == "clipped")
@@ -1012,7 +1012,7 @@ def build():
     up = {}
     for name, blob, need_full in (
             ("c127d_atlas", atl, True),
-            ("c129f_bridge_scout", scout, False),
+            ("c129f_bridge_scout", preliminary, False),
             ("c129f_f1_mirror_ledger", f1, False)):
         gp, gt = blob.get("checks_passed"), blob.get("checks_total")
         up[name] = {"checks": f"{gp}/{gt}", "green": bool(gp == gt and gt),
@@ -1048,11 +1048,11 @@ def build():
         W = [((-2 * H, 2 * H) if k in IM_DIRS else hb[k])
              for k in range(4)]
         bridges[i] = W
-    scoutb = {t["tile"]: [(Fraction(*b[0]), Fraction(*b[1]))
+    preliminary_boxes = {t["tile"]: [(Fraction(*b[0]), Fraction(*b[1]))
                           for b in t["bridge_corrected_bounds"]]
-              for t in scout["per_tile"]}
-    f2a = all(bridges[i] == scoutb[i] for i in clipped)
-    log(f"F2a : géométrie 2H/H re-dérivée == scout sur "
+              for t in preliminary["per_tile"]}
+    f2a = all(bridges[i] == preliminary_boxes[i] for i in clipped)
+    log(f"F2a: 2H/H geometry re-derived, matching the preliminary bound on "
         f"{len(clipped)} ponts : {f2a}")
 
     jobs = clipped
@@ -1118,7 +1118,7 @@ def build():
     sheet_record_census = Counter(tuple(r["F2d_ledger_derived"]) for r in rows)
     log(f"F3a : overlaps ouverts (largeur min {wid_min:.3e}) + ancres "
         f"strictement intérieures HORS de la face : {f3a}")
-    log(f"F2d(bis) : ledger du pont DÉRIVÉ du côté inférieur — "
+    log(f"F2d(bis): bridge sign pattern DERIVED from the lower side, "
         f"{dict(sheet_record_census)} (défaut {list(eps)})")
     log(f"F3b⁻ : le pont se recolle EXACTEMENT au côté inférieur, θ = +1 "
         f"on every row: {f3b_lo}; minimum margin {marg_min:.3e}; "
@@ -1218,7 +1218,7 @@ def build():
                     new_triples.append([list(x), list(y), list(z)])
     log(f"R3 : NERF (arêtes certifiées SEULEMENT) — {len(nodes)} nœuds "
         f"({n_lower} inférieurs + {len(clipped)} ponts), "
-        f"{len(lower_pairs)} arêtes L↔L importées de C127-D, {n_bl} "
+        f"{len(lower_pairs)} lower-to-lower edges imported from the atlas step, {n_bl} "
         f"arêtes B↔L, {len(bb_ok)} arêtes B↔B, "
         f"{len(new_triples)} triples NEUFS ; connexe={connected}")
     log(f"     (le graphe de DOMAINES, lui, compte {dom_edges} arêtes "
@@ -1457,7 +1457,7 @@ def build():
             "certified ONLY. D = diag(+,-,+,+,+,-) is the "
             "deck transformation separating the conjugate from the continued sheet."
             if npass == len(checks) else
-            f"ROUGE — {len(checks) - npass} gate(s) en échec"),
+            f"RED: {len(checks) - npass} check(s) failed"),
         "provenance": {
             "git_head": head, "python": sys.version.split()[0],
             "platform": platform.platform(), "mp_prec": int(mp.prec),
@@ -1466,7 +1466,7 @@ def build():
             "preregistered": {"im_dirs": list(IM_DIRS),
                               "theta_required": THETA_REQUIRED},
             "inputs": {p.name: _sha(p) for p in
-                       (COVER_JSON, ATLAS_JSON, C127E_JSON, SCOUT_JSON,
+                       (COVER_JSON, ATLAS_JSON, C127E_JSON, PRELIMINARY_JSON,
                         F1_JSON)},
             "self_sha256": _sha(__file__)}}
 
@@ -1476,7 +1476,7 @@ def build():
     for k, v in checks.items():
         print(f"  {'OK  ' if v else 'FAIL'} {k}")
     print(f"\n{out['verdict']}")
-    print(f"gates {npass}/{len(checks)} — artefact : {ART.name}")
+    print(f"checks {npass}/{len(checks)} - artefact: {ART.name}")
     print("=" * 78)
     return npass == len(checks)
 

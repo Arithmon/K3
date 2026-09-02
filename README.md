@@ -37,14 +37,14 @@ version would be comparing two different computations.
 
 **Replayed** (five certificates, under a second each). The producer in
 `verification/producers/` is re-executed and the resulting certificate is
-checked: every gate green, every negative control green, and the recorded
+checked: every check green, every negative control green, and the recorded
 outcome still carrying its expected prefix.
 
 A replayed certificate is deliberately **not** compared by hash. Each one
 records the source revision it was built from, so its bytes change with
 every commit to the repository that produced it; hashing a regenerated file
 would test version-control history rather than mathematics. What is checked
-is the content: the gates and the outcome.
+is the content: the checks and the outcome.
 
 **Recomputed** (one certificate: the coverage enumeration). Its
 branch-and-bound is re-run — 71,807,792 boxes, about seventy seconds on four
@@ -66,11 +66,11 @@ so their original bytes are saved and restored.
 
 ## Negative controls
 
-Each producer carries, besides its gates, a set of *negative controls*: the
+Each producer carries, besides its checks, a set of *negative controls*: the
 computation is deliberately perturbed — a coefficient moved, a sign flipped,
-a bound loosened — and the gate that should catch the perturbation is
-required to fail. A gate that passes on correct input tells you little; a
-gate that also fails on wrong input is the one worth reading. Both counts
+a bound loosened — and the check that should catch the perturbation is
+required to fail. A check that passes on correct input tells you little; a
+check that also fails on wrong input is the one worth reading. Both counts
 appear in the verification output.
 
 ## Layout
@@ -87,7 +87,7 @@ verification/
 
 `model.py` holds the defining data of the surface. Every certificate
 derives the quadrics and the Vandermonde blocks from it rather than
-restating them, so that changing the surface would make the gates fail
+restating them, so that changing the surface would make the checks fail
 rather than let them quietly disagree.
 
 ## Provenance, and what was removed

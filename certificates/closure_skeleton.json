@@ -24,7 +24,7 @@
     "K": "le K3 algébrique CI(2,2,2) ⊂ P⁵ (alias X_CI) — le seul référent des énoncés globaux",
     "X_reg": "le complexe régional historique de certification (contrat C1–C7, D3/H1/H2/B1-M, 380 → 444 sommets) et ses Betti instrumentaux",
     "N(U)": "un nerf de recouvrement, seulement quand il existe réellement comme tel (bon recouvrement déclaré)",
-    "K_S°, B_S": "pour une projection π_S FIXÉE : B_S ⊂ P²_T le lieu de branchement (3 coniques dans la présentation (S,g)), K_S° = K ∖ π_S⁻¹(B_S), deck (Z/2)³_S ; les présentations S ≠ S′ se relient par transitions, pas par un local system global sur une base qui n'existe pas canoniquement",
+    "K_S_degree, B_S": "pour une projection π_S FIXÉE : B_S ⊂ P²_T le lieu de branchement (3 coniques dans la présentation (S,g)), K_S° = K ∖ π_S⁻¹(B_S), deck (Z/2)³_S ; les présentations S ≠ S′ se relient par transitions, pas par un local system global sur une base qui n'existe pas canoniquement",
     "rule": "aucun gate n'accepte un énoncé global avec « X » non qualifié",
     "sources_where_X_means_X_reg": [
       "k3_cap_global_gluing_contract_prereg.json (C1 : recouvrement autoritatif X)",

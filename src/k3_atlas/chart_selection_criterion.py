@@ -107,7 +107,7 @@ sys.argv = _argv
 
 RES = Path(os.environ.get(
     "K3_RES_DIR", Path(__file__).resolve().parent / "data"))
-C118_JSON = RES / "shell_enumeration.json"
+SHELL_JSON = RES / "shell_enumeration.json"
 ART = RES / "chart_selection_criterion.json"
 
 N_CELLS = int(os.environ.get("K3_C126_CELLS", "4"))
@@ -237,8 +237,8 @@ def build():
           f"{UNARY_SERIES_DEG}), {N_CELLS} cellules × 59 charts")
     print("=" * 78)
     load_canonical_MH()
-    c118 = json.loads(C118_JSON.read_text(encoding="utf-8"))
-    residual = [x for x in c118["cells"] if x["still_branch"]]
+    shell = json.loads(SHELL_JSON.read_text(encoding="utf-8"))
+    residual = [x for x in shell["cells"] if x["still_branch"]]
     log(f"résidu : {len(residual)} paires")
 
     cells = []
@@ -463,7 +463,7 @@ def build():
            "cells": cells, "checks": checks,
            "checks_passed": sum(1 for v in checks.values() if v),
            "checks_total": len(checks),
-           "provenance": provenance([C118_JSON], time.time() - T0)}
+           "provenance": provenance([SHELL_JSON], time.time() - T0)}
     ART.parent.mkdir(parents=True, exist_ok=True)
     ART.write_text(json.dumps(art, indent=2, ensure_ascii=False),
                    encoding="utf-8")

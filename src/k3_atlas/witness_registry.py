@@ -6,7 +6,7 @@ Retracted byte streams remain readable only through an explicit audit opt-in.
 
 ACTIVE DATUM (reconciled 2026-07-16)
 ------------------------------------
-The active witness is the R3 freeze `results/k3_closedform_witness_kahler_v2.npz`
+The active witness is the frozen witness manifest `results/k3_closedform_witness_kahler_v2.npz`
 (schema `k3_kahler_witness_v2`: native coeffs218 + M, gauge det M = 1), produced
 by `witness_manifest.py` and certified by the witness check `witness_check.py`
 (11/11 PASS). Its bytes are pinned by `artifact_sha256` in the sidecar manifest
@@ -18,11 +18,11 @@ metric is G = del delbar K~ with the HOLOMORPHIC chain-rule contraction (V^T),
 i.e. exactly the `holomorphic_pullback_VT` convention required by
 `results/retracted/RETRACTED.json` after the 2026-07-13 retraction of the
 U-dagger contraction. See notes the metric convention retraction
-and the witness freeze check.
+and the witness frozen manifest check.
 
 LEGACY VT-667 LINE
 ------------------
-The codex VT refit line (schema `k3_cy_witness_v2`, params_full(667)) ended in
+The a review VT refit line (schema `k3_cy_witness_v2`, params_full(667)) ended in
 NO-GO on 2026-07-13 (legacy_fit_refusal): no active witness ever
 existed under that schema. Its loader path is kept for explicit-path audit
 replays used by the historical d2_vt scripts.
@@ -137,7 +137,7 @@ def _validate_kahler_v2_payload(
     pinned = sidecar.pop("artifact_sha256", None)
     if pinned != digest:
         raise WitnessArtifactError(
-            "witness bytes do not match the R3 freeze pin "
+            "witness bytes do not match the frozen witness manifest pin "
             f"(sidecar {pinned}, artifact {digest})")
     if sidecar != manifest:
         raise WitnessArtifactError(
@@ -211,7 +211,7 @@ def load_witness_artifact(
     if not artifact.exists():
         if artifact == ACTIVE_WITNESS_V2:
             raise WitnessArtifactError(
-                "no active K3 witness v2 exists; D2 refit/freeze is required")
+                "no active K3 witness v2 exists; D2 refit/frozen manifest is required")
         raise WitnessArtifactError(f"witness artifact does not exist: {artifact}")
 
     digest = sha256_file(artifact)
