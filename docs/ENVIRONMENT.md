@@ -11,7 +11,7 @@ Full reproduction is a claim about a computation, and a computation is not separ
 | mpmath | 1.3.0 |
 | sympy | 1.14.0 |
 | scipy | 1.18.0 |
-| matplotlib | **absent from this environment**, required by `verification/producers/figures.py` |
+| matplotlib | 3.11.1 |
 | BLAS | scipy-openblas 0.3.33.112.0 |
 | LAPACK | scipy-openblas |
 
