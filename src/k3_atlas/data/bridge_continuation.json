@@ -83,7 +83,7 @@
     "why_the_algebra_is_not_the_content": "any diagonal of signs preserves the quadrics; what singles out THIS D is that it is the one, and the only one, linking the conjugate section to the bridge section; the R1e negative control carries the discriminating power, not the algebra"
   },
   "domain_intersection_graph": {
-    "note": "A GRAPH OF DOMAINS, NOT an atlas nerve: an edge here is only an intersection of boxes of positive width. Published under that name since a review showed that v1 counted as edges des raccords explicitement en échec.",
+    "note": "A GRAPH OF DOMAINS, NOT an atlas nerve: an edge here is only an intersection of boxes of positive width. Published under that name since a review showed that v1 counted as edges gluings explicitly in failure.",
     "n_bridge_side_geometric": 128,
     "n_bridge_bridge_geometric": 210,
     "n_edges": 338
@@ -9208,21 +9208,21 @@
     }
   ],
   "ambient_scope": {
-    "note": "STRATIFIÉ, corrigé après review : « les 64 cartes become ambient was an overreach.",
+    "note": "STRATIFIED, corrected after review: calling the 64 charts become ambient was an overreach.",
     "bilateral_in_both_im_directions": 64,
     "fully_open_in_all_four_coordinates": 36,
     "still_relative_to_one_re_face": 24,
     "still_relative_to_two_re_faces": 4
   },
   "negatives": {
-    "F2e_i": "faux pont de demi-largeur H : inclusion refusée",
-    "F2e_ii": "component rule on the bridge: REFUSAL `component_sigma_undetermined_on_bridge` — c'est the structural reason for the canonical regime",
-    "F2e_iii": "boîte élargie où Re R straddle : REFUS `re_R_straddles_zero_no_regime` (self-test)",
-    "F3d": "mutation NON SCALAIRE D_bad = diag(1,−1,1,1,1,1) (jauge et coordonnées affines INCHANGÉES, une seule canonical row negated) makes the gluing fall. v1 negated ALL coordinates, yet Z and -Z are THE SAME point of projective space: it tested only the sensibilité de la normalisation Z_g = 1 au change of representative, not the detection of a mauvais POINT. Dette de discriminance, relevée par la review et payée ici.",
+    "F2e_i": "false bridge of half-width H: inclusion refused",
+    "F2e_ii": "component rule on the bridge: REFUSAL `component_sigma_undetermined_on_bridge`, which is the structural reason for the canonical regime",
+    "F2e_iii": "an enlarged box where Re R straddles: REFUSAL `re_R_straddles_zero_no_regime` (self-test)",
+    "F3d": "NON SCALAR mutation D_bad = diag(1,-1,1,1,1,1) (gauge and affine coordinates UNCHANGED, a single canonical row negated) makes the gluing fall. v1 negated ALL coordinates, yet Z and -Z are THE SAME point of projective space: it tested only the sensitivity of the normalisation Z_g = 1 to a change of representative, not the detection of a wrong POINT. A discriminance debt, raised by the review and paid here.",
     "F3d_global_negation_control": "the global negation stays the SAME projective point on 64 of 64; published to say why v1 was worthless",
     "R1e": "a single sign changed in D makes the deck identity BREAK: it is this negative control, and not the algebra of the quadrics, that carries the discriminating power of the theorem"
   },
-  "triple_cocycle_note": "The 588 NEW triples are enumerated from the certified edges alone. Their cocycle theta_ij.theta_jk.theta_ki = +1 is IMPLIED: each theta equals +1 on a domain CONTAINING the triple box, and theta is discrete. It is therefore NOT an independent test and is not checked as one, with the same honesty as the atlas step on its own cocycle. What would remain to pay at the triple is METRIC congruence, qui appartient à F4.",
+  "triple_cocycle_note": "The 588 NEW triples are enumerated from the certified edges alone. Their cocycle theta_ij.theta_jk.theta_ki = +1 is IMPLIED: each theta equals +1 on a domain CONTAINING the triple box, and theta is discrete. It is therefore NOT an independent test and is not checked as one, with the same honesty as the atlas step on its own cocycle. What would remain to pay at the triple is METRIC congruence, which belongs to the metric step.",
   "per_bridge": [
     {
       "tile": 252,
@@ -55370,7 +55370,7 @@
     }
   ],
   "not_paid_here": [
-    "the METRIC of the bridge: Qmat, Weyl, lateral latérales — le chemin the full run exige le constructeur bilateral, which now exists, but the run does not use it",
+    "the METRIC of the bridge: Qmat, Weyl, lateral congruences: the full-run path requires the bilateral bilateral, which now exists, but the run does not use it",
     "the canonical identification of the neighbour, which REFUSED; the upper atlas is DERIVED by conjugation, not enumerated",
     "gluing across the real faces, where the bridges stay cartes RELATIVES (marge 0 contre la face de la cellule)",
     "les voisines de codimension 1, les 895 autres paires, the later scaling"
@@ -55396,15 +55396,15 @@
   },
   "checks_passed": 17,
   "checks_total": 17,
-  "verdict": "F2 + F3 + R1-R4 LIVRÉS — 64 ponts bilatéraux, recollés EXACTEMENT au côté inférieur (64) ET à la feuille CONTINUÉE D·Z_conj (64), 210/210 transitions pont↔pont certifiées, nerf de 380 nœuds connexe sur arêtes certified ONLY. D = diag(+,-,+,+,+,-) is the deck transformation separating the conjugate from the continued sheet.",
+  "verdict": "DELIVERED: 64 bilateral bridges, glued EXACTLY to the lower side (64) AND to the CONTINUED sheet D.Z_conj (64), 210 of 210 bridge-to-bridge transitions certified, a connected nerve of 380 nodes on edges certified ONLY. D = diag(+,-,+,+,+,-) is the deck transformation separating the conjugate from the continued sheet.",
   "provenance": {
-    "git_head": "8f9e7d3886396eb8bc2d60b2c9de6c35dedd95c1",
+    "git_head": "983db416184b4ee03463f8afc87ef61f54ad399d",
     "python": "3.14.4",
     "platform": "Linux-7.0.0-30-generic-x86_64-inconnu-with-glibc2.43",
     "mp_prec": 200,
     "tm_order": 4,
     "unary_series_deg": 4,
-    "wall_s": 43.6,
+    "wall_s": 44.7,
     "n_workers": 6,
     "preregistered": {
       "im_dirs": [
@@ -55414,12 +55414,12 @@
       "theta_required": 1
     },
     "inputs": {
-      "dyadic_cover.json": "83f30f0e78cb9746b8c181a4a4ecc99d1587c481d53d6e713a1d293d859e7f8d",
-      "atlas_assembly.json": "ab99f76619e045b6ed357e8eb8ab4cb22daf3389cd378f13bc3777c95fcf92a7",
-      "residual_closure.json": "e1a5985f799dfa489dde1640a2a65b493390ce7c161b9e7b65c8144c7014d9cd",
-      "bridge_preliminary.json": "fd04dacbd7f5da29f351b7de81ce8683a7c9e89b7940c0bf1e10d408a538a154",
-      "mirror_record.json": "de1f41a1856ff119fe2a9bd0973683a9f31ddd82011049e7890a87526365cc82"
+      "dyadic_cover.json": "c222a7135a522889255e5daea6905e94881281490dbd7628723e7a93beced231",
+      "atlas_assembly.json": "e021519eaddb71a0fcc9a6c3a56d9a6429160a1176e2a69aaf01177f3e045e90",
+      "residual_closure.json": "a1673e80c8334f2faa10056c613fa2e59d2b2b4e42b941d08d37414d5cb4d35e",
+      "bridge_preliminary.json": "8cd17b3fe52466a79290b9ce9117ba7fbce0383124a7881ae48aad3cba41e669",
+      "mirror_record.json": "6e1c487a7b091b3b1cb2bf4c4f291b142a7337c58f0271cba2a1309747d7b978"
     },
-    "self_sha256": "583a7c8c5238c5039a116d6c1e2a989d3d26b28ce797c941f238e2a7055b62f7"
+    "self_sha256": "2fd8d575844ea3c51f1e05a4d849812fc4ad66f873452d3ebb71d1b30875b6f2"
   }
 }

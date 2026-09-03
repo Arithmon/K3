@@ -1,7 +1,7 @@
 {
   "artifact": "residual_closure",
   "mode": "full",
-  "claim": "the residual closure — fermeture du résidu du cover the dyadic cover par troisième détermination (σ canonique, feuille par marge ε'), avec transport the transport step complet.",
+  "claim": "Closing the residual of the dyadic cover by the third determination (canonical component, sheet by margin), with the complete transport.",
   "cell": {
     "S": [
       0,
@@ -6723,7 +6723,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.7,
+      "wall_s": 133.7,
       "box_index": 0,
       "kind": "transport",
       "chart": {
@@ -6972,7 +6972,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.0,
+      "wall_s": 135.8,
       "box_index": 1,
       "kind": "transport",
       "chart": {
@@ -7221,7 +7221,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 141.1,
+      "wall_s": 138.3,
       "box_index": 2,
       "kind": "transport",
       "chart": {
@@ -7470,7 +7470,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 141.8,
+      "wall_s": 139.3,
       "box_index": 3,
       "kind": "transport",
       "chart": {
@@ -7719,7 +7719,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 137.7,
+      "wall_s": 132.6,
       "box_index": 4,
       "kind": "transport",
       "chart": {
@@ -7968,7 +7968,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.0,
+      "wall_s": 136.1,
       "box_index": 5,
       "kind": "transport",
       "chart": {
@@ -8217,7 +8217,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.9,
+      "wall_s": 138.2,
       "box_index": 6,
       "kind": "transport",
       "chart": {
@@ -8466,7 +8466,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.1,
+      "wall_s": 138.9,
       "box_index": 7,
       "kind": "transport",
       "chart": {
@@ -8715,7 +8715,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 138.2,
+      "wall_s": 133.1,
       "box_index": 8,
       "kind": "transport",
       "chart": {
@@ -8964,7 +8964,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.3,
+      "wall_s": 136.9,
       "box_index": 9,
       "kind": "transport",
       "chart": {
@@ -9213,7 +9213,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 141.2,
+      "wall_s": 138.2,
       "box_index": 10,
       "kind": "transport",
       "chart": {
@@ -9462,7 +9462,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.6,
+      "wall_s": 140.2,
       "box_index": 11,
       "kind": "transport",
       "chart": {
@@ -9711,7 +9711,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.7,
+      "wall_s": 134.0,
       "box_index": 12,
       "kind": "transport",
       "chart": {
@@ -9960,7 +9960,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 141.0,
+      "wall_s": 136.0,
       "box_index": 13,
       "kind": "transport",
       "chart": {
@@ -10209,7 +10209,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.3,
+      "wall_s": 138.3,
       "box_index": 14,
       "kind": "transport",
       "chart": {
@@ -10458,7 +10458,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.1,
+      "wall_s": 139.3,
       "box_index": 15,
       "kind": "transport",
       "chart": {
@@ -10707,7 +10707,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 138.9,
+      "wall_s": 140.1,
       "box_index": 16,
       "kind": "transport",
       "chart": {
@@ -10956,7 +10956,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.6,
+      "wall_s": 139.5,
       "box_index": 17,
       "kind": "transport",
       "chart": {
@@ -11205,7 +11205,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 138.7,
+      "wall_s": 140.2,
       "box_index": 18,
       "kind": "transport",
       "chart": {
@@ -11454,7 +11454,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 138.7,
+      "wall_s": 140.7,
       "box_index": 19,
       "kind": "transport",
       "chart": {
@@ -11703,7 +11703,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.8,
+      "wall_s": 139.2,
       "box_index": 20,
       "kind": "transport",
       "chart": {
@@ -11952,7 +11952,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.6,
+      "wall_s": 139.3,
       "box_index": 21,
       "kind": "transport",
       "chart": {
@@ -12201,7 +12201,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.3,
+      "wall_s": 140.1,
       "box_index": 22,
       "kind": "transport",
       "chart": {
@@ -12450,7 +12450,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.6,
+      "wall_s": 140.0,
       "box_index": 23,
       "kind": "transport",
       "chart": {
@@ -12699,7 +12699,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.5,
+      "wall_s": 139.8,
       "box_index": 24,
       "kind": "transport",
       "chart": {
@@ -12948,7 +12948,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.4,
+      "wall_s": 140.5,
       "box_index": 25,
       "kind": "transport",
       "chart": {
@@ -13197,7 +13197,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.1,
+      "wall_s": 140.9,
       "box_index": 26,
       "kind": "transport",
       "chart": {
@@ -13446,7 +13446,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.0,
+      "wall_s": 141.6,
       "box_index": 27,
       "kind": "transport",
       "chart": {
@@ -13695,7 +13695,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 141.3,
+      "wall_s": 140.4,
       "box_index": 28,
       "kind": "transport",
       "chart": {
@@ -13944,7 +13944,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 141.5,
+      "wall_s": 139.8,
       "box_index": 29,
       "kind": "transport",
       "chart": {
@@ -14193,7 +14193,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.8,
+      "wall_s": 140.8,
       "box_index": 30,
       "kind": "transport",
       "chart": {
@@ -14442,7 +14442,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.8,
+      "wall_s": 141.0,
       "box_index": 31,
       "kind": "transport",
       "chart": {
@@ -14691,7 +14691,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 138.6,
+      "wall_s": 139.9,
       "box_index": 32,
       "kind": "transport",
       "chart": {
@@ -14940,7 +14940,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 138.8,
+      "wall_s": 139.6,
       "box_index": 33,
       "kind": "transport",
       "chart": {
@@ -15189,7 +15189,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 138.8,
+      "wall_s": 139.9,
       "box_index": 34,
       "kind": "transport",
       "chart": {
@@ -15438,7 +15438,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.7,
+      "wall_s": 139.9,
       "box_index": 35,
       "kind": "transport",
       "chart": {
@@ -15687,7 +15687,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.0,
+      "wall_s": 140.3,
       "box_index": 36,
       "kind": "transport",
       "chart": {
@@ -15936,7 +15936,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.2,
+      "wall_s": 140.5,
       "box_index": 37,
       "kind": "transport",
       "chart": {
@@ -16185,7 +16185,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.0,
+      "wall_s": 140.0,
       "box_index": 38,
       "kind": "transport",
       "chart": {
@@ -16434,7 +16434,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 138.9,
+      "wall_s": 139.7,
       "box_index": 39,
       "kind": "transport",
       "chart": {
@@ -16683,7 +16683,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.0,
+      "wall_s": 141.3,
       "box_index": 40,
       "kind": "transport",
       "chart": {
@@ -17430,7 +17430,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.4,
+      "wall_s": 140.3,
       "box_index": 43,
       "kind": "transport",
       "chart": {
@@ -17679,7 +17679,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.6,
+      "wall_s": 140.4,
       "box_index": 44,
       "kind": "transport",
       "chart": {
@@ -17928,7 +17928,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.0,
+      "wall_s": 139.9,
       "box_index": 45,
       "kind": "transport",
       "chart": {
@@ -18177,7 +18177,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.8,
+      "wall_s": 140.1,
       "box_index": 46,
       "kind": "transport",
       "chart": {
@@ -18426,7 +18426,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.1,
+      "wall_s": 139.9,
       "box_index": 47,
       "kind": "transport",
       "chart": {
@@ -18675,7 +18675,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.8,
+      "wall_s": 139.3,
       "box_index": 48,
       "kind": "transport",
       "chart": {
@@ -18924,7 +18924,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.1,
+      "wall_s": 139.6,
       "box_index": 49,
       "kind": "transport",
       "chart": {
@@ -19173,7 +19173,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.0,
+      "wall_s": 140.1,
       "box_index": 50,
       "kind": "transport",
       "chart": {
@@ -19422,7 +19422,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.8,
+      "wall_s": 140.7,
       "box_index": 51,
       "kind": "transport",
       "chart": {
@@ -19671,7 +19671,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.0,
+      "wall_s": 140.5,
       "box_index": 52,
       "kind": "transport",
       "chart": {
@@ -19920,7 +19920,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.5,
+      "wall_s": 140.7,
       "box_index": 53,
       "kind": "transport",
       "chart": {
@@ -20169,7 +20169,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.1,
+      "wall_s": 140.3,
       "box_index": 54,
       "kind": "transport",
       "chart": {
@@ -20667,7 +20667,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.3,
+      "wall_s": 139.7,
       "box_index": 56,
       "kind": "transport",
       "chart": {
@@ -20916,7 +20916,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.7,
+      "wall_s": 140.0,
       "box_index": 57,
       "kind": "transport",
       "chart": {
@@ -21165,7 +21165,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.7,
+      "wall_s": 140.3,
       "box_index": 58,
       "kind": "transport",
       "chart": {
@@ -21414,7 +21414,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 138.9,
+      "wall_s": 139.7,
       "box_index": 59,
       "kind": "transport",
       "chart": {
@@ -21663,7 +21663,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.4,
+      "wall_s": 139.9,
       "box_index": 60,
       "kind": "transport",
       "chart": {
@@ -21912,7 +21912,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 141.9,
+      "wall_s": 140.4,
       "box_index": 61,
       "kind": "transport",
       "chart": {
@@ -22161,7 +22161,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 140.8,
+      "wall_s": 141.3,
       "box_index": 62,
       "kind": "transport",
       "chart": {
@@ -22410,7 +22410,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 138.6,
+      "wall_s": 139.3,
       "box_index": 63,
       "kind": "transport",
       "chart": {
@@ -22621,7 +22621,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 139.2,
+      "wall_s": 139.9,
       "box_index": 0,
       "kind": "eps_flip",
       "chart": {
@@ -22830,7 +22830,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 137.4,
+      "wall_s": 139.3,
       "box_index": 1,
       "kind": "eps_flip",
       "chart": {
@@ -23039,7 +23039,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 137.5,
+      "wall_s": 139.6,
       "box_index": 2,
       "kind": "eps_flip",
       "chart": {
@@ -23248,7 +23248,7 @@
         "weyl_transport_ok": true,
         "note": "lambda_min(Q_src) >= lambda_min_lo(C) minus the Frobenius bound: positive definiteness of Q_source is PROVED BY TRANSPORT, the direct one being only a cross-check; bounds in 200-bit interval arithmetic, floats DIRECTED at serialisation"
       },
-      "wall_s": 137.4,
+      "wall_s": 139.0,
       "box_index": 3,
       "kind": "eps_flip",
       "chart": {
@@ -23284,7 +23284,7 @@
       1
     ],
     "kraft_is_one": true,
-    "note": "prefix-free on closed dyadic boxes gives pairwise disjoint interiors; the boundaries se touchent, et c'est attendu"
+    "note": "prefix-free on closed dyadic boxes gives pairwise disjoint interiors; the boundaries do touch, and that is expected"
   },
   "frontier_fractions": [
     {
@@ -23325,15 +23325,15 @@
   ],
   "max_residual_relative": 5.475749380060961e-10,
   "delta_rel_preregistered": 1e-05,
-  "source_section_untouched": "la section SOURCE n'emploie jamais la troisième determination; only the NATIVE section of the target chart of the residual tiles is concerned, and the class labelling of the source arc is unchanged",
+  "source_section_untouched": "the SOURCE section never uses the third determination; only the NATIVE section of the target chart of the residual tiles is concerned, and the class labelling of the source arc is unchanged",
   "not_paid_here": [
     "the atlas step halos/overlaps/cocycle",
-    "raccord entre déterminations de tuiles voisines (cocycle du nerf)",
-    "contrat exact",
+    "the join between determinations of neighbouring tiles (nerve cocycle)",
+    "the exact contract",
     "globalisation",
     "the later scaling"
   ],
-  "verdict": "the residual closure (full) — la TROISIÈME DÉTERMINATION ferme 64/64 boîtes résiduelles examinées (64 lignes en σ canonique, feuille pinned by the sheet margin, minimum 2.045e+00). Non-tautology: the plain criterion refuses and the extended one accepts on EACH new tile. The identity w^2 = R' is certified on every row. Complete transport on the new tiles: 64 of 64, résidu relatif max 5.476e-10 ≤ δ = 1e-05, Weyl partout. Le cover couvre désormais 100.0000 % (résidu 0.0000 %, 0 boîtes non fermées publiées). Négatifs : ε' inversé casse 4/4, w(+1)+w(−1) ≡ 0 exactement 4/4. NON PAYÉ : the atlas step (halos/overlaps/cocycle), le raccord ENTRE déterminations de tuiles voisines (cocycle), contrat exact, globalisation, the later scaling.",
+  "verdict": "Residual closure (full): the THIRD DETERMINATION closes 64 of 64 residual boxes examined (64 rows on the canonical component, sheet pinned by the sheet margin, minimum 2.045e+00). Non-tautology: the plain criterion refuses and the extended one accepts on EACH new tile. The identity w^2 = R' is certified on every row. Complete transport on the new tiles: 64 of 64, maximum relative residual 5.476e-10 at most delta = 1e-05, Weyl everywhere. The cover now covers 100.0000 % (residual 0.0000 %, 0 boxes left unclosed and published). Negative controls: a flipped sheet breaks 4 of 4, w(+1)+w(-1) vanishes exactly 4 of 4. NOT PAID: the atlas step (halos/overlaps/cocycle), the join BETWEEN determinations of neighbouring tiles (cocycle), the exact contract, globalisation, the later scaling.",
   "checks": {
     "R1_mechanism_serialised": true,
     "R2_identity_universal": true,
@@ -23348,13 +23348,13 @@
   "checks_passed": 9,
   "checks_total": 9,
   "provenance": {
-    "git_head": "8f9e7d3886396eb8bc2d60b2c9de6c35dedd95c1",
+    "git_head": "983db416184b4ee03463f8afc87ef61f54ad399d",
     "python": "3.14.4",
     "platform": "Linux-7.0.0-30-generic-x86_64-inconnu-with-glibc2.43",
     "mp_prec": 200,
     "tm_order": 4,
     "unary_series_deg": 4,
-    "wall_s": 2402.8,
+    "wall_s": 2390.0,
     "mode": "full",
     "n_workers": 4,
     "preregistered": {
@@ -23363,9 +23363,9 @@
       "n_probe_neg": 4
     },
     "inputs": {
-      "dyadic_cover.json": "83f30f0e78cb9746",
-      "chart_transport.json": "99ccd3981ed0e220"
+      "dyadic_cover.json": "c222a7135a522889",
+      "chart_transport.json": "d7388d0085b6fd92"
     },
-    "self_sha256": "8c1118c8fa18f943"
+    "self_sha256": "cadfa445a8ecb3c4"
   }
 }
