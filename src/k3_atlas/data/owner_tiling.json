@@ -5,7 +5,7 @@
   "rad_floor2": 1e-24,
   "max_frontier": 400000,
   "n_couples_capped": 33,
-  "fast_kernel": "numpy + arrondi dirigé émulé nextafter (design-grade ; oracle mpmath = référence, check S6)",
+  "fast_kernel": "numpy plus directed rounding emulated by nextafter (design-grade; the mpmath oracle is the reference, check S6)",
   "n_boxes_classified": 33255296,
   "n_couples_with_certified_owner": 22,
   "n_couples_vacuous_certified": 17,

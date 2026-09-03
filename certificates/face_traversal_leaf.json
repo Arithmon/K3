@@ -1,7 +1,7 @@
 {
   "artifact": "face_continuation",
   "mode": "full",
-  "contract": "phase B1 du contrat the face arc-P0 — a review §7.3-B, amendée a review §1/§4/§5 ; témoin unique w_one_neighbor",
+  "contract": "phase B1 of the face contract, as amended by two reviews; single witness w_one_neighbor",
   "claim": "On the witness tile, flush with the high Re u face, the section of the 2H Re bridge, built with the certified base record, identical regimes and the chart revalidated on the enlarged box, restricts EXACTLY to the certified base section (theta = +1, 6 of 6) and CROSSES the face: on the cube W_cell, the bridge intersected with the neighbouring cell, the record derived row by row is rebuilt and closes again (6 of 6). NO registry label closes naively (`none_closes`, including OUR OWN on our side: the control measures it), so identification is BY EXPLICIT CONVERSION: kappa = eps_canonical times eps_registry is derived from the source control, confined to the rows the core turned from rotated to canonical, both labels are converted and RECONSTRUCTED, and exactly ONE closes (class 0, equal to the derived record), while the converted class 1 breaks only on the predicted coordinate 5. After conversion, NO ADDITIONAL deck transformation is observed at this face. This is a FIRST LOCAL ANALYTIC CONTINUATION between two canonically addressed cells, not an atlas of the neighbour: neither atlas transitions, nor the metric, nor the second witness are paid here; the naive `none_closes` check stays published as a separate diagnostic.",
   "witness": {
     "tile": 295,
@@ -455,19 +455,19 @@
   "checks_total": 8,
   "verdict": "B1 v2 DELIVERED: a first local analytic continuation between two canonically addressed cells. The sheet reached is class 0, identified BY EXPLICIT CONVERSION (kappa derived, candidates converted and rebuilt, exactly one closing); no ADDITIONAL deck after conversion.",
   "provenance": {
-    "git_head": "4554d99f03ab6381dcdeb5db3725a6ac8b9959f6",
+    "git_head": "496c3cd455cdf1b64d159a4420355d874392ec6a",
     "python": "3.14.4",
     "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
     "mp_prec": 200,
     "wall_s": 2.9,
     "inputs": {
       "dyadic_cover.json": "c222a7135a522889255e5daea6905e94881281490dbd7628723e7a93beced231",
-      "atlas_assembly.json": "d0f702744243c694daf6edeea050fd10e37b0ccaa1c982b12a6e38aee738a956",
-      "residual_closure.json": "7bf69423c2f8d4085bd6b19d0c8d1b1aea129f35803fe3170cb5819877b4ae68",
-      "bridge_preliminary.json": "8cd17b3fe52466a79290b9ce9117ba7fbce0383124a7881ae48aad3cba41e669",
-      "bridge_continuation.json": "fabeb31704f3e7ef874aad5cc40ce4ca0fd3ee870320ad71f41b2d71e4adcab1",
-      "face_preliminary.json": "8946e7b73a38de0ea3cdb412999856d831b0133bd727dc3986d9c01b60b12f9f"
+      "atlas_assembly.json": "1ab79033f0bee776aa300051fed4a8e4f08d9356cfed44985f5cb3281d9d4069",
+      "residual_closure.json": "d352d1c3150ef033e5d928c39dbce404ade708d859dc4f58e9b46b10c113db63",
+      "bridge_preliminary.json": "942cc1820a8b1d381612b868c5eafc420a4a18c4f871df84a5c01af537931812",
+      "bridge_continuation.json": "58c06da48412c8b1dca175f7f7b44156b590d7f71be80b4831cdd4f4f1c5081c",
+      "face_preliminary.json": "1201524607cd74516bfd0422cb25d195fd71f48c00649c9d4efb51606d6f1992"
     },
-    "self_sha256": "62a1330a90576bfdc45ea4e6036906099eba4f44feb7624c22af95bc8bce1298"
+    "self_sha256": "dfec97952daa25665b9ddd80ff5bcf6a80b8a40f3fd53653ffa9ad5f3cdb442f"
   }
 }
