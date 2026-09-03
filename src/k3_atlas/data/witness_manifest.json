@@ -1,9 +1,9 @@
 {
   "artifact": "k3_closedform_witness_kahler_v2.npz",
-  "phase": "witness v2 freeze (degree 3)",
-  "decision": "decision closed: the K3 witness v2 is of degree 3. The degree-4 candidate v2.1 is an escalation held ready, not the default.",
+  "phase": "K3 CAP R3 — gel witness v2 (degré-3)",
+  "decision": "D2 close (R2) : witness K3 v2 = degré-3. v2.1 candidate (degré-4) = escalade prête, non défaut.",
   "convention": {
-    "potential": "K(Z) = log(Z-dagger M Z) + sum_e coeffs218[e] . q_e(Z), with q_e in the degree-3 quotient basis, homogeneous of degree 3",
+    "potential": "K̃(Z) = log(Z† M Z) + Σ_e coeffs218[e] · q̃_e(Z), q̃_e ∈ B₃ (base quotient degré-3, d≡3 homogène)",
     "gauge": "det M = 1 (Σ u_i = 0)",
     "metric_engine": "chart_metric_kahler(Z, W, M, coeffs218, B3, B3_MULTIS, B3_IDX)",
     "residual": "r = log det G + 2 log|det M_S| (Ricci-flat ⟺ r const)"
@@ -14,7 +14,7 @@
     "maxit": 60,
     "start": "FS pur (p9=0, c=0)",
     "seed_monitor": 41,
-    "rationale_seed": "seed 21 is the reference of stages R0 to R2, mid-pack at n_base=2000 and not cherry-picked; n_base=2000 gives the smallest dispersion between seeds (plus or minus 3e-5)."
+    "rationale_seed": "seed 21 = référence R0-R2, mid-pack à n_base=2000 (non cherry-piqué) ; n_base=2000 = dispersion inter-seed minimale (±3e-5)."
   },
   "fit": {
     "var_start_FS": 0.42386934962670886,
