@@ -78,8 +78,9 @@ CHECKS
        ATTAINED; all corners dyadic (float(x) exact, checked); NEGATIVE
        CONTROL: the box of half-width `w_0/2` fails ON BOTH SIDES;
   B1c  section on the ENLARGED box: 3 regimes assigned, IDENTICAL to the
-       serialised base-bridge regimes, radicands bounded below > 0, and
-       the target chart gauge bounded below > 0 on the WHOLE box (chart
+       serialised base-bridge regimes, radicands strictly bounded away from
+       zero, and the target chart gauge strictly bounded away from zero on
+       the WHOLE box (chart
        revalidated);
   B1d  restriction: `theta = +1` on 6 of 6 coordinates against the
        certified section (itself rebuilt and confronted with the

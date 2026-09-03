@@ -22972,17 +22972,17 @@
   "checks_passed": 9,
   "checks_total": 9,
   "provenance": {
-    "git_head": "4554d99f03ab6381dcdeb5db3725a6ac8b9959f6",
+    "git_head": "c9acf06c878c2f555dd84d2a0b54544e510e8177",
     "python": "3.14.4",
     "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
     "mp_prec": 200,
     "tm_order": 4,
     "unary_series_deg": 4,
-    "wall_s": 2036.6,
+    "wall_s": 2066.8,
     "n_cells": 4,
     "inputs": {
-      "shell_enumeration.json": "29a8c3d8b1503e98"
+      "shell_enumeration.json": "00beb77554d86155"
     },
-    "self_sha256": "6c24374c875b88ff"
+    "self_sha256": "63607b0cbb496a50"
   }
 }

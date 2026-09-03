@@ -39,8 +39,8 @@ On a bilateral box `Im R` changes sign, so the component does not exist.
 `build_section_bilateral` therefore chooses BY THE CERTIFIED SIGN OF
 `Re R`, without any trial:
 
-    Re R bounded below by 0 on the whole box  ->  principal branch
-    Re R bounded above by 0 on the whole box  ->  canonical `w = i.sqrt_p(-R)`
+    Re R strictly positive on the whole box   ->  principal branch
+    Re R strictly negative on the whole box   ->  canonical `w = i.sqrt_p(-R)`
                                         (component PINNED to +1: this is the
                                          definition of the regime of the
                                          residual closure, keeping the cut
@@ -117,7 +117,7 @@ CHECKS
        trial, on 64 x 3 rows, and agreement with the exact rational
        bound of the scouting step (two arithmetics, one verdict);
   F2d  COMPLETE bilateral section: the six coordinates exist, the gauge of
-       the target chart is bounded below by 0, and the bridge record
+       the target chart is strictly bounded away from zero, and the bridge record
        (eps, regime) is FROZEN and serialised;
   F2e  NEGATIVE CONTROLS: (i) the false bridge of half-width H is REFUSED
        by the inclusion; (ii) resorting to the component rule on the
@@ -631,7 +631,7 @@ def _bridge_job(i):
         out["refused"] = "bridge_section_incomplete"
         return out
 
-    # gauge of the TARGET chart bounded below by 0 on the bridge
+    # gauge of the TARGET chart strictly bounded away from zero on the bridge
     S2, g2 = tuple(leaf["chart"]["S"]), leaf["chart"]["g"]
     gr, gi = Zb[g2].to_iv_pair()
     gmin = mp.mpf(civ_absmin(CIV(gr, gi)).a)

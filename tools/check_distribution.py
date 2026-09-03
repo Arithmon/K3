@@ -234,6 +234,68 @@ def check_paths(findings):
                 findings.append(("path", rel(p), n, target))
 
 
+# LaTeX names its paths in braces, not quotes, so rule 3 above never saw them.
+# It cost a real defect: `\\graphicspath{{../../../figures/}}` resolved one
+# directory ABOVE the repository, and the paper could not be rebuilt from a
+# fresh clone. Braced paths are checked here, and they must resolve inside.
+LATEX_PATH = re.compile(r"\\(?:graphicspath|includegraphics|input|include)"
+                        r"(?:\[[^\]]*\])?\{+([^{}]+)\}+")
+
+
+def check_latex_paths(findings):
+    """Rule 3, on the surface LaTeX writes: every braced path resolves here.
+
+    An included graphic is looked up through `\\graphicspath`, not relative to
+    the file that names it, so the search roots are collected first. Flagging
+    a figure that graphicspath resolves perfectly well would teach the reader
+    to ignore this rule.
+    """
+    texs = [q for q in sorted(ROOT.rglob("*.tex"))
+            if not any(part in SKIP_DIRS for part in q.parts)]
+    roots = []
+    for q in texs:
+        for m in re.finditer(r"\\graphicspath\{((?:\{[^{}]*\})+)\}",
+                             q.read_text(encoding="utf-8", errors="replace")):
+            for g in re.findall(r"\{([^{}]*)\}", m.group(1)):
+                roots.append(q.parent / g)
+    for p in texs:
+        for n, line in enumerate(p.read_text(encoding="utf-8",
+                                             errors="replace").splitlines(), 1):
+            for m in LATEX_PATH.finditer(line):
+                target = m.group(1).strip()
+                if not target or target.startswith("\\"):
+                    continue
+                cands = [p.parent / target] + [r / target for r in roots]
+                if any(c.exists() or c.with_suffix(".tex").exists()
+                       for c in cands):
+                    continue
+                findings.append(("path", rel(p), n,
+                                 f"LaTeX path resolves nowhere in the "
+                                 f"repository: {target}"))
+
+
+# Prose that ADMITS ZERO where the code requires strict non-vanishing. The
+# translation rendered a strictly-away-from-zero bound as a bound "by 0",
+# which is not the same statement: division, branch choice and biholomorphy
+# all need the value to stay AWAY from zero. The code was right; the certificate text was not,
+# and it shipped. These spellings are forbidden so the weakening cannot come
+# back silently.
+WEAKENED_STRICTNESS = re.compile(
+    r"bounded (?:below|above) by 0\b|BOUNDED (?:BELOW|ABOVE) BY 0\b"
+    r"|bounded below > 0", re.I)
+
+
+def check_strictness(findings):
+    """A statement that admits zero where the check is strict."""
+    for p in files():
+        for n, line in enumerate(p.read_text(encoding="utf-8",
+                                             errors="replace").splitlines(), 1):
+            if rel(p) == "tools/check_distribution.py":
+                continue
+            if WEAKENED_STRICTNESS.search(line):
+                findings.append(("strictness", rel(p), n, line.strip()[:100]))
+
+
 def check_imports(findings, allowed):
     """Rule 4 — every import resolves here, to stdlib, or to a pinned dep."""
     local = {q.stem for q in (ROOT / "src").rglob("*.py")} if (
@@ -276,7 +338,8 @@ def main():
     ap.add_argument("--summary", action="store_true",
                     help="counts per rule, no per-finding lines")
     ap.add_argument("--rule", choices=("english", "vocabulary", "json-key",
-                                       "json-text", "path", "import"),
+                                       "json-text", "path", "strictness",
+                                       "import"),
                     help="report a single rule")
     args = ap.parse_args()
 
@@ -285,6 +348,8 @@ def main():
     check_vocabulary(findings)
     check_json_keys(findings)
     check_paths(findings)
+    check_latex_paths(findings)
+    check_strictness(findings)
     check_imports(findings, pinned_dependencies())
 
     if args.rule:
@@ -299,7 +364,7 @@ def main():
     print("Distribution check")
     report_exemptions()
     for rule in ("english", "vocabulary", "json-key", "json-text", "path",
-                 "import"):
+                 "strictness", "import"):
         if args.rule and rule != args.rule:
             continue
         print(f"  {rule:12s} {by_rule.get(rule, 0):6d}")

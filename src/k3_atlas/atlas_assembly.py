@@ -42,7 +42,7 @@ WHAT THIS SCRIPT PAYS (the four points of the contract):
        tiles are on the SAME SHEET. This test COULD have failed, and that is
        the whole point of it.
      . THE CHART: `lambda_ij = Z[g'_i]/Z[g'_j]`, with `|Z[g'_i]|` and
-       `|Z[g'_j]|` certified BOUNDED BELOW by 0 on the overlap, so the
+       `|Z[g'_j]|` certified STRICTLY BOUNDED AWAY FROM ZERO on the overlap, so the
        transition is a biholomorphism, not merely a formula.
      . THE TRANSITION IDENTITY, without division: `Zt_a.Z[g']` contains `Z_a`
        per tile, and from one tile to the next `Zt^(j)_a.Z[g'_j] -
@@ -398,8 +398,8 @@ def civ_contains_zero(c):
 
 
 def civ_div(a, b):
-    """a/b in interval arithmetic; requires |b| bounded below by 0
-    (certified by the caller)."""
+    """a/b in interval arithmetic; requires |b| strictly bounded away from
+    zero (certified by the caller)."""
     d = b.re ** 2 + b.im ** 2
     return CIV((a.re * b.re + a.im * b.im) / d,
                (a.im * b.re - a.re * b.im) / d)
@@ -780,7 +780,7 @@ def triple_certificate(i, j, k, lam):
         # recentring elsewhere in this script). The number is therefore published
         # as a DECORRELATION DIAGNOSTIC, NEVER as a check.
         # What has content at the triple level, and what is checked:
-        #   . the three gauges are BOUNDED BELOW by 0 on the triple box
+        #   . the three gauges are STRICTLY BOUNDED AWAY FROM ZERO on the triple box
         #     (the three lambdas exist and the composition is licit);
         #   . the three edge identities, recentred, contain 0 on
         #     the TRIPLE box, and that is NOT an interval
@@ -1149,7 +1149,7 @@ def build():
         "no content): the sheet theta is DERIVED with a strict margin, equals "
         "+1 on %d of %d pairs (minimum margin %.3e), and the affine control "
         "defect of the recentring is %.3e. The transition is a "
-        "CERTIFIED BIHOLOMORPHISM (|Z[g']| bounded below by 0 on both sides) and "
+        "CERTIFIED BIHOLOMORPHISM (|Z[g']| strictly bounded away from zero on both sides) and "
         "the identity `Zt^(j).Z[g'_j] - Zt^(i).Z[g'_i]` containing 0, which brings "
         "together two records derived SEPARATELY, holds with a "
         "maximum defect %.3e at most delta. On the %d non-empty triple "
@@ -1162,7 +1162,7 @@ def build():
         "width, exactly the phenomenon that forced the "
         "recentring elsewhere; it is therefore published as a DIAGNOSTIC and "
         "enters NO check. What is checked at the triple level does have "
-        "content: the three gauges BOUNDED BELOW by 0 on the triple box, "
+        "content: the three gauges STRICTLY BOUNDED AWAY FROM ZERO on the triple box, "
         "the exact discrete cocycle, and the three edge identities "
         "recentred on the TRIPLE box, since containment of 0 is not "
         "transitive and i to k is no interval consequence of i to j "
