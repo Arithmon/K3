@@ -976,7 +976,7 @@
     "law_table": [
       {
         "regime": "principal",
-        "sigma": "non utilisé",
+        "sigma": "not used",
         "theta": 1,
         "sheet_record": "ε⁺ = ε⁻",
         "identity": "conj(√_p(conj R)) = √_p(R), coupure (−∞,0] invariante par conjugaison"
@@ -997,7 +997,7 @@
       },
       {
         "regime": "canonical",
-        "sigma": "≡ +1 PAR DÉFINITION",
+        "sigma": "identically +1 BY DEFINITION",
         "theta": -1,
         "sheet_record": "ε⁺ = −ε⁻",
         "identity": "w = i.sqrt_p(-R) and conj(w(conj R)) = -w(R); sigma being pinned, the canonical regime is NECESSARILY in the frozen convention"

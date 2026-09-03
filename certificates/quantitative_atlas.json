@@ -6,10 +6,10 @@
  "nothing_is_rewritten": true,
  "upstream": {
   "d3_coverage_legacy": "bbfd61db610fd6822b699b6b2d28264a1ddf6541633b55a1a43084ec37cd74fa",
-  "amendment_b": "57aa3253b5e811c74446f91f37ecb8db2df5bdbe8ce31c8ef4823be29dca199d",
-  "u1_certificate": "05c442a2894dbb0025bf0387a457e0489b5e46357fd0fa8350e21411417624bc",
-  "f9_p0": "992d6b692626b548b3cb5524556eb00f50518f009b4771a434e44a1e616c2ac8",
-  "closeout_k_regional": "df48f585acc1443bdeda3dce5b52381c97b1dd06b3745cb502910782b4fa6028"
+  "amendment_b": "7448528213ce092f1b2511d77c6e09b539ba22f9057299ae888d1126944fb213",
+  "u1_certificate": "1c493a2434e443b77eebf7426759ea723a62106cbc6f23dd751da70ebb2f0b1c",
+  "f9_p0": "29b3bfd3ec6fc146388cbf1b2671b1d892f27177814a7561fc989f84045114c8",
+  "closeout_k_regional": "a48db051ce791d97f4b1fbf573b1567263a9084acf8abe1305c350465dad47c0"
  },
  "T2_statement": "For the fixed CI(2,2,2) surface K (μ = 1,2,3,5,7,11): there exists a FINITE holomorphic atlas of K by local charts (S,g; centre Z0), each radius of which is bounded below by an explicit rational constant ρ_uniform(S,g) > 0 (U1), whose chart transitions are the exact projective coordinate changes (F9-P0), and whose quotient is canonically K",
  "level": "quantitative existence of a finite holomorphic atlas with a guaranteed explicit radius",
@@ -109,7 +109,7 @@
  },
  "perturbation_tests_passed": 2,
  "perturbation_tests_total": 2,
- "seconds": 0.01,
- "built_from_head": "394f6b22a0f792a53d19ede1f222fb5da486ff68",
+ "seconds": 0.0,
+ "built_from_head": "cb9487d31455cf90e06a06bab8a30c0b0a4a08f8",
  "self_sha256": "420b9505773f24940a57e152cddf60bb88a355fb2687bfdaf1ae41c8ce1af067"
 }

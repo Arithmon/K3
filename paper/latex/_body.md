@@ -1,13 +1,3 @@
-# Certified Analytic Geometry on an Explicit K3 Surface
-
-### Quantitative Charts, Branch Transitions, and Computer-Assisted Continuation
-
-**Brieuc de La Fournière**
-
-Independent researcher, Beaune, France · ORCID 0009-0000-0641-9740
-
-**DOI**: [10.5281/zenodo.22047469](https://doi.org/10.5281/zenodo.22047469) · **Repository**: [github.com/Arithmon/K3](https://github.com/Arithmon/K3)
-
 *Preprint. All quantitative hypotheses of this paper are certified by machine-checkable
 artifacts; the verification entry point is a single command, described in Appendix F.*
 

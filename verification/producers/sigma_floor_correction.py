@@ -203,7 +203,7 @@ def build(mutate=None):
          "Q6_upstream_read": bool(u1)}
     out["checks"] = {k: bool(v) for k, v in g.items()}
     out["checks_passed"] = sum(bool(v) for v in g.values()); out["checks_total"] = len(g)
-    out["outcome"] = "u1_sigma_floor_defect_confirmed_with_witness_radius_corrected_9p6e10_to_2p1e12_theorem_survives" if all(g.values()) else "sigma_floor_correction_gates_red"
+    out["outcome"] = "u1_sigma_floor_defect_confirmed_with_witness_radius_corrected_9p6e10_to_2p1e12_theorem_survives" if all(g.values()) else "sigma_floor_correction_checks_red"
     out["seconds"] = round(time.time() - t0, 1)
     return out
 

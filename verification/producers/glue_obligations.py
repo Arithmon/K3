@@ -311,7 +311,7 @@ def build(mutate=None):
          "Q8_upstream_and_paper_read": bool(upstream_ok)}
     out["checks"] = {k: bool(v) for k, v in g.items()}
     out["checks_passed"] = sum(bool(v) for v in g.values()); out["checks_total"] = len(g)
-    out["outcome"] = "atlas_paper_glue_obligations_typed_and_transition_generators_derived_word_length_le_4" if all(g.values()) else "atlas_paper_gates_red"
+    out["outcome"] = "atlas_paper_glue_obligations_typed_and_transition_generators_derived_word_length_le_4" if all(g.values()) else "atlas_paper_checks_red"
     out["seconds"] = round(time.time() - t0, 1)
     return out
 

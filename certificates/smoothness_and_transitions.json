@@ -6,9 +6,9 @@
  "no_measurement_performed": "exact algebra only",
  "nothing_is_rewritten": true,
  "upstream": {
-  "u1": "05c442a2894dbb0025bf0387a457e0489b5e46357fd0fa8350e21411417624bc",
+  "u1": "1c493a2434e443b77eebf7426759ea723a62106cbc6f23dd751da70ebb2f0b1c",
   "u1_outcome": "uniform_open_chart_theorem_certified",
-  "generators": "0508ee721a6dd3a41abef0c379e5766f3cfa6fe661956904044c66570ccf6c0c",
+  "generators": "4ae19ab6c3c0cb37e8890917599f07059497da479d80e772bf0b39384b003029",
   "d3_read_from_u1": {
    "tau": 0.6,
    "minor_floor": 4.8,
@@ -269,8 +269,8 @@
  },
  "perturbation_tests_passed": 3,
  "perturbation_tests_total": 3,
- "built_from_head": "17170d9596ae6b1e9578db99200a6da175100287",
- "self_sha256": "a893771c20ca2cc99147ee61cd03dbb0ae82b8f18f6cf34cd83ec7d50a9d3949",
+ "built_from_head": "cb9487d31455cf90e06a06bab8a30c0b0a4a08f8",
+ "self_sha256": "811bb50974dd44ff640d1bf90e5b233f4de440112bdd258b1104c15409b0af3a",
  "provenance": {
   "sympy_version": "1.14.0"
  }

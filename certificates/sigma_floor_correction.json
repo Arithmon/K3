@@ -6,7 +6,7 @@
  "nothing_is_rewritten": true,
  "u1_is_not_modified_by_this_lot": true,
  "upstream": {
-  "u1_live": "05c442a2894dbb0025bf0387a457e0489b5e46357fd0fa8350e21411417624bc",
+  "u1_live": "1c493a2434e443b77eebf7426759ea723a62106cbc6f23dd751da70ebb2f0b1c",
   "u1_outcome_live": "uniform_open_chart_theorem_certified",
   "u1_sha_at_defect": "d30959de5e0e2d9233cf09fc03e450f695ef68a1dfde82a8dcd32797dd776e07",
   "u1_rho_published_at_defect": "9.59780680865981e-10",
@@ -706,6 +706,6 @@
  },
  "perturbation_tests_passed": 3,
  "perturbation_tests_total": 3,
- "built_from_head": "17170d9596ae6b1e9578db99200a6da175100287",
- "self_sha256": "9a218677417490ceb4e39704856e4ac3a2a413b60738b13b34ffb5e6f7c6fa96"
+ "built_from_head": "cb9487d31455cf90e06a06bab8a30c0b0a4a08f8",
+ "self_sha256": "94a476973622e794c6f3041b72c4fb53d51cfa29b18e8f96d6f23e5ee9e56f85"
 }

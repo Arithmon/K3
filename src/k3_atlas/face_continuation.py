@@ -437,7 +437,7 @@ def build():
     # The control: OUR registry label, on OUR side of the bridge
     # (the symmetric cube W_ours, the Re mirror of W_cell). Whether it too
     # fails to close naively, and with what pattern, is measured,
-    # pas argumenté.
+    # not argued.
     control = None
     ctrl_pattern = None
     W_ours = mirror_re(W, face) if W is not None else None

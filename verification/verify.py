@@ -51,6 +51,7 @@ import argparse
 import hashlib
 import io
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -187,6 +188,23 @@ PAPER_HASH_TABLE = {
 }
 PAPER_FILES = ("paper/certified_k3_atlas.md",
                "paper/latex/certified_k3_atlas_body.tex")
+# The PDF is the file that gets deposited, and a deposit is immutable. Checking
+# only the sources let a stale PDF ship three hashes that matched nothing --
+# the check was reading a different unit from the thing published. Its text is
+# decompressed and searched here too.
+PAPER_PDF = "paper/latex/certified_k3_atlas.pdf"
+
+
+def _pdf_text(path):
+    import zlib
+    raw = path.read_bytes()
+    out = b""
+    for m in re.finditer(rb"stream\r?\n(.*?)endstream", raw, re.S):
+        try:
+            out += zlib.decompress(m.group(1))
+        except Exception:
+            pass
+    return out.decode("latin-1", "replace")
 
 
 def check_paper_hashes():
@@ -208,6 +226,20 @@ def check_paper_hashes():
                 want = sha(path)[:16] if path.exists() else "(missing)"
                 if m.group(0) != want:
                     bad.append((rel, n, label, m.group(0), want))
+    pdf = ROOT / PAPER_PDF
+    if pdf.exists():
+        text = _pdf_text(pdf)
+        for label, cert in PAPER_HASH_TABLE.items():
+            path = CERTS / f"{cert}.json"
+            want = sha(path)[:16] if path.exists() else "(missing)"
+            if want not in text:
+                stale = [h for h in re.findall(r"[0-9a-f]{16}", text)
+                         if h != want and h.count(h[0]) < 8]
+                bad.append((PAPER_PDF, 0, label,
+                            "absent" if not stale else "a different value",
+                            want))
+    else:
+        bad.append((PAPER_PDF, 0, "(the deposited file)", "missing", ""))
     return bad
 
 

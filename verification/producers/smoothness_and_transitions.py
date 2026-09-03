@@ -226,7 +226,7 @@ def build(mutate=None):
          "Q9_pivots_are_plucker_coordinates_of_dF": bool(plucker_ok)}
     out["checks"] = {k: bool(v) for k, v in g.items()}
     out["checks_passed"] = sum(bool(v) for v in g.values()); out["checks_total"] = len(g)
-    out["outcome"] = "atlas_paper_three_nonzero_lemma_carries_smoothness_and_coverage_pivot_degree3_invariant_transitions_explicit" if all(g.values()) else "atlas_paper_math_gates_red"
+    out["outcome"] = "atlas_paper_three_nonzero_lemma_carries_smoothness_and_coverage_pivot_degree3_invariant_transitions_explicit" if all(g.values()) else "atlas_paper_math_checks_red"
     out["seconds"] = round(time.time() - t0, 1)
     return out
 
