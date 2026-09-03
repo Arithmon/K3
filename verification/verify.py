@@ -109,11 +109,11 @@ RECOMPUTE = [
 # (certificate, recorded SHA-256) — checked by hash, not replayed
 HASHED = [
     ("bridge_atlas_panel",
-     "33ace43131790695167ba3ad92898a11dd457d81f64e73c5687f9b75d6b21580"),
+     "fabeb31704f3e7ef874aad5cc40ce4ca0fd3ee870320ad71f41b2d71e4adcab1"),
     ("bridge_metric_path",
-     "245283224c37ebd588915f84939c288ba0bc3a620355d74969e234729a6229ab"),
+     "c2e91302ae9babe8c3658168a7555f74c7b97135c8e3d911a832a1d7081a30b2"),
     ("face_traversal_leaf",
-     "62e777c0f0c61d9ec659fc2a671f7221a46ffe71f6d6dcd35e4a7b54b016bee7"),
+     "5ee8debb2637ba442d732466ef8a42d0a9fd388a58698e7da16d7fc1911598d9"),
 ]
 
 

@@ -6,13 +6,13 @@
     "unary_series_deg": 4
   },
   "provenance": {
-    "git_head": "983db416184b4ee03463f8afc87ef61f54ad399d",
+    "git_head": "4554d99f03ab6381dcdeb5db3725a6ac8b9959f6",
     "sha256_source": "29a8c3d8b1503e987f4a8d3390113a66ed32c3cb9800d13cbe41ee9c09892049",
     "sha256_script": "c6bdabb5f7eb4a5f4611d2e824d2cbaf9b5432c65e254bb58b81ce7be1618f8c",
     "sha256_kernel": "f3ff3f410b0795548eb941c8eaa58a0734053fb078b48fbd432cdca73094ace5",
     "python": "3.14.4",
-    "platform": "Linux-7.0.0-30-generic-x86_64-inconnu-with-glibc2.43",
-    "wall_s": 51.50162935256958
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+    "wall_s": 28.806964874267578
   },
   "jacobian_identity": "dZ_s/du = d_u R_s/(2 Z_s) = a_1.u/Z_s, INDEPENDENT of the determination because Z_s^2 = R_s holds for both",
   "cells": [

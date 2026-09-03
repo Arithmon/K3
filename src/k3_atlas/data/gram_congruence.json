@@ -6,13 +6,13 @@
     "unary_series_deg": 4
   },
   "provenance": {
-    "git_head": "983db416184b4ee03463f8afc87ef61f54ad399d",
-    "sha256_source": "109a82ba00d0e8315555fb7831b2244adbfe4eba5d031a3b94e26058ddf208e5",
+    "git_head": "4554d99f03ab6381dcdeb5db3725a6ac8b9959f6",
+    "sha256_source": "e21fdbcba65e66461555d2f9233e071e23ec3053735aee0550e2103b7cb7ed09",
     "sha256_script": "c44cdef27944a351820325aa89fbab44fb70ccba6d9736de4158e004ae6e7e25",
     "sha256_kernel": "f3ff3f410b0795548eb941c8eaa58a0734053fb078b48fbd432cdca73094ace5",
     "python": "3.14.4",
-    "platform": "Linux-7.0.0-30-generic-x86_64-inconnu-with-glibc2.43",
-    "wall_s": 404.6219413280487
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+    "wall_s": 424.2198314666748
   },
   "convention": {
     "established": "Q(Z, W·A) = A^T · Q · conj(A)",

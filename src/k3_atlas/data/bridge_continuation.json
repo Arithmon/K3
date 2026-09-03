@@ -55398,13 +55398,13 @@
   "checks_total": 17,
   "verdict": "DELIVERED: 64 bilateral bridges, glued EXACTLY to the lower side (64) AND to the CONTINUED sheet D.Z_conj (64), 210 of 210 bridge-to-bridge transitions certified, a connected nerve of 380 nodes on edges certified ONLY. D = diag(+,-,+,+,+,-) is the deck transformation separating the conjugate from the continued sheet.",
   "provenance": {
-    "git_head": "983db416184b4ee03463f8afc87ef61f54ad399d",
+    "git_head": "4554d99f03ab6381dcdeb5db3725a6ac8b9959f6",
     "python": "3.14.4",
-    "platform": "Linux-7.0.0-30-generic-x86_64-inconnu-with-glibc2.43",
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
     "mp_prec": 200,
     "tm_order": 4,
     "unary_series_deg": 4,
-    "wall_s": 44.7,
+    "wall_s": 44.2,
     "n_workers": 6,
     "preregistered": {
       "im_dirs": [
@@ -55415,8 +55415,8 @@
     },
     "inputs": {
       "dyadic_cover.json": "c222a7135a522889255e5daea6905e94881281490dbd7628723e7a93beced231",
-      "atlas_assembly.json": "e021519eaddb71a0fcc9a6c3a56d9a6429160a1176e2a69aaf01177f3e045e90",
-      "residual_closure.json": "a1673e80c8334f2faa10056c613fa2e59d2b2b4e42b941d08d37414d5cb4d35e",
+      "atlas_assembly.json": "d0f702744243c694daf6edeea050fd10e37b0ccaa1c982b12a6e38aee738a956",
+      "residual_closure.json": "7bf69423c2f8d4085bd6b19d0c8d1b1aea129f35803fe3170cb5819877b4ae68",
       "bridge_preliminary.json": "8cd17b3fe52466a79290b9ce9117ba7fbce0383124a7881ae48aad3cba41e669",
       "mirror_record.json": "6e1c487a7b091b3b1cb2bf4c4f291b142a7337c58f0271cba2a1309747d7b978"
     },

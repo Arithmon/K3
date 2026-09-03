@@ -29,8 +29,18 @@ These variables are set by the container and should be set by hand for a local r
 
 | certificate | python | platform |
 | --- | --- | --- |
-| bridge_atlas_panel | 3.14.4 | Linux-7.0.0-28-generic-x86_64-inconnu-with-glibc2.43 |
-| bridge_metric_path | 3.14.4 | Linux-7.0.0-30-generic-x86_64-inconnu-with-glibc2.43 |
-| face_traversal_leaf | 3.14.4 | Linux-7.0.0-28-generic-x86_64-inconnu-with-glibc2.43 |
+| bridge_atlas_panel | 3.14.4 | Linux-7.0.0-30-generic-x86_64-with-glibc2.43 |
+| bridge_metric_path | 3.14.4 | Linux-7.0.0-30-generic-x86_64-with-glibc2.43 |
+| face_traversal_leaf | 3.14.4 | Linux-7.0.0-30-generic-x86_64-with-glibc2.43 |
 
 Certificates that record no environment were produced by exact rational or interval arithmetic whose result does not depend on the backend beyond the pinned mpmath.
+
+## Shipped inputs whose recorded platform is localised
+
+`platform.platform()` asks the operating system for the processor name, and the operating system answers in its own language. Everything this repository rebuilds is produced under `LANG=C`, where that name comes back empty. The files below are INPUTS: no producer shipped here writes them, so they cannot be regenerated without shipping a chain this repository deliberately does not carry. Their provenance is published as recorded rather than edited, because a provenance corrected by hand is no longer one.
+
+| shipped input | recorded platform |
+| --- | --- |
+| exact_gluing | Linux-7.0.0-28-generic-x86_64-inconnu-with-glibc2.43 |
+| face_preliminary | Linux-7.0.0-28-generic-x86_64-inconnu-with-glibc2.43 |
+| halo_metric | Linux-7.0.0-28-generic-x86_64-inconnu-with-glibc2.43 |
