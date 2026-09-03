@@ -103,7 +103,7 @@ def load_witness(*, allow_retracted=False):
 
 
 # ===========================================================================
-#  Bases (secteur Z2^3-invariant, éléments réels homogénéisés phi/s^d)
+#  Bases (Z2^3-invariant sector, homogenised real elements phi/s^d)
 # ===========================================================================
 def char_sum(idx):
     c = np.zeros(3, dtype=int)
@@ -145,11 +145,11 @@ def multis_of(basis):
 def minor_inv_times_T_float(S, T):
     VS = LAMBDA[:, list(S)]
     VT = LAMBDA[:, list(T)]
-    return -np.linalg.solve(VS, VT)          # (3,3) réel
+    return -np.linalg.solve(VS, VT)          # (3,3) real
 
 
 def owner_scores(Z):
-    """(K,20) scores pivot |Z_iZ_jZ_k|^2 V2 ; propriétaire = argmax."""
+    """(K,20) pivot scores |Z_i Z_j Z_k|^2 V2; the owner is the argmax."""
     m2 = np.abs(Z) ** 2
     sc = np.empty(Z.shape[:-1] + (len(TRIPLES),))
     for t, (i, j, k) in enumerate(TRIPLES):
@@ -220,7 +220,7 @@ def sample_chart(rng, S, g_col, n_draw, uv_offset=(0., 0., 0., 0.)):
 
 def sample_all_charts(rng, n_draw_per_chart, uv_offset=(0., 0., 0., 0.)):
     """Boucle (S, g) : 20 triples x 3 jauges. Retourne dict de blocs par
-    chart + arrays concaténés. uv_offset transféré à sample_chart."""
+    chart plus concatenated arrays. uv_offset is passed to sample_chart."""
     blocks = []
     for S in TRIPLES:
         T = tuple(j for j in range(6) if j not in S)
@@ -253,7 +253,7 @@ def multi_values_and_projected_grads(Z, W, multis):
                    = (W†·∂z^I)[k, α]
     This convention is NOT the standard pullback (W^T.dz^I through the pure
     holomorphic chain rule), but the one against which the witness was
-    fitté (`kahler_polish.py` : A = einsum('nab,nb->na',
+    fitted (in the polish route: A = einsum('nab,nb->na',
     Vh, gI) with Vh = conj(V.T)), and the one that certifies positivity
     (mini-cover / interval_metric_kahler)."""
     K = Z.shape[0]
@@ -331,7 +331,7 @@ def chart_metric(Z, W, M, coeffs, basis, multis, midx, want_element_data=False):
     G = np.einsum("kAb,kbB->kAB", WHM, W) / rho[:, None, None]
     wv = np.einsum("kaA,ka->kA", W.conj(), MZc)     # (K,2)
     G = G - np.einsum("kA,kB->kAB", wv, wv.conj()) / rho[:, None, None] ** 2
-    # blocs phi homogénéisés : s^{-d}·H_bare − c·d·φ·s^{-d-1}·W_h†W_h
+    # homogenised phi blocks: s^{-d}.H_bare - c.d.phi.s^{-d-1}.W_h-dagger W_h
     WHW = np.einsum("kaA,kaB->kAB", W.conj(), W)    # (K,2,2)
     ident_coef = np.zeros(K)
     for e, be in enumerate(basis):
@@ -396,7 +396,7 @@ def jjh_on_sphere(z):
 #  Fonctions de base : valeurs, grads de chart, Hessiens de chart
 # ===========================================================================
 def basis_values(basis, m, s, midx):
-    """q̃_e = phi_e/s^d (K, nb) réels."""
+    """q_e = phi_e/s^d, shape (K, nb), real."""
     K = m.shape[0]
     nb = len(basis)
     Q = np.empty((K, nb))
@@ -468,7 +468,7 @@ def basis_chart_derivs(basis, m, p, s, midx, Z, W):
 
 
 def laplacian_of_basis(G, HQ):
-    """Δ₀ q̃_e = 2 g^{αβ̄} Hess[α,β̄] (K, nb) réels."""
+    """The Laplacian of q_e: 2 g^{ab} Hess[a,b], shape (K, nb), real."""
     Ginv = np.linalg.inv(G)                       # (K,2,2)
     lap = 2.0 * np.einsum("kBA,keAB->ke", Ginv, HQ)
     return lap.real

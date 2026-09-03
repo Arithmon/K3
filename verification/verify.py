@@ -175,6 +175,42 @@ def check_json(path, prefix):
     return (ok_gates and ok_neg and ok_out), detail
 
 
+# The paper publishes the SHA-256 prefix of each hash-verified certificate in
+# an appendix table. A reader who runs `sha256sum` compares against THAT table,
+# so it is a claim like any other -- and it was wrong: it carried prefixes from
+# an era before this repository existed, matching no file ever shipped here.
+# It is checked below, against the files, in both the markdown and the LaTeX.
+PAPER_HASH_TABLE = {
+    "bridge panel": "bridge_atlas_panel",
+    "metric path": "bridge_metric_path",
+    "face crossing": "face_traversal_leaf",
+}
+PAPER_FILES = ("paper/certified_k3_atlas.md",
+               "paper/latex/certified_k3_atlas_body.tex")
+
+
+def check_paper_hashes():
+    """Lines where the paper's published prefix differs from the shipped file."""
+    import re
+    bad = []
+    for rel in PAPER_FILES:
+        f = ROOT / rel
+        if not f.exists():
+            continue
+        for n, line in enumerate(f.read_text(encoding="utf-8").splitlines(), 1):
+            for label, cert in PAPER_HASH_TABLE.items():
+                if label not in line:
+                    continue
+                m = re.search(r"[0-9a-f]{16}", line)
+                if not m:
+                    continue
+                path = CERTS / f"{cert}.json"
+                want = sha(path)[:16] if path.exists() else "(missing)"
+                if m.group(0) != want:
+                    bad.append((rel, n, label, m.group(0), want))
+    return bad
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--quick", action="store_true",
@@ -277,6 +313,16 @@ def main():
         if not ok:
             failures.append(cert)
             lines.append(f"           expected {expected[:16]}…")
+
+    paper_bad = check_paper_hashes()
+    for rel, n, label, got, want in paper_bad:
+        lines.append(f"  FAIL     paper table  [{rel}:{n}] {label}: "
+                     f"published {got}…, shipped {want}…")
+    if paper_bad:
+        failures.append("paper hash table")
+    else:
+        lines.append(f"  PASS     paper hash table  "
+                     f"[{len(PAPER_HASH_TABLE)} entries match the files]")
 
     print("Certified K3 atlas — verification")
     print("\n".join(lines))

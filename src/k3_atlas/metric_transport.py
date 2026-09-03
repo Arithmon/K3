@@ -386,7 +386,7 @@ def build():
     sheet_records = {r["tile"]: tuple(r["F2d_ledger_derived"])
                for r in f23["per_bridge"]}
     clipped = sorted(bridges)
-    log(f"    {len(clipped)} ponts, ledgers dérivés importés de the bridge step")
+    log(f"    {len(clipped)} bridges, derived sheet records imported from the bridge step")
 
     reg = load_canonical_MH()
     M = build_M_civ(reg["M_H_canonical"])
@@ -429,7 +429,7 @@ def build():
     # --- G3/G4: the metric on the bridges -----------------------------
     sel = clipped if MODE == "full" else clipped[::max(
         1, len(clipped) // N_PANEL)][:N_PANEL]
-    log(f"G4 : métrique sur {len(sel)} pont(s)…")
+    log(f"G4: metric on {len(sel)} bridge(s)...")
     with mpctx.Pool(N_WORKERS, initializer=_init,
                     initargs=initargs) as pool:
         met = pool.map(_bridge_metric_job, [(i, "metric") for i in sel])

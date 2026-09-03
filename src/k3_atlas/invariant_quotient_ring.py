@@ -21,7 +21,7 @@ Standard basis:
   i a pivot.
     In other words each pivot appears at most once in I.
 
-Prédiction : dim quotient invariant Hermitien (Z_2^3, bidegré (d,d))
+Prediction: the dimension of the invariant Hermitian quotient at bidegree (d,d)
   d=0: 1  d=1: 10  d=2: 58  d=3: 218  d=4: 610  d=5: 1402
 Cumul V_≤d^{G-inv,Herm} sans constante :
   V_≤1: 10  V_≤2: 68  V_≤3: 286  V_≤4: 896  V_≤5: 2298
@@ -53,7 +53,7 @@ from .metric_oracle import COORD_CHARS, MU, enumerate_metric_basis
 if sys.platform == "win32":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
-PIVOT = (0, 1, 2)                                # S — figé (choix stable)
+PIVOT = (0, 1, 2)                                # frozen (a stable choice)
 NONPIVOT = tuple(i for i in range(6) if i not in PIVOT)
 
 
@@ -72,7 +72,7 @@ def is_standard_holo(I: Tuple[int, ...], pivot=PIVOT) -> bool:
 def enumerate_standard_holo(d: int, pivot=PIVOT) -> List[Tuple[int, ...]]:
     """List of sorted multi-indices I of length d with alpha_p in {0, 1} for p in pivot.
 
-    Format identique à combinations_with_replacement(range(6), d), filtré."""
+    Same format as combinations_with_replacement(range(6), d), filtered."""
     return [I for I in combinations_with_replacement(range(6), d)
             if is_standard_holo(I, pivot)]
 

@@ -47,7 +47,7 @@ Derivation of the blocks (Wirtinger calculus):
    G_ρ = (WᵀMᵀW̄)/ρ − (Wᵀr)(Wᵀr)†/ρ²
 
  phi block (Hermitian pair c.z^J.conj(z^L).s^{-d}):
-   H contracté = c·[ s^{-d}·pJ⊗p̄L
+   contracted H = c.[ s^{-d}.pJ (x) conj(pL)
                     − d·s^{-d-1}·( conj(m_L)·pJ ⊗ z̄W + m_J·zW ⊗ p̄L )
                     + m_J·conj(m_L)·( d(d+1)·s^{-d-2}·zW⊗z̄W
                                       − d·s^{-d-1}·WᵀW̄ ) ]
@@ -55,10 +55,10 @@ Derivation of the blocks (Wirtinger calculus):
    pairs; the cross term factors as g1 (x) conj(z)W + zW (x) conj(g1) with
    g1 the holomorphic gradient of the real element.
 
- dérivée premières (forme faible) : q̃ = φ/s^d ⟹
+ first derivatives (weak form): q = phi/s^d, so
    ∂_α q̃ = s^{-d}·( g1_α − d·φ·zW_α/s )
 
-Contrôle FS (M = I, c = 0) : G_FS = (WᵀW̄)/s − zW⊗z̄W/s² = ∂∂̄ log s.
+Fubini-Study control (M = I, c = 0): G_FS = (W^T conj(W))/s - zW (x) conj(zW)/s^2.
 Note: conj(G_FS) equals U-dagger U of the older engine in the sphere frame, consistent with
 the E0 diagnostic check (conj matches to 5.6e-08).
 """
@@ -73,8 +73,8 @@ import numpy as np
 if sys.platform == "win32":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
-# structures partagées (bases, sampling, valeurs) — convention-neutres
-from .spectral_basis import (  # noqa: F401  (ré-exports volontaires)
+# shared structures (bases, sampling, values), convention-neutral
+from .spectral_basis import (  # noqa: F401  (deliberate re-exports)
     MU, LAMBDA, TRIPLES, V2, VOL_TARGET,
     load_witness, basis_upto, multis_of, basis_values,
     sample_all_charts, sample_chart, minor_inv_times_T_float,
@@ -123,7 +123,7 @@ def dlog_s(Z, W):
 
 
 def fs_pullback(Z, W):
-    """∂∂̄ log s en chart : (WᵀW̄)/s − zW⊗z̄W/s²  (contrôle machinerie)."""
+    """The complex Hessian of log s in a chart (a control on the machinery)."""
     s = (np.abs(Z) ** 2).sum(axis=1)
     zW = dlog_s(Z, W)
     WtWb = np.einsum("kaA,kaB->kAB", W, W.conj())
@@ -135,7 +135,7 @@ def fs_pullback(Z, W):
 #  Potential (THE definition: the finite differences of the check derive exactly this)
 # ===========================================================================
 def potential_value(Z, M, coeffs, basis, multis, midx):
-    """K̃(Z) = log(Z†MZ) + Σ_e c_e φ_e(Z)/s^{d_e}  (K,) réel."""
+    """K(Z) = log(Z-dagger M Z) + sum_e c_e phi_e(Z)/s^{d_e}, real of shape (K,)."""
     rho = np.einsum("ki,ij,kj->k", Z.conj(), M, Z).real
     s = (np.abs(Z) ** 2).sum(axis=1)
     m = np.ones((Z.shape[0], len(multis)), dtype=complex)
@@ -149,7 +149,7 @@ def potential_value(Z, M, coeffs, basis, multis, midx):
 
 
 # ===========================================================================
-#  Métrique de chart : G = ∂∂̄K̃ pullback (tous blocs, convention unique)
+#  Chart metric: G is the pullback of the complex Hessian of K (all blocks)
 # ===========================================================================
 def chart_metric_kahler(Z, W, M, coeffs, basis, multis, midx,
                         want_element_data=False):

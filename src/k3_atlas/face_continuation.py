@@ -147,7 +147,7 @@ F2F3_JSON = RES / "bridge_continuation.json"
 RSCOUT_JSON = RES / "face_preliminary.json"
 ART = RES / "face_continuation.json"
 
-# --- PRÉ-ENREGISTRÉ -------------------------------------------------------
+# --- PREREGISTERED --------------------------------------------------------
 RE_DIR = 0                     # the direction crossed: Re u
 PREDICTED_DIFF_COORD = 5       # the candidates differ only on s=5
 THETA_REQUIRED = 1
@@ -345,9 +345,9 @@ def build():
     dyadic = all_dyadic_floats(bridge) and all_dyadic_floats(f0_box)
     b1b = bool(flush and inc_f0 and inc_mi and attained and neg_narrow
                and dyadic and w0 > 0 and w0_is_2H)
-    log(f"B1b : w₀ = {w0} == 2·H sérialisé ({w0_is_2H}, H = {H_halo}), "
-        f"pont-Re ⊇ the base bridge ∪ miroir (bornes atteintes {attained}), négatif "
-        f"étroit {neg_narrow}, dyadique {dyadic} ⟹ {b1b}")
+    log(f"B1b: w_0 = {w0} == 2.H serialised ({w0_is_2H}, H = {H_halo}), "
+        f"Re bridge contains the base bridge and its mirror (bounds attained {attained}), narrow "
+        f"negative control {neg_narrow}, dyadic {dyadic} => {b1b}")
 
     # --- B1c: section on the enlarged box -----------------------------
     keys = list(range(6))
@@ -363,7 +363,7 @@ def build():
     b1c = bool(Zw is not None and regimes_w == regimes_f0
                and rad_min is not None and rad_min > 0
                and gmin is not None and gmin > 0)
-    log(f"B1c : régimes élargis {regimes_w} == the base bridge sérialisés "
+    log(f"B1c: enlarged regimes {regimes_w} == the serialised base-bridge ones "
         f"{regimes_f0} ; radicande min {rad_min} ; jauge cible min "
         f"{gmin} ⟹ {b1c}")
 
@@ -406,7 +406,7 @@ def build():
                     b1e = bool(th_der["closed"] and is_cube
                                and anchor_interior)
     log(f"B1e : W_cell largeurs {[str(x) for x in (W_widths or [])]} "
-        f"(cube), sheet record DÉRIVÉ {eps_der}, reconstruit ⟹ "
+        f"(cube), sheet record DERIVED {eps_der}, rebuilt => "
         f"{th_der} ⟹ {b1e}")
 
     # --- B1f: the two candidates -------------------------------------
@@ -538,7 +538,7 @@ def build():
 
     b1h = bool(Zw is not None and Zf0 is not None and W is not None
                and len(closed) == len(cands) == 2)
-    log(f"B1h : 6 coordonnées partout, 2 candidates traitées ⟹ {b1h}")
+    log(f"B1h: 6 coordinates everywhere, 2 candidates processed => {b1h}")
 
     checks = {
         "B1a_upstream_green_full_modes": bool(b1a),
@@ -562,8 +562,8 @@ def build():
     out = {
         "artifact": "face_continuation",
         "mode": "full",
-        "contract": ("phase B1 du contrat the face arc-P0 — a review §7.3-B, "
-                     "amendée a review §1/§4/§5 ; témoin unique "
+        "contract": ("phase B1 of the face contract, as amended by two "
+                     "reviews; single witness "
                      "w_one_neighbor"),
         "claim": (
             "On the witness tile, flush with the high Re u face, the section of the "

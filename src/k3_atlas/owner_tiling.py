@@ -106,10 +106,10 @@ def couple_setup(S, g_col):
 
 def classify_box(S, g_col, box, setup=None, with_flags=False):
     """box = (ur_lo, ur_hi, ui_lo, ui_hi, vr_lo, vr_hi, vi_lo, vi_hi).
-    Retourne 'OWNER' | 'OUTSIDE' | 'BRANCH' | 'AMBIGUOUS'.
-        OUTSIDE takes precedence over BRANCH (sound: a box certified outside the
-    propriétaire n'a pas besoin de traitement de branche) ; with_flags
-    expose le drapeau branch interne (check S3)."""
+    Returns 'OWNER' | 'OUTSIDE' | 'BRANCH' | 'AMBIGUOUS'.
+    OUTSIDE takes precedence over BRANCH (sound: a box certified outside
+    the owner needs no branch handling); with_flags exposes the internal
+    branch flag (check S3)."""
     T, o1, o2, A = setup if setup is not None else couple_setup(S, g_col)
     ur, ui = _iv(box[0], box[1]), _iv(box[2], box[3])
     vr, vi = _iv(box[4], box[5]), _iv(box[6], box[7])
@@ -227,7 +227,7 @@ def i_sqrt(al, ah):
 
 def classify_boxes_np(S, g_col, boxes, setup=None):
     """boxes (N, 8) → codes (N,) : 0=OWNER 1=OUTSIDE 2=BRANCH 3=AMBIGUOUS.
-    Miroir vectorisé de classify_box (mêmes inégalités strictes)."""
+    Vectorised mirror of classify_box (the same strict inequalities)."""
     T, o1, o2, A = setup if setup is not None else couple_setup(S, g_col)
     b = np.asarray(boxes, float)
     isq = i_sq
@@ -344,7 +344,7 @@ def build():
           "arithmetic) plus O1 (tiling of the 60 pairs)")
     print("=" * 78)
     log(f"grille N0={N0}⁴, D_MAX={D_MAX} (branch-and-bound, "
-        f"AMBIGUOUS/BRANCH subdivisées, résiduel publié)")
+        f"AMBIGUOUS/BRANCH subdivided, residual published)")
     rows = []
     tot = {"OWNER": 0.0, "OUTSIDE": 0.0, "residual": 0.0}
     n_boxes, n_capped = 0, 0
@@ -368,9 +368,9 @@ def build():
                          "counts": counts})
             log(f"  S={tuple(S)} g={g_col} : owner {stats['OWNER']:8.4f} "
                 f"({stats['OWNER'] / 16:6.2%}) · outside "
-                f"{stats['OUTSIDE']:8.4f} · résiduel "
-                f"{stats['residual']:8.4f} · {nb} boîtes"
-                + (" · CAP frontière" if capped else ""))
+                f"{stats['OUTSIDE']:8.4f} · residual "
+                f"{stats['residual']:8.4f} · {nb} boxes"
+                + (" · boundary CAP" if capped else ""))
     n_owner_couples = sum(1 for r in rows if r["vol_owner"] > 0)
     n_empty_cert = sum(1 for r in rows
                        if r["vol_owner"] == 0 and r["vol_residual"] == 0)
@@ -402,8 +402,8 @@ def build():
                   "candidate pairs, with the three review corrections"),
         "n0": N0, "d_max": D_MAX, "rad_floor2": RAD_FLOOR2,
         "max_frontier": MAX_FRONTIER, "n_couples_capped": n_capped,
-        "fast_kernel": ("numpy + arrondi dirigé émulé nextafter "
-                        "(design-grade ; oracle mpmath = référence, "
+        "fast_kernel": ("numpy plus directed rounding emulated by nextafter "
+                        "(design-grade; the mpmath oracle is the reference, "
                         "check S6)"),
         "n_boxes_classified": n_boxes,
         "n_couples_with_certified_owner": n_owner_couples,
@@ -431,14 +431,14 @@ def _selftest():
     res = sample_chart(rng, S0, g0, 2000)
     Z, W, UV = res
     u0, v0 = complex(UV[0, 0]), complex(UV[0, 1])
-    log(f"self-test : point possédé témoin (S={S0}, g={g0}), "
+    log(f"self-test: witness owned point (S={S0}, g={g0}), "
         f"u={u0:.3f}, v={v0:.3f}")
 
     def degen(u, v):
         return (u.real, u.real, u.imag, u.imag,
                 v.real, v.real, v.imag, v.imag)
 
-    # --- S1 : dégénéré OWNER / jauge fausse / triple faux ----------------------
+    # --- S1: degenerate OWNER / false gauge / false triple -------------
     v_ok = classify_box(S0, g0, degen(u0, v0))
     T0_ = tuple(j for j in range(6) if j not in S0)
     g_bad = [c for c in T0_ if c != g0][0]
@@ -448,15 +448,15 @@ def _selftest():
     v_sbad = classify_box(S_bad, g_for_Sbad, degen(u0, v0))
     s1 = v_ok == "OWNER" and v_gbad == "OUTSIDE" and v_sbad == "OUTSIDE"
     fails.append(not s1)
-    print(f"[{'PASS' if s1 else 'FAIL'}] S1 négatifs O0 : possédé → "
+    print(f"[{'PASS' if s1 else 'FAIL'}] S1 negative controls: owned point -> "
           f"{v_ok} ; jauge fausse → {v_gbad} ; triple faux → {v_sbad}")
 
-    # --- S2 : boîte à cheval ------------------------------------------------------
+    # --- S2: a straddling box -----------------------------------------
     v_big = classify_box(S0, g0, (-1, 1, -1, 1, -1, 1, -1, 1))
     s2 = v_big in ("AMBIGUOUS", "BRANCH")
     fails.append(not s2)
-    print(f"[{'PASS' if s2 else 'FAIL'}] S2 boîte domaine entier "
-          f"(frontières incluses) → {v_big} (ni OWNER ni OUTSIDE)")
+    print(f"[{'PASS' if s2 else 'FAIL'}] S2 whole-domain box "
+          f"(boundaries included) -> {v_big} (neither OWNER nor OUTSIDE)")
 
     # --- S3: a constructed vanishing radicand -------------------------
     s3, msg3 = False, "no radicand zero found (60 pairs, 2 axes)"
@@ -495,7 +495,7 @@ def _selftest():
                             msg3 = (f"S={S} g={g_col}: R_{si} = 0 at "
                                     f"{name} = "
                                     f"{'i·' if imag else ''}{r:.4f} "
-                                    f"→ {v_rad}, branch flag levé")
+                                    f"-> {v_rad}, branch flag raised")
                             break
                     if s3:
                         break
@@ -525,7 +525,7 @@ def _selftest():
                 owners.append((tuple(S), g_col))
     s4 = owners == [(S0, g0)]
     fails.append(not s4)
-    print(f"[{'PASS' if s4 else 'FAIL'}] S4 unicité projective : "
+    print(f"[{'PASS' if s4 else 'FAIL'}] S4 projective uniqueness: "
           f"{len(owners)} couple(s) OWNER = {owners}")
 
     # --- S5 : validation MC vs volume intervalle -----------------------------------
@@ -537,12 +537,12 @@ def _selftest():
     sig = 3 * np.sqrt(freq * (1 - freq) / n_mc)
     s5 = lo - sig <= freq <= hi + sig and stats["OWNER"] > 0
     fails.append(not s5)
-    print(f"[{'PASS' if s5 else 'FAIL'}] S5 MC : freq possédée = "
+    print(f"[{'PASS' if s5 else 'FAIL'}] S5 Monte Carlo: owned frequency = "
           f"{freq:.4f} ∈ [{lo:.4f}, {hi:.4f}] ± {sig:.4f} "
-          f"(owner/résiduel à D=4 ; volume OWNER certifié > 0 : "
+          f"(owner/residual at D=4; certified OWNER volume > 0: "
           f"{stats['OWNER'] > 0})")
 
-    # --- S6 : cohérence noyau rapide (numpy/nextafter) vs oracle mpmath -------------
+    # --- S6: fast kernel (numpy/nextafter) against the mpmath oracle ---
     rng6 = np.random.default_rng(99)
     n6 = 120
     ctr = rng6.uniform(-0.9, 0.9, (n6, 4))
@@ -564,7 +564,7 @@ def _selftest():
     s6 = n_mismatch == 0
     fails.append(not s6)
     print(f"[{'PASS' if s6 else 'FAIL'}] S6 cross-check np vs mpmath : "
-          f"{n6} boîtes aléatoires, {n_mismatch} désaccord(s) certifié(s)")
+          f"{n6} random boxes, {n_mismatch} certified disagreement(s)")
 
     print("-" * 78)
     print("SELF-TEST:", "FAIL" if any(fails) else "ALL PASS")

@@ -141,7 +141,7 @@ def q3_values(Zs):
 
 
 def design_on_sample(seed, n_draw):
-    """Sample propriétaire + design pondéré-centré. Retourne
+    """Ownership sample plus weighted, centred design. Returns
     (A, mean, w, Zr, Wr)."""
     rng = np.random.default_rng(seed)
     _, Zr, Wr, _ = sample_all_charts(rng, n_draw)
@@ -192,7 +192,7 @@ def load_param_artifact():
 
 
 # ===========================================================================
-#  Script de génération + selftests
+#  Generation script plus self-tests
 # ===========================================================================
 def main():
     T0 = time.time()
@@ -225,12 +225,12 @@ def main():
     results["dims"] = {"V1": NB1, "V2": NB2, "V3": NB3,
                        "rank_E13": int(np.linalg.matrix_rank(E13))}
 
-    log("sample gelé + design...")
+    log("frozen sample plus design...")
     A, mean_frozen, w_frozen, Zr, Wr = design_on_sample(seed_frozen, n_draw)
     K_PTS = A.shape[0]
-    log(f"design gelé : {K_PTS} pts × {NB3}")
+    log(f"frozen design: {K_PTS} pts by {NB3}")
 
-    log("orthonormalisation hiérarchique...")
+    log("hierarchical orthonormalisation...")
     C1, S1v = orth_block(A, V1cols, [])
     C2, S2v = orth_block(A, V2cols, [C1])
     C3, S3v = orth_block(A, np.eye(NB3), [C1, C2])
@@ -314,10 +314,10 @@ def main():
     rB = residual_r(Zp, Wp, M9, cr, dMSp)
     rej = float(np.abs(rA - rB).max())
     check("S5_r_gauge_invariance", rej < 1e-10,
-          f"max|Δr| rejauge = {rej:.2e} (n = {len(Zb)}, c aléatoire)")
+          f"max regauging deviation of r = {rej:.2e} (n = {len(Zb)}, random c)")
 
-    # S6 — généralisation sample frais
-    log("sample frais (généralisation)...")
+    # S6: generalisation on a fresh sample
+    log("fresh sample (generalisation)...")
     Af, _, _, _, _ = design_on_sample(seed_fresh, n_draw)
     ACf = Af @ C
     gram_f = ACf.T @ ACf
@@ -378,7 +378,7 @@ def main():
         json.dumps(results, indent=2, default=float))
     print("\n" + "=" * 74)
     print(f"BILAN R0 : {sum(checks.values())}/{len(checks)} PASS — "
-          f"paramétrisation v2 = 9 (M) + {C.shape[1]} (c) = "
+          f"v2 parametrisation = 9 (M) + {C.shape[1]} (c) = "
           f"{9 + C.shape[1]}")
     print("=" * 74)
     for kx, v in checks.items():

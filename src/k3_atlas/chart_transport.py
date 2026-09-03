@@ -611,9 +611,9 @@ def stratify(tiles, residual):
 # ===========================================================================
 def build():
     print("=" * 78)
-    print(f"the transport step TRANSPORT {'UNIVERSEL (252)' if MODE == 'full' else 'PILOTE STRATIFIÉ'}"
+    print(f"TRANSPORT {'UNIVERSAL (252)' if MODE == 'full' else 'STRATIFIED PILOT'}"
           f" : TM ({TM_ORDER},{UNARY_SERIES_DEG}), {N_WORKERS} workers, "
-          f"δ_rel pré-enregistré = {DELTA_REL:.0e}")
+          f"preregistered relative delta = {DELTA_REL:.0e}")
     print("=" * 78)
     reg = load_canonical_MH()
     M = build_M_civ(reg["M_H_canonical"])
@@ -625,8 +625,8 @@ def build():
     S, g, eps = tuple(cell["S"]), cell["g"], tuple(cell["eps"])
     root_c = [float.fromhex(x) for x in cell["center_hex"]]
     root_h = float.fromhex(cell["hw_hex"])
-    log(f"cover chargé : {len(tiles)} tuiles, {len(residual)} boîtes "
-        f"résiduelles · cellule S={list(S)} g={g} eps={list(eps)}")
+    log(f"cover loaded: {len(tiles)} tiles, {len(residual)} residual "
+        f"boxes · cell S={list(S)} g={g} eps={list(eps)}")
 
     # --- the address sheet record step : le sheet record dyadique autonome --------------------------------
     leaves = [(t, "tile") for t in tiles] + [(r, "residual")
@@ -640,9 +640,9 @@ def build():
             addr_fail += 1
         else:
             addresses.append(a)
-            # the provenance amendment : adresses explicitement SÉRIALISÉES (elles
-            # were only reconstructed: autonomous but less
-            # auditable de l'extérieur)
+            # the provenance amendment: addresses explicitly SERIALISED
+            # (they were only reconstructed: autonomous but less
+            # auditable from outside)
             leaf_addr.append({"kind": kind, "depth": len(a),
                               "path": [list(d) for d in a]})
     tg = tree_gates(addresses)
@@ -651,7 +651,7 @@ def build():
                          for r in residual)
     log(f"the address sheet record step : {len(addresses)}/{len(leaves)} adresses exactes, "
         f"prefix-free={tg['prefix_free']}, clos={tg['tree_closed']}, "
-        f"Kraft={tg['kraft_sum'][0]}/{tg['kraft_sum'][1]} · frontière "
+        f"Kraft={tg['kraft_sum'][0]}/{tg['kraft_sum'][1]} · boundary "
         f"{[x['fraction_float'] for x in fr]}")
 
     # --- Stratification -------------------------------------------------------
@@ -673,8 +673,8 @@ def build():
     by_idx = {r["tile_index"]: r for r in results}
     failed = [r for r in results if r.get("failed")]
     ok = [r for r in results if not r.get("failed")]
-    log(f"transports : {len(ok)}/{expected_n} OK, {len(failed)} échecs "
-        f"(REFUSÉS, pas filtrés)")
+    log(f"transports: {len(ok)}/{expected_n} OK, {len(failed)} failures "
+        f"(REFUSED, not filtered out)")
 
     # --- Probes on the stratified subset --------------------------------------
     probe_idx = [i for i in sel_pilot if i in by_idx
@@ -756,7 +756,7 @@ def build():
         f"autonomie {sum(auto_ok)}/{len(auto_ok)} · scaling "
         f"{sum(scale_ok)}/{len(scale_ok)}")
 
-    # --- Checks pré-enregistrés ------------------------------------------------
+    # --- Preregistered checks -----------------------------------------
     max_rel = max((r["residual_relative"] for r in ok), default=None)
     eps_margins_all = [m for r in ok for m in (r["eps_margins"] or [])]
     checks = {
@@ -862,9 +862,9 @@ def build():
                                if wall_tiles else None,
                                "max": max(wall_tiles, default=None)},
            "not_paid_here": ["the atlas step halos/overlaps/cocycle",
-                             "the residual closure résidu 1/64",
-                             "contrat exact de l'identité (E3 reste "
-                             "« congruence approchée certifiée »)",
+                             "the residual 1/64 of the residual closure",
+                             "the exact contract of the identity (it stays "
+                             "a certified approximate congruence)",
                              "globalisation", "the later scaling"],
            "verdict": verdict, "checks": checks,
            "checks_passed": n_pass, "checks_total": len(checks),
@@ -910,7 +910,7 @@ def _selftest():
     # T2: a leaf PERTURBED by one ulp has NO address
     c_bad = list(c2)
     c_bad[0] = math.nextafter(c_bad[0], math.inf)
-    chk("T2 négatif : centre perturbé d'un ulp → adresse REFUSÉE",
+    chk("T2 negative control: a centre moved by one ulp gives a REFUSED address",
         address_of(root_c, root_h, c_bad, h2) is None)
 
     # T3: a complete tree at mixed depth, closure and Kraft
@@ -926,17 +926,17 @@ def _selftest():
     #      sum does not see if compensated) gives a prefix-free FAILURE
     bad = addrs + [((-1, -1, -1, -1), (1, 1, 1, 1))]
     t4 = tree_gates(bad)
-    chk("T4 négatif : feuille + sa descendante → prefix-free REFUSÉ",
+    chk("T4 negative control: a leaf and its descendant make prefix-freeness REFUSE",
         not t4["prefix_free"])
 
-    # T5 : NÉGATIF — un enfant manquant → clôture FAIL, Kraft ≠ 1
+    # T5: NEGATIVE CONTROL, a missing child breaks closure and Kraft
     t5 = tree_gates(addrs[:-1])
-    chk("T5 négatif : enfant manquant → arbre NON clos, Kraft ≠ 1",
+    chk("T5 negative control: a missing child leaves the tree NOT closed, Kraft not 1",
         not t5["tree_closed"] and not t5["kraft_is_one"])
 
     # T6: boundary fractions on the mixed tree: 1 then 1/16
     fr = frontier_fractions(addrs)
-    chk("T6 frontière : [1, 1/16] strictement décroissante",
+    chk("T6 boundary: [1, 1/16] strictly decreasing",
         len(fr) == 2 and fr[0]["fraction_float"] == 1.0
         and abs(fr[1]["fraction_float"] - 1.0 / 16) < 1e-15)
 
@@ -979,14 +979,14 @@ def _selftest():
              complex(2, 0))
     Hbad = cmat(complex(1, 0), complex(0.3, 0.2), complex(0.3, 0.2),
                 complex(2, 0))
-    chk("T11 hermiticité : hermitienne acceptée, mutée REFUSÉE",
+    chk("T11 hermiticity: a Hermitian matrix accepted, a mutated one REFUSED",
         hermitian_contains_zero(H)
         and not hermitian_contains_zero(Hbad))
 
     # T12: lambda_min_lo really is a directed lower bound on
     # diag(2, 3) : det/tr = 6/5 ≤ 2, et float(λ) ≤ λ exacte
     lm, ld = lam_min_lo(cmat(2 + 0j, 0j, 0j, 3 + 0j))
-    chk("T12 λmin_lo(diag(2,3)) = 1.2 ≤ 2, float dirigé ≤ mpf",
+    chk("T12 lambda_min_lo(diag(2,3)) = 1.2 at most 2, directed float at most mpf",
         lm is not None and abs(ld["float"] - 1.2) < 1e-12
         and ld["float"] <= lm)
 

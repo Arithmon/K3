@@ -419,7 +419,7 @@
     "D2_witness_3boxes": true,
     "D3_negative_certified": true,
     "D4_monotonicity_tested": true,
-    "D5_chart_congruence": "DEFERRED (consigné, cf. note)",
+    "D5_chart_congruence": "DEFERRED (recorded, see the note)",
     "D6_all_classes_tested": true
   },
   "t2_seconds_per_call_mean": 11.13976809978485,

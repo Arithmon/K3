@@ -1,5 +1,5 @@
 {
-  "phase": "B1.e.2.iii C118 — replay EXHAUSTIF de la coquille sous la garde range-aware, prédiction recalculée (revue GPT §C112/C114)",
+  "phase": "EXHAUSTIVE replay of the shell under the range-aware guard, with the prediction recomputed after review",
   "witness_sha256": "738006ef56238f0496b228c06ce33596011a5e316e4fa174a37b58500ac29b4c",
   "tm_config": {
     "poly_deg": 4,

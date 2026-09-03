@@ -65,11 +65,11 @@ RES = Path(__file__).resolve().parent / "data"
 CHUNK = 4000
 HEAVY_CHARTS = {((0, 2, 5), 1), ((1, 3, 5), 2)}    # tail study 07-15
 BOOST = 4
-D3 = 3.0                                            # degré homogène de B3
+D3 = 3.0                                            # homogeneous degree of the basis
 
 
 def pack_herm(G):
-    """(K,2,2) hermitien → (K,4) réels [g00, g11, Re g01, Im g01]."""
+    """(K,2,2) Hermitian to (K,4) reals [g00, g11, Re g01, Im g01]."""
     return np.stack([G[:, 0, 0].real, G[:, 1, 1].real,
                      G[:, 0, 1].real, G[:, 0, 1].imag], axis=1)
 
@@ -87,7 +87,7 @@ def tr_inv_packed(g, t, det):
 
 
 # ===========================================================================
-#  Sample de fit stratifié (charts = strates indépendantes, poids 16/n_c)
+#  Stratified fit sample (charts are independent strata, weight 16/n_c)
 # ===========================================================================
 def stratified_fit_sample(seed, n_base, boost=BOOST):
     rng = np.random.default_rng(seed)
@@ -175,8 +175,9 @@ def element_tensors_packed(Z, W):
 #  Problème de fit
 # ===========================================================================
 class FitProblem:
-    """F(p9, c208) = Var_w(r) sur sample stratifié gelé. Gradient c
-    analytique exact ; gradient p9 par FD central (ρ-bloc seul)."""
+    """F(p9, c208) = Var_w(r) on a frozen stratified sample. The gradient
+    in c is exactly analytic; the gradient in p9 uses central finite
+    differences (rho block only)."""
 
     def __init__(self, seed=21, n_base=500, log=print):
         t0 = time.time()
@@ -190,7 +191,7 @@ class FitProblem:
         self.log_dMS2 = 2.0 * np.log(np.abs(det_MS))
         self.labels = labels
         self.K = Z.shape[0]
-        log(f"  fit sample stratifié : {self.K} pts "
+        log(f"  stratified fit sample: {self.K} pts "
             f"({len(labels)} charts, boost ×{BOOST} sur "
             f"{len(HEAVY_CHARTS)})")
         Tps = []
@@ -198,7 +199,7 @@ class FitProblem:
             sl = slice(i0, min(i0 + CHUNK, self.K))
             Tps.append(element_tensors_packed(Z[sl], W[sl]))
         self.Tp = np.concatenate(Tps)                  # (K, 218, 4)
-        log(f"  T_e packés : {self.Tp.shape} "
+        log(f"  packed T_e: {self.Tp.shape} "
             f"({self.Tp.nbytes / 1e6:.0f} MB) en {time.time() - t0:.1f}s")
 
     # --- blocs -----------------------------------------------------------
@@ -223,7 +224,8 @@ class FitProblem:
         return r, det, pd_mask
 
     def F_and_grad_c(self, rho_p, c208):
-        """F, grad_c (208,), + diagnostics. Var pondérée sur points PD."""
+        """F, grad_c (208,), plus diagnostics. Weighted variance over the
+    positive definite points."""
         gp = self.G_packed(rho_p, c208)
         r, det, pd = self.r_of(gp)
         wm = self.what * pd
@@ -260,7 +262,7 @@ class FitProblem:
 def project_v1(log=print):
     """Project f_v1 = sum coeffs_raw onto (psi_j) through the design
     (seed 11: the SAME sample as the orthonormalisation of C). Returns
-    c208_v1 + décomposition en normes²."""
+    c208_v1 plus a decomposition into squared norms."""
     art = load_param_artifact()
     C, C1 = art["C"], art["C1"]
     seed, n_draw = int(art["spec"][0]), int(art["spec"][1])
@@ -292,7 +294,7 @@ def project_v1(log=print):
            "norm2_residual": res2, "const_part_mean": float(fbar)}
     log(f"  projection v1 : ‖f̃‖² = {n2:.4f} = ψ {dec['norm2_c208']:.4f} "
         f"+ V1 {dec['norm2_V1_centered']:.4f} "
-        f"+ résidu {res2:.2e} (attendu ~0 : f ∈ V₃)")
+        f"+ residual {res2:.2e} (expected about 0: f lies in the space)")
     return c208, dec
 
 
@@ -333,7 +335,7 @@ def main():
     dev = float(np.abs(gp[:1500] - pack_herm(G_eng)).max()
                 / np.abs(pack_herm(G_eng)).max())
     check("T1_tensors_vs_engine", dev < 1e-12,
-          f"G packé (ρ + T·Cc) vs moteur : rel max = {dev:.2e}")
+          f"packed G (rho + T.Cc) against the engine: max relative = {dev:.2e}")
 
     # T2 — gradient c analytique vs FD (au point FS + petit c, PD partout)
     c0 = 1e-3 * rng.standard_normal(208)
@@ -364,7 +366,7 @@ def main():
         f"‖∇c‖ = {np.linalg.norm(g_fs):.3f}, "
         f"‖∇p9‖ = {np.linalg.norm(gp9_fs):.3f}")
 
-    # B1 — baseline v1 projeté
+    # B1: the projected v1 baseline
     log("projection v1 (design R0)...")
     c208_v1, dec = project_v1(log=log)
     results["v1_projection"] = dec
@@ -374,7 +376,7 @@ def main():
         "var_r": F_v1, "pd_frac": d_v1["pd_frac"],
         "grad_c_norm": float(np.linalg.norm(g_v1)),
         "grad_p9_norm": float(np.linalg.norm(gp9_v1))}
-    log(f"  B1 v1 projeté : var(r) = {F_v1:.4f}, PD = "
+    log(f"  B1 projected v1: var(r) = {F_v1:.4f}, positive definite = "
         f"{d_v1['pd_frac']:.4f}, ‖∇c‖ = {np.linalg.norm(g_v1):.3f}, "
         f"‖∇p9‖ = {np.linalg.norm(gp9_v1):.3f}")
 

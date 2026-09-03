@@ -120,9 +120,9 @@ N_WORKERS = int(os.environ.get("K3_C127E_WORKERS", "4"))
 ART = RES / ("residual_closure.json" if MODE == "full"
              else "residual_closure_pilot.json")
 
-# --- PRÉ-ENREGISTRÉ ---------------------------------------------------------
+# --- PREREGISTERED ----------------------------------------------------------
 DELTA_REL = 1e-5        # the same ceiling as the transport step, unchanged
-N_PILOT_BOXES = 8       # boîtes résiduelles en mode pilot
+N_PILOT_BOXES = 8       # residual boxes in pilot mode
 N_PROBE_NEG = 4         # tiles probed by the negative controls R7/R8
 
 T0 = time.time()
@@ -242,7 +242,7 @@ def native_rows_ext(S2, g2, up, vp):
             else:
                 rec["rotated_refused"] = "rotated_component_undetermined"
                 # (3) the THIRD determination: canonical sigma, sheet
-                # déléguée à ε'. Garde inchangée (the cut guard sur −R').
+                # delegated to eps'. The guard is unchanged (the cut guard on -R').
                 try:
                     Zp = tm_sqrt_rotated(R, 1)
                     rec["determination"] = "rotated_canonical"
@@ -261,7 +261,7 @@ def native_rows_ext(S2, g2, up, vp):
 
 def strong_chart_ok_ext(Z, dZ, S2, g2):
     """Chart criterion (domain, Jacobian, disjointness) with the
-    constructibilité ÉTENDUE."""
+    EXTENDED constructibility."""
     cert = chart_certificate(Z, dZ, S2, g2)
     if not (cert.get("admissible")
             and cert.get("disjoint_from_target_slice")):
@@ -360,8 +360,8 @@ def build():
     S, g, eps = tuple(cell["S"]), cell["g"], tuple(cell["eps"])
     root_c = [float.fromhex(x) for x in cell["center_hex"]]
     root_h = float.fromhex(cell["hw_hex"])
-    log(f"cover : {len(tiles_old)} tuiles, {len(residual)} boîtes "
-        f"résiduelles · cellule S={list(S)} g={g}")
+    log(f"cover: {len(tiles_old)} tiles, {len(residual)} residual "
+        f"boxes · cell S={list(S)} g={g}")
 
     boxes = residual if MODE == "full" else residual[:N_PILOT_BOXES]
 
@@ -384,9 +384,9 @@ def build():
     new_tiles = [r for r in found if r["found"]]
     unclosed = [r for r in found if not r["found"]]
     n_canon = sum(t["n_canonical_rows"] for t in new_tiles)
-    log(f"recherche : {len(new_tiles)}/{len(boxes)} boîtes fermées "
-        f"({n_canon} lignes en 3ᵉ détermination), {len(unclosed)} non "
-        f"fermées (PUBLIÉES)")
+    log(f"search: {len(new_tiles)}/{len(boxes)} boxes closed "
+        f"({n_canon} rows on the third determination), {len(unclosed)} left "
+        f"unclosed (PUBLISHED)")
 
     # --- R6: transport on all the new tiles -----------------------------------
     tjobs = [(t, "transport", None) for t in new_tiles]
@@ -395,8 +395,8 @@ def build():
         transported = pool.map(_transport_tile, tjobs)
     tr_fail = [r for r in transported if r.get("failed")]
     tr_ok = [r for r in transported if not r.get("failed")]
-    log(f"transport : {len(tr_ok)}/{len(new_tiles)} OK, "
-        f"{len(tr_fail)} échecs (REFUSÉS, pas filtrés)")
+    log(f"transport: {len(tr_ok)}/{len(new_tiles)} OK, "
+        f"{len(tr_fail)} failures (REFUSED, not filtered out)")
 
     # --- R7: sheet negative control (sheet flipped on a canonical row) --------
     probe = [t for t in new_tiles if t["n_canonical_rows"] > 0]
@@ -473,7 +473,7 @@ def build():
     vol_res = sum(Fraction(1, 16 ** len(a)) for a in residual_addr)
     vol_cov = 1 - vol_res
     log(f"R5 : Kraft {tg['kraft_sum'][0]}/{tg['kraft_sum'][1]}, couvert "
-        f"{float(100 * vol_cov):.4f} %, résidu {float(100 * vol_res):.4f} %")
+        f"{float(100 * vol_cov):.4f} %, residual {float(100 * vol_res):.4f} %")
 
     # --- Checks ----------------------------------------------------------------
     max_rel = max((r["residual_relative"] for r in tr_ok), default=None)
@@ -589,7 +589,7 @@ def _selftest():
         return TMC.const(CIV(riv(re), riv(im)))
 
     # T1: R = -4 exactly (Re < 0, Im identically 0: the residual configuration)
-    #      principale refusée, composante indéterminée, CANONIQUE passe
+    #      the plain one refused, the component undetermined, CANONICAL passes
     #      et w² = R
     R = const_tmc(-4.0)
     p_refused = False
@@ -600,7 +600,7 @@ def _selftest():
     w = tm_sqrt_rotated(R, 1)
     d = w * w - R
     dr, di = _rng(d), _rng(d, True)
-    chk("T1 R=−4 : principale refusée, canonique passe, w² = R",
+    chk("T1 R=-4: plain refused, canonical passes, w^2 = R",
         p_refused and dr[0] <= 0 <= dr[1] and di[0] <= 0 <= di[1])
 
     # T2: w(component=-1) is the EXACT NEGATION of w(component=+1); the sheet and
@@ -609,7 +609,7 @@ def _selftest():
     #      adding Taylor models adds the remainders (rem+rem > 0 on a
     #      true model, which is the defect of check R8 v1, found in the pilot).
     wm = tm_sqrt_rotated(R, -1)
-    chk("T2 w(σ=−1) = négation exacte de w(σ=+1) (coefficients + reste)",
+    chk("T2 w(sigma=-1) is the exact negation of w(sigma=+1) (coefficients and remainder)",
         _exact_negation(w, wm))
 
     # T2b NEGATIVE CONTROL: w is NOT its own negation (the test cannot
@@ -619,7 +619,7 @@ def _selftest():
 
     # T3: w = i.sqrt_p(-R) equals 2i for R = -4 (the right branch, not +-2)
     wr, wi = _rng(w), _rng(w, True)
-    chk("T3 w(−4, σ=+1) = 2i (enclosure serrée autour de (0, 2))",
+    chk("T3 w(-4, sigma=+1) = 2i (enclosure tight around (0, 2))",
         abs(wr[0]) < 1e-12 and abs(wr[1]) < 1e-12
         and abs(wi[0] - 2.0) < 1e-12 and abs(wi[1] - 2.0) < 1e-12)
 
@@ -654,7 +654,7 @@ def _selftest():
     # T6: R = 4i (Im > 0 strictly): the component is CERTIFIABLE, so
     #      step (2) must suffice; the canonical one must not be
     #      reached when a certified component exists (this is the strict order of
-    #      native_rows_ext, vérifié ici sur sa brique)
+    #      native_rows_ext, verified here on its own primitive)
     Ri = const_tmc(0.0, 4.0)
     w2 = tm_sqrt_rotated(Ri, 1)
     d2 = w2 * w2 - Ri

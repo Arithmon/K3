@@ -30685,7 +30685,7 @@
     "N1_eps_ledger_flipped": {
       "breaks": true,
       "anchor_theta_row0": -1,
-      "note": "ε'₀ nié : la séparation d'ancre doit rendre θ = −1"
+      "note": "the first sheet sign negated: the anchor separation must return theta = -1"
     },
     "N2_sigma_flipped": {
       "breaks": true,
@@ -30695,16 +30695,16 @@
     },
     "N3_exact_algebra_corrupted": {
       "breaks": true,
-      "note": "A'₀₀ + 2⁻⁴⁰ : V_S·A = −V_T doit être FAUX en Fraction — égalité exacte, pas de seuil"
+      "note": "one entry perturbed by 2^-40: the exact identity must become FALSE in Fraction arithmetic; exact equality, no threshold"
     },
     "N4_radicand_contains_zero": {
       "breaks": true,
       "absmin_row0": 0.0,
-      "note": "R'₀ privé de son terme constant : l'enclosure contient 0, |R'| minoré > 0 doit échouer"
+      "note": "the first radicand stripped of its constant term: the enclosure contains 0, so the lower bound above 0 must fail"
     },
     "N5_anchor_outside_halo": {
       "breaks": true,
-      "note": "ancre décalée de 2H : ε ∉ [−1,1]⁴, refus exact"
+      "note": "the anchor shifted by 2H: the symbol leaves the unit box, exact refusal"
     },
     "N6_determination_record_forged": {
       "breaks": true,
@@ -30748,7 +30748,7 @@
     "mode": "full",
     "n_workers": 4,
     "preregistered": {
-      "anchor_rule": "séparation STRICTE avec reste TM, refus si ambigu, jamais d'essai",
+      "anchor_rule": "STRICT separation with the Taylor-model remainder, refusal if ambiguous, never a trial",
       "n_pilot_tiles": 40
     },
     "inputs": {

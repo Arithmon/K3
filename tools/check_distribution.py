@@ -56,6 +56,14 @@ DEVELOPMENT_VOCABULARY = [
 
 # Common French function words. Their presence in a line of prose is what
 # distinguishes a French sentence from an English one carrying an accent.
+#
+# TWO of them make a sentence -- but only in a line long enough to hold two.
+# A short French clause carries one, and it used to pass: `"phase B1 du
+# contrat ... amendee ..."` shipped inside a certificate under that rule, and
+# so did forty-three others. What separates them from English prose is not a
+# second function word but an ACCENTED FRENCH WORD, so one marker plus one
+# accented word now counts as French too. The accented-word rule needs its own
+# exceptions, since English mathematics borrows accented names.
 FRENCH_MARKERS = [
     r"\ble\b", r"\bla\b", r"\bles\b", r"\bdes\b", r"\bdu\b", r"\bune\b",
     r"\bun\b", r"\bqui\b", r"\bque\b", r"\bpour\b", r"\bavec\b", r"\bsur\b",
@@ -63,6 +71,42 @@ FRENCH_MARKERS = [
     r"\bcette\b", r"\bce\b", r"\bnous\b", r"\bnon\b", r"\bmais\b",
     r"\bdonc\b", r"\bsans\b", r"\bleur\b", r"\bd'un\b", r"\bl'\w+",
 ]
+
+# Accented words that belong to English mathematical prose: proper names and
+# loanwords. The list is narrow on purpose -- anything not here that carries a
+# French accent is French until shown otherwise.
+ACCENTED_OK = {
+    "kahler", "kähler", "poincare", "poincaré", "mobius", "möbius",
+    "fourniere", "fournière", "hormander", "hörmander", "cech", "čech",
+    "erdos", "erdős", "godel", "gödel", "resume", "résumé", "role", "rôle",
+    "naive", "naïve", "hyperkahler", "hyperkähler", "plucker", "plücker",
+    "ampere", "ampère", "kaehler", "bezout", "bézout", "frechet", "fréchet",
+    "lebesgue", "levy", "lévy", "schrodinger", "schrödinger", "a", "e",
+}
+# The Latin-1 letter ranges, MINUS the two symbols they contain: U+00D7 is
+# the multiplication sign and U+00F7 the division sign. Leaving them in made
+# every `3x6` in a formula look like a French word.
+ACCENTED = re.compile(
+    r"\b\w*[\u00c0-\u00d6\u00d8-\u00dd\u00e0-\u00f6\u00f8-\u00ff"
+    r"\u0152\u0153]\w*\b", re.I)
+
+
+def french_score(s: str, fr) -> int:
+    """How many INDEPENDENT signs of French this text carries.
+
+    A distinct function word counts one. An accented word that is not a
+    known English loan counts one. Two signs make French.
+    """
+    n = len(set(m.group(0).lower() for m in fr.finditer(s)))
+    # An accented word that is not a known English loan is worth two on its
+    # own. It had to be: a trailing French participle in an otherwise English
+    # sentence scored one and shipped, because it carried no French function
+    # word at all. The whitelist above is what keeps borrowed names from
+    # tripping this.
+    if any(w.lower() not in ACCENTED_OK for w in ACCENTED.findall(s)):
+        n += 2
+    return n
+
 
 STDLIB_OK = set(sys.stdlib_module_names)
 
@@ -89,11 +133,10 @@ def check_english(findings):
             s = line.strip()
             if not s or len(s) < 25:
                 continue
-            hits = len(set(m.group(0).lower() for m in fr.finditer(s)))
-            # Two distinct French function words in one line make prose, not a
-            # stray token: one such word can be a variable name, two of them
+            # Two independent signs of French in one line make prose, not a
+            # stray token: one such sign can be a variable name, two of them
             # in a row make a sentence.
-            if hits >= 2:
+            if french_score(s, fr) >= 2:
                 findings.append(("english", rel(p), n, s[:100]))
 
 
@@ -134,9 +177,8 @@ def check_json_keys(findings):
                 if not str(k).isascii() or fr.search(str(k)):
                     findings.append(("json-key", rel(p), 0, f"{path}/{k}"))
                 walk(v, f"{path}/{k}", p)
-        elif isinstance(o, str) and len(o) > 25:
-            hits = len(set(m.group(0).lower() for m in fr.finditer(o)))
-            if hits >= 2:
+        elif isinstance(o, str) and len(o) > 20:
+            if french_score(o, fr) >= 2:
                 findings.append(("json-text", rel(p), 0,
                                  f"{path} = {o[:70]}"))
         elif isinstance(o, list):

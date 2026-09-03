@@ -17,4 +17,4 @@ RUN pip install --no-cache-dir -r requirements.lock
 COPY . .
 RUN pip install --no-cache-dir -e .
 
-CMD ["python", "-m", "reproduce.standard"]
+CMD ["python", "verification/verify.py"]

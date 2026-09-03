@@ -57,7 +57,7 @@ globalisation. It establishes transport on ONE cell and ONE chart.
 
 Sorties : results/gram_congruence.json
 Usage   : gram_congruence.py [--selftest]
-Env     : K3_D5CG_CELLS (cellules, défaut 3)
+Env    : K3_D5CG_CELLS (cells, default 3)
 """
 from __future__ import annotations
 
@@ -135,7 +135,7 @@ def _c(z):
 
 
 def Qmat(Z, W, M, c218, rw):
-    """La matrice hermitienne 2×2 `Q`, en TMC, depuis (Z, W)."""
+    """The 2x2 Hermitian matrix `Q`, as Taylor models, from (Z, W)."""
     q = tm_chart_metric(Z, W, M, c218, rho_weight=rw)
     g00, g11, re01, im01 = q
     j = TMC.const(CIV(riv(0.0), riv(1.0)))
@@ -188,7 +188,7 @@ def congruence(J, Q, conj_left=False):
 
 
 def pd_bounds(Q):
-    """pivot `q00` et `det` (hermitien 2×2) en bornes."""
+    """Pivot `q00` and `det` (2x2 Hermitian) as bounds."""
     q00 = Q[0][0].re_tm()
     det = (Q[0][0] * Q[1][1] + (Q[0][1] * Q[1][0]).mul_real(
         riv(-1.0))).re_tm()
@@ -340,7 +340,7 @@ def transport(S, g, eps, center, hw, S2, g2, M, c218, rw,
     Wp_src = [[dZp[a][0], dZp[a][1]] for a in range(6)]
     Q_mid = Qmat(Zp, Wp_src, M, c218, rw)      # E1 : invariance de jauge
 
-    # J[A'][A] = ∂(u',v')_{A'}/∂(u,v)_A, où (u',v') = (Z_{o1'}, Z_{o2'})/Z_{g'}
+    # J[A'][A] is the Jacobian of (u',v') in (u,v), where (u',v') = (Z_{o1'}, Z_{o2'})/Z_{g'}
     up, vp = Zp[o[0]], Zp[o[1]]
     J = [[dZp[o[0]][0], dZp[o[0]][1]],
          [dZp[o[1]][0], dZp[o[1]][1]]]
@@ -494,12 +494,12 @@ def build():
     j_ok = True
     if tr_j and not tr_j.get("native_failed"):
         j_ok, _ = contains_zero(mat_sub(tr_j["Q_src"], tr_j["cong"]))
-    log(f"E5 mutation de phase : congruence tient encore ? {ph_ok} — "
+    log(f"E5 phase mutation: does congruence still hold? {ph_ok} — "
         f"EXPECTED True: congruence is branch agnostic "
         f"(it relates two descriptions of the same configuration). The "
-        f"négatif discriminant est E6.")
-    log(f"E6 mutation du Jacobien : congruence tient encore ? {j_ok} "
-        f"(doit être False)")
+        f"discriminating negative control is E6.")
+    log(f"E6 Jacobian mutation: does congruence still hold? {j_ok} "
+        f"(must be False)")
 
     # --- E2: quadraticity in W, with the competing convention ----------------
     A = [[complex(2.0, 0.3), complex(0.1, -0.4)],
@@ -520,8 +520,8 @@ def build():
     good_ok, _ = contains_zero(mat_sub(QA, congruence(Atm, Q0)))
     bad_ok, _ = contains_zero(
         mat_sub(QA, congruence(Atm, Q0, conj_left=True)))
-    log(f"E2 quadraticité : Aᵀ Q conj(A) convient {good_ok} · "
-        f"A* Q A convient {bad_ok} (doit être False)")
+    log(f"E2 quadraticity: A^T Q conj(A) works {good_ok} · "
+        f"A* Q A works {bad_ok} (must be False)")
 
     checks = {
         "E1_gauge_invariance": bool(cells) and all(
@@ -536,7 +536,7 @@ def build():
         # the sheet-derivation step: every retained pair describes the SAME projective point
         "C125B_same_projective_point": bool(cells) and all(
             x["same_projective_point"] for x in cells),
-        # the component-certification step : σ' est certifié, jamais 0 (indéterminé)
+        # the component-certification step: sigma' is certified, never 0
         "C125C_target_component_certified": bool(cells) and all(
             all(s in (-1, 1, None) for s in x["sigma_target_certified"])
             for x in cells)}
@@ -647,14 +647,14 @@ def _selftest():
     QA = Qmat(Z, WA, M, c218, rw)
     ok1, _ = contains_zero(mat_sub(QA, congruence(Atm, Q0)))
     fails.append(not ok1)
-    print(f"[{'PASS' if ok1 else 'FAIL'}] S1 quadraticité : "
+    print(f"[{'PASS' if ok1 else 'FAIL'}] S1 quadraticity: "
           f"Q(Z, W·A) = Aᵀ Q conj(A)")
 
     # S2 NEGATIVE CONTROL: the competing convention does NOT work
     ok2, _ = contains_zero(
         mat_sub(QA, congruence(Atm, Q0, conj_left=True)))
     fails.append(ok2)
-    print(f"[{'PASS' if not ok2 else 'FAIL'}] S2 négatif de convention : "
+    print(f"[{'PASS' if not ok2 else 'FAIL'}] S2 convention negative control: "
           f"A* Q A does NOT work ({not ok2}), without which S1 would be "
           f"satisfait par n'importe quelle forme")
 
@@ -671,7 +671,7 @@ def _selftest():
     # S4 gauge NEGATIVE CONTROL: scaling Z WITHOUT scaling W breaks
     ok4, _ = contains_zero(mat_sub(Qmat(Zl, W, M, c218, rw), Q0))
     fails.append(ok4)
-    print(f"[{'PASS' if not ok4 else 'FAIL'}] S4 négatif de jauge : "
+    print(f"[{'PASS' if not ok4 else 'FAIL'}] S4 gauge negative control: "
           f"scaling Z alone BREAKS the identity ({not ok4})")
 
     print("-" * 78)

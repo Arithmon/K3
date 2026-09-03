@@ -438,7 +438,7 @@ def _init_worker(cell, root=None):
 
 def flush_faces(tile, root_c, root_h):
     """Directions where the core sits EXACTLY astride a face of the
-    cellule : +1 face haute, −1 face basse, 0 intérieur. Comparaison
+    cell: +1 upper face, -1 lower face, 0 interior. Comparison
     rationnelle exacte."""
     c, h = box_of(tile)
     out = []
@@ -608,7 +608,7 @@ def _halo_job(job):
 
 
 # ===========================================================================
-#  Phase paire : feuillet, transition, identité
+#  Pair phase: sheet, transition, identity
 # ===========================================================================
 _TCACHE = {}
 
@@ -676,7 +676,7 @@ def pair_certificate(i, j, corrupt=None):
     out["theta_ambiguous"] = bool(amb)
     out["same_sheet"] = bool(not amb and all(t == 1 for t in thetas))
 
-    # --- (2) coordonnées AFFINES : contrôle de l'évaluateur -------------
+    # --- (2) AFFINE coordinates: a control on the evaluator ------------
     #  Z[g] is 1 and Z[o] is u; v are the SAME functions in both
     #  tiles: their recentred difference must be zero up to rounding.
     #  This is a free test of the recentring itself.
@@ -778,7 +778,7 @@ def triple_certificate(i, j, k, lam):
         # lost, and the measured "defect" IS ONLY the decorrelation
         # width (exactly the phenomenon that forced the
         # recentring elsewhere in this script). The number is therefore published
-        # comme DIAGNOSTIC de décorrélation, JAMAIS comme check.
+        # as a DECORRELATION DIAGNOSTIC, NEVER as a check.
         # What has content at the triple level, and what is checked:
         #   . the three gauges are BOUNDED BELOW by 0 on the triple box
         #     (the three lambdas exist and the composition is licit);
@@ -926,7 +926,7 @@ def build():
     S, g, eps = (tuple(cell_d["S"]), cell_d["g"], tuple(cell_d["eps"]))
     root_c = [float.fromhex(x) for x in cell_d["center_hex"]]
     root_h = float.fromhex(cell_d["hw_hex"])
-    log(f"{len(leaves)} feuilles chargées "
+    log(f"{len(leaves)} leaves loaded "
         f"({sum(1 for t in leaves if t['src'] == 'transport')} the transport step + "
         f"{sum(1 for t in leaves if t['src'] == 'residual')} the residual closure)")
 
@@ -960,9 +960,9 @@ def build():
         halos = pool.map(_halo_job, [(i, leaves[i]) for i in sel])
     halo_ok = [h for h in halos if h["ok"]]
     n_clip = sum(1 for h in halo_ok if h["rule_used"] == "clipped")
-    log(f"D2 : halos acceptés {len(halo_ok)}/{len(sel)} "
+    log(f"D2: halos accepted {len(halo_ok)}/{len(sel)} "
         f"(ρ : {sorted({tuple(h['rho_used']) for h in halo_ok})}) · "
-        f"règle symétrique {len(halo_ok) - n_clip}, clippée {n_clip}")
+        f"symmetric rule {len(halo_ok) - n_clip}, clipped {n_clip}")
     if len(halo_ok) != len(sel):
         for h in halos:
             if not h["ok"]:
@@ -1023,9 +1023,9 @@ def build():
     pmap = {(r["i"], r["j"]): r for r in pres}
     _G["pairs"] = pmap
     pok = [r for r in pres if r.get("ok")]
-    log(f"D7-D9 : paires certifiées {len(pok)}/{len(pres)} · "
+    log(f"D7-D9: pairs certified {len(pok)}/{len(pres)} · "
         f"θ≡+1 {sum(1 for r in pres if r.get('same_sheet'))} · "
-        f"défaut d'identité max "
+        f"maximum identity defect "
         f"{max((r.get('transition_identity_defect', 0) for r in pres), default=0):.3e}")
 
     # --- D10 : le cocycle ----------------------------------------------
@@ -1039,7 +1039,7 @@ def build():
         tres = [r for r in pool.map(_triple_job, triples) if r]
     tok = [r for r in tres if r.get("ok")]
     log(f"D10 : triples d'intersection triple non vide {len(tres)}, "
-        f"cocycle certifié {len(tok)}/{len(tres)}")
+        f"cocycle certified {len(tok)}/{len(tres)}")
 
     # --- D11: the negative controls ------------------------------------
     negs = run_negatives(leaves, geom, tm, pairs, pmap)
@@ -1217,9 +1217,9 @@ def build():
             "clipped_sha256": _set_sha(clipped_idx),
             "c127e_sha256": _set_sha(residual_idx),
             "equal": bool(clipped_idx == residual_idx),
-            "note": ("the set-equality step : égalité d'ensembles gatée (D2c), pas "
-                "only the cardinality: 64 = 64 does not exclude a "
-                     "permutation 63+1")},
+            "note": ("the set-equality step: equality of SETS checked "
+                     "(D2c), not only the cardinality: 64 = 64 does not "
+                     "exclude a permutation 63+1")},
         "nerve": {
             "n_touching_core_pairs": len(touch_pairs),
             "n_open_overlaps": len(pairs),
@@ -1228,7 +1228,7 @@ def build():
             "n_triples": len(triples),
             "degree": {"min": min((len(adj[i]) for i in ids), default=0),
                        "max": max((len(adj[i]) for i in ids), default=0)},
-            "note": ("nerf calculé en Fraction exactes ; « largeur "
+            "note": ("nerve computed in exact Fractions; width "
                 "strictly positive in the 4 coordinates is "
                 "a rational comparison, not a float test")},
         "pairs": pres,
@@ -1244,9 +1244,9 @@ def build():
         "not_paid_here": [
             "metric transport (Qmat and Weyl) on the halos, established on "
             "the cores by the transport step",
-            "contrat exact de l'identité de congruence",
-            "scaling complet (the scaling step)",
-            "les 895 autres paires cellule/classe", "the later scaling"],
+            "the exact contract of the congruence identity",
+            "the full scaling (the scaling step)",
+            "the 895 other cell/class pairs", "the later scaling"],
         "verdict": verdict, "checks": checks,
         "checks_passed": n_pass, "checks_total": len(checks),
         "provenance": provenance([COVER_JSON, C127_JSON, C127E_JSON],
@@ -1422,14 +1422,14 @@ def _selftest():
     E = eps_box({"lo": [Fraction(-1, 2)] * 4,
                  "hi": [Fraction(1, 2)] * 4},
                 [Fraction(0)] * 4, Fraction(1))
-    chk("T3 boîte ε ⊆ [−1,1]⁴", eps_box_in_range(E)
+    chk("T3 the eps box is inside the unit box", eps_box_in_range(E)
         and E[0] == (Fraction(-1, 2), Fraction(1, 2)))
     E2 = eps_box({"lo": [Fraction(-2)] * 4, "hi": [Fraction(2)] * 4},
                  [Fraction(0)] * 4, Fraction(1))
     chk("T4 NEGATIVE CONTROL: a box outside the model domain is "
         "REFUSED (the remainder is not valid there)", not eps_box_in_range(E2))
 
-    # T5 : (1+ρ)h exactement représentable
+    # T5: (1+rho)h is exactly representable
     chk("T5 exact dyadic halo over the whole preregistered scale",
         all(halo_hw(Fraction(1, 1024), r)[1] is not None
             for r in RHO_LADDER))
@@ -1439,7 +1439,7 @@ def _selftest():
     p = [CIV(iv.mpf(float(k + 1)), iv.mpf(float(-k)))
          for k in range(NM)]
     q = apply_recenter(T, p)
-    chk("T6 recentrage identité : coefficients inchangés",
+    chk("T6 identity recentring: coefficients unchanged",
         all(mp.mpf(q[k].re.a) <= float(k + 1) <= mp.mpf(q[k].re.b)
             and mp.mpf(q[k].im.a) <= float(-k) <= mp.mpf(q[k].im.b)
             for k in range(NM)))
@@ -1487,7 +1487,7 @@ def _selftest():
     t = TMC([CIV(iv.mpf([0.1, 0.2]), iv.mpf([-0.3, 0.4]))] * NM,
             iv.mpf([0, 1e-9]))
     p3, r3 = de_tmc(ser_tmc(t))
-    chk("T12 sérialisation `_mpf_` exacte (aller-retour identique)",
+    chk("T12 exact `_mpf_` serialisation (round trip identical)",
         all(mp.mpf(p3[k].re.a) == mp.mpf(t.p[k].re.a)
             and mp.mpf(p3[k].im.b) == mp.mpf(t.p[k].im.b)
             for k in range(NM))

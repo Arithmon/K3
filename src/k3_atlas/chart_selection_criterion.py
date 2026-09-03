@@ -234,13 +234,13 @@ def target_uv(Z, S2, g2):
 # ===========================================================================
 def build():
     print("=" * 78)
-    print(f"the chart criterion CRITÈRE DE CHART RENFORCÉ : TM ({TM_ORDER},"
+    print(f"STRENGTHENED CHART CRITERION: TM ({TM_ORDER},"
           f"{UNARY_SERIES_DEG}), {N_CELLS} cellules × 59 charts")
     print("=" * 78)
     load_canonical_MH()
     shell = json.loads(SHELL_JSON.read_text(encoding="utf-8"))
     residual = [x for x in shell["cells"] if x["still_branch"]]
-    log(f"résidu : {len(residual)} paires")
+    log(f"residual: {len(residual)} pairs")
 
     cells = []
     step = max(1, len(residual) // max(1, N_CELLS))
@@ -378,7 +378,7 @@ def build():
                            "n_refused": nref,
                            "fraction": nref / float(n ** 4)})
             log(f"  F9 profondeur {depth} : {n ** 4} sous-cellules, "
-                f"{nref} refusées ({100.0 * nref / n ** 4:.2f} %)")
+                f"{nref} refused ({100.0 * nref / n ** 4:.2f} %)")
         ratios = [levels[i + 1]["n_refused"] / max(1, levels[i]["n_refused"])
                   for i in range(len(levels) - 1)]
         sub = {"tested": True, "chart": {"S": list(S2), "g": g2},
@@ -548,8 +548,8 @@ def _selftest():
     chk("T6 negative control: the mutation `strong = native` VIOLATES the refinement",
         strong_broken(False, True) and not False)
 
-    # T7 : `native_section_constructible` REFUSE quand `σ'` est
-    #      indéterminé — pas d'essai silencieux
+    # T7: `native_section_constructible` REFUSES when `sigma'` is
+    #      undetermined; no silent trial
     class _FakeUV:
         pass
     chk("T7 rotated_sigma_from_coeffs returns 0 on a straddle",

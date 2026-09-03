@@ -88,7 +88,7 @@
     "potential_saturated_by_measure": true,
     "SCOPE_CLOSED_derived": true,
     "NOT_global_closed_because": [
-      "15 tuiles restent relatives à une face BASSE = frontière d'ÉNUMÉRATION (hors région)",
+      "15 tiles stay relative to a LOW face: an ENUMERATION boundary, outside the region",
       "1452 candidats requires_X_reopen (rouvrir X/D3) hors B1"
     ]
   },
@@ -167,7 +167,7 @@
       {
         "obligation": "the 24 anisotropic bridges of the pilot, at scale",
         "state": "CLOSED",
-        "scope": "RÉGION COURANTE — A CLOSED (24/24 anisotropes, prédicat gelé) ; B SCOPE-CLOSED (16/16 hauts, 15 basses = frontière, 27/27 saturé)",
+        "scope": "CURRENT REGION: A CLOSED (24/24 anisotropic, predicate frozen); B SCOPE-CLOSED (16/16 upper, 15 lower are the boundary, 27/27 saturated)",
         "evidence": {
           "A": "k3_cap_c4am_anisotropic_predicate_measure.json",
           "B": [
@@ -205,22 +205,22 @@
       "b1(K3)=36",
       "the 36 survivors are global",
       "the low boundaries do not exist",
-      "X-interne est déjà payé",
+      "the internal edges are already paid",
       "X_INTERNAL déjà payé"
     ],
     "statements": [
       "b_1 = 36 is that of the REGIONAL complex actually paid (the real part plus 215 certified mixed 2-cells)",
       "the 36 surviving dimensions are classes of the region, not of the K3",
-      "15 tuiles restent relatives à une face basse : frontière d'énumération, hors région",
+      "15 tiles stay relative to a low face: an enumeration boundary, outside the region",
       "the 1452 candidates requiring a reopening are not paid: a separate lot",
       "K3 globale : NOT_CLOSED"
     ]
   },
   "K6_next_frozen": {
     "order": [
-      "LOW_BOUNDARY_EXTENSION-P0 — scout read-only : quelles cellules voisines manquent aux 16 directions basses, croissance de cover nécessaire, impact topologique potentiel AVANT tout calcul analytique",
+      "LOW BOUNDARY EXTENSION: a read-only exploration of which neighbouring cells are missing in the 16 lower directions, how much the cover must grow, and the potential topological impact, BEFORE any analytic computation",
       "internal edge reconciliation, parallel and conceptually distinct: it reopens the finite presentation in the available geometry; it does not serve to resolve the boundary of the cover",
-      "SNF seulement si la torsion devient décisionnelle"
+      "Smith normal form only if torsion becomes decision-relevant"
     ],
     "do_not_mix": "the two extensions do not mix; neither promotes the region to the whole K3"
   },
@@ -228,8 +228,8 @@
     "nothing about the K3: the record is REGIONAL",
     "the low boundaries remain a scope boundary",
     "the internal edges are not paid",
-    "aucune torsion calculée",
-    "aucun artefact réécrit"
+    "no torsion computed",
+    "no artefact rewritten"
   ],
   "issue": "regional_contract_closed_6_of_6_c4_scope_closed_current_region_k3_not_closed",
   "checks": {

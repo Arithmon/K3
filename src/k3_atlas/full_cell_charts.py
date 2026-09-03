@@ -51,7 +51,7 @@ checks above does not prejudge them.
 
 Sorties : results/full_cell_charts.json
 Usage   : full_cell_charts.py [--selftest]
-Env     : K3_D5FC_CELLS (cellules, défaut 4)
+Env    : K3_D5FC_CELLS (cells, default 4)
 """
 from __future__ import annotations
 
@@ -261,13 +261,13 @@ def chart_certificate(Z, dZ, S2, g2):
 # ===========================================================================
 def build():
     print("=" * 78)
-    print(f"the chart criterion/the Jacobian criterion SUR CELLULE ENTIÈRE : TM ({TM_ORDER},"
-          f"{UNARY_SERIES_DEG}), {N_CELLS} cellules")
+    print(f"chart and Jacobian criteria ON A WHOLE CELL: TM ({TM_ORDER},"
+          f"{UNARY_SERIES_DEG}), {N_CELLS} cells")
     print("=" * 78)
     reg = load_canonical_MH()
     shell = json.loads(SHELL_JSON.read_text(encoding="utf-8"))
     residual = [x for x in shell["cells"] if x["still_branch"]]
-    log(f"résidu : {len(residual)} paires")
+    log(f"residual: {len(residual)} pairs")
 
     cells = []
     step = max(1, len(residual) // max(1, N_CELLS))
@@ -302,8 +302,8 @@ def build():
                                  ("S", "g", "gauge_absmin", "u_absmax",
                                   "v_absmax", "detJ_absmin")}
                                 for x in payoff[:5]]})
-        log(f"  cellule {i + 1} : déterminations "
-            f"{[x['determination'] for x in rows]} · section complète "
+        log(f"  cell {i + 1}: determinations "
+            f"{[x['determination'] for x in rows]} · complete section "
             f"{all(z is not None for z in Z)} · {len(adm)} admissibles "
             f"(chart criterion and Jacobian on the whole box) of which "
             f"**{len(payoff)} DISJOINT from their slice**")
@@ -332,12 +332,12 @@ def build():
         "box_refuses": bool(box_refused),
         "centre_only_mutation_accepts_all": len(ctr_accepted) == 3,
         "discriminating": bool(box_refused) and len(ctr_accepted) == 3}
-    log(f"the pilot négatif de composante : σ boîte "
+    log(f"the pilot component negative control: sigma on the box "
         f"{comp_neg['sigma_on_box']} → refus {comp_neg['box_refuses']} ; "
         f"σ centre-seul {comp_neg['sigma_centre_only']} → mutation "
         f"accepte tout {comp_neg['centre_only_mutation_accepts_all']}")
 
-    # --- D6 : négatif de jauge -------------------------------------------------------
+    # --- D6: gauge negative control -----------------------------------
     Zg = [TMC.const(CONE)] * 6
     a = TMC.const(CIV(riv(0.5), riv(0.0)))
     j0 = MIDX[tuple(1 if k == 0 else 0 for k in range(NG))]
@@ -351,8 +351,8 @@ def build():
                  "domain_ok": gneg.get("domain_ok"),
                  "discriminating": (gneg.get("domain_ok") is False
                                     and gneg["gauge_absmin"] == 0.0)}
-    log(f"D6 négatif de jauge : centre 0.5 ≠ 0, boîte absmin "
-        f"{gneg['gauge_absmin']} → refusé "
+    log(f"D6 gauge negative control: centre 0.5 nonzero, box absmin "
+        f"{gneg['gauge_absmin']} -> refused "
         f"{gauge_neg['discriminating']}")
 
     checks = {
@@ -463,7 +463,7 @@ def _selftest():
         return float(a0) + float(a1) * u * u
 
     for name, det in (("principal", lambda z: cmath.sqrt(z)),
-                      ("tournée", lambda z: -1j * cmath.sqrt(-z))):
+                      ("rotated", lambda z: -1j * cmath.sqrt(-z))):
         Zs = det(R(u0))
         d = 1e-7
         fd = (det(R(u0 + d)) - det(R(u0 - d))) / (2 * d)
@@ -485,7 +485,7 @@ def _selftest():
         (-0.63, -0.62), (-0.5 * h, -0.5 * h))
     ok = sig_box == 0 and sig_ctr == -1
     fails.append(not ok)
-    print(f"[{'PASS' if ok else 'FAIL'}] F-S2 négatif de composante : σ "
+    print(f"[{'PASS' if ok else 'FAIL'}] F-S2 component negative control: sigma "
           f"on the box = {sig_box} (undetermined) but the component at the centre alone "
           f"= {sig_ctr}; the mutation would wrongly accept")
 

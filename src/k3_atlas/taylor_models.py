@@ -41,17 +41,17 @@ Algebra (standard Taylor models, all bounds rounded outwards):
 Garde de branche : identique t2/t3/t4 (`civ_sqrt_principal` sur p₀)
 PLUS the range guard (the whole range must avoid the cut).
 
-Ordre : `K3_TM_ORDER` (défaut 3). N=2 → 15 monômes, N=3 → 35, N=4 → 70.
+Order: `K3_TM_ORDER` (default 3). N=2 gives 15 monomials, N=3 gives 35, N=4 gives 70.
 
-Self-test (négatifs inclus) :
+Self-test (negative controls included):
   M1 polynomial exactness: a polynomial of degree at most N is enclosed
-     EXACTEMENT (rem = 0) ; NÉGATIF : degré N+1 ⟹ rem > 0
-  M2 identités : f·inv(f) ∋ 1, (√f)² ∋ f (bornes)
-  M3 soundness réelle : 400 points float ⊆ enclosure (4 composantes
+     EXACTLY (rem = 0); NEGATIVE CONTROL: degree N+1 gives rem > 0
+  M2 identities: f.inv(f) contains 1, (sqrt f)^2 contains f (bounds)
+  M3 real soundness: 400 float points inside the enclosure (4 components
      ET det) sur B@{8e-3, 1.7e-2}
-  M4 dégénéré h=0 ≡ moteur float (rel < 5e-12)
-  M5 NÉGATIFS : w = −1 échoue ; t_bad det.hi < 0
-  M6 garde de branche : adverse C63 refusé, boîte latérale acceptée
+  M4 degenerate h=0 matches the float engine (relative < 5e-12)
+  M5 NEGATIVE CONTROLS: w = -1 fails; t_bad det.hi < 0
+  M6 branch guard: the adverse box refused, the lateral box accepted
   M7 order monotonicity: the enclosure at N=3 is tighter than at N=2
      on the hard cell (the mechanism does what it announces)
 
@@ -304,9 +304,9 @@ class TMR:
         z = (a - c) * u
         q = z.norm()                          # ≥ sup |z| par construction
         if not (_hi(q) < 1):
-            raise BranchCutError("TM inv : déviation ≥ rayon de "
+            raise BranchCutError("Taylor-model inverse: deviation at least the radius of "
                                  "convergence (q ≥ 1)")
-        # série géométrique tronquée à z^K (C74 : K = UNARY_SERIES_DEG,
+        # geometric series truncated at z^K (K = UNARY_SERIES_DEG,
         # plus z³ en dur), queue |1/p₀|·q^{K+1}/(1−q)
         acc = TMR.const(IV1)
         zk = TMR.const(IV1)
@@ -327,7 +327,7 @@ class TMR:
 
 
 # ===========================================================================
-#  Taylor-modèle complexe
+#  Complex Taylor model
 # ===========================================================================
 class TMC:
     __slots__ = ("p", "rem", "_gr")
@@ -469,7 +469,7 @@ class TMC:
 
     def sqrt_principal(a):
         """Principal root: a containment guard on p_0 plus a RANGE guard (the range
-        entière évite (−∞, 0]) ; série binomiale tronquée + queue."""
+        the whole box avoids the cut); truncated binomial series plus tail."""
         p0 = a.p[0]
         # the pointwise anchoring : ancrage POINT — a = c(1+z), q = norm(z) borne |z|
         c = _mid_civ(p0)
@@ -551,7 +551,7 @@ class TMC:
         GUARD_STATS["sqrt_disc"] += int(disc_ok)
         GUARD_STATS["sqrt_range"] += int(range_ok)
         w0 = civ_sqrt_principal(c)
-        # binôme tronqué à z^K, coefficients C(1/2,k) EXACTS ;
+        # binomial truncated at z^K, with EXACT coefficients C(1/2,k);
         # queue ≤ |√p₀|·q^{K+1}/(8(1−q)) car |C(1/2,k)| ≤ 1/8 (k ≥ 2)
         acc = TMC.const(CONE)
         zk = TMC.const(CONE)
@@ -601,7 +601,7 @@ def rotated_sigma_from_coeffs(a1, a2, ur, ui, vr, vi):
     which case the continuation must be REFUSED.
     """
     def factor_sign(lo, hi):
-        """-1 / +1 / 0 (signe non déterminé) / None (IDENTIQUEMENT nul)."""
+        """-1 / +1 / 0 (sign undetermined) / None (IDENTICALLY zero)."""
         if lo == 0 and hi == 0:
             return None
         if lo >= 0:
@@ -616,9 +616,9 @@ def rotated_sigma_from_coeffs(a1, a2, ur, ui, vr, vi):
             continue                      # coefficient nul : terme absent
         sr, si = factor_sign(rlo, rhi), factor_sign(ilo, ihi)
         if sr is None or si is None:
-            continue                      # terme IDENTIQUEMENT nul : écarté
+            continue                      # IDENTICALLY zero term: set aside
         if sr == 0 or si == 0:
-            return 0                      # facteur de signe indéterminé
+            return 0                      # sign factor undetermined
         terms.append(sr * si * (1 if a > 0 else -1))
     if not terms:
         return 0                          # Im R ≡ 0 : pas de composante
@@ -666,7 +666,7 @@ def section_radicands(S, g_col, u0: complex, v0: complex, h: float):
     of being read back from an artefact produced under an earlier guard: the
     predicate "R avoids the cut" is a function of the cell alone.
     A strict mirror of the four rows of `tm_chart_cell_section` that
-    construisent `R` (mêmes A, mêmes u², v²).
+    build `R` (the same A, the same u^2 and v^2).
     """
     T = tuple(j for j in range(6) if j not in S)
     others = [c for c in T if c != g_col]
@@ -953,24 +953,24 @@ def _selftest():
     fails = []
     RES = Path(os.environ.get(
         "K3_RES_DIR", Path(__file__).resolve().parent / "data"))
-    print(f"      TM_ORDER = {TM_ORDER} ({NM} monômes)")
+    print(f"      TM_ORDER = {TM_ORDER} ({NM} monomials)")
 
-    # --- M1 : exactitude polynomiale + négatif ---------------------------------------
+    # --- M1: polynomial exactness plus negative control ----------------
     x = TMR.const(IV0)
     x.p[MIDX[tuple(1 if k == 0 else 0 for k in range(NG))]] = IV1
     y = TMR.const(IV0)
     y.p[MIDX[tuple(1 if k == 1 else 0 for k in range(NG))]] = IV1
-    pol = x * y * x + TMR.const(iv.mpf(2))       # degré 3
+    pol = x * y * x + TMR.const(iv.mpf(2))       # degree 3
     ok_exact = mp.mpf(pol.rem.b) == 0
-    over = pol * x                                # degré 4 > N=3
+    over = pol * x                                # degree 4 > N=3
     ok_neg = mp.mpf(over.rem.b) > 0 if TM_ORDER < 4 else True
     t1 = ok_exact and ok_neg
     fails.append(not t1)
-    print(f"[{'PASS' if t1 else 'FAIL'}] M1 polynôme degré ≤ N exact "
-          f"(rem = 0) ; NÉGATIF degré N+1 : rem = "
+    print(f"[{'PASS' if t1 else 'FAIL'}] M1 polynomial of degree at most N exact "
+          f"(rem = 0); NEGATIVE CONTROL degree N+1: rem = "
           f"{float(mp.mpf(over.rem.b)):.2e} > 0")
 
-    # --- M2 : identités -------------------------------------------------------------------
+    # --- M2: identities ------------------------------------------------
     fz = TMC.const(CIV(iv.mpf(2), iv.mpf(1)))
     fz.p[MIDX[tuple(1 if k == 0 else 0 for k in range(NG))]] = \
         CIV(riv(0.05), IV0)
@@ -987,11 +987,11 @@ def _selftest():
             and iv_bounds(d_im)[0] <= 0 <= iv_bounds(d_im)[1])
     t2 = okinv and oksq
     fails.append(not t2)
-    print(f"[{'PASS' if t2 else 'FAIL'}] M2 identités : f·inv(f) ∋ 1 ; "
+    print(f"[{'PASS' if t2 else 'FAIL'}] M2 identities: f.inv(f) contains 1; "
           f"(√f)² − f ∋ 0 (largeur re "
           f"{float(mp.mpf(d_re.delta)):.1e})")
 
-    # --- setup réel ------------------------------------------------------------------------
+    # --- real setup ----------------------------------------------------
     from .witness_registry import load_canonical_MH
     from .interval_arithmetic import build_M_civ
     from .width_attribution import (GAMMA, float_G_pair,
@@ -1009,7 +1009,7 @@ def _selftest():
     u0, v0 = bB["u0"], bB["v0"]
     rw = 1.0 - GAMMA
 
-    # --- M3 : soundness réelle -----------------------------------------------------------
+    # --- M3: real soundness --------------------------------------------
     rng = np.random.default_rng(23)
     inside = True
     reps = {}
@@ -1044,7 +1044,7 @@ def _selftest():
               f"(rem {rep['det_remainder']:.2e}) "
               f"{rep['t_meas']:.1f}s")
 
-    # --- M4 : dégénéré -------------------------------------------------------------------
+    # --- M4: degenerate box --------------------------------------------
     Z, W, _ = tm_chart_cell_section(S, g_col, eps, u0, v0, 0.0)
     q0 = tm_chart_metric(Z, W, M_civ, c218, rho_weight=rw)
     Gf, Gr = float_G_pair(S, g_col, eps, u0, v0, M_H, c218)
@@ -1055,10 +1055,10 @@ def _selftest():
               for m, r in zip(mids, ref))
     t4 = rel < 5e-12
     fails.append(not t4)
-    print(f"[{'PASS' if t4 else 'FAIL'}] M4 dégénéré h=0 ≡ float "
+    print(f"[{'PASS' if t4 else 'FAIL'}] M4 degenerate h=0 matches float "
           f"(rel {rel:.2e})")
 
-    # --- M5 : négatifs ---------------------------------------------------------------------
+    # --- M5: negative controls -----------------------------------------
     rep_neg = tm_qfield_certificate(S, g_col, eps, u0, v0, 1e-3,
                                     M_civ, c218, -1.0)
     probe = json.loads(
@@ -1077,7 +1077,7 @@ def _selftest():
         complex(Z_w[others[1]]), 0.0, M_civ, c218 * t_bad, 1.0)
     t5 = rep_neg["status"] != "PASS" and rep_bad["det"][1] < 0
     fails.append(not t5)
-    print(f"[{'PASS' if t5 else 'FAIL'}] M5 négatifs : w=−1 → "
+    print(f"[{'PASS' if t5 else 'FAIL'}] M5 negative controls: w=-1 -> "
           f"{rep_neg['status']} ; t_bad det.hi = "
           f"{rep_bad['det'][1]:.3e} < 0")
 
@@ -1102,8 +1102,8 @@ def _selftest():
                 complex(side["v"][0], side["v"][1]))
     t6 = cross == "BRANCH" and okside == "OK"
     fails.append(not t6)
-    print(f"[{'PASS' if t6 else 'FAIL'}] M6 branche : traversée "
-          f"{cross}, côté {okside}")
+    print(f"[{'PASS' if t6 else 'FAIL'}] M6 branch: crossing "
+          f"{cross}, side {okside}")
 
     # --- M7: order monotonicity (diagnostic on the determinant at hard h) ---------------
     r17 = reps[1.7e-2]

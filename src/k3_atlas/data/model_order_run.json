@@ -1,5 +1,5 @@
 {
-  "phase": "B1.e.2.iii T4O — run ordre 4 (GPT T4O-R1..R4, Kimi K1-K3, C60-C63) — duel des prédictions",
+  "phase": "order-4 model run: a duel of preregistered predictions",
   "witness_sha256": "738006ef56238f0496b228c06ce33596011a5e316e4fa174a37b58500ac29b4c",
   "M_H_sha256": "9b759e961c5fe164227e2e1125f611a0c3b62430bf7fa512dca3596c4797a568",
   "gamma_prefixed": 0.25,
@@ -8,7 +8,7 @@
     "C_t3_base": 234.1,
     "part_cub_base": 0.939,
     "cost_t3_base_s": 26.0,
-    "predictions": "T4b : B@1.7e-2 tient si D⁴ < 2.5e-3 ; Kimi : échoue ×725 central, bande 8e-3-1e-2 contestée"
+    "predictions": "one prediction: box B at 1.7e-2 holds if the fourth derivative stays below 2.5e-3; the competing one: it fails by a factor 725 at the centre, with the band 8e-3 to 1e-2 disputed"
   },
   "r2_selected": {
     "B": [

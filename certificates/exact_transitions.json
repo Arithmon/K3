@@ -125,16 +125,16 @@
     "n_ok": 3540
   },
   "F9_reduction": {
-    "obligation_3_t_ij_algebraic_independent_of_K": "t_ij = rescaling par z_{g′} + permutation ; défini sur {z_{g′} ≠ 0} ⊇ U_{S′,g′} (B5)",
-    "obligation_4_s_j_t_ij_equals_s_i": "identité si s_i est ambient-valued (Krawczyk enclôt w ⇒ Z)",
+    "obligation_3_t_ij_algebraic_independent_of_K": "the transition is a rescaling by z_{g'} plus a permutation; it is defined on {z_{g'} nonzero}, which contains the chart domain",
+    "obligation_4_s_j_t_ij_equals_s_i": "an identity when the section is ambient-valued (Krawczyk encloses w, hence Z)",
     "obligation_5_domain_is_real_overlap": "the transition on the overlap; to be certified only for an EXPLICIT atlas (inclusion in the certified target domain)",
-    "obligation_6_cocycle": "identité de rescalings (testée exactement ci-dessus)",
+    "obligation_6_cocycle": "an identity of rescalings (tested exactly above)",
     "obligation_7_biconditional": "equivalence of two points holds exactly when their sections agree, which holds exactly when one is the image of the other under the transition: an identity, not a measurement",
     "obligation_8_quotient_is_K": "follows from 1 (covering) and 2 (the chart lemma) together with identities 3 to 7: the map is bijective and locally holomorphic, hence an isomorphism",
     "reading": "the atlas theorem is a theorem of STRUCTURE: its non-classical content is QUANTITATIVE (the radius, the floors, the constants) and lives entirely in the covering and the chart lemma. The sheet cocycle, the transition groupoid and the A/B/C typing of the regional contract no longer appear in it; they become instruments of VALIDATION again",
     "what_still_needs_interval": [
       "the chart lemma per chart: existence, uniqueness and holomorphy of the local inverse on an OPEN set, with radius rho(sigma) (Kantorovich/Krawczyk)",
-      "atlas explicite (T1) : t_ij(U_i ∩ U_j) ⊆ domaine certifié cible ; sinon rien"
+      "an explicit atlas: the image of an overlap under the transition must lie in the certified target domain; otherwise nothing"
     ],
     "what_the_regional_arc_becomes": [
       "the transport law is the class where the new gauge lies in S: the source determination becomes a target parameter",

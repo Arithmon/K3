@@ -122,7 +122,7 @@ PROBE_JSON = RES / "width_probe.json"
 DIRECT_JSON = RES / "width_direct.json"
 TILING_JSON = RES / "owner_tiling.json"
 
-GAMMA = 0.25                    # inchangé, pré-fixé (P0a2-direct)
+GAMMA = 0.25                    # unchanged, fixed in advance
 H_GRID = [4e-3, 2e-3, 1e-3, 5e-4, 2.5e-4]   # ≥ 4 valeurs (GPT C44)
 N_SAMPLES = 128
 SEED = 20260725
@@ -300,7 +300,7 @@ def float_G_pair(S, g_col, eps, u, v, M_H, c218):
 
 def float_box_samples(S, g_col, eps, u0, v0, h, M_H, c218, rng, n=N_SAMPLES):
     """Sampled min/max on the box: det Q_gamma, generalised lambda_min(Q, G_rho)
-    généralisé, det normalisé det Q/det G_ρ. Centre inclus."""
+    generalised, normalised determinant det Q/det G_rho. Centre included."""
     pts = [(u0, v0)]
     du = rng.uniform(-h, h, (n, 4))
     pts += [(u0 + complex(d[0], d[1]), v0 + complex(d[2], d[3]))
@@ -342,7 +342,7 @@ def analyze_cell(S, g_col, eps, u0, v0, h, M_civ, M_H, c218, R0s, rng):
         qc_p = congruent_packed(q_c, R0)
         qb_p = congruent_packed(q_b, R0)
         cr = certify_from_jets(qc_p, qb_p, h)
-        # après R₀ (variante ρ) : det' = det Q/det G_ρ = dimensionless
+        # after R_0 (rho variant): det' = det Q/det G_rho is dimensionless
         rec[f"cong_{name}"] = {k: cr[k] for k in
                                ("status", "q00", "det", "w_det_final",
                                 "w_det_direct_t2form", "w_det_components",
@@ -403,7 +403,7 @@ def load_boxes_from_direct(direct):
 
 
 def coverage_table(tiling, probe):
-    """Table commune GPT §6 : 60 couples × (O1, float C39, stratégie)."""
+    """The shared table: 60 pairs by (tiling, sampled float, strategy)."""
     cov = {(tuple(c["S"]), c["g"]): c
            for c in probe["b_r_sampled"]["coverage_C39"]["by_couple_class"]}
     rows, amb_no_points, owner_no_points = [], [], []
@@ -425,7 +425,7 @@ def coverage_table(tiling, probe):
                 f"(owner_fraction={c['owner_fraction']:.2e}, "
                 f"frontier_capped={c['frontier_capped']})")
         strat = {"OWNER_CERTIFIED": "atlas P0a (certificat par cellule)",
-                 "VACUOUS_CERTIFIED": "exclu (épuisement OUTSIDE certifié)",
+                 "VACUOUS_CERTIFIED": "excluded (certified OUTSIDE exhaustion)",
                  "AMBIGUOUS": "subdiviser O1 plus profond avant tout atlas"
                  }[o1]
         rows.append({
@@ -496,7 +496,7 @@ def build():
     # --- A0/C42 : canonisation M_H --------------------------------------------------
     M_H, resid, bit_herm, sha_MH = canonical_MH(Mnp)
     M_civ = build_M_civ(M_H)
-    log(f"A0 C42 : M_H = (M+M†)/2 canonisé — résidu anti-herm max "
+    log(f"A0: M_H = (M + M-dagger)/2 canonicalised, max antihermitian residual "
         f"{resid:.3e}, bit-hermitien {bit_herm}, sha256 {sha_MH[:16]}…")
 
     probe = json.loads(PROBE_JSON.read_text(encoding="utf-8"))
@@ -539,11 +539,11 @@ def build():
            "raw_certified_nonPD": cert_w["det"][1] < 0,
            "cong_det": cert_wc["det"],
            "cong_certified_nonPD": cert_wc["det"][1] < 0,
-           "note": "M_H canonisé ; det' = det/det G_ρ (dimensionless)"}
+           "note": "M_H canonicalised; det' = det/det G_rho (dimensionless)"}
     log(f"W  : t_bad = {t_bad:.4f} — raw det.hi = {cert_w['det'][1]:.3e}"
         f" ; cong det'.hi = {cert_wc['det'][1]:.3e} (les 2 < 0 requis)")
 
-    # --- A1/A2(i)/A3 : grille h × 3 boîtes, brut + congruences ----------------------
+    # --- A1/A2(i)/A3: h grid by 3 boxes, raw plus congruences ---------
     a1 = []
     for bx in boxes:
         S, g_col, eps = bx["S"], bx["g"], bx["eps"]
@@ -595,7 +595,7 @@ def build():
     h_split = 1e-3
     top_idx = np.argsort(-np.abs(c218))[:TOP_K]
     log(f"A2 split φ (a reviewer V7) : top-{TOP_K} |c| = "
-        f"{[f'{c218[i]:.3g}' for i in top_idx]} @ boîte B h={h_split:g}")
+        f"{[f'{c218[i]:.3g}' for i in top_idx]} on box B at h={h_split:g}")
 
     def phi_quad(coeffs):
         qc, qb = q_jets(bB["S"], bB["g"], bB["eps"], bB["u0"], bB["v0"],
@@ -617,7 +617,7 @@ def build():
         d_e, _ = phi_quad(m1)
         per_elem.append({"elem": int(i), "c": float(c218[i]),
                          "w_quad_box_q00": d_e["w_quad_box"]})
-        log(f"   élément {i} (c={c218[i]:.4g}) : w_quad(q00) = "
+        log(f"   element {i} (c={c218[i]:.4g}): w_quad(q00) = "
             f"{d_e['w_quad_box']:.3e}")
         # GUARANTEED sub-additivity (max-abs in h_i.[-h^2, h^2]): the gap
         # measures the CANCELLATION gain of the combined assembly at the level
@@ -648,7 +648,7 @@ def build():
                      "coefficients), hence the top 5 plus groups, with "
                      "exact additivity verified on q00 (linear in c)")}
 
-    # --- A4 : décision (mesurée, pas décrétée) --------------------------------------
+    # --- A4: the decision (measured, not decreed) ---------------------
     recB = a1[0]["records"]
     rB_pass = next((r for r in recB if r.get("status_raw") == "PASS"), None)
     rB_fail = next((r for r in recB if r.get("status_raw",
@@ -679,7 +679,7 @@ def build():
                             "cosign_budget_if_gain_ge": 100}}
     # verdict de routage (GPT A4, trois branches)
     if cong_gain_cells and cong_gain_cells >= 10:
-        route = ("CONGRUENCE : gain ≥ ×10 en cellules — première route "
+        route = ("CONGRUENCE: a gain of at least a factor 10 in cells, the first route "
                  "production, models deferred")
     elif float_pos_where_iv_fails and shares and \
             shares["hess_enclosure_excess"] >= 0.5:
@@ -724,7 +724,7 @@ def build():
             and len(cov["ambiguous_no_points_named"])
             + len(cov["owner_no_points_named"]) + 17 == 34)}
     n_pass = sum(1 for v in checks.values() if v)
-    log(f"checks exécutés : {n_pass}/{len(checks)} PASS")
+    log(f"checks executed: {n_pass}/{len(checks)} PASS")
 
     verdict = (
         "WIDTH ATTRIBUTION EXECUTED (checks executed %d/%d PASS): the "
@@ -806,7 +806,7 @@ def _selftest():
                             + dd["w_quad_box"])) / dd["w_t2"]
     t2 = dev < 1e-12
     fails.append(not t2)
-    print(f"[{'PASS' if t2 else 'FAIL'}] T2 additivité w_t2 = "
+    print(f"[{'PASS' if t2 else 'FAIL'}] T2 additivity w_t2 = "
           f"val+lin+quad (rel {dev:.2e})")
 
     # --- T3 : congruence R0 = I ≡ brut ---------------------------------------------
@@ -856,10 +856,10 @@ def _selftest():
         Gr_w)), 0.0)
     t5 = cert["det"][1] < 0
     fails.append(not t5)
-    print(f"[{'PASS' if t5 else 'FAIL'}] T5 négatif : t_bad congruent "
+    print(f"[{'PASS' if t5 else 'FAIL'}] T5 negative control: congruent t_bad "
           f"det'.hi = {cert['det'][1]:.3e} < 0")
 
-    # --- T6 : C42 — M_H bit-hermitien + dégénéré h=0 vs float M_H -------------------
+    # --- T6: M_H bit-hermitian plus degenerate h=0 against float M_H --
     Qf = Gf_m - GAMMA * Gr_m
     ref = [Qf[0, 0].real, Qf[1, 1].real, Qf[0, 1].real, Qf[0, 1].imag]
     mids = [mid(q0_c[c]) for c in range(4)]
@@ -868,9 +868,9 @@ def _selftest():
     t6 = bit_herm and rel6 < 5e-12
     fails.append(not t6)
     print(f"[{'PASS' if t6 else 'FAIL'}] T6 C42 : bit-herm {bit_herm}, "
-          f"dégénéré rel {rel6:.2e} (résidu anti-herm {resid:.1e})")
+          f"degenerate relative {rel6:.2e} (antihermitian residual {resid:.1e})")
 
-    # --- T7 : split φ additif + négatif strict --------------------------------------
+    # --- T7: additive phi split plus a strict negative control --------
     top_idx = np.argsort(-np.abs(c218))[:TOP_K]
     mask = np.zeros_like(c218)
     mask[top_idx] = c218[top_idx]
@@ -883,7 +883,7 @@ def _selftest():
     w_phi, w_top, w_rest = (quad_q00(c218), quad_q00(mask),
                             quad_q00(c218 - mask))
         # the width of the Hessian term is SUB-additive (max-abs in
-    # h_i·[−h²,h²]) — l'écart = gain de cancellation combiné (mesure V7)
+    # h_i.[-h^2,h^2]); the gap is the combined cancellation gain
     gain7 = (w_top + w_rest) / w_phi
     t7 = w_phi <= (w_top + w_rest) * (1 + 1e-12) and w_top < w_phi
     fails.append(not t7)

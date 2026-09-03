@@ -435,7 +435,7 @@ def build_section_bilateral(S, g, eps, center, hw, force_sigma=False):
                 else:
                     # component PINNED to +1: this is the DEFINITION of the
                     # canonical regime, not a trial. The guard
-                    # s'applique verbatim à −R.
+                    # applies verbatim to -R.
                     Zs = tm_sqrt_rotated(R, 1).mul_real(riv(int(eps[r])))
                 rec["regime"] = sel
             except BranchCutError as exc:
@@ -565,7 +565,7 @@ def eval_at_point(Z, box, x, keys):
 
 
 def sep_at_point(a, b):
-    """Séparation stricte |a−b|² vs |a+b|² en un point."""
+    """Strict separation of |a-b|^2 against |a+b|^2 at a point."""
     dm = CIV(a.re - b.re, a.im - b.im)
     dp = CIV(a.re + b.re, a.im + b.im)
     return sep_phase(dm, dp)
@@ -589,7 +589,7 @@ def _bridge_job(i):
     Wb = _G["bridges"][i]
     out = {"tile": i}
 
-    # --- géométrie ---------------------------------------------------
+    # --- geometry -----------------------------------------------------
     c_core, h_core = box_of(leaf)
     core = bounds(c_core, h_core)
     c_h = [Fraction(float.fromhex(x)) for x in rec_h["center_hex"]]
@@ -688,7 +688,7 @@ def _bridge_job(i):
         out["refused"] = "bridge_section_incomplete_after_ledger"
         return out
 
-    # --- F3a : overlaps ouverts + ancres STRICTEMENT intérieures -------
+    # --- F3a: open overlaps plus STRICTLY interior anchors -------------
     res = {}
     # R2: the CONTINUED upper sheet. `Z_upper_conj` is the atlas
     # derived by conjugation; it lives on ANOTHER sheet, linked to
@@ -901,7 +901,7 @@ def selftest():
     chk("lower halo intersected with upper halo is NOT open (the corner)",
         inter([(F(-2), F(0))] * 4, [(F(0), F(2))] * 4) is None)
 
-    # reframe : identité, translation, dilatation anisotrope
+    # reframe: identity, translation, anisotropic dilation
     b = [(F(-1), F(1)), (F(-2), F(2)), (F(-1), F(1)), (F(-2), F(2))]
     off, sc = reframe(b, b)
     chk("reframing a box onto itself is the identity",
@@ -927,11 +927,11 @@ def selftest():
     off = [F(1, 2), F(-1, 4), F(0), F(0)]
     sc = [F(1, 2), F(1, 4), F(1), F(1)]
     q = apply_recenter(recenter_matrix_aniso(off, sc), p)
-    chk("recentrage anisotrope : terme constant",
+    chk("anisotropic recentring: constant term",
         abs(float(mp.mpf(q[0].re.a)) - (3 + 5 * 0.5 + 7 * -0.25)) < 1e-30)
-    chk("recentrage anisotrope : pente en ε'₀ mise à l'échelle",
+    chk("anisotropic recentring: the slope in the first symbol is scaled",
         abs(float(mp.mpf(q[e[0]].re.a)) - 5 * 0.5) < 1e-30)
-    chk("recentrage anisotrope : pente en ε'₁ mise à l'échelle",
+    chk("anisotropic recentring: the slope in the second symbol is scaled",
         abs(float(mp.mpf(q[e[1]].re.a)) - 7 * 0.25) < 1e-30)
     chk("recentring onto itself leaves the polynomial UNCHANGED",
         all(abs(float(mp.mpf(x.re.a)) - float(mp.mpf(y.re.a))) < 1e-30
@@ -1003,7 +1003,7 @@ def build():
     halos = {h["index"]: h["record"] for h in atl["halos"] if h["ok"]}
     clipped = sorted(i for i, r in halos.items()
                      if r["rule"] == "clipped")
-    log(f"cellule S={S} g={g} ; {len(clipped)} tuiles clippées")
+    log(f"cell S={S} g={g}; {len(clipped)} clipped tiles")
     log(f"    the canonical identification REFUSED; the upper atlas "
         f"is DERIVED, not enumerated "
         f"(claim_level={f1['claim_level']})")
@@ -1037,7 +1037,7 @@ def build():
                     "mode": b.get("mode")}
     upstream_ok = all(v.get("green") and v.get("full", True)
                       for v in up.values())
-    log(f"R4c : chaîne amont — " + " ; ".join(
+    log(f"R4c: upstream chain — " + " ; ".join(
         f"{k} {v.get('checks', '?')}" for k, v in up.items())
         + f" ⟹ {upstream_ok}")
 
@@ -1065,7 +1065,7 @@ def build():
                     initargs=((S, g, eps), leaves, halos, bridges)) as pool:
         rows = pool.map(_bridge_job, jobs)
     byi = {r["tile"]: r for r in rows}
-    log(f"    {len(rows)} ponts traités")
+    log(f"    {len(rows)} bridges processed")
 
     f2b = all(r["F2b_contains_union"] for r in rows)
     f2c = all(r["F2c_all_regimes_assigned"] for r in rows)
@@ -1140,7 +1140,7 @@ def build():
                      for r in rows}
     bb_geo = [(a, b) for a, b in itertools.combinations(clipped, 2)
               if inter(bridges[a], bridges[b]) is not None]
-    log(f"R3 : {len(bb_geo)} overlaps pont↔pont géométriques — "
+    log(f"R3: {len(bb_geo)} geometric bridge-to-bridge overlaps — "
         f"transitions en cours de certification…")
     with mpctx.Pool(N_WORKERS, initializer=_init,
                     initargs=((S, g, eps), leaves, halos, bridges,
@@ -1151,12 +1151,12 @@ def build():
     bb_diff = max((x.get("diff_sup") or 0.0) for x in bb_ok) if bb_ok else 0.0
     bb_marg = min((m for x in bb_ok for m in x["margins"]
                    if m is not None), default=None)
-    log(f"     pont↔pont CERTIFIÉES {len(bb_ok)}/{len(bb_geo)} "
+    log(f"     bridge-to-bridge CERTIFIED {len(bb_ok)}/{len(bb_geo)} "
         f"(theta = +1 on all 6 coordinates); minimum margin "
         f"{bb_marg if bb_marg is None else round(bb_marg, 4)} ; "
-        f"sup diff {bb_diff:.3e} ; non certifiées {len(bb_bad)}")
+        f"supremum difference {bb_diff:.3e}; uncertified {len(bb_bad)}")
 
-    # graphe de DOMAINES (géométrique, publié comme tel)
+    # the DOMAIN graph (geometric, published as such)
     dom_edges = (2 * len(clipped)) + len(bb_geo)
 
     # NERVE: only the edges whose transition is CERTIFIED.
@@ -1219,8 +1219,8 @@ def build():
                 W = inter(W1, boxof(z)) if W1 else None
                 if W is not None:
                     new_triples.append([list(x), list(y), list(z)])
-    log(f"R3 : NERF (arêtes certifiées SEULEMENT) — {len(nodes)} nœuds "
-        f"({n_lower} inférieurs + {len(clipped)} ponts), "
+    log(f"R3: NERVE (certified edges ONLY) — {len(nodes)} nodes "
+        f"({n_lower} lower + {len(clipped)} bridges), "
         f"{len(lower_pairs)} lower-to-lower edges imported from the atlas step, {n_bl} "
         f"bridge-to-leaf edges, {len(bb_ok)} bridge-to-bridge edges, "
         f"{len(new_triples)} NEW triples; connected={connected}")
@@ -1235,10 +1235,10 @@ def build():
         fl = halos[i]["flush_faces"]
         re_flush[sum(1 for k in (0, 2) if fl[k] != 0)] += 1
     fully_ambient = re_flush[0]
-    log(f"R4a : portée — {len(clipped)}/{len(clipped)} ponts bilatéraux "
+    log(f"R4a: scope — {len(clipped)}/{len(clipped)} bilateral bridges "
         f"in BOTH imaginary directions; open in ALL FOUR "
-        f"coordonnées : {fully_ambient}/{len(clipped)} ; encore "
-        f"relatifs à 1 face Re : {re_flush[1]} ; à 2 faces : "
+        f"coordinates: {fully_ambient}/{len(clipped)}; still "
+        f"relative to 1 Re face: {re_flush[1]}; to 2 faces: "
         f"{re_flush[2]}")
 
     # --- F3d + R1e: the negative controls ----------------------------
@@ -1387,8 +1387,8 @@ def build():
         "nerve": {
             "note": ("NERVE: only the edges whose TRANSITION "
                      "is certified. The lower-to-lower edges "
-                     "are IMPORTED from the atlas step (verified green), not "
-                     "recalculées."),
+                     "are IMPORTED from the atlas step (verified green), "
+                     "not recomputed."),
             "n_nodes": len(nodes),
             "n_lower_nodes": n_lower,
             "n_bridge_nodes": len(clipped),

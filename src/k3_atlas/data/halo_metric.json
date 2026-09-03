@@ -63875,13 +63875,13 @@
     "N_mutation_eps": {
       "breaks": true,
       "tile": 252,
-      "expected": "même point projectif refusé",
+      "expected": "the same projective point is refused",
       "observed_same_point": false
     },
     "N_mutation_sigma": {
       "breaks": true,
       "tile": 252,
-      "expected": "racine tournée niée (R8) ⟹ même point projectif refusé ou kinds changés",
+      "expected": "the rotated root negated, so the same projective point is refused or the kinds change",
       "observed_same_point": false,
       "observed_kinds": [
         "principal",
@@ -63920,7 +63920,7 @@
     "n_workers": 4,
     "preregistered": {
       "delta_rel": 1e-05,
-      "sheet_record": "FIGÉ (core), jamais re-dérivé"
+      "sheet_record": "FROZEN from the core, never re-derived"
     },
     "inputs": {
       "k3_cap_b1e2iii_c127d_atlas.json": "9dc56bf7c6db61596ee7b9f6249d220a19e3e821fcca9f4bb5f4cf923fcbab07",

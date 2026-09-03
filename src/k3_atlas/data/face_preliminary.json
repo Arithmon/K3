@@ -1195,11 +1195,11 @@
     "(1, 1)": 1
   },
   "next_phases_not_paid_here": [
-    "B — régime analytique et ledger de la voisine (dérivé puis comparé à son ε registré ; discordance = résultat)",
+    "B: the analytic regime and sheet record of the neighbour, derived then compared with its registered sign pattern; a discrepancy is a result",
     "C — transitions exactes pont↔voisine (lemme C129-D)",
-    "D — nerf étendu (graphe de domaines ≠ nerf certifié)",
-    "E — métrique (transport_hardened section=, δ = 1e-5)",
-    "F — négatifs analytiques",
+    "D: the extended nerve (a domain graph is not a certified nerve)",
+    "E: the metric (transport_hardened with an injected section, delta = 1e-5)",
+    "F: analytic negative controls",
     "opening the cover beyond the low faces (an enumeration boundary: a matter of ENUMERATION, not of gluing)",
     "les 895 autres paires"
   ],

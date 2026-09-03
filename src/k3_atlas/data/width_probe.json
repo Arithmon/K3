@@ -1,5 +1,5 @@
 {
-  "phase": "B1.e.2.iii P0a-probe — P0a-0 certifié + r(x)/triangle/t_crit mesurés (contrat GPT P0a-intrinsic §3-4, séquencement Kimi §3) + addendum panel C36",
+  "phase": "positivity probe: the intrinsic comparison certified, with r(x), the triangle bound and the critical t measured, plus a panel addendum",
   "witness_sha256": "738006ef56238f0496b228c06ce33596011a5e316e4fa174a37b58500ac29b4c",
   "seed": 20260726,
   "a_p0a0_certified_spectrum_M": {

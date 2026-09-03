@@ -1371,9 +1371,9 @@ The three expensive ones are **hash-verified**:
 
 | artifact | SHA-256 (first 16) |
 | --- | --- |
-| bridge panel (64 charts, nerve) | `8d01e64efb1bf529` |
-| metric path, full (64 bridges, 274 edges) | `aa00dea011157792` |
-| face crossing (control experiment) | `35b5d0abd6f7a952` |
+| bridge panel (64 charts, nerve) | `fabeb31704f3e7ef` |
+| metric path, full (64 bridges, 274 edges) | `c2e91302ae9babe8` |
+| face crossing (control experiment) | `5ee8debb2637ba44` |
 
 **F.4 What re-running does not test.** A regenerated artifact is
 deliberately not hash-compared: its provenance field changes with every

@@ -76,7 +76,7 @@ class BranchCutError(RuntimeError):
 #  Intervalle complexe (CIV) — repris du pilote NS-1c, + sqrt/div rigoureux
 # ===========================================================================
 def riv(x) -> "iv.mpf":
-    """Intervalle réel dégénéré EXACT depuis float64/int/Fraction."""
+    """EXACT degenerate real interval from float64, int or Fraction."""
     if isinstance(x, Fraction):
         return iv.mpf(x.numerator) / iv.mpf(x.denominator)
     return iv.mpf(x)
@@ -91,7 +91,7 @@ class CIV:
 
     @staticmethod
     def from_complex(c: complex):
-        """Dégénéré exact (composantes float64 ⊂ mpf prec)."""
+        """Exactly degenerate (float64 components inside mpf precision)."""
         return CIV(iv.mpf(c.real), iv.mpf(c.imag))
 
     @staticmethod
@@ -161,7 +161,7 @@ def civ_sqrt_principal(R: CIV) -> CIV:
 #  Chart radical exact : A = −V_S⁻¹·V_T (rationnel), section (Z, W) intervalle
 # ===========================================================================
 def minor_inv_times_T_exact(S, T) -> list[list[Fraction]]:
-    """A[s, t] rationnelle exacte : solve V_S·A = −V_T (Vandermonde entière)."""
+    """A[s, t] exactly rational: solve V_S.A = -V_T (integer Vandermonde)."""
     VS = [[Fraction(MU_INT[a]) ** m for a in S] for m in range(3)]
     VT = [[-Fraction(MU_INT[a]) ** m for a in T] for m in range(3)]
     # Exact Gauss-Jordan on the augmented matrix [VS | VT]
@@ -182,7 +182,7 @@ def chart_cell_section(S, g_col, eps, u0: complex, v0: complex, h: float):
     """Interval holomorphic section of the chart (S, g_col), sheet epsilon, on the
         cell (u, v) in (u0 +- h) x (v0 +- h), a box over the 4 real dimensions.
 
-    Retourne Z (6 CIV), W (6×2 CIV), det_MS (CIV). Convention IDENTIQUE à
+    Returns Z (6 CIV), W (6x2 CIV), det_MS (CIV). The convention is IDENTICAL to
     sample_chart : Z_g = 1, Z_{o1} = u, Z_{o2} = v, Z_S = ε·√(A₀+A₁u²+A₂v²),
     W[o1,0] = W[o2,1] = 1, W[S,0] = A₁·u/Z_S, W[S,1] = A₂·v/Z_S."""
     T = tuple(j for j in range(6) if j not in S)
@@ -190,7 +190,7 @@ def chart_cell_section(S, g_col, eps, u0: complex, v0: complex, h: float):
     o1, o2 = others
     A_exact = minor_inv_times_T_exact(S, T)
     perm = [list(T).index(g_col), list(T).index(o1), list(T).index(o2)]
-    A = [[riv(A_exact[r][c]) for c in perm] for r in range(3)]  # (S,3) réels
+    A = [[riv(A_exact[r][c]) for c in perm] for r in range(3)]  # (S,3) reals
 
     u = CIV.box(u0, h)
     v = CIV.box(v0, h)
@@ -218,7 +218,7 @@ def chart_cell_section(S, g_col, eps, u0: complex, v0: complex, h: float):
 
 
 # ===========================================================================
-#  Monômes + gradients holomorphes projetés (transcription holomorphic_grads)
+#  Monomials plus projected holomorphic gradients (a transcription)
 # ===========================================================================
 def interval_monomials(Z, W, multis):
     """m[I] (CIV), p[I][α] (CIV) : p = Wᵀ·∇z^I (chain rule holomorphe)."""
@@ -250,7 +250,7 @@ def _civ_pow(z: CIV, k: int) -> CIV:
 
 
 # ===========================================================================
-#  Métrique de chart intervalle (transcription chart_metric_kahler, K = 1)
+#  Interval chart metric (a transcription of chart_metric_kahler, K = 1)
 # ===========================================================================
 def interval_chart_metric(Z, W, M_civ, coeffs218, basis=B3, midx=B3_IDX,
                           multis=B3_MULTIS):
@@ -328,7 +328,7 @@ def interval_chart_metric(Z, W, M_civ, coeffs218, basis=B3, midx=B3_IDX,
         if typ == "self":
             lead = [[pI[A_] * pI[B_].conj() for B_ in range(2)]
                     for A_ in range(2)] if I == Kk else None
-            # self ⟹ I == Kk toujours (enumerate_sector) ; garde générale :
+            # self means I equals Kk always (enumerate_sector); general guard:
             if lead is None:
                 lead = [[pI[A_] * pK[B_].conj() for B_ in range(2)]
                         for A_ in range(2)]
@@ -346,7 +346,7 @@ def interval_chart_metric(Z, W, M_civ, coeffs218, basis=B3, midx=B3_IDX,
             g1 = [J * (pI[A_] * mK.conj() - pK[A_] * mI.conj())
                   for A_ in range(2)]
             phi = -2 * (mI * mK.conj()).im
-        c_sd = cr * sd                                 # c·s^{-d} (iv réel)
+        c_sd = cr * sd                                 # c.s^{-d} (real interval)
         c_d_sd1 = cr * sd1 * d
         for A_ in range(2):
             for B_ in range(2):
@@ -371,7 +371,7 @@ def interval_chart_metric(Z, W, M_civ, coeffs218, basis=B3, midx=B3_IDX,
 
 
 def interval_fs_metric(Z, W, s, zW, WtWb):
-    """G_FS packé intervalle : (WᵀW̄)/s − zW⊗z̄W/s² (contrôle + q)."""
+    """G_FS packed in intervals: (W^T conj(W))/s - zW (x) conj(zW)/s^2."""
     s2 = s ** 2
     G = [[WtWb[A_][B_].div_real(s)
           - (zW[A_] * zW[B_].conj()).div_real(s2)
@@ -388,7 +388,8 @@ def det_packed_iv(g):
 
 def residual_iv(g_packed, det_MS):
     """r = log det G + 2 log|det M_S| = log det G + log |det M_S|².
-    Exige det G > 0 (borne inf) — sinon None (positivité non certifiée)."""
+    Requires det G > 0 (lower bound); otherwise None (positivity not
+    certified)."""
     detG = det_packed_iv(g_packed)
     if not (mp.mpf(detG.a) > 0):
         return None, detG
@@ -405,7 +406,7 @@ def sylvester_positive(g_packed) -> bool:
 
 
 def build_M_civ(M: np.ndarray) -> list[list[CIV]]:
-    """M complex128 → CIV dégénérés exacts, hermitisée (M+M†)/2 en mpf."""
+    """M complex128 to exact degenerate CIV, hermitised (M + M-dagger)/2 in mpf."""
     Mc = [[CIV.from_complex(complex(M[i, j])) for j in range(6)]
           for i in range(6)]
     return [[(Mc[i][j] + Mc[j][i].conj()).div_real(iv.mpf(2))
@@ -469,7 +470,7 @@ class DCIV:
     def div(a, b):
         return a * b.inv()
 
-    def mul_rdual(a, r: "DIV"):             # r : DualIV réel
+    def mul_rdual(a, r: "DIV"):             # r is a real DualIV
         return DCIV(a.val.mul_real(r.val),
                     [g.mul_real(r.val) + a.val.mul_real(gr)
                      for g, gr in zip(a.grads, r.grads)])
@@ -539,7 +540,7 @@ def _dciv_pow(z: DCIV, k: int) -> DCIV:
 
 
 def dual_chart_cell_section(S, g_col, eps, u0: complex, v0: complex, h: float):
-    """Section duale : Z (6 DCIV), W (6×2 DCIV), det_MS (DCIV), seeds
+    """Dual section: Z (6 DCIV), W (6x2 DCIV), det_MS (DCIV), seeds
     ∂/∂(u_re, u_im, v_re, v_im). Miroir strict de chart_cell_section."""
     T = tuple(j for j in range(6) if j not in S)
     others = [c for c in T if c != g_col]
@@ -602,7 +603,7 @@ def dual_interval_monomials(Z, W, multis):
 
 def dual_chart_metric(Z, W, M_civ, coeffs218, basis=B3, midx=B3_IDX,
                       multis=B3_MULTIS):
-    """G packé DUAL [g00, g11, Re g01, Im g01] (4 DIV) — miroir strict de
+    """G packed as a DUAL [g00, g11, Re g01, Im g01] (4 DIV), a strict mirror of
         interval_chart_metric with propagation of the four derivatives."""
     s = DIV.const(iv.mpf(0))
     for a in range(6):
@@ -834,7 +835,7 @@ class T2CIV:
         return f * g.inv()
 
     def mul_rt2(f, r: "T2IV"):
-        """f · r, r jet réel (règle produit complète)."""
+        """f times r, with r a real jet (the full product rule)."""
         val = f.val.mul_real(r.val)
         gr = [f.g[a].mul_real(r.val) + f.val.mul_real(r.g[a])
               for a in range(NG)]
@@ -864,7 +865,7 @@ class T2CIV:
 
 
 class T2IV:
-    """Jet ordre 2 réel : (val iv, g[4] iv, h[10] iv)."""
+    """Real order-2 jet: (value iv, g[4] iv, h[10] iv)."""
     __slots__ = ("val", "g", "h")
 
     def __init__(self, val, g, h):
@@ -914,7 +915,7 @@ class T2IV:
 
 
 def t2_chart_cell_section(S, g_col, eps, u0: complex, v0: complex, h: float):
-    """Section jet ordre 2 : Z (6 T2CIV), W (6×2), det_MS (T2CIV).
+    """Order-2 jet section: Z (6 T2CIV), W (6x2), det_MS (T2CIV).
         u and v are LINEAR in the four parameters, so their Hessians vanish."""
     T = tuple(j for j in range(6) if j not in S)
     others = [c for c in T if c != g_col]
@@ -1115,9 +1116,9 @@ def det_packed_t2(g):
 
 
 def taylor2_enclose(center: T2IV, box: T2IV, h: float):
-    """Enclosure ordre 2 : val(t₀) + ∇(t₀)·δ + ½δᵀH(boîte)δ, ∩ MV, ∩ naïf.
+    """Order-2 enclosure: val(t_0) + grad(t_0).delta + half delta^T H(box) delta,
 
-    center : jet évalué en boîte DÉGÉNÉRÉE (val/grads serrés) ;
+    center is the jet evaluated on a DEGENERATE box (tight value and gradients);
         box    : jet evaluated on the full box (naive value, mean-value grads, Hessian).
         All three forms enclose F(box), so the intersection is valid."""
     rad = iv.mpf([-h, h])
@@ -1251,7 +1252,7 @@ def _selftest() -> int:
             eps = leaf_of_float_point(S, g_col, Z_f[i])
             u0, v0 = complex(UV[i, 0]), complex(UV[i, 1])
             samples.append((S, g_col, eps, u0, v0))
-            # K2 : box dégénérée h=0 ≡ moteur float
+            # K2: degenerate box h=0 matches the float engine
             Z, W, dMS = chart_cell_section(S, g_col, eps, u0, v0, 0.0)
             g_iv, s, zW, WtWb = interval_chart_metric(Z, W, M_civ, coeffs218)
             G_ref = chart_metric_kahler(Z_f[i:i + 1], W_f[i:i + 1], M,
@@ -1260,7 +1261,7 @@ def _selftest() -> int:
             mids = np.array([(a + b) / 2 for a, b in map(iv_bounds, g_iv)])
             rel = float(np.abs(mids - g_ref).max() / np.abs(g_ref).max())
             worst_rel = max(worst_rel, rel)
-            # r float vs r intervalle (box dégénérée)
+            # r in float against r in interval arithmetic (degenerate box)
             blk = {"S": S, "Z": Z_f[i:i + 1]}
             dMS_f = detMS_on_block(blk)[0]
             r_ref = float(np.log(g_ref[0] * g_ref[1] - g_ref[2] ** 2
@@ -1273,7 +1274,7 @@ def _selftest() -> int:
           f"max rel(G) = {worst_rel:.2e}, max |Δr| = {worst_r:.2e} "
           f"sur {n_pts} pts × {len(cases)} charts ({time.time() - t0:.0f}s)")
 
-    # K3 — containment Monte-Carlo : float(point ∈ boîte) ∈ intervalle(boîte)
+    # K3: Monte Carlo containment, a float point of the box lies in the interval
     t0 = time.time()
     h = 1e-3
     n_contained, n_tested, n_branch = 0, 0, 0
@@ -1311,7 +1312,7 @@ def _selftest() -> int:
           f"{n_branch} cells rejected by the branch guard, "
           f"{time.time() - t0:.0f}s)")
 
-    # K4 — largeur décroissante h → h/2
+    # K4: width decreasing as h halves
     S, g_col, eps, u0, v0 = samples[0]
     widths = []
     for hh in (1e-3, 5e-4):
@@ -1384,7 +1385,7 @@ def _selftest() -> int:
     gain = min(n / m for n, m in zip(diag["w_naive"], diag["w_mv"]))
     check("D3_mean_value_gain", gain > 3.0,
           f"largeur naïve / valeur-moyenne ≥ {gain:.1f}× (h = {h:g}, "
-          f"w_mv g00 = {diag['w_mv'][0]:.2e} vs naïf {diag['w_naive'][0]:.2e})")
+          f"w_mv g00 = {diag['w_mv'][0]:.2e} against naive {diag['w_naive'][0]:.2e})")
 
     # T1 — jets ordre 2 (h=0) : val/grads ≡ dual, hessiennes vs FD 2nd float
     import time as _time
@@ -1427,8 +1428,8 @@ def _selftest() -> int:
             scale = max(10.0, abs(ref))
             worst_h = max(worst_h, abs((lo + hi) / 2 - ref) / scale)
     check("T1_t2_jets_vs_dual_and_FD", worst_g < 1e-12 and worst_h < 1e-6,
-          f"grads t2 ≡ dual à {worst_g:.2e} ; hess vs FD(grads duaux) "
-          f"Richardson rel {worst_h:.2e} ({t_eval:.1f}s/éval t2)")
+          f"t2 gradients match the dual ones to {worst_g:.2e}; Hessian against "
+          f"Richardson finite differences, relative {worst_h:.2e} ({t_eval:.1f}s per t2 evaluation)")
 
     # T2 — containment MC de la forme de Taylor ordre 2
     h = 1e-3
@@ -1452,7 +1453,7 @@ def _selftest() -> int:
             n_ok += ok
             n_tot += 1
     check("T2_taylor2_containment_MC", n_tot > 0 and n_ok == n_tot,
-          f"{n_ok}/{n_tot} points contenus (G packé + det G, h = {h:g})")
+          f"{n_ok}/{n_tot} points contained (packed G plus det G, h = {h:g})")
 
     # T3: second order beats the mean-value form
     S, g_col, eps, u0, v0 = samples[0]

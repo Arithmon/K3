@@ -190,7 +190,7 @@
           "what_is_retracted": "the geometric IDENTIFICATION alone: the enclosed variance is an AUXILIARY quantity, not the Calabi-Yau residual of a Kaehler metric on X.",
           "what_survives": "the bytes, the machine-verified rational inequality, and the Krawczyk-Rump certification that each box contains an EXACT common zero of the defining equations, a statement about the SURFACE, independent of any metric convention.",
           "corrected_surfaces": [
-            "canonical/papers/g2_k3_certified_metric/paper_k3.md (bannière 2026-08-22)",
+            "canonical/papers/g2_k3_certified_metric/paper_k3.md (banner of 2026-08-22)",
             "K7-Lean/GIFT/Foundations/K3ClosedFormWitness.lean (836296d)",
             "K7-Lean/GIFT/Foundations/K3ClosedFormBoxEnclosures.lean (836296d)"
           ]
@@ -245,7 +245,7 @@
         {
           "id": "CY_RESIDUAL_BOUND_667_ENVELOPE",
           "declared": "2026-08-22",
-          "what": "même claim, sous la borne d'enveloppe Lean 1321/10⁷.",
+          "what": "the same claim, under the Lean envelope bound 1321/10^7.",
           "evidence": "idem",
           "patterns": [
             "Var",

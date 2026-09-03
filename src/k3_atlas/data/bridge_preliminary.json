@@ -16391,7 +16391,7 @@
   "n_regimes_assigned": 192,
   "n_regimes_total": 192,
   "s7_negative_mutations": {
-    "note": "translations EXACTES de a0 calculées depuis l'enclosure mesurée — aucun seuil choisi",
+    "note": "EXACT translations of a0 computed from the measured enclosure; no threshold chosen",
     "a0_shift_centered": "-7239331/2621440",
     "line_centered": {
       "row": 0,
@@ -16530,10 +16530,10 @@
     "full_cell_note": "Re R keeps its sign over the WHOLE CELL, far beyond the bridge: the margin is wide. An informative measurement, NOT a negative control: it was the first version of S7, withdrawn from the checks because it can never break."
   },
   "not_paid_here": [
-    "aucune section construite : ni jauge, ni gardes de coupure, ni ledger — F2c/F2d du contrat révisé",
-    "identification canonique de la cellule voisine (F1a) et ledger dérivé ligne par ligne (F1d)",
-    "overlaps ouverts pont/inférieur et pont/supérieur, ancres intérieures, phases θ∓ (F3)",
-    "métrique du pont : Qmat, Weyl, congruences latérales (F4)",
+    "no section is built: neither gauge, nor branch-cut guards, nor sheet record",
+    "the canonical identification of the neighbouring cell, and the sheet record derived row by row",
+    "the open bridge-to-lower and bridge-to-upper overlaps, the interior anchors, and the theta phases",
+    "the metric of the bridge: Qmat, Weyl, and the lateral congruences",
     "the codimension-1 neighbours (a single Im sign changes): simultaneous conjugation does not reach them"
   ],
   "checks": {
@@ -16553,7 +16553,7 @@
     "python": "3.13.7",
     "platform": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
     "wall_s": 0.23,
-    "exact_arithmetic": "Fraction only — aucun float décisionnel",
+    "exact_arithmetic": "Fraction only: no float takes a decision",
     "preregistered": {
       "im_dirs": [
         1,
