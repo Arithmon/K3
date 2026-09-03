@@ -211,6 +211,41 @@ def check_paper_hashes():
     return bad
 
 
+# `docs/RESULTS_INDEX.md` tells the reader, per certificate, HOW this command
+# checks it: replayed, recomputed, hashed, or not at all. That column is a
+# claim about this file, and it was generated from an inventory of the private
+# workspace, so nothing forced the two to agree. It is checked here: if a
+# certificate moves between the three lists, or leaves them, the index reddens
+# with it.
+def check_results_index():
+    """Rows where the index disagrees with what this command actually does."""
+    import re
+    f = ROOT / "docs" / "RESULTS_INDEX.md"
+    if not f.exists():
+        return [("docs/RESULTS_INDEX.md", 0, "(missing)", "", "")]
+    actual = {c: "replayed" for c, _, _ in REPLAY}
+    actual.update({c: "recomputed" for c, _, _, _ in RECOMPUTE})
+    actual.update({c: "hashed" for c, _ in HASHED})
+    bad, seen = [], set()
+    for n, line in enumerate(f.read_text(encoding="utf-8").splitlines(), 1):
+        cells = [c.strip() for c in line.split("|")]
+        if len(cells) < 7 or not cells[3].startswith("`"):
+            continue
+        cert = cells[3].strip("`").removesuffix(".json")
+        claimed = cells[5]
+        seen.add(cert)
+        want = actual.get(cert, "unverified")
+        if claimed != want:
+            bad.append(("docs/RESULTS_INDEX.md", n, cert, claimed, want))
+        if not (CERTS / f"{cert}.json").exists():
+            bad.append(("docs/RESULTS_INDEX.md", n, cert, "listed",
+                        "no such certificate"))
+    for cert in sorted(set(actual) - seen):
+        bad.append(("docs/RESULTS_INDEX.md", 0, cert, "absent from the index",
+                    actual[cert]))
+    return bad
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--quick", action="store_true",
@@ -313,6 +348,16 @@ def main():
         if not ok:
             failures.append(cert)
             lines.append(f"           expected {expected[:16]}…")
+
+    index_bad = check_results_index()
+    for rel, n, cert, claimed, want in index_bad:
+        lines.append(f"  FAIL     results index  [{rel}:{n}] {cert}: "
+                     f"says {claimed!r}, this command does {want!r}")
+    if index_bad:
+        failures.append("results index")
+    else:
+        lines.append("  PASS     results index  "
+                     "[every row agrees with what this command does]")
 
     paper_bad = check_paper_hashes()
     for rel, n, label, got, want in paper_bad:
