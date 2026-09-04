@@ -11,3 +11,5 @@ paper/latex/*.out
 paper/latex/*.toc
 paper/latex/*.fls
 paper/latex/*.fdb_latexmk
+paper/latex/_body.md
+paper/latex/build.sh

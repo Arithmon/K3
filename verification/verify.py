@@ -6,30 +6,26 @@
 
 THREE LEVELS, and the distinction is the point.
 
-  REPLAY — the inexpensive certificates (under a second each) are RE-EXECUTED
-    from the producers in `verification/producers/`, and we then check that
-    every check and every negative control is green and that the recorded
-    outcome is EXACTLY the expected one (a prefix used to be enough, and it
-    let a wrong tail through). A regenerated artefact is NOT
-    compared by hash: its provenance block records the commit it was built
-    from, which changes with every commit, so hashing a regenerated file
-    would test the version-control history rather than the mathematics.
+  REPLAY — the inexpensive certificates (under a second each) are re-executed
+    from the producers in `verification/producers/`; every check and every
+    negative control must be green and the recorded outcome must be exactly
+    the expected one. A regenerated file is not compared by hash: its
+    provenance records the commit it was built from.
 
   RECOMPUTE — the coverage certificate (71.8 M boxes, about 70 s on four
-  cores) is RECOMPUTED and its counters compared one by one with the shipped
-  file. It predates the checks/perturbation_tests convention, so reading it would only
-  re-read a verdict; recomputing it would redden if a single counter moved.
-  This is the computation carrying the pivot floor 4.8, so it is the one that
-  most deserves to be reproduced rather than trusted.
+    cores) is recomputed and its counters compared one by one with the
+    shipped file; it is the computation carrying the pivot floor 4.8.
 
   HASH — the expensive certificates (the bridge panel, the metric path, the
-    face traversal) are not replayed here; their SHA-256 is checked against
-    the recorded value. Reproducing them takes hours on a compute machine,
-    which is not what a one-command check should ask of a reader.
+    face traversal) are checked by SHA-256 against the recorded value; their
+    producers ship in `src/k3_atlas` and take hours to re-run.
 
-The script is READ-ONLY on the tree. Replaying rewrites the artefacts, so the
-original bytes are saved and RESTORED in a `finally` block: verifying must not
-leave the repository dirty.
+Also checked: every `upstream` pin the producers wrote, against the shipped
+bytes; the results index against what this command does; the hash table of
+Appendix F against the files, in the markdown, the LaTeX and the PDF.
+
+The script is read-only on the tree: replaying rewrites the certificates, so
+the original bytes are saved and restored.
 
 DEPENDENCIES. The reference environment is pinned in `requirements.lock`
 (python 3.14.4, numpy 2.5.1, sympy 1.14.0, mpmath 1.3.0, among others). This
@@ -76,31 +72,18 @@ REPLAY = [
      "atlas_paper_glue_obligations_typed_and_transition_generators_derived_word_length_le_4"),
     ("smoothness_and_transitions", "smoothness_and_transitions.py",
      "atlas_paper_three_nonzero_lemma_carries_smoothness_and_coverage_pivot_degree3_invariant_transitions_explicit"),
-    # The sigma-floor correction. The paper states that writing it up
-    # uncovered two defects in the results it was reporting, one of them the
-    # sigma floor of the two charts (uniform radius 9.6e-10 -> 2.1e-12).
-    # Without this certificate replayed, that claim of self-correction is
-    # ASSERTED rather than CHECKABLE — which is precisely what a
-    # one-command verifier exists to close.
+    # the correction reported in Appendix B, replayed so that it is checked
+    # rather than asserted
     ("sigma_floor_correction", "sigma_floor_correction.py",
      "u1_sigma_floor_defect_confirmed_with_witness_radius_corrected_9p6e10_to_2p1e12_theorem_survives"),
-    # The four design certificates are deliberately NOT replayed. They do
-    # have checks, self-tests and producers, and they pass; but shipping their
-    # producers pulls twenty-three further artefacts into this repository,
-    # through everything those producers read — contract amendments,
-    # preregistrations, the internal chain those design documents rest on.
-    # The repository would go from 14 certificates to 37, most of them
-    # carrying no claim the paper makes. What the command covers is therefore
-    # 9 of the 14 files shipped, and Appendix F says so without rounding.
+    # The four design records are not replayed: their producers would pull
+    # twenty-three further files into the repository (Appendix F).
 ]
 
-# (certificate, producer, argv, compared fields) — RECOMPUTED, then compared
-# field by field with the shipped certificate. The arguments are those of the
-# published run; the box budget in particular is NOT optional: at the default
-# (200 M) gauge 1 stops on `budget_abort` and the verdict falls to FAILED on 16
-# unresolved boxes, while the other five gauges reproduce identically either
-# way. `seconds` and `n_cores` are excluded from the comparison, being machine
-# dependent; everything else is deterministic and must agree counter for counter.
+# (certificate, producer, argv, compared fields) — recomputed, then compared
+# field by field. The arguments are those of the published run (the box
+# budget is not optional: at the default, gauge 1 stops on `budget_abort`).
+# `seconds` and `n_cores` are machine dependent and excluded.
 RECOMPUTE = [
     ("atlas_coverage", "atlas_coverage.py",
      ["0.6", "4", "1e-3", "1000"],
@@ -143,9 +126,7 @@ def sha(p):
 
 
 def check_shipped(blob, prefix):
-    """Is the SHIPPED certificate green? Replay writes and then RESTORES the
-    original bytes, so a repository shipping a RED artefact still passed:
-    only the regenerated file was examined, never the one a reader opens."""
+    """Is the SHIPPED certificate green (not only the regenerated one)?"""
     d = json.loads(blob.decode("utf-8"))
     gp, gt = d.get("checks_passed"), d.get("checks_total")
     st = d.get("perturbation_tests", {})
@@ -161,14 +142,8 @@ def check_json(path, prefix):
     st = d.get("perturbation_tests", {})
     ok_gates = gp is not None and gp == gt and gt > 0
     ok_neg = all(bool(v) for v in st.values()) if st else True
-    # Two naming conventions coexist: recent certificates serialise
-    # `outcome`, the design ones serialise `issue`. Accept both EXPLICITLY,
-    # rather than letting the second pass for an empty outcome.
+    # recent certificates serialise `outcome`, the design records `issue`
     field = "outcome" if "outcome" in d else "issue"
-    # The EXACT outcome, not a prefix. While only the beginning was compared,
-    # everything after it was free-form comment: `..._word_length_le_3`
-    # survived a check that already required 4, and the shipped certificate
-    # told the reader the opposite of what its producer computed.
     ok_out = bool(prefix) and str(d.get(field, "")) == prefix
     detail = f"checks {gp}/{gt}"
     if st:
@@ -177,11 +152,9 @@ def check_json(path, prefix):
     return (ok_gates and ok_neg and ok_out), detail
 
 
-# The paper publishes the SHA-256 prefix of each hash-verified certificate in
-# an appendix table. A reader who runs `sha256sum` compares against THAT table,
-# so it is a claim like any other -- and it was wrong: it carried prefixes from
-# an era before this repository existed, matching no file ever shipped here.
-# It is checked below, against the files, in both the markdown and the LaTeX.
+# Appendix F publishes the SHA-256 prefix of each hash-verified certificate;
+# a reader who runs `sha256sum` compares against that table. It is checked
+# against the files in the markdown, the LaTeX and the deposited PDF.
 PAPER_HASH_TABLE = {
     "bridge panel": "bridge_atlas_panel",
     "metric path": "bridge_metric_path",
@@ -189,10 +162,6 @@ PAPER_HASH_TABLE = {
 }
 PAPER_FILES = ("paper/certified_k3_atlas.md",
                "paper/latex/certified_k3_atlas_body.tex")
-# The PDF is the file that gets deposited, and a deposit is immutable. Checking
-# only the sources let a stale PDF ship three hashes that matched nothing --
-# the check was reading a different unit from the thing published. Its text is
-# decompressed and searched here too.
 PAPER_PDF = "paper/latex/certified_k3_atlas.pdf"
 _PAPER_SEEN = []
 
@@ -211,12 +180,7 @@ def _pdf_text(path):
 
 def check_paper_hashes():
     """Lines where the paper's published prefix differs from the shipped file.
-
-    CARDINAL. An earlier version compared only the rows it happened to find,
-    so deleting the labels made it green over nothing -- it even reported the
-    number of rows it EXPECTED rather than the number it read. Every label
-    must be found in every source, and the count is measured.
-    """
+    Every label must be found in every source, exactly once in the PDF."""
     bad, seen = [], []
     for rel in PAPER_FILES:
         f = ROOT / rel
@@ -263,12 +227,8 @@ def check_paper_hashes():
     return bad
 
 
-# `docs/RESULTS_INDEX.md` tells the reader, per certificate, HOW this command
-# checks it: replayed, recomputed, hashed, or not at all. That column is a
-# claim about this file, and it was generated from an inventory of the private
-# workspace, so nothing forced the two to agree. It is checked here: if a
-# certificate moves between the three lists, or leaves them, the index reddens
-# with it.
+# `docs/RESULTS_INDEX.md` says, per certificate, how this command checks it.
+# That column is a claim about this file, and is checked against it.
 def check_results_index():
     """Rows where the index disagrees with what this command actually does."""
     import re
@@ -281,10 +241,10 @@ def check_results_index():
     bad, seen = [], set()
     for n, line in enumerate(f.read_text(encoding="utf-8").splitlines(), 1):
         cells = [c.strip() for c in line.split("|")]
-        if len(cells) < 7 or not cells[3].startswith("`"):
+        if len(cells) < 6 or not cells[3].startswith("`"):
             continue
         cert = cells[3].strip("`").removesuffix(".json")
-        claimed = cells[5]
+        claimed = cells[4]
         seen.add(cert)
         want = actual.get(cert, "unverified")
         if claimed != want:
@@ -295,9 +255,7 @@ def check_results_index():
     for cert in sorted(set(actual) - seen):
         bad.append(("docs/RESULTS_INDEX.md", 0, cert, "absent from the index",
                     actual[cert]))
-    # Every SHIPPED certificate has a row, checked or not. The rows present
-    # used to be the only ones read: deleting a design record's row left the
-    # index with thirteen entries and the check green.
+    # every shipped certificate has a row, checked or not
     shipped = {p.stem for p in CERTS.glob("*.json")}
     for cert in sorted(shipped - seen - set(actual)):
         bad.append(("docs/RESULTS_INDEX.md", 0, cert, "absent from the index",
@@ -305,10 +263,7 @@ def check_results_index():
     return bad
 
 
-# Which shipped file an `upstream` key names. The keys are the producers' own;
-# they are listed once here so the pin can be CHECKED against the shipped
-# bytes. Nothing compared these hashes before, and one was stale for a whole
-# release without anything reddening.
+# Which shipped file an `upstream` key names (the keys are the producers' own).
 PIN_TARGETS = {
     "d3_coverage_legacy": "certificates/atlas_coverage.json",
     "f1prime_u0": "certificates/uniform_chart_lemma.json",
@@ -323,10 +278,10 @@ PIN_TARGETS = {
     "closeout_k_regional": "certificates/gluing_contract.json",
     "dyadic_cover": "src/k3_atlas/data/dyadic_cover.json",
 }
-# Pins that do NOT match the shipped bytes, and what was MEASURED about it.
-# A design record pins the bytes it was written from; its producer is not
-# shipped, so it cannot be re-run here, and some of its inputs were
-# regenerated or translated after it. Each entry is printed on every run.
+# Pins that do not match the shipped bytes, with what was measured about the
+# difference. A design record pins the bytes it was written from; its producer
+# is not shipped, and some of its inputs were regenerated or translated after
+# it. Each entry is printed on every run; any other mismatch fails.
 DECLARED_STALE = {
     ("uniform_chart_lemma", "dyadic_cover"):
         "the input was regenerated after the record; compared leaf by leaf, "
@@ -449,11 +404,7 @@ def main():
                     lines.append(f"  FAIL     {cert}  (recompute: exit {r.returncode})")
                     continue
                 got = json.loads(path.read_text(encoding="utf-8"))
-                # Without this check, a producer writing somewhere OTHER than
-                # the file being compared makes the diff trivially empty: the
-                # shipped certificate is compared with itself, and a mutated
-                # counter passes. `seconds` changes on every run, so if it is
-                # unchanged the recomputation did not land in this file.
+                # the recomputation must have rewritten THIS file
                 rewritten = got.get("seconds") != shipped.get("seconds")
                 diff = [f for f in fields if got.get(f) != shipped.get(f)]
                 ok = (rewritten and not diff
