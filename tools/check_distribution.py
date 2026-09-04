@@ -25,8 +25,10 @@ against an intention:
      to a pinned third-party package, or to this repository.
 
 The check exits nonzero on any violation and prints one line per finding.
-It is deliberately without exemptions: a rule that carves out our own
-vocabulary would stop measuring the thing it names.
+Its exemptions are few, named in this file, and PRINTED on every run with the
+count they cover: an exemption nobody sees is a hole, one printed each time
+is a declared limit. None of them carves our own vocabulary out of the rule
+that names it.
 """
 from __future__ import annotations
 
@@ -113,13 +115,46 @@ def french_score(s: str, fr) -> int:
 # manifest embedded inside the frozen witness archive, and the loader refuses
 # the witness when the two differ. Translating the sidecar breaks that check --
 # measured, not feared: the chain stopped on it. Rewriting the frozen archive
-# instead would change its SHA-256, which every certificate downstream records.
+# instead would change its SHA-256, which the data files downstream record as
+# `witness_sha256`.
 # The prose stays as recorded, and this exemption says why rather than hiding
 # it.
 MIRRORED_IN_A_FROZEN_ARTEFACT = {
     "src/k3_atlas/data/witness_manifest.json":
         "mirrored inside k3_closedform_witness_kahler_v2.npz; the loader "
         "compares the two and refuses the witness if they differ",
+}
+
+# The inputs of the expensive chain, as shipped. Their bytes are pinned by the
+# `upstream` blocks of the hash-verified certificates, so a word changed there
+# changes a hash the paper publishes: what they record -- the run that
+# produced each row, the paths of the retraction registry, a sentence left in
+# French -- stays as recorded, and is COUNTED here rather than hidden.
+FROZEN_INPUTS = "src/k3_atlas/data"
+
+# Prose leaves of a hash-verified certificate that are known to be wrong
+# (half French), by exact path. The certificate is pinned by two other
+# hash-verified certificates, so a hand edit would break their pins; the
+# producer's strings are corrected, and the next full replay of the chain
+# removes these leaves. Until then they are declared, not silently passed.
+HASH_FROZEN_PROSE = {
+    ("certificates/bridge_atlas_panel.json", "/not_paid_here[2]"),
+    ("certificates/bridge_atlas_panel.json", "/not_paid_here[3]"),
+}
+
+# Keys under which a certificate RECORDS where it came from. The name of a
+# file that was read is provenance, and provenance is not rewritten to look
+# tidier; development vocabulary under these keys is allowed and counted.
+PROVENANCE_KEY = re.compile(
+    r"(^upstream|provenance|^amends$|lineage|ledger|notes_read|_frozen$|"
+    r"_ref$|built_from_head|self_sha256)", re.I)
+
+# What the exemptions above let through on this run, printed at the end.
+DECLARED: dict[str, int] = {
+    "prose leaves of a hash-verified certificate": 0,
+    "prose leaves of the frozen chain inputs": 0,
+    "development vocabulary in the frozen chain inputs": 0,
+    "development vocabulary under lineage keys of a certificate": 0,
 }
 
 STDLIB_OK = set(sys.stdlib_module_names)
@@ -160,6 +195,10 @@ def check_english(findings):
 NAME_EXEMPT = re.compile(
     r"(author|thanks|acknowledg|Anthropic|OpenAI|Claude|correspondence|"
     r"^\*\*[A-Z])", re.I)
+# On an exempt line only these NAMES pass; every other forbidden word on the
+# same line is still a finding. The exemption used to cover the whole line,
+# and a line opening with a name could carry six forbidden words behind it.
+NAMES_ALLOWED_ON_EXEMPT_LINES = {"codex", "grok", "kimi"}
 
 
 def check_vocabulary(findings):
@@ -170,9 +209,10 @@ def check_vocabulary(findings):
             continue        # the rule names the words it forbids
         for n, line in enumerate(p.read_text(encoding="utf-8",
                                              errors="replace").splitlines(), 1):
-            if NAME_EXEMPT.search(line.strip()):
-                continue
+            exempt = bool(NAME_EXEMPT.search(line.strip()))
             for m in voc.finditer(line):
+                if exempt and m.group(0).lower() in NAMES_ALLOWED_ON_EXEMPT_LINES:
+                    continue
                 findings.append(("vocabulary", rel(p), n, m.group(0)))
 
 
@@ -193,10 +233,18 @@ def check_json_keys(findings):
                 walk(v, f"{path}/{k}", p)
         elif isinstance(o, str) and len(o) > 20:
             if french_score(o, fr) >= 2:
-                findings.append(("json-text", rel(p), 0,
-                                 f"{path} = {o[:70]}"))
+                if (rel(p), path) in HASH_FROZEN_PROSE:
+                    DECLARED["prose leaves of a hash-verified certificate"] += 1
+                elif rel(p).startswith(FROZEN_INPUTS):
+                    DECLARED["prose leaves of the frozen chain inputs"] += 1
+                else:
+                    findings.append(("json-text", rel(p), 0,
+                                     f"{path} = {o[:70]}"))
         elif isinstance(o, list):
-            for i, v in enumerate(o[:50]):
+            # EVERY item. The first fifty used to be enough, and a French
+            # sentence at index 100 of a 200-item list shipped under a green
+            # verdict.
+            for i, v in enumerate(o):
                 walk(v, f"{path}[{i}]", p)
 
     for p in sorted(ROOT.rglob("*.json")):
@@ -215,12 +263,73 @@ def report_exemptions():
     hole; an exemption printed on every run is a declared limit."""
     for rel_path, why in sorted(MIRRORED_IN_A_FROZEN_ARTEFACT.items()):
         print(f"  exempt      {rel_path}: {why}")
+    for rel_path, path in sorted(HASH_FROZEN_PROSE):
+        print(f"  exempt      {rel_path}{path}: hash-verified and pinned twice; "
+              "corrected in the producer, replaced at the next full replay")
+    for what, n in DECLARED.items():
+        print(f"  declared    {n:4d}  {what}")
+
+
+def check_json_vocabulary(findings):
+    """Rule 2, on the machine-readable surface.
+
+    Development vocabulary in a certificate is a finding, except under the
+    keys that RECORD provenance (counted), and in the frozen inputs of the
+    expensive chain, whose bytes are pinned by published hashes (counted).
+    """
+    voc = re.compile("|".join(DEVELOPMENT_VOCABULARY), re.I)
+
+    def record(p, path, word, keys):
+        r = rel(p)
+        if r.startswith(FROZEN_INPUTS):
+            DECLARED["development vocabulary in the frozen chain inputs"] += 1
+        elif any(PROVENANCE_KEY.search(k) for k in keys):
+            DECLARED["development vocabulary under lineage keys of a certificate"] += 1
+        else:
+            findings.append(("json-vocabulary", r, 0, f"{path}: {word}"))
+
+    def walk(o, path, p, keys):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                for m in voc.finditer(str(k)):
+                    record(p, f"{path}/{k}", m.group(0), keys)
+                walk(v, f"{path}/{k}", p, keys + [str(k)])
+        elif isinstance(o, list):
+            for i, v in enumerate(o):
+                walk(v, f"{path}[{i}]", p, keys)
+        elif isinstance(o, str):
+            for m in voc.finditer(o):
+                record(p, path, m.group(0), keys)
+
+    for p in sorted(ROOT.rglob("*.json")):
+        if any(part in SKIP_DIRS for part in p.parts):
+            continue
+        if rel(p) in MIRRORED_IN_A_FROZEN_ARTEFACT:
+            continue
+        try:
+            walk(json.loads(p.read_text(encoding="utf-8")), "", p, [])
+        except (ValueError, OSError):
+            pass        # rule 1 already reports an unreadable file
+
+
+PATH_SUFFIXES = TEXT_SUFFIXES | {".log", ".aux", ".out", ".toc", ".json", ".cff"}
+
+
+def path_files():
+    """Rule 3 reads MORE than the prose rules: a LaTeX log is not prose, but
+    it carried the build machine's home directory into a deposit once."""
+    for p in sorted(ROOT.rglob("*")):
+        if not p.is_file() or p.suffix not in PATH_SUFFIXES:
+            continue
+        if any(part in SKIP_DIRS for part in p.parts):
+            continue
+        yield p
 
 
 def check_paths(findings):
     """Rule 3 — no path points outside this repository."""
     pat = re.compile(r"""["'`]((?:\.\./|/home/|/Users/|C:\\)[^"'`\n]{2,120})""")
-    for p in files():
+    for p in path_files():
         for n, line in enumerate(p.read_text(encoding="utf-8",
                                              errors="replace").splitlines(), 1):
             for m in pat.finditer(line):
@@ -281,12 +390,17 @@ def check_latex_paths(findings):
 # and it shipped. These spellings are forbidden so the weakening cannot come
 # back silently.
 WEAKENED_STRICTNESS = re.compile(
-    r"bounded (?:below|above) by 0\b|BOUNDED (?:BELOW|ABOVE) BY 0\b"
+    r"bounded (?:below|above) (?:by|at|>=|≥|\\geq?) (?:0|zero|0\.0)\b"
     r"|bounded below > 0", re.I)
 
 
 def check_strictness(findings):
-    """A statement that admits zero where the check is strict."""
+    """A statement that admits zero where the check is strict.
+
+    This is a REGRESSION GUARD: it knows the spellings that shipped and their
+    plain variants (0, zero, 0.0; by, at, >=). It does not read every
+    inequality of the text for its meaning, and should not be mistaken for a
+    rule that could."""
     for p in files():
         for n, line in enumerate(p.read_text(encoding="utf-8",
                                              errors="replace").splitlines(), 1):
@@ -403,6 +517,24 @@ def check_appendix_e(findings):
     if f"({counts})" not in sec:
         findings.append(("appendix-e", "paper/certified_k3_atlas.md", 0,
                          f"design records carry checks {counts}; the text does not say so"))
+    # E.2: the red-marker spellings, read from the replayed producers
+    markers = set()
+    for q in sorted((ROOT / "verification" / "producers").glob("*.py")):
+        markers |= set(re.findall(r"_(checks_red|refused)\b", q.read_text(encoding="utf-8")))
+    for mk in sorted(markers):
+        if f"`*_{mk}`" not in sec:
+            findings.append(("appendix-e", "paper/certified_k3_atlas.md", 0,
+                             f"a producer collapses a red outcome to `*_{mk}`; E.2 does not name it"))
+    # E.5: the field it names must exist, with the value it states
+    m = re.search(r"`([a-z_]+)\.([a-z_]+): (true|false)`", sec)
+    if not m:
+        findings.append(("appendix-e", "paper/certified_k3_atlas.md", 0,
+                         "E.5 names no typed field for the two-sided comparison"))
+    else:
+        val = certs.get("bridge_metric_path", {}).get(m.group(1), {}).get(m.group(2), "absent")
+        if str(val).lower() != m.group(3):
+            findings.append(("appendix-e", "paper/certified_k3_atlas.md", 0,
+                             f"E.5 says {m.group(1)}.{m.group(2)}: {m.group(3)}; the certificate has {val}"))
     # the nine covered files
     with_checks = sum(1 for c in APPENDIX_E_NINE if "checks" in certs.get(c, {}))
     m = re.search(r"command covers, (\d+) carry `checks`", sec)
@@ -412,13 +544,94 @@ def check_appendix_e(findings):
                          f"{m.group(1) if m else 'nothing'}"))
 
 
+# Section 7.4 quotes the nerve of the bridge panel. Every number there is a
+# counter of the certificate, and the edge total is a SUM of three of them:
+# the 64 upper continuations join no node of the nerve and are counted
+# separately, so the four counters of the block sum to more than the edge
+# count the paper gives. Both readings are checked, so that neither can drift.
+NERVE_COUNTERS = ("n_nodes", "n_lower_nodes", "n_bridge_nodes",
+                  "n_lower_lower_edges_imported", "n_bridge_lower_edges_certified",
+                  "n_bridge_bridge_edges_certified", "n_new_triples_involving_a_bridge")
+
+
+def _spellings(n: int) -> set[str]:
+    out = {str(n)}
+    if n >= 1000:
+        out.add(f"{n // 1000}{{,}}{n % 1000:03d}")
+    return out
+
+
+def check_nerve_counts(findings):
+    """Section 7.4 against the `nerve` block of the bridge panel."""
+    p = ROOT / "certificates" / "bridge_atlas_panel.json"
+    md = ROOT / "paper" / "certified_k3_atlas.md"
+    if not p.exists() or not md.exists():
+        return
+    try:
+        nerve = json.loads(p.read_text(encoding="utf-8"))["nerve"]
+    except (ValueError, OSError, KeyError):
+        findings.append(("nerve-counts", rel(p), 0, "no nerve block"))
+        return
+    text = md.read_text(encoding="utf-8")
+    start = text.find("### 7.4")
+    end = text.find("## 8.", start)
+    sec = text[start:end] if start >= 0 else ""
+    for k in NERVE_COUNTERS:
+        if not any(s in sec for s in _spellings(int(nerve[k]))):
+            findings.append(("nerve-counts", "paper/certified_k3_atlas.md", 0,
+                             f"section 7.4 does not quote {k} = {nerve[k]}"))
+    edges = (int(nerve["n_lower_lower_edges_imported"])
+             + int(nerve["n_bridge_lower_edges_certified"])
+             + int(nerve["n_bridge_bridge_edges_certified"]))
+    four = edges + int(nerve["n_bridge_upper_cont_certified"])
+    for n, what in ((edges, "certified edges of the nerve"),
+                    (four, "sum of the four counters")):
+        if not any(s in sec for s in _spellings(n)):
+            findings.append(("nerve-counts", "paper/certified_k3_atlas.md", 0,
+                             f"section 7.4 does not quote {n} ({what})"))
+
+
+# Three shipped inputs record only a 16-character prefix as their own source
+# fingerprint; they predate the full-hash rule. Their bytes are pinned in
+# full by the certificates that read them. The README names them; this check
+# keeps the name list equal to the measured one, in both directions.
+SHORT_SELF_SHA = ("chart_selection_criterion.json", "dyadic_cover.json",
+                  "residual_closure.json")
+
+
+def check_self_sha(findings):
+    """Every `self_sha256` is 64 characters, except the three declared ones."""
+    readme = (ROOT / "README.md").read_text(encoding="utf-8") if (
+        ROOT / "README.md").exists() else ""
+    short = []
+    for p in sorted(list((ROOT / "certificates").glob("*.json"))
+                    + list((ROOT / FROZEN_INPUTS).glob("*.json"))):
+        try:
+            d = json.loads(p.read_text(encoding="utf-8"))
+        except (ValueError, OSError):
+            continue
+        s = d.get("self_sha256") or (d.get("provenance") or {}).get("self_sha256")
+        if isinstance(s, str) and len(s) != 64:
+            short.append(p.name)
+            if len(s) != 16:
+                findings.append(("self-sha", rel(p), 0, f"self_sha256 of length {len(s)}"))
+    if tuple(short) != SHORT_SELF_SHA:
+        findings.append(("self-sha", "tools/check_distribution.py", 0,
+                         f"declared {list(SHORT_SELF_SHA)}, measured {short}"))
+    for name in SHORT_SELF_SHA:
+        if f"`{name}`" not in readme:
+            findings.append(("self-sha", "README.md", 0,
+                             f"{name} records a 16-character prefix and the README does not say so"))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--summary", action="store_true",
                     help="counts per rule, no per-finding lines")
     ap.add_argument("--rule", choices=("english", "vocabulary", "json-key",
-                                       "json-text", "path", "strictness",
-                                       "duplicated-prose", "import", "appendix-e"),
+                                       "json-text", "json-vocabulary", "path",
+                                       "strictness", "duplicated-prose", "import",
+                                       "appendix-e", "nerve-counts", "self-sha"),
                     help="report a single rule")
     args = ap.parse_args()
 
@@ -432,6 +645,9 @@ def main():
     check_duplicated_prose(findings)
     check_imports(findings, pinned_dependencies())
     check_appendix_e(findings)
+    check_json_vocabulary(findings)
+    check_nerve_counts(findings)
+    check_self_sha(findings)
 
     if args.rule:
         findings = [f for f in findings if f[0] == args.rule]

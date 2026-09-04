@@ -156,7 +156,7 @@ def _hi(x):
 #  Floats serve the JSON, 25-digit strings serve the audit: a
 #  float rounded TO NEAREST can lie about an inclusion, and
 #  it is precisely the inclusion "the guard disc avoids the cut" that
-#  est en cause ici.
+#  is at stake here.
 # ===========================================================================
 def _iv_diag(x):
     lo, hi = mp.mpf(x.a), mp.mpf(x.b)
@@ -209,7 +209,7 @@ def _mid_civ(c: CIV) -> CIV:
 
 
 # ===========================================================================
-#  Taylor-modèle réel
+#  Real Taylor model
 # ===========================================================================
 class TMR:
     """P(ε) + I : p[NM] intervalles, rem ≥ 0 (|I| ≤ rem)."""

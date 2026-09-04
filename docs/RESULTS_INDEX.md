@@ -2,7 +2,7 @@
 
 Every computational claim of the paper, the program that produces it, the artifact it produces, and the reproduction mode that rebuilds it.
 
-This file is GENERATED from the inventory (`k3_public_inventory.json`) by `k3_public_results_index.py`. Do not edit it by hand: the next run overwrites it.
+This file is generated, not written: it is derived from an inventory of the producing workspace (each certificate's producer and the transitive closure of what that producer reads) and regenerated at every release. Do not edit it by hand: the next generation overwrites it.
 
 | Paper result | Generator | Reference artifact | Mode | Current check | Closure (programs) | Closure (lines) | Inputs to ship |
 | --- | --- | --- | --- | --- | ---: | ---: | ---: |
@@ -10,7 +10,7 @@ This file is GENERATED from the inventory (`k3_public_inventory.json`) by `k3_pu
 | Sec 9 (Validated Metric Compatibility on Selected Continuation Domains) -- validated metric compatibility on continuation domains | `metric_transport.py` | `bridge_metric_path.json` | full | hashed | 20 | 14456 | 9 |
 | Sec 4.3 (The atlas theorem, and the glued space as a corollary) -- design record behind the closure theorem | `closure_skeleton.py` | `closure_skeleton.json` | full | unverified | 2 | 1782 | 6 |
 | Sec 5.2 (Exact cocycle law) -- design record behind the exact cocycle law | `exact_transitions.py` | `exact_transitions.json` | full | unverified | 2 | 1751 | 2 |
-| Sec 6.4 (Away from the branch locus) -- face crossing, control experiment | `face_continuation.py` | `face_traversal_leaf.json` | full | hashed | 20 | 14506 | 8 |
+| Sec 7.4 (Exact overlap closure and the certified nerve) -- face crossing, control experiment | `face_continuation.py` | `face_traversal_leaf.json` | full | hashed | 20 | 14506 | 8 |
 | Figures (Figures) -- manifest of every plotted number | `figures.py` | `figures_manifest.json` | full | unverified | 1 | 315 | 4 |
 | Sec 4.2 (Uniformity and finiteness) -- design record behind the regional gluing contract | `gluing_contract.py` | `gluing_contract.json` | full | unverified | 1 | 299 | 16 |
 | Sec 3.4 (A quantitative inverse-function lemma) -- design record behind the chart lemma | `uniform_chart_lemma.py` | `uniform_chart_lemma.json` | full | unverified | 2 | 1783 | 4 |
@@ -34,10 +34,10 @@ This file is GENERATED from the inventory (`k3_public_inventory.json`) by `k3_pu
 - artifacts the run rewrites: **0** (the certificates themselves)
 
 A generator imported for its functions does not rebuild its own artifact: importing is not running. Every input above must either ship, or be rebuilt by an explicit earlier step of `full`.
-- largest single input: 29.59 MB (inputs are renamed in the cleanup pass)
+- largest single input: 29.59 MB
 
 ## The four design certificates
 
 Four of the shipped certificates are design records rather than claims of the theorems. Making them reproducible pulls **23** further artifacts into the repository (transitive closure of the four, minus the 14 shipped), or **22** counting only what the verified chain does not already read: contract amendments, preregistrations, and an internal chain none of the theorems rest on.
 
-Generated from inventory of `c567b21bddb6d8a46242f8d1e3d613363d001b61`.
+Generated for release 2.0.0 of this repository.

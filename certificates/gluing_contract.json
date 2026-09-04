@@ -1,6 +1,6 @@
 {
-  "artifact": "k3_cap_global_gluing_contract_closeout_k",
-  "lot": "GLOBAL CONTRACT, regional closeout: 6 CLOSED and 0 OPEN on the current region",
+  "artifact": "gluing_contract",
+  "subject": "GLOBAL CONTRACT, regional closeout: 6 CLOSED and 0 OPEN on the current region",
   "kind": "contract_closeout_read_only",
   "amends": "k3_cap_global_gluing_contract_amendment_j.json",
   "amends_sha256": "198c0d606947168c0fe2cd022a67211427dc0f08e175f20309e642843e6e704b",
@@ -200,19 +200,19 @@
   },
   "K5_scope_firewall": {
     "forbidden_phrases": [
-      "K3 globale fermée",
+      "global K3 closed",
       "b₁(K3) = 36",
       "b1(K3)=36",
       "the 36 survivors are global",
       "the low boundaries do not exist",
       "the internal edges are already paid",
-      "X_INTERNAL déjà payé"
+      "X_INTERNAL already paid"
     ],
     "statements": [
       "b_1 = 36 is that of the REGIONAL complex actually paid (the real part plus 215 certified mixed 2-cells)",
       "the 36 surviving dimensions are classes of the region, not of the K3",
       "15 tiles stay relative to a low face: an enumeration boundary, outside the region",
-      "the 1452 candidates requiring a reopening are not paid: a separate lot",
+      "the 1452 candidates requiring a reopening are not paid: a separate record",
       "K3 globale : NOT_CLOSED"
     ]
   },

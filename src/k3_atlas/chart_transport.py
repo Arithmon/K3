@@ -190,7 +190,7 @@ def provenance(src, t_wall):
 
 
 # ===========================================================================
-#  the address sheet record step — le sheet record dyadique AUTONOME
+#  the address sheet record step: the AUTONOMOUS dyadic sheet record
 # ===========================================================================
 def address_of(root_c, root_h, c, h):
     """Dyadic address of a leaf, reconstructed ARITHMETICALLY by replaying
@@ -261,7 +261,7 @@ def frontier_fractions(addresses):
 
 
 # ===========================================================================
-#  the transport step / the stability step — le transport durci
+#  the transport step / the stability step: the hardened transport
 # ===========================================================================
 def _f_down(x):
     """Conversion from mpf to float DIRECTED downwards (the
@@ -563,7 +563,7 @@ def _run_tile(job):
 
 
 # ===========================================================================
-#  Stratification (§13 de la review)
+#  Stratification (section 13 of the review contract)
 # ===========================================================================
 def stratify(tiles, residual):
     sig_of = {}
@@ -628,7 +628,7 @@ def build():
     log(f"cover loaded: {len(tiles)} tiles, {len(residual)} residual "
         f"boxes · cell S={list(S)} g={g} eps={list(eps)}")
 
-    # --- the address sheet record step : le sheet record dyadique autonome --------------------------------
+    # --- the address sheet record step: the autonomous dyadic sheet record --------------------------------
     leaves = [(t, "tile") for t in tiles] + [(r, "residual")
                                              for r in residual]
     addresses, addr_fail, leaf_addr = [], 0, []
@@ -945,7 +945,7 @@ def _selftest():
     chk("T7 lambda_min_lo: det_lo/tr_hi is at most lambda_min on an exact case",
         _f_down(mp.mpf(6) / 5) <= 2.0)
 
-    # T8 : fro_up majore la vraie norme de Frobenius (matrice de TMC)
+    # T8: fro_up bounds the true Frobenius norm from above (TMC matrix)
     def cmat(z00, z01, z10, z11):
         return [[TMC.const(CIV(riv(z.real), riv(z.imag)))
                  for z in row] for row in ((z00, z01), (z10, z11))]

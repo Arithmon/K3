@@ -172,7 +172,7 @@ def element_tensors_packed(Z, W):
 
 
 # ===========================================================================
-#  Problème de fit
+#  Fit problem
 # ===========================================================================
 class FitProblem:
     """F(p9, c208) = Var_w(r) on a frozen stratified sample. The gradient
@@ -192,7 +192,7 @@ class FitProblem:
         self.labels = labels
         self.K = Z.shape[0]
         log(f"  stratified fit sample: {self.K} pts "
-            f"({len(labels)} charts, boost ×{BOOST} sur "
+            f"({len(labels)} charts, boost ×{BOOST} on "
             f"{len(HEAVY_CHARTS)})")
         Tps = []
         for i0 in range(0, self.K, CHUNK):

@@ -1,6 +1,6 @@
 {
-  "artifact": "k3_cap_f9_p0_exact_transitions",
-  "lot": "F9-P0 — exact algebraic transition theorem entre les 60 types (design, NEXT-2 seconde revue)",
+  "artifact": "exact_transitions",
+  "subject": "Exact algebraic transition theorem between the 60 chart types (design record)",
   "kind": "transition_theorem_design_read_only",
   "no_measurement_performed": true,
   "nothing_is_rewritten": true,

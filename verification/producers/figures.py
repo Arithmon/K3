@@ -11,7 +11,7 @@ Figures produced in `figures/`:
   5. fig_proof_architecture.png          — DIAGRAM: exact algebra → quantitative lemma → certified applicability → X_atlas ≅ X → continuation
 
 DERIVATION (rule "derive, do not merely assert"): ρ per type comes from `U1C_constants_certified.types_60` (Fraction → float
-FOR DISPLAY only); the bridge margins come from the the bridge step panel; the vertical/base partition of D is RECOMPUTED
+FOR DISPLAY only); the bridge margins come from the bridge step panel; the vertical/base partition of D is RECOMPUTED
 here from D and compared with the counts of the generators certificate (internal check). A JSON manifest serialises the plotted
 numbers and the SHA of the sources: a figure of the paper must be reproducible and traceable like a check.
 Style: validated categorical palette (blue #2a78d6 / orange #eb6834 — CVD ΔE 24.7 protan, 33.6 normal, all checks PASS)

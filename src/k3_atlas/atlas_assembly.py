@@ -210,7 +210,7 @@ def provenance(src, t_wall):
 #  EXACT dyadic geometry: never a float inside a decision
 # ===========================================================================
 def box_of(o):
-    """(centre, demi-largeur) d'une feuille, en Fractions exactes."""
+    """(centre, half-width) of a leaf, as exact Fractions."""
     return ([Fraction(float.fromhex(x)) for x in o["center_hex"]],
             Fraction(float.fromhex(o["hw_hex"])))
 
@@ -558,7 +558,7 @@ def halo_certify(cell, tile, rho, rule, root_c, root_h):
     # projective congruence on the HALO, with a frozen record. The supremum stays in
     # multiprecision until the check: the comparison to delta is made on the
     # exact, and the float conversion (directed, _f_up) happens only at
-    # sérialisation.
+    # serialisation.
     sup = mp.mpf(0)
     okz = True
     for a in range(6):
@@ -949,7 +949,7 @@ def build():
         else pilot_patch(leaves, N_PILOT_TILES)
     log(f"tuiles retenues : {len(sel)}")
 
-    # --- D2/D3 : les halos ---------------------------------------------
+    # --- D2/D3: the halos ---------------------------------------------
     rootF = ([Fraction(x) for x in
               [Fraction(float.fromhex(y)) for y in cell_d["center_hex"]]],
              Fraction(float.fromhex(cell_d["hw_hex"])))
@@ -986,7 +986,7 @@ def build():
     _G["geom"], _G["tm"], _G["tiles"], _G["cell"] = \
         geom, tm, leaves, (S, g, eps)
 
-    # --- D4 : le nerf, en rationnels exacts ----------------------------
+    # --- D4: the nerve, in exact rationals ----------------------------
     ids = sorted(geom)
     touch_pairs, pairs = [], []
     for a in range(len(ids)):
@@ -1043,8 +1043,8 @@ def build():
 
     # --- D11: the negative controls ------------------------------------
     negs = run_negatives(leaves, geom, tm, pairs, pmap)
-    log("D11 : négatifs — "
-        + " · ".join(f"{k}={'CASSE' if v['breaks'] else 'NE CASSE PAS'}"
+    log("D11: negative controls: "
+        + " · ".join(f"{k}={'BREAKS' if v['breaks'] else 'HOLDS'}"
                      for k, v in negs.items()))
 
     # --- checks ----------------------------------------------------------

@@ -212,7 +212,7 @@ IM_DIRS = (1, 3)
 NG = 4
 # The gluing SUCCEEDS if and only if theta = +1 on both sides. -1 is a
 # publishable result and a gluing FAILURE: preregistered here, not
-# arbitré après coup.
+# adjudicated after the fact.
 THETA_REQUIRED = 1
 T0 = time.time()
 IV0 = iv.mpf(0)
@@ -1445,12 +1445,12 @@ def build():
         "not_paid_here": [
             "the METRIC of the bridge: Qmat, Weyl, lateral "
             "congruences: the full-run path requires the bilateral "
-            "bilateral, which now exists, but the run does not use it",
+            "constructor, which now exists, but the run does not use it",
             "the canonical identification of the neighbour, which REFUSED; "
             "the upper atlas is DERIVED by conjugation, not enumerated",
             "gluing across the real faces, where the bridges stay "
-            "cartes RELATIVES (marge 0 contre la face de la cellule)",
-            "les voisines de codimension 1, les 895 autres paires, the later scaling"],
+            "RELATIVE charts (margin 0 against the face of the cell)",
+            "the codimension-1 neighbours, the 895 other pairs, the later scaling"],
         "checks": checks, "checks_passed": npass, "checks_total": len(checks),
         "verdict": (
             "DELIVERED: 64 bilateral bridges, glued "

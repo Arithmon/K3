@@ -174,7 +174,7 @@ def sample_chart(rng, S, g_col, n_draw, uv_offset=(0., 0., 0., 0.)):
     o1, o2 = others
     A = minor_inv_times_T_float(S, T)         # colonnes ordre T
     perm = [list(T).index(g_col), list(T).index(o1), list(T).index(o2)]
-    A = A[:, perm]                            # (a, b, c) pour (1, u^2, v^2)
+    A = A[:, perm]                            # (a, b, c) for (1, u^2, v^2)
     du_r, du_i, dv_r, dv_i = uv_offset
     u = (du_r + rng.uniform(-1, 1, n_draw)) + 1j * (
         du_i + rng.uniform(-1, 1, n_draw))
@@ -198,7 +198,7 @@ def sample_chart(rng, S, g_col, n_draw, uv_offset=(0., 0., 0., 0.)):
         absT = np.abs(Z[:, list(T)])
         ok_g = np.array(list(T))[np.argmax(absT, axis=1)] == g_col
         keep = ok_S & ok_g & np.isfinite(Z).all(axis=1)
-        # exclut les radicands quasi nuls (mesure nulle, robustesse float)
+        # excludes near-zero radicands (measure zero, float robustness)
         keep &= np.abs(R).min(axis=1) > 1e-12
         if not keep.any():
             continue
@@ -299,7 +299,7 @@ def sphere_horizontal_frame(Z, W):
       J_Q(z).U = 0   (tangent to the K3, inherited from J_Q(Z).W = 0 and
                       Q(Z) = 0)
         U spans the SAME horizontal plane as V, so there is an invertible A = V-dagger U with
-      que U = V·A  ⟹  g_chart = A† · g_V · A (covariance).
+      that U = V·A  ⟹  g_chart = A† · g_V · A (covariance).
 
     The homogenised correction becomes exactly -f.U-dagger U (instead of
     -f.I_2

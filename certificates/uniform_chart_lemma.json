@@ -1,6 +1,6 @@
 {
-  "artifact": "k3_cap_f1prime_u0_uniform_chart_lemma",
-  "lot": "F1′-U0 — uniform chart lemma (design symbolique, NEXT-1 seconde revue)",
+  "artifact": "uniform_chart_lemma",
+  "subject": "Uniform chart lemma, symbolic design record",
   "kind": "lemma_design_read_only",
   "no_measurement_performed": true,
   "nothing_is_rewritten": true,

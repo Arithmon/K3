@@ -6,7 +6,7 @@
  "nothing_is_rewritten": true,
  "u1_is_not_modified_by_this_lot": true,
  "upstream": {
-  "u1_live": "1c493a2434e443b77eebf7426759ea723a62106cbc6f23dd751da70ebb2f0b1c",
+  "u1_live": "cb0327b0cb4fb053e4566871e061cf40a7c9dd795b33a49ee2783d1a660dc28c",
   "u1_outcome_live": "uniform_open_chart_theorem_certified",
   "u1_sha_at_defect": "d30959de5e0e2d9233cf09fc03e450f695ef68a1dfde82a8dcd32797dd776e07",
   "u1_rho_published_at_defect": "9.59780680865981e-10",
@@ -698,7 +698,7 @@
  "checks_passed": 6,
  "checks_total": 6,
  "outcome": "u1_sigma_floor_defect_confirmed_with_witness_radius_corrected_9p6e10_to_2p1e12_theorem_survives",
- "seconds": 0.1,
+ "seconds": 0.2,
  "perturbation_tests": {
   "N1_capping_z_at_one_validates_U1_substitution": true,
   "N2_inverting_the_chain_min_to_product_silences_the_witness": true,
@@ -706,6 +706,6 @@
  },
  "perturbation_tests_passed": 3,
  "perturbation_tests_total": 3,
- "built_from_head": "cb9487d31455cf90e06a06bab8a30c0b0a4a08f8",
+ "built_from_head": "2cb76b9b6cebfc2fbfcde68ab7348f63aaaa0fe9",
  "self_sha256": "94a476973622e794c6f3041b72c4fb53d51cfa29b18e8f96d6f23e5ee9e56f85"
 }

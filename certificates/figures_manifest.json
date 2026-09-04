@@ -2,10 +2,10 @@
  "artifact": "figures_manifest",
  "subject": "figures of the atlas paper — 2 data-driven (certified radii, deck action), 2 annotated diagrams, 1 architecture",
  "sources": {
-  "u1": "1c493a2434e443b77eebf7426759ea723a62106cbc6f23dd751da70ebb2f0b1c",
-  "generators": "2f06306389575fbcf559222276257985334878306a091a60f01c895dfaa89974",
+  "u1": "cb0327b0cb4fb053e4566871e061cf40a7c9dd795b33a49ee2783d1a660dc28c",
+  "generators": "e684bf9970572553714af355c5533154cffd377614581f07ac44df7ce72a335a",
   "bridge_panel": "58c06da48412c8b1dca175f7f7b44156b590d7f71be80b4831cdd4f4f1c5081c",
-  "sigma_correction": "c3f633b662787bbc6cbd410598648d412da684c1c462bbec4273dc1938b888dc"
+  "sigma_correction": "becad3c1d09e9672d38a898cda14792f58887e3c7ea9a62a6633638c32247402"
  },
  "numbers_plotted": {
   "branch_coeffs_S345": {
@@ -72,6 +72,6 @@
   "the diagrams (1, 4, 5) are declared schematic",
   "the floats are for DISPLAY (the sources remain Fraction)"
  ],
- "built_from_head": "d64f8a23d7e1ae0443e5bd60eedc036f6a437b36",
- "self_sha256": "b09b4ec8c604d8ece35db30282b9a403aa903d9477f61b8c9cdb6bdddc0476e1"
+ "built_from_head": "2cb76b9b6cebfc2fbfcde68ab7348f63aaaa0fe9",
+ "self_sha256": "ef42f5599800ca335a9dd303756869f48b190f048e17a8f0ae6d61b90e56a2bb"
 }

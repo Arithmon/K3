@@ -279,7 +279,7 @@ def congruent_packed(q4, R0):
 
 
 def r0_from_chol(Gmid):
-    """R₀ = inv(L†), G = LL† ⟹ R₀†GR₀ = I (normalise le terme principal)."""
+    """R₀ = inv(L†), G = LL† ⟹ R₀†GR₀ = I (normalises the principal term)."""
     L = np.linalg.cholesky(0.5 * (Gmid + Gmid.conj().T))
     return np.linalg.inv(L.conj().T)
 
@@ -541,7 +541,7 @@ def build():
            "cong_certified_nonPD": cert_wc["det"][1] < 0,
            "note": "M_H canonicalised; det' = det/det G_rho (dimensionless)"}
     log(f"W  : t_bad = {t_bad:.4f} — raw det.hi = {cert_w['det'][1]:.3e}"
-        f" ; cong det'.hi = {cert_wc['det'][1]:.3e} (les 2 < 0 requis)")
+        f" ; cong det'.hi = {cert_wc['det'][1]:.3e} (both < 0 required)")
 
     # --- A1/A2(i)/A3: h grid by 3 boxes, raw plus congruences ---------
     a1 = []

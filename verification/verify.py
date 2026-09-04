@@ -30,15 +30,15 @@ The script is READ-ONLY on the tree. Replaying rewrites the artefacts, so the
 original bytes are saved and RESTORED in a `finally` block: verifying must not
 leave the repository dirty.
 
-DEPENDENCIES. The producers use exact rational and interval arithmetic, and
-two of them serialise the arithmetic backend into their provenance, so the
-versions are pinned rather than merely recommended:
-
-    python >= 3.10,  numpy,  sympy 1.14.0,  mpmath 1.3.0  (pinned)
-
-The mpmath pin is enforced below: a different version would silently change
-the last digits of every interval endpoint, and the certificates record the
-version they were produced with.
+DEPENDENCIES. The reference environment is pinned in `requirements.lock`
+(python 3.14.4, numpy 2.5.1, sympy 1.14.0, mpmath 1.3.0, among others). This
+command needs numpy, sympy and mpmath; only the mpmath pin is
+ENFORCED here, the others must merely import, so that the command also runs
+outside the pinned environment (it has been run under python 3.12). The
+producers use exact rational and interval arithmetic, and two of them
+serialise the arithmetic backend into their provenance: a different mpmath
+would silently change the last digits of every interval endpoint, and the
+certificates record the version they were produced with.
 
 Output is one line per checked certificate, a global verdict, and a nonzero
 exit code if anything fails. The full run takes about two minutes, almost all
@@ -248,6 +248,9 @@ def check_paper_hashes():
             want = sha(path)[:16] if path.exists() else "(missing)"
             if want in text:
                 _PAPER_SEEN.append(1)
+                if text.count(want) != 1:
+                    bad.append((PAPER_PDF, 0, label,
+                                f"{text.count(want)} occurrences", want))
             if want not in text:
                 stale = [h for h in re.findall(r"[0-9a-f]{16}", text)
                          if h != want and h.count(h[0]) < 8]
@@ -291,7 +294,94 @@ def check_results_index():
     for cert in sorted(set(actual) - seen):
         bad.append(("docs/RESULTS_INDEX.md", 0, cert, "absent from the index",
                     actual[cert]))
+    # Every SHIPPED certificate has a row, checked or not. The rows present
+    # used to be the only ones read: deleting a design record's row left the
+    # index with thirteen entries and the check green.
+    shipped = {p.stem for p in CERTS.glob("*.json")}
+    for cert in sorted(shipped - seen - set(actual)):
+        bad.append(("docs/RESULTS_INDEX.md", 0, cert, "absent from the index",
+                    "a row (every shipped certificate has one)"))
     return bad
+
+
+# Which shipped file an `upstream` key names. The keys are the producers' own;
+# they are listed once here so the pin can be CHECKED against the shipped
+# bytes. Nothing compared these hashes before, and one was stale for a whole
+# release without anything reddening.
+PIN_TARGETS = {
+    "d3_coverage_legacy": "certificates/atlas_coverage.json",
+    "f1prime_u0": "certificates/uniform_chart_lemma.json",
+    "amendment_b": "certificates/closure_skeleton.json",
+    "u1": "certificates/open_chart_theorem.json",
+    "u1_live": "certificates/open_chart_theorem.json",
+    "u1_certificate": "certificates/open_chart_theorem.json",
+    "t2": "certificates/quantitative_atlas.json",
+    "bridge_panel": "certificates/bridge_atlas_panel.json",
+    "generators": "certificates/glue_obligations.json",
+    "f9_p0": "certificates/exact_transitions.json",
+    "closeout_k_regional": "certificates/gluing_contract.json",
+    "dyadic_cover": "src/k3_atlas/data/dyadic_cover.json",
+}
+# Pins that do NOT match the shipped bytes, and what was MEASURED about it.
+# A design record pins the bytes it was written from; its producer is not
+# shipped, so it cannot be re-run here, and some of its inputs were
+# regenerated or translated after it. Each entry is printed on every run.
+DECLARED_STALE = {
+    ("uniform_chart_lemma", "dyadic_cover"):
+        "the input was regenerated after the record; compared leaf by leaf, "
+        "0 numeric or boolean leaves differ, 3 prose leaves were translated "
+        "and the counter block was renamed to `checks`",
+    ("uniform_chart_lemma", "d3_coverage_legacy"):
+        "the coverage certificate was recomputed after the record (this "
+        "command recomputes it field by field); the pinned bytes are gone",
+    ("uniform_chart_lemma", "amendment_b"):
+        "closure_skeleton was translated after the record; the pin names the "
+        "untranslated bytes",
+    ("exact_transitions", "amendment_b"):
+        "closure_skeleton was translated after the record; the pin names the "
+        "untranslated bytes",
+    ("exact_transitions", "f1prime_u0"):
+        "uniform_chart_lemma was translated after the record; the pinned bytes "
+        "are no longer available",
+}
+_GENERIC_KEY = re.compile(r"sha|hash|digest|path|file|npz|json", re.I)
+
+
+def check_upstream_pins():
+    """(cert, key, published, shipped, status) for every pin the table maps.
+
+    status: 'ok', 'declared' (in DECLARED_STALE), or 'STALE' (a failure)."""
+    rows = []
+    for path in sorted(CERTS.glob("*.json")):
+        d = json.loads(path.read_text(encoding="utf-8"))
+        block = d.get("upstream", d.get("upstream_chain"))
+        if not isinstance(block, (dict, list)):
+            continue
+
+        def walk(o, keys):
+            if isinstance(o, dict):
+                for k, v in o.items():
+                    walk(v, keys + [str(k)])
+            elif isinstance(o, list):
+                for v in o:
+                    walk(v, keys)
+            elif isinstance(o, str):
+                for h in re.findall(r"[0-9a-f]{64}", o):
+                    named = [k for k in keys if not _GENERIC_KEY.search(k)]
+                    name = named[-1] if named else (keys[-1] if keys else "")
+                    if name not in PIN_TARGETS:
+                        continue
+                    target = ROOT / PIN_TARGETS[name]
+                    got = sha(target) if target.exists() else "(missing)"
+                    if got == h:
+                        status = "ok"
+                    elif (path.stem, name) in DECLARED_STALE:
+                        status = "declared"
+                    else:
+                        status = "STALE"
+                    rows.append((path.stem, name, h, got, status))
+        walk(block, [])
+    return rows
 
 
 def main():
@@ -396,6 +486,21 @@ def main():
         if not ok:
             failures.append(cert)
             lines.append(f"           expected {expected[:16]}…")
+
+    pins = check_upstream_pins()
+    stale = [r for r in pins if r[4] == "STALE"]
+    for cert, name, h, got, _ in stale:
+        lines.append(f"  FAIL     upstream pins  {cert}.{name}: pinned {h[:16]}…, "
+                     f"shipped {got[:16]}…")
+    for cert, name, h, got, st in pins:
+        if st == "declared":
+            lines.append(f"  declared {cert}.{name}: pinned {h[:16]}…, shipped "
+                         f"{got[:16]}… — {DECLARED_STALE[(cert, name)]}")
+    if stale:
+        failures.append("upstream pins")
+    else:
+        lines.append(f"  PASS     upstream pins  [{len(pins)} pins checked against the "
+                     f"shipped bytes, {sum(1 for r in pins if r[4] == 'declared')} declared stale]")
 
     index_bad = check_results_index()
     for rel, n, cert, claimed, want in index_bad:
