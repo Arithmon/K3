@@ -38,7 +38,7 @@ version would be comparing two different computations.
 **Replayed** (five certificates, under a second each). The producer in
 `verification/producers/` is re-executed and the resulting certificate is
 checked: every check green, every negative control green, and the recorded
-outcome still carrying its expected prefix.
+outcome exactly equal to its expected value.
 
 A replayed certificate is deliberately **not** compared by hash. Each one
 records the source revision it was built from, so its bytes change with
