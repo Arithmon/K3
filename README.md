@@ -18,14 +18,22 @@ python3 verification/verify.py            # full verification
 python3 verification/verify.py --quick    # hashes only, no replay
 ```
 
-Dependencies:
+Reference environment (`requirements.lock`, `pyproject.toml`, `Dockerfile`;
+details in `docs/ENVIRONMENT.md`):
 
 | package | version |
 |---|---|
-| python | >= 3.10 |
-| numpy | any recent |
+| python | 3.14.4 |
+| numpy | 2.5.1 |
+| scipy | 1.18.0 |
 | sympy | 1.14.0 |
+| matplotlib | 3.11.1 |
 | mpmath | **1.3.0 — pinned, enforced** |
+
+The environment is pinned, not recommended: `pip install -e .` requires
+Python 3.14.4 exactly. The verification command itself imports only numpy,
+sympy, matplotlib and mpmath, and has also been run outside the pinned
+environment, under Python 3.12 with mpmath 1.3.0.
 
 The mpmath pin is checked before anything runs, and is not a suggestion.
 The certificates use directed rounding, and they serialise the arithmetic
@@ -81,8 +89,18 @@ certificates/    the 14 certificates, as JSON
 figures/         the paper's figures
 verification/
   verify.py      the one-command entry point
-  producers/     the programs that emit the certificates
+  producers/     the programs that emit the replayed and recomputed certificates
     model.py     the surface itself, defined once and imported
+src/k3_atlas/    the producers of the three hash-verified certificates and
+                 their shared numerical kernels, as an installable package
+  data/          the 25 input artifacts that chain reads (41 MB)
+docs/
+  RESULTS_INDEX.md   every result of the paper: generator, artifact, mode, cost
+  ENVIRONMENT.md     the pinned environment and what each certificate recorded
+tools/           the distribution check (language, vocabulary, paths, counts)
+Dockerfile       the pinned environment, materialised
+pyproject.toml   the package, with the same pins
+requirements.lock
 ```
 
 `model.py` holds the defining data of the surface. Every certificate
@@ -110,11 +128,7 @@ between these producers and the ones that were run.
 ## Citing
 
 See `paper/latex/certified_k3_atlas.pdf` for the full statement of results and the
-bibliography.
-
-## Citing
-
-The archival deposit is the concept DOI, which always resolves to the latest
+bibliography. The archival deposit is the concept DOI, which always resolves to the latest
 version:
 
 > de La Fournière, B. *Certified Analytic Geometry on an Explicit K3 Surface.*

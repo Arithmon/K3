@@ -288,8 +288,9 @@ actually used.
 > the second entry being used only when the quantity under the root is
 > positive. Over the $60$ chart types the worst such bound is
 > $9.5711 \times 10^{-4}$ (the certified value $9.571170\ldots \times 10^{-4}$
-> rounded outward), attained at $S = \{3,4,5\}$, gauge $z_0$, solved
-> coordinate $z_5$.
+> rounded outward), attained at $S = \{3,4,5\}$ in the gauges $z_1$ and
+> $z_2$ alike, at the solved coordinate $z_5$; in the gauge $z_0$ the same
+> type has floor $2.203 \times 10^{-3}$, at $z_4$.
 > Consequently two sign patterns
 > differing in slot $s$ give points at distance at least twice that in the
 > $s$-th coordinate: the eight sheets are uniformly separated on certified
@@ -312,11 +313,19 @@ The second is independent of the condition: the same triangle inequality read fr
 below gives $|R_{s_i}| \ge |a_{s_i}| - |b_{s_i}| - |c_{s_i}|$, which is the
 sharper bound on the lines where the constant term dominates. All constants
 are exact rationals with outward-rounded roots, and the worst case is computed
-over all $60$ types. The bound does not depend on the gauge: changing $g$
-permutes the columns of $w_T$, which leaves each row sum
-$|a_s| + |b_s| + |c_s|$ unchanged, so the worst case is attained at the three
-gauges of $T = \{0,1,2\}$ alike and the certificate records the first of
-them. $\square$
+over all $60$ types, gauge by gauge. The two entries behave differently under
+a change of gauge. Changing $g$ within $T$ permutes the columns of $w_T$ and
+leaves each row sum $|a_s| + |b_s| + |c_s|$ unchanged, so $B_s$, and with it
+the first entry, is gauge-independent. The second entry is not: which
+coefficient plays the constant term $a_s$ depends on which coordinate is set
+to $1$. For $S = \{3,4,5\}$ the first entry alone gives
+$9.5712 \times 10^{-4}$ at $z_5$; in the gauge $z_0$ the second entry lifts
+$z_5$ to about $0.204$ and the floor of the type becomes
+$2.203 \times 10^{-3}$, at $z_4$, while in the gauges $z_1$ and $z_2$ the
+second entry does not apply and the floor stays at $9.5712 \times 10^{-4}$.
+The certificate records the three gauges of every triple separately, and the
+worst case over the $60$ types is attained at $S = \{3,4,5\}$,
+$g \in \{1, 2\}$. $\square$
 
 So the pivot threshold is precisely the guard that keeps every chart away from
 its own branch locus.
@@ -646,9 +655,12 @@ representative,
 $$D \;=\; \mathrm{diag}(+1, -1, +1, +1, +1, -1),$$
 
 an involution which is *not* a projective scalar, and certifies its exact
-reuse of chart data: the deck-transported charts remain valid with a
-certified radius $\rho_D \ge 1/4096$ (conservative), with the transported
-rows split into $36$ ambient and $28$ relative-open cases. What is *not*
+reuse of chart data on the $64$ bridge domains of Section 7.2: on every
+bridge the identity $Z^{\mathrm{conj}}_{\mathrm{upper}} = D \cdot
+Z_{\mathrm{bridge}}$ holds at the level of the certified coefficients, and
+the domains on which it is certified are stratified, $36$ of the $64$ being
+open in all four ambient coordinates and $28$ relative-open ($24$ relative
+to one real face, $4$ to two). What is *not*
 trivial about $D$ -- and is measured, not asserted -- is Section 7.3: $D$ is
 the exact discrepancy between conjugation and continuation.
 
@@ -841,7 +853,8 @@ its counters compared one by one with the shipped file, gauge by gauge: it is
 the one certificate whose verdict would otherwise merely be read back. The
 expensive certificates -- the bridge panel, the metric path, the face
 crossing -- are **hash-verified** against recorded SHA-256 values; reproducing
-them needs the compute machine, not this script.
+them is a matter of hours on a compute machine rather than of this script,
+and everything that run needs ships with the repository (Appendix F.4).
 The verifier fails, with a nonzero exit code, on any altered hash or any red
 condition, and it is read-only on the working tree: replaying rewrites provenance
 fields, so the original bytes are snapshotted and restored. Large box-enumeration artifacts never enter the PDF: dataset/supplement
@@ -978,10 +991,12 @@ institutional or funding relationship, bearing on this work.
 
 **Data and code availability.** Every quantitative claim in this paper is backed
 by a machine-checkable certificate. The certificate scripts, their JSON outputs,
-the figure sources and the verification entry point of Appendix F are publicly
-available in the repository accompanying this paper; a timestamped archival
-deposit identifier will be supplied at submission. Verification is a single
-command, and it distinguishes three regimes: the certificates it re-executes,
+the producers of the expensive certificates with the inputs they read, the
+figure sources and the verification entry point of Appendix F are publicly
+available in the repository accompanying this paper
+(github.com/Arithmon/K3), and archived on Zenodo under the concept DOI
+10.5281/zenodo.22047469, which resolves to the latest deposited version.
+Verification is a single command, and it distinguishes three regimes: the certificates it re-executes,
 the coverage enumeration it recomputes and compares counter by counter, and
 those it verifies by hash (Appendix F).
 
@@ -1360,9 +1375,15 @@ preregistrations, an internal chain none of the theorems above rest on -- and
 a repository that carries what it does not need is harder to audit, not
 easier.
 
-**F.2 Environment.** Python $\ge 3.10$, NumPy, SymPy 1.14.0, mpmath pinned at
-1.3.0 -- the requirements listed in the repository README; the certificates
-were produced under Python 3.14 and have also been run under 3.12. The pin is
+**F.2 Environment.** The reference environment is pinned, not recommended:
+Python 3.14.4, NumPy 2.5.1, SciPy 1.18.0, SymPy 1.14.0, Matplotlib 3.11.1 and
+mpmath 1.3.0, as listed in `requirements.lock` and `pyproject.toml` and
+materialised by the `Dockerfile`; `docs/ENVIRONMENT.md` records the BLAS
+backend, the determinism variables and the platform each certificate was
+produced on. The verification command itself imports only NumPy, SymPy,
+Matplotlib and mpmath, and has also been run outside the pinned environment,
+under Python 3.12 with mpmath 1.3.0; the package install (`pip install -e .`)
+requires Python 3.14.4 exactly. The mpmath pin is
 enforced by `verify.py` itself, which checks the installed mpmath before
 anything else runs and refuses to continue against a different version,
 because that version is serialized in the provenance of the whole chain.
@@ -1396,8 +1417,17 @@ The three expensive ones are **hash-verified**:
 **F.4 What re-running does not test.** A regenerated artifact is
 deliberately not hash-compared: its provenance field changes with every
 commit, so such a comparison would test the repository rather than the
-mathematics. Reproducing the expensive certificates from scratch requires the
-compute machine, not this script; the figures are regenerated by their own
+mathematics. Reproducing the expensive certificates from scratch is not part
+of this script, but nothing that run needs is withheld: the producers of the
+bridge panel, the metric path and the face crossing ship as the package
+`src/k3_atlas`, the five shared numerical kernels included, together with the
+$25$ input artifacts they read (`src/k3_atlas/data`, $41$ MB), the pinned
+environment of F.2 and a `Dockerfile` that reproduces it. For each result of
+the paper, `docs/RESULTS_INDEX.md` names the generator, the reference
+artifact and the reproduction mode that rebuilds it, and gives the measured
+cost of the full chain. Each generator is an ordinary Python module, run in
+the pinned environment; the full chain takes hours, which is why it is kept
+apart from the one-command check. The figures are regenerated by their own
 deterministic script, whose manifest records every plotted number and the
 hashes of its sources.
 
