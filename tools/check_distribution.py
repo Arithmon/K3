@@ -357,13 +357,68 @@ def pinned_dependencies():
             if l.strip() and not l.startswith("#")}
 
 
+# Appendix E states counts -- fields per certificate, the design records'
+# counters, how many of the nine covered files carry `checks`. Every one of
+# them was hand-counted once and one of them was wrong in a shipped revision
+# (the design records were said to carry no counters; they all do). A count
+# that a reader can falsify in one command must be RECOMPUTED by the lint
+# from the certificates, and compared with what the paper prints.
+APPENDIX_E_NINE = ("open_chart_theorem", "quantitative_atlas", "glue_obligations",
+                   "smoothness_and_transitions", "sigma_floor_correction",
+                   "atlas_coverage", "bridge_atlas_panel", "bridge_metric_path",
+                   "face_traversal_leaf")
+APPENDIX_E_DESIGN = ("closure_skeleton", "exact_transitions", "gluing_contract",
+                     "uniform_chart_lemma")
+
+
+def check_appendix_e(findings):
+    """Appendix E counts, recomputed from certificates/*.json."""
+    certs = {}
+    for p in sorted((ROOT / "certificates").glob("*.json")):
+        try:
+            certs[p.stem] = json.loads(p.read_text(encoding="utf-8"))
+        except (ValueError, OSError):
+            return
+    md = ROOT / "paper" / "certified_k3_atlas.md"
+    if not md.exists() or len(certs) != 14:
+        findings.append(("appendix-e", "certificates", 0,
+                         f"{len(certs)} certificates, appendix E counts fourteen"))
+        return
+    text = md.read_text(encoding="utf-8")
+    start = text.find("## Appendix E")
+    end = text.find("## Appendix F", start)
+    sec = text[start:end] if start >= 0 else ""
+    # the table: one row per field group, count = number of files carrying it
+    for m in re.finditer(r"^\| ((?:`[a-z_]+`(?:, )?)+) \| (\d+) \|$", sec, re.M):
+        fields = re.findall(r"`([a-z_]+)`", m.group(1))
+        claimed = int(m.group(2))
+        for f in fields:
+            actual = sum(1 for c in certs.values() if f in c)
+            if actual != claimed:
+                findings.append(("appendix-e", "paper/certified_k3_atlas.md", 0,
+                                 f"table says `{f}` = {claimed}, certificates say {actual}"))
+    # the design records' counters
+    counts = ", ".join(f"{certs[d].get('checks_passed')}/{certs[d].get('checks_total')}"
+                       for d in APPENDIX_E_DESIGN)
+    if f"({counts})" not in sec:
+        findings.append(("appendix-e", "paper/certified_k3_atlas.md", 0,
+                         f"design records carry checks {counts}; the text does not say so"))
+    # the nine covered files
+    with_checks = sum(1 for c in APPENDIX_E_NINE if "checks" in certs.get(c, {}))
+    m = re.search(r"command covers, (\d+) carry `checks`", sec)
+    if not m or int(m.group(1)) != with_checks:
+        findings.append(("appendix-e", "paper/certified_k3_atlas.md", 0,
+                         f"{with_checks} of the nine covered files carry `checks`; text says "
+                         f"{m.group(1) if m else 'nothing'}"))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--summary", action="store_true",
                     help="counts per rule, no per-finding lines")
     ap.add_argument("--rule", choices=("english", "vocabulary", "json-key",
                                        "json-text", "path", "strictness",
-                                       "duplicated-prose", "import"),
+                                       "duplicated-prose", "import", "appendix-e"),
                     help="report a single rule")
     args = ap.parse_args()
 
@@ -376,6 +431,7 @@ def main():
     check_strictness(findings)
     check_duplicated_prose(findings)
     check_imports(findings, pinned_dependencies())
+    check_appendix_e(findings)
 
     if args.rule:
         findings = [f for f in findings if f[0] == args.rule]
@@ -389,7 +445,7 @@ def main():
     print("Distribution check")
     report_exemptions()
     for rule in ("english", "vocabulary", "json-key", "json-text", "path",
-                 "strictness", "duplicated-prose", "import"):
+                 "strictness", "duplicated-prose", "import", "appendix-e"):
         if args.rule and rule != args.rule:
             continue
         print(f"  {rule:12s} {by_rule.get(rule, 0):6d}")

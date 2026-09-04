@@ -11,7 +11,7 @@
   "t2": "b3a2e81b6202337b15ac5ccac59158d4ceb40674193c4df65a3fd9499d2b02a0",
   "t2_outcome": "t2_fixed_k3_closed_quantitative_existence_level",
   "bridge_panel": "58c06da48412c8b1dca175f7f7b44156b590d7f71be80b4831cdd4f4f1c5081c",
-  "paper": "e0bc1a212a527f8febff8c829b5f0c0bf07cd01cd9f59d654f259ab4591b19f5"
+  "paper": "4fa0703e3cb9f9fd844a6447f4b93ccb783cbf8e1611e4bfc18a8231105d2b32"
  },
  "A_square_cocycle": {
   "mu": [
@@ -132,7 +132,7 @@
   "n_exact_algebra": 3,
   "n_certificate": 2,
   "n_topology": 1,
-  "reading": "the two genuinely topological obligations of the abstract gluing (O5 injectivity, O6 separation) consume the certified data (exhaustive sheet record, separation margin)"
+  "reading": "3 obligations of exact algebra (O1, O2, O5; O5 consumes the exhaustive sheet record), 2 certificates (O3, O4), 1 topological (O6: finiteness and open bijection — separation is not bought with an estimate)"
  },
  "does_not_attest": [
   "the certified panel itself (3540/3540, margins, ρ_unif — produced upstream)",
@@ -162,6 +162,6 @@
  },
  "perturbation_tests_passed": 3,
  "perturbation_tests_total": 3,
- "built_from_head": "cb9487d31455cf90e06a06bab8a30c0b0a4a08f8",
- "self_sha256": "9ef69a324f19a070e9c31032053111bf8d176e612ab92a5e41e78cbd9e0e3217"
+ "built_from_head": "d64f8a23d7e1ae0443e5bd60eedc036f6a437b36",
+ "self_sha256": "795317b62c2a1be714227319b3448d2abce372f3bf9d2015c9f0e9ee0ab8d457"
 }

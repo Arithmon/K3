@@ -8,7 +8,7 @@
  "upstream": {
   "u1": "1c493a2434e443b77eebf7426759ea723a62106cbc6f23dd751da70ebb2f0b1c",
   "u1_outcome": "uniform_open_chart_theorem_certified",
-  "generators": "4ae19ab6c3c0cb37e8890917599f07059497da479d80e772bf0b39384b003029",
+  "generators": "2f06306389575fbcf559222276257985334878306a091a60f01c895dfaa89974",
   "d3_read_from_u1": {
    "tau": 0.6,
    "minor_floor": 4.8,
@@ -269,7 +269,7 @@
  },
  "perturbation_tests_passed": 3,
  "perturbation_tests_total": 3,
- "built_from_head": "cb9487d31455cf90e06a06bab8a30c0b0a4a08f8",
+ "built_from_head": "d64f8a23d7e1ae0443e5bd60eedc036f6a437b36",
  "self_sha256": "811bb50974dd44ff640d1bf90e5b233f4de440112bdd258b1104c15409b0af3a",
  "provenance": {
   "sympy_version": "1.14.0"

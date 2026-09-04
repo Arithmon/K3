@@ -37,21 +37,22 @@ matrix of exponents, the variety imposes V_full·w = 0.
     bridges): D is vertical for exactly **4 triples, i.e. 12 types out of 60**, and moves the base point on the other
     **48** — this is §6.3, "abstract deck action ≠ vertical action chart by chart", in numbers.
 
-(D) THE SEVEN GLUING OBLIGATIONS (§4.3), CLASSIFIED. X_atlas = (⊔_α U_α)/∼, with Φ : X_atlas → X ⊂ P⁵ tautological
+(D) THE SIX GLUING OBLIGATIONS (§4.3), CLASSIFIED. X_atlas = (⊔_α U_α)/∼, with Φ : X_atlas → X ⊂ P⁵ tautological
     chart by chart.
     O1 ∼ is an equivalence relation     ← exact cocycle (A) + P_{SS} = I + inverses [EXACT ALGEBRA, checked here]
-    O2 Φ is well defined                ← each chart lands in X (the sections solve F₀ = F₁ = F₂ = 0) [ALGEBRA]
+    O2 Φ is well defined                ← each chart lands in X (the sections solve F₀ = F₁ = F₂ = 0) [EXACT ALGEBRA]
     O3 Φ is a local biholomorphism      ← Prop. 3.1 (certified radius ρ_unif) [CERTIFICATE U1]
     O4 Φ is surjective                  ← the pivot open sets cover X (τ = 0.6) [COVERING CERTIFICATE]
     O5 Φ is injective                   ← ∼ captures ALL coincidences: two chart points with the same projective image
-                                           are related by a transition — this is the role of the sheet sheet record (exactly
-                                           one sheet per point: 8 exhaustive sheets) [ALGEBRA + SIGN_PATTERN]
-    O6 X_atlas is Hausdorff             ← UNIFORM separation of the sheets over the overlaps (certified margin ≥ 1.043):
-                                           two points that are not identified stay at distance ≥ the margin
-                                           [SEPARATION CERTIFICATE]
-    O7 X_atlas is second countable      ← the atlas is FINITE by compactness [TOPOLOGY + finiteness]
-    Distribution derived here: 3 obligations of exact algebra, 3 of certificate, 1 topological — and the TWO genuinely
-    topological obligations of the abstract gluing (O5, O6) consume precisely the certified data (sheet record, separation).
+                                           are related by a transition — this is the role of the sheet record (exactly
+                                           one sheet per point: 8 exhaustive sheets) [EXACT ALGEBRA + SHEET RECORD]
+    O6 X_atlas is second countable      ← the atlas is FINITE by compactness; a continuous bijection that is a local
+       and Hausdorff                       homeomorphism is open, hence a homeomorphism, so X_atlas inherits the
+                                           topology of X [TOPOLOGY + finiteness]. Separation is NOT bought with an
+                                           estimate: the former "Hausdorff by certified margin" obligation is gone.
+    Distribution derived here: 3 obligations of exact algebra (O1, O2, O5 — the last with the exhaustive sheet record),
+    2 certificates (O3, O4), 1 topological (O6). The sheet record is consumed by O5 ONLY; no obligation consumes a
+    separation margin. The `reading` field of the certificate is built FROM these modes, not written by hand.
 Negative controls: N1 repeated μ = (1,1,3,5,7,11) ⇒ V_S = 0 for S ⊇ {0,1} ⇒ the transitions cease to exist (check Q1
 fails); N2 gauge moves removed ⇒ 6 components ⇒ generation fails (check Q4); N3 one entry of P mutated ⇒ the cocycle
 fails (check Q2).
@@ -296,7 +297,11 @@ def build(mutate=None):
                       "D_base_moving_types": len(types) - len(D_vert_types),
                       "reading": "§6.3 in numbers: the same abstract transformation is vertical for 12 types out of 60 and moves the base point on the other 48"},
            "D_glue_obligations": {"obligations": obligations, "n_exact_algebra": n_alg, "n_certificate": n_cert, "n_topology": n_top,
-                                  "reading": "the two genuinely topological obligations of the abstract gluing (O5 injectivity, O6 separation) consume the certified data (exhaustive sheet record, separation margin)"},
+                                  "reading": (f"{n_alg} obligations of exact algebra ({', '.join(o['id'] for o in obligations if o['mode'].startswith('EXACT_ALGEBRA'))}; "
+                                              f"O5 consumes the exhaustive sheet record), {n_cert} certificates "
+                                              f"({', '.join(o['id'] for o in obligations if o['mode'] == 'CERTIFICATE')}), "
+                                              f"{n_top} topological ({', '.join(o['id'] for o in obligations if o['mode'] == 'TOPOLOGY_FINITENESS')}: "
+                                              "finiteness and open bijection — separation is not bought with an estimate)")},
            "does_not_attest": ["the certified panel itself (3540/3540, margins, ρ_unif — produced upstream)", "the covering D3",
                              "the geometry of the bridges (the bridge step)", "O6/O7 as complete topological proofs (inputs named, argument written out in the paper)",
                              "anything outside the atlas paper"]}

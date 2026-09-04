@@ -1305,8 +1305,11 @@ oldest, a rename this repository did not finish; and the provenance triple
 `seconds`, `built_from_head`, `self_sha256`.
 
 The four design records are the least uniform: they predate the convention
-and carry the payload without the counters. The nine files the verification
-command checks all carry `checks` and its two counters.
+-- none of them carries `does_not_attest`, `outcome`, `subject` -- but all four carry
+`checks` and its two counters (6/6, 4/4, 7/7, 6/6). Of the nine files the verification
+command covers, 8 carry `checks`; the ninth, the recomputed coverage
+certificate, has no `checks` block at all and is compared field by field on
+its `verdict` and its box counts instead (Appendix F).
 
 **E.2 Green and red.** A certificate is green iff every condition and every
 negative control is true. The `outcome` string encodes the claim when green
