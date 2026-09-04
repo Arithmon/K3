@@ -700,7 +700,7 @@ The mixed sign pattern of \(D\) is exactly the record of which lines sit in whic
 
 \section{Appendix E -- Certificate specification}\label{appendix-e-certificate-specification}
 
-\textbf{E.1 Anatomy.} A certificate is one JSON document. The vocabulary is shared, but it is not a schema every file satisfies, and stating otherwise would be a claim the reader can falsify in one command. Measured over the fourteen shipped files:
+\textbf{E.1 Anatomy.} A certificate is one JSON document. The vocabulary is shared, but it is not a schema every file satisfies, and stating otherwise would be a claim the reader can falsify in one command. Counted as TOP-LEVEL fields over the fourteen shipped files -- the level at which a skeleton is a skeleton, and not ``the key appears somewhere in the document'':
 
 \begin{longtable}[]{@{}lr@{}}
 \toprule\noalign{}
@@ -709,15 +709,17 @@ field & certificates carrying it \\
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\texttt{artifact}, \texttt{self\_\allowbreak{}sha256} & 13 \\
+\texttt{artifact} & 13 \\
 \texttt{checks}, \texttt{checks\_\allowbreak{}passed}, \texttt{checks\_\allowbreak{}total} & 12 \\
-\texttt{built\_\allowbreak{}from\_\allowbreak{}head}, \texttt{kind} & 10 \\
-\texttt{seconds} & 9 \\
+\texttt{built\_\allowbreak{}from\_\allowbreak{}head}, \texttt{self\_\allowbreak{}sha256} & 10 \\
+\texttt{kind}, \texttt{seconds} & 9 \\
 \texttt{upstream}, \texttt{perturbation\_\allowbreak{}tests} & 8 \\
-\texttt{does\_\allowbreak{}not\_\allowbreak{}attest} & 6 \\
-\texttt{subject}, \texttt{outcome}, \texttt{provenance} & 5 to 6 \\
+\texttt{does\_\allowbreak{}not\_\allowbreak{}attest}, \texttt{subject} & 6 \\
+\texttt{outcome}, \texttt{provenance} & 5 \\
 \texttt{n\_\allowbreak{}atteste\_\allowbreak{}pas} & 4 \\
 \end{longtable}
+
+Three of the files nest \texttt{self\_\allowbreak{}sha256} inside a \texttt{provenance} block instead of carrying it at the top level, which is why that row reads 10 and not 13.
 
 The fields mean: an \texttt{artifact} name; a \texttt{subject} line stating the claim; a \texttt{kind} (exact algebra, interval, closed form); \texttt{upstream}, holding the SHA-256 of every certificate consumed; the payload blocks; \texttt{checks}, a dictionary of \textbf{named booleans}; \texttt{checks\_\allowbreak{}passed} / \texttt{checks\_\allowbreak{}total}; \texttt{perturbation\_\allowbreak{}tests}, the negative controls; an \texttt{outcome} string; the explicit list of what the certificate does \emph{not} establish -- written \texttt{does\_\allowbreak{}not\_\allowbreak{}attest} in the six most recent files and \texttt{n\_\allowbreak{}atteste\_\allowbreak{}pas} in the four oldest, a rename this repository did not finish; and the provenance triple \texttt{seconds}, \texttt{built\_\allowbreak{}from\_\allowbreak{}head}, \texttt{self\_\allowbreak{}sha256}.
 

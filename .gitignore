@@ -1,2 +1,13 @@
 __pycache__/
 *.pyc
+
+# LaTeX build by-products. They were committed, and their .log files carried
+# absolute paths from the machine that built them -- the very thing the
+# acceptance recipe forbids, which it could not see because its file filter
+# listed only .py, .md, .toml and .lock.
+paper/latex/*.aux
+paper/latex/*.log
+paper/latex/*.out
+paper/latex/*.toc
+paper/latex/*.fls
+paper/latex/*.fdb_latexmk

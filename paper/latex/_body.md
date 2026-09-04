@@ -1276,19 +1276,23 @@ $\theta = \varepsilon_{\mathrm{derived}} \odot \text{label}$ (Section 7.4).
 
 **E.1 Anatomy.** A certificate is one JSON document. The vocabulary is
 shared, but it is not a schema every file satisfies, and stating otherwise
-would be a claim the reader can falsify in one command. Measured over the
-fourteen shipped files:
+would be a claim the reader can falsify in one command. Counted as TOP-LEVEL
+fields over the fourteen shipped files -- the level at which a skeleton is a
+skeleton, and not "the key appears somewhere in the document":
 
 | field | certificates carrying it |
 | --- | ---: |
-| `artifact`, `self_sha256` | 13 |
+| `artifact` | 13 |
 | `checks`, `checks_passed`, `checks_total` | 12 |
-| `built_from_head`, `kind` | 10 |
-| `seconds` | 9 |
+| `built_from_head`, `self_sha256` | 10 |
+| `kind`, `seconds` | 9 |
 | `upstream`, `perturbation_tests` | 8 |
-| `does_not_attest` | 6 |
-| `subject`, `outcome`, `provenance` | 5 to 6 |
+| `does_not_attest`, `subject` | 6 |
+| `outcome`, `provenance` | 5 |
 | `n_atteste_pas` | 4 |
+
+Three of the files nest `self_sha256` inside a `provenance` block instead of
+carrying it at the top level, which is why that row reads 10 and not 13.
 
 The fields mean: an `artifact` name; a `subject` line stating the claim; a
 `kind` (exact algebra, interval, closed form); `upstream`, holding the
