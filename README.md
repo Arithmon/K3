@@ -28,30 +28,42 @@ in `docs/ENVIRONMENT.md`.
 ## What the command checks
 
 **Replayed** (five certificates, under a second each). The producer in
-`verification/producers/` is re-executed and the result is checked: every
-check green, every negative control green, the recorded outcome equal to
-the expected one. A regenerated file is deliberately not compared by hash:
-its provenance records the commit it was built from.
+`verification/producers/` is re-executed and the resulting certificate is
+checked: every check green, every negative control green, and the recorded
+outcome exactly equal to its expected value.
 
-**Recomputed** (the coverage enumeration: 71,807,792 boxes, about seventy
-seconds on four cores). Ten fields are compared one by one with the shipped
-file, gauge by gauge. This is the computation carrying the uniform pivot
-floor; reading its verdict back would check nothing.
+A replayed certificate is deliberately **not** compared by hash. Each one
+records the source revision it was built from, so its bytes change with
+every commit to the repository that produced it; hashing a regenerated file
+would test version-control history rather than mathematics. What is checked
+is the content: the checks and the outcome.
 
-**Hashed** (the bridge panel, the metric path, the face traversal). These
-take hours; their SHA-256 is checked against the value recorded here and
-published in Appendix F of the paper, in the markdown, the LaTeX and the
-PDF. Their producers ship in `src/k3_atlas` with every input they read
-(Appendix F.4 of the paper).
+**Recomputed** (one certificate: the coverage enumeration). Its
+branch-and-bound is re-run — 71,807,792 boxes, about seventy seconds on four
+cores — and ten fields are compared one by one with the shipped file, gauge by
+gauge. This is the computation carrying the uniform pivot floor, so reading
+its verdict back would check nothing; the recomputation reddens if a single
+counter moves. The verifier also checks that the recomputation actually
+rewrote the file it compares, so that a producer writing elsewhere cannot make
+the comparison vacuous.
 
-The command also checks every `upstream` pin a certificate wrote against the
-shipped bytes (five pins of the design records are stale, printed with what
-was measured about the difference), and `docs/RESULTS_INDEX.md` against what
-it actually does. It is read-only on the tree.
+**Hashed** (three certificates: the bridge panel, the metric path, the face
+traversal). These take hours on a compute machine and are not re-run here;
+their SHA-256 is checked against the recorded value. Reproducing them is
+possible — the producers are ordinary Python — but it is not something a
+one-command check should ask of a reader.
 
-**Negative controls.** Each producer carries, besides its checks, deliberate
-perturbations of its own computation, and the check that should catch each
-one is required to fail. Both counts appear in the output.
+Verification is read-only on the tree: replaying rewrites the certificates,
+so their original bytes are saved and restored.
+
+## Negative controls
+
+Each producer carries, besides its checks, a set of *negative controls*: the
+computation is deliberately perturbed — a coefficient moved, a sign flipped,
+a bound loosened — and the check that should catch the perturbation is
+required to fail. A check that passes on correct input tells you little; a
+check that also fails on wrong input is the one worth reading. Both counts
+appear in the verification output.
 
 ## Layout
 
