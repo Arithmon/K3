@@ -475,7 +475,7 @@ def build():
             f"(det ≥ {d_s[0]:.3e}) · PD cible "
             f"{rec['pd_target']['is_PD']} (det ≥ {d_t[0]:.3e})")
 
-    # --- E5 / E6 : les mutations ----------------------------------------------------
+    # --- E5 / E6: the mutations ----------------------------------------------------
     cell = fc["cells"][0]
     S, g, eps = tuple(cell["S"]), cell["g"], tuple(cell["eps"])
     c = [float.fromhex(x) for x in cell["center_hex"]]
@@ -604,7 +604,7 @@ def build():
             "perturbation cancelled and the check could not fail; "
             "E6 revealed it."),
         "E6_jacobian_mutation_congruence_still_holds": j_ok,
-        "not_established": ["the dyadic cover cover multi-chart", "globalisation"],
+        "not_established": ["the multi-chart dyadic cover", "globalisation"],
         "checks_prereg": checks,
         "verdict": verdict}
     ART.write_text(json.dumps(out, indent=2, ensure_ascii=False,
@@ -666,7 +666,7 @@ def _selftest():
     ok3, _ = contains_zero(mat_sub(Qmat(Zl, Wl, M, c218, rw), Q0))
     fails.append(not ok3)
     print(f"[{'PASS' if ok3 else 'FAIL'}] S3 invariance de jauge : "
-          f"Q(λZ, λW) = Q(Z, W) pour λ = {lam}")
+          f"Q(λZ, λW) = Q(Z, W) for λ = {lam}")
 
     # S4 gauge NEGATIVE CONTROL: scaling Z WITHOUT scaling W breaks
     ok4, _ = contains_zero(mat_sub(Qmat(Zl, W, M, c218, rw), Q0))

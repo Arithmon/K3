@@ -812,7 +812,10 @@ The body exhibits three worked instances --
 one bridge with its certified margins, one face crossing with its control
 experiment, and the deck identity of Proposition 7.1 -- each with the exact
 numbers quoted above. The full $64$-bridge panel, the $380$-node nerve with
-its $5{,}670$ certified edges, and every box enumeration stay in the
+its $5{,}670$ certified edges ($5{,}396$ lower-lower, $64$ bridge-lower,
+$210$ bridge-bridge; the $64$ certified upper continuations of Section 7.3
+join no node of the nerve and are counted separately in the certificate, so
+its four counters sum to $5{,}734$), and every box enumeration stay in the
 supplement and the artifact record.
 
 ---
@@ -1312,7 +1315,8 @@ skeleton, and not "the key appears somewhere in the document":
 | `built_from_head`, `self_sha256` | 10 |
 | `kind`, `seconds` | 9 |
 | `upstream`, `perturbation_tests` | 8 |
-| `does_not_attest`, `subject` | 6 |
+| `subject` | 10 |
+| `does_not_attest` | 6 |
 | `outcome`, `provenance` | 5 |
 | `n_atteste_pas` | 4 |
 
@@ -1330,15 +1334,17 @@ oldest, a rename this repository did not finish; and the provenance triple
 `seconds`, `built_from_head`, `self_sha256`.
 
 The four design records are the least uniform: they predate the convention
--- none of them carries `does_not_attest`, `outcome`, `subject` -- but all four carry
-`checks` and its two counters (6/6, 4/4, 7/7, 6/6). Of the nine files the verification
+-- none of them carries `does_not_attest` or `outcome`, and their `subject`
+line was renamed from a workshop label when they were published -- but all
+four carry `checks` and its two counters (6/6, 4/4, 7/7, 6/6). Of the nine files the verification
 command covers, 8 carry `checks`; the ninth, the recomputed coverage
 certificate, has no `checks` block at all and is compared field by field on
 its `verdict` and its box counts instead (Appendix F).
 
 **E.2 Green and red.** A certificate is green iff every condition and every
 negative control is true. The `outcome` string encodes the claim when green
-and collapses to a `*_checks_red` marker otherwise, so a red certificate
+and collapses to a red marker otherwise -- `*_checks_red` in three of the
+replayed producers, `*_refused` in the other two -- so a red certificate
 cannot be quoted as if it were green.
 
 **E.3 Negative controls.** Each principal condition ships with at least one
@@ -1352,11 +1358,14 @@ certificates: constants that can be derived must be derived rather than
 named (D1); a certificate must not silently consume another block's output
 (D2, blocking); and no condition may be constant-true by construction (D3).
 
-**E.5 Claim boundary.** `n_atteste_pas` is not a disclaimer but part of the
-specification: it is where the metric probe of Section 9 records that no
-independent two-sided comparison was run, and where the atlas certificates
-record that the quantitative floor, not the covering, is what the enumeration
-audit supplies.
+**E.5 Claim boundary.** The list of what a certificate does *not* establish
+(`does_not_attest`, `n_atteste_pas`) is not a disclaimer but part of the
+specification: it is where the atlas certificates record that the
+quantitative floor, not the covering, is what the enumeration audit supplies.
+The same discipline governs the typed contract fields: the metric probe of
+Section 9 records that no independent two-sided comparison was run as
+`edge_certificate_contract.pairwise_metric_comparison_executed: false`, a
+field a reader can test rather than a sentence.
 
 ---
 
@@ -1390,8 +1399,9 @@ Python 3.14.4, NumPy 2.5.1, SciPy 1.18.0, SymPy 1.14.0, Matplotlib 3.11.1 and
 mpmath 1.3.0, as listed in `requirements.lock` and `pyproject.toml` and
 materialised by the `Dockerfile`; `docs/ENVIRONMENT.md` records the BLAS
 backend, the determinism variables and the platform each certificate was
-produced on. The verification command itself imports only NumPy, SymPy,
-Matplotlib and mpmath, and has also been run outside the pinned environment,
+produced on. The verification command itself imports only NumPy, SymPy and
+mpmath (Matplotlib serves the figure script), and has also been run outside
+the pinned environment,
 under Python 3.12 with mpmath 1.3.0; the package install (`pip install -e .`)
 requires Python 3.14.4 exactly. The mpmath pin is
 enforced by `verify.py` itself, which checks the installed mpmath before

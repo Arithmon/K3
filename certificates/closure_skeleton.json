@@ -1,6 +1,6 @@
 {
-  "artifact": "k3_cap_global_closure_theorem_skeleton_amendment_b",
-  "lot": "GLOBAL_CLOSURE_THEOREM_SKELETON — amendement B / THEOREM-STACK CLEANUP (NEXT-0, seconde revue)",
+  "artifact": "closure_skeleton",
+  "subject": "Global closure theorem skeleton, amendment B: the theorem stack cleaned (design record)",
   "kind": "skeleton_amendment_read_only_new_artifact",
   "no_measurement_performed": true,
   "nothing_is_rewritten": true,
@@ -87,7 +87,7 @@
     },
     "cover_definition": "for m below the preregistered 4.8: U_S is the set of Z in K with determinant above m, S among the 20 triples; these sets cover K by the coverage step",
     "complementary_T_never_all_zero": {
-      "argument": "si z_t = 0 ∀ t ∈ T = Sᶜ alors Σ_{s∈S} μ_s^k z_s² = 0 (k = 0,1,2) avec V_S inversible ⇒ z_s = 0 ∀ s ⇒ Z = 0 ∉ P⁵",
+      "argument": "if z_t = 0 for all t in T = S^c, then Σ_{s∈S} μ_s^k z_s² = 0 for k = 0, 1, 2 with V_S invertible, hence z_s = 0 for all s, hence Z = 0 ∉ P⁵",
       "det_V_S_exact_20": {
         "(0, 1, 2)": "2",
         "(0, 1, 3)": "12",
@@ -118,11 +118,11 @@
       "equals_owner_tiling_couples": true
     },
     "gate_proposed_F1_GLOBAL_PIVOT_COVER": [
-      "D3 SHA-pinné",
-      "m < 4,8 préinscrit",
-      "{U_S} couvre K",
-      "T jamais tout nul sur K (exact)",
-      "raffinement par gauges → cover fini explicite",
+      "D3 SHA-pinned",
+      "m < 4.8 preregistered",
+      "{U_S} covers K",
+      "T never entirely zero on K (exact)",
+      "refinement by gauges → explicit finite cover",
       "no dependency on any list of cells",
       "negative controls: m at least 4.8 reddens; a synthetic point with no admissible (S,g) reddens"
     ],

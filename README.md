@@ -32,7 +32,7 @@ details in `docs/ENVIRONMENT.md`):
 
 The environment is pinned, not recommended: `pip install -e .` requires
 Python 3.14.4 exactly. The verification command itself imports only numpy,
-sympy, matplotlib and mpmath, and has also been run outside the pinned
+sympy and mpmath (matplotlib serves the figure script), and has also been run outside the pinned
 environment, under Python 3.12 with mpmath 1.3.0.
 
 The mpmath pin is checked before anything runs, and is not a suggestion.
@@ -46,7 +46,7 @@ version would be comparing two different computations.
 **Replayed** (five certificates, under a second each). The producer in
 `verification/producers/` is re-executed and the resulting certificate is
 checked: every check green, every negative control green, and the recorded
-outcome still carrying its expected prefix.
+outcome equal, exactly, to the expected one.
 
 A replayed certificate is deliberately **not** compared by hash. Each one
 records the source revision it was built from, so its bytes change with
@@ -117,6 +117,28 @@ working repository where these results were produced, so the identifiers
 will not resolve publicly. It is kept because it is what the producers
 actually recorded, and rewriting a provenance field to look tidier would
 make it worthless.
+
+The same rule governs three things a reader will notice. Three shipped inputs
+of the expensive chain (`chart_selection_criterion.json`, `dyadic_cover.json`,
+`residual_closure.json`) record only a 16-character prefix as their own
+source fingerprint: they predate the full-hash rule, and their bytes are
+pinned in full by the `upstream` blocks of the certificates that read them.
+The inputs and the lineage fields keep their development vocabulary as
+recorded: the run that produced each row of `exact_gluing.json`, the
+workspace paths of the retraction registry, the names of the files a design
+record read. And three prose leaves of the bridge panel (`not_paid_here`) are
+half French: the panel is hash-verified and pinned by two other hash-verified
+certificates, so a hand edit would break those pins; the producer already
+carries the corrected text, and the next full replay of the chain will ship
+it. The distribution check (`tools/check_distribution.py`) counts what these
+allowances let through and prints the counts on every run; anywhere else the
+same words are a failure.
+
+Four design records pin inputs that were regenerated or translated after the
+records were written, and their producers are not shipped. `verify.py`
+checks every `upstream` pin it can map against the shipped bytes, prints the
+stale ones with what was measured about the difference, and fails on any
+other mismatch.
 
 One field was removed. The open-chart certificate recorded the fingerprint
 of an internal review note, purely to timestamp it; the note plays no

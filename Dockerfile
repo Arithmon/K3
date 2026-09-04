@@ -5,7 +5,9 @@
 # depend on the arithmetic backend, so the backend is part of the claim.
 FROM python:3.14.4-slim
 
-ENV PYTHONHASHSEED=0 \
+ENV LANG=C \
+    LC_ALL=C \
+    PYTHONHASHSEED=0 \
     OMP_NUM_THREADS=1 \
     OPENBLAS_NUM_THREADS=1 \
     MKL_NUM_THREADS=1 \

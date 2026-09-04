@@ -632,7 +632,7 @@ def _selftest():
         R4.sqrt_principal()
     except BranchCutError:
         p_ok = False
-    chk("T4 R=+4 : la principale passe (la canonique resterait inerte)",
+    chk("T4 R=+4: the principal branch passes (the canonical one would stay inert)",
         p_ok)
 
     # T5 NEGATIVE CONTROL: R whose enclosure CONTAINS 0: all three

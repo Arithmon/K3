@@ -6,9 +6,9 @@
  "no_measurement_performed": "exact algebra only",
  "nothing_is_rewritten": true,
  "upstream": {
-  "u1": "1c493a2434e443b77eebf7426759ea723a62106cbc6f23dd751da70ebb2f0b1c",
+  "u1": "cb0327b0cb4fb053e4566871e061cf40a7c9dd795b33a49ee2783d1a660dc28c",
   "u1_outcome": "uniform_open_chart_theorem_certified",
-  "generators": "2f06306389575fbcf559222276257985334878306a091a60f01c895dfaa89974",
+  "generators": "e684bf9970572553714af355c5533154cffd377614581f07ac44df7ce72a335a",
   "d3_read_from_u1": {
    "tau": 0.6,
    "minor_floor": 4.8,
@@ -261,7 +261,7 @@
  "checks_passed": 9,
  "checks_total": 9,
  "outcome": "atlas_paper_three_nonzero_lemma_carries_smoothness_and_coverage_pivot_degree3_invariant_transitions_explicit",
- "seconds": 0.2,
+ "seconds": 0.4,
  "perturbation_tests": {
   "N1_mu_repeat_breaks_three_nonzero_lemma": true,
   "N2_bad_factor_reddens_pivot_identity": true,
@@ -269,7 +269,7 @@
  },
  "perturbation_tests_passed": 3,
  "perturbation_tests_total": 3,
- "built_from_head": "d64f8a23d7e1ae0443e5bd60eedc036f6a437b36",
+ "built_from_head": "2cb76b9b6cebfc2fbfcde68ab7348f63aaaa0fe9",
  "self_sha256": "811bb50974dd44ff640d1bf90e5b233f4de440112bdd258b1104c15409b0af3a",
  "provenance": {
   "sympy_version": "1.14.0"

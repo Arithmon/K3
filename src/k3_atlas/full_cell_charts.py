@@ -137,7 +137,7 @@ def build_section(S, g, eps, center, hw, centre_only=False):
     `centre_only` is the MUTATION of check the pilot: it determines `sigma` on the
     centre alone instead of the box. Code doing that would accept
     cells where the component is not certifiable, which is what the
-    négatif doit exhiber.
+    negative control must exhibit.
     """
     u0 = complex(center[0], center[1])
     v0 = complex(center[2], center[3])
@@ -437,7 +437,7 @@ def build():
         "cells": cells,
         "D5_component_negative": comp_neg,
         "D6_gauge_negative": gauge_neg,
-        "not_tested": ["congruence congruence", "positivity transport transport de PD",
+        "not_tested": ["congruence", "positivity transport of PD",
                        "cover multi-chart"],
         "aggregate": aggregate,
         "checks_prereg": checks,

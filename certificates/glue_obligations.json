@@ -6,12 +6,12 @@
  "no_measurement_performed": "exact rational algebra + finite graph theory",
  "nothing_is_rewritten": true,
  "upstream": {
-  "u1": "1c493a2434e443b77eebf7426759ea723a62106cbc6f23dd751da70ebb2f0b1c",
+  "u1": "cb0327b0cb4fb053e4566871e061cf40a7c9dd795b33a49ee2783d1a660dc28c",
   "u1_outcome": "uniform_open_chart_theorem_certified",
-  "t2": "b3a2e81b6202337b15ac5ccac59158d4ceb40674193c4df65a3fd9499d2b02a0",
+  "t2": "b06e5616fa0274034d1cdee0a00f61f61cd37924ff5d3cb159994f6c418a28c7",
   "t2_outcome": "t2_fixed_k3_closed_quantitative_existence_level",
   "bridge_panel": "58c06da48412c8b1dca175f7f7b44156b590d7f71be80b4831cdd4f4f1c5081c",
-  "paper": "4fa0703e3cb9f9fd844a6447f4b93ccb783cbf8e1611e4bfc18a8231105d2b32"
+  "paper": "20e44cf3f5ff6695d6c40c2aea56e5b8bc7488b7a31064c33dc007d8414f7d50"
  },
  "A_square_cocycle": {
   "mu": [
@@ -154,7 +154,7 @@
  "checks_passed": 8,
  "checks_total": 8,
  "outcome": "atlas_paper_glue_obligations_typed_and_transition_generators_derived_word_length_le_4",
- "seconds": 0.2,
+ "seconds": 0.5,
  "perturbation_tests": {
   "N1_mu_repeat_kills_transitions": true,
   "N2_no_gauge_moves_disconnects_type_graph": true,
@@ -162,6 +162,6 @@
  },
  "perturbation_tests_passed": 3,
  "perturbation_tests_total": 3,
- "built_from_head": "d64f8a23d7e1ae0443e5bd60eedc036f6a437b36",
+ "built_from_head": "2cb76b9b6cebfc2fbfcde68ab7348f63aaaa0fe9",
  "self_sha256": "795317b62c2a1be714227319b3448d2abce372f3bf9d2015c9f0e9ee0ab8d457"
 }

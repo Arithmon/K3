@@ -321,7 +321,7 @@ def interval_chart_metric(Z, W, M_civ, coeffs218, basis=B3, midx=B3_IDX,
         if c == 0.0:
             continue
         I, Kk, typ = be["ij"], be["kl"], be["type"]
-        d = len(I)                                     # = 3 sur B3
+        d = len(I)                                     # = 3 on B3
         cr = riv(c)
         mI, mK = m[I], m[Kk]
         pI, pK = p[I], p[Kk]
@@ -764,7 +764,7 @@ def _iv_intersect(a, b):
     hi = min(mp.mpf(a.b), mp.mpf(b.b))
     if lo > hi:
         raise RuntimeError("empty intersection: one of the two enclosures "
-                           "est invalide (bug kernel)")
+                           "is invalid (kernel bug)")
     return iv.mpf([lo, hi])
 
 
@@ -854,7 +854,7 @@ class T2CIV:
         return (f * f.conj()).re_t2()
 
     def sqrt_principal(f) -> "T2CIV":
-        """w = √f (branche principale, garde de branche sur f.val) :
+        """w = √f (principal branch, branch guard on f.val):
         w_a = f_a/(2w), w_ab = (f_ab − 2 w_a w_b)/(2w)."""
         w = civ_sqrt_principal(f.val)
         inv2w = CONE.div(w.mul_real(iv.mpf(2)))
@@ -1175,7 +1175,7 @@ def taylor2_metric(S, g_col, eps, u0, v0, h, M_civ, coeffs218):
 
 
 def residual_t2(detG, ms2):
-    """r = log det G + log |det M_S|² depuis les enclosures ordre 2."""
+    """r = log det G + log |det M_S|² from the order-2 enclosures."""
     if not (mp.mpf(detG.a) > 0 and mp.mpf(ms2.a) > 0):
         return None
     return iv.log(detG) + iv.log(ms2)
@@ -1272,7 +1272,7 @@ def _selftest() -> int:
             n_pts += 1
     check("K2_degenerate_box_equals_float", worst_rel < 5e-12,
           f"max rel(G) = {worst_rel:.2e}, max |Δr| = {worst_r:.2e} "
-          f"sur {n_pts} pts × {len(cases)} charts ({time.time() - t0:.0f}s)")
+          f"on {n_pts} pts × {len(cases)} charts ({time.time() - t0:.0f}s)")
 
     # K3: Monte Carlo containment, a float point of the box lies in the interval
     t0 = time.time()
@@ -1355,9 +1355,9 @@ def _selftest() -> int:
             scale = max(1.0, abs(fd[c]))
             worst_d1 = max(worst_d1, abs(mid - fd[c]) / scale)
     check("D1_dual_grads_vs_FD", worst_d1 < 1e-5,
-          f"max rel(∂G dual − FD) = {worst_d1:.2e} (pas FD {fd_step:g})")
+          f"max rel(∂G dual − FD) = {worst_d1:.2e} (FD step {fd_step:g})")
 
-    # D2 — containment MC de la forme valeur-moyenne
+    # D2: MC containment of the mean-value form
     h = 2.5e-4
     n_ok, n_tot = 0, 0
     for S, g_col, eps, u0, v0 in samples[:4]:
@@ -1384,7 +1384,7 @@ def _selftest() -> int:
     _, _, diag = mean_value_metric(S, g_col, eps, u0, v0, h, M_civ, coeffs218)
     gain = min(n / m for n, m in zip(diag["w_naive"], diag["w_mv"]))
     check("D3_mean_value_gain", gain > 3.0,
-          f"largeur naïve / valeur-moyenne ≥ {gain:.1f}× (h = {h:g}, "
+          f"naive width / mean-value ≥ {gain:.1f}× (h = {h:g}, "
           f"w_mv g00 = {diag['w_mv'][0]:.2e} against naive {diag['w_naive'][0]:.2e})")
 
     # T1 — jets ordre 2 (h=0) : val/grads ≡ dual, hessiennes vs FD 2nd float
@@ -1431,7 +1431,7 @@ def _selftest() -> int:
           f"t2 gradients match the dual ones to {worst_g:.2e}; Hessian against "
           f"Richardson finite differences, relative {worst_h:.2e} ({t_eval:.1f}s per t2 evaluation)")
 
-    # T2 — containment MC de la forme de Taylor ordre 2
+    # T2: MC containment of the order-2 Taylor form
     h = 1e-3
     n_ok, n_tot = 0, 0
     for S, g_col, eps, u0, v0 in samples[:4]:
