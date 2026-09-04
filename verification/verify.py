@@ -9,8 +9,7 @@ THREE LEVELS, and the distinction is the point.
   REPLAY — the inexpensive certificates (under a second each) are RE-EXECUTED
     from the producers in `verification/producers/`, and we then check that
     every check and every negative control is green and that the recorded
-    outcome is EXACTLY the expected one (a prefix used to be enough, and it
-    let a wrong tail through). A regenerated artefact is NOT
+    outcome is exactly equal to its expected value. A regenerated artefact is NOT
     compared by hash: its provenance block records the commit it was built
     from, which changes with every commit, so hashing a regenerated file
     would test the version-control history rather than the mathematics.
