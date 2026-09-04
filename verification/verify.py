@@ -193,6 +193,7 @@ PAPER_FILES = ("paper/certified_k3_atlas.md",
 # the check was reading a different unit from the thing published. Its text is
 # decompressed and searched here too.
 PAPER_PDF = "paper/latex/certified_k3_atlas.pdf"
+_PAPER_SEEN = []
 
 
 def _pdf_text(path):
@@ -208,13 +209,20 @@ def _pdf_text(path):
 
 
 def check_paper_hashes():
-    """Lines where the paper's published prefix differs from the shipped file."""
-    import re
-    bad = []
+    """Lines where the paper's published prefix differs from the shipped file.
+
+    CARDINAL. An earlier version compared only the rows it happened to find,
+    so deleting the labels made it green over nothing -- it even reported the
+    number of rows it EXPECTED rather than the number it read. Every label
+    must be found in every source, and the count is measured.
+    """
+    bad, seen = [], []
     for rel in PAPER_FILES:
         f = ROOT / rel
         if not f.exists():
+            bad.append((rel, 0, "(the whole table)", "file missing", ""))
             continue
+        found = set()
         for n, line in enumerate(f.read_text(encoding="utf-8").splitlines(), 1):
             for label, cert in PAPER_HASH_TABLE.items():
                 if label not in line:
@@ -222,16 +230,24 @@ def check_paper_hashes():
                 m = re.search(r"[0-9a-f]{16}", line)
                 if not m:
                     continue
+                found.add(label)
                 path = CERTS / f"{cert}.json"
                 want = sha(path)[:16] if path.exists() else "(missing)"
                 if m.group(0) != want:
                     bad.append((rel, n, label, m.group(0), want))
+        for label in PAPER_HASH_TABLE:
+            if label not in found:
+                bad.append((rel, 0, label, "no such row", "a row naming it"))
+        seen.append(len(found))
+        _PAPER_SEEN.append(len(found))
     pdf = ROOT / PAPER_PDF
     if pdf.exists():
         text = _pdf_text(pdf)
         for label, cert in PAPER_HASH_TABLE.items():
             path = CERTS / f"{cert}.json"
             want = sha(path)[:16] if path.exists() else "(missing)"
+            if want in text:
+                _PAPER_SEEN.append(1)
             if want not in text:
                 stale = [h for h in re.findall(r"[0-9a-f]{16}", text)
                          if h != want and h.count(h[0]) < 8]
@@ -399,7 +415,8 @@ def main():
         failures.append("paper hash table")
     else:
         lines.append(f"  PASS     paper hash table  "
-                     f"[{len(PAPER_HASH_TABLE)} entries match the files]")
+                     f"[{sum(_PAPER_SEEN)} rows read across "
+                     f"{len(PAPER_FILES) + 1} files, all matching]")
 
     print("Certified K3 atlas — verification")
     print("\n".join(lines))
