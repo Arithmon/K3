@@ -11,8 +11,9 @@ a full result. This script does it on the **whole box**.
 THE CONSTRUCTION. On a residual cell the section is built with a
 **choice of determination per row**:
 
-    a row whose R avoids the non-negative reals  ->  rotated root of (R, sigma), sigma from the COMPONENT
-    a row whose R avoids the non-negative reals  ->  rotated root of (R, sigma), sigma from the COMPONENT
+    a row whose R avoids (-inf, 0]   ->  principal root
+    a row whose R avoids [0, +inf)   ->  rotated root of (R, sigma),
+                                         sigma from the COMPONENT
 
 The two are complementary, so the three rows are
 covered and the six ambient coordinates exist on the whole box.

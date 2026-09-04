@@ -296,6 +296,30 @@ def check_strictness(findings):
                 findings.append(("strictness", rel(p), n, line.strip()[:100]))
 
 
+# Two adjacent prose lines that are IDENTICAL are the fingerprint of a
+# translation that collapsed two DISTINCT statements into one copy of the
+# second. It happened in the construction rule of the full-cell charts: the
+# principal-branch row was deleted and the rotated one duplicated, so the
+# docstring said both rows avoid the same half-axis -- not complementary, and
+# contradicting the code. The structural fingerprint cannot see this by
+# construction: it blanks string contents. A cheap textual rule can.
+def check_duplicated_prose(findings):
+    """Adjacent identical prose lines: a collapsed pair of statements."""
+    for p in files():
+        if p.suffix not in {".py", ".md", ".tex"}:
+            continue
+        lines = p.read_text(encoding="utf-8", errors="replace").splitlines()
+        for i in range(len(lines) - 1):
+            a, b = lines[i].strip(), lines[i + 1].strip()
+            # Markup is allowed to repeat: a LaTeX table preamble legitimately
+            # names identical column specifications one after another. The rule
+            # is about PROSE, so lines that begin as markup are skipped.
+            if a.startswith(("\\", ">{", "|", "-", "=", "%")):
+                continue
+            if len(a) > 40 and a == b:
+                findings.append(("duplicated-prose", rel(p), i + 1, a[:100]))
+
+
 def check_imports(findings, allowed):
     """Rule 4 — every import resolves here, to stdlib, or to a pinned dep."""
     local = {q.stem for q in (ROOT / "src").rglob("*.py")} if (
@@ -339,7 +363,7 @@ def main():
                     help="counts per rule, no per-finding lines")
     ap.add_argument("--rule", choices=("english", "vocabulary", "json-key",
                                        "json-text", "path", "strictness",
-                                       "import"),
+                                       "duplicated-prose", "import"),
                     help="report a single rule")
     args = ap.parse_args()
 
@@ -350,6 +374,7 @@ def main():
     check_paths(findings)
     check_latex_paths(findings)
     check_strictness(findings)
+    check_duplicated_prose(findings)
     check_imports(findings, pinned_dependencies())
 
     if args.rule:
@@ -364,7 +389,7 @@ def main():
     print("Distribution check")
     report_exemptions()
     for rule in ("english", "vocabulary", "json-key", "json-text", "path",
-                 "strictness", "import"):
+                 "strictness", "duplicated-prose", "import"):
         if args.rule and rule != args.rule:
             continue
         print(f"  {rule:12s} {by_rule.get(rule, 0):6d}")
